@@ -1,0 +1,103 @@
+
+
+{% liquid
+  assign block_settings = block.settings
+  assign has_logo = false
+  if block_settings.image
+    assign has_logo = true
+  endif
+  assign alt = block_settings.alt | default: block_settings.image.alt | default: shop.name
+%}
+
+{% if has_logo or request.design_mode %}
+  {% capture logo_image %}
+    {%- if has_logo -%}
+      {{
+        block_settings.image
+        | image_url: width: 600
+        | image_tag:
+          width: block_settings.image.width,
+          height: block_settings.image.height,
+          widths: '120, 180, 240, 360, 480, 600',
+          sizes: '(min-width: 750px) 180px, 120px',
+          loading: 'lazy',
+          class: 'brand-logo__image',
+          alt: alt
+      }}
+    {%- else -%}
+      {{ 'detailed-apparel-1' | placeholder_svg_tag: 'brand-logo__placeholder' }}
+    {%- endif -%}
+  {% endcapture %}
+
+  {% if block_settings.link != blank %}
+    <a
+      href="{{ block_settings.link }}"
+      class="brand-logo brand-logo--linked"
+      {{ block.shopify_attributes }}
+    >
+      {{ logo_image }}
+    </a>
+  {% else %}
+    <div class="brand-logo" {{ block.shopify_attributes }}>
+      {{ logo_image }}
+    </div>
+  {% endif %}
+{% endif %}
+
+{% stylesheet %}
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--brand-logo-height, 40px);
+    max-width: 100%;
+  }
+
+  .brand-logo--linked {
+    transition: opacity var(--animation-speed) ease;
+  }
+
+  .brand-logo__image,
+  .brand-logo__placeholder {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  @media (hover: hover) {
+    .brand-logo--linked:hover {
+      opacity: 0.75;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.logo",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:settings.image"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:settings.link"
+    },
+    {
+      "type": "text",
+      "id": "alt",
+      "label": "t:settings.alt_text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.logo",
+      "category": "t:categories.basic"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,575 @@
+{% comment %}
+  Partner brand showcase.
+  Renders an optional gradient heading, a divider, and a wrapping row of
+  merchant-managed logo blocks centered on a full-bleed gradient background.
+  @example
+  <!-- Add the "Partner brands" section, then drop a logo image into each logo block -->
+{% endcomment %}
+
+{% liquid
+  assign section_settings = section.settings
+  assign heading_text = section_settings.heading
+%}
+
+{% style %}
+  #shopify-section-{{ section.id }} .partner-brands {
+    --brand-logo-gap: {{ section_settings.logo_gap }}px;
+    --brand-logo-row-gap: {{ section_settings.row_gap }}px;
+    --brand-logo-height: {{ section_settings.logo_height }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .partner-brands {
+      --brand-logo-gap: 24px;
+      --brand-logo-height: 28px;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="section-background partner-brands__background"
+  style="
+    --brand-bg-from: {{ section_settings.background_gradient_from }};
+    --brand-bg-to: {{ section_settings.background_gradient_to }};
+    --brand-bg-angle: {{ section_settings.background_gradient_angle }}deg;
+  "
+></div>
+
+<div
+  class="section section--page-width partner-brands spacing-style"
+  style="{% render 'spacing-style', settings: section_settings %}"
+  {{ section.shopify_attributes }}
+>
+  {% if heading_text != blank %}
+    {% render 'text-block-styles' %}
+    <div
+      class="
+        partner-brands__heading
+        text-block
+        text-block--full-width
+        custom-typography
+        custom-font-size
+        {% if section_settings.gradient_text %}text-block--gradient{% endif %}
+      "
+      style="
+        {% render 'typography-style', settings: section_settings, type: 'body', preset: 'custom' %}
+        --text-align: {{ section_settings.alignment }};
+        {% if section_settings.gradient_text %}
+          --gradient-from: {{ section_settings.gradient_color_from }};
+          --gradient-to: {{ section_settings.gradient_color_to }};
+          --gradient-angle: {{ section_settings.gradient_angle }}deg;
+          --gradient-start: {{ section_settings.gradient_start_position }}%;
+          --gradient-end: {{ section_settings.gradient_end_position }}%;
+        {% endif %}
+      "
+    >
+      {{ heading_text }}
+    </div>
+  {% endif %}
+
+  {% if section_settings.thickness > 0 %}
+    <div
+      class="partner-brands__divider force-full-width"
+      style="
+        --brand-divider-thickness: {{ section_settings.thickness }}px;
+        --brand-divider-color: {{ section_settings.divider_color }};
+        --brand-divider-width: {{ section_settings.width_percent }}%;
+      "
+      aria-hidden="true"
+    ></div>
+  {% endif %}
+
+  {%- capture logos -%}
+    {% content_for 'blocks' %}
+  {%- endcapture -%}
+
+  {% if logos != blank %}
+    <div class="partner-brands__logos">{{ logos }}</div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .partner-brands__background {
+    background-image: linear-gradient(
+      var(--brand-bg-angle, 105deg),
+      var(--brand-bg-from, #aac5ff) 2.81%,
+      var(--brand-bg-to, #cbd5fd) 97.19%
+    );
+  }
+
+  .partner-brands__heading {
+    color: var(--color-foreground);
+    margin-block-end: 32px;
+  }
+
+  /* Full-bleed divider: `force-full-width` spans the section's outer grid columns. */
+  .partner-brands__divider {
+    width: var(--brand-divider-width, 100%);
+    max-width: 100%;
+    justify-self: center;
+    border-block-start: var(--brand-divider-thickness, 0.5px) solid var(--brand-divider-color, #707070);
+    margin-block-end: 40px;
+  }
+
+  /* Each row is a `_brand-row` block stacked vertically; the row owns its own
+     horizontal layout, so rows can hold different numbers of logos. */
+  .partner-brands__logos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: var(--brand-logo-row-gap, 16px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .partner-brands__divider {
+      margin-block-end: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.partner_brands",
+  "blocks": [
+    {
+      "type": "_brand-row"
+    }
+  ],
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:settings.text",
+      "default": "<p>Trusted by Leading Brands Across Global Markets</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "font",
+      "label": "t:settings.font",
+      "options": [
+        {
+          "value": "var(--font-body--family)",
+          "label": "t:options.body"
+        },
+        {
+          "value": "var(--font-subheading--family)",
+          "label": "t:options.subheading"
+        },
+        {
+          "value": "var(--font-heading--family)",
+          "label": "t:options.heading"
+        },
+        {
+          "value": "var(--font-accent--family)",
+          "label": "t:options.accent"
+        }
+      ],
+      "default": "var(--font-heading--family)"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "t:settings.size",
+      "options": [
+        {
+          "value": "0.875rem",
+          "label": "14px"
+        },
+        {
+          "value": "1rem",
+          "label": "16px"
+        },
+        {
+          "value": "1.125rem",
+          "label": "18px"
+        },
+        {
+          "value": "1.25rem",
+          "label": "20px"
+        },
+        {
+          "value": "1.3125rem",
+          "label": "21px"
+        },
+        {
+          "value": "1.375rem",
+          "label": "22px"
+        },
+        {
+          "value": "1.5rem",
+          "label": "24px"
+        },
+        {
+          "value": "2rem",
+          "label": "32px"
+        }
+      ],
+      "default": "1.3125rem"
+    },
+    {
+      "type": "select",
+      "id": "weight",
+      "label": "t:settings.weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "line_height",
+      "label": "t:settings.line_height",
+      "options": [
+        {
+          "value": "",
+          "label": "t:options.default"
+        },
+        {
+          "value": "1",
+          "label": "1.0"
+        },
+        {
+          "value": "1.1",
+          "label": "1.1"
+        },
+        {
+          "value": "1.2",
+          "label": "1.2"
+        },
+        {
+          "value": "1.3",
+          "label": "1.3"
+        },
+        {
+          "value": "1.4",
+          "label": "1.4"
+        },
+        {
+          "value": "1.5",
+          "label": "1.5"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "letter_spacing",
+      "label": "t:settings.letter_spacing",
+      "options": [
+        {
+          "value": "tight",
+          "label": "t:options.tight"
+        },
+        {
+          "value": "normal",
+          "label": "t:options.normal"
+        },
+        {
+          "value": "loose",
+          "label": "t:options.loose"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "t:settings.alignment",
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "wrap",
+      "label": "t:settings.wrap",
+      "options": [
+        {
+          "value": "pretty",
+          "label": "t:options.pretty"
+        },
+        {
+          "value": "balance",
+          "label": "t:options.balance"
+        },
+        {
+          "value": "nowrap",
+          "label": "t:options.none"
+        }
+      ],
+      "default": "pretty"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "checkbox",
+      "id": "gradient_text",
+      "label": "t:settings.gradient_text",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#0C23B8",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#7C21C2",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 5,
+      "unit": "deg",
+      "default": 90,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_start_position",
+      "label": "t:settings.gradient_start_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 27,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_end_position",
+      "label": "t:settings.gradient_end_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 72,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.background"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#AAC5FF"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#CBD5FD"
+    },
+    {
+      "type": "range",
+      "id": "background_gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 5,
+      "unit": "deg",
+      "default": 105
+    },
+    {
+      "type": "header",
+      "content": "t:content.divider"
+    },
+    {
+      "type": "range",
+      "id": "thickness",
+      "label": "t:settings.thickness",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "unit": "px",
+      "default": 0.5
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "t:settings.color",
+      "default": "#707070",
+      "visible_if": "{{ section.settings.thickness > 0 }}"
+    },
+    {
+      "type": "range",
+      "id": "width_percent",
+      "label": "t:settings.length",
+      "min": 5,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100,
+      "visible_if": "{{ section.settings.thickness > 0 }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.logos"
+    },
+    {
+      "type": "range",
+      "id": "logo_gap",
+      "label": "t:settings.horizontal_gap",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 78
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "label": "t:settings.vertical_gap",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "t:settings.height",
+      "min": 16,
+      "max": 96,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 37
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.partner_brands",
+      "category": "t:categories.storytelling",
+      "settings": {
+        "heading": "<p>Trusted by Leading Brands Across Global Markets</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "1.3125rem",
+        "weight": "600",
+        "line_height": "1",
+        "letter_spacing": "normal",
+        "alignment": "center",
+        "gradient_text": true,
+        "gradient_color_from": "#0C23B8",
+        "gradient_color_to": "#7C21C2",
+        "gradient_angle": 90,
+        "gradient_start_position": 27,
+        "gradient_end_position": 72,
+        "background_gradient_from": "#AAC5FF",
+        "background_gradient_to": "#CBD5FD",
+        "background_gradient_angle": 105,
+        "thickness": 0.5,
+        "divider_color": "#707070",
+        "width_percent": 100,
+        "logo_gap": 78,
+        "row_gap": 16,
+        "logo_height": 40,
+        "padding-block-start": 42,
+        "padding-block-end": 37
+      },
+      "blocks": {
+        "row_1": {
+          "type": "_brand-row",
+          "blocks": {
+            "logo_1": {
+              "type": "_brand-logo"
+            },
+            "logo_2": {
+              "type": "_brand-logo"
+            },
+            "logo_3": {
+              "type": "_brand-logo"
+            },
+            "logo_4": {
+              "type": "_brand-logo"
+            },
+            "logo_5": {
+              "type": "_brand-logo"
+            },
+            "logo_6": {
+              "type": "_brand-logo"
+            }
+          },
+          "block_order": ["logo_1", "logo_2", "logo_3", "logo_4", "logo_5", "logo_6"]
+        },
+        "row_2": {
+          "type": "_brand-row",
+          "blocks": {
+            "logo_7": {
+              "type": "_brand-logo"
+            },
+            "logo_8": {
+              "type": "_brand-logo"
+            },
+            "logo_9": {
+              "type": "_brand-logo"
+            },
+            "logo_10": {
+              "type": "_brand-logo"
+            },
+            "logo_11": {
+              "type": "_brand-logo"
+            }
+          },
+          "block_order": ["logo_7", "logo_8", "logo_9", "logo_10", "logo_11"]
+        }
+      },
+      "block_order": ["row_1", "row_2"]
+    }
+  ]
+}
+{% endschema %}

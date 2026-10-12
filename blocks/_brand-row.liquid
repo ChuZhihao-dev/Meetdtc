@@ -1,0 +1,39 @@
+
+
+{%- capture children -%}
+  {% content_for 'blocks' %}
+{%- endcapture -%}
+
+<div class="brand-row" {{ block.shopify_attributes }}>
+  {{ children }}
+</div>
+
+{% stylesheet %}
+  .brand-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    column-gap: var(--brand-logo-gap, 78px);
+    row-gap: calc(var(--brand-logo-gap, 78px) / 2);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.row",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "_brand-logo"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.row",
+      "category": "t:categories.storytelling"
+    }
+  ]
+}
+{% endschema %}

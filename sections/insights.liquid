@@ -1,0 +1,897 @@
+{% comment %}
+  Insights.
+  Renders an eyebrow, a gradient headline, and supporting copy above a list of
+  merchant-managed question blocks, plus an optional "view all" link, all on a
+  full-bleed gradient background.
+  @example
+  <!-- Add the "Insights" section, then edit each question block -->
+{% endcomment %}
+
+<script
+  src="{{ 'insights.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+{% liquid
+  assign section_settings = section.settings
+  assign heading_text = section_settings.heading
+  assign card_alpha = section_settings.card_opacity | divided_by: 100.0
+  assign container_alpha = section_settings.container_opacity | divided_by: 100.0
+%}
+
+{% style %}
+  #shopify-section-{{ section.id }} .insights {
+    --insights-heading-gap: {{ section_settings.heading_gap }}px;
+    --insights-list-gap: {{ section_settings.list_gap }}px;
+    --insights-media-width: {{ section_settings.media_width }}px;
+    --insights-card-radius: {{ section_settings.card_radius }}px;
+    --insights-link-color: {{ section_settings.link_color }};
+    {% if section_settings.container_background != blank %}
+      --insights-container-background: {{ section_settings.container_background | color_modify: 'alpha', container_alpha }};
+    {% endif %}
+    {% if section_settings.card_background != blank %}
+      --insights-card-background: {{ section_settings.card_background | color_modify: 'alpha', card_alpha }};
+    {% endif %}
+  }
+{% endstyle %}
+
+<div
+  class="section-background insights__background"
+  style="
+    --insights-bg-angle: {{ section_settings.background_gradient_angle }}deg;
+    --insights-bg-from: {{ section_settings.background_gradient_from }};
+    --insights-bg-to: {{ section_settings.background_gradient_to }};
+  "
+></div>
+
+<div
+  class="section section--page-width insights spacing-style"
+  style="{% render 'spacing-style', settings: section_settings %}"
+  {{ section.shopify_attributes }}
+>
+  {% if section_settings.eyebrow != blank or heading_text != blank or section_settings.description != blank %}
+    <div class="insights__intro" data-reveal>
+      {% if section_settings.eyebrow != blank %}
+        <p class="insights__eyebrow">{{ section_settings.eyebrow }}</p>
+      {% endif %}
+
+      {% if heading_text != blank %}
+        {% render 'text-block-styles' %}
+        <div
+          class="
+            insights__heading
+            text-block
+            text-block--full-width
+            custom-typography
+            custom-font-size
+            {% if section_settings.gradient_text %}text-block--gradient{% endif %}
+          "
+          style="
+            {% render 'typography-style', settings: section_settings, type: 'heading', preset: 'custom' %}
+            --text-align: {{ section_settings.alignment }};
+            {% if section_settings.gradient_text %}
+              --gradient-from: {{ section_settings.gradient_color_from }};
+              --gradient-to: {{ section_settings.gradient_color_to }};
+              --gradient-angle: {{ section_settings.gradient_angle }}deg;
+              --gradient-start: {{ section_settings.gradient_start_position }}%;
+              --gradient-end: {{ section_settings.gradient_end_position }}%;
+            {% endif %}
+          "
+        >
+          {{ heading_text }}
+        </div>
+      {% endif %}
+
+      {% if section_settings.description != blank %}
+        <div class="insights__description">{{ section_settings.description }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {%- liquid
+    assign blog = section_settings.blog
+    assign post_limit = section_settings.post_limit
+  -%}
+
+  {% if blog != blank and blog.articles_count > 0 %}
+    <div class="insights__list">
+      {%- for article in blog.articles limit: post_limit -%}
+        {%- liquid
+          assign article_description = article.excerpt | default: article.content
+          if article_description != blank
+            assign article_description = article_description | strip_html | truncatewords: 30
+          endif
+        -%}
+        <div class="insight-reveal" data-reveal>
+          <a class="insight-row" href="{{ article.url }}" aria-label="{{ article.title | escape }}">
+            <div class="insight-row__media">
+              {%- if article.image != blank -%}
+                {{
+                  article.image
+                  | image_url: width: 800
+                  | image_tag:
+                    widths: '260, 400, 600, 800',
+                    sizes: '(min-width: 750px) 260px, 100vw',
+                    loading: 'lazy',
+                    class: 'insight-row__image',
+                    alt: article.image.alt | default: article.title
+                }}
+              {%- endif -%}
+            </div>
+
+            <div class="insight-row__body">
+              <div class="insight-row__header">
+                <p class="insight-row__title">{{ article.title }}</p>
+                <span class="insight-row__read" aria-hidden="true">{{ section_settings.link_label }}</span>
+              </div>
+
+              {%- if article_description != blank -%}
+                <div class="insight-row__answer">{{ article_description }}</div>
+              {%- endif -%}
+            </div>
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+  {% elsif request.design_mode %}
+    <div class="insights__list">
+      {%- for i in (1..post_limit) -%}
+        <div class="insight-reveal" data-reveal>
+          <div class="insight-row">
+            <div class="insight-row__media"></div>
+            <div class="insight-row__body">
+              <div class="insight-row__header">
+                <p class="insight-row__title">{{ 'content.select_article' | t }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  {% endif %}
+
+  {% if section_settings.view_all_link != blank and section_settings.view_all_label != blank %}
+    <a class="insights__view-all" href="{{ section_settings.view_all_link }}">
+      {{- section_settings.view_all_label -}}
+    </a>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .insights__background {
+    background-image: linear-gradient(
+      var(--insights-bg-angle, 180deg),
+      var(--insights-bg-from, #aac5ff) 0%,
+      var(--insights-bg-to, #c9d5fd) 100%
+    );
+  }
+
+  .insights__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .insights__eyebrow {
+    margin: 0;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.6;
+    text-transform: uppercase;
+    color: var(--color-foreground);
+  }
+
+  .insights__heading {
+    color: var(--color-foreground);
+  }
+
+  .insights__description {
+    font-family: Montserrat;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-foreground);
+    text-wrap: pretty;
+  }
+
+  .insights__description > :first-child {
+    margin-block-start: 0;
+  }
+
+  .insights__description > :last-child {
+    margin-block-end: 0;
+  }
+
+  .insights__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--insights-list-gap, 16px);
+    width: 100%;
+    margin-block-start: var(--insights-heading-gap, 40px);
+    padding: 48px 45px;
+    background-color: var(--insights-container-background, rgb(255 255 255 / 0.6));
+    border-radius: var(--insights-card-radius, 27px);
+  }
+
+  .insights__view-all {
+    position: relative;
+    display: inline-flex;
+    justify-self: start;
+    margin-block-start: 24px;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 25px;
+    color: var(--insights-link-color, #106EFA);
+  }
+
+  /* Underline via pseudo-element: hidden by default; draws in left-to-right on hover. */
+  .insights__view-all::after,
+  .insight-row__read::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0.3em;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.4s ease;
+  }
+
+  .insights__view-all:hover::after,
+  .insight-row__read:hover::after {
+    transform: scaleX(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .insights__view-all::after,
+    .insight-row__read::after {
+      transition: none;
+    }
+  }
+
+  .insight-row {
+    position: relative;
+    display: flex;
+    gap: 34px;
+    padding: 18px 34px;
+    color: inherit;
+    text-decoration: none;
+    background-color: var(--insights-card-background, rgb(255 255 255 / 0.8));
+    border-radius: var(--insights-card-radius, 27px);
+    box-shadow: 3px 4px 12.1px 0 #3c45e840;
+  }
+
+  .insight-row__media {
+    position: relative;
+    flex: 0 0 var(--insights-media-width, 260px);
+    width: var(--insights-media-width, 260px);
+    max-width: 100%;
+    aspect-ratio: 366/175;
+    background-image: linear-gradient(
+      100.56deg,
+      rgb(229 228 252 / 0.8) 1.45%,
+      rgb(224 238 250 / 0.8) 98.55%
+    );
+    border-radius: var(--insights-card-radius, 27px);
+    overflow: hidden;
+  }
+
+  .insight-row__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .insight-row__body {
+    max-width: 625px;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .insight-row__header {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-inline-end: 74px;
+  }
+
+  .insight-row__title {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #000000;
+    overflow-wrap: anywhere;
+  }
+
+  .insight-row__read {
+    position: absolute;
+    top: 18px;
+    inset-inline-end: 34px;
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-heading--family);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 25px;
+    white-space: nowrap;
+    color: var(--color-foreground);
+    text-decoration: none;
+  }
+
+  .insight-row__answer {
+    max-width: 625px;
+    margin-block-start: 15px;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #000000;
+  }
+
+  .insight-row__answer > :first-child {
+    margin-block-start: 0;
+  }
+
+  .insight-row__answer > :last-child {
+    margin-block-end: 0;
+  }
+
+  /* Card hover: lift, deepen the shadow, and gently zoom the image. */
+  @media (hover: hover) {
+    .insight-row {
+      transition:
+        transform 0.35s var(--ease-out-cubic),
+        box-shadow 0.35s var(--ease-out-cubic);
+    }
+
+    .insight-row:hover {
+      transform: translateY(-4px);
+      box-shadow: 3px 10px 28px 0 #3c45e840;
+    }
+
+    .insight-row:hover .insight-row__read::after {
+      transform: scaleX(1);
+    }
+
+    .insight-row__image {
+      transition: transform 0.5s var(--ease-out-cubic);
+    }
+
+    .insight-row:hover .insight-row__image {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Scroll reveal (enter + exit), driven by assets/insights.js. Hidden states
+     apply only once JS marks the section ready, so content stays visible
+     without JavaScript. */
+  .insights--reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(32px);
+    transition:
+      opacity 0.6s var(--ease-out-cubic),
+      transform 0.6s var(--ease-out-cubic);
+    transition-delay: calc(var(--reveal-index, 0) * 90ms);
+  }
+
+  .insights--reveal-ready [data-reveal][data-state='in'] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .insights--reveal-ready [data-reveal][data-state='out'] {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .insight-row,
+    .insight-row__image {
+      transition: none;
+    }
+
+    .insight-row:hover {
+      transform: none;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .insights__description {
+      font-size: 1rem;
+    }
+
+    .insight-row {
+      flex-direction: column;
+    }
+
+    .insight-row__media {
+      flex-basis: auto;
+      width: 100%;
+    }
+
+    .insight-row__read {
+      position: static;
+    }
+
+    .insight-row__header {
+      padding-inline-end: 0;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.insights",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:settings.eyebrow",
+      "default": "INSIGHTS"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:settings.heading",
+      "default": "<p>Real Questions. Plain Answers.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:settings.description",
+      "default": "<p>The three things almost every client asks before they start.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:settings.blog"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "t:settings.blog"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "label": "t:settings.post_count",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:settings.link_label",
+      "default": "Read"
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "font",
+      "label": "t:settings.font",
+      "options": [
+        {
+          "value": "var(--font-body--family)",
+          "label": "t:options.body"
+        },
+        {
+          "value": "var(--font-subheading--family)",
+          "label": "t:options.subheading"
+        },
+        {
+          "value": "var(--font-heading--family)",
+          "label": "t:options.heading"
+        },
+        {
+          "value": "var(--font-accent--family)",
+          "label": "t:options.accent"
+        }
+      ],
+      "default": "var(--font-heading--family)"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "t:settings.size",
+      "options": [
+        {
+          "value": "1.5rem",
+          "label": "24px"
+        },
+        {
+          "value": "1.875rem",
+          "label": "30px"
+        },
+        {
+          "value": "2rem",
+          "label": "32px"
+        },
+        {
+          "value": "2.5rem",
+          "label": "40px"
+        },
+        {
+          "value": "3rem",
+          "label": "48px"
+        },
+        {
+          "value": "3.625rem",
+          "label": "58px"
+        }
+      ],
+      "default": "2.5rem"
+    },
+    {
+      "type": "select",
+      "id": "weight",
+      "label": "t:settings.weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "line_height",
+      "label": "t:settings.line_height",
+      "options": [
+        {
+          "value": "",
+          "label": "t:options.default"
+        },
+        {
+          "value": "1",
+          "label": "1.0"
+        },
+        {
+          "value": "1.1",
+          "label": "1.1"
+        },
+        {
+          "value": "1.2",
+          "label": "1.2"
+        },
+        {
+          "value": "1.3",
+          "label": "1.3"
+        },
+        {
+          "value": "1.4",
+          "label": "1.4"
+        },
+        {
+          "value": "1.5",
+          "label": "1.5"
+        }
+      ],
+      "default": "1.1"
+    },
+    {
+      "type": "select",
+      "id": "letter_spacing",
+      "label": "t:settings.letter_spacing",
+      "options": [
+        {
+          "value": "tight",
+          "label": "t:options.tight"
+        },
+        {
+          "value": "normal",
+          "label": "t:options.normal"
+        },
+        {
+          "value": "loose",
+          "label": "t:options.loose"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "t:settings.alignment",
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "wrap",
+      "label": "t:settings.wrap",
+      "options": [
+        {
+          "value": "pretty",
+          "label": "t:options.pretty"
+        },
+        {
+          "value": "balance",
+          "label": "t:options.balance"
+        },
+        {
+          "value": "nowrap",
+          "label": "t:options.none"
+        }
+      ],
+      "default": "balance"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "checkbox",
+      "id": "gradient_text",
+      "label": "t:settings.gradient_text",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#0B22B8",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#9621C4",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 5,
+      "unit": "deg",
+      "default": 110,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_start_position",
+      "label": "t:settings.gradient_start_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 11,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_end_position",
+      "label": "t:settings.gradient_end_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 89,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.background"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#AAC5FF"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#C9D5FD"
+    },
+    {
+      "type": "range",
+      "id": "background_gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 5,
+      "unit": "deg",
+      "default": 180
+    },
+    {
+      "type": "header",
+      "content": "t:content.cards_layout"
+    },
+    {
+      "type": "range",
+      "id": "media_width",
+      "label": "t:settings.width",
+      "min": 120,
+      "max": 420,
+      "step": 4,
+      "unit": "px",
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 27
+    },
+    {
+      "type": "color",
+      "id": "container_background",
+      "label": "t:settings.background_color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "container_opacity",
+      "label": "t:settings.opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "t:settings.background_color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "card_opacity",
+      "label": "t:settings.opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "list_gap",
+      "label": "t:settings.vertical_gap",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "t:content.buttons"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "t:settings.text",
+      "default": "View all articles"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "t:settings.link"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "t:settings.color",
+      "default": "#0B22B8"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.insights",
+      "category": "t:categories.storytelling",
+      "settings": {
+        "eyebrow": "INSIGHTS",
+        "heading": "<p>Real Questions. Plain Answers.</p>",
+        "description": "<p>The three things almost every client asks before they start.</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "2.5rem",
+        "weight": "700",
+        "line_height": "1.1",
+        "letter_spacing": "normal",
+        "alignment": "left",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#0B22B8",
+        "gradient_color_to": "#9621C4",
+        "gradient_angle": 110,
+        "gradient_start_position": 11,
+        "gradient_end_position": 89,
+        "background_gradient_from": "#AAC5FF",
+        "background_gradient_to": "#C9D5FD",
+        "background_gradient_angle": 180,
+        "media_width": 260,
+        "card_radius": 27,
+        "container_background": "#FFFFFF",
+        "container_opacity": 60,
+        "card_background": "#FFFFFF",
+        "card_opacity": 80,
+        "post_limit": 3,
+        "link_label": "Read",
+        "heading_gap": 40,
+        "list_gap": 16,
+        "view_all_label": "View all articles",
+        "view_all_link": "shopify://blogs/news",
+        "link_color": "#0B22B8",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      }
+    }
+  ]
+}
+{% endschema %}

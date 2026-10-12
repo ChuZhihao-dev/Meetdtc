@@ -1,0 +1,423 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "section_6mqxB3": {
+      "type": "section",
+      "blocks": {
+        "group_fqxYkd": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 17,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_CXtdmf": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<p>Accelerate Global Growth<br/>with Integrated Martech&nbsp;<br/>Solutions</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "3.25rem",
+                "weight": "600",
+                "line_height": "1",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "nowrap",
+                "text_color": "",
+                "gradient_text": true,
+                "gradient_color_from": "#0c23b8",
+                "gradient_color_to": "#7c21c2",
+                "gradient_angle": 90,
+                "gradient_start_position": 11,
+                "gradient_end_position": 83,
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_gLfPw3": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Meet Experience (ME) helps companies expand<br/>globally with integrated MarTech solutions —&nbsp;<br/>covering website & e-commerce, data analytics, user&nbsp;<br/>operations, and technical infrastructure.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "1.375rem",
+                "weight": "500",
+                "line_height": "",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "nowrap",
+                "text_color": "#6b6a6a",
+                "gradient_text": false,
+                "gradient_color_from": "#2f6df6",
+                "gradient_color_to": "#9333ea",
+                "gradient_angle": 90,
+                "gradient_start_position": 0,
+                "gradient_end_position": 100,
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_CXtdmf",
+            "text_gLfPw3"
+          ]
+        },
+        "button_TCYNBK": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "Book a Free Growth Consultation →",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button-custom",
+            "custom_button_background": "",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "rgba(0,0,0,0)",
+            "link_text_color": "",
+            "button_gradient": true,
+            "button_gradient_from": "#5d70eb",
+            "button_gradient_to": "#7c21c2",
+            "button_gradient_angle": 270,
+            "button_gradient_start_position": 0,
+            "button_gradient_end_position": 100,
+            "button_custom_radius": true,
+            "button_radius": 50,
+            "button_font": "var(--font-heading--family)",
+            "button_font_size": "1.25rem",
+            "button_font_weight": "700",
+            "button_letter_spacing": "",
+            "button_case": "",
+            "button_icon_size": 16,
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "group_fqxYkd",
+        "button_TCYNBK"
+      ],
+      "name": "Hero",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 48,
+        "section_width": "page-width",
+        "section_height": "full-screen",
+        "section_height_custom": 50,
+        "background_media": "image",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image": "shopify://shop_images/af1a3e3d-970e-41e3-b1a7-f5aba904d250_1.webp",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "partner_brands_PtTzrK": {
+      "type": "partner-brands",
+      "blocks": {
+        "brand_row_cenTg7": {
+          "type": "_brand-row",
+          "settings": {},
+          "blocks": {
+            "brand_logo_EzCeMM": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_KG9weR": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_1.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_TyPQQ3": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_2.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_Ljtt9B": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_4.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_AjhHrz": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_3.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "brand_logo_EzCeMM",
+            "brand_logo_KG9weR",
+            "brand_logo_TyPQQ3",
+            "brand_logo_Ljtt9B",
+            "brand_logo_AjhHrz"
+          ]
+        },
+        "brand_row_ByPFP4": {
+          "type": "_brand-row",
+          "settings": {},
+          "blocks": {
+            "brand_logo_7jej6C": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_6.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_THPLGq": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_7.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_Mcf4MK": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_9.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_eUd9QP": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_10.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "brand_logo_7jej6C",
+            "brand_logo_THPLGq",
+            "brand_logo_Mcf4MK",
+            "brand_logo_eUd9QP"
+          ]
+        }
+      },
+      "block_order": [
+        "brand_row_cenTg7",
+        "brand_row_ByPFP4"
+      ],
+      "name": "t:names.partner_brands",
+      "settings": {
+        "heading": "<p>Trusted by Leading Brands Across Global Markets</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "1.3125rem",
+        "weight": "600",
+        "line_height": "1.4",
+        "letter_spacing": "normal",
+        "alignment": "center",
+        "wrap": "pretty",
+        "gradient_text": true,
+        "gradient_color_from": "#0c23b8",
+        "gradient_color_to": "#7c21c2",
+        "gradient_angle": 90,
+        "gradient_start_position": 27,
+        "gradient_end_position": 72,
+        "background_gradient_from": "#aac5ff",
+        "background_gradient_to": "#cbd5fd",
+        "background_gradient_angle": 105,
+        "thickness": 0.5,
+        "divider_color": "#707070",
+        "width_percent": 100,
+        "logo_gap": 78,
+        "row_gap": 16,
+        "logo_height": 94,
+        "padding-block-start": 42,
+        "padding-block-end": 37
+      }
+    },
+    "why_choose_us_4HCWwJ": {
+      "type": "why-choose-us",
+      "blocks": {
+        "value_prop_yDBjwT": {
+          "type": "_value-prop",
+          "settings": {
+            "icon": "team",
+            "circle_color": "#4183ff",
+            "title": "Integrated, End-to-End Expertise",
+            "description": "<p>From web design and development to SEO, CRO, lifecycle and affiliate marketing, our connected team supports every stage of the customer journey.</p>"
+          },
+          "blocks": {}
+        },
+        "value_prop_F37WKm": {
+          "type": "_value-prop",
+          "settings": {
+            "icon": "global",
+            "circle_color": "#7a4dff",
+            "title": "Global DTC Experience",
+            "description": "<p>We bring global DTC experience to help brands build digital experiences, reach customers and grow across international markets.</p>"
+          },
+          "blocks": {}
+        },
+        "value_prop_wcKV7m": {
+          "type": "_value-prop",
+          "settings": {
+            "icon": "layers",
+            "circle_color": "#53bebe",
+            "title": "Platform-Connected Execution",
+            "description": "<p>We work across leading commerce, marketing, analytics and partner platforms to build solutions that fit your technology ecosystem.</p>"
+          },
+          "blocks": {}
+        },
+        "value_prop_fdHeR4": {
+          "type": "_value-prop",
+          "settings": {
+            "icon": "bars",
+            "circle_color": "#9621c4",
+            "title": "Measurable Growth Focus",
+            "description": "<p>Every engagement is connected to clear business goals, transparent performance and continuous optimisation.</p>"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "value_prop_yDBjwT",
+        "value_prop_F37WKm",
+        "value_prop_wcKV7m",
+        "value_prop_fdHeR4"
+      ],
+      "name": "t:names.why_choose_us",
+      "settings": {
+        "eyebrow": "WHY CHOOSE US",
+        "heading": "<p>One Partner. Connected Solutions. Measurable Growth</p>",
+        "description": "<p>We connect strategy, technology, data and execution to help brands build stronger digital foundations, acquire customers and scale across global markets</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "weight": "600",
+        "line_height": "1.2",
+        "letter_spacing": "normal",
+        "alignment": "left",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#0b22b8",
+        "gradient_color_to": "#9621c4",
+        "gradient_angle": 110,
+        "gradient_start_position": 11,
+        "gradient_end_position": 89,
+        "background_gradient_from": "#aac5ff",
+        "background_gradient_to": "#c9d5fd",
+        "background_gradient_angle": 180,
+        "heading_gap": 64,
+        "column_gap": 28,
+        "row_gap": 40,
+        "padding-block-start": 92,
+        "padding-block-end": 92
+      }
+    }
+  },
+  "order": [
+    "section_6mqxB3",
+    "partner_brands_PtTzrK",
+    "why_choose_us_4HCWwJ"
+  ]
+}

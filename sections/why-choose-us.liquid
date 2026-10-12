@@ -1,0 +1,580 @@
+{% comment %}
+  Why choose us.
+  Renders an optional eyebrow, a gradient headline, and supporting copy above a
+  row of merchant-managed value-proposition blocks, all on a full-bleed gradient
+  background.
+  @example
+  <!-- Add the "Why choose us" section, then edit each feature block -->
+{% endcomment %}
+
+{% liquid
+  assign section_settings = section.settings
+  assign heading_text = section_settings.heading
+%}
+
+{% style %}
+  #shopify-section-{{ section.id }} .why-choose-us {
+    --wcu-heading-gap: {{ section_settings.heading_gap }}px;
+    --wcu-column-gap: {{ section_settings.column_gap }}px;
+    --wcu-row-gap: {{ section_settings.row_gap }}px;
+  }
+{% endstyle %}
+
+<div
+  class="section-background why-choose-us__background"
+  style="
+    --wcu-bg-angle: {{ section_settings.background_gradient_angle }}deg;
+    --wcu-bg-from: {{ section_settings.background_gradient_from }};
+    --wcu-bg-to: {{ section_settings.background_gradient_to }};
+  "
+></div>
+
+<div
+  class="section section--page-width why-choose-us spacing-style"
+  style="{% render 'spacing-style', settings: section_settings %}"
+  {{ section.shopify_attributes }}
+>
+  {% if section_settings.eyebrow != blank or heading_text != blank or section_settings.description != blank %}
+    <div class="why-choose-us__intro">
+      {% if section_settings.eyebrow != blank %}
+        <p class="why-choose-us__eyebrow">{{ section_settings.eyebrow }}</p>
+      {% endif %}
+
+      {% if heading_text != blank %}
+        {% render 'text-block-styles' %}
+        <div
+          class="
+            why-choose-us__heading
+            text-block
+            text-block--full-width
+            custom-typography
+            custom-font-size
+            {% if section_settings.gradient_text %}text-block--gradient{% endif %}
+          "
+          style="
+            {% render 'typography-style', settings: section_settings, type: 'heading', preset: 'custom' %}
+            --text-align: {{ section_settings.alignment }};
+            {% if section_settings.gradient_text %}
+              --gradient-from: {{ section_settings.gradient_color_from }};
+              --gradient-to: {{ section_settings.gradient_color_to }};
+              --gradient-angle: {{ section_settings.gradient_angle }}deg;
+              --gradient-start: {{ section_settings.gradient_start_position }}%;
+              --gradient-end: {{ section_settings.gradient_end_position }}%;
+            {% endif %}
+          "
+        >
+          {{ heading_text }}
+        </div>
+      {% endif %}
+
+      {% if section_settings.description != blank %}
+        <div class="why-choose-us__description">{{ section_settings.description }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {%- capture value_props -%}
+    {% content_for 'blocks' %}
+  {%- endcapture -%}
+
+  {% if value_props != blank %}
+    <div class="why-choose-us__grid">{{ value_props }}</div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .why-choose-us__background {
+    background-image: linear-gradient(
+      var(--wcu-bg-angle, 180deg),
+      var(--wcu-bg-from, #aac5ff) 0%,
+      var(--wcu-bg-to, #c9d5fd) 100%
+    );
+  }
+
+  .why-choose-us__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .why-choose-us__eyebrow {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--color-foreground);
+  }
+
+  .why-choose-us__heading {
+    color: var(--color-foreground);
+  }
+
+  .why-choose-us__description {
+    font-family: Montserrat;
+    font-size: 1.875rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--color-foreground);
+    text-wrap: pretty;
+  }
+
+  .why-choose-us__description > :first-child {
+    margin-block-start: 0;
+  }
+
+  .why-choose-us__description > :last-child {
+    margin-block-end: 0;
+  }
+
+  .why-choose-us__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--wcu-row-gap, 40px) var(--wcu-column-gap, 28px);
+    width: 100%;
+    margin-block-start: var(--wcu-heading-gap, 64px);
+  }
+
+  @media screen and (min-width: 750px) {
+    .why-choose-us__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .why-choose-us__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .why-choose-us__eyebrow {
+      font-size: 1.125rem;
+    }
+
+    .why-choose-us__description {
+      font-size: 1.25rem;
+    }
+
+    .why-choose-us__grid {
+      --wcu-row-gap: 32px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.why_choose_us",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "blocks": [
+    {
+      "type": "_value-prop"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:settings.eyebrow",
+      "default": "WHY CHOOSE US"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:settings.heading",
+      "default": "<p>One Partner. Connected Solutions. Measurable Growth</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:settings.description",
+      "default": "<p>We connect strategy, technology, data and execution to help brands build stronger digital foundations, acquire customers and scale across global markets</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "font",
+      "label": "t:settings.font",
+      "options": [
+        {
+          "value": "var(--font-body--family)",
+          "label": "t:options.body"
+        },
+        {
+          "value": "var(--font-subheading--family)",
+          "label": "t:options.subheading"
+        },
+        {
+          "value": "var(--font-heading--family)",
+          "label": "t:options.heading"
+        },
+        {
+          "value": "var(--font-accent--family)",
+          "label": "t:options.accent"
+        }
+      ],
+      "default": "var(--font-heading--family)"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "t:settings.size",
+      "options": [
+        {
+          "value": "1.5rem",
+          "label": "24px"
+        },
+        {
+          "value": "1.875rem",
+          "label": "30px"
+        },
+        {
+          "value": "2rem",
+          "label": "32px"
+        },
+        {
+          "value": "2.5rem",
+          "label": "40px"
+        },
+        {
+          "value": "3rem",
+          "label": "48px"
+        },
+        {
+          "value": "3.625rem",
+          "label": "58px"
+        },
+        {
+          "value": "4rem",
+          "label": "64px"
+        }
+      ],
+      "default": "3.625rem"
+    },
+    {
+      "type": "select",
+      "id": "weight",
+      "label": "t:settings.weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "line_height",
+      "label": "t:settings.line_height",
+      "options": [
+        {
+          "value": "",
+          "label": "t:options.default"
+        },
+        {
+          "value": "1",
+          "label": "1.0"
+        },
+        {
+          "value": "1.1",
+          "label": "1.1"
+        },
+        {
+          "value": "1.2",
+          "label": "1.2"
+        },
+        {
+          "value": "1.3",
+          "label": "1.3"
+        },
+        {
+          "value": "1.4",
+          "label": "1.4"
+        },
+        {
+          "value": "1.5",
+          "label": "1.5"
+        }
+      ],
+      "default": "1.2"
+    },
+    {
+      "type": "select",
+      "id": "letter_spacing",
+      "label": "t:settings.letter_spacing",
+      "options": [
+        {
+          "value": "tight",
+          "label": "t:options.tight"
+        },
+        {
+          "value": "normal",
+          "label": "t:options.normal"
+        },
+        {
+          "value": "loose",
+          "label": "t:options.loose"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "t:settings.alignment",
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "wrap",
+      "label": "t:settings.wrap",
+      "options": [
+        {
+          "value": "pretty",
+          "label": "t:options.pretty"
+        },
+        {
+          "value": "balance",
+          "label": "t:options.balance"
+        },
+        {
+          "value": "nowrap",
+          "label": "t:options.none"
+        }
+      ],
+      "default": "balance"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "checkbox",
+      "id": "gradient_text",
+      "label": "t:settings.gradient_text",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#0B22B8",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#9621C4",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 5,
+      "unit": "deg",
+      "default": 110,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_start_position",
+      "label": "t:settings.gradient_start_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 11,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_end_position",
+      "label": "t:settings.gradient_end_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 89,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.background"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#AAC5FF"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#C9D5FD"
+    },
+    {
+      "type": "range",
+      "id": "background_gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 5,
+      "unit": "deg",
+      "default": 180
+    },
+    {
+      "type": "header",
+      "content": "t:content.features"
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "t:settings.horizontal_gap",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "label": "t:settings.vertical_gap",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 92
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 92
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.why_choose_us",
+      "category": "t:categories.storytelling",
+      "settings": {
+        "eyebrow": "WHY CHOOSE US",
+        "heading": "<p>One Partner. Connected Solutions. Measurable Growth</p>",
+        "description": "<p>We connect strategy, technology, data and execution to help brands build stronger digital foundations, acquire customers and scale across global markets</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "weight": "600",
+        "line_height": "1.2",
+        "letter_spacing": "normal",
+        "alignment": "left",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#0B22B8",
+        "gradient_color_to": "#9621C4",
+        "gradient_angle": 110,
+        "gradient_start_position": 11,
+        "gradient_end_position": 89,
+        "background_gradient_from": "#AAC5FF",
+        "background_gradient_to": "#C9D5FD",
+        "background_gradient_angle": 180,
+        "heading_gap": 64,
+        "column_gap": 28,
+        "row_gap": 40,
+        "padding-block-start": 92,
+        "padding-block-end": 92
+      },
+      "blocks": {
+        "team": {
+          "type": "_value-prop",
+          "settings": {
+            "icon": "team",
+            "circle_color": "#4183FF",
+            "title": "Integrated, End-to-End Expertise",
+            "description": "<p>From web design and development to SEO, CRO, lifecycle and affiliate marketing, our connected team supports every stage of the customer journey.</p>"
+          }
+        },
+        "global": {
+          "type": "_value-prop",
+          "settings": {
+            "icon": "global",
+            "circle_color": "#7A4DFF",
+            "title": "Global DTC Experience",
+            "description": "<p>We bring global DTC experience to help brands build digital experiences, reach customers and grow across international markets.</p>"
+          }
+        },
+        "layers": {
+          "type": "_value-prop",
+          "settings": {
+            "icon": "layers",
+            "circle_color": "#53BEBE",
+            "title": "Platform-Connected Execution",
+            "description": "<p>We work across leading commerce, marketing, analytics and partner platforms to build solutions that fit your technology ecosystem.</p>"
+          }
+        },
+        "bars": {
+          "type": "_value-prop",
+          "settings": {
+            "icon": "bars",
+            "circle_color": "#9621C4",
+            "title": "Measurable Growth Focus",
+            "description": "<p>Every engagement is connected to clear business goals, transparent performance and continuous optimisation.</p>"
+          }
+        }
+      },
+      "block_order": ["team", "global", "layers", "bars"]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,177 @@
+{% liquid
+  assign block_settings = block.settings
+  assign icon = block_settings.icon
+%}
+
+<div class="value-prop" {{ block.shopify_attributes }}>
+  <div
+    class="value-prop__badge"
+    style="--value-prop-ring: {{ block_settings.circle_color | default: '#4183ff' }};"
+  >
+    <span
+      class="value-prop__icon value-prop__icon--{{ icon }}"
+      aria-hidden="true"
+    >
+      {%- if block_settings.image != blank -%}
+        {{
+          block_settings.image
+          | image_url: width: 120
+          | image_tag:
+            widths: '40, 80, 120',
+            sizes: '40px',
+            class: 'value-prop__image',
+            loading: 'lazy',
+            alt: ''
+        }}
+      {%- else -%}
+        {%- case icon -%}
+          {%- when 'team' -%}
+            {{ 'icon-why-team.svg' | inline_asset_content }}
+          {%- when 'global' -%}
+            {{ 'icon-why-global.svg' | inline_asset_content }}
+          {%- when 'layers' -%}
+            {{ 'icon-why-layers.svg' | inline_asset_content }}
+          {%- when 'bars' -%}
+            {{ 'icon-why-bars.svg' | inline_asset_content }}
+        {%- endcase -%}
+      {%- endif -%}
+    </span>
+  </div>
+
+  {%- if block_settings.title != blank -%}
+    <p class="value-prop__title">{{ block_settings.title }}</p>
+  {%- endif -%}
+
+  {%- if block_settings.description != blank -%}
+    <div class="value-prop__description">{{ block_settings.description }}</div>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .value-prop {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .value-prop__badge {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 98px;
+    height: 98px;
+    margin-block-end: 6px;
+    background-color: #ffffff;
+    border: 1px solid var(--value-prop-ring, #4183ff);
+    border-radius: 50%;
+  }
+
+  .value-prop__icon {
+    display: grid;
+    place-items: center;
+    max-width: 40px;
+    max-height: 40px;
+  }
+
+  .value-prop__icon svg,
+  .value-prop__image {
+    width: auto;
+    height: auto;
+    max-width: 40px;
+    max-height: 40px;
+  }
+
+  .value-prop__icon--bars {
+    transform: rotate(90deg);
+  }
+
+  .value-prop__title {
+    min-height: 2.8em;
+    margin: 0 0 6px;
+    font-family: var(--font-heading--family);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--color-foreground);
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
+  }
+
+  .value-prop__description {
+    font-family:Montserrat;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 2;
+    color: var(--color-foreground);
+    text-wrap: pretty;
+  }
+
+  .value-prop__description > :first-child {
+    margin-block-start: 0;
+  }
+
+  .value-prop__description > :last-child {
+    margin-block-end: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.value_prop",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "t:settings.icon",
+      "options": [
+        {
+          "value": "team",
+          "label": "t:options.icon_team"
+        },
+        {
+          "value": "global",
+          "label": "t:options.icon_global"
+        },
+        {
+          "value": "layers",
+          "label": "t:options.icon_layers"
+        },
+        {
+          "value": "bars",
+          "label": "t:options.icon_bars"
+        }
+      ],
+      "default": "team"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:settings.image"
+    },
+    {
+      "type": "color",
+      "id": "circle_color",
+      "label": "t:settings.color",
+      "default": "#4183FF"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:settings.title",
+      "default": "Integrated, End-to-End Expertise"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:settings.description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.value_prop",
+      "category": "t:categories.storytelling"
+    }
+  ]
+}
+{% endschema %}
