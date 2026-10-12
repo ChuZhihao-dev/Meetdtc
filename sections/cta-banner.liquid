@@ -101,6 +101,7 @@
   }
 
   .cta-banner__panel {
+    aspect-ratio: 1272 / 291;
     display: flex;
     gap: 40px;
     align-items: center;
@@ -160,6 +161,9 @@
     color: var(--cta-button-color, #6d28d9);
     background-color: var(--cta-button-background, #ffffff);
     border-radius: var(--cta-button-radius, 30px);
+    transition:
+      transform 0.25s var(--ease-out-cubic),
+      box-shadow 0.25s var(--ease-out-cubic);
   }
 
   .cta-banner__button-icon {
@@ -174,14 +178,25 @@
   }
 
   @media (hover: hover) {
+    .cta-banner__button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px 0 rgb(0 0 0 / 0.18);
+    }
+
     .cta-banner__button:hover .cta-banner__button-icon {
       transform: translateX(4px);
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .cta-banner__button,
     .cta-banner__button-icon {
       transition: none;
+    }
+
+    .cta-banner__button:hover {
+      transform: none;
+      box-shadow: none;
     }
 
     .cta-banner__button:hover .cta-banner__button-icon {
