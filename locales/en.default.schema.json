@@ -261,6 +261,7 @@
     "value_prop": "Feature",
     "insights": "Insights",
     "insight_row": "Question",
+    "cta_banner": "Callout banner",
     "product_title": "Product title",
     "custom_liquid": "Custom Liquid",
     "404": "404",

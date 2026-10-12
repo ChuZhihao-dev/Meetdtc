@@ -86,8 +86,8 @@
         else
           case settings.page_width
             when 'narrow'
-              # Narrow: max 75rem (1200px)
-              assign sizes = '(min-width: 1200px) 1200px, 100vw'
+              # Narrow: max 80rem (1280px)
+              assign sizes = '(min-width: 1280px) 1280px, 100vw'
             when 'normal'
               # Normal: max 120rem (1920px)
               assign sizes = '(min-width: 1920px) 1920px, 100vw'
@@ -103,7 +103,7 @@
         assign sizes = '100vw'
       endif
 
-      assign widths = '832, 1200, 1600, 1920, 2560, 3840'
+      assign widths = '832, 1200, 1280, 1600, 1920, 2560, 3840'
     %}
 
     {%- if background_image != blank -%}

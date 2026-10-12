@@ -1,0 +1,644 @@
+{% comment %}
+  Callout banner.
+  Renders a full-bleed gradient background with a rounded gradient panel holding
+  a gradient heading on the left and a description plus call-to-action link on
+  the right.
+  @example
+  <!-- Add the "Callout banner" section and edit the copy and link -->
+{% endcomment %}
+
+{% liquid
+  assign section_settings = section.settings
+  assign heading_text = section_settings.heading
+%}
+
+{% style %}
+  #shopify-section-{{ section.id }} .cta-banner__panel {
+    --cta-panel-radius: {{ section_settings.panel_radius }}px;
+    --cta-panel-from: {{ section_settings.panel_gradient_from }};
+    --cta-panel-to: {{ section_settings.panel_gradient_to }};
+    --cta-panel-angle: {{ section_settings.panel_gradient_angle }}deg;
+    --cta-button-background: {{ section_settings.button_background }};
+    --cta-button-color: {{ section_settings.button_text_color }};
+    --cta-button-radius: {{ section_settings.button_radius }}px;
+    --cta-description-color: {{ section_settings.description_color }};
+  }
+{% endstyle %}
+
+<div
+  class="section-background cta-banner__background"
+  style="
+    --cta-bg-from: {{ section_settings.background_gradient_from }};
+    --cta-bg-to: {{ section_settings.background_gradient_to }};
+    --cta-bg-angle: {{ section_settings.background_gradient_angle }}deg;
+  "
+></div>
+
+<div
+  class="section section--page-width cta-banner spacing-style"
+  style="{% render 'spacing-style', settings: section_settings %}"
+  {{ section.shopify_attributes }}
+>
+  <div
+    class="cta-banner__panel spacing-style"
+    style="
+      --padding-block-start: {{ section_settings.panel_padding_block_start }}px;
+      --padding-block-end: {{ section_settings.panel_padding_block_end }}px;
+      --padding-inline-start: {{ section_settings.panel_padding_inline_start }}px;
+      --padding-inline-end: {{ section_settings.panel_padding_inline_end }}px;
+    "
+  >
+    {% if heading_text != blank %}
+      {% render 'text-block-styles' %}
+      <div
+        class="
+          cta-banner__heading
+          text-block
+          text-block--full-width
+          custom-typography
+          custom-font-size
+          {% if section_settings.gradient_text %}text-block--gradient{% endif %}
+        "
+        style="
+          {% render 'typography-style', settings: section_settings, type: 'heading', preset: 'custom' %}
+          {% if section_settings.gradient_text %}
+            --gradient-from: {{ section_settings.gradient_color_from }};
+            --gradient-to: {{ section_settings.gradient_color_to }};
+            --gradient-angle: {{ section_settings.gradient_angle }}deg;
+            --gradient-start: {{ section_settings.gradient_start_position }}%;
+            --gradient-end: {{ section_settings.gradient_end_position }}%;
+          {% endif %}
+        "
+      >
+        {{ heading_text }}
+      </div>
+    {% endif %}
+
+    <div class="cta-banner__aside">
+      {% if section_settings.description != blank %}
+        <div class="cta-banner__description">{{ section_settings.description }}</div>
+      {% endif %}
+
+      {% if section_settings.link != blank and section_settings.link_label != blank %}
+        <a class="cta-banner__button" href="{{ section_settings.link }}">
+          {{- section_settings.link_label -}}
+          <span class="cta-banner__button-icon" aria-hidden="true">
+            {{- 'icon-arrow.svg' | inline_asset_content -}}
+          </span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .cta-banner__background {
+    background-image: linear-gradient(
+      var(--cta-bg-angle, 104deg),
+      var(--cta-bg-from, #aac5ff) 2.81%,
+      var(--cta-bg-to, #cbd5fd) 97.19%
+    );
+  }
+
+  .cta-banner__panel {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-image: linear-gradient(
+      var(--cta-panel-angle, 92deg),
+      var(--cta-panel-from, #6379ef) 0.42%,
+      var(--cta-panel-to, #b62cf6) 99.58%
+    );
+    border-radius: var(--cta-panel-radius, 23px);
+  }
+
+  .cta-banner__heading {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .cta-banner__aside {
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: column;
+    gap: 28px;
+    align-items: flex-start;
+    max-width: 582px;
+  }
+
+  .cta-banner__description {
+    font-family: Montserrat;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 34px;
+    color: var(--cta-description-color, #ffffff);
+    text-wrap: pretty;
+  }
+
+  .cta-banner__description > :first-child {
+    margin-block-start: 0;
+  }
+
+  .cta-banner__description > :last-child {
+    margin-block-end: 0;
+  }
+
+  .cta-banner__button {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 26px;
+    font-family: var(--font-heading--family);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    color: var(--cta-button-color, #6d28d9);
+    background-color: var(--cta-button-background, #ffffff);
+    border-radius: var(--cta-button-radius, 30px);
+  }
+
+  .cta-banner__button-icon {
+    display: inline-flex;
+    transition: transform 0.25s var(--ease-out-cubic);
+  }
+
+  .cta-banner__button-icon svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+  }
+
+  @media (hover: hover) {
+    .cta-banner__button:hover .cta-banner__button-icon {
+      transform: translateX(4px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-banner__button-icon {
+      transition: none;
+    }
+
+    .cta-banner__button:hover .cta-banner__button-icon {
+      transform: none;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .cta-banner__panel {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .cta-banner__aside {
+      max-width: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.cta_banner",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:settings.heading",
+      "default": "Not Sure Where to Focus Your Growth Efforts?"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:settings.description",
+      "default": "<p>Tell us about your goals and challenges. We'll help identify the right solutions, platforms and next steps.</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:settings.link_label",
+      "default": "Find the Right Solution"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:settings.link"
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "font",
+      "label": "t:settings.font",
+      "options": [
+        {
+          "value": "var(--font-body--family)",
+          "label": "t:options.body"
+        },
+        {
+          "value": "var(--font-subheading--family)",
+          "label": "t:options.subheading"
+        },
+        {
+          "value": "var(--font-heading--family)",
+          "label": "t:options.heading"
+        },
+        {
+          "value": "var(--font-accent--family)",
+          "label": "t:options.accent"
+        }
+      ],
+      "default": "var(--font-heading--family)"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "t:settings.size",
+      "options": [
+        {
+          "value": "2rem",
+          "label": "32px"
+        },
+        {
+          "value": "2.25rem",
+          "label": "36px"
+        },
+        {
+          "value": "2.375rem",
+          "label": "38px"
+        },
+        {
+          "value": "2.5rem",
+          "label": "40px"
+        },
+        {
+          "value": "3rem",
+          "label": "48px"
+        },
+        {
+          "value": "3.625rem",
+          "label": "58px"
+        }
+      ],
+      "default": "2.375rem"
+    },
+    {
+      "type": "select",
+      "id": "weight",
+      "label": "t:settings.weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "line_height",
+      "label": "t:settings.line_height",
+      "options": [
+        {
+          "value": "",
+          "label": "t:options.default"
+        },
+        {
+          "value": "1",
+          "label": "1.0"
+        },
+        {
+          "value": "1.1",
+          "label": "1.1"
+        },
+        {
+          "value": "1.2",
+          "label": "1.2"
+        },
+        {
+          "value": "1.3",
+          "label": "1.3"
+        },
+        {
+          "value": "1.4",
+          "label": "1.4"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "letter_spacing",
+      "label": "t:settings.letter_spacing",
+      "options": [
+        {
+          "value": "tight",
+          "label": "t:options.tight"
+        },
+        {
+          "value": "normal",
+          "label": "t:options.normal"
+        },
+        {
+          "value": "loose",
+          "label": "t:options.loose"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "wrap",
+      "label": "t:settings.wrap",
+      "options": [
+        {
+          "value": "pretty",
+          "label": "t:options.pretty"
+        },
+        {
+          "value": "balance",
+          "label": "t:options.balance"
+        },
+        {
+          "value": "nowrap",
+          "label": "t:options.none"
+        }
+      ],
+      "default": "balance"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "checkbox",
+      "id": "gradient_text",
+      "label": "t:settings.gradient_text",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#FFFFFF",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#F8E5FF",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "default": 96,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_start_position",
+      "label": "t:settings.gradient_start_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 12,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_end_position",
+      "label": "t:settings.gradient_end_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 88,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "t:settings.color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "t:content.background"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#AAC5FF"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#CBD5FD"
+    },
+    {
+      "type": "range",
+      "id": "background_gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "default": 104
+    },
+    {
+      "type": "color",
+      "id": "panel_gradient_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#6379EF"
+    },
+    {
+      "type": "color",
+      "id": "panel_gradient_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#B62CF6"
+    },
+    {
+      "type": "range",
+      "id": "panel_gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "default": 92
+    },
+    {
+      "type": "range",
+      "id": "panel_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 23
+    },
+    {
+      "type": "header",
+      "content": "t:content.buttons"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "t:settings.background_color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:settings.color",
+      "default": "#6D28D9"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "panel_padding_block_start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "panel_padding_inline_end",
+      "label": "t:settings.right",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "panel_padding_block_end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "panel_padding_inline_start",
+      "label": "t:settings.left",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.cta_banner",
+      "category": "t:categories.banners",
+      "settings": {
+        "heading": "Not Sure Where to Focus Your Growth Efforts?",
+        "description": "<p>Tell us about your goals and challenges. We'll help identify the right solutions, platforms and next steps.</p>",
+        "link_label": "Find the Right Solution",
+        "font": "var(--font-heading--family)",
+        "font_size": "2.375rem",
+        "weight": "700",
+        "line_height": "1",
+        "letter_spacing": "normal",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#FFFFFF",
+        "gradient_color_to": "#F8E5FF",
+        "gradient_angle": 96,
+        "gradient_start_position": 12,
+        "gradient_end_position": 88,
+        "description_color": "#FFFFFF",
+        "background_gradient_from": "#AAC5FF",
+        "background_gradient_to": "#CBD5FD",
+        "background_gradient_angle": 104,
+        "panel_gradient_from": "#6379EF",
+        "panel_gradient_to": "#B62CF6",
+        "panel_gradient_angle": 92,
+        "panel_radius": 23,
+        "button_background": "#FFFFFF",
+        "button_text_color": "#6D28D9",
+        "button_radius": 30,
+        "padding-block-start": 24,
+        "padding-block-end": 24,
+        "panel_padding_block_start": 40,
+        "panel_padding_inline_end": 48,
+        "panel_padding_block_end": 40,
+        "panel_padding_inline_start": 48
+      }
+    }
+  ]
+}
+{% endschema %}
