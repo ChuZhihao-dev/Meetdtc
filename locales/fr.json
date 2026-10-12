@@ -132,6 +132,7 @@
     "zoom_media": "Zoom du support multimédia {{ index }}"
   },
   "content": {
+    "select_menu": "Select a menu",
     "select_article": "Select an article",
     "reviews": "avis",
     "language": "Langue",

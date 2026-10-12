@@ -134,6 +134,7 @@
     "back_to_main_menu": "Nazaj na glavni meni"
   },
   "content": {
+    "select_menu": "Select a menu",
     "select_article": "Select an article",
     "reviews": "ocen.",
     "no_results_found": "Nobenega rezultata ni bilo mogoče najti",

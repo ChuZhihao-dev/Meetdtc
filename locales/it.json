@@ -132,6 +132,7 @@
     "back_to_main_menu": "Torna al menu principale"
   },
   "content": {
+    "select_menu": "Select a menu",
     "select_article": "Select an article",
     "reviews": "recensioni",
     "no_results_found": "Nessun risultato trovato",

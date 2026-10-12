@@ -173,7 +173,7 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 48,
         "section_width": "page-width",
-        "section_height": "full-screen",
+        "section_height": "large",
         "section_height_custom": 50,
         "background_media": "image",
         "background_color": "",
@@ -336,6 +336,40 @@
         "padding-block-end": 37
       }
     },
+    "blog_grid_dWECMy": {
+      "type": "blog-grid",
+      "name": "t:names.blog_grid",
+      "settings": {
+        "blog": "solutions",
+        "post_limit": 6,
+        "heading": "<p>Solutions Built for&nbsp;<br/>Measurable Growth</p>",
+        "read_more_label": "Read More →",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "weight": "600",
+        "line_height": "1",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#0b22b8",
+        "gradient_color_to": "#9621c4",
+        "background_from": "#c5d9ff",
+        "background_to": "#a9c4ff",
+        "columns": 3,
+        "gap": 32,
+        "card_background": "#ffffff94",
+        "card_border": "#ffffff",
+        "card_radius": 13,
+        "padding-block-start": 92,
+        "padding-block-end": 92,
+        "heading_gap": 40,
+        "card_padding_block_start": 24,
+        "card_padding_block_end": 24,
+        "card_padding_inline_start": 16,
+        "card_padding_inline_end": 16,
+        "view_all_label": "VIEW ALL SERVICES",
+        "view_all_link": ""
+      }
+    },
     "cta_banner_8UDPGz": {
       "type": "cta-banner",
       "name": "t:names.cta_banner",
@@ -453,6 +487,91 @@
         "padding-block-end": 92
       }
     },
+    "our_work_W6j7hw": {
+      "type": "our-work",
+      "blocks": {
+        "result_card_pb89L6": {
+          "type": "_result-card",
+          "settings": {
+            "tag": "Client logo",
+            "description": "<p>Two or three lines here: where the client was, what we changed, and what it was worth. Say it the way Verz does – from what to what, and why it mattered.</p>",
+            "metric_1_value": "00%",
+            "metric_1_label": "Metric to be filled",
+            "metric_2_value": "0.0x",
+            "metric_2_label": "Metric to be filled"
+          },
+          "blocks": {}
+        },
+        "result_card_6aemjH": {
+          "type": "_result-card",
+          "settings": {
+            "tag": "Client logo",
+            "description": "<p>Two or three lines here: where the client was, what we changed, and what it was worth. Say it the way Verz does – from what to what, and why it mattered.</p>",
+            "metric_1_value": "00%",
+            "metric_1_label": "Metric to be filled",
+            "metric_2_value": "0.0x",
+            "metric_2_label": "Metric to be filled"
+          },
+          "blocks": {}
+        },
+        "result_card_8yBrPr": {
+          "type": "_result-card",
+          "settings": {
+            "tag": "Client logo",
+            "description": "<p>Two or three lines here: where the client was, what we changed, and what it was worth. Say it the way Verz does – from what to what, and why it mattered.</p>",
+            "metric_1_value": "00%",
+            "metric_1_label": "Metric to be filled",
+            "metric_2_value": "0.0x",
+            "metric_2_label": "Metric to be filled"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "result_card_pb89L6",
+        "result_card_6aemjH",
+        "result_card_8yBrPr"
+      ],
+      "name": "t:names.our_work",
+      "settings": {
+        "eyebrow": "OUR WORK",
+        "heading": "<p>Built to Convert. Measured to Prove.</p>",
+        "description": "<p>What we changed, and what it was worth.</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "weight": "600",
+        "line_height": "1",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#0b22b8",
+        "gradient_color_to": "#9621c4",
+        "gradient_angle": 92,
+        "gradient_start_position": 11,
+        "gradient_end_position": 89,
+        "background_gradient_from": "#aac5ff",
+        "background_gradient_to": "#cbd5fd",
+        "background_gradient_angle": 104,
+        "card_width": 497,
+        "card_height": 653,
+        "card_gap": 40,
+        "card_radius": 16,
+        "card_media_radius": 12,
+        "card_background": "#ffffff",
+        "tag_background": "#eaebf8",
+        "tag_border": "#e8c1ee",
+        "tag_color": "#9a66f8",
+        "description_color": "#000000",
+        "metric_color": "#783edf",
+        "metric_label_color": "#595959",
+        "heading_gap": 40,
+        "padding-block-start": 92,
+        "padding-block-end": 92,
+        "card_padding_block_start": 46,
+        "card_padding_block_end": 46,
+        "card_padding_inline_start": 37,
+        "card_padding_inline_end": 37
+      }
+    },
     "insights_a3A3Dn": {
       "type": "insights",
       "name": "t:names.insights",
@@ -489,7 +608,7 @@
         "list_gap": 30,
         "view_all_label": "View all articles →",
         "view_all_link": "shopify://blogs/news",
-        "link_color": "#106EFA",
+        "link_color": "#106efa",
         "padding-block-start": 72,
         "padding-block-end": 92
       }
@@ -585,8 +704,10 @@
   "order": [
     "section_6mqxB3",
     "partner_brands_PtTzrK",
+    "blog_grid_dWECMy",
     "cta_banner_8UDPGz",
     "why_choose_us_4HCWwJ",
+    "our_work_W6j7hw",
     "insights_a3A3Dn",
     "faq_XQDqJm"
   ]

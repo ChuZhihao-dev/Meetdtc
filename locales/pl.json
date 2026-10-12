@@ -134,6 +134,7 @@
     "back_to_main_menu": "Wróć do menu głównego"
   },
   "content": {
+    "select_menu": "Select a menu",
     "select_article": "Select an article",
     "reviews": "recenzje",
     "language": "Język",

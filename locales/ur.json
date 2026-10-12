@@ -150,6 +150,7 @@
     }
   },
   "content": {
+    "select_menu": "Select a menu",
     "select_article": "Select an article",
     "cancel": "منسوخ کریں",
     "discount": "ڈسکاؤنٹ",

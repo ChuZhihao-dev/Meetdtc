@@ -11,137 +11,128 @@
   "type": "footer",
   "name": "t:names.footer",
   "sections": {
-    "footer_m9NzUG": {
-      "type": "footer",
+    "footer_diagnosis_H4xKm9": {
+      "type": "footer-diagnosis",
+      "settings": {
+        "eyebrow": "FREE GROWTH DIAGNOSIS",
+        "heading": "Request a Free Growth Diagnosis",
+        "description": "<p>Tell us about your business and current challenges. Our team will review your needs, identify growth priorities and recommend the most suitable next steps.</p>",
+        "gradient_color_from": "#0048FF",
+        "gradient_color_to": "#F200FF40",
+        "gradient_angle": 120,
+        "card_background": "#FFFFFF",
+        "card_radius": 32,
+        "input_radius": 12,
+        "button_gradient_start": "#9B3CF0",
+        "button_gradient_end": "#4E63F0",
+        "name_label": "Your Name",
+        "name_placeholder": "Your name",
+        "company_label": "Company Name",
+        "company_placeholder": "Your company",
+        "email_label": "Work Email",
+        "email_placeholder": "you@company.com",
+        "phone_label": "Contact Number",
+        "phone_placeholder": "+ 65 1234 5678",
+        "website_label": "Company Website",
+        "website_placeholder": "https://",
+        "goals_label": "Tell Us About Your Goals or Challenges",
+        "goals_placeholder": "Tell us what your business does, the challenges you are facing, and what you would like to achieve.",
+        "submit_label": "Get My Free Growth Diagnosis",
+        "locations_heading": "Headquartered in NYC with strategic global hubs across:",
+        "desktop_column_gap": 48,
+        "section_spacing": 56,
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
       "blocks": {
-        "group_H6VpwJ": {
-          "type": "group",
+        "feature_1": {
+          "type": "feature",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 6,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "open_in_new_tab": false,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "text_LWt8Pz": {
-              "type": "text",
-              "settings": {
-                "text": "<h2>Join our email list</h2>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_f9CFLH": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Get exclusive deals and early access to new products.</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_LWt8Pz",
-            "text_f9CFLH"
-          ]
+            "icon": "arrow_up_right",
+            "text": "Expert Diagnosis"
+          }
         },
-        "email_signup_crihX7": {
-          "type": "email-signup",
+        "feature_2": {
+          "type": "feature",
           "settings": {
-            "width": "fill",
-            "custom_width": 100,
-            "heading_preset": "h3",
-            "border_style": "all",
-            "input_style": "custom",
-            "border_width": 1,
-            "border_radius": 100,
-            "input_background_color": "{{ settings.color_palette.background }}",
-            "input_text_color": "{{ settings.color_palette.color1 }}",
-            "input_border_color": "{{ settings.color_palette.color2 }}",
-            "input_type_preset": "paragraph",
-            "style_class": "button-unstyled",
-            "display_type": "arrow",
-            "label": "Sign up",
-            "integrated_button": true,
-            "button_type_preset": "paragraph",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "icon": "browser",
+            "text": "Tailored Recommendations"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "check",
+            "text": "No Obligation"
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "shield",
+            "text": "Your Information is Secure"
+          }
+        },
+        "menu_1": {
+          "type": "menu_column",
+          "settings": {
+            "heading": "Company"
+          }
+        },
+        "menu_2": {
+          "type": "menu_column",
+          "settings": {
+            "heading": "Services"
+          }
+        },
+        "menu_3": {
+          "type": "menu_column",
+          "settings": {
+            "heading": "Expertise"
+          }
+        },
+        "menu_4": {
+          "type": "menu_column",
+          "settings": {
+            "heading": "Agency Insights:"
+          }
+        },
+        "location_1": {
+          "type": "location",
+          "settings": {
+            "city": "New York City",
+            "address": "HQ in Soho,\nNew York"
+          }
+        },
+        "location_2": {
+          "type": "location",
+          "settings": {
+            "city": "Miami",
+            "address": "Brickell,\nMiami"
+          }
+        },
+        "location_3": {
+          "type": "location",
+          "settings": {
+            "city": "Dubai",
+            "address": "Trade Centre 2,\nDubai"
+          }
         }
       },
       "block_order": [
-        "group_H6VpwJ",
-        "email_signup_crihX7"
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "menu_1",
+        "menu_2",
+        "menu_3",
+        "menu_4",
+        "location_1",
+        "location_2",
+        "location_3"
       ],
-      "name": "t:names.footer",
-      "settings": {
-        "section_width": "page-width",
-        "gap": 20,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 30,
-        "padding-block-end": 30
-      }
+      "name": "Growth diagnosis footer"
     },
     "footer_utilities_jLGE8U": {
       "type": "footer-utilities",
@@ -193,7 +184,7 @@
     }
   },
   "order": [
-    "footer_m9NzUG",
+    "footer_diagnosis_H4xKm9",
     "footer_utilities_jLGE8U"
   ]
 }

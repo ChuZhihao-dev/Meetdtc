@@ -132,6 +132,7 @@
     "zoom_media": "Fă zoom pe elementul media {{ index }}"
   },
   "content": {
+    "select_menu": "Select a menu",
     "select_article": "Select an article",
     "reviews": "recenzii",
     "language": "Limba",

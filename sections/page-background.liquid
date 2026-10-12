@@ -1,0 +1,114 @@
+{% comment %}
+  Page background.
+  Sets a solid or gradient page background for the template it is added to.
+  Add it to any page/template (each page can use its own template) to give that
+  page a distinct background without changing the global theme setting.
+  @example
+  <!-- Add the "Page background" section to a template, then pick a color or gradient -->
+{% endcomment %}
+
+{% liquid
+  assign background_type = section.settings.background_type
+  assign background_color = section.settings.background_color
+  assign gradient_from = section.settings.gradient_color_from
+  assign gradient_to = section.settings.gradient_color_to
+  assign gradient_angle = section.settings.gradient_angle
+%}
+
+{% if background_type == 'gradient' %}
+  {% style %}
+    body {
+      --color-background: {{ gradient_from }};
+      --color-background-rgb: {{ gradient_from.rgb }};
+      background-color: {{ gradient_from }};
+      background-image: linear-gradient({{ gradient_angle }}deg, {{ gradient_from }} 0%, {{ gradient_to }} 100%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* Let the fixed page gradient show through every section background layer. */
+    .shopify-section:not(.header-section) .section-background {
+      background-color: transparent;
+    }
+  {% endstyle %}
+{% elsif background_color != blank %}
+  {% style %}
+    body {
+      --color-background: {{ background_color }};
+      --color-background-rgb: {{ background_color.rgb }};
+      background-color: {{ background_color }};
+    }
+  {% endstyle %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:names.page_background",
+  "class": "page-background",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:content.page_background_hint"
+    },
+    {
+      "type": "select",
+      "id": "background_type",
+      "label": "t:settings.style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "t:options.solid"
+        },
+        {
+          "value": "gradient",
+          "label": "t:options.gradient"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:settings.background_color",
+      "alpha": true,
+      "default": "#FFFFFF",
+      "visible_if": "{{ section.settings.background_type == 'solid' }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#AAC5FF",
+      "visible_if": "{{ section.settings.background_type == 'gradient' }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#CBD5FD",
+      "visible_if": "{{ section.settings.background_type == 'gradient' }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "default": 180,
+      "visible_if": "{{ section.settings.background_type == 'gradient' }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.page_background",
+      "category": "t:categories.layout"
+    }
+  ]
+}
+{% endschema %}

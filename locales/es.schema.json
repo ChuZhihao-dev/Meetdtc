@@ -9,6 +9,11 @@
  */
 {
   "names": {
+    "footer_diagnosis": "Growth diagnosis footer",
+    "footer_feature": "Advantage",
+    "footer_location": "Location",
+    "page_background": "Page background",
+    "blog_grid": "Blog grid",
     "our_work": "Our work",
     "result_card": "Result card",
     "cta_banner": "Callout banner",
@@ -179,6 +184,18 @@
     "partner_brands": "Partner brands"
   },
   "settings": {
+    "form_name_label": "Name label",
+    "form_name_placeholder": "Name placeholder",
+    "form_company_label": "Company label",
+    "form_company_placeholder": "Company placeholder",
+    "form_email_label": "Email label",
+    "form_email_placeholder": "Email placeholder",
+    "form_phone_label": "Phone label",
+    "form_phone_placeholder": "Phone placeholder",
+    "form_website_label": "Website label",
+    "form_website_placeholder": "Website placeholder",
+    "form_goals_label": "Goals label",
+    "form_goals_placeholder": "Goals placeholder",
     "link_label": "Link label",
     "description": "Description",
     "eyebrow": "Eyebrow",
@@ -608,6 +625,10 @@
     "alt_text": "Texto alternativo"
   },
   "options": {
+    "icon_arrow_up_right": "Arrow up-right",
+    "icon_browser": "Browser window",
+    "icon_check": "Check",
+    "icon_shield": "Shield",
     "icon_bars": "Bars",
     "icon_global": "Global",
     "icon_layers": "Layers",
@@ -894,6 +915,8 @@
     "input_field": "Campo de entrada"
   },
   "content": {
+    "locations": "Locations",
+    "page_background_hint": "Sets the page background color for the template this section is added to. Give a page its own template to use a different background.",
     "metric_1": "Metric 1",
     "metric_2": "Metric 2",
     "features": "Features",

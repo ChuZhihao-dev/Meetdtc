@@ -130,6 +130,7 @@
     "zoom_media": "Zoom medier {{ index }}"
   },
   "content": {
+    "select_menu": "Select a menu",
     "select_article": "Select an article",
     "reviews": "anmeldelser",
     "no_results_found": "Fant ingen resultater",
