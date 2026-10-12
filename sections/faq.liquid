@@ -1,0 +1,600 @@
+{% comment %}
+  FAQ.
+  Renders a centered eyebrow, a gradient headline, and supporting copy above a
+  list of merchant-managed accordion rows on a full-bleed gradient background.
+  @example
+  <!-- Add the "FAQ" section, then edit each question row block -->
+{% endcomment %}
+
+<script
+  src="{{ 'scroll-reveal.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+{% render 'scroll-reveal-styles' %}
+
+{% liquid
+  assign section_settings = section.settings
+  assign heading_text = section_settings.heading
+%}
+
+{% style %}
+  #shopify-section-{{ section.id }} .faq {
+    --faq-heading-gap: {{ section_settings.heading_gap }}px;
+    --faq-row-gap: {{ section_settings.row_gap }}px;
+    --faq-row-background: {{ section_settings.row_background }};
+    --faq-row-radius: {{ section_settings.row_radius }}px;
+    --faq-question-color: {{ section_settings.question_color }};
+    --faq-answer-color: {{ section_settings.answer_color }};
+    --faq-icon-color: {{ section_settings.icon_color }};
+    --faq-list-max-width: {{ section_settings.list_max_width }}px;
+    --faq-heading-font-family: {{ section_settings.font }};
+    --faq-heading-font-size: {{ section_settings.font_size }};
+    --faq-heading-font-weight: {{ section_settings.weight }};
+    --faq-heading-line-height: {{ section_settings.line_height | default: '1.3' }};
+    --faq-heading-letter-spacing: -1.31px;
+    --text-wrap: {{ section_settings.wrap | default: 'balance' }};
+  }
+{% endstyle %}
+
+<div
+  class="section-background faq__background"
+  style="
+    --faq-bg-angle: {{ section_settings.background_gradient_angle }}deg;
+    --faq-bg-from: {{ section_settings.background_gradient_from }};
+    --faq-bg-to: {{ section_settings.background_gradient_to }};
+  "
+></div>
+
+<div
+  class="section section--page-width faq spacing-style"
+  style="{% render 'spacing-style', settings: section_settings %}"
+  data-reveal-scope
+  {{ section.shopify_attributes }}
+>
+  {% if section_settings.eyebrow != blank or heading_text != blank or section_settings.description != blank %}
+    <div class="faq__intro" data-reveal>
+      {% if section_settings.eyebrow != blank %}
+        <p class="faq__eyebrow">{{ section_settings.eyebrow }}</p>
+      {% endif %}
+
+      {% if heading_text != blank %}
+        {% render 'text-block-styles' %}
+        <div
+          class="
+            faq__heading
+            text-block
+            text-block--full-width
+            {% if section_settings.gradient_text %}text-block--gradient{% endif %}
+          "
+          style="
+            --text-align: center;
+            {% if section_settings.gradient_text %}
+              --gradient-from: {{ section_settings.gradient_color_from }};
+              --gradient-to: {{ section_settings.gradient_color_to }};
+              --gradient-angle: {{ section_settings.gradient_angle }}deg;
+              --gradient-start: {{ section_settings.gradient_start_position }}%;
+              --gradient-end: {{ section_settings.gradient_end_position }}%;
+            {% endif %}
+          "
+        >
+          {{ heading_text }}
+        </div>
+      {% endif %}
+
+      {% if section_settings.description != blank %}
+        <div class="faq__description">{{ section_settings.description }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {%- capture faq_rows -%}
+    {% content_for 'blocks' %}
+  {%- endcapture -%}
+
+  {% if faq_rows != blank %}
+    <div class="faq__list">{{ faq_rows }}</div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .faq__background {
+    background-image: linear-gradient(
+      var(--faq-bg-angle, 104deg),
+      var(--faq-bg-from, #aac5ff) 2.81%,
+      var(--faq-bg-to, #cbd5fd) 97.19%
+    );
+  }
+
+  .faq__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .faq__eyebrow {
+    margin: 0;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.6;
+    text-transform: uppercase;
+    color: #000000;
+  }
+
+  .faq__heading {
+    font-family: var(--faq-heading-font-family, var(--font-heading--family));
+    font-size: var(--faq-heading-font-size, 3.625rem);
+    font-weight: var(--faq-heading-font-weight, 600);
+    line-height: var(--faq-heading-line-height, 1.3);
+    letter-spacing: var(--faq-heading-letter-spacing, -1.31px);
+    color: var(--color-foreground);
+  }
+
+  .faq__description {
+    font-family: Montserrat;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1;
+    color: #000000;
+    text-wrap: pretty;
+  }
+
+  .faq__description > :first-child {
+    margin-block-start: 0;
+  }
+
+  .faq__description > :last-child {
+    margin-block-end: 0;
+  }
+
+  .faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--faq-row-gap, 8px);
+    width: 100%;
+    max-width: var(--faq-list-max-width, 780px);
+    margin-inline: auto;
+    margin-block-start: var(--faq-heading-gap, 32px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .faq__eyebrow {
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .faq__heading {
+      font-size: 2.25rem;
+      letter-spacing: -0.5px;
+    }
+
+    .faq__description {
+      font-size: 1.125rem;
+      line-height: 1.3;
+    }
+
+    .faq__list {
+      --faq-heading-gap: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.faq_section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "blocks": [
+    {
+      "type": "_faq-row"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:settings.eyebrow",
+      "default": "FAQ"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:settings.heading",
+      "default": "<p>About Working With ME</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:settings.description",
+      "default": "<p>How we work, what we cover, and what happens after you get in touch.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "font",
+      "label": "t:settings.font",
+      "options": [
+        {
+          "value": "var(--font-body--family)",
+          "label": "t:options.body"
+        },
+        {
+          "value": "var(--font-subheading--family)",
+          "label": "t:options.subheading"
+        },
+        {
+          "value": "var(--font-heading--family)",
+          "label": "t:options.heading"
+        },
+        {
+          "value": "var(--font-accent--family)",
+          "label": "t:options.accent"
+        }
+      ],
+      "default": "var(--font-heading--family)"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "t:settings.size",
+      "options": [
+        {
+          "value": "1.875rem",
+          "label": "30px"
+        },
+        {
+          "value": "2rem",
+          "label": "32px"
+        },
+        {
+          "value": "2.25rem",
+          "label": "36px"
+        },
+        {
+          "value": "2.5rem",
+          "label": "40px"
+        },
+        {
+          "value": "3rem",
+          "label": "48px"
+        },
+        {
+          "value": "3.625rem",
+          "label": "58px"
+        }
+      ],
+      "default": "3.625rem"
+    },
+    {
+      "type": "select",
+      "id": "weight",
+      "label": "t:settings.weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "line_height",
+      "label": "t:settings.line_height",
+      "options": [
+        {
+          "value": "",
+          "label": "t:options.default"
+        },
+        {
+          "value": "1",
+          "label": "1.0"
+        },
+        {
+          "value": "1.1",
+          "label": "1.1"
+        },
+        {
+          "value": "1.2",
+          "label": "1.2"
+        },
+        {
+          "value": "1.3",
+          "label": "1.3"
+        }
+      ],
+      "default": "1.3"
+    },
+    {
+      "type": "select",
+      "id": "wrap",
+      "label": "t:settings.wrap",
+      "options": [
+        {
+          "value": "pretty",
+          "label": "t:options.pretty"
+        },
+        {
+          "value": "balance",
+          "label": "t:options.balance"
+        },
+        {
+          "value": "nowrap",
+          "label": "t:options.none"
+        }
+      ],
+      "default": "balance"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "checkbox",
+      "id": "gradient_text",
+      "label": "t:settings.gradient_text",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#0B22B8",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#9621C4",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "default": 92,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_start_position",
+      "label": "t:settings.gradient_start_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 0,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_end_position",
+      "label": "t:settings.gradient_end_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 15,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.background"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#AAC5FF"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#CBD5FD"
+    },
+    {
+      "type": "range",
+      "id": "background_gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "default": 104
+    },
+    {
+      "type": "header",
+      "content": "t:content.cards_layout"
+    },
+    {
+      "type": "color",
+      "id": "row_background",
+      "label": "t:settings.background_color",
+      "default": "#E5E6FF"
+    },
+    {
+      "type": "range",
+      "id": "row_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "question_color",
+      "label": "t:settings.color",
+      "default": "#3F4EFF"
+    },
+    {
+      "type": "color",
+      "id": "answer_color",
+      "label": "t:settings.color",
+      "default": "#595959"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "t:settings.color",
+      "default": "#3F4EFF"
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "list_max_width",
+      "label": "t:settings.width",
+      "min": 480,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "default": 780
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.faq_section",
+      "category": "t:categories.layout",
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "<p>About Working With ME</p>",
+        "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "weight": "600",
+        "line_height": "1.3",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#0B22B8",
+        "gradient_color_to": "#9621C4",
+        "gradient_angle": 92,
+        "gradient_start_position": 0,
+        "gradient_end_position": 15,
+        "background_gradient_from": "#AAC5FF",
+        "background_gradient_to": "#CBD5FD",
+        "background_gradient_angle": 104,
+        "row_background": "#E5E6FF",
+        "row_radius": 16,
+        "row_gap": 8,
+        "question_color": "#3F4EFF",
+        "answer_color": "#595959",
+        "icon_color": "#3F4EFF",
+        "heading_gap": 32,
+        "list_max_width": 780,
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "row_1": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "What is MarTech, and how can it support global growth?",
+            "answer": "<p>MarTech brings strategy, technology, data and execution together to help businesses attract, convert and retain customers. For businesses expanding across markets, it connects websites, marketing, customer operations and data into a more measurable growth system.</p>",
+            "open_by_default": true
+          }
+        },
+        "row_2": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "What MarTech solutions does ME provide?",
+            "answer": "<p>ME provides a connected set of services across web design and development, SEO, CRO, lifecycle and affiliate marketing, so strategy and execution work as one system.</p>"
+          }
+        },
+        "row_3": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Can ME support both strategy and implementation?",
+            "answer": "<p>Yes. We help define the strategy and then implement it end to end, so you're not handing plans between agencies.</p>"
+          }
+        },
+        "row_4": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "How Can We Get Started with ME?",
+            "answer": "<p>Get in touch and we'll start with a short discovery session to understand your goals, markets and current setup.</p>"
+          }
+        },
+        "row_5": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "How Can We Get Started with ME?",
+            "answer": "<p>Get in touch and we'll start with a short discovery session to understand your goals, markets and current setup.</p>"
+          }
+        }
+      },
+      "block_order": ["row_1", "row_2", "row_3", "row_4", "row_5"]
+    }
+  ]
+}
+{% endschema %}

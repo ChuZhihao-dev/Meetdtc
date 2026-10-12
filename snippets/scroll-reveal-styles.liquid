@@ -1,0 +1,39 @@
+{%- doc -%}
+  Shared scroll-reveal styles.
+
+  Elements marked `[data-reveal]` inside a `[data-reveal-scope]` root fade and
+  translate between the states that `assets/scroll-reveal.js` sets on them:
+  hidden below (`before`), visible (`in`), and hidden above (`out`). The hidden
+  states only apply once the script adds `reveal-ready`, so content stays visible
+  when JavaScript is unavailable.
+
+  @example
+  {% render 'scroll-reveal-styles' %}
+{%- enddoc -%}
+
+{% stylesheet %}
+  .reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(32px);
+    transition:
+      opacity 0.6s var(--ease-out-cubic),
+      transform 0.6s var(--ease-out-cubic);
+    transition-delay: calc(var(--reveal-index, 0) * 90ms);
+  }
+
+  .reveal-ready [data-reveal][data-state='in'] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-ready [data-reveal][data-state='out'] {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-ready [data-reveal] {
+      transition: none;
+    }
+  }
+{% endstylesheet %}

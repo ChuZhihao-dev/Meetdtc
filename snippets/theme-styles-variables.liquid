@@ -121,6 +121,51 @@
       echo accent_font_bold_italic | font_face: font_display: 'swap'
       assign rendered_fonts = rendered_fonts | append: accent_font_bold_italic_face_id
     endunless
+
+    # The faces above only cover each role's base weight and bold, so
+    # intermediate weights (300/400/500/600) in a family chosen as a font role
+    # have no matching face and don't render. Declare the common weights for
+    # every role as well. This is cheap: browsers only download the weights that
+    # are actually used, and duplicates are skipped via `rendered_fonts`.
+    assign extra_font_weights = '300,400,500,600,700' | split: ','
+
+    for weight in extra_font_weights
+      assign primary_font_weight = primary_font | font_modify: 'weight', weight
+      if primary_font_weight
+        assign primary_font_weight_id = '[family]-[weight]-[style]|' | replace: '[family]', primary_font_weight.family | replace: '[weight]', primary_font_weight.weight | replace: '[style]', primary_font_weight.style
+        unless rendered_fonts contains primary_font_weight_id
+          echo primary_font_weight | font_face: font_display: 'swap'
+          assign rendered_fonts = rendered_fonts | append: primary_font_weight_id
+        endunless
+      endif
+
+      assign secondary_font_weight = secondary_font | font_modify: 'weight', weight
+      if secondary_font_weight
+        assign secondary_font_weight_id = '[family]-[weight]-[style]|' | replace: '[family]', secondary_font_weight.family | replace: '[weight]', secondary_font_weight.weight | replace: '[style]', secondary_font_weight.style
+        unless rendered_fonts contains secondary_font_weight_id
+          echo secondary_font_weight | font_face: font_display: 'swap'
+          assign rendered_fonts = rendered_fonts | append: secondary_font_weight_id
+        endunless
+      endif
+
+      assign tertiary_font_weight = tertiary_font | font_modify: 'weight', weight
+      if tertiary_font_weight
+        assign tertiary_font_weight_id = '[family]-[weight]-[style]|' | replace: '[family]', tertiary_font_weight.family | replace: '[weight]', tertiary_font_weight.weight | replace: '[style]', tertiary_font_weight.style
+        unless rendered_fonts contains tertiary_font_weight_id
+          echo tertiary_font_weight | font_face: font_display: 'swap'
+          assign rendered_fonts = rendered_fonts | append: tertiary_font_weight_id
+        endunless
+      endif
+
+      assign accent_font_weight = accent_font | font_modify: 'weight', weight
+      if accent_font_weight
+        assign accent_font_weight_id = '[family]-[weight]-[style]|' | replace: '[family]', accent_font_weight.family | replace: '[weight]', accent_font_weight.weight | replace: '[style]', accent_font_weight.style
+        unless rendered_fonts contains accent_font_weight_id
+          echo accent_font_weight | font_face: font_display: 'swap'
+          assign rendered_fonts = rendered_fonts | append: accent_font_weight_id
+        endunless
+      endif
+    endfor
   %}
 
   :root {

@@ -30,6 +30,8 @@
     "text": "טקסט"
   },
   "content": {
+    "metric_1": "Metric 1",
+    "metric_2": "Metric 2",
     "features": "Features",
     "visible_if_collection_has_more_products": "גלוי אם באוסף יש יותר מוצרים ממה שמוצג",
     "advanced": "מתקדם",
@@ -247,6 +249,8 @@
     "media_type_info": "התכונות מאוכלסות מקישורי התפריט שלך"
   },
   "names": {
+    "our_work": "Our work",
+    "result_card": "Result card",
     "cta_banner": "Callout banner",
     "insights": "Insights",
     "insight_row": "Question",

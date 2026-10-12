@@ -30,6 +30,8 @@
     "text": "ٹیکسٹ"
   },
   "content": {
+    "metric_1": "Metric 1",
+    "metric_2": "Metric 2",
     "features": "Features",
     "visible_if_collection_has_more_products": "اگر کلیکشن میں دکھائے گئے پروڈکٹ سے زیادہ پروڈکٹ ہوں تو ظاہر ہوتا ہے",
     "advanced": "ایڈوانسڈ",
@@ -247,6 +249,8 @@
     "media_type_info": "خصوصیات آپ کے مینو کے لنک سے پُر کی گئی ہیں"
   },
   "names": {
+    "our_work": "Our work",
+    "result_card": "Result card",
     "cta_banner": "Callout banner",
     "insights": "Insights",
     "insight_row": "Question",

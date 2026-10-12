@@ -336,6 +336,45 @@
         "padding-block-end": 37
       }
     },
+    "cta_banner_8UDPGz": {
+      "type": "cta-banner",
+      "name": "t:names.cta_banner",
+      "settings": {
+        "heading": "Not Sure Where to Focus Your Growth Efforts?",
+        "description": "<p>Tell us about your goals and challenges. We'll help identify the right solutions, platforms and next steps.</p>",
+        "link_label": "Find the Right Solution",
+        "link": "#",
+        "font": "var(--font-heading--family)",
+        "font_size": "2.5rem",
+        "weight": "700",
+        "line_height": "1.1",
+        "letter_spacing": "normal",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#ffffff",
+        "gradient_color_to": "#f8e5ff",
+        "gradient_angle": 96,
+        "gradient_start_position": 12,
+        "gradient_end_position": 88,
+        "description_color": "#ffffff",
+        "background_gradient_from": "#aac5ff",
+        "background_gradient_to": "#cbd5fd",
+        "background_gradient_angle": 104,
+        "panel_gradient_from": "#6379ef",
+        "panel_gradient_to": "#b62cf6",
+        "panel_gradient_angle": 92,
+        "panel_radius": 23,
+        "button_background": "#ffffff",
+        "button_text_color": "#6d28d9",
+        "button_radius": 30,
+        "padding-block-start": 72,
+        "padding-block-end": 68,
+        "panel_padding_block_start": 40,
+        "panel_padding_inline_end": 48,
+        "panel_padding_block_end": 40,
+        "panel_padding_inline_start": 48
+      }
+    },
     "why_choose_us_4HCWwJ": {
       "type": "why-choose-us",
       "blocks": {
@@ -413,11 +452,142 @@
         "padding-block-start": 92,
         "padding-block-end": 92
       }
+    },
+    "insights_a3A3Dn": {
+      "type": "insights",
+      "name": "t:names.insights",
+      "settings": {
+        "eyebrow": "INSIGHTS",
+        "heading": "<p>Real Questions. Plain Answers.</p>",
+        "description": "<p>The three things almost every client asks before they start.</p>",
+        "blog": "articles",
+        "post_limit": 3,
+        "link_label": "Read →",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "weight": "700",
+        "line_height": "1.3",
+        "letter_spacing": "normal",
+        "alignment": "left",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#0b22b8",
+        "gradient_color_to": "#9621c4",
+        "gradient_angle": 110,
+        "gradient_start_position": 11,
+        "gradient_end_position": 89,
+        "background_gradient_from": "#aac5ff",
+        "background_gradient_to": "#c9d5fd",
+        "background_gradient_angle": 180,
+        "media_width": 368,
+        "card_radius": 27,
+        "container_background": "#ffffff",
+        "container_opacity": 60,
+        "card_background": "#ffffff",
+        "card_opacity": 80,
+        "heading_gap": 64,
+        "list_gap": 30,
+        "view_all_label": "View all articles →",
+        "view_all_link": "shopify://blogs/news",
+        "link_color": "#106EFA",
+        "padding-block-start": 72,
+        "padding-block-end": 92
+      }
+    },
+    "faq_XQDqJm": {
+      "type": "faq",
+      "blocks": {
+        "faq_row_gdQjXC": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "What is MarTech, and how can it support global growth?",
+            "answer": "<p>MarTech brings strategy, technology, data and execution together to help businesses attract, convert and retain customers. For businesses expanding across markets, it connects websites, marketing, customer operations and data into a more measurable growth system.</p>",
+            "open_by_default": true
+          },
+          "blocks": {}
+        },
+        "faq_row_pkhNYV": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "What MarTech solutions does ME provide?",
+            "answer": "<p>ME provides a connected set of services across web design and development, SEO, CRO, lifecycle and affiliate marketing, so strategy and execution work as one system.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_FWqTNx": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Can ME support both strategy and implementation?",
+            "answer": "<p>Yes. We help define the strategy and then implement it end to end, so you're not handing plans between agencies.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_bHFFxt": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "How Can We Get Started with ME?",
+            "answer": "<p>Get in touch and we'll start with a short discovery session to understand your goals, markets and current setup.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_waLQFR": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "How Can We Get Started with ME?",
+            "answer": "<p>Get in touch and we'll start with a short discovery session to understand your goals, markets and current setup.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "faq_row_gdQjXC",
+        "faq_row_pkhNYV",
+        "faq_row_FWqTNx",
+        "faq_row_bHFFxt",
+        "faq_row_waLQFR"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "<p>About Working With ME</p>",
+        "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "weight": "600",
+        "line_height": "1.3",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#0b22b8",
+        "gradient_color_to": "#9621c4",
+        "gradient_angle": 92,
+        "gradient_start_position": 0,
+        "gradient_end_position": 15,
+        "background_gradient_from": "#aac5ff",
+        "background_gradient_to": "#cbd5fd",
+        "background_gradient_angle": 104,
+        "row_background": "#e5e6ff",
+        "row_radius": 16,
+        "row_gap": 8,
+        "question_color": "#3f4eff",
+        "answer_color": "#595959",
+        "icon_color": "#3f4eff",
+        "heading_gap": 52,
+        "list_max_width": 1140,
+        "padding-block-start": 92,
+        "padding-block-end": 96
+      }
     }
   },
   "order": [
     "section_6mqxB3",
     "partner_brands_PtTzrK",
-    "why_choose_us_4HCWwJ"
+    "cta_banner_8UDPGz",
+    "why_choose_us_4HCWwJ",
+    "insights_a3A3Dn",
+    "faq_XQDqJm"
   ]
 }

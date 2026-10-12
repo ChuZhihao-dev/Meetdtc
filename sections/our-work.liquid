@@ -1,0 +1,691 @@
+{% comment %}
+  Our work.
+  Renders a left-aligned label, a gradient headline, and supporting copy above a
+  horizontal, scroll-snapped row of merchant-managed result cards.
+  @example
+  <!-- Add the "Our work" section, then edit each result card block -->
+{% endcomment %}
+
+<script
+  src="{{ 'scroll-reveal.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+{% render 'scroll-reveal-styles' %}
+
+{% liquid
+  assign section_settings = section.settings
+  assign heading_text = section_settings.heading
+%}
+
+{% style %}
+  #shopify-section-{{ section.id }} .our-work {
+    --work-heading-font-family: {{ section_settings.font }};
+    --work-heading-font-size: {{ section_settings.font_size }};
+    --work-heading-font-weight: {{ section_settings.weight }};
+    --work-heading-line-height: {{ section_settings.line_height | default: '1' }};
+    --text-wrap: {{ section_settings.wrap | default: 'balance' }};
+    --work-heading-gap: {{ section_settings.heading_gap }}px;
+    --work-card-width: {{ section_settings.card_width }}px;
+    --work-card-height: {{ section_settings.card_height }}px;
+    --work-card-gap: {{ section_settings.card_gap }}px;
+    --work-card-radius: {{ section_settings.card_radius }}px;
+    --work-card-media-radius: {{ section_settings.card_media_radius }}px;
+    --work-card-background: {{ section_settings.card_background }};
+    --work-card-padding-block-start: {{ section_settings.card_padding_block_start }}px;
+    --work-card-padding-block-end: {{ section_settings.card_padding_block_end }}px;
+    --work-card-padding-inline-start: {{ section_settings.card_padding_inline_start }}px;
+    --work-card-padding-inline-end: {{ section_settings.card_padding_inline_end }}px;
+    --work-tag-background: {{ section_settings.tag_background }};
+    --work-tag-border: {{ section_settings.tag_border }};
+    --work-tag-color: {{ section_settings.tag_color }};
+    --work-description-color: {{ section_settings.description_color }};
+    --work-metric-color: {{ section_settings.metric_color }};
+    --work-metric-label-color: {{ section_settings.metric_label_color }};
+    --work-content-width: 1280px;
+  }
+{% endstyle %}
+
+<div
+  class="section-background our-work__background"
+  style="
+    --work-bg-angle: {{ section_settings.background_gradient_angle }}deg;
+    --work-bg-from: {{ section_settings.background_gradient_from }};
+    --work-bg-to: {{ section_settings.background_gradient_to }};
+  "
+></div>
+
+<div
+  class="section section--page-width our-work spacing-style"
+  style="{% render 'spacing-style', settings: section_settings %}"
+  data-reveal-scope
+  {{ section.shopify_attributes }}
+>
+  {% if section_settings.eyebrow != blank or heading_text != blank or section_settings.description != blank %}
+    <div class="our-work__intro" data-reveal>
+      {% if section_settings.eyebrow != blank %}
+        <p class="our-work__eyebrow">{{ section_settings.eyebrow }}</p>
+      {% endif %}
+
+      {% if heading_text != blank %}
+        {% render 'text-block-styles' %}
+        <div
+          class="
+            our-work__heading
+            text-block
+            text-block--full-width
+            {% if section_settings.gradient_text %}text-block--gradient{% endif %}
+          "
+          style="
+            {% if section_settings.gradient_text %}
+              --gradient-from: {{ section_settings.gradient_color_from }};
+              --gradient-to: {{ section_settings.gradient_color_to }};
+              --gradient-angle: {{ section_settings.gradient_angle }}deg;
+              --gradient-start: {{ section_settings.gradient_start_position }}%;
+              --gradient-end: {{ section_settings.gradient_end_position }}%;
+            {% endif %}
+          "
+        >
+          {{ heading_text }}
+        </div>
+      {% endif %}
+
+      {% if section_settings.description != blank %}
+        <div class="our-work__description">{{ section_settings.description }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {%- capture result_cards -%}
+    {% content_for 'blocks' %}
+  {%- endcapture -%}
+
+  {% if result_cards != blank %}
+    <div class="our-work__track force-full-width">{{ result_cards }}</div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .our-work__background {
+    background-image: linear-gradient(
+      var(--work-bg-angle, 104deg),
+      var(--work-bg-from, #aac5ff) 2.81%,
+      var(--work-bg-to, #cbd5fd) 97.19%
+    );
+  }
+
+  .our-work__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: var(--work-content-width, 1280px);
+    margin-inline: auto;
+  }
+
+  .our-work__eyebrow {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 38px;
+    color: var(--color-foreground);
+  }
+
+  .our-work__heading {
+    font-family: var(--work-heading-font-family, var(--font-heading--family));
+    font-size: var(--work-heading-font-size, 3.625rem);
+    font-weight: var(--work-heading-font-weight, 600);
+    line-height: var(--work-heading-line-height, 1);
+    letter-spacing: 0;
+    color: var(--color-foreground);
+  }
+
+  .our-work__description {
+    font-family: var(--font-heading--family);
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-foreground);
+    text-wrap: pretty;
+  }
+
+  .our-work__description > :first-child {
+    margin-block-start: 0;
+  }
+
+  .our-work__description > :last-child {
+    margin-block-end: 0;
+  }
+
+  .our-work__track {
+    display: flex;
+    gap: var(--work-card-gap, 40px);
+    width: 100%;
+    margin-block-start: var(--work-heading-gap, 40px);
+    padding-inline: max(var(--page-margin), calc((100% - var(--work-content-width, 1280px)) / 2));
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline-start: max(var(--page-margin), calc((100% - var(--work-content-width, 1280px)) / 2));
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .our-work__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .our-work__track > * {
+    scroll-snap-align: start;
+  }
+
+  @media screen and (max-width: 749px) {
+    .our-work__eyebrow {
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .our-work__heading {
+      font-size: 2.25rem;
+    }
+
+    .our-work__description {
+      font-size: 1.125rem;
+      line-height: 1.3;
+    }
+
+    .our-work__track {
+      gap: 16px;
+      margin-block-start: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.our_work",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "blocks": [
+    {
+      "type": "_result-card"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:settings.eyebrow",
+      "default": "OUR WORK"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:settings.heading",
+      "default": "<p>Built to Convert. Measured to Prove.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:settings.description",
+      "default": "<p>What we changed, and what it was worth.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "font",
+      "label": "t:settings.font",
+      "options": [
+        {
+          "value": "var(--font-body--family)",
+          "label": "t:options.body"
+        },
+        {
+          "value": "var(--font-subheading--family)",
+          "label": "t:options.subheading"
+        },
+        {
+          "value": "var(--font-heading--family)",
+          "label": "t:options.heading"
+        },
+        {
+          "value": "var(--font-accent--family)",
+          "label": "t:options.accent"
+        }
+      ],
+      "default": "var(--font-heading--family)"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "t:settings.size",
+      "options": [
+        {
+          "value": "2.25rem",
+          "label": "36px"
+        },
+        {
+          "value": "2.5rem",
+          "label": "40px"
+        },
+        {
+          "value": "3rem",
+          "label": "48px"
+        },
+        {
+          "value": "3.625rem",
+          "label": "58px"
+        },
+        {
+          "value": "4rem",
+          "label": "64px"
+        }
+      ],
+      "default": "3.625rem"
+    },
+    {
+      "type": "select",
+      "id": "weight",
+      "label": "t:settings.weight",
+      "options": [
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "line_height",
+      "label": "t:settings.line_height",
+      "options": [
+        {
+          "value": "",
+          "label": "t:options.default"
+        },
+        {
+          "value": "1",
+          "label": "1.0"
+        },
+        {
+          "value": "1.1",
+          "label": "1.1"
+        },
+        {
+          "value": "1.2",
+          "label": "1.2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "wrap",
+      "label": "t:settings.wrap",
+      "options": [
+        {
+          "value": "pretty",
+          "label": "t:options.pretty"
+        },
+        {
+          "value": "balance",
+          "label": "t:options.balance"
+        },
+        {
+          "value": "nowrap",
+          "label": "t:options.none"
+        }
+      ],
+      "default": "balance"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "checkbox",
+      "id": "gradient_text",
+      "label": "t:settings.gradient_text",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#0B22B8",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#9621C4",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "default": 92,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_start_position",
+      "label": "t:settings.gradient_start_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 11,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "range",
+      "id": "gradient_end_position",
+      "label": "t:settings.gradient_end_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 89,
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.background"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#AAC5FF"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#CBD5FD"
+    },
+    {
+      "type": "range",
+      "id": "background_gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "default": 104
+    },
+    {
+      "type": "header",
+      "content": "t:content.cards_layout"
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "label": "t:settings.width",
+      "min": 297,
+      "max": 697,
+      "step": 4,
+      "unit": "px",
+      "default": 497
+    },
+    {
+      "type": "range",
+      "id": "card_height",
+      "label": "t:settings.height",
+      "min": 353,
+      "max": 753,
+      "step": 4,
+      "unit": "px",
+      "default": 653
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_media_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "t:settings.background_color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "tag_background",
+      "label": "t:settings.background_color",
+      "default": "#EAEBF8"
+    },
+    {
+      "type": "color",
+      "id": "tag_border",
+      "label": "t:settings.border_color",
+      "default": "#E8C1EE"
+    },
+    {
+      "type": "color",
+      "id": "tag_color",
+      "label": "t:settings.color",
+      "default": "#9A66F8"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "t:settings.color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "metric_color",
+      "label": "t:settings.color",
+      "default": "#783EDF"
+    },
+    {
+      "type": "color",
+      "id": "metric_label_color",
+      "label": "t:settings.color",
+      "default": "#595959"
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "card_padding_block_start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "card_padding_block_end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "card_padding_inline_start",
+      "label": "t:settings.left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 37
+    },
+    {
+      "type": "range",
+      "id": "card_padding_inline_end",
+      "label": "t:settings.right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 37
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.our_work",
+      "category": "t:categories.layout",
+      "settings": {
+        "eyebrow": "OUR WORK",
+        "heading": "<p>Built to Convert. Measured to Prove.</p>",
+        "description": "<p>What we changed, and what it was worth.</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "weight": "600",
+        "line_height": "1",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#0B22B8",
+        "gradient_color_to": "#9621C4",
+        "gradient_angle": 92,
+        "gradient_start_position": 11,
+        "gradient_end_position": 89,
+        "background_gradient_from": "#AAC5FF",
+        "background_gradient_to": "#CBD5FD",
+        "background_gradient_angle": 104,
+        "card_width": 497,
+        "card_height": 653,
+        "card_gap": 40,
+        "card_radius": 16,
+        "card_media_radius": 12,
+        "card_background": "#FFFFFF",
+        "tag_background": "#EAEBF8",
+        "tag_border": "#E8C1EE",
+        "tag_color": "#9A66F8",
+        "description_color": "#000000",
+        "metric_color": "#783EDF",
+        "metric_label_color": "#595959",
+        "heading_gap": 40,
+        "padding-block-start": 64,
+        "padding-block-end": 64,
+        "card_padding_block_start": 46,
+        "card_padding_block_end": 46,
+        "card_padding_inline_start": 37,
+        "card_padding_inline_end": 37
+      },
+      "blocks": {
+        "card_1": {
+          "type": "_result-card",
+          "settings": {
+            "tag": "Client logo",
+            "description": "<p>Two or three lines here: where the client was, what we changed, and what it was worth. Say it the way Verz does – from what to what, and why it mattered.</p>",
+            "metric_1_value": "00%",
+            "metric_1_label": "Metric to be filled",
+            "metric_2_value": "0.0x",
+            "metric_2_label": "Metric to be filled"
+          }
+        },
+        "card_2": {
+          "type": "_result-card",
+          "settings": {
+            "tag": "Client logo",
+            "description": "<p>Two or three lines here: where the client was, what we changed, and what it was worth. Say it the way Verz does – from what to what, and why it mattered.</p>",
+            "metric_1_value": "00%",
+            "metric_1_label": "Metric to be filled",
+            "metric_2_value": "0.0x",
+            "metric_2_label": "Metric to be filled"
+          }
+        },
+        "card_3": {
+          "type": "_result-card",
+          "settings": {
+            "tag": "Client logo",
+            "description": "<p>Two or three lines here: where the client was, what we changed, and what it was worth. Say it the way Verz does – from what to what, and why it mattered.</p>",
+            "metric_1_value": "00%",
+            "metric_1_label": "Metric to be filled",
+            "metric_2_value": "0.0x",
+            "metric_2_label": "Metric to be filled"
+          }
+        }
+      },
+      "block_order": ["card_1", "card_2", "card_3"]
+    }
+  ]
+}
+{% endschema %}

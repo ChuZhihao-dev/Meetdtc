@@ -9,6 +9,8 @@
  */
 {
   "names": {
+    "our_work": "Our work",
+    "result_card": "Result card",
     "cta_banner": "Callout banner",
     "insights": "Insights",
     "insight_row": "Question",
@@ -892,6 +894,8 @@
     "direction_top_start": "왼쪽 상단"
   },
   "content": {
+    "metric_1": "Metric 1",
+    "metric_2": "Metric 2",
     "features": "Features",
     "background_video": "배경 비디오",
     "describe_the_video_for": "스크린리더를 사용하는 고객에게 슬라이드 쇼를 설명합니다. [자세히 알아보기](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#video-block)",

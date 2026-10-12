@@ -9,6 +9,8 @@
  */
 {
   "names": {
+    "our_work": "Our work",
+    "result_card": "Result card",
     "cta_banner": "Callout banner",
     "insights": "Insights",
     "insight_row": "Question",
@@ -892,6 +894,8 @@
     "input_field": "Giriş alanı"
   },
   "content": {
+    "metric_1": "Metric 1",
+    "metric_2": "Metric 2",
     "features": "Features",
     "background_video": "Arka plan videosu",
     "describe_the_video_for": "Ekran okuyucu kullanan müşteriler için videoyu açıklayın. [Daha fazla bilgi edinin](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#video-block)",

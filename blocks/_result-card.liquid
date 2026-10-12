@@ -1,0 +1,234 @@
+{% liquid
+  assign block_settings = block.settings
+%}
+
+<article class="result-card" data-reveal {{ block.shopify_attributes }}>
+  <div class="result-card__media">
+    {%- if block_settings.image != blank -%}
+      {{
+        block_settings.image
+        | image_url: width: 846
+        | image_tag:
+          widths: '423, 600, 846',
+          sizes: '(min-width: 750px) 423px, 85vw',
+          loading: 'lazy',
+          class: 'result-card__image',
+          alt: block_settings.image.alt | default: block_settings.tag | default: ''
+      }}
+    {%- endif -%}
+  </div>
+
+  <div class="result-card__body">
+    {%- if block_settings.tag != blank -%}
+      <span class="result-card__tag">{{ block_settings.tag }}</span>
+    {%- endif -%}
+
+    {%- if block_settings.description != blank -%}
+      <div class="result-card__description">{{ block_settings.description }}</div>
+    {%- endif -%}
+
+    <div class="result-card__metrics">
+      <div class="result-card__metric">
+        <span class="result-card__metric-value">{{ block_settings.metric_1_value }}</span>
+        <span class="result-card__metric-label">{{ block_settings.metric_1_label }}</span>
+      </div>
+      <div class="result-card__metric">
+        <span class="result-card__metric-value">{{ block_settings.metric_2_value }}</span>
+        <span class="result-card__metric-label">{{ block_settings.metric_2_label }}</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+{% stylesheet %}
+  .result-card {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    width: var(--work-card-width, 497px);
+    height: var(--work-card-height, 653px);
+    padding-block: var(--work-card-padding-block-start, 46px) var(--work-card-padding-block-end, 46px);
+    padding-inline: var(--work-card-padding-inline-start, 37px) var(--work-card-padding-inline-end, 37px);
+    overflow: hidden;
+    background-color: var(--work-card-background, #ffffff);
+    border-radius: var(--work-card-radius, 16px);
+  }
+
+  .result-card__media {
+    flex: 0 0 auto;
+    width: 100%;
+    aspect-ratio: 423 / 264;
+    overflow: hidden;
+    background-image: linear-gradient(103.31deg, #e5edfd 0.33%, #f8e5f2 99.67%);
+    border-radius: var(--work-card-media-radius, 12px);
+  }
+
+  .result-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .result-card__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .result-card__tag {
+    align-self: flex-start;
+    margin-block-start: 26px;
+    padding: 6.5px 25px;
+    font-family: var(--font-heading--family);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--work-tag-color, #9a66f8);
+    background-color: var(--work-tag-background, #eaebf8);
+    border: 1px dashed var(--work-tag-border, #e8c1ee);
+    border-radius: 5px;
+  }
+
+  .result-card__description {
+    display: -webkit-box;
+    margin-block-start: 26px;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    font-family: var(--font-heading--family);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 31px;
+    color: var(--work-description-color, #000000);
+  }
+
+  .result-card__metrics {
+    display: flex;
+    gap: 146px;
+    margin-block-start: auto;
+    padding-block-start: 20px;
+  }
+
+  .result-card__metric {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .result-card__metric-value {
+    font-family: var(--font-body--family);
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 25.2px;
+    letter-spacing: -0.99px;
+    color: var(--work-metric-color, #783edf);
+  }
+
+  .result-card__metric-label {
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--work-metric-label-color, #000000);
+  }
+
+  @media screen and (max-width: 749px) {
+    .result-card {
+      width: min(85vw, var(--work-card-width, 497px));
+      height: auto;
+      padding: 24px 20px;
+    }
+
+    .result-card__tag {
+      margin-block-start: 20px;
+    }
+
+    .result-card__description {
+      margin-block-start: 14px;
+      font-size: 17px;
+      line-height: 26px;
+    }
+
+    .result-card__metrics {
+      gap: 20px;
+      padding-block-start: 16px;
+    }
+
+    .result-card__metric-value {
+      font-size: 40px;
+      line-height: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.result_card",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:settings.image"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "t:settings.label",
+      "default": "Client logo"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:settings.description"
+    },
+    {
+      "type": "header",
+      "content": "t:content.metric_1"
+    },
+    {
+      "type": "text",
+      "id": "metric_1_value",
+      "label": "t:settings.text",
+      "default": "00%"
+    },
+    {
+      "type": "text",
+      "id": "metric_1_label",
+      "label": "t:settings.label",
+      "default": "Metric to be filled"
+    },
+    {
+      "type": "header",
+      "content": "t:content.metric_2"
+    },
+    {
+      "type": "text",
+      "id": "metric_2_value",
+      "label": "t:settings.text",
+      "default": "0.0x"
+    },
+    {
+      "type": "text",
+      "id": "metric_2_label",
+      "label": "t:settings.label",
+      "default": "Metric to be filled"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.result_card",
+      "category": "t:categories.layout",
+      "settings": {
+        "tag": "Client logo",
+        "metric_1_value": "00%",
+        "metric_1_label": "Metric to be filled",
+        "metric_2_value": "0.0x",
+        "metric_2_label": "Metric to be filled"
+      }
+    }
+  ]
+}
+{% endschema %}

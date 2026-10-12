@@ -8,10 +8,12 @@
 {% endcomment %}
 
 <script
-  src="{{ 'insights.js' | asset_url }}"
+  src="{{ 'scroll-reveal.js' | asset_url }}"
   type="module"
   fetchpriority="low"
 ></script>
+
+{% render 'scroll-reveal-styles' %}
 
 {% liquid
   assign section_settings = section.settings
@@ -48,6 +50,7 @@
 <div
   class="section section--page-width insights spacing-style"
   style="{% render 'spacing-style', settings: section_settings %}"
+  data-reveal-scope
   {{ section.shopify_attributes }}
 >
   {% if section_settings.eyebrow != blank or heading_text != blank or section_settings.description != blank %}
@@ -372,28 +375,6 @@
     .insight-row:hover .insight-row__image {
       transform: scale(1.05);
     }
-  }
-
-  /* Scroll reveal (enter + exit), driven by assets/insights.js. Hidden states
-     apply only once JS marks the section ready, so content stays visible
-     without JavaScript. */
-  .insights--reveal-ready [data-reveal] {
-    opacity: 0;
-    transform: translateY(32px);
-    transition:
-      opacity 0.6s var(--ease-out-cubic),
-      transform 0.6s var(--ease-out-cubic);
-    transition-delay: calc(var(--reveal-index, 0) * 90ms);
-  }
-
-  .insights--reveal-ready [data-reveal][data-state='in'] {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .insights--reveal-ready [data-reveal][data-state='out'] {
-    opacity: 0;
-    transform: translateY(-24px);
   }
 
   @media (prefers-reduced-motion: reduce) {

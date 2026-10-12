@@ -9,6 +9,8 @@
  */
 {
   "names": {
+    "our_work": "Our work",
+    "result_card": "Result card",
     "cta_banner": "Callout banner",
     "insights": "Insights",
     "insight_row": "Question",
@@ -892,6 +894,8 @@
     "direction_top_start": "Oppe til venstre"
   },
   "content": {
+    "metric_1": "Metric 1",
+    "metric_2": "Metric 2",
     "features": "Features",
     "advanced": "Avansert",
     "background_image": "Bakgrunnsbilde",
