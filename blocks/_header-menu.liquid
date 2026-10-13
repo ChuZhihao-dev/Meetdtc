@@ -112,7 +112,12 @@
             {% endif %}
             ref="menuitem"
           >
-            <span class="menu-list__link-title">{{- link.title -}}</span>
+            <span class="menu-list__link-title">
+              {{- link.title -}}
+              {% unless forloop.first %}
+                <img class="menu-list__separator" src="{{ 'header-menu-divider.svg' | asset_url }}" alt="" width="1" height="9" aria-hidden="true">
+              {% endunless %}
+            </span>
           </a>
           {%- if link.links != blank -%}
             <button
@@ -201,7 +206,11 @@
         <nav
           class="menu-list"
           aria-label="{{ 'accessibility.header_navigation_label' | t }}"
-          style="{% render 'menu-font-styles', settings: block_settings, menu_type: 'mega_menu' %}"
+          style="
+            {% render 'menu-font-styles', settings: block_settings, menu_type: 'mega_menu' %}
+            --menu-top-level-font-weight: {{ block_settings.type_font_primary_weight | default: '700' }};
+            --header-menu-link-gap: {{ block_settings.top_level_gap | default: 80 }}px;
+          "
         >
           {% assign class = 'overflow-menu' | append: background_color_classes %}
           {% render 'overflow-list',
@@ -402,6 +411,26 @@
   .menu-list__link-title {
     padding-inline: var(--gap-sm);
   }
+
+  .header-menu .menu-list__list-item:not([slot='overflow']) > .menu-list__link > .menu-list__link-title,
+  .header-menu .menu-list__list-item:not([slot='overflow']) > .menu-list__trigger > .menu-list__link > .menu-list__link-title {
+    position: relative;
+    padding-inline: calc(var(--header-menu-link-gap, 80px) / 2);
+  }
+
+  .menu-list__separator {
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 9px;
+    pointer-events: none;
+  }
+
+  [slot='overflow'] .menu-list__separator {
+    display: none;
+  }
   [slot='overflow'] .menu-list__link-title {
     padding-inline: 0;
   }
@@ -444,7 +473,7 @@
     --focus-outline-size: calc(var(--focus-outline-offset) + var(--focus-outline-width));
 
     gap: 0;
-    margin-inline: calc(-1 * var(--menu-horizontal-gap) / 2);
+    margin-inline: calc(-1 * var(--header-menu-link-gap, var(--menu-horizontal-gap)) / 2);
   }
 
   .overflow-menu {
@@ -877,6 +906,27 @@
         }
       ],
       "default": "1rem"
+    },
+    {
+      "type": "select",
+      "id": "type_font_primary_weight",
+      "label": "t:settings.weight",
+      "options": [
+        { "value": "500", "label": "500" },
+        { "value": "600", "label": "600" },
+        { "value": "700", "label": "700" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "top_level_gap",
+      "label": "t:settings.horizontal_gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 80
     },
     {
       "type": "select",

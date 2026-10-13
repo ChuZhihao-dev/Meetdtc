@@ -8,6 +8,21 @@
  * ------------------------------------------------------------
  */
 {
+  "aidea": {
+    "name": "AIDEA model",
+    "diagram": "Model labels",
+    "ai_label": "AI description",
+    "ai": "AI initials",
+    "data_letter": "Data initials",
+    "data_label": "Data management",
+    "experience_letter": "Experience initials",
+    "experience_label": "User experience",
+    "achievement_letter": "Achievement initials",
+    "achievement_label": "Business achievement",
+    "optimization": "Optimization",
+    "opportunities": "Growth opportunities",
+    "customer_growth": "Customer value growth"
+  },
   "categories": {
     "banners": "Banners",
     // Category for fundamental content blocks (text, images, buttons)
@@ -33,6 +48,7 @@
     "text": "Text"
   },
   "content": {
+    "services_globe": "Services",
     "visible_if_collection_has_more_products": "Visible if collection has more products than shown",
     "advanced": "Advanced",
     "appearance": "Appearance",
@@ -259,6 +275,7 @@
     "media_type_info": "Features are populated from your menu links"
   },
   "names": {
+    "services_globe": "Services globe",
     "column": "Column",
     "partner_brands": "Partner brands",
     "why_choose_us": "Why choose us",
@@ -441,6 +458,7 @@
     "comparison_slider": "Comparison slider"
   },
   "options": {
+    "growth_hero": "Growth hero",
     "above_carousel": "Above carousel",
     "accent": "Accent",
     "all": "All",
@@ -774,6 +792,12 @@
     "below_media": "Below media"
   },
   "settings": {
+    "web_commerce": "Web commerce",
+    "customer_growth": "Customer growth",
+    "ai_technology": "AI & technology",
+    "partner_marketing": "Partner marketing",
+    "data_intelligence": "Data intelligence",
+    "services_auto_rotate": "Slowly rotate the globe",
     "accordion": "Accordion",
     "account": "Account",
     "actions_display_style": "Menu style",

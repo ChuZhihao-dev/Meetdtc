@@ -1,0 +1,152 @@
+{% doc %}
+  Renders the homepage growth layout using the Hero section's existing media and blocks.
+  @param {section} section - Hero section, including responsive media and layout settings.
+  @param {string} children - Captured merchant-managed Hero blocks.
+  @param {string} media - Captured responsive Hero media markup.
+  @param {number} media_count - Number of selected desktop media slots.
+  @example
+  {% render 'growth-hero', section: section, children: hero_blocks, media: media, media_count: media_count %}
+{% enddoc %}
+
+{% liquid
+  assign color_id = 'growth-hero-' | append: section.id
+  assign has_video = false
+  if section.settings.media_type_1 == 'video' and section.settings.video_1 != blank
+    assign has_video = true
+  endif
+  if section.settings.media_type_2 == 'video' and section.settings.video_2 != blank
+    assign has_video = true
+  endif
+  if section.settings.custom_mobile_media
+    if section.settings.media_type_1_mobile == 'video' and section.settings.video_1_mobile != blank
+      assign has_video = true
+    endif
+    if section.settings.media_type_2_mobile == 'video' and section.settings.video_2_mobile != blank
+      assign has_video = true
+    endif
+  endif
+%}
+{% render 'contrast-override', background_color: section.settings.background_color, section_id: color_id %}
+{% if has_video %}
+  <script src="{{ 'growth-hero.js' | asset_url }}" type="module" fetchpriority="low"></script>
+{% endif %}
+
+<growth-hero-component
+  class="growth-hero color-custom-{{ color_id }}"
+  style="--growth-hero-gap: {{ section.settings.gap }}px;"
+>
+  <div
+    id="GrowthHeroMedia-{{ section.id }}"
+    ref="media"
+    class="growth-hero__media hero__media-grid"
+    style="--hero-media-count: {{ media_count | at_least: 1 }};"
+    aria-hidden="true"
+  >
+    {{ media }}
+  </div>
+  {% if section.settings.toggle_overlay %}
+    {% render 'overlay', settings: section.settings, layer: '1' %}
+  {% endif %}
+  <div class="growth-hero__layout">
+    <div
+      class="growth-hero__content layout-panel-flex layout-panel-flex--{{ section.settings.content_direction }}{% if section.settings.vertical_on_mobile %} mobile-column{% endif %}"
+      style="{% render 'layout-panel-style', settings: section.settings %}{% render 'spacing-style', settings: section.settings %}"
+    >
+      {{ children }}
+    </div>
+  </div>
+  {% if has_video %}
+    <button
+      ref="toggle"
+      type="button"
+      class="growth-hero__toggle"
+      on:click="/togglePlayback"
+      aria-controls="GrowthHeroMedia-{{ section.id }}"
+      data-play-label="{{ 'accessibility.play_video' | t | escape }}"
+      data-pause-label="{{ 'accessibility.pause_video' | t | escape }}"
+      aria-label="{{ 'accessibility.play_video' | t | escape }}"
+      hidden
+    >
+      <span ref="icon" aria-hidden="true">▶</span>
+    </button>
+  {% endif %}
+</growth-hero-component>
+
+{% stylesheet %}
+  .growth-hero {
+    display: block;
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    container-type: inline-size;
+    background-color: var(--color-background);
+  }
+  .growth-hero__media { inset: 0; z-index: 0; }
+  .growth-hero__media .hero__media { object-position: center; }
+  .growth-hero__layout {
+    position: relative;
+    z-index: 2;
+    inline-size: 100%;
+    max-inline-size: 1440px;
+    min-block-size: min(51.042cqw, 735px);
+    margin-inline: auto;
+  }
+  .growth-hero__content {
+    min-inline-size: 0;
+    padding-block: min(11.25cqw, 162px) min(7.847cqw, 113px);
+    padding-inline: 4.931%;
+    gap: var(--growth-hero-gap);
+  }
+  .growth-hero__content > .group-block { max-inline-size: min(48.056cqw, 692px); }
+  .growth-hero__content .text-block { min-inline-size: 0; overflow-wrap: anywhere; }
+  .growth-hero__content .text-block:has(h1) { max-inline-size: 692px; }
+  .growth-hero__content .text-block:has(h1) h1 { font-size: inherit; }
+  .growth-hero__content .text-block:has(p) { max-inline-size: min(41.181cqw, 593px); }
+  .growth-hero__content > :is(.button, .button-custom, .button-secondary) {
+    min-block-size: 62px;
+    max-inline-size: 100%;
+    padding-block: 13px;
+    padding-inline: 33px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+  }
+  .growth-hero__toggle {
+    position: absolute;
+    z-index: 3;
+    inset-block-end: 20px;
+    inset-inline-end: 20px;
+    display: grid;
+    place-items: center;
+    inline-size: 44px;
+    block-size: 44px;
+    border: 1px solid var(--color-foreground);
+    border-radius: 50%;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    cursor: pointer;
+  }
+  .growth-hero__toggle[hidden] { display: none; }
+  .growth-hero__media video { pointer-events: auto; }
+  .growth-hero[data-enhanced] .growth-hero__media video { pointer-events: none; }
+  .growth-hero[data-enhanced] .growth-hero__media video:not([data-playing]) { opacity: 0; }
+  @media screen and (min-width: 750px) and (max-width: 1100px) {
+    .growth-hero__content { padding-block-start: 90px; padding-block-end: 80px; }
+    .growth-hero__content > .group-block { max-inline-size: 58%; }
+    .growth-hero__content .text-block:has(h1) { font-size: min(var(--font-size), 2.5rem); }
+    .growth-hero__content .text-block:has(p) { max-inline-size: 100%; }
+  }
+  @media screen and (max-width: 749px) {
+    .growth-hero__layout { min-block-size: 660px; }
+    .growth-hero__media .hero__media { object-position: 65% center; }
+    .growth-hero__content {
+      padding: 56px 24px 250px;
+      gap: min(var(--growth-hero-gap), 32px);
+      background: linear-gradient(to bottom, rgb(var(--color-background-rgb) / 0.94) 0%, rgb(var(--color-background-rgb) / 0.88) 62%, rgb(var(--color-background-rgb) / 0) 100%);
+    }
+    .growth-hero__content > .group-block { max-inline-size: 100%; }
+    .growth-hero__content .text-block:has(h1) { font-size: min(var(--font-size), 2rem); }
+    .growth-hero__content .text-block:has(p) { max-inline-size: 100%; font-size: min(var(--font-size), 1.125rem); }
+    .growth-hero__content .text-block br { display: none; }
+    .growth-hero__content > :is(.button, .button-custom, .button-secondary) { min-block-size: 56px; inline-size: fit-content; padding: 12px 24px; font-size: 1rem; line-height: 1.5; }
+  }
+{% endstylesheet %}

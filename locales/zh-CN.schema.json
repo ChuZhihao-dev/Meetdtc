@@ -8,7 +8,23 @@
  * ------------------------------------------------------------
  */
 {
+  "aidea": {
+    "name": "AIDEA 增长模型",
+    "diagram": "模型文案",
+    "ai_label": "人工智能说明",
+    "ai": "AI 字母",
+    "data_letter": "数据字母",
+    "data_label": "数据管理",
+    "experience_letter": "体验字母",
+    "experience_label": "用户体验",
+    "achievement_letter": "成果字母",
+    "achievement_label": "业务成果",
+    "optimization": "优化",
+    "opportunities": "增长机会",
+    "customer_growth": "客户价值增长"
+  },
   "names": {
+    "services_globe": "服务地球",
     "footer_diagnosis": "Growth diagnosis footer",
     "footer_feature": "Advantage",
     "footer_location": "Location",
@@ -184,6 +200,12 @@
     "partner_brands": "Partner brands"
   },
   "settings": {
+    "web_commerce": "网站商业",
+    "customer_growth": "客户增长",
+    "ai_technology": "AI 与技术",
+    "partner_marketing": "伙伴营销",
+    "data_intelligence": "数据智能",
+    "services_auto_rotate": "缓慢旋转地球",
     "form_name_label": "Name label",
     "form_name_placeholder": "Name placeholder",
     "form_company_label": "Company label",
@@ -625,6 +647,7 @@
     "alt_text": "替代文本"
   },
   "options": {
+    "growth_hero": "增长型首屏",
     "icon_arrow_up_right": "Arrow up-right",
     "icon_browser": "Browser window",
     "icon_check": "Check",
@@ -915,6 +938,7 @@
     "direction_top_start": "左上方"
   },
   "content": {
+    "services_globe": "服务",
     "locations": "Locations",
     "page_background_hint": "Sets the page background color for the template this section is added to. Give a page its own template to use a different background.",
     "metric_1": "Metric 1",

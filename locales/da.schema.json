@@ -8,7 +8,23 @@
  * ------------------------------------------------------------
  */
 {
+  "aidea": {
+    "name": "AIDEA model",
+    "diagram": "Model labels",
+    "ai_label": "AI description",
+    "ai": "AI initials",
+    "data_letter": "Data initials",
+    "data_label": "Data management",
+    "experience_letter": "Experience initials",
+    "experience_label": "User experience",
+    "achievement_letter": "Achievement initials",
+    "achievement_label": "Business achievement",
+    "optimization": "Optimization",
+    "opportunities": "Growth opportunities",
+    "customer_growth": "Customer value growth"
+  },
   "names": {
+    "services_globe": "Services globe",
     "footer_diagnosis": "Growth diagnosis footer",
     "footer_feature": "Advantage",
     "footer_location": "Location",
@@ -184,6 +200,12 @@
     "partner_brands": "Partner brands"
   },
   "settings": {
+    "web_commerce": "Web commerce",
+    "customer_growth": "Customer growth",
+    "ai_technology": "AI & technology",
+    "partner_marketing": "Partner marketing",
+    "data_intelligence": "Data intelligence",
+    "services_auto_rotate": "Slowly rotate the globe",
     "form_name_label": "Name label",
     "form_name_placeholder": "Name placeholder",
     "form_company_label": "Company label",
@@ -625,6 +647,7 @@
     "alt_text": "Alternativ tekst"
   },
   "options": {
+    "growth_hero": "Growth hero",
     "icon_arrow_up_right": "Arrow up-right",
     "icon_browser": "Browser window",
     "icon_check": "Check",
@@ -915,6 +938,7 @@
     "direction_top_start": "Øverst til venstre"
   },
   "content": {
+    "services_globe": "Services",
     "locations": "Locations",
     "page_background_hint": "Sets the page background color for the template this section is added to. Give a page its own template to use a different background.",
     "metric_1": "Metric 1",

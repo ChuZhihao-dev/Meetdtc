@@ -1,0 +1,279 @@
+{% comment %}
+  AIDEA marketing growth model. Original Figma layers surround editable labels.
+  @example Add "AIDEA model" in the theme editor and customize the model copy.
+{% endcomment %}
+
+<div class="section-background aidea-model__background" style="--aidea-bg-from:{{ section.settings.background_from }};--aidea-bg-to:{{ section.settings.background_to }};"></div>
+<div class="section section--full-width spacing-style aidea-model" style="{% render 'spacing-style', settings: section.settings %}">
+  <div class="aidea-model__content">
+    <img class="aidea-model__orbit" src="{{ 'aidea-329.svg' | asset_url }}" alt="" width="1440" height="1335" loading="lazy">
+    <div class="aidea-model__intro">
+      {% if section.settings.heading != blank %}
+        <h2 class="aidea-model__heading">{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+      {% if section.settings.description != blank %}
+        <p class="aidea-model__description">{{ section.settings.description | escape | newline_to_br }}</p>
+      {% endif %}
+    </div>
+    <div class="aidea-model__diagram">
+      <img class="aidea-model__asset" src="{{ 'aidea-331.svg' | asset_url }}" alt="" width="980" height="980" loading="lazy" style="left:15.90278%;top:-8.36735%;width:68.05556%;height:100%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-332.svg' | asset_url }}" alt="" width="580" height="117" loading="lazy" style="left:29.8055%;top:-0.09178%;width:40.25014%;height:11.93878%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-335.svg' | asset_url }}" alt="" width="405" height="325" loading="lazy" style="left:35.87964%;top:29.717%;width:28.10184%;height:33.14015%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-345.svg' | asset_url }}" alt="" width="200" height="200" loading="lazy" style="left:19.02778%;top:11.12245%;width:13.88889%;height:20.40816%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-357.svg' | asset_url }}" alt="" width="156" height="156" loading="lazy" style="left:44.51389%;top:5.5102%;width:10.83333%;height:15.91837%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-358.png' | asset_url }}" alt="" width="58" height="57" loading="lazy" style="left:47.84722%;top:8.67347%;width:4.02778%;height:5.81633%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-363.png' | asset_url }}" alt="" width="62" height="62" loading="lazy" style="left:65%;top:48.97959%;width:4.30556%;height:6.32653%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-367.png' | asset_url }}" alt="" width="66" height="66" loading="lazy" style="left:30.27778%;top:48.26531%;width:4.58333%;height:6.73469%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-333.svg' | asset_url }}" alt="" width="311" height="521" loading="lazy" style="left:20.69444%;top:31.38781%;width:21.5625%;height:53.12635%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-334.svg' | asset_url }}" alt="" width="11" height="71" loading="lazy" style="left:49.56019%;top:63.87755%;width:0.74073%;height:7.22788%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-340.svg' | asset_url }}" alt="" width="63" height="39" loading="lazy" style="left:31.92125%;top:27.61896%;width:4.34435%;height:3.97451%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-341.svg' | asset_url }}" alt="" width="63" height="39" loading="lazy" style="left:63.50694%;top:27.61896%;width:4.34436%;height:3.97451%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-355.svg' | asset_url }}" alt="" width="312" height="522" loading="lazy" style="left:57.5%;top:31.38779%;width:21.66667%;height:53.17198%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-345.svg' | asset_url }}" alt="" width="200" height="200" loading="lazy" style="left:42.98611%;top:72.2449%;width:13.88889%;height:20.40816%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-345.svg' | asset_url }}" alt="" width="200" height="200" loading="lazy" style="left:67.29167%;top:11.22449%;width:13.88889%;height:20.40816%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-357.svg' | asset_url }}" alt="" width="156" height="156" loading="lazy" style="left:61.875%;top:46.73469%;width:10.83333%;height:15.91837%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-357.svg' | asset_url }}" alt="" width="156" height="156" loading="lazy" style="left:27.15278%;top:46.73469%;width:10.83333%;height:15.91837%;">
+      <div class="aidea-model__label" style="left:49.93056%;top:34.18367%;width:24.30556%;font-size:1.66667cqw;line-height:1.5;">{{ section.settings.ai_label | escape | newline_to_br }}</div>
+      <div class="aidea-model__label" style="left:49.96528%;top:39.38776%;width:12.5%;font-size:8.33333cqw;line-height:1.2;">{{ section.settings.ai | escape | newline_to_br }}</div>
+      <div class="aidea-model__label" style="left:25.97222%;top:12.2449%;width:10.41667%;font-size:7.36111cqw;line-height:1.2075471698113207;">{{ section.settings.data_letter | escape | newline_to_br }}</div>
+      <div class="aidea-model__label" style="left:26.07639%;top:23.26531%;width:12.15278%;font-size:1.31944cqw;line-height:1.2105263157894737;">{{ section.settings.data_label | escape | newline_to_br }}</div>
+      <div class="aidea-model__label" style="left:74.27083%;top:12.2449%;width:10.41667%;font-size:7.36111cqw;line-height:1.2075471698113207;">{{ section.settings.experience_letter | escape | newline_to_br }}</div>
+      <div class="aidea-model__label" style="left:74.20139%;top:23.26531%;width:11.80556%;font-size:1.31944cqw;line-height:1.2105263157894737;">{{ section.settings.experience_label | escape | newline_to_br }}</div>
+      <div class="aidea-model__label" style="left:49.96528%;top:73.16327%;width:10.41667%;font-size:7.36111cqw;line-height:1.2075471698113207;">{{ section.settings.achievement_letter | escape | newline_to_br }}</div>
+      <div class="aidea-model__label" style="left:49.89583%;top:83.57143%;width:12.15278%;font-size:1.31944cqw;line-height:1.2105263157894737;">{{ section.settings.achievement_label | escape | newline_to_br }}</div>
+      <div class="aidea-model__label aidea-model__label--blue" style="left:49.96528%;top:14.69388%;width:9.72222%;font-size:1.04167cqw;line-height:2.24;">{{ section.settings.optimization | escape | newline_to_br }}</div>
+      <div class="aidea-model__label aidea-model__label--blue" style="left:67.25694%;top:55.20408%;width:9.72222%;font-size:1.04167cqw;line-height:1.24;">{{ section.settings.opportunities | escape | newline_to_br }}</div>
+      <div class="aidea-model__label aidea-model__label--blue" style="left:32.56944%;top:54.69388%;width:9.72222%;font-size:1.04167cqw;line-height:1.24;">{{ section.settings.customer_growth | escape | newline_to_br }}</div>
+    </div>
+    <ul class="aidea-model__mobile-labels">
+      {% assign label_keys = 'ai_label,data_label,experience_label,achievement_label,optimization,customer_growth,opportunities' | split: ',' %}
+      {% for key in label_keys %}
+        {% if section.settings[key] != blank %}
+          <li>{{ section.settings[key] | escape | newline_to_br }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% stylesheet %}
+  .aidea-model__background {
+    background: linear-gradient(122deg, var(--aidea-bg-from), var(--aidea-bg-to));
+  }
+  .aidea-model { overflow: clip; }
+  .aidea-model__content {
+    position: relative;
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    min-width: 0;
+  }
+  .aidea-model__orbit {
+    position: absolute;
+    top: -84px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+  }
+  .aidea-model__intro {
+    position: relative;
+    margin-inline: 5.833333%;
+    font-family: var(--font-heading--family);
+  }
+  .aidea-model__heading {
+    margin: 0;
+    font-family: inherit;
+    font-size: clamp(32px, 4.02778vw, 58px);
+    font-weight: 600;
+    line-height: 1.22;
+    overflow-wrap: anywhere;
+    color: #0b22b8;
+    background: linear-gradient(117deg, #0b22b8 11%, #9621c4 89%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .aidea-model__description {
+    max-width: 857px;
+    margin-block: 40px 0;
+    font-size: clamp(18px, 2.08333vw, 30px);
+    font-weight: 500;
+    line-height: 1.23;
+    color: #000;
+    overflow-wrap: anywhere;
+  }
+  .aidea-model__diagram {
+    position: relative;
+    aspect-ratio: 1440 / 980;
+    width: 80%;
+    margin-inline: auto;
+    margin-block-start: 85px;
+    container-type: inline-size;
+    direction: ltr;
+  }
+  .aidea-model__asset { position: absolute; max-width: none; pointer-events: none; }
+  .aidea-model__label {
+    position: absolute;
+    transform: translateX(-50%);
+    font-family: var(--font-accent--family);
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    overflow-wrap: anywhere;
+  }
+  .aidea-model__label--blue { color: #1362fa; }
+  .aidea-model__mobile-labels { display: none; }
+  @media screen and (max-width: 749px) {
+    .aidea-model__description { margin-block-start: 24px; }
+    .aidea-model__diagram { width: 116%; margin-inline: -8%; margin-block-start: 40px; }
+    .aidea-model__mobile-labels {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 24px 6% 0;
+      padding: 0;
+      list-style: none;
+      font-family: var(--font-body--family);
+      font-size: 14px;
+      line-height: 1.4;
+      color: #0b22b8;
+    }
+    .aidea-model__mobile-labels li { padding: 12px; border-radius: 12px; background: #ffffffb3; }
+    .aidea-model__mobile-labels li:first-child { grid-column: 1 / -1; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:aidea.name",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:settings.heading",
+      "default": "AIDEA model"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:settings.description",
+      "default": "Based on the AIDEA model, we have developed a marketing growth methodology"
+    },
+    {
+      "type": "header",
+      "content": "t:aidea.diagram"
+    },
+    {
+      "type": "textarea",
+      "id": "ai_label",
+      "label": "t:aidea.ai_label",
+      "default": "Artificial Intelligence"
+    },
+    {
+      "type": "text",
+      "id": "ai",
+      "label": "t:aidea.ai",
+      "default": "AI"
+    },
+    {
+      "type": "text",
+      "id": "data_letter",
+      "label": "t:aidea.data_letter",
+      "default": "D"
+    },
+    {
+      "type": "textarea",
+      "id": "data_label",
+      "label": "t:aidea.data_label",
+      "default": "DATA\nMANAGEMENT"
+    },
+    {
+      "type": "text",
+      "id": "experience_letter",
+      "label": "t:aidea.experience_letter",
+      "default": "E"
+    },
+    {
+      "type": "textarea",
+      "id": "experience_label",
+      "label": "t:aidea.experience_label",
+      "default": "USER\nEXPERIENCE"
+    },
+    {
+      "type": "text",
+      "id": "achievement_letter",
+      "label": "t:aidea.achievement_letter",
+      "default": "A"
+    },
+    {
+      "type": "textarea",
+      "id": "achievement_label",
+      "label": "t:aidea.achievement_label",
+      "default": "BUSINESS\nACHIEVEMENT"
+    },
+    {
+      "type": "textarea",
+      "id": "optimization",
+      "label": "t:aidea.optimization",
+      "default": "OPTIMIZATION"
+    },
+    {
+      "type": "textarea",
+      "id": "opportunities",
+      "label": "t:aidea.opportunities",
+      "default": "GROWTH\nOPPORTUNITIES"
+    },
+    {
+      "type": "textarea",
+      "id": "customer_growth",
+      "label": "t:aidea.customer_growth",
+      "default": "CUSTOMER\nVALUE GROWTH"
+    },
+    {
+      "type": "color",
+      "id": "background_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#A9C5FF"
+    },
+    {
+      "type": "color",
+      "id": "background_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#CCD6FD"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 84
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:aidea.name",
+      "category": "t:categories.storytelling"
+    }
+  ]
+}
+{% endschema %}
+

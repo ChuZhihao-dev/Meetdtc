@@ -30,8 +30,10 @@
           "settings": {
             "menu": "main-menu",
             "background_color": "{{ settings.color_palette.background }}",
-            "text_color": "#000000",
+            "text_color": "#2f2f2f",
             "type_font_primary_size": "1rem",
+            "type_font_primary_weight": "700",
+            "top_level_gap": 80,
             "menu_font_style": "inverse",
             "type_font_primary_link": "heading",
             "type_case_primary_link": "none",

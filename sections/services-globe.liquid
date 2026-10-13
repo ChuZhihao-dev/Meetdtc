@@ -1,0 +1,320 @@
+{% comment %}
+  Services globe. Editable service overview with a decorative COBE globe.
+  @example
+  <!-- Add Services globe between Partner brands and the solutions grid. -->
+{% endcomment %}
+
+{% liquid
+  assign s = section.settings
+  assign color_id = 'services-' | append: section.id
+  assign service_keys = 'web_commerce,customer_growth,ai_technology,partner_marketing,data_intelligence' | split: ','
+%}
+{% render 'contrast-override', background_color: s.background_gradient_from, text_color: s.text_color, section_id: color_id, preset: 'content' %}
+{% render 'text-block-styles' %}
+<script src="{{ 'services-globe.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+<div
+  class="services-globe color-custom-{{ color_id }}"
+  style="
+    --services-bg-from: {{ s.background_gradient_from }};
+    --services-bg-to: {{ s.background_gradient_to }};
+    --services-font: {{ s.font }};
+    --services-heading-size: {{ s.font_size }};
+    --services-link-color: {{ s.link_color }};
+    --gradient-from: {{ s.gradient_color_from }};
+    --gradient-to: {{ s.gradient_color_to }};
+    --gradient-angle: 110.486deg;
+    --gradient-start: 11.742%;
+    --gradient-end: 88.258%;
+  "
+>
+  <div class="services-globe__layout">
+    <div class="services-globe__intro">
+      <div class="services-globe__title">
+        {% if s.eyebrow != blank %}<p class="services-globe__eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+        {% if s.heading != blank %}
+          <h2 class="services-globe__heading text-block{% if s.gradient_text %} text-block--gradient{% endif %}">{{ s.heading | escape | newline_to_br }}</h2>
+        {% endif %}
+      </div>
+      <div class="services-globe__copy">
+        {% if s.description != blank %}<div class="services-globe__description">{{ s.description }}</div>{% endif %}
+        {% if s.link_label != blank and s.link != blank %}
+          <a class="services-globe__link" href="{{ s.link | escape }}">{{ s.link_label | escape }}</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="services-globe__visual">
+      <div class="services-globe__art" aria-hidden="true">
+        <img class="services-globe__glow" src="{{ 'services-globe-glow.svg' | asset_url }}" width="1097" height="688" alt="" loading="lazy">
+        <img class="services-globe__orbit" src="{{ 'services-globe-orbit.png' | asset_url }}" width="1245" height="1003" alt="" loading="lazy">
+        <services-globe-component class="services-globe__renderer" data-rotate="{{ s.auto_rotate }}">
+          <img ref="fallback" class="services-globe__fallback" src="{{ 'services-globe-fallback.png' | asset_url }}" width="1148" height="1148" alt="" loading="lazy">
+          <div ref="host" class="services-globe__canvas-host"><canvas ref="canvas" class="services-globe__canvas" width="1148" height="1148"></canvas></div>
+        </services-globe-component>
+      </div>
+      <ul class="services-globe__services" role="list">
+        {% for key in service_keys %}
+          {% if s[key] != blank %}<li class="services-globe__service services-globe__service--{{ key }}">{{ s[key] | escape }}</li>{% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .services-globe {
+    overflow: clip;
+    background-image: linear-gradient(123.856deg, var(--services-bg-from) 27.224%, var(--services-bg-to) 99.351%);
+    font-family: var(--services-font, var(--font-heading--family));
+    color: var(--color-foreground);
+  }
+  .services-globe__layout { container-type: inline-size; max-inline-size: 1440px; margin-inline: auto; }
+  .services-globe__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 513fr) minmax(0, 513fr);
+    gap: 17.083cqw;
+    padding-block-start: 4.375cqw;
+    padding-inline: 5.833cqw;
+  }
+  .services-globe__title, .services-globe__copy { min-inline-size: 0; }
+  .services-globe__eyebrow { margin: 0 0 0.694cqw; font-size: clamp(1rem, 1.667cqw, 1.5rem); font-weight: 500; line-height: 1.583; }
+  .services-globe__heading {
+    margin: 0;
+    font-family: inherit;
+    font-size: min(var(--services-heading-size), 4.028cqw);
+    font-weight: 600;
+    line-height: 1.224;
+    letter-spacing: normal;
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
+    color: var(--color-foreground);
+  }
+  .services-globe__copy { padding-block-start: 3.333cqw; }
+  .services-globe__description { font-size: clamp(1rem, 1.667cqw, 1.5rem); font-weight: 500; line-height: 1.583; overflow-wrap: anywhere; }
+  .services-globe__description > :first-child { margin-block-start: 0; }
+  .services-globe__description > :last-child { margin-block-end: 0; }
+  .services-globe__link { display: inline-block; margin-block-start: 1.944cqw; font-size: clamp(1rem, 1.597cqw, 1.4375rem); font-weight: 400; line-height: 1.217; color: var(--services-link-color); text-decoration: underline; text-underline-offset: 3px; }
+  .services-globe__link:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+  .services-globe__visual { position: relative; block-size: 36.042cqw; margin-block-start: 9.097cqw; }
+  .services-globe__art { position: absolute; inset: 0; pointer-events: none; }
+  .services-globe__glow { position: absolute; inset-block-start: 12.917cqw; inset-inline-start: 12.292%; inline-size: 76.181%; block-size: auto; max-inline-size: none; opacity: 0.6; }
+  .services-globe__orbit { position: absolute; inset-block-start: 2.955cqw; inset-inline-start: 6.215%; inline-size: 86.456%; max-inline-size: none; block-size: auto; }
+  .services-globe__renderer { display: block; position: absolute; inset-block-start: -10.069cqw; inset-inline-start: 10.139%; inline-size: 79.722%; aspect-ratio: 1; }
+  .services-globe__fallback { display: block; inline-size: 100%; block-size: auto; }
+  /* Keep the globe's upper edge aligned when reducing its COBE scale. */
+  .services-globe__canvas-host { position: absolute; inset-block-start: 22.5%; inset-inline: 0; inline-size: 100%; aspect-ratio: 1; mix-blend-mode: multiply; }
+  .services-globe__canvas { display: block; inline-size: 100%; block-size: 100%; opacity: 0; filter: sepia(1) saturate(10) hue-rotate(185deg) brightness(1.5); }
+  .services-globe__renderer[data-ready] .services-globe__fallback { visibility: hidden; }
+  .services-globe__renderer[data-ready] .services-globe__canvas { opacity: 1; }
+  .services-globe__services { position: relative; margin: 0; padding: 0; list-style: none; }
+  .services-globe__service { position: absolute; max-inline-size: 24%; translate: -50% 0; font-size: clamp(1rem, 1.806cqw, 1.625rem); font-weight: 600; line-height: 1.231; text-align: center; overflow-wrap: anywhere; }
+  .services-globe__service--web_commerce { inset-inline-start: 17.222%; inset-block-start: 13.958cqw; }
+  .services-globe__service--customer_growth { inset-inline-start: 31.84%; inset-block-start: 5cqw; }
+  .services-globe__service--ai_technology { inset-inline-start: 50.417%; inset-block-start: 0; }
+  .services-globe__service--partner_marketing { inset-inline-start: 69.132%; inset-block-start: 5cqw; }
+  .services-globe__service--data_intelligence { inset-inline-start: 83.958%; inset-block-start: 14.583cqw; }
+  [dir='rtl'] .services-globe__service { translate: 50% 0; }
+  @media screen and (max-width: 749px) {
+    .services-globe__intro { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 40px 24px 0; }
+    .services-globe__heading { font-size: min(var(--services-heading-size), 2.5rem); }
+    .services-globe__copy { padding-block-start: 0; }
+    .services-globe__link { min-block-size: 44px; margin-block-start: 16px; }
+    .services-globe__visual { display: flex; flex-direction: column; block-size: auto; margin-block-start: 32px; }
+    .services-globe__services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; padding-inline: 24px; }
+    .services-globe__service { position: static; max-inline-size: none; translate: none; font-size: 1rem; }
+    .services-globe__service:last-child { grid-column: 1 / -1; }
+    .services-globe__art { position: relative; order: 1; block-size: 55cqw; margin-block-start: 24px; }
+    .services-globe__renderer { inset-block-start: -27.7cqw; inset-inline-start: 0; inline-size: 100%; }
+    .services-globe__orbit { inset-block-start: 0; }
+    [dir='rtl'] .services-globe__service { translate: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.services_globe",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:settings.eyebrow",
+      "default": "SERVICES"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:settings.heading",
+      "default": "Build Smarter,\nScale Faster"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:settings.description",
+      "default": "<p>From strategy and technology to data and execution, we help global brands connect every stage of the customer journey through integrated Martech solutions that drive measurable growth.</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:settings.link_label",
+      "default": "Explore Our Work →"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:settings.link"
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "font",
+      "label": "t:settings.font",
+      "options": [
+        {
+          "value": "var(--font-body--family)",
+          "label": "t:options.body"
+        },
+        {
+          "value": "var(--font-heading--family)",
+          "label": "t:options.heading"
+        },
+        {
+          "value": "var(--font-subheading--family)",
+          "label": "t:options.subheading"
+        },
+        {
+          "value": "var(--font-accent--family)",
+          "label": "t:options.accent"
+        }
+      ],
+      "default": "var(--font-heading--family)"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "t:settings.size",
+      "options": [
+        {
+          "value": "2rem",
+          "label": "32px"
+        },
+        {
+          "value": "2.5rem",
+          "label": "40px"
+        },
+        {
+          "value": "3rem",
+          "label": "48px"
+        },
+        {
+          "value": "3.625rem",
+          "label": "58px"
+        },
+        {
+          "value": "4rem",
+          "label": "64px"
+        }
+      ],
+      "default": "3.625rem"
+    },
+    {
+      "type": "checkbox",
+      "id": "gradient_text",
+      "label": "t:settings.gradient_text",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#0B22B8",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#9621C4",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#94B8FF"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#E1DFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:settings.text_color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "t:settings.color",
+      "default": "#002AFF"
+    },
+    {
+      "type": "header",
+      "content": "t:content.services_globe"
+    },
+    {
+      "type": "text",
+      "id": "web_commerce",
+      "label": "t:settings.web_commerce",
+      "default": "Web Commerce"
+    },
+    {
+      "type": "text",
+      "id": "customer_growth",
+      "label": "t:settings.customer_growth",
+      "default": "Customer Growth"
+    },
+    {
+      "type": "text",
+      "id": "ai_technology",
+      "label": "t:settings.ai_technology",
+      "default": "AI & Technology"
+    },
+    {
+      "type": "text",
+      "id": "partner_marketing",
+      "label": "t:settings.partner_marketing",
+      "default": "Partner Marketing"
+    },
+    {
+      "type": "text",
+      "id": "data_intelligence",
+      "label": "t:settings.data_intelligence",
+      "default": "Data Intelligence"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "t:settings.services_auto_rotate",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.services_globe",
+      "category": "t:categories.storytelling"
+    }
+  ]
+}
+{% endschema %}

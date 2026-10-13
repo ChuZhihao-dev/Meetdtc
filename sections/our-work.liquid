@@ -166,8 +166,11 @@
     margin-block-start: var(--work-heading-gap, 40px);
     padding-inline: max(var(--page-margin), calc((100% - var(--work-content-width, 1280px)) / 2));
     overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
+    /* Keep vertical gestures on the page, including while cards reveal. */
+    overflow-y: hidden;
+    overscroll-behavior: auto;
+    touch-action: pan-x pan-y pinch-zoom;
+    scroll-snap-type: x proximity;
     scroll-padding-inline-start: max(var(--page-margin), calc((100% - var(--work-content-width, 1280px)) / 2));
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
@@ -179,6 +182,16 @@
 
   .our-work__track > * {
     scroll-snap-align: start;
+  }
+
+  .our-work__track > .result-card {
+    /* Zoom scales media, type and spacing together and reduces layout size. */
+    zoom: 0.85;
+  }
+
+  .our-work.reveal-ready .our-work__track > .result-card[data-reveal] {
+    /* Fade cards without extending the track's vertical scroll bounds. */
+    transform: none;
   }
 
   @media screen and (max-width: 749px) {

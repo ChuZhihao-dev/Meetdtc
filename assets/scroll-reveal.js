@@ -8,8 +8,7 @@ const observers = new WeakMap();
 
 /**
  * Initializes scroll reveal on a section marked with `[data-reveal-scope]`.
- * Targets marked with `[data-reveal]` fade/translate in as they enter the
- * viewport and fade/slide out as they leave it.
+ * Targets marked with `[data-reveal]` reveal once, then stay visible.
  *
  * @param {Element} root - The `[data-reveal-scope]` section element.
  */
@@ -39,7 +38,7 @@ function initReveal(root) {
     // Keep any state the element already has; only seed new targets. Elements
     // already in view start visible so there is no flash on load, everything
     // else waits below until it scrolls in.
-    if (target.dataset.state) return;
+    if (target.dataset.state === 'in') return;
 
     const rect = target.getBoundingClientRect();
     const inView = rect.bottom > 0 && rect.top < viewportHeight;
@@ -50,21 +49,17 @@ function initReveal(root) {
     (entries) => {
       for (const entry of entries) {
         const target = entry.target;
-
-        if (entry.isIntersecting) {
-          target.dataset.state = 'in';
-          continue;
-        }
-
-        const rootTop = entry.rootBounds ? entry.rootBounds.top : 0;
-        const exitedAbove = entry.boundingClientRect.bottom <= rootTop;
-        target.dataset.state = exitedAbove ? 'out' : 'before';
+        if (!entry.isIntersecting) continue;
+        target.dataset.state = 'in';
+        observer.unobserve(target);
       }
     },
     { rootMargin: ROOT_MARGIN, threshold: 0 }
   );
 
-  targets.forEach((target) => observer.observe(target));
+  targets.forEach((target) => {
+    if (target.dataset.state !== 'in') observer.observe(target);
+  });
   observers.set(root, observer);
 }
 
