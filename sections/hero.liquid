@@ -477,7 +477,7 @@
 {% endcapture %}
 
 {% if section.settings.layout_style == 'growth' %}
-  {% render 'growth-hero', section: section, children: hero_blocks, media: media, media_count: media_count %}
+  {% render 'growth-hero', section: section, children: hero_blocks, media: media, media_count: media_count, media_count_mobile: media_count_mobile %}
 {% else %}
 {%- liquid
   if section.settings.background_color != blank

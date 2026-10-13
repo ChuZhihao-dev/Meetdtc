@@ -58,7 +58,7 @@
               "settings": {
                 "text": "<h1>Accelerate Global Growth<br/>with Integrated Martech<br/>Solutions</h1>",
                 "width": "100%",
-                "max_width": "normal",
+                "max_width": "none",
                 "alignment": "left",
                 "type_preset": "custom",
                 "font": "var(--font-heading--family)",
@@ -133,7 +133,7 @@
             "open_in_new_tab": false,
             "style_class": "button-custom",
             "custom_button_background": "",
-            "custom_button_text": "#FFFFFF",
+            "custom_button_text": "#ffffff",
             "custom_button_border": "rgba(0,0,0,0)",
             "link_text_color": "",
             "button_gradient": true,
@@ -164,6 +164,17 @@
       ],
       "name": "Hero",
       "settings": {
+        "layout_style": "standard",
+        "media_type_1": "video",
+        "image_1": "shopify://shop_images/af1a3e3d-970e-41e3-b1a7-f5aba904d250_1.webp",
+        "video_1": "shopify://files/videos/9e0eb4a604fb7093.webm",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -173,18 +184,17 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 48,
         "section_width": "page-width",
-        "section_height": "large",
+        "section_height": "full-screen",
         "section_height_custom": 50,
-        "background_color": "#F6F4FA",
+        "background_color": "#f6f4fa",
         "toggle_overlay": false,
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
         "padding-block-start": 0,
-        "padding-block-end": 0,
-        "layout_style": "growth",
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/af1a3e3d-970e-41e3-b1a7-f5aba904d250_1.webp"
+        "padding-block-end": 0
       }
     },
     "partner_brands_PtTzrK": {
@@ -330,6 +340,31 @@
         "padding-block-end": 37
       }
     },
+    "services_globe": {
+      "type": "services-globe",
+      "settings": {
+        "eyebrow": "SERVICES",
+        "heading": "Build Smarter,\nScale Faster",
+        "description": "<p>From strategy and technology to data and execution, we help global brands connect every stage of the customer journey through integrated Martech solutions that drive measurable growth.</p>",
+        "link_label": "Explore Our Work →",
+        "link": "#shopify-section-template--27942911082650__our_work_W6j7hw",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "gradient_text": true,
+        "gradient_color_from": "#0b22b8",
+        "gradient_color_to": "#9621c4",
+        "background_gradient_from": "#94b8ff",
+        "background_gradient_to": "#e1dfff",
+        "text_color": "#000000",
+        "link_color": "#002aff",
+        "web_commerce": "Web Commerce",
+        "customer_growth": "Customer Growth",
+        "ai_technology": "AI & Technology",
+        "partner_marketing": "Partner Marketing",
+        "data_intelligence": "Data Intelligence",
+        "auto_rotate": true
+      }
+    },
     "blog_grid_dWECMy": {
       "type": "blog-grid",
       "name": "t:names.blog_grid",
@@ -401,6 +436,29 @@
         "panel_padding_inline_end": 48,
         "panel_padding_block_end": 40,
         "panel_padding_inline_start": 48
+      }
+    },
+    "aidea_model_GRiAan": {
+      "type": "aidea-model",
+      "name": "t:aidea.name",
+      "settings": {
+        "heading": "AIDEA model",
+        "description": "Based on the AIDEA model, we have developed a marketing growth methodology",
+        "ai_label": "Artificial Intelligence",
+        "ai": "AI",
+        "data_letter": "D",
+        "data_label": "DATA\nMANAGEMENT",
+        "experience_letter": "E",
+        "experience_label": "USER\nEXPERIENCE",
+        "achievement_letter": "A",
+        "achievement_label": "BUSINESS\nACHIEVEMENT",
+        "optimization": "OPTIMIZATION",
+        "opportunities": "GROWTH\nOPPORTUNITIES",
+        "customer_growth": "CUSTOMER\nVALUE GROWTH",
+        "background_from": "#A9C5FF",
+        "background_to": "#CCD6FD",
+        "padding-block-start": 84,
+        "padding-block-end": 72
       }
     },
     "why_choose_us_4HCWwJ": {
@@ -693,12 +751,6 @@
         "padding-block-start": 92,
         "padding-block-end": 96
       }
-    },
-    "services_globe": {
-      "type": "services-globe",
-      "settings": {
-        "link": "#shopify-section-template--27942911082650__our_work_W6j7hw"
-      }
     }
   },
   "order": [
@@ -707,6 +759,7 @@
     "services_globe",
     "blog_grid_dWECMy",
     "cta_banner_8UDPGz",
+    "aidea_model_GRiAan",
     "why_choose_us_4HCWwJ",
     "our_work_W6j7hw",
     "insights_a3A3Dn",

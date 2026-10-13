@@ -13,37 +13,6 @@
   "sections": {
     "footer_diagnosis_H4xKm9": {
       "type": "footer-diagnosis",
-      "settings": {
-        "eyebrow": "FREE GROWTH DIAGNOSIS",
-        "heading": "Request a Free Growth Diagnosis",
-        "description": "<p>Tell us about your business and current challenges. Our team will review your needs, identify growth priorities and recommend the most suitable next steps.</p>",
-        "gradient_color_from": "#0048FF",
-        "gradient_color_to": "#F200FF40",
-        "gradient_angle": 120,
-        "card_background": "#FFFFFF",
-        "card_radius": 32,
-        "input_radius": 12,
-        "button_gradient_start": "#9B3CF0",
-        "button_gradient_end": "#4E63F0",
-        "name_label": "Your Name",
-        "name_placeholder": "Your name",
-        "company_label": "Company Name",
-        "company_placeholder": "Your company",
-        "email_label": "Work Email",
-        "email_placeholder": "you@company.com",
-        "phone_label": "Contact Number",
-        "phone_placeholder": "+ 65 1234 5678",
-        "website_label": "Company Website",
-        "website_placeholder": "https://",
-        "goals_label": "Tell Us About Your Goals or Challenges",
-        "goals_placeholder": "Tell us what your business does, the challenges you are facing, and what you would like to achieve.",
-        "submit_label": "Get My Free Growth Diagnosis",
-        "locations_heading": "Headquartered in NYC with strategic global hubs across:",
-        "desktop_column_gap": 48,
-        "section_spacing": 56,
-        "padding-block-start": 64,
-        "padding-block-end": 64
-      },
       "blocks": {
         "feature_1": {
           "type": "feature",
@@ -132,7 +101,35 @@
         "location_2",
         "location_3"
       ],
-      "name": "Growth diagnosis footer"
+      "name": "Growth diagnosis footer",
+      "settings": {
+        "eyebrow": "FREE GROWTH DIAGNOSIS",
+        "heading": "Request a Free Growth Diagnosis",
+        "description": "<p>Tell us about your business and current challenges. Our team will review your needs, identify growth priorities and recommend the most suitable next steps.</p>",
+        "card_background": "#FFFFFF",
+        "card_radius": 32,
+        "input_radius": 12,
+        "button_gradient_start": "#9B3CF0",
+        "button_gradient_end": "#4E63F0",
+        "name_label": "Your Name",
+        "name_placeholder": "Your name",
+        "company_label": "Company Name",
+        "company_placeholder": "Your company",
+        "email_label": "Work Email",
+        "email_placeholder": "you@company.com",
+        "phone_label": "Contact Number",
+        "phone_placeholder": "+ 65 1234 5678",
+        "website_label": "Company Website",
+        "website_placeholder": "https://",
+        "goals_label": "Tell Us About Your Goals or Challenges",
+        "goals_placeholder": "Tell us what your business does, the challenges you are facing, and what you would like to achieve.",
+        "submit_label": "Get My Free Growth Diagnosis",
+        "locations_heading": "Headquartered in NYC with strategic global hubs across:",
+        "desktop_column_gap": 48,
+        "section_spacing": 56,
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
     },
     "footer_utilities_jLGE8U": {
       "type": "footer-utilities",
@@ -175,9 +172,9 @@
       "settings": {
         "section_width": "page-width",
         "gap": 24,
+        "background_color": "{{ settings.color_palette.background }}",
         "divider_thickness": 1,
         "divider_color": "{{ settings.color_palette.color2 }}",
-        "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 20,
         "padding-block-end": 48
       }

@@ -4,12 +4,14 @@
   @param {string} children - Captured merchant-managed Hero blocks.
   @param {string} media - Captured responsive Hero media markup.
   @param {number} media_count - Number of selected desktop media slots.
+  @param {number} media_count_mobile - Number of selected mobile media slots.
   @example
-  {% render 'growth-hero', section: section, children: hero_blocks, media: media, media_count: media_count %}
+  {% render 'growth-hero', section: section, children: hero_blocks, media: media, media_count: media_count, media_count_mobile: media_count_mobile %}
 {% enddoc %}
 
 {% liquid
   assign color_id = 'growth-hero-' | append: section.id
+  assign poster_image = section.settings.video_1.preview_image | default: section.settings.video_2.preview_image
   assign has_video = false
   if section.settings.media_type_1 == 'video' and section.settings.video_1 != blank
     assign has_video = true
@@ -32,15 +34,33 @@
 {% endif %}
 
 <growth-hero-component
-  class="growth-hero color-custom-{{ color_id }}"
-  style="--growth-hero-gap: {{ section.settings.gap }}px;"
+  class="growth-hero color-custom-{{ color_id }}{% if section.settings.stack_media_on_mobile %} hero--stack-mobile{% endif %}"
+  style="
+    --growth-hero-gap: {{ section.settings.gap }}px;
+    {% case section.settings.section_height %}
+      {% when 'large' %}--growth-hero-height: min(51.042cqw, 735px);
+      {% when 'custom' %}--growth-hero-height: {{ section.settings.section_height_custom }}svh;
+      {% when 'full-screen' %}--growth-hero-height: 100svh;
+      {% when 'auto' %}--growth-hero-height: 0px;
+      {% else %}--growth-hero-height: var(--section-height-{{ section.settings.section_height }});
+    {% endcase %}
+  "
 >
+  {% if has_video %}
+    <div class="growth-hero__poster" aria-hidden="true">
+      {% if poster_image != blank %}
+        {% render 'background-media', background_media: 'image', background_image: poster_image, background_image_position: 'cover', section: section %}
+      {% else %}
+        <img src="{{ 'growth-hero-background.png' | asset_url }}" width="1440" height="735" alt="" fetchpriority="high">
+      {% endif %}
+    </div>
+  {% endif %}
   <div
     id="GrowthHeroMedia-{{ section.id }}"
     ref="media"
     class="growth-hero__media hero__media-grid"
-    style="--hero-media-count: {{ media_count | at_least: 1 }};"
-    aria-hidden="true"
+    style="--hero-media-count: {{ media_count | at_least: 1 }}; --hero-media-count-mobile: {{ media_count_mobile | at_least: 1 }};"
+    {% unless has_video %}aria-hidden="true"{% endunless %}
   >
     {{ media }}
   </div>
@@ -82,18 +102,20 @@
     background-color: var(--color-background);
   }
   .growth-hero__media { inset: 0; z-index: 0; }
-  .growth-hero__media .hero__media { object-position: center; }
+  .growth-hero__media :is(img, video).hero__media { inline-size: 105.833%; block-size: 105.714%; inset-inline-start: -2.917%; object-position: center; }
+  .growth-hero__poster { position: absolute; inset: 0; z-index: 0; }
+  .growth-hero__poster > img { inline-size: 100%; block-size: 100%; object-fit: cover; }
   .growth-hero__layout {
     position: relative;
     z-index: 2;
     inline-size: 100%;
     max-inline-size: 1440px;
-    min-block-size: min(51.042cqw, 735px);
+    min-block-size: var(--growth-hero-height);
     margin-inline: auto;
   }
   .growth-hero__content {
     min-inline-size: 0;
-    padding-block: min(11.25cqw, 162px) min(7.847cqw, 113px);
+    padding-block: calc(min(11.25cqw, 162px) + var(--padding-block-start, 0px)) calc(min(7.847cqw, 113px) + var(--padding-block-end, 0px));
     padding-inline: 4.931%;
     gap: var(--growth-hero-gap);
   }
@@ -146,7 +168,6 @@
     .growth-hero__content > .group-block { max-inline-size: 100%; }
     .growth-hero__content .text-block:has(h1) { font-size: min(var(--font-size), 2rem); }
     .growth-hero__content .text-block:has(p) { max-inline-size: 100%; font-size: min(var(--font-size), 1.125rem); }
-    .growth-hero__content .text-block br { display: none; }
     .growth-hero__content > :is(.button, .button-custom, .button-secondary) { min-block-size: 56px; inline-size: fit-content; padding: 12px 24px; font-size: 1rem; line-height: 1.5; }
   }
 {% endstylesheet %}
