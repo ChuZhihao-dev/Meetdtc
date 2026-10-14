@@ -1,27 +1,17 @@
 import { Component } from '@theme/component';
 
-/**
- * Decorative, viewport-gated globe. The Liquid image remains available without WebGL.
- * @typedef {object} Refs
- * @property {HTMLCanvasElement} canvas
- * @property {HTMLElement} host
- * @property {HTMLImageElement} fallback
- * @extends Component<Refs>
- */
+/** Viewport-gated decorative globe; static fallback needs no WebGL. */
 class ServicesGlobe extends Component {
   requiredRefs = ['canvas', 'host', 'fallback'];
-  /** @type {{ update: (state: object) => void, destroy: () => void } | undefined} */
   #globe;
-  /** @type {AbortController | undefined} */
   #controller;
-  /** @type {IntersectionObserver | undefined} */
   #intersection;
-  /** @type {ResizeObserver | undefined} */
   #resize;
   #motion = matchMedia('(prefers-reduced-motion: reduce)');
   #visible = false;
   #pending = false;
   #frame = 0;
+  #resizeFrame = 0;
   #lastTime = 0;
   #phi = 0.8;
 
@@ -53,8 +43,12 @@ class ServicesGlobe extends Component {
     });
     this.#intersection.observe(this);
     this.#resize = new ResizeObserver(() => {
-      const size = this.refs.host.clientWidth;
-      if (size > 0) this.#globe?.update({ width: size, height: size });
+      if (this.#resizeFrame) return;
+      this.#resizeFrame = requestAnimationFrame(() => {
+        this.#resizeFrame = 0;
+        const size = this.refs.host.clientWidth;
+        if (size > 0) this.#globe?.update({ width: size, height: size });
+      });
     });
     this.#resize.observe(this.refs.host);
   }
@@ -63,6 +57,10 @@ class ServicesGlobe extends Component {
     cancelAnimationFrame(this.#frame);
     this.#frame = 0;
     this.#lastTime = 0;
+    if (this.#motion.matches) {
+      this.#releaseGlobe();
+      return;
+    }
     if (!this.#visible || document.hidden) return;
     if (!this.#globe) {
       void this.#create();
@@ -79,7 +77,7 @@ class ServicesGlobe extends Component {
     this.#pending = true;
     try {
       const { default: createGlobe } = await import('./cobe.js');
-      if (controller?.signal.aborted || !this.isConnected) return;
+      if (controller?.signal.aborted || !this.isConnected || !this.#visible || document.hidden || this.#motion.matches) return;
       const { canvas, host } = this.refs;
       const context = { alpha: true, antialias: true, depth: false, stencil: false, preserveDrawingBuffer: this.dataset.rotate !== 'true' || this.#motion.matches };
       const gl = canvas.getContext('webgl2', context) || canvas.getContext('webgl', context);
@@ -141,6 +139,12 @@ class ServicesGlobe extends Component {
     this.#lastTime = 0;
     this.#visible = false;
     this.#pending = false;
+    cancelAnimationFrame(this.#resizeFrame);
+    this.#resizeFrame = 0;
+    this.#releaseGlobe();
+  }
+
+  #releaseGlobe() {
     this.#globe?.destroy();
     this.#globe = undefined;
     // COBE v2 adds an anchor wrapper. Restore the original tree before a reconnect.

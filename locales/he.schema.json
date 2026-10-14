@@ -8,6 +8,21 @@
  * ------------------------------------------------------------
  */
 {
+  "delivery_process": {
+    "delivery_process": "Delivery process",
+    "eyebrow": "Eyebrow",
+    "heading": "Heading",
+    "description": "Description",
+    "background": "Background",
+    "heading_gradient": "Heading gradient",
+    "text": "Text",
+    "accent_text": "Accent text",
+    "step_spacing": "Step spacing",
+    "top_padding": "Top padding",
+    "bottom_padding": "Bottom padding",
+    "delivery_step": "Delivery step",
+    "core_deliverable": "Core deliverable"
+  },
   "footer_diagnosis": {
     "form_anchor_id": "Form anchor ID",
     "form_anchor_info": "Enter a unique ID such as growth-diagnosis (without #). Spaces and uppercase letters are normalized to lowercase hyphenated text. Link to #growth-diagnosis on this page, or /pages/contact#growth-diagnosis from another page that contains this footer. Leave empty to omit the custom anchor."

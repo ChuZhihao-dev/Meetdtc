@@ -11,7 +11,7 @@
 
 
 <div class="section-background product-hero__background" style="--product-hero-bg-from:{{ section.settings.background_from }};--product-hero-bg-to:{{ section.settings.background_to }};"></div>
-<div class="section section--full-width section--height-{{ section.settings.section_height | default: 'large' }} spacing-style product-hero" data-reveal-scope data-reveal-timeline style="{% render 'spacing-style', settings: section.settings %}--product-hero-description-color:{{ section.settings.description_color }};">
+<scroll-reveal-component class="section section--full-width section--height-{{ section.settings.section_height | default: 'large' }} spacing-style product-hero" data-reveal-scope data-reveal-timeline style="{% render 'spacing-style', settings: section.settings %}--product-hero-description-color:{{ section.settings.description_color }};">
   <div class="product-hero__content">
     {% if section.settings.eyebrow != blank %}
       <p class="product-hero__eyebrow" data-reveal>{{ section.settings.eyebrow | escape }}</p>
@@ -31,7 +31,7 @@
       <div class="product-hero__actions" data-reveal>{{ actions }}</div>
     {% endif %}
   </div>
-</div>
+</scroll-reveal-component>
 
 {% stylesheet %}
   .product-hero {
@@ -102,7 +102,6 @@
     overflow-wrap: anywhere;
     transition:
       transform var(--animation-speed) var(--animation-easing),
-      box-shadow var(--animation-speed) var(--animation-easing),
       opacity var(--animation-speed) var(--animation-easing);
   }
   /* Override the same variables that the theme changes on hover. Base values

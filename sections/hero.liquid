@@ -7,9 +7,10 @@
 
 
 {% liquid
-  assign video_controls = false
-  assign video_autoplay = true
-  assign video_preload = 'metadata'
+  # Native layout also reuses the existing viewport-gated video component.
+  assign video_controls = true
+  assign video_autoplay = false
+  assign video_preload = 'none'
   if section.settings.layout_style == 'growth'
     assign video_controls = true
     assign video_autoplay = false
@@ -121,10 +122,22 @@
   assign mobile_widths = '416, 600, 800, 1200, 1600'
   assign mobile_widths_array = mobile_widths | split: ', '
 
+  assign image_loading = 'lazy'
+  assign secondary_fetch_priority = 'auto'
+  assign hero_media_id = 'HeroMedia-' | append: section.id
+  assign has_hero_video = false
+  if media_1 == 'video' or media_2 == 'video' or media_1_mobile == 'video' or media_2_mobile == 'video'
+    assign has_hero_video = true
+  endif
+  assign hero_poster = section.settings.video_1.preview_image | default: section.settings.video_2.preview_image
   assign fetch_priority = 'auto'
 
-  if section.index == 1
+  if section.index <= 2
+    assign image_loading = 'eager'
     assign fetch_priority = 'high'
+    if media_1 == 'none'
+      assign secondary_fetch_priority = 'high'
+    endif
   endif
 %}
 
@@ -156,6 +169,8 @@
           alt: section.settings.image_1.alt,
           class: 'hero__media',
           sizes: sizes,
+          loading: image_loading,
+          decoding: 'async',
           fetchpriority: fetch_priority,
           data-testid: 'hero-desktop-image-1'
       }}
@@ -172,6 +187,8 @@
           alt: section.settings.image_1.alt,
           class: 'hero__media',
           sizes: sizes,
+          loading: image_loading,
+          decoding: 'async',
           fetchpriority: fetch_priority,
           data-testid: 'hero-desktop-image-1'
       }}
@@ -209,6 +226,8 @@
             alt: section.settings.image_1_mobile.alt,
             class: 'hero__media',
             sizes: sizes_mobile,
+            loading: image_loading,
+            decoding: 'async',
             fetchpriority: fetch_priority,
             data-testid: 'hero-mobile-image-1'
         }}
@@ -262,7 +281,9 @@
           alt: section.settings.image_2.alt,
           class: 'hero__media',
           sizes: sizes,
-          fetchpriority: fetch_priority,
+          loading: image_loading,
+          decoding: 'async',
+          fetchpriority: secondary_fetch_priority,
           data-testid: 'hero-desktop-image-2'
       }}
     </picture>
@@ -278,7 +299,9 @@
           alt: section.settings.image_2.alt,
           class: 'hero__media',
           sizes: sizes,
-          fetchpriority: fetch_priority,
+          loading: image_loading,
+          decoding: 'async',
+          fetchpriority: secondary_fetch_priority,
           data-testid: 'hero-desktop-image-2'
       }}
     </div>
@@ -315,7 +338,9 @@
             alt: section.settings.image_2_mobile.alt,
             class: 'hero__media',
             sizes: sizes_mobile,
-            fetchpriority: fetch_priority,
+            loading: image_loading,
+            decoding: 'async',
+            fetchpriority: secondary_fetch_priority,
             data-testid: 'hero-mobile-image-2'
         }}
       </div>
@@ -346,13 +371,14 @@
 
   {% if media_count == 0 %}
     {% if section.settings.layout_style == 'growth' %}
-      <img src="{{ 'growth-hero-background.png' | asset_url }}" class="hero__media" width="1440" height="735" alt="" fetchpriority="{{ fetch_priority }}">
+      <img src="{{ 'growth-hero-background.png' | asset_url }}" class="hero__media" width="1440" height="735" alt="" decoding="async" loading="{{ image_loading }}" fetchpriority="{{ fetch_priority }}">
     {% else %}
       {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero__media' }}
     {% endif %}
   {%- endif -%}
 {% endcapture %}
 
+{% if section.settings.blurred_reflection %}
 {% capture media_blurred %}
   {% if media_1 == 'image' %}
     {{
@@ -386,91 +412,10 @@
 {% endcapture %}
 
 {% capture mobile_media_blurred %}
-  {%- comment -%}
-    On mobile we need to check:
-    1. If the media should be stacked. If it is,we check for the second (bottom) image first, then for the first (top) image.
-    2. If custom mobile setting is active and has media (show desktop media otherwise).
-  {%- endcomment -%}
-  {% if section.settings.stack_media_on_mobile == false %}
-    {% if section.settings.custom_mobile_media == true and fallback_to_desktop == false %}
-      {% if media_1_mobile == 'image' %}
-        {{ section.settings.image_1_mobile
-          | image_url: width: 1600
-          | image_tag: width: section.settings.image_1_mobile.width,
-            widths: mobile_widths,
-            height: section.settings.image_1_mobile.height,
-            alt: '',
-            class: 'hero__media',
-            sizes: sizes_mobile
-          }}
-      {% endif %}
-      {% if media_2_mobile == 'image' %}
-        {{ section.settings.image_2_mobile
-          | image_url: width: 1600
-          | image_tag: width: section.settings.image_2_mobile.width,
-            widths: mobile_widths,
-            height: section.settings.image_2_mobile.height,
-            alt: '',
-            class: 'hero__media',
-            sizes: sizes_mobile
-          }}
-      {% endif %}
-    {% elsif fallback_to_desktop %}
-      {{ media_blurred }}
-    {% endif %}
-  {% elsif section.settings.stack_media_on_mobile == true %}
-    {% if section.settings.custom_mobile_media == true and fallback_to_desktop == false %}
-      {% if media_2_mobile == 'image' %}
-        {{ section.settings.image_2_mobile
-          | image_url: width: 1600
-          | image_tag: width: section.settings.image_2_mobile.width,
-            widths: mobile_widths,
-            height: section.settings.image_2_mobile.height,
-            alt: '',
-            class: 'hero__media',
-            sizes: sizes_mobile
-        }}
-      {% elsif media_1_mobile == 'image' %}
-        {{ section.settings.image_1_mobile
-          | image_url: width: 1600
-          | image_tag: width: section.settings.image_1_mobile.width,
-            widths: mobile_widths,
-            height: section.settings.image_1_mobile.height,
-            alt: '',
-            class: 'hero__media',
-            sizes: sizes_mobile
-          }}
-      {% endif %}
-    {% elsif fallback_to_desktop %}
-      {% if media_count > 0 %}
-        {% if media_2 == 'image' %}
-          {{ section.settings.image_2
-            | image_url: width: 1600
-            | image_tag: width: section.settings.image_2.width,
-              widths: widths,
-              height: section.settings.image_2.height,
-              alt: '',
-              class: 'hero__media',
-              sizes: sizes
-            }}
-        {% elsif media_1 == 'image' %}
-          {{ section.settings.image_1
-            | image_url: width: 1600
-            | image_tag: width: section.settings.image_1.width,
-              widths: widths,
-              height: section.settings.image_1.height,
-              alt: '',
-              class: 'hero__media',
-              sizes: sizes
-            }}
-        {% endif %}
-        {% if media_count == 0 %}
-          {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero__media' }}
-        {% endif %}
-      {% endif %}
-    {% endif %}
-  {% endif %}
+  {% render 'custom-hero-mobile-reflection', section: section, fallback_to_desktop: fallback_to_desktop, media_1_mobile: media_1_mobile, media_2_mobile: media_2_mobile, media_blurred: media_blurred, mobile_widths: mobile_widths, sizes_mobile: sizes_mobile, media_count: media_count, media_2: media_2, media_1: media_1, widths: widths, sizes: sizes %}
 {% endcapture %}
+
+{% endif %}
 
 {% capture hero_blocks %}
   {% content_for 'blocks' %}
@@ -488,7 +433,8 @@
 {% # A first-section hero consumes `--header-group-height` at first paint (`.hero-wrapper:first-child` rule below) %}
 {% render 'measure-header-heights', only_when_first_section: true %}
 
-<div
+{% if has_hero_video %}<script src="{{ 'growth-hero.js' | asset_url }}" type="module" fetchpriority="low"></script>{% endif %}
+<growth-hero-component
   id="Hero-{{ section.id }}"
   class="hero{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}{% if section.blocks.size == 0 and section.settings.section_height == 'auto' %} hero--no-blocks-auto-height{% endif %}{% if section.settings.stack_media_on_mobile %} hero--stack-mobile{% endif %}"
   style="
@@ -548,7 +494,13 @@
         {% endif %}
       ></a>
     {%- endif -%}
+    {% if has_hero_video and hero_poster != blank %}
+      {% assign hero_poster_priority = 'auto' %}
+      {% if media_1 != 'image' %}{% assign hero_poster_priority = fetch_priority %}{% endif %}
+      {{ hero_poster | image_url: width: 1920 | image_tag: widths: '750,1100,1500,1920', sizes: '100vw', loading: image_loading, fetchpriority: hero_poster_priority, decoding: 'async', class: 'hero__video-poster', alt: '' }}
+    {% endif %}
     <div
+      id="{{ hero_media_id }}" ref="media"
       class="hero__media-grid"
       style="--hero-media-count: {{ media_count }};--hero-media-count-mobile: {{ media_count_mobile }};{%- if section.settings.image_1 != blank -%} --hero-media-aspect-ratio: {{ section.settings.image_1.aspect_ratio }};{% endif %}"
       data-testid="hero-media-wrapper"
@@ -575,7 +527,8 @@
       {{ hero_blocks }}
     </div>
   </div>
-</div>
+  {% if has_hero_video %}{% render 'custom-hero-video-controls', media_id: hero_media_id %}{% endif %}
+</growth-hero-component>
 
 {% endif %}
 
@@ -592,6 +545,7 @@
   }
 
   .hero {
+    display: block;
     position: relative;
     min-height: calc(var(--hero-min-height) - var(--hero-height-offset));
   }
@@ -799,6 +753,7 @@
 
 {% schema %}
 {
+  "max_blocks": 50,
   "name": "t:names.hero",
   "tag": "section",
   "class": "hero-wrapper section-wrapper",

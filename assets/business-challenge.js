@@ -39,7 +39,7 @@ class BusinessChallenge extends Component {
   #initializeReveal = () => {
     this.#observer?.disconnect();
     const targets = [...(this.refs.reveals || []), ...(this.refs.items || [])].filter((item) => item.hasAttribute('data-reveal'));
-    if (this.dataset.animate !== 'true' || this.#motion.matches || !targets.length) {
+    if (this.dataset.animate !== 'true' || this.#motion.matches || window.Shopify?.designMode || !targets.length) {
       this.classList.remove('reveal-ready');
       return;
     }
@@ -50,10 +50,13 @@ class BusinessChallenge extends Component {
         this.#observer?.unobserve(entry.target);
       }
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+    const visible = targets.map((target) => {
+      const rect = target.getBoundingClientRect();
+      return rect.bottom > 0 && rect.top < innerHeight;
+    });
     for (const [index, target] of targets.entries()) {
       target.style.setProperty('--reveal-index', String(index));
-      const rect = target.getBoundingClientRect();
-      if (target.dataset.state !== 'in') target.dataset.state = rect.bottom > 0 && rect.top < innerHeight ? 'in' : 'before';
+      if (target.dataset.state !== 'in') target.dataset.state = visible[index] ? 'in' : 'before';
       if (target.dataset.state !== 'in') this.#observer.observe(target);
     }
     this.classList.add('reveal-ready');

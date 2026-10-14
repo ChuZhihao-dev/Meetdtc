@@ -12,13 +12,7 @@
   assign heading_text = section_settings.heading
 %}
 
-{% style %}
-  #shopify-section-{{ section.id }} .why-choose-us {
-    --wcu-heading-gap: {{ section_settings.heading_gap }}px;
-    --wcu-column-gap: {{ section_settings.column_gap }}px;
-    --wcu-row-gap: {{ section_settings.row_gap }}px;
-  }
-{% endstyle %}
+
 
 <div
   class="section-background why-choose-us__background"
@@ -31,7 +25,11 @@
 
 <div
   class="section section--page-width why-choose-us spacing-style"
-  style="{% render 'spacing-style', settings: section_settings %}"
+  style="{% render 'spacing-style', settings: section_settings %}
+    --wcu-heading-gap: {{ section_settings.heading_gap }}px;
+    --wcu-column-gap: {{ section_settings.column_gap }}px;
+    --wcu-row-gap: {{ section_settings.row_gap }}px;
+  "
   {{ section.shopify_attributes }}
 >
   {% if section_settings.eyebrow != blank or heading_text != blank or section_settings.description != blank %}
@@ -165,6 +163,7 @@
 
 {% schema %}
 {
+  "max_blocks": 12,
   "name": "t:names.why_choose_us",
   "disabled_on": {
     "groups": ["header", "footer"]

@@ -2,6 +2,10 @@
 
 {% liquid
   assign block_settings = block.settings
+  assign image_loading = 'lazy'
+  if section.index <= 2
+    assign image_loading = 'eager'
+  endif
   assign has_logo = false
   if block_settings.image
     assign has_logo = true
@@ -20,7 +24,8 @@
           height: block_settings.image.height,
           widths: '120, 180, 240, 360, 480, 600',
           sizes: '(min-width: 750px) 180px, 120px',
-          loading: 'lazy',
+          loading: image_loading,
+          decoding: 'async',
           class: 'brand-logo__image',
           alt: alt
       }}

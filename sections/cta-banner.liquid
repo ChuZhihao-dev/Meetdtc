@@ -12,18 +12,7 @@
   assign heading_text = section_settings.heading
 %}
 
-{% style %}
-  #shopify-section-{{ section.id }} .cta-banner__panel {
-    --cta-panel-radius: {{ section_settings.panel_radius }}px;
-    --cta-panel-from: {{ section_settings.panel_gradient_from }};
-    --cta-panel-to: {{ section_settings.panel_gradient_to }};
-    --cta-panel-angle: {{ section_settings.panel_gradient_angle }}deg;
-    --cta-button-background: {{ section_settings.button_background }};
-    --cta-button-color: {{ section_settings.button_text_color }};
-    --cta-button-radius: {{ section_settings.button_radius }}px;
-    --cta-description-color: {{ section_settings.description_color }};
-  }
-{% endstyle %}
+
 
 <div
   class="section-background cta-banner__background"
@@ -46,7 +35,16 @@
       --padding-block-end: {{ section_settings.panel_padding_block_end }}px;
       --padding-inline-start: {{ section_settings.panel_padding_inline_start }}px;
       --padding-inline-end: {{ section_settings.panel_padding_inline_end }}px;
-    "
+
+    --cta-panel-radius: {{ section_settings.panel_radius }}px;
+    --cta-panel-from: {{ section_settings.panel_gradient_from }};
+    --cta-panel-to: {{ section_settings.panel_gradient_to }};
+    --cta-panel-angle: {{ section_settings.panel_gradient_angle }}deg;
+    --cta-button-background: {{ section_settings.button_background }};
+    --cta-button-color: {{ section_settings.button_text_color }};
+    --cta-button-radius: {{ section_settings.button_radius }}px;
+    --cta-description-color: {{ section_settings.description_color }};
+  "
   >
     {% if heading_text != blank %}
       {% render 'text-block-styles' %}

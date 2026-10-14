@@ -19,11 +19,27 @@
   assign section_settings = section.settings
   assign heading_text = section_settings.heading
   assign card_alpha = section_settings.card_opacity | divided_by: 100.0
+  assign image_loading = 'lazy'
+  if section.index <= 2
+    assign image_loading = 'eager'
+  endif
   assign container_alpha = section_settings.container_opacity | divided_by: 100.0
 %}
 
-{% style %}
-  #shopify-section-{{ section.id }} .insights {
+
+
+<div
+  class="section-background insights__background"
+  style="
+    --insights-bg-angle: {{ section_settings.background_gradient_angle }}deg;
+    --insights-bg-from: {{ section_settings.background_gradient_from }};
+    --insights-bg-to: {{ section_settings.background_gradient_to }};
+  "
+></div>
+
+<scroll-reveal-component
+  class="section section--page-width insights spacing-style"
+  style="{% render 'spacing-style', settings: section_settings %}
     --insights-heading-gap: {{ section_settings.heading_gap }}px;
     --insights-list-gap: {{ section_settings.list_gap }}px;
     --insights-media-width: {{ section_settings.media_width }}px;
@@ -35,21 +51,7 @@
     {% if section_settings.card_background != blank %}
       --insights-card-background: {{ section_settings.card_background | color_modify: 'alpha', card_alpha }};
     {% endif %}
-  }
-{% endstyle %}
-
-<div
-  class="section-background insights__background"
-  style="
-    --insights-bg-angle: {{ section_settings.background_gradient_angle }}deg;
-    --insights-bg-from: {{ section_settings.background_gradient_from }};
-    --insights-bg-to: {{ section_settings.background_gradient_to }};
   "
-></div>
-
-<div
-  class="section section--page-width insights spacing-style"
-  style="{% render 'spacing-style', settings: section_settings %}"
   data-reveal-scope
   {{ section.shopify_attributes }}
 >
@@ -101,6 +103,7 @@
     <div class="insights__list">
       {%- for article in blog.articles limit: post_limit -%}
         {%- liquid
+          assign image_alt = article.image.alt | default: article.title
           assign article_description = article.excerpt | default: article.content
           if article_description != blank
             assign article_description = article_description | strip_html | truncatewords: 30
@@ -116,9 +119,10 @@
                   | image_tag:
                     widths: '260, 400, 600, 800',
                     sizes: '(min-width: 750px) 260px, 100vw',
-                    loading: 'lazy',
+                    loading: image_loading,
+          decoding: 'async',
                     class: 'insight-row__image',
-                    alt: article.image.alt | default: article.title
+                    alt: image_alt
                 }}
               {%- endif -%}
             </div>
@@ -159,7 +163,7 @@
       {{- section_settings.view_all_label -}}
     </a>
   {% endif %}
-</div>
+</scroll-reveal-component>
 
 {% stylesheet %}
   .insights__background {

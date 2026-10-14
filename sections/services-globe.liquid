@@ -45,15 +45,15 @@
     </div>
     <div class="services-globe__visual">
       <div class="services-globe__art" aria-hidden="true">
-        <img class="services-globe__glow" src="{{ 'services-globe-glow.svg' | asset_url }}" width="1097" height="688" alt="" loading="lazy">
-        <img class="services-globe__orbit" src="{{ 'services-globe-orbit.png' | asset_url }}" width="1245" height="1003" alt="" loading="lazy">
+        <img class="services-globe__glow" src="{{ 'services-globe-glow.svg' | asset_url }}" width="1097" height="688" alt="" decoding="async" loading="lazy">
+        <img class="services-globe__orbit" src="{{ 'services-globe-orbit.png' | asset_url }}" width="1245" height="1003" alt="" decoding="async" loading="lazy">
         <services-globe-component class="services-globe__renderer" data-rotate="{{ s.auto_rotate }}">
-          <img ref="fallback" class="services-globe__fallback" src="{{ 'services-globe-fallback.png' | asset_url }}" width="1148" height="1148" alt="" loading="lazy">
+          <img ref="fallback" class="services-globe__fallback" src="{{ 'services-globe-fallback.png' | asset_url }}" width="1148" height="1148" alt="" decoding="async" loading="lazy">
           <div ref="host" class="services-globe__canvas-host"><canvas ref="canvas" class="services-globe__canvas" width="1148" height="1148"></canvas></div>
         </services-globe-component>
       </div>
       <ul class="services-globe__services" role="list">
-        {% for key in service_keys %}
+        {% for key in service_keys limit: 5 %}
           {% if s[key] != blank %}<li class="services-globe__service services-globe__service--{{ key }}">{{ s[key] | escape }}</li>{% endif %}
         {% endfor %}
       </ul>

@@ -19,8 +19,20 @@
   assign heading_text = section_settings.heading
 %}
 
-{% style %}
-  #shopify-section-{{ section.id }} .our-work {
+
+
+<div
+  class="section-background our-work__background"
+  style="
+    --work-bg-angle: {{ section_settings.background_gradient_angle }}deg;
+    --work-bg-from: {{ section_settings.background_gradient_from }};
+    --work-bg-to: {{ section_settings.background_gradient_to }};
+  "
+></div>
+
+<scroll-reveal-component
+  class="section section--page-width our-work spacing-style"
+  style="{% render 'spacing-style', settings: section_settings %}
     --work-heading-font-family: {{ section_settings.font }};
     --work-heading-font-size: {{ section_settings.font_size }};
     --work-heading-font-weight: {{ section_settings.weight }};
@@ -44,21 +56,7 @@
     --work-metric-color: {{ section_settings.metric_color }};
     --work-metric-label-color: {{ section_settings.metric_label_color }};
     --work-content-width: 1280px;
-  }
-{% endstyle %}
-
-<div
-  class="section-background our-work__background"
-  style="
-    --work-bg-angle: {{ section_settings.background_gradient_angle }}deg;
-    --work-bg-from: {{ section_settings.background_gradient_from }};
-    --work-bg-to: {{ section_settings.background_gradient_to }};
   "
-></div>
-
-<div
-  class="section section--page-width our-work spacing-style"
-  style="{% render 'spacing-style', settings: section_settings %}"
   data-reveal-scope
   {{ section.shopify_attributes }}
 >
@@ -104,7 +102,7 @@
   {% if result_cards != blank %}
     <div class="our-work__track force-full-width">{{ result_cards }}</div>
   {% endif %}
-</div>
+</scroll-reveal-component>
 
 {% stylesheet %}
   .our-work__background {
@@ -218,6 +216,7 @@
 
 {% schema %}
 {
+  "max_blocks": 12,
   "name": "t:names.our_work",
   "disabled_on": {
     "groups": ["header", "footer"]

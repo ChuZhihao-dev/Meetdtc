@@ -8,6 +8,21 @@
  * ------------------------------------------------------------
  */
 {
+  "delivery_process": {
+    "delivery_process": "Delivery process",
+    "eyebrow": "Eyebrow",
+    "heading": "Heading",
+    "description": "Description",
+    "background": "Background",
+    "heading_gradient": "Heading gradient",
+    "text": "Text",
+    "accent_text": "Accent text",
+    "step_spacing": "Step spacing",
+    "top_padding": "Top padding",
+    "bottom_padding": "Bottom padding",
+    "delivery_step": "Delivery step",
+    "core_deliverable": "Core deliverable"
+  },
   "footer_diagnosis": {
     "form_anchor_id": "表單錨點 ID",
     "form_anchor_info": "填寫頁面中唯一的 ID，例如 growth-diagnosis（無需 #）。空格及大寫字母會轉為小寫連字號格式。同頁按鈕連結填 #growth-diagnosis；跨頁填寫含此頁尾的頁面地址，例如 /pages/contact#growth-diagnosis。留空不新增自訂錨點。"

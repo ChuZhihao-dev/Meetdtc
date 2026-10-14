@@ -1,5 +1,9 @@
 {% liquid
   assign block_settings = block.settings
+  assign image_loading = 'lazy'
+  if section.index <= 2
+    assign image_loading = 'eager'
+  endif
   assign icon = block_settings.icon
 %}
 
@@ -20,7 +24,8 @@
             widths: '40, 80, 120',
             sizes: '40px',
             class: 'value-prop__image',
-            loading: 'lazy',
+            loading: image_loading,
+          decoding: 'async',
             alt: ''
         }}
       {%- else -%}

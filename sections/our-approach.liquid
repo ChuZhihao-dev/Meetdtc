@@ -5,28 +5,25 @@
 {% endcomment %}
 {% liquid
   assign s = section.settings
-  assign medium_font = s.font | font_modify: 'weight', '500'
-  assign semibold_font = s.font | font_modify: 'weight', '600'
   assign desktop_image = s.image | default: s.image_mobile
   assign mobile_image = s.image_mobile | default: desktop_image
   assign image_alt = s.image_alt | default: desktop_image.alt
   assign image_loading = 'lazy'
   assign image_priority = 'auto'
-  if section.index == 1
+  if section.index <= 2
     assign image_loading = 'eager'
-    assign image_priority = 'high'
+    if section.index == 1
+      assign image_priority = 'high'
+    endif
   endif
 %}
-{% style %}
-  {{ medium_font | font_face: font_display: 'swap' }}
-  {{ semibold_font | font_face: font_display: 'swap' }}
-{% endstyle %}
+{% render 'custom-section-fonts', font: s.font %}
 {% if s.enable_reveal %}
   <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
   {% render 'scroll-reveal-styles' %}
 {% endif %}
 <div class="our-approach__background" style="background: {{ s.background | default: 'transparent' }};" aria-hidden="true"></div>
-<div
+<scroll-reveal-component
   class="section section--full-width spacing-style our-approach{% if desktop_image == blank %} our-approach--text-only{% endif %}"
   style="{% render 'spacing-style', settings: s %}
     --our-approach-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }};
@@ -53,12 +50,12 @@
           {% if mobile_image != desktop_image %}
             <source media="(max-width: 749px)" srcset="{{ mobile_image | image_url: width: 375 }} 375w, {{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1100 }} 1100w" sizes="calc(100vw - 40px)" width="{{ mobile_image.width }}" height="{{ mobile_image.height }}">
           {% endif %}
-          {{ desktop_image | image_url: width: 2200 | image_tag: class: 'our-approach__image', widths: '375,550,750,1100,1500,1800,2200', sizes: '(min-width: 1440px) 587px, (min-width: 990px) 40.77vw, (min-width: 750px) calc(100vw - 64px), calc(100vw - 40px)', loading: image_loading, fetchpriority: image_priority, alt: image_alt }}
+          {{ desktop_image | image_url: width: 2200 | image_tag: class: 'our-approach__image', widths: '375,550,750,1100,1500,1800,2200', sizes: '(min-width: 1440px) 587px, (min-width: 990px) 40.77vw, (min-width: 750px) calc(100vw - 64px), calc(100vw - 40px)', loading: image_loading, fetchpriority: image_priority, decoding: 'async', alt: image_alt }}
         </picture>
       </div>
     {% endif %}
   </div>
-</div>
+</scroll-reveal-component>
 {% stylesheet %}
   .our-approach__background { position: absolute; inset: 0; z-index: var(--layer-section-background, -1); pointer-events: none; }
   .our-approach { overflow: clip; color: var(--our-approach-text, #000); font-family: var(--our-approach-font, var(--font-heading--family)); }

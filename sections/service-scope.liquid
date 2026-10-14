@@ -5,28 +5,21 @@
 {% endcomment %}
 {% liquid
   assign s = section.settings
-  assign regular_font = s.font | font_modify: 'weight', '400'
-  assign medium_font = s.font | font_modify: 'weight', '500'
-  assign semibold_font = s.font | font_modify: 'weight', '600'
   assign card_alpha = s.card_opacity | divided_by: 100.0
   assign card_count = 0
-  for block in section.blocks
+  for block in section.blocks limit: 50
     if block.settings.heading != blank or block.settings.description != blank or request.design_mode
       assign card_count = card_count | plus: 1
     endif
   endfor
 %}
-{% style %}
-  {{ regular_font | font_face: font_display: 'swap' }}
-  {{ medium_font | font_face: font_display: 'swap' }}
-  {{ semibold_font | font_face: font_display: 'swap' }}
-{% endstyle %}
+{% render 'custom-section-fonts', font: s.font %}
 {% if s.enable_reveal %}
   {% render 'scroll-reveal-styles' %}
   <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
 {% endif %}
 <div class="service-scope__background" style="background: {{ s.background | default: 'transparent' }};" aria-hidden="true"></div>
-<div
+<scroll-reveal-component
   class="section section--full-width spacing-style service-scope{% if request.design_mode %} service-scope--editor{% endif %}"
   style="{% render 'spacing-style', settings: s %}
     --service-scope-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }};
@@ -51,7 +44,7 @@
     {% endif %}
     {% if card_count > 0 %}
       <ul class="service-scope__grid" role="list">
-        {% for block in section.blocks %}
+        {% for block in section.blocks limit: 50 %}
           {% if block.settings.heading != blank or block.settings.description != blank or request.design_mode %}
             <li class="service-scope__card" {% if s.enable_reveal %}data-reveal{% endif %} {{ block.shopify_attributes }}>
               {% if block.settings.heading != blank %}<h3 class="service-scope__card-heading">{{ block.settings.heading | escape }}</h3>{% endif %}
@@ -62,7 +55,7 @@
       </ul>
     {% endif %}
   </div>
-</div>
+</scroll-reveal-component>
 {% stylesheet %}
   .service-scope__background {
     position: absolute;
@@ -185,6 +178,7 @@
 
 {% schema %}
 {
+  "max_blocks": 24,
   "name": "t:service_scope.name",
   "disabled_on": {
     "groups": [

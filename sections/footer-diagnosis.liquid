@@ -23,8 +23,13 @@
   assign form_anchor_id = section_settings.form_anchor_id | strip | remove: '#' | handleize
 %}
 
-{% style %}
-  #shopify-section-{{ section.id }} .footer-diagnosis {
+
+
+<div class="section-background footer-diagnosis__background"></div>
+
+<div
+  class="section section--page-width footer-diagnosis spacing-style"
+  style="{% render 'spacing-style', settings: section_settings %}
     --fd-bg-angle: {{ section_settings.gradient_angle }}deg;
     --fd-bg-from: {{ section_settings.gradient_color_from }};
     --fd-bg-to: {{ section_settings.gradient_color_to }};
@@ -35,14 +40,7 @@
     --fd-btn-to: {{ section_settings.button_gradient_end }};
     --fd-section-gap: {{ section_settings.section_spacing }}px;
     --fd-column-gap: {{ section_settings.desktop_column_gap }}px;
-  }
-{% endstyle %}
-
-<div class="section-background footer-diagnosis__background"></div>
-
-<div
-  class="section section--page-width footer-diagnosis spacing-style"
-  style="{% render 'spacing-style', settings: section_settings %}"
+  "
   {{ section.shopify_attributes }}
 >
   <div class="footer-diagnosis__top">
@@ -60,7 +58,7 @@
       {% endif %}
 
       {%- capture features -%}
-        {% for block in section.blocks %}
+        {% for block in section.blocks limit: 11 %}
           {%- if block.type == 'feature' -%}
             {%- liquid
               assign feature_icon = block.settings.icon
@@ -100,145 +98,11 @@
       {% endif %}
     </div>
 
-    <footer-diagnosis
-      class="footer-diagnosis__card"
-      {% if form_anchor_id != blank and form_anchor_id != form_id %}id="{{ form_anchor_id | escape }}" tabindex="-1"{% endif %}
-    >
-      {%- form 'contact', id: form_id, class: 'footer-diagnosis__form' -%}
-        <input type="hidden" name="contact[id]" value="{{ form_id }}">
-
-        {%- if form.errors and form.id == form_id -%}
-          <div class="footer-diagnosis__error" role="alert" tabindex="-1" autofocus>
-            {{- 'icon-error.svg' | inline_asset_content -}}
-            <div>
-              {%- for field in form.errors -%}
-                <p>
-                  {{- form.errors.translated_fields[field] | capitalize }}
-                  {{ form.errors.messages[field] -}}
-                </p>
-              {%- endfor -%}
-            </div>
-          </div>
-        {%- endif -%}
-
-        {%- if form.posted_successfully? and form.id == form_id -%}
-          <div class="footer-diagnosis__success" role="status" tabindex="-1" autofocus>
-            {{- 'icon-checkmark.svg' | inline_asset_content -}}
-            <span>{{ 'blocks.contact_form.post_success' | t }}</span>
-          </div>
-        {%- endif -%}
-
-        <div class="footer-diagnosis__fields">
-          <div class="footer-diagnosis__field">
-            <label class="footer-diagnosis__label" for="{{ form_id }}-name">
-              {{ section_settings.name_label }}
-              <span aria-hidden="true">*</span>
-            </label>
-            <input
-              type="text"
-              id="{{ form_id }}-name"
-              name="contact[name]"
-              class="footer-diagnosis__input"
-              autocomplete="name"
-              placeholder="{{ section_settings.name_placeholder }}"
-              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
-              required
-            >
-          </div>
-
-          <div class="footer-diagnosis__field">
-            <label class="footer-diagnosis__label" for="{{ form_id }}-company">
-              {{ section_settings.company_label }}
-            </label>
-            <input
-              type="text"
-              id="{{ form_id }}-company"
-              name="contact[Company Name]"
-              class="footer-diagnosis__input"
-              autocomplete="organization"
-              placeholder="{{ section_settings.company_placeholder }}"
-            >
-          </div>
-
-          <div class="footer-diagnosis__field">
-            <label class="footer-diagnosis__label" for="{{ form_id }}-email">
-              {{ section_settings.email_label }}
-              <span aria-hidden="true">*</span>
-            </label>
-            <input
-              type="email"
-              id="{{ form_id }}-email"
-              name="contact[email]"
-              class="footer-diagnosis__input"
-              autocomplete="email"
-              spellcheck="false"
-              autocapitalize="off"
-              placeholder="{{ section_settings.email_placeholder }}"
-              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-              required
-            >
-          </div>
-
-          <div class="footer-diagnosis__field">
-            <label class="footer-diagnosis__label" for="{{ form_id }}-phone">
-              {{ section_settings.phone_label }}
-            </label>
-            <input
-              type="tel"
-              id="{{ form_id }}-phone"
-              name="contact[phone]"
-              class="footer-diagnosis__input"
-              autocomplete="tel"
-              placeholder="{{ section_settings.phone_placeholder }}"
-              value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
-            >
-          </div>
-
-          <div class="footer-diagnosis__field footer-diagnosis__field--full">
-            <label class="footer-diagnosis__label" for="{{ form_id }}-website">
-              {{ section_settings.website_label }}
-              <span aria-hidden="true">*</span>
-            </label>
-            <input
-              type="url"
-              id="{{ form_id }}-website"
-              name="contact[Company Website]"
-              class="footer-diagnosis__input"
-              autocomplete="url"
-              inputmode="url"
-              placeholder="{{ section_settings.website_placeholder }}"
-              data-footer-diagnosis-website
-              required
-            >
-          </div>
-
-          <div class="footer-diagnosis__field footer-diagnosis__field--full">
-            <label class="footer-diagnosis__label" for="{{ form_id }}-goals">
-              {{ section_settings.goals_label }}
-              <span aria-hidden="true">*</span>
-            </label>
-            <textarea
-              id="{{ form_id }}-goals"
-              name="contact[Goals or Challenges]"
-              class="footer-diagnosis__input footer-diagnosis__input--textarea"
-              rows="4"
-              placeholder="{{ section_settings.goals_placeholder }}"
-              required
-            >{{- form.body -}}</textarea>
-          </div>
-
-          <div class="footer-diagnosis__field footer-diagnosis__field--full">
-            <button type="submit" class="footer-diagnosis__submit">
-              {{- section_settings.submit_label -}}
-            </button>
-          </div>
-        </div>
-      {%- endform -%}
-    </footer-diagnosis>
+    {% render 'custom-footer-diagnosis-form', section_settings: section_settings, form_id: form_id, form_anchor_id: form_anchor_id %}
   </div>
 
   {%- capture menus -%}
-    {% for block in section.blocks %}
+    {% for block in section.blocks limit: 11 %}
       {%- if block.type == 'menu_column' -%}
         <div class="footer-diagnosis__menu" {{ block.shopify_attributes }}>
           {% if block.settings.heading != blank %}
@@ -246,7 +110,7 @@
           {% endif %}
           {% if block.settings.menu != blank and block.settings.menu.links.size > 0 %}
             <ul>
-              {% for link in block.settings.menu.links %}
+              {% for link in block.settings.menu.links limit: 50 %}
                 <li>
                   <a href="{{ link.url }}">{{ link.title }}</a>
                 </li>
@@ -265,7 +129,7 @@
   {% endif %}
 
   {%- capture locations -%}
-    {% for block in section.blocks %}
+    {% for block in section.blocks limit: 11 %}
       {%- if block.type == 'location' -%}
         <div class="footer-diagnosis__location" {{ block.shopify_attributes }}>
           {% if block.settings.city != blank %}
@@ -299,6 +163,7 @@
   }
 
   .footer-diagnosis {
+    font-family: var(--font-heading--family);
     color: #ffffff;
   }
 
@@ -319,7 +184,6 @@
 
   .footer-diagnosis__eyebrow {
     margin: 0;
-    font-family: Montserrat;
     font-weight: 500;
     font-size: 24px;
     line-height: 38px;
@@ -327,7 +191,6 @@
   }
 
   .footer-diagnosis__heading {
-    font-family: Montserrat;
     font-weight: 700;
     font-size: 46.1px;
     line-height: 54px;
@@ -339,11 +202,10 @@
   }
 
   .footer-diagnosis__description {
-    font-family: Montserrat;
     font-weight: 500;
     font-size: 30px;
     line-height: 120%;
-letter-spacing: 0%;
+letter-spacing: normal;
 
   }
 
@@ -365,7 +227,6 @@ letter-spacing: 0%;
     display: flex;
     gap: 14px;
     align-items: center;
-    font-family: Montserrat;
     font-weight: 600;
     font-size: 20px;
     line-height: 100%;
@@ -419,11 +280,10 @@ letter-spacing: 0%;
   }
 
   .footer-diagnosis__label {
-    font-family: Montserrat;
     font-weight: 600;
     font-size: 17px;
     line-height: 100%;
-    letter-spacing: 0%;
+    letter-spacing: normal;
     color:#000000;
   }
 
@@ -431,11 +291,10 @@ letter-spacing: 0%;
     width: 100%;
     min-height: 44px;
     padding: 10px 20px;
-    font-family: Montserrat;
     font-weight: 400;
     font-size: 15px;
     line-height: 36px;
-    letter-spacing: 0%;
+    letter-spacing: normal;
     background-color: #ffffff;
     border: 1px solid #878787;
     border-radius: var(--fd-input-radius, 16px);
@@ -452,21 +311,18 @@ letter-spacing: 0%;
   }
 
   .footer-diagnosis__input--textarea {
-    resize:none !important;
     min-height: 132px;
     resize: vertical;
-    border:1px solid #878787;
   }
 
   .footer-diagnosis__submit {
     width: 100%;
     min-height: 62px;
     padding: 13px 20px;
-    font-family: Montserrat;
     font-weight: 700;
     font-size: 20px;
     line-height: 36px;
-    letter-spacing: 0%;
+    letter-spacing: normal;
     color: #ffffff;
     cursor: pointer;
     background-image: linear-gradient(90deg, var(--fd-btn-from, #9b3cf0) 0%, var(--fd-btn-to, #4e63f0) 100%);
@@ -512,7 +368,6 @@ letter-spacing: 0%;
 
   .footer-diagnosis__menu-title {
     margin: 0 0 16px;
-    font-family: Montserrat;
     font-weight: 600;
     font-size: 21px;
     line-height: 25.2px;
@@ -552,7 +407,7 @@ letter-spacing: 0%;
 
   .footer-diagnosis__locations-title {
     margin: 0 0 20px;
-    font-family: Suisse;
+    font-family: var(--font-body--family);
     font-weight: 500;
     font-size: 21px;
     line-height: 25.2px;
@@ -571,7 +426,7 @@ letter-spacing: 0%;
 
   .footer-diagnosis__location-city {
     margin: 0 0 14px;
-    font-family: Suisse;
+    font-family: var(--font-body--family);
     font-weight: 500;
     font-size: 14px;
     line-height: 16.8px;
@@ -579,7 +434,7 @@ letter-spacing: 0%;
   }
 
   .footer-diagnosis__location-address {
-   font-family: Suisse;
+   font-family: var(--font-body--family);
    font-weight: 400;
    font-size: 14px;
    line-height: 22.4px;
@@ -640,6 +495,7 @@ letter-spacing: 0%;
 
 {% schema %}
 {
+  "max_blocks": 11,
   "name": "t:names.footer_diagnosis",
   "enabled_on": {
     "groups": ["footer"]

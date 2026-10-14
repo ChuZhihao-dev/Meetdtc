@@ -1,0 +1,196 @@
+{
+  "sections": [
+    {
+      "section": "aidea-model",
+      "css_before_bytes": 2414,
+      "css_after_bytes": 2414,
+      "max_blocks": null,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "blog-grid",
+      "css_before_bytes": 4657,
+      "css_after_bytes": 4657,
+      "max_blocks": null,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "business-challenge",
+      "css_before_bytes": 2978,
+      "css_after_bytes": 2978,
+      "max_blocks": 12,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "cta-banner",
+      "css_before_bytes": 2709,
+      "css_after_bytes": 2709,
+      "max_blocks": null,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "delivery-process",
+      "css_before_bytes": 5164,
+      "css_after_bytes": 5166,
+      "max_blocks": 12,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "faq",
+      "css_before_bytes": 1765,
+      "css_after_bytes": 1765,
+      "max_blocks": 20,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "featured-client-story",
+      "css_before_bytes": 7348,
+      "css_after_bytes": 5355,
+      "max_blocks": 6,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "footer-diagnosis",
+      "css_before_bytes": 7125,
+      "css_after_bytes": 6951,
+      "max_blocks": 11,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "insights",
+      "css_before_bytes": 5366,
+      "css_after_bytes": 5366,
+      "max_blocks": null,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "our-approach",
+      "css_before_bytes": 3625,
+      "css_after_bytes": 3625,
+      "max_blocks": null,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "our-work",
+      "css_before_bytes": 2684,
+      "css_after_bytes": 2684,
+      "max_blocks": 12,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "page-background",
+      "css_before_bytes": 0,
+      "css_after_bytes": 514,
+      "max_blocks": null,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "partner-brands",
+      "css_before_bytes": 1075,
+      "css_after_bytes": 1206,
+      "max_blocks": 6,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "product-hero",
+      "css_before_bytes": 4513,
+      "css_after_bytes": 4448,
+      "max_blocks": 2,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "service-scope",
+      "css_before_bytes": 4951,
+      "css_after_bytes": 4951,
+      "max_blocks": 24,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "services-globe",
+      "css_before_bytes": 5116,
+      "css_after_bytes": 5116,
+      "max_blocks": null,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "why-choose-us",
+      "css_before_bytes": 1639,
+      "css_after_bytes": 1639,
+      "max_blocks": 12,
+      "schema_contract_unchanged": true
+    },
+    {
+      "section": "hero",
+      "css_before_bytes": 5248,
+      "css_after_bytes": 5268,
+      "max_blocks": 50,
+      "schema_contract_unchanged": true
+    }
+  ],
+  "changed_source_files": [
+    "assets/business-challenge.js",
+    "assets/delivery-process.js",
+    "assets/footer-diagnosis.js",
+    "assets/growth-hero.js",
+    "assets/scroll-reveal.js",
+    "assets/services-globe.js",
+    "blocks/_brand-logo.liquid",
+    "blocks/_faq-row.liquid",
+    "blocks/_result-card.liquid",
+    "blocks/_value-prop.liquid",
+    "locales/ar.schema.json",
+    "locales/cs.schema.json",
+    "locales/da.schema.json",
+    "locales/de.schema.json",
+    "locales/en.default.schema.json",
+    "locales/es.schema.json",
+    "locales/fi.schema.json",
+    "locales/fr.schema.json",
+    "locales/he.schema.json",
+    "locales/it.schema.json",
+    "locales/ja.schema.json",
+    "locales/ko.schema.json",
+    "locales/nb.schema.json",
+    "locales/nl.schema.json",
+    "locales/pl.schema.json",
+    "locales/pt-BR.schema.json",
+    "locales/pt-PT.schema.json",
+    "locales/sv.schema.json",
+    "locales/th.schema.json",
+    "locales/tr.schema.json",
+    "locales/ur.schema.json",
+    "locales/zh-CN.schema.json",
+    "locales/zh-TW.schema.json",
+    "sections/aidea-model.liquid",
+    "sections/blog-grid.liquid",
+    "sections/business-challenge.liquid",
+    "sections/cta-banner.liquid",
+    "sections/delivery-process.liquid",
+    "sections/faq.liquid",
+    "sections/featured-client-story.liquid",
+    "sections/footer-diagnosis.liquid",
+    "sections/hero.liquid",
+    "sections/insights.liquid",
+    "sections/our-approach.liquid",
+    "sections/our-work.liquid",
+    "sections/page-background.liquid",
+    "sections/partner-brands.liquid",
+    "sections/product-hero.liquid",
+    "sections/service-scope.liquid",
+    "sections/services-globe.liquid",
+    "sections/why-choose-us.liquid",
+    "snippets/custom-client-story-placeholder.liquid",
+    "snippets/custom-footer-diagnosis-form.liquid",
+    "snippets/custom-hero-mobile-reflection.liquid",
+    "snippets/custom-hero-video-controls.liquid",
+    "snippets/custom-section-fonts.liquid",
+    "snippets/growth-hero.liquid",
+    "snippets/scroll-reveal-styles.liquid",
+    "tests/custom-section-lifecycle.test.cjs"
+  ],
+  "theme_check_new_findings": 0,
+  "theme_check_existing_errors": 2,
+  "theme_check_existing_warnings": 6,
+  "lifecycle_tests_passed": 5,
+  "browser_render_requests_passed": 18
+}

@@ -84,14 +84,18 @@ class GrowthHero extends Component {
   #sync = async () => {
     const revision = ++this.#revision;
     const shouldPlay = this.#visible && !document.hidden && !this.#userPaused && (!this.#motion.matches || this.#userStarted);
-    for (const video of this.#videos) {
-      if (!shouldPlay || video.getBoundingClientRect().width === 0 || video.error) {
+    const visible = this.#videos.map((video) => video.getBoundingClientRect().width > 0);
+    for (const [index, video] of this.#videos.entries()) {
+      if (!shouldPlay || !visible[index] || video.error) {
         video.pause();
         continue;
       }
       try {
         await video.play();
-        if (revision !== this.#revision || !this.isConnected) return;
+        if (revision !== this.#revision || !this.isConnected) {
+          if (!this.isConnected || !this.#visible || document.hidden || this.#userPaused) video.pause();
+          return;
+        }
       } catch {
         // Autoplay denial retains the poster and offers explicit user playback.
         video.removeAttribute('data-playing');

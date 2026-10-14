@@ -19,8 +19,20 @@
   assign heading_text = section_settings.heading
 %}
 
-{% style %}
-  #shopify-section-{{ section.id }} .faq {
+
+
+<div
+  class="section-background faq__background"
+  style="
+    --faq-bg-angle: {{ section_settings.background_gradient_angle }}deg;
+    --faq-bg-from: {{ section_settings.background_gradient_from }};
+    --faq-bg-to: {{ section_settings.background_gradient_to }};
+  "
+></div>
+
+<scroll-reveal-component
+  class="section section--page-width faq spacing-style"
+  style="{% render 'spacing-style', settings: section_settings %}
     --faq-heading-gap: {{ section_settings.heading_gap }}px;
     --faq-row-gap: {{ section_settings.row_gap }}px;
     --faq-row-background: {{ section_settings.row_background }};
@@ -35,21 +47,7 @@
     --faq-heading-line-height: {{ section_settings.line_height | default: '1.3' }};
     --faq-heading-letter-spacing: -1.31px;
     --text-wrap: {{ section_settings.wrap | default: 'balance' }};
-  }
-{% endstyle %}
-
-<div
-  class="section-background faq__background"
-  style="
-    --faq-bg-angle: {{ section_settings.background_gradient_angle }}deg;
-    --faq-bg-from: {{ section_settings.background_gradient_from }};
-    --faq-bg-to: {{ section_settings.background_gradient_to }};
   "
-></div>
-
-<div
-  class="section section--page-width faq spacing-style"
-  style="{% render 'spacing-style', settings: section_settings %}"
   data-reveal-scope
   {{ section.shopify_attributes }}
 >
@@ -96,7 +94,7 @@
   {% if faq_rows != blank %}
     <div class="faq__list">{{ faq_rows }}</div>
   {% endif %}
-</div>
+</scroll-reveal-component>
 
 {% stylesheet %}
   .faq__background {
@@ -186,6 +184,7 @@
 
 {% schema %}
 {
+  "max_blocks": 20,
   "name": "t:names.faq_section",
   "disabled_on": {
     "groups": ["header", "footer"]

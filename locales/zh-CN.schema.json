@@ -8,6 +8,21 @@
  * ------------------------------------------------------------
  */
 {
+  "delivery_process": {
+    "delivery_process": "交付流程",
+    "eyebrow": "上标",
+    "heading": "标题",
+    "description": "说明",
+    "background": "背景",
+    "heading_gradient": "标题渐变",
+    "text": "文字",
+    "accent_text": "强调文字",
+    "step_spacing": "步骤间距",
+    "top_padding": "顶部间距",
+    "bottom_padding": "底部间距",
+    "delivery_step": "交付步骤",
+    "core_deliverable": "核心交付内容"
+  },
   "footer_diagnosis": {
     "form_anchor_id": "表单锚点 ID",
     "form_anchor_info": "填写页面中唯一的 ID，例如 growth-diagnosis（无需 #）。空格和大写字母会转为小写连字符格式。同页按钮链接填 #growth-diagnosis；跨页填写含该页脚的页面地址，例如 /pages/contact#growth-diagnosis。留空不添加自定义锚点。"

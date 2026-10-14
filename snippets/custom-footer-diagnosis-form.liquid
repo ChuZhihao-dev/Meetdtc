@@ -1,0 +1,142 @@
+{% doc %}
+  Native contact form and its scoped progressive enhancement for the diagnosis footer.
+  @param {object} section_settings - Merchant-authored labels and placeholders.
+  @param {string} form_id - Unique contact-form ID.
+  @param {string} form_anchor_id - Optional merchant-configured anchor.
+  @example {% render 'custom-footer-diagnosis-form', section_settings: section.settings, form_id: form_id, form_anchor_id: form_anchor_id %}
+{% enddoc %}
+    <footer-diagnosis
+      class="footer-diagnosis__card"
+      {% if form_anchor_id != blank and form_anchor_id != form_id %}id="{{ form_anchor_id | escape }}" tabindex="-1"{% endif %}
+    >
+      {%- form 'contact', id: form_id, class: 'footer-diagnosis__form' -%}
+        <input type="hidden" name="contact[id]" value="{{ form_id }}">
+
+        {%- if form.errors and form.id == form_id -%}
+          <div class="footer-diagnosis__error" role="alert" tabindex="-1" autofocus>
+            {{- 'icon-error.svg' | inline_asset_content -}}
+            <div>
+              {%- for field in form.errors -%}
+                <p>
+                  {{- form.errors.translated_fields[field] | capitalize }}
+                  {{ form.errors.messages[field] -}}
+                </p>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if form.posted_successfully? and form.id == form_id -%}
+          <div class="footer-diagnosis__success" role="status" tabindex="-1" autofocus>
+            {{- 'icon-checkmark.svg' | inline_asset_content -}}
+            <span>{{ 'blocks.contact_form.post_success' | t }}</span>
+          </div>
+        {%- endif -%}
+
+        <div class="footer-diagnosis__fields">
+          <div class="footer-diagnosis__field">
+            <label class="footer-diagnosis__label" for="{{ form_id }}-name">
+              {{ section_settings.name_label }}
+              <span aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="{{ form_id }}-name"
+              name="contact[name]"
+              class="footer-diagnosis__input"
+              autocomplete="name"
+              placeholder="{{ section_settings.name_placeholder | escape }}"
+              value="{% if form.name %}{{ form.name | escape }}{% elsif customer %}{{ customer.name | escape }}{% endif %}"
+              required
+            >
+          </div>
+
+          <div class="footer-diagnosis__field">
+            <label class="footer-diagnosis__label" for="{{ form_id }}-company">
+              {{ section_settings.company_label }}
+            </label>
+            <input
+              type="text"
+              id="{{ form_id }}-company"
+              name="contact[Company Name]"
+              class="footer-diagnosis__input"
+              autocomplete="organization"
+              placeholder="{{ section_settings.company_placeholder | escape }}"
+            >
+          </div>
+
+          <div class="footer-diagnosis__field">
+            <label class="footer-diagnosis__label" for="{{ form_id }}-email">
+              {{ section_settings.email_label }}
+              <span aria-hidden="true">*</span>
+            </label>
+            <input
+              type="email"
+              id="{{ form_id }}-email"
+              name="contact[email]"
+              class="footer-diagnosis__input"
+              autocomplete="email"
+              spellcheck="false"
+              autocapitalize="off"
+              placeholder="{{ section_settings.email_placeholder | escape }}"
+              value="{% if form.email %}{{ form.email | escape }}{% elsif customer %}{{ customer.email | escape }}{% endif %}"
+              required
+            >
+          </div>
+
+          <div class="footer-diagnosis__field">
+            <label class="footer-diagnosis__label" for="{{ form_id }}-phone">
+              {{ section_settings.phone_label }}
+            </label>
+            <input
+              type="tel"
+              id="{{ form_id }}-phone"
+              name="contact[phone]"
+              class="footer-diagnosis__input"
+              autocomplete="tel"
+              placeholder="{{ section_settings.phone_placeholder | escape }}"
+              value="{% if form.phone %}{{ form.phone | escape }}{% elsif customer %}{{ customer.phone | escape }}{% endif %}"
+            >
+          </div>
+
+          <div class="footer-diagnosis__field footer-diagnosis__field--full">
+            <label class="footer-diagnosis__label" for="{{ form_id }}-website">
+              {{ section_settings.website_label }}
+              <span aria-hidden="true">*</span>
+            </label>
+            <input
+              type="url"
+              id="{{ form_id }}-website"
+              name="contact[Company Website]"
+              class="footer-diagnosis__input"
+              autocomplete="url"
+              inputmode="url"
+              placeholder="{{ section_settings.website_placeholder | escape }}"
+              data-footer-diagnosis-website
+              required
+            >
+          </div>
+
+          <div class="footer-diagnosis__field footer-diagnosis__field--full">
+            <label class="footer-diagnosis__label" for="{{ form_id }}-goals">
+              {{ section_settings.goals_label }}
+              <span aria-hidden="true">*</span>
+            </label>
+            <textarea
+              id="{{ form_id }}-goals"
+              name="contact[Goals or Challenges]"
+              class="footer-diagnosis__input footer-diagnosis__input--textarea"
+              rows="4"
+              placeholder="{{ section_settings.goals_placeholder }}"
+              required
+            >{{- form.body | escape -}}</textarea>
+          </div>
+
+          <div class="footer-diagnosis__field footer-diagnosis__field--full">
+            <button type="submit" class="footer-diagnosis__submit">
+              {{- section_settings.submit_label -}}
+            </button>
+          </div>
+        </div>
+      {%- endform -%}
+    </footer-diagnosis>

@@ -1,0 +1,40 @@
+{% doc %}
+  Original decorative case-study placeholder, loaded only when no client image exists.
+  @example {% render 'custom-client-story-placeholder' %}
+{% enddoc %}
+        <div class="client-story__placeholder">
+          <span class="client-story__corner client-story__corner--start-top" aria-hidden="true"><img src="{{ 'client-story-corner-left.svg' | asset_url }}" width="40" height="35.5" alt="" loading="lazy"></span>
+          <span class="client-story__corner client-story__corner--start-bottom" aria-hidden="true"><img src="{{ 'client-story-corner-left.svg' | asset_url }}" width="40" height="35.5" alt="" loading="lazy"></span>
+          <span class="client-story__corner client-story__corner--end-top" aria-hidden="true"><img src="{{ 'client-story-corner-right.svg' | asset_url }}" width="40" height="35.5" alt="" loading="lazy"></span>
+          <span class="client-story__corner client-story__corner--end-bottom" aria-hidden="true"><img src="{{ 'client-story-corner-right.svg' | asset_url }}" width="40" height="35.5" alt="" loading="lazy"></span>
+          <div class="client-story__placeholder-copy">
+            <img class="client-story__placeholder-icon" src="{{ 'client-story-image.svg' | asset_url }}" width="80.0568" height="84.2463" alt="" loading="lazy">
+            <p class="client-story__placeholder-title">{{ 'client_story.image_title' | t }}</p>
+            <p class="client-story__placeholder-description">{{ 'client_story.image_description' | t }}</p>
+          </div>
+        </div>
+
+{% stylesheet %}
+  .client-story__placeholder { position: absolute; inset: 0; container-type: inline-size; }
+  .client-story__corner { position: absolute; }
+  .client-story__corner img { display: block; inline-size: auto; block-size: auto; max-inline-size: none; }
+  .client-story__corner--start-top { inset-inline-start: 11.61%; inset-block-start: 5.63%; }
+  .client-story__corner--start-bottom { inset-inline-start: 11.61%; inset-block-end: 5.63%; transform: scaleY(-1); }
+  .client-story__corner--end-top { inset-inline-end: 11.61%; inset-block-start: 5.63%; transform: scaleX(-1); }
+  .client-story__corner--end-bottom { inset-inline-end: 11.61%; inset-block-end: 5.63%; transform: rotate(180deg); }
+  .client-story__placeholder-copy { position: absolute; inset-block-start: 36.32%; inset-inline: 8%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .client-story__placeholder-icon { display: block; flex: none; inline-size: auto; block-size: auto; max-inline-size: none; }
+  .client-story__placeholder-title { margin: 0; font-size: 25px; font-weight: 600; line-height: 30px; overflow-wrap: anywhere; }
+  .client-story__placeholder-copy > .client-story__placeholder-title { margin-block-start: 25px; }
+  .client-story__placeholder-description { max-inline-size: 454px; margin: 10px 0 0; font-size: 16px; font-weight: 400; line-height: 20px; overflow-wrap: anywhere; }
+  [dir='rtl'] .client-story__corner img { transform: scaleX(-1); }
+  @media screen and (min-width: 990px) and (max-width: 1439px) {
+.client-story__placeholder-title { font-size: 22px; }
+  }
+  @media screen and (max-width: 749px) {
+.client-story__placeholder-copy { inset-block-start: 24%; }
+  .client-story__placeholder-title { font-size: 18px; line-height: 24px; }
+  .client-story__placeholder-copy > .client-story__placeholder-title { margin-block-start: 16px; }
+  .client-story__placeholder-description { font-size: 13px; line-height: 18px; }
+  }
+{% endstylesheet %}

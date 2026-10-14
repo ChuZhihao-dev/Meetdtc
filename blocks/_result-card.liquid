@@ -1,5 +1,10 @@
 {% liquid
   assign block_settings = block.settings
+  assign image_alt = block_settings.image.alt | default: block_settings.tag | default: ''
+  assign image_loading = 'lazy'
+  if section.index <= 2
+    assign image_loading = 'eager'
+  endif
 %}
 
 <article class="result-card" data-reveal {{ block.shopify_attributes }}>
@@ -11,9 +16,10 @@
         | image_tag:
           widths: '423, 600, 846',
           sizes: '(min-width: 750px) 423px, 85vw',
-          loading: 'lazy',
+          loading: image_loading,
+          decoding: 'async',
           class: 'result-card__image',
-          alt: block_settings.image.alt | default: block_settings.tag | default: ''
+          alt: image_alt
       }}
     {%- endif -%}
   </div>

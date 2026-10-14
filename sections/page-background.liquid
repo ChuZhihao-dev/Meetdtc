@@ -15,32 +15,39 @@
   assign gradient_angle = section.settings.gradient_angle
 %}
 
-{% if background_type == 'gradient' %}
+{% if background_type == 'gradient' or background_color != blank %}
+  <span class="page-background__active" hidden></span>
   {% style %}
     body {
-      --color-background: {{ gradient_from }};
-      --color-background-rgb: {{ gradient_from.rgb }};
-      background-color: {{ gradient_from }};
-      background-image: linear-gradient({{ gradient_angle }}deg, {{ gradient_from }} 0%, {{ gradient_to }} 100%);
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
-    /* Let the fixed page gradient show through every section background layer. */
-    .shopify-section:not(.header-section) .section-background {
-      background-color: transparent;
-    }
-  {% endstyle %}
-{% elsif background_color != blank %}
-  {% style %}
-    body {
-      --color-background: {{ background_color }};
-      --color-background-rgb: {{ background_color.rgb }};
-      background-color: {{ background_color }};
+      {% if background_type == 'gradient' %}
+        --color-background: {{ gradient_from }};
+        --color-background-rgb: {{ gradient_from.rgb }};
+        --page-background-image: linear-gradient({{ gradient_angle }}deg, {{ gradient_from }} 0%, {{ gradient_to }} 100%);
+        --page-background-section-fill: transparent;
+      {% else %}
+        --color-background: {{ background_color }};
+        --color-background-rgb: {{ background_color.rgb }};
+        --page-background-image: none;
+        --page-background-section-fill: {{ background_color }};
+      {% endif %}
     }
   {% endstyle %}
 {% endif %}
+{% stylesheet %}
+  body:has(.page-background__active) {
+    background-color: var(--color-background);
+    background-image: var(--page-background-image, none);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .shopify-section:not(.header-section) .section-background {
+    background-color: var(--page-background-section-fill, var(--color-background));
+  }
+  @media screen and (max-width: 749px) {
+    body:has(.page-background__active) { background-attachment: scroll; }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {

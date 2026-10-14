@@ -127,6 +127,10 @@
       line-height: 24px;
     }
   }
+  .faq-row::details-content, .faq-row .details-content { transition: opacity var(--animation-speed-slow) var(--animation-easing); }
+  @media (prefers-reduced-motion: reduce) {
+    .faq-row::details-content, .faq-row .details-content { transition: none; }
+  }
 {% endstylesheet %}
 
 {% schema %}

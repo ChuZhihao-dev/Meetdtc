@@ -6,7 +6,7 @@
 <div class="section-background aidea-model__background" style="--aidea-bg-from:{{ section.settings.background_from }};--aidea-bg-to:{{ section.settings.background_to }};"></div>
 <div class="section section--full-width spacing-style aidea-model" style="{% render 'spacing-style', settings: section.settings %}">
   <div class="aidea-model__content">
-    <img class="aidea-model__orbit" src="{{ 'aidea-329.svg' | asset_url }}" alt="" width="1440" height="1335" loading="lazy">
+    <img class="aidea-model__orbit" src="{{ 'aidea-329.svg' | asset_url }}" alt="" width="1440" height="1335" decoding="async" loading="lazy">
     <div class="aidea-model__intro">
       {% if section.settings.heading != blank %}
         <h2 class="aidea-model__heading">{{ section.settings.heading | escape }}</h2>
@@ -16,23 +16,23 @@
       {% endif %}
     </div>
     <div class="aidea-model__diagram">
-      <img class="aidea-model__asset" src="{{ 'aidea-331.svg' | asset_url }}" alt="" width="980" height="980" loading="lazy" style="left:15.90278%;top:-8.36735%;width:68.05556%;height:100%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-332.svg' | asset_url }}" alt="" width="580" height="117" loading="lazy" style="left:29.8055%;top:-0.09178%;width:40.25014%;height:11.93878%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-335.svg' | asset_url }}" alt="" width="405" height="325" loading="lazy" style="left:35.87964%;top:29.717%;width:28.10184%;height:33.14015%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-345.svg' | asset_url }}" alt="" width="200" height="200" loading="lazy" style="left:19.02778%;top:11.12245%;width:13.88889%;height:20.40816%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-357.svg' | asset_url }}" alt="" width="156" height="156" loading="lazy" style="left:44.51389%;top:5.5102%;width:10.83333%;height:15.91837%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-358.png' | asset_url }}" alt="" width="58" height="57" loading="lazy" style="left:47.84722%;top:8.67347%;width:4.02778%;height:5.81633%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-363.png' | asset_url }}" alt="" width="62" height="62" loading="lazy" style="left:65%;top:48.97959%;width:4.30556%;height:6.32653%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-367.png' | asset_url }}" alt="" width="66" height="66" loading="lazy" style="left:30.27778%;top:48.26531%;width:4.58333%;height:6.73469%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-333.svg' | asset_url }}" alt="" width="311" height="521" loading="lazy" style="left:20.69444%;top:31.38781%;width:21.5625%;height:53.12635%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-334.svg' | asset_url }}" alt="" width="11" height="71" loading="lazy" style="left:49.56019%;top:63.87755%;width:0.74073%;height:7.22788%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-340.svg' | asset_url }}" alt="" width="63" height="39" loading="lazy" style="left:31.92125%;top:27.61896%;width:4.34435%;height:3.97451%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-341.svg' | asset_url }}" alt="" width="63" height="39" loading="lazy" style="left:63.50694%;top:27.61896%;width:4.34436%;height:3.97451%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-355.svg' | asset_url }}" alt="" width="312" height="522" loading="lazy" style="left:57.5%;top:31.38779%;width:21.66667%;height:53.17198%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-345.svg' | asset_url }}" alt="" width="200" height="200" loading="lazy" style="left:42.98611%;top:72.2449%;width:13.88889%;height:20.40816%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-345.svg' | asset_url }}" alt="" width="200" height="200" loading="lazy" style="left:67.29167%;top:11.22449%;width:13.88889%;height:20.40816%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-357.svg' | asset_url }}" alt="" width="156" height="156" loading="lazy" style="left:61.875%;top:46.73469%;width:10.83333%;height:15.91837%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-357.svg' | asset_url }}" alt="" width="156" height="156" loading="lazy" style="left:27.15278%;top:46.73469%;width:10.83333%;height:15.91837%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-331.svg' | asset_url }}" alt="" width="980" height="980" decoding="async" loading="lazy" style="left:15.90278%;top:-8.36735%;width:68.05556%;height:100%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-332.svg' | asset_url }}" alt="" width="580" height="117" decoding="async" loading="lazy" style="left:29.8055%;top:-0.09178%;width:40.25014%;height:11.93878%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-335.svg' | asset_url }}" alt="" width="405" height="325" decoding="async" loading="lazy" style="left:35.87964%;top:29.717%;width:28.10184%;height:33.14015%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-345.svg' | asset_url }}" alt="" width="200" height="200" decoding="async" loading="lazy" style="left:19.02778%;top:11.12245%;width:13.88889%;height:20.40816%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-357.svg' | asset_url }}" alt="" width="156" height="156" decoding="async" loading="lazy" style="left:44.51389%;top:5.5102%;width:10.83333%;height:15.91837%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-358.png' | asset_url }}" alt="" width="58" height="57" decoding="async" loading="lazy" style="left:47.84722%;top:8.67347%;width:4.02778%;height:5.81633%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-363.png' | asset_url }}" alt="" width="62" height="62" decoding="async" loading="lazy" style="left:65%;top:48.97959%;width:4.30556%;height:6.32653%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-367.png' | asset_url }}" alt="" width="66" height="66" decoding="async" loading="lazy" style="left:30.27778%;top:48.26531%;width:4.58333%;height:6.73469%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-333.svg' | asset_url }}" alt="" width="311" height="521" decoding="async" loading="lazy" style="left:20.69444%;top:31.38781%;width:21.5625%;height:53.12635%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-334.svg' | asset_url }}" alt="" width="11" height="71" decoding="async" loading="lazy" style="left:49.56019%;top:63.87755%;width:0.74073%;height:7.22788%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-340.svg' | asset_url }}" alt="" width="63" height="39" decoding="async" loading="lazy" style="left:31.92125%;top:27.61896%;width:4.34435%;height:3.97451%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-341.svg' | asset_url }}" alt="" width="63" height="39" decoding="async" loading="lazy" style="left:63.50694%;top:27.61896%;width:4.34436%;height:3.97451%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-355.svg' | asset_url }}" alt="" width="312" height="522" decoding="async" loading="lazy" style="left:57.5%;top:31.38779%;width:21.66667%;height:53.17198%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-345.svg' | asset_url }}" alt="" width="200" height="200" decoding="async" loading="lazy" style="left:42.98611%;top:72.2449%;width:13.88889%;height:20.40816%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-345.svg' | asset_url }}" alt="" width="200" height="200" decoding="async" loading="lazy" style="left:67.29167%;top:11.22449%;width:13.88889%;height:20.40816%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-357.svg' | asset_url }}" alt="" width="156" height="156" decoding="async" loading="lazy" style="left:61.875%;top:46.73469%;width:10.83333%;height:15.91837%;">
+      <img class="aidea-model__asset" src="{{ 'aidea-357.svg' | asset_url }}" alt="" width="156" height="156" decoding="async" loading="lazy" style="left:27.15278%;top:46.73469%;width:10.83333%;height:15.91837%;">
       <div class="aidea-model__label" style="left:49.93056%;top:34.18367%;width:24.30556%;font-size:1.66667cqw;line-height:1.5;">{{ section.settings.ai_label | escape | newline_to_br }}</div>
       <div class="aidea-model__label" style="left:49.96528%;top:39.38776%;width:12.5%;font-size:8.33333cqw;line-height:1.2;">{{ section.settings.ai | escape | newline_to_br }}</div>
       <div class="aidea-model__label" style="left:25.97222%;top:12.2449%;width:10.41667%;font-size:7.36111cqw;line-height:1.2075471698113207;">{{ section.settings.data_letter | escape | newline_to_br }}</div>
@@ -47,7 +47,7 @@
     </div>
     <ul class="aidea-model__mobile-labels">
       {% assign label_keys = 'ai_label,data_label,experience_label,achievement_label,optimization,customer_growth,opportunities' | split: ',' %}
-      {% for key in label_keys %}
+      {% for key in label_keys limit: 7 %}
         {% if section.settings[key] != blank %}
           <li>{{ section.settings[key] | escape | newline_to_br }}</li>
         {% endif %}

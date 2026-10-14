@@ -16,7 +16,7 @@
     </div>
     {% if section.blocks.size > 0 %}
       <ol class="delivery-process__steps" role="list">
-        {% for block in section.blocks %}
+        {% for block in section.blocks limit: 50 %}
           <li class="delivery-process__step" {{ block.shopify_attributes }}>
             <div class="delivery-process__marker" aria-hidden="true">
               <span class="delivery-process__number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
@@ -76,7 +76,7 @@
   }
 
   .delivery-process__copy { transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1); }
-  .delivery-process__step-heading { transition: color 240ms ease; }
+  .delivery-process__step-heading { transition: opacity 240ms ease; }
   .delivery-process__intro.is-revealed,
   .delivery-process__step.is-revealed .delivery-process__copy { animation: delivery-process-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) both; }
   @keyframes delivery-process-enter { from { opacity: 0.35; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
@@ -99,7 +99,8 @@
 
 {% schema %}
 {
-  "name": "Delivery process",
+  "max_blocks": 12,
+  "name": "t:delivery_process.delivery_process",
   "disabled_on": {
     "groups": [
       "header",
@@ -110,49 +111,49 @@
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Eyebrow",
+      "label": "t:delivery_process.eyebrow",
       "default": "DELIVERY PROCESS"
     },
     {
       "type": "textarea",
       "id": "heading",
-      "label": "Heading",
+      "label": "t:delivery_process.heading",
       "default": "How the Engagement Moves From Diagnosis to Growth"
     },
     {
       "type": "richtext",
       "id": "description",
-      "label": "Description",
+      "label": "t:delivery_process.description",
       "default": "<p>A clear delivery structure connects strategic decisions, creative execution and continuous optimisation.</p>"
     },
     {
       "type": "color_background",
       "id": "background",
-      "label": "Background",
+      "label": "t:delivery_process.background",
       "default": "linear-gradient(135.439deg, #D3D8F6 2.2037%, #FDF3FF 97.796%)"
     },
     {
       "type": "color_background",
       "id": "heading_gradient",
-      "label": "Heading gradient",
+      "label": "t:delivery_process.heading_gradient",
       "default": "linear-gradient(107.919deg, #0B22B8 11.742%, #9621C4 88.258%)"
     },
     {
       "type": "color",
       "id": "text_color",
-      "label": "Text",
+      "label": "t:delivery_process.text",
       "default": "#000000"
     },
     {
       "type": "color",
       "id": "accent_color",
-      "label": "Accent text",
+      "label": "t:delivery_process.accent_text",
       "default": "#9621C4"
     },
     {
       "type": "range",
       "id": "step_gap",
-      "label": "Step spacing",
+      "label": "t:delivery_process.step_spacing",
       "default": 60,
       "min": 20,
       "max": 100,
@@ -162,7 +163,7 @@
     {
       "type": "range",
       "id": "padding-block-start",
-      "label": "Top padding",
+      "label": "t:delivery_process.top_padding",
       "default": 60,
       "min": 0,
       "max": 160,
@@ -172,7 +173,7 @@
     {
       "type": "range",
       "id": "padding-block-end",
-      "label": "Bottom padding",
+      "label": "t:delivery_process.bottom_padding",
       "default": 100,
       "min": 0,
       "max": 160,
@@ -183,24 +184,24 @@
   "blocks": [
     {
       "type": "step",
-      "name": "Delivery step",
+      "name": "t:delivery_process.delivery_step",
       "settings": [
         {
           "type": "text",
           "id": "heading",
-          "label": "Heading",
+          "label": "t:delivery_process.heading",
           "default": "Audit & Discovery"
         },
         {
           "type": "richtext",
           "id": "description",
-          "label": "Description",
+          "label": "t:delivery_process.description",
           "default": "<p>Aesess channel performance, customer data, lifecycle gaps and current operations.</p>"
         },
         {
           "type": "text",
           "id": "deliverable",
-          "label": "Core deliverable",
+          "label": "t:delivery_process.core_deliverable",
           "default": "Core deliverable: Opportunity diagnosis"
         }
       ]
@@ -208,7 +209,7 @@
   ],
   "presets": [
     {
-      "name": "Delivery process",
+      "name": "t:delivery_process.delivery_process",
       "category": "t:categories.storytelling",
       "blocks": [
         {

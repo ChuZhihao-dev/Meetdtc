@@ -4,6 +4,7 @@ import { Component } from '@theme/component';
 class DeliveryProcess extends Component {
   #controller;
   #observer;
+  #motion = matchMedia('(prefers-reduced-motion: reduce)');
 
   connectedCallback() {
     super.connectedCallback();
@@ -24,10 +25,18 @@ class DeliveryProcess extends Component {
   #initialize() {
     this.#controller = new AbortController();
     const { signal } = this.#controller;
-    this.addEventListener('shopify:block:select', (event) => {
-      const step = event.target.closest('.delivery-process__step');
-      step?.classList.add('is-revealed');
-    }, { signal });
+    if (window.Shopify?.designMode) {
+      this.addEventListener('shopify:block:select', (event) => {
+        event.target.closest('.delivery-process__step')?.classList.add('is-revealed');
+      }, { signal });
+    }
+    this.#motion.addEventListener('change', this.#reveal, { signal });
+    this.#reveal();
+  }
+
+  #reveal = () => {
+    this.#observer?.disconnect();
+    if (this.#motion.matches || window.Shopify?.designMode) return;
     this.#observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
@@ -38,7 +47,7 @@ class DeliveryProcess extends Component {
     this.querySelectorAll('.delivery-process__intro, .delivery-process__step').forEach((element) => {
       this.#observer.observe(element);
     });
-  }
+  };
 
   #cleanup() {
     this.#controller?.abort();

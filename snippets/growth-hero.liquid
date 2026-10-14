@@ -10,6 +10,13 @@
 {% enddoc %}
 
 {% liquid
+  # Growth layout is an existing customization of the native Hero; preserve its contract.
+  assign poster_loading = 'lazy'
+  assign poster_priority = 'auto'
+  if section.index <= 2
+    assign poster_loading = 'eager'
+    assign poster_priority = 'high'
+  endif
   assign color_id = 'growth-hero-' | append: section.id
   assign poster_image = section.settings.video_1.preview_image | default: section.settings.video_2.preview_image
   assign has_video = false
@@ -51,7 +58,7 @@
       {% if poster_image != blank %}
         {% render 'background-media', background_media: 'image', background_image: poster_image, background_image_position: 'cover', section: section %}
       {% else %}
-        <img src="{{ 'growth-hero-background.png' | asset_url }}" width="1440" height="735" alt="" fetchpriority="high">
+        <img src="{{ 'growth-hero-background.png' | asset_url }}" width="1440" height="735" alt="" decoding="async" loading="{{ poster_loading }}" fetchpriority="{{ poster_priority }}">
       {% endif %}
     </div>
   {% endif %}

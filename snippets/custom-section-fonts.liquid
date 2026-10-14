@@ -1,0 +1,25 @@
+{%- doc -%}
+  Compatibility for a saved section font outside the globally loaded theme families.
+  Theme families already include weights 300–700 in theme-styles-variables; do not
+  redeclare them per section. Keep an existing merchant's other family usable.
+  @param {font} font - Existing section font-picker value.
+  @example {% render 'custom-section-fonts', font: section.settings.font %}
+{%- enddoc -%}
+{%- liquid
+  assign global_family = false
+  if font.family == settings.type_body_font.family or font.family == settings.type_heading_font.family or font.family == settings.type_subheading_font.family or font.family == settings.type_accent_font.family
+    assign global_family = true
+  endif
+  if font.style != 'normal'
+    assign global_family = false
+  endif
+-%}
+{%- unless global_family or font == blank -%}
+  {% style %}
+    {%- assign weights = '400,500,600' | split: ',' -%}
+    {%- for weight in weights limit: 3 -%}
+      {%- assign face = font | font_modify: 'weight', weight -%}
+      {%- if face -%}{{ face | font_face: font_display: 'swap' }}{%- endif -%}
+    {%- endfor -%}
+  {% endstyle %}
+{%- endunless -%}

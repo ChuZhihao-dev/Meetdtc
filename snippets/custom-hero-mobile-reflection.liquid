@@ -1,0 +1,114 @@
+{% doc %}
+  Mobile reflection selection extracted from the customized native Hero.
+  Decorations load lazily and only render when reflection is enabled.
+  @param {object} section - Hero media selection value from the owning section.
+  @param {boolean} fallback_to_desktop - Hero media selection value from the owning section.
+  @param {string} media_1_mobile - Hero media selection value from the owning section.
+  @param {string} media_2_mobile - Hero media selection value from the owning section.
+  @param {string} media_blurred - Hero media selection value from the owning section.
+  @param {string} mobile_widths - Hero media selection value from the owning section.
+  @param {string} sizes_mobile - Hero media selection value from the owning section.
+  @param {number} media_count - Hero media selection value from the owning section.
+  @param {string} media_2 - Hero media selection value from the owning section.
+  @param {string} media_1 - Hero media selection value from the owning section.
+  @param {string} widths - Hero media selection value from the owning section.
+  @param {string} sizes - Hero media selection value from the owning section.
+  @example {% render 'custom-hero-mobile-reflection', section: section, fallback_to_desktop: true, media_1_mobile: 'none', media_2_mobile: 'none', media_blurred: '', mobile_widths: '', sizes_mobile: '100vw', media_count: 0, media_1: 'none', media_2: 'none', widths: '', sizes: '100vw' %}
+{% enddoc %}
+
+  {%- comment -%}
+    On mobile we need to check:
+    1. If the media should be stacked. If it is,we check for the second (bottom) image first, then for the first (top) image.
+    2. If custom mobile setting is active and has media (show desktop media otherwise).
+  {%- endcomment -%}
+  {% if section.settings.stack_media_on_mobile == false %}
+    {% if section.settings.custom_mobile_media == true and fallback_to_desktop == false %}
+      {% if media_1_mobile == 'image' %}
+        {{ section.settings.image_1_mobile
+          | image_url: width: 1600
+          | image_tag: width: section.settings.image_1_mobile.width,
+            widths: mobile_widths,
+            height: section.settings.image_1_mobile.height,
+            alt: '',
+            class: 'hero__media',
+            loading: 'lazy',
+            decoding: 'async',
+            sizes: sizes_mobile
+          }}
+      {% endif %}
+      {% if media_2_mobile == 'image' %}
+        {{ section.settings.image_2_mobile
+          | image_url: width: 1600
+          | image_tag: width: section.settings.image_2_mobile.width,
+            widths: mobile_widths,
+            height: section.settings.image_2_mobile.height,
+            alt: '',
+            class: 'hero__media',
+            loading: 'lazy',
+            decoding: 'async',
+            sizes: sizes_mobile
+          }}
+      {% endif %}
+    {% elsif fallback_to_desktop %}
+      {{ media_blurred }}
+    {% endif %}
+  {% elsif section.settings.stack_media_on_mobile == true %}
+    {% if section.settings.custom_mobile_media == true and fallback_to_desktop == false %}
+      {% if media_2_mobile == 'image' %}
+        {{ section.settings.image_2_mobile
+          | image_url: width: 1600
+          | image_tag: width: section.settings.image_2_mobile.width,
+            widths: mobile_widths,
+            height: section.settings.image_2_mobile.height,
+            alt: '',
+            class: 'hero__media',
+            loading: 'lazy',
+            decoding: 'async',
+            sizes: sizes_mobile
+        }}
+      {% elsif media_1_mobile == 'image' %}
+        {{ section.settings.image_1_mobile
+          | image_url: width: 1600
+          | image_tag: width: section.settings.image_1_mobile.width,
+            widths: mobile_widths,
+            height: section.settings.image_1_mobile.height,
+            alt: '',
+            class: 'hero__media',
+            loading: 'lazy',
+            decoding: 'async',
+            sizes: sizes_mobile
+          }}
+      {% endif %}
+    {% elsif fallback_to_desktop %}
+      {% if media_count > 0 %}
+        {% if media_2 == 'image' %}
+          {{ section.settings.image_2
+            | image_url: width: 1600
+            | image_tag: width: section.settings.image_2.width,
+              widths: widths,
+              height: section.settings.image_2.height,
+              alt: '',
+              class: 'hero__media',
+            loading: 'lazy',
+            decoding: 'async',
+              sizes: sizes
+            }}
+        {% elsif media_1 == 'image' %}
+          {{ section.settings.image_1
+            | image_url: width: 1600
+            | image_tag: width: section.settings.image_1.width,
+              widths: widths,
+              height: section.settings.image_1.height,
+              alt: '',
+              class: 'hero__media',
+            loading: 'lazy',
+            decoding: 'async',
+              sizes: sizes
+            }}
+        {% endif %}
+        {% if media_count == 0 %}
+          {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero__media' }}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endif %}

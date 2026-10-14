@@ -1,94 +1,83 @@
-const REVEAL_SELECTOR = '[data-reveal]';
-const SCOPE_SELECTOR = '[data-reveal-scope]';
-const READY_CLASS = 'reveal-ready';
-const ROOT_MARGIN = '-12% 0px 0px 0px';
+import { Component } from '@theme/component';
 
-/** @type {WeakMap<Element, IntersectionObserver>} */
-const observers = new WeakMap();
+/** Shared one-shot reveal. Native connection/removal also covers editor reloads. */
+class ScrollReveal extends Component {
+  #observer;
+  #controller;
+  #motion = matchMedia('(prefers-reduced-motion: reduce)');
 
-/**
- * Initializes scroll reveal on a section marked with `[data-reveal-scope]`.
- * Targets marked with `[data-reveal]` reveal once, then stay visible.
- *
- * @param {Element} root - The `[data-reveal-scope]` section element.
- */
-function initReveal(root) {
-  if (!(root instanceof HTMLElement)) return;
-
-  // Re-running is expected (e.g. the theme editor reloads a section), so drop
-  // any previous observer before rebuilding.
-  observers.get(root)?.disconnect();
-  observers.delete(root);
-
-  const targets = root.querySelectorAll(REVEAL_SELECTOR);
-  if (targets.length === 0) return;
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    root.classList.remove(READY_CLASS);
-    return;
+  connectedCallback() {
+    super.connectedCallback();
+    this.#initialize();
   }
 
-  root.classList.add(READY_CLASS);
+  updatedCallback() {
+    super.updatedCallback();
+    this.#cleanup();
+    this.#initialize();
+  }
 
-  const viewportHeight = window.innerHeight;
-  const useTimeline = root.hasAttribute('data-reveal-timeline');
+  disconnectedCallback() {
+    this.#cleanup();
+    super.disconnectedCallback();
+  }
 
-  targets.forEach((target, index) => {
-    target.style.setProperty('--reveal-index', String(index));
+  #initialize() {
+    if (!this.hasAttribute('data-reveal-scope')) return;
+    this.#controller = new AbortController();
+    const { signal } = this.#controller;
+    this.#motion.addEventListener('change', this.#reveal, { signal });
+    if (window.Shopify?.designMode) {
+      // Keep block selection immediate; editor handlers never run on storefronts.
+      this.addEventListener('shopify:block:select', this.#show, { signal });
+      this.addEventListener('shopify:block:deselect', this.#show, { signal });
+    }
+    this.#reveal();
+  }
 
-    // Keep any state the element already has; only seed new targets. Elements
-    // already in view start visible so there is no flash on load, everything
-    // else waits below until it scrolls in.
-    if (target.dataset.state === 'in') return;
+  #show = () => {
+    this.#observer?.disconnect();
+    this.classList.remove('reveal-ready');
+  };
 
-    const rect = target.getBoundingClientRect();
-    const inView = rect.bottom > 0 && rect.top < viewportHeight;
-    target.dataset.state = !useTimeline && inView ? 'in' : 'before';
-  });
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        const target = entry.target;
-        if (!entry.isIntersecting) continue;
-        if (useTimeline) {
-          targets.forEach((item) => {
-            if (item.dataset.state !== 'in') item.dataset.state = 'in';
-          });
-          observer.unobserve(root);
-          continue;
-        }
-        target.dataset.state = 'in';
-        observer.unobserve(target);
-      }
-    },
-    { rootMargin: ROOT_MARGIN, threshold: 0 }
-  );
-
-  if (useTimeline) {
-    if (Array.from(targets).some((target) => target.dataset.state !== 'in')) observer.observe(root);
-  } else {
-    targets.forEach((target) => {
-      if (target.dataset.state !== 'in') observer.observe(target);
+  #reveal = () => {
+    this.#show();
+    const targets = [...this.querySelectorAll('[data-reveal]')];
+    if (this.#motion.matches || !targets.length || window.Shopify?.designMode) return;
+    const timeline = this.hasAttribute('data-reveal-timeline');
+    // Batch layout reads before dataset/style writes, including multi-card lists.
+    const visible = targets.map((target) => {
+      const rect = target.getBoundingClientRect();
+      return rect.bottom > 0 && rect.top < window.innerHeight;
     });
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        if (timeline) {
+          for (const target of targets) target.dataset.state = 'in';
+          observer.disconnect();
+          break;
+        }
+        entry.target.dataset.state = 'in';
+        observer.unobserve(entry.target);
+      }
+    }, { rootMargin: '-12% 0px 0px 0px', threshold: 0 });
+    this.#observer = observer;
+    targets.forEach((target, index) => {
+      target.style.setProperty('--reveal-index', String(index));
+      if (target.dataset.state !== 'in') target.dataset.state = !timeline && visible[index] ? 'in' : 'before';
+      if (!timeline && target.dataset.state !== 'in') observer.observe(target);
+    });
+    if (timeline && targets.some((target) => target.dataset.state !== 'in')) observer.observe(this);
+    this.classList.add('reveal-ready');
+  };
+
+  #cleanup() {
+    this.#controller?.abort();
+    this.#show();
   }
-  observers.set(root, observer);
 }
 
-/**
- * @param {ParentNode} [scope]
- */
-function initAll(scope = document) {
-  scope.querySelectorAll?.(SCOPE_SELECTOR).forEach(initReveal);
+if (!customElements.get('scroll-reveal-component')) {
+  customElements.define('scroll-reveal-component', ScrollReveal);
 }
-
-initAll();
-
-document.addEventListener('shopify:section:load', (event) => initAll(event.target));
-
-document.addEventListener('shopify:section:unload', (event) => {
-  event.target.querySelectorAll?.(SCOPE_SELECTOR).forEach((root) => {
-    observers.get(root)?.disconnect();
-    observers.delete(root);
-  });
-});

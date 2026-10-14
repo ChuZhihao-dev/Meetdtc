@@ -11,20 +11,7 @@
   assign heading_text = section_settings.heading
 %}
 
-{% style %}
-  #shopify-section-{{ section.id }} .partner-brands {
-    --brand-logo-gap: {{ section_settings.logo_gap }}px;
-    --brand-logo-row-gap: {{ section_settings.row_gap }}px;
-    --brand-logo-height: {{ section_settings.logo_height }}px;
-  }
 
-  @media screen and (max-width: 749px) {
-    #shopify-section-{{ section.id }} .partner-brands {
-      --brand-logo-gap: 24px;
-      --brand-logo-height: 28px;
-    }
-  }
-{% endstyle %}
 
 <div
   class="section-background partner-brands__background"
@@ -37,7 +24,11 @@
 
 <div
   class="section section--page-width partner-brands spacing-style"
-  style="{% render 'spacing-style', settings: section_settings %}"
+  style="{% render 'spacing-style', settings: section_settings %}
+    --brand-logo-gap: {{ section_settings.logo_gap }}px;
+    --brand-logo-row-gap: {{ section_settings.row_gap }}px;
+    --brand-logo-height: {{ section_settings.logo_height }}px;
+  "
   {{ section.shopify_attributes }}
 >
   {% if heading_text != blank %}
@@ -118,10 +109,14 @@
       margin-block-end: 24px;
     }
   }
+  @media screen and (max-width: 749px) {
+    .partner-brands .brand-row { --brand-logo-gap: 24px; --brand-logo-height: 28px; }
+  }
 {% endstylesheet %}
 
 {% schema %}
 {
+  "max_blocks": 6,
   "name": "t:names.partner_brands",
   "blocks": [
     {

@@ -11,7 +11,7 @@
 {% render 'contrast-override', background_color: s.background_color, text_color: s.text_color, section_id: color_id %}
 {% render 'text-block-styles' %}
 {% if s.enable_animation %}{% render 'scroll-reveal-styles' %}{% endif %}
-<script src="{{ 'business-challenge.js' | asset_url }}" type="module" fetchpriority="low"></script>
+{% if s.enable_animation %}<script src="{{ 'business-challenge.js' | asset_url }}" type="module" fetchpriority="low"></script>{% endif %}
 
 <business-challenge-component
   class="business-challenge spacing-style color-custom-{{ color_id }}"
@@ -72,6 +72,7 @@
 
 {% schema %}
 {
+  "max_blocks": 12,
   "name": "t:names.business_challenge",
   "disabled_on": {
     "groups": [

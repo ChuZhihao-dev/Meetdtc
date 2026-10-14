@@ -1,61 +1,73 @@
-/**
- * Growth diagnosis footer enhancements.
- *
- * - Normalizes a bare domain in the "Company Website" field to https:// on blur
- *   so native URL validation can pass.
- * - Prevents repeated submits after the form has passed validation. The form
- *   still submits natively (no fetch), so a no-JS submit keeps working.
- *
- * @extends HTMLElement
- */
-class FooterDiagnosis extends HTMLElement {
+import { Component } from '@theme/component';
+
+/** Native contact form enhancement; validation/submission still work without JS. */
+class FooterDiagnosis extends Component {
+  #controller;
+  #form;
+  #website;
+  #submitting = false;
+
   connectedCallback() {
-    this.form = this.querySelector('form');
-    if (!this.form) return;
+    super.connectedCallback();
+    this.#initialize();
+  }
 
-    this.website = this.form.querySelector('[data-footer-diagnosis-website]');
-
-    this.form.addEventListener('submit', this.#handleSubmit);
-    this.website?.addEventListener('blur', this.#normalizeWebsite);
+  updatedCallback() {
+    super.updatedCallback();
+    this.#cleanup();
+    this.#initialize();
   }
 
   disconnectedCallback() {
-    this.form?.removeEventListener('submit', this.#handleSubmit);
-    this.website?.removeEventListener('blur', this.#normalizeWebsite);
+    this.#cleanup();
+    super.disconnectedCallback();
   }
 
-  #normalizeWebsite = () => {
-    if (!(this.website instanceof HTMLInputElement)) return;
+  #initialize() {
+    this.#form = this.querySelector('form');
+    if (!this.#form) return;
+    this.#controller = new AbortController();
+    const { signal } = this.#controller;
+    this.#website = this.#form.querySelector('[data-footer-diagnosis-website]');
+    this.#form.addEventListener('submit', this.#submit, { signal });
+    this.#website?.addEventListener('blur', this.#normalize, { signal });
+    window.addEventListener('pageshow', this.#reset, { signal });
+    this.#reset();
+  }
 
-    const value = this.website.value.trim();
-    if (!value) return;
-
-    if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(value)) {
-      this.website.value = `https://${value.replace(/^\/+/, '')}`;
+  #normalize = () => {
+    if (!(this.#website instanceof HTMLInputElement)) return;
+    const value = this.#website.value.trim();
+    if (value && !/^[a-z][a-z0-9+.-]*:\/\//i.test(value)) {
+      this.#website.value = `https://${value.replace(/^\/+/, '')}`;
     }
   };
 
-  /**
-   * @param {SubmitEvent} event
-   */
-  #handleSubmit = (event) => {
-    this.#normalizeWebsite();
-
-    if (!this.form.checkValidity()) {
-      // Let native validation report the problem without blocking resubmits.
+  #submit = (event) => {
+    if (this.#submitting) {
+      event.preventDefault();
       return;
     }
-
-    const button = this.form.querySelector('button[type="submit"]');
-    if (!button) return;
-
-    // The browser is already submitting; only guard against rapid double-clicks.
-    window.setTimeout(() => {
-      if (event.defaultPrevented === false) {
-        button.setAttribute('aria-disabled', 'true');
-      }
-    }, 0);
+    this.#normalize();
+    if (!this.#form.checkValidity()) return;
+    const signal = this.#controller.signal;
+    // Other handlers may cancel native submission. No timers outlive the component.
+    queueMicrotask(() => {
+      if (signal.aborted || event.defaultPrevented) return;
+      this.#submitting = true;
+      this.#form.querySelector('[type="submit"]')?.setAttribute('aria-disabled', 'true');
+    });
   };
+
+  #reset = () => {
+    this.#submitting = false;
+    this.#form?.querySelector('[type="submit"]')?.removeAttribute('aria-disabled');
+  };
+
+  #cleanup() {
+    this.#controller?.abort();
+    this.#reset();
+  }
 }
 
 if (!customElements.get('footer-diagnosis')) {

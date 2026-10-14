@@ -6,31 +6,26 @@
 {% liquid
   assign s = section.settings
   assign color_id = 'client-story-' | append: section.id
-  assign regular_font = s.font | font_modify: 'weight', '400'
-  assign medium_font = s.font | font_modify: 'weight', '500'
-  assign semibold_font = s.font | font_modify: 'weight', '600'
   assign desktop_image = s.image | default: s.image_mobile
   assign mobile_image = s.image_mobile | default: desktop_image
   assign image_alt = s.image_alt | default: desktop_image.alt
   assign image_loading = 'lazy'
   assign image_priority = 'auto'
-  if section.index == 1
+  if section.index <= 2
     assign image_loading = 'eager'
-    assign image_priority = 'high'
+    if section.index == 1
+      assign image_priority = 'high'
+    endif
   endif
 %}
-{% style %}
-  {{ regular_font | font_face: font_display: 'swap' }}
-  {{ medium_font | font_face: font_display: 'swap' }}
-  {{ semibold_font | font_face: font_display: 'swap' }}
-{% endstyle %}
+{% render 'custom-section-fonts', font: s.font %}
 {% render 'contrast-override', text_color: s.text_color, section_id: color_id %}
 {% if s.enable_reveal %}
   {% render 'scroll-reveal-styles' %}
   <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
 {% endif %}
 <div class="client-story__background" style="background: {{ s.background | default: 'transparent' }};" aria-hidden="true"></div>
-<div
+<scroll-reveal-component
   class="section section--full-width spacing-style client-story color-custom-{{ color_id }}"
   style="{% render 'spacing-style', settings: s %}
     --client-story-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }};
@@ -65,24 +60,14 @@
           {% if mobile_image != desktop_image %}
             <source media="(max-width: 749px)" srcset="{{ mobile_image | image_url: width: 375 }} 375w, {{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1100 }} 1100w" sizes="calc(100vw - 40px)" width="{{ mobile_image.width }}" height="{{ mobile_image.height }}">
           {% endif %}
-          {{ desktop_image | image_url: width: 2200 | image_tag: class: 'client-story__image', widths: '375,550,750,1100,1500,1800,2200', sizes: '(min-width: 1440px) 702px, (min-width: 990px) 49vw, (min-width: 750px) calc(100vw - 64px), calc(100vw - 40px)', loading: image_loading, fetchpriority: image_priority, alt: image_alt }}
+          {{ desktop_image | image_url: width: 2200 | image_tag: class: 'client-story__image', widths: '375,550,750,1100,1500,1800,2200', sizes: '(min-width: 1440px) 702px, (min-width: 990px) 49vw, (min-width: 750px) calc(100vw - 64px), calc(100vw - 40px)', loading: image_loading, fetchpriority: image_priority, decoding: 'async', alt: image_alt }}
         </picture>
       {% else %}
-        <div class="client-story__placeholder">
-          <span class="client-story__corner client-story__corner--start-top" aria-hidden="true"><img src="{{ 'client-story-corner-left.svg' | asset_url }}" width="40" height="35.5" alt="" loading="lazy"></span>
-          <span class="client-story__corner client-story__corner--start-bottom" aria-hidden="true"><img src="{{ 'client-story-corner-left.svg' | asset_url }}" width="40" height="35.5" alt="" loading="lazy"></span>
-          <span class="client-story__corner client-story__corner--end-top" aria-hidden="true"><img src="{{ 'client-story-corner-right.svg' | asset_url }}" width="40" height="35.5" alt="" loading="lazy"></span>
-          <span class="client-story__corner client-story__corner--end-bottom" aria-hidden="true"><img src="{{ 'client-story-corner-right.svg' | asset_url }}" width="40" height="35.5" alt="" loading="lazy"></span>
-          <div class="client-story__placeholder-copy">
-            <img class="client-story__placeholder-icon" src="{{ 'client-story-image.svg' | asset_url }}" width="80.0568" height="84.2463" alt="" loading="lazy">
-            <p class="client-story__placeholder-title">{{ 'client_story.image_title' | t }}</p>
-            <p class="client-story__placeholder-description">{{ 'client_story.image_description' | t }}</p>
-          </div>
-        </div>
+        {% render 'custom-client-story-placeholder' %}
       {% endif %}
     </div>
   </div>
-</div>
+</scroll-reveal-component>
 {% stylesheet %}
   .client-story__background { position: absolute; inset: 0; z-index: var(--layer-section-background, -1); pointer-events: none; }
   .client-story { font-family: var(--client-story-font, var(--font-heading--family)); color: var(--color-foreground); }
@@ -103,63 +88,47 @@
   .client-story__media { position: relative; min-inline-size: 0; min-block-size: 702px; background: var(--client-story-media); }
   .client-story__picture { display: block; position: absolute; inset: 0; }
   .client-story__image { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; object-position: center; }
-  .client-story__placeholder { position: absolute; inset: 0; container-type: inline-size; }
-  .client-story__corner { position: absolute; }
-  /* Preserve the exported SVG dimensions instead of inheriting the theme's 100% image width. */
-  .client-story__corner img { display: block; inline-size: auto; block-size: auto; max-inline-size: none; }
-  .client-story__corner--start-top { inset-inline-start: 11.61%; inset-block-start: 5.63%; }
-  .client-story__corner--start-bottom { inset-inline-start: 11.61%; inset-block-end: 5.63%; transform: scaleY(-1); }
-  .client-story__corner--end-top { inset-inline-end: 11.61%; inset-block-start: 5.63%; transform: scaleX(-1); }
-  .client-story__corner--end-bottom { inset-inline-end: 11.61%; inset-block-end: 5.63%; transform: rotate(180deg); }
-  .client-story__placeholder-copy { position: absolute; inset-block-start: 36.32%; inset-inline: 8%; display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .client-story__placeholder-icon { display: block; flex: none; inline-size: auto; block-size: auto; max-inline-size: none; }
-  .client-story__placeholder-title { margin: 0; font-size: 25px; font-weight: 600; line-height: 30px; overflow-wrap: anywhere; }
-  .client-story__placeholder-copy > .client-story__placeholder-title { margin-block-start: 25px; }
-  .client-story__placeholder-description { max-inline-size: 454px; margin: 10px 0 0; font-size: 16px; font-weight: 400; line-height: 20px; overflow-wrap: anywhere; }
   [dir='rtl'] .client-story__copy { padding-inline: 92px 30px; }
-  [dir='rtl'] .client-story__corner img { transform: scaleX(-1); }
   @media screen and (min-width: 990px) and (max-width: 1439px) {
-    .client-story__card { inline-size: calc(100% - 64px); min-block-size: 0; }
-    .client-story__card::before { inline-size: 18px; }
-    .client-story__copy, [dir='rtl'] .client-story__copy { padding: 32px; padding-inline-start: 50px; }
-    .client-story__eyebrow { font-size: 18px; line-height: 28px; }
-    .client-story__heading { font-size: clamp(30px, 3.0556vw, 44px); line-height: 1.227273; }
-    .client-story__description { font-size: 18px; line-height: 28px; }
-    .client-story__metrics { gap: 15px 24px; margin-inline-start: 0; }
-    .client-story__button { margin-inline-start: 0; font-size: 18px; }
-    .client-story__media { min-block-size: 0; }
-    .client-story__placeholder-title { font-size: 22px; }
+.client-story__card { inline-size: calc(100% - 64px); min-block-size: 0; }
+  .client-story__card::before { inline-size: 18px; }
+  .client-story__copy, [dir='rtl'] .client-story__copy { padding: 32px; padding-inline-start: 50px; }
+  .client-story__eyebrow { font-size: 18px; line-height: 28px; }
+  .client-story__heading { font-size: clamp(30px, 3.0556vw, 44px); line-height: 1.227273; }
+  .client-story__description { font-size: 18px; line-height: 28px; }
+  .client-story__metrics { gap: 15px 24px; margin-inline-start: 0; }
+  .client-story__button { margin-inline-start: 0; font-size: 18px; }
+  .client-story__media { min-block-size: 0; }
   }
   @media screen and (max-width: 989px) {
-    .client-story__card { inline-size: calc(100% - 64px); grid-template-columns: minmax(0, 1fr); min-block-size: 0; }
-    .client-story__card::before { inline-size: 12px; }
-    .client-story__copy, [dir='rtl'] .client-story__copy { padding: 36px; padding-inline-start: 48px; }
-    .client-story__eyebrow { font-size: 18px; line-height: 28px; }
-    .client-story__heading { max-inline-size: none; font-size: 36px; line-height: 1.23; }
-    .client-story__description { max-inline-size: none; font-size: 18px; line-height: 28px; }
-    .client-story__metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-inline-size: none; margin-inline-start: 0; }
-    .client-story__button { margin-block-start: 32px; margin-inline-start: 0; }
-    .client-story__media { min-block-size: 0; aspect-ratio: 1; }
+.client-story__card { inline-size: calc(100% - 64px); grid-template-columns: minmax(0, 1fr); min-block-size: 0; }
+  .client-story__card::before { inline-size: 12px; }
+  .client-story__copy, [dir='rtl'] .client-story__copy { padding: 36px; padding-inline-start: 48px; }
+  .client-story__eyebrow { font-size: 18px; line-height: 28px; }
+  .client-story__heading { max-inline-size: none; font-size: 36px; line-height: 1.23; }
+  .client-story__description { max-inline-size: none; font-size: 18px; line-height: 28px; }
+  .client-story__metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-inline-size: none; margin-inline-start: 0; }
+  .client-story__button { margin-block-start: 32px; margin-inline-start: 0; }
+  .client-story__media { min-block-size: 0; aspect-ratio: 1; }
   }
   @media screen and (max-width: 749px) {
-    .client-story__card { inline-size: calc(100% - 40px); }
-    .client-story__card::before { inline-size: 8px; }
-    .client-story__copy, [dir='rtl'] .client-story__copy { padding: 28px 20px; padding-inline-start: 28px; }
-    .client-story__eyebrow { font-size: 14px; line-height: 22px; }
-    .client-story__heading { font-size: clamp(26px, 7.2vw, 32px); line-height: 1.23; }
-    .client-story__description { margin-block-start: 20px; font-size: 16px; line-height: 26px; }
-    .client-story__metrics { margin-block-start: 28px; gap: 20px 12px; }
-    .client-story__button { font-size: 16px; padding-inline: 18px; }
-    .client-story__placeholder-copy { inset-block-start: 24%; }
-    .client-story__placeholder-title { font-size: 18px; line-height: 24px; }
-    .client-story__placeholder-copy > .client-story__placeholder-title { margin-block-start: 16px; }
-    .client-story__placeholder-description { font-size: 13px; line-height: 18px; }
+.client-story__card { inline-size: calc(100% - 40px); }
+  .client-story__card::before { inline-size: 8px; }
+  .client-story__copy, [dir='rtl'] .client-story__copy { padding: 28px 20px; padding-inline-start: 28px; }
+  .client-story__eyebrow { font-size: 14px; line-height: 22px; }
+  .client-story__heading { font-size: clamp(26px, 7.2vw, 32px); line-height: 1.23; }
+  .client-story__description { margin-block-start: 20px; font-size: 16px; line-height: 26px; }
+  .client-story__metrics { margin-block-start: 28px; gap: 20px 12px; }
+  .client-story__button { font-size: 16px; padding-inline: 18px; }
   }
-  @media (prefers-reduced-motion: reduce) { .client-story.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; } }
+  @media (prefers-reduced-motion: reduce) {
+.client-story.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; }
+  }
 {% endstylesheet %}
 
 {% schema %}
 {
+  "max_blocks": 6,
   "name": "t:client_story.name",
   "disabled_on": {
     "groups": [

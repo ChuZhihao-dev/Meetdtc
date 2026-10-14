@@ -23,8 +23,13 @@
   assign view_all_href = section_settings.view_all_link | default: product_collection.url
 %}
 
-{% style %}
-  #shopify-section-{{ section.id }} .product-solutions-grid {
+
+
+<div class="section-background product-solutions-grid__background"></div>
+
+<scroll-reveal-component
+  class="section section--page-width product-solutions-grid spacing-style"
+  style="{% render 'spacing-style', settings: section_settings %}
     --solutions-bg-from: {{ section_settings.background_from }};
     --solutions-bg-to: {{ section_settings.background_to }};
     --solutions-columns: {{ section_settings.columns }};
@@ -42,14 +47,7 @@
     --solutions-heading-font-weight: {{ section_settings.weight }};
     --solutions-heading-line-height: {{ section_settings.line_height | default: '1' }};
     --text-wrap: {{ section_settings.wrap | default: 'balance' }};
-  }
-{% endstyle %}
-
-<div class="section-background product-solutions-grid__background"></div>
-
-<div
-  class="section section--page-width product-solutions-grid spacing-style"
-  style="{% render 'spacing-style', settings: section_settings %}"
+  "
   data-reveal-scope
   {{ section.shopify_attributes }}
 >
@@ -83,7 +81,7 @@
         {%- liquid
           assign product_description = product.description
           if product_description != blank
-            assign product_description = product_description | strip_html
+            assign product_description = product_description | strip_html | truncatewords: 60
           endif
         -%}
         <a class="product-solution-card" href="{{ product.url }}" aria-label="{{ product.title | escape }}" data-reveal>
@@ -117,7 +115,7 @@
       </a>
     </div>
   {% endif %}
-</div>
+</scroll-reveal-component>
 
 {% stylesheet %}
   .product-solutions-grid__background {
