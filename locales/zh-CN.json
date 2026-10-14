@@ -131,6 +131,7 @@
     "back_to_main_menu": "返回主菜单"
   },
   "content": {
+    "select_product_solution": "请选择产品集合",
     "select_menu": "Select a menu",
     "select_article": "Select an article",
     "reviews": "评价",

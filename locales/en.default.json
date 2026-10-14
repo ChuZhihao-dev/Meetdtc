@@ -164,6 +164,7 @@
     }
   },
   "content": {
+    "select_product_solution": "Select a product collection",
     "cancel": "Cancel",
     "discount": "Discount",
     "account_title": "Account",

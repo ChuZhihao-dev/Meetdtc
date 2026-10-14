@@ -135,6 +135,7 @@
     "back_to_main_menu": "Назад в главное меню"
   },
   "content": {
+    "select_product_solution": "Select a product collection",
     "select_menu": "Select a menu",
     "select_article": "Select an article",
     "reviews": "отз.",

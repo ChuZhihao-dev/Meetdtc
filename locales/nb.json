@@ -131,6 +131,7 @@
     "zoom_media": "Zoom medier {{ index }}"
   },
   "content": {
+    "select_product_solution": "Select a product collection",
     "select_menu": "Select a menu",
     "select_article": "Select an article",
     "reviews": "anmeldelser",

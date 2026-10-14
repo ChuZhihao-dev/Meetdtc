@@ -131,6 +131,7 @@
     "back_to_main_menu": "Takaisin päävalikkoon"
   },
   "content": {
+    "select_product_solution": "Select a product collection",
     "select_menu": "Select a menu",
     "select_article": "Select an article",
     "reviews": "arvostelua",

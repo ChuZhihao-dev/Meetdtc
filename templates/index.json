@@ -367,10 +367,9 @@
     },
     "blog_grid_dWECMy": {
       "type": "blog-grid",
-      "name": "t:names.blog_grid",
+      "name": "t:names.product_solutions_grid",
       "settings": {
-        "blog": "solutions",
-        "post_limit": 6,
+        "product_limit": 6,
         "heading": "<p>Solutions Built for&nbsp;<br/>Measurable Growth</p>",
         "read_more_label": "Read More →",
         "font": "var(--font-heading--family)",
