@@ -1,4 +1,12 @@
-
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "t:names.header",
@@ -23,6 +31,7 @@
             "menu": "main-menu",
             "background_color": "{{ settings.color_palette.background }}",
             "text_color": "#2f2f2f",
+            "active_color": "#0032f5",
             "type_font_primary_size": "1rem",
             "type_font_primary_weight": "700",
             "top_level_gap": 80,
@@ -38,14 +47,51 @@
             "text_color_navigation_bar": "",
             "drawer_accordion": false,
             "drawer_accordion_expand_first": false,
-            "drawer_dividers": false,
-            "active_color": "#0032f5"
+            "drawer_dividers": false
           },
           "blocks": {}
         },
         "header-cta": {
           "type": "group",
+          "name": "t:names.group",
+          "disabled": true,
           "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "flex-end",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 8,
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
           "blocks": {
             "audit-button": {
               "type": "button",
@@ -57,7 +103,8 @@
                 "style_class": "button-custom",
                 "custom_button_background": "#5d6eea",
                 "custom_button_text": "#ffffff",
-                "custom_button_border": "#ffffff00",
+                "custom_button_border": "rgba(0,0,0,0)",
+                "link_text_color": "",
                 "button_gradient": true,
                 "button_gradient_from": "#5d6eea",
                 "button_gradient_to": "#772cc7",
@@ -69,31 +116,20 @@
                 "button_font": "var(--font-heading--family)",
                 "button_font_size": "1rem",
                 "button_font_weight": "700",
+                "button_letter_spacing": "",
+                "button_case": "",
+                "button_icon_size": 16,
                 "width": "fit-content",
-                "width_mobile": "fit-content"
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
               },
               "blocks": {}
             }
           },
           "block_order": [
             "audit-button"
-          ],
-          "name": "t:names.group",
-          "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "flex-end",
-            "vertical_alignment": "center",
-            "gap": 8,
-            "width": "fit-content",
-            "width_mobile": "fit-content",
-            "height": "fit",
-            "background_media": "none",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          }
+          ]
         }
       },
       "settings": {

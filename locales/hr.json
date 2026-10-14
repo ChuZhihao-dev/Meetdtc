@@ -8,6 +8,16 @@
  * ------------------------------------------------------------
  */
 {
+  "work_catalog": {
+    "filter": "FILTER",
+    "all": "ALL",
+    "loading": "Loading case studies…",
+    "loaded": "Case studies updated.",
+    "error": "Case studies could not be loaded. Your previous list is still available.",
+    "retry": "Retry",
+    "empty": "No case studies found for this tag.",
+    "image_preview": "IMAGE / PREVIEW"
+  },
   "blog_filter": {
     "categories": "Blog categories",
     "all_categories": "All Categories",

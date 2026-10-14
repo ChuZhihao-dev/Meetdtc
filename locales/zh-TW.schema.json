@@ -8,6 +8,20 @@
  * ------------------------------------------------------------
  */
 {
+  "work_catalog": {
+    "name": "Our Work collection",
+    "intro_background": "Introduction background",
+    "list_background": "Case-study background",
+    "filter_background": "Filter panel background",
+    "muted_color": "Description color",
+    "filter_color": "Filter label color",
+    "filter_heading_color": "Filter heading color",
+    "card_background": "Case-study card background",
+    "card_border": "Card border",
+    "media_background": "Image placeholder background",
+    "media_border": "Image border",
+    "placeholder_color": "Image placeholder text"
+  },
   "blog_filter": {
     "category_name": "Blog category",
     "categories_name": "Blog categories",

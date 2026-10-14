@@ -1,0 +1,36 @@
+{% doc %}
+  Compact case-study pagination with native links and centered arrow glyphs.
+  @param {object} [paginate] - Current collection pagination.
+  @param {boolean} [preview] - Display non-interactive theme-editor pagination.
+  @example {% render 'work-pagination', paginate: paginate %}
+{% enddoc %}
+{% if paginate.pages > 1 %}
+  <nav class="work-catalog__pagination" aria-label="{{ 'content.pagination.nav_label' | t }}">
+    {% if paginate.previous %}
+      <a class="work-catalog__page work-catalog__page--arrow" href="{{ paginate.previous.url | escape }}" aria-label="{{ 'content.pagination.previous' | t }}">
+        <span class="work-catalog__page-arrow" aria-hidden="true">&lt;</span>
+      </a>
+    {% endif %}
+    {% for part in paginate.parts %}
+      {% if part.is_link %}
+        <a class="work-catalog__page" href="{{ part.url | escape }}" aria-label="{{ 'content.pagination.page' | t: page: part.title }}">{{ part.title }}</a>
+      {% elsif part.title == '&hellip;' %}
+        <span class="work-catalog__page" aria-hidden="true">&hellip;</span>
+      {% else %}
+        <span class="work-catalog__page" aria-current="page">{{ part.title }}</span>
+      {% endif %}
+    {% endfor %}
+    {% if paginate.next %}
+      <a class="work-catalog__page work-catalog__page--arrow" href="{{ paginate.next.url | escape }}" aria-label="{{ 'content.pagination.next' | t }}">
+        <span class="work-catalog__page-arrow" aria-hidden="true">&gt;</span>
+      </a>
+    {% endif %}
+  </nav>
+{% endif %}
+
+{% if preview %}
+  <div class="work-catalog__pagination" aria-hidden="true">
+    <span class="work-catalog__page" aria-current="page">1</span><span class="work-catalog__page">2</span><span class="work-catalog__page">3</span><span class="work-catalog__page">…</span><span class="work-catalog__page">12</span>
+    <span class="work-catalog__page work-catalog__page--arrow"><span class="work-catalog__page-arrow">&gt;</span></span>
+  </div>
+{% endif %}

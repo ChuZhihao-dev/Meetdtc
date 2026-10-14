@@ -8,6 +8,20 @@
  * ------------------------------------------------------------
  */
 {
+  "work_catalog": {
+    "name": "Our Work 产品案例",
+    "intro_background": "介绍区域背景",
+    "list_background": "案例区域背景",
+    "filter_background": "筛选栏背景",
+    "muted_color": "Description color",
+    "filter_color": "Filter label color",
+    "filter_heading_color": "Filter heading color",
+    "card_background": "Case-study card background",
+    "card_border": "Card border",
+    "media_background": "Image placeholder background",
+    "media_border": "Image border",
+    "placeholder_color": "Image placeholder text"
+  },
   "blog_filter": {
     "category_name": "Blog category",
     "categories_name": "Blog categories",

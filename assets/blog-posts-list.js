@@ -53,19 +53,26 @@ export default class BlogPostsList extends Component {
     return this.getAttribute('section-id') || '';
   }
 
+  /** Selector hooks allow collection views to reuse the same filtering behavior. */
+  get filterSelector() { return '.blog-categories'; }
+  get resultsSelector() { return '.blog-posts-results'; }
+  get paginationSelector() { return '.pagination'; }
+  get cardSelector() { return '.blog-post-item'; }
+  get introSelector() { return '.blog-list__intro-content > .shopify-block'; }
+
   /** Intercept only unmodified native category/pagination links. @param {MouseEvent} event */
   navigate(event) {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const target = event.composedPath()[0];
     if (!(target instanceof Element)) return;
-    const link = target.closest('.blog-categories a, .blog-posts-results .pagination a');
+    const link = target.closest(`${this.filterSelector} a, ${this.resultsSelector} ${this.paginationSelector} a`);
     if (!(link instanceof HTMLAnchorElement) || !this.contains(link) || link.target === '_blank' || link.hasAttribute('download')) return;
     const url = new URL(link.href);
     if (url.origin !== location.origin) return;
     event.preventDefault();
     if (url.href === this.#pendingUrl?.href && !this.hasAttribute('data-error')) return;
     if (url.href === this.#activeUrl.href && !this.#pendingUrl && !this.hasAttribute('data-error')) return;
-    const moveFocus = Boolean(link.closest('.blog-posts-results'));
+    const moveFocus = Boolean(link.closest(this.resultsSelector));
     void this.#render(url, moveFocus);
   }
 
@@ -79,7 +86,7 @@ export default class BlogPostsList extends Component {
     const request = ++this.#request;
     this.#pendingUrl = url;
     this.removeAttribute('data-error');
-    const results = this.querySelector('.blog-posts-results');
+    const results = this.querySelector(this.resultsSelector);
     results?.setAttribute('aria-busy', 'true');
     if (this.refs.status) this.refs.status.textContent = this.dataset.loadingText || '';
     try {
@@ -100,9 +107,9 @@ export default class BlogPostsList extends Component {
           shouldRender: (html) => {
             if (request !== this.#request || !this.isConnected) return false;
             const document = new DOMParser().parseFromString(html, 'text/html');
-            const region = document.getElementById(`shopify-section-${this.sectionId}`)?.querySelector('.blog-posts-results');
+            const region = document.getElementById(`shopify-section-${this.sectionId}`)?.querySelector(this.resultsSelector);
             if (!region || region.getAttribute('data-hydration-key') !== results?.getAttribute('data-hydration-key')) {
-              throw new Error('Missing matching blog list in section response');
+              throw new Error('Missing matching filtered list in section response');
             }
             return true;
           },
@@ -110,8 +117,8 @@ export default class BlogPostsList extends Component {
       }
       if (request !== this.#request || !this.isConnected) return;
       this.updatedCallback();
-      const nextResults = this.querySelector('.blog-posts-results');
-      if (!(nextResults instanceof HTMLElement)) throw new Error('Missing live blog list');
+      const nextResults = this.querySelector(this.resultsSelector);
+      if (!(nextResults instanceof HTMLElement)) throw new Error('Missing live filtered list');
       if (!useCached) this.#cachePage(url, html);
       this.#activeUrl = new URL(url);
       this.#activeUrl.pathname = nextResults.dataset.currentPath || url.pathname;
@@ -128,7 +135,7 @@ export default class BlogPostsList extends Component {
       this.setAttribute('data-error', '');
       if (this.refs.status) this.refs.status.textContent = this.dataset.errorText || '';
     } finally {
-      if (request === this.#request && this.isConnected) this.querySelector('.blog-posts-results')?.removeAttribute('aria-busy');
+      if (request === this.#request && this.isConnected) this.querySelector(this.resultsSelector)?.removeAttribute('aria-busy');
     }
   }
 
@@ -143,8 +150,8 @@ export default class BlogPostsList extends Component {
   }
 
   #updateCategories() {
-    const path = this.querySelector('.blog-posts-results')?.getAttribute('data-current-path') || location.pathname;
-    for (const link of this.querySelectorAll('.blog-categories a')) {
+    const path = this.querySelector(this.resultsSelector)?.getAttribute('data-current-path') || location.pathname;
+    for (const link of this.querySelectorAll(`${this.filterSelector} a`)) {
       if (!(link instanceof HTMLAnchorElement)) continue;
       if (new URL(link.href).pathname === path) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
@@ -157,16 +164,16 @@ export default class BlogPostsList extends Component {
   #reveal = (includeIntro = false) => {
     this.#clearMotion();
     if (this.#motion.matches || this.dataset.animate === 'false' || window.Shopify?.designMode) return;
-    const cards = [...this.querySelectorAll('.blog-post-item')];
+    const cards = [...this.querySelectorAll(this.cardSelector)];
     const visible = cards.filter((card) => {
       const rect = card.getBoundingClientRect();
       return rect.bottom > 0 && rect.top < innerHeight;
     });
     this.#easing = getComputedStyle(this).getPropertyValue('--ease-out-cubic').trim() || 'ease-out';
     if (includeIntro === true) {
-      const introduction = this.querySelectorAll('.blog-list__intro-content > .shopify-block');
+      const introduction = this.querySelectorAll(this.introSelector);
       for (const [index, element] of [...introduction].entries()) this.#animate(element, index);
-      const navigation = this.querySelector('.blog-categories');
+      const navigation = this.querySelector(this.filterSelector);
       if (navigation) this.#animate(navigation, introduction.length);
     }
     visible.forEach((card, index) => this.#animate(card, index));

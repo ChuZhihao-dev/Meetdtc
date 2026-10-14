@@ -1,0 +1,30 @@
+{% doc %}
+  Renders a blog article tag link with a CSS selected/unselected indicator.
+  @param {string} tag - Article tag or an empty string for all articles.
+  @param {blog} blog - The blog whose tag page the link targets.
+  @example {% render 'work-tag-link', tag: tag, blog: blog %}
+{% enddoc %}
+{% liquid
+  assign selected = false
+  if tag == blank and current_tags == blank
+    assign selected = true
+  elsif current_tags contains tag
+    assign selected = true
+  endif
+  assign label = tag
+  if tag == blank
+    assign label = 'work_catalog.all' | t
+  endif
+%}
+{% capture label_markup %}
+  <span class="work-catalog__indicator" aria-hidden="true"></span>
+  <span>{{ label | escape }}</span>
+{% endcapture %}
+{% if blog == blank %}
+  <span class="work-catalog__tag"{% if selected %} aria-current="page"{% endif %}>{{ label_markup }}</span>
+{% elsif tag == blank %}
+  <a class="work-catalog__tag" href="{{ blog.url | escape }}"{% if selected %} aria-current="page"{% endif %}>{{ label_markup }}</a>
+{% else %}
+  {%- capture tag_url -%}{{ blog.url }}/tagged/{{ tag | handle }}{%- endcapture -%}
+  <a class="work-catalog__tag" href="{{ tag_url | escape }}"{% if selected %} aria-current="page"{% endif %}>{{ label_markup }}</a>
+{% endif %}
