@@ -197,6 +197,17 @@
         "padding-block-end": 0
       }
     },
+    "page_background_QPhed3": {
+      "type": "page-background",
+      "name": "t:names.page_background",
+      "settings": {
+        "background_type": "gradient",
+        "background_color": "#FFFFFF",
+        "gradient_color_from": "#E6EBFF",
+        "gradient_color_to": "#A8C0FF",
+        "gradient_angle": 176
+      }
+    },
     "partner_brands_PtTzrK": {
       "type": "partner-brands",
       "blocks": {
@@ -647,8 +658,8 @@
         "gradient_angle": 110,
         "gradient_start_position": 11,
         "gradient_end_position": 89,
-        "background_gradient_from": "#aac5ff",
-        "background_gradient_to": "#c9d5fd",
+        "background_gradient_from": "rgba(0,0,0,0)",
+        "background_gradient_to": "rgba(0,0,0,0)",
         "background_gradient_angle": 180,
         "media_width": 368,
         "card_radius": 27,
@@ -737,8 +748,8 @@
         "gradient_angle": 92,
         "gradient_start_position": 0,
         "gradient_end_position": 15,
-        "background_gradient_from": "#aac5ff",
-        "background_gradient_to": "#cbd5fd",
+        "background_gradient_from": "rgba(0,0,0,0)",
+        "background_gradient_to": "rgba(0,0,0,0)",
         "background_gradient_angle": 104,
         "row_background": "#e5e6ff",
         "row_radius": 16,
@@ -755,6 +766,7 @@
   },
   "order": [
     "section_6mqxB3",
+    "page_background_QPhed3",
     "partner_brands_PtTzrK",
     "services_globe",
     "blog_grid_dWECMy",

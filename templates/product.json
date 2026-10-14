@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "page_background_n8zJR6": {
+      "type": "page-background",
+      "name": "t:names.page_background",
+      "settings": {
+        "background_type": "gradient",
+        "background_color": "#ffffff",
+        "gradient_color_from": "#f7eaf3",
+        "gradient_color_to": "#dbe5f3",
+        "gradient_angle": 176
+      }
+    },
     "main": {
       "type": "product-information",
       "blocks": {
@@ -425,7 +436,7 @@
         "heading_from": "#0c23b8",
         "heading_to": "#7c21c2",
         "description_color": "#6b6a6a",
-        "section_height": "large",
+        "section_height": "full-screen",
         "padding-block-start": 84,
         "padding-block-end": 184
       }
@@ -560,8 +571,8 @@
         "gradient_angle": 90,
         "gradient_start_position": 27,
         "gradient_end_position": 72,
-        "background_gradient_from": "#EFE6F3",
-        "background_gradient_to": "#E2CDF4",
+        "background_gradient_from": "#efe6f3",
+        "background_gradient_to": "#e2cdf4",
         "background_gradient_angle": 100,
         "thickness": 0.5,
         "divider_color": "#707070",
@@ -634,7 +645,7 @@
         "gradient_text": true,
         "gradient_color_from": "#0b22b8",
         "gradient_color_to": "#9621c4",
-        "background_color": "#f5ebf4",
+        "background_color": "rgba(0,0,0,0)",
         "text_color": "#000000",
         "accent_color": "#7222c1",
         "description_color": "#6b6b6b",
@@ -645,6 +656,27 @@
         "enable_animation": true,
         "padding-block-start": 36,
         "padding-block-end": 60
+      }
+    },
+    "our_approach_dJQKw8": {
+      "type": "our-approach",
+      "name": "t:our_approach.name",
+      "settings": {
+        "eyebrow": "OUR APPROACH",
+        "heading": "Design, buildand launch\non one team.",
+        "body_primary": "<p>We run discovery, design, build and launch with the same people. so nothing is lost in a handover. Scope is fixed up front - page count, markets and timeline - and written into the brief before any design starts.</p>",
+        "body_secondary": "<p>By combining customer data, audience strategy, automated journeys and conversion-led creative, we turn fragmented email activity into a coordinated, measurable retention programme.</p>",
+        "image": "shopify://shop_images/image_122_1.webp",
+        "image_alt": "",
+        "font": "montserrat_n5",
+        "text_color": "#000000",
+        "heading_gradient": "linear-gradient(122.1396deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "background": "",
+        "padding-block-start": 60,
+        "padding-block-end": 60,
+        "padding_mobile_top": 40,
+        "padding_mobile_bottom": 40,
+        "enable_reveal": true
       }
     },
     "delivery_process_Adtgjg": {
@@ -706,7 +738,7 @@
         "background": "linear-gradient(135.439deg, rgba(211, 216, 246, 1) 2.204%, rgba(253, 243, 255, 1) 97.796%)",
         "heading_gradient": "linear-gradient(107.919deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
         "text_color": "#000000",
-        "accent_color": "#9621C4",
+        "accent_color": "#9621c4",
         "step_gap": 60,
         "padding-block-start": 60,
         "padding-block-end": 100
@@ -733,8 +765,8 @@
         "gradient_start_position": 12,
         "gradient_end_position": 88,
         "description_color": "#ffffff",
-        "background_gradient_from": "#aac5ff",
-        "background_gradient_to": "#cbd5fd",
+        "background_gradient_from": "rgba(0,0,0,0)",
+        "background_gradient_to": "rgba(0,0,0,0)",
         "background_gradient_angle": 104,
         "panel_gradient_from": "#6379ef",
         "panel_gradient_to": "#b62cf6",
@@ -749,6 +781,71 @@
         "panel_padding_inline_end": 48,
         "panel_padding_block_end": 40,
         "panel_padding_inline_start": 48
+      }
+    },
+    "featured_client_story_ChKJVj": {
+      "type": "featured-client-story",
+      "blocks": {
+        "client_story_metric_zLRcgq": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "[XX%]",
+            "label": "Primary result"
+          },
+          "blocks": {}
+        },
+        "client_story_metric_jtqQkg": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "[XX%]",
+            "label": "Primary result"
+          },
+          "blocks": {}
+        },
+        "client_story_metric_MwnYiR": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "[XX%]",
+            "label": "Primary result"
+          },
+          "blocks": {}
+        },
+        "client_story_metric_JWPK8E": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "[XX%]",
+            "label": "Primary result"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "client_story_metric_zLRcgq",
+        "client_story_metric_jtqQkg",
+        "client_story_metric_MwnYiR",
+        "client_story_metric_JWPK8E"
+      ],
+      "name": "t:client_story.name",
+      "settings": {
+        "eyebrow": "FEATURED CLIENT STORY",
+        "heading": "[Client] achieved [core business result] with [service].",
+        "description": "<p>Summarise the client context, the ME approach and the verified business outcome in one concise paragraph.</p>",
+        "image_alt": "",
+        "link_label": "Vlaw Case Study",
+        "link": "",
+        "font": "montserrat_n5",
+        "text_color": "#000000",
+        "heading_gradient": "linear-gradient(108.133deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "background": "",
+        "panel_background": "linear-gradient(105.9376deg, rgba(19, 98, 250, 0.05) 3.724%, rgba(109, 40, 217, 0.05) 96.276%)",
+        "accent_color": "#6d28d9",
+        "media_background": "#fdfdfd",
+        "button_background": "#6d28d9",
+        "button_text_color": "#ffffff",
+        "card_radius": 28,
+        "padding-block-start": 60,
+        "padding-block-end": 60,
+        "enable_reveal": false
       }
     },
     "faq_XyKTzC": {
@@ -823,8 +920,8 @@
         "gradient_angle": 92,
         "gradient_start_position": 0,
         "gradient_end_position": 15,
-        "background_gradient_from": "#aac5ff",
-        "background_gradient_to": "#cbd5fd",
+        "background_gradient_from": "rgba(0,0,0,0)",
+        "background_gradient_to": "rgba(0,0,0,0)",
         "background_gradient_angle": 104,
         "row_background": "#e5e6ff",
         "row_radius": 16,
@@ -840,12 +937,15 @@
     }
   },
   "order": [
+    "page_background_n8zJR6",
     "main",
     "product_hero_jiNakp",
     "partner_brands_z4GbiM",
     "business_challenge_iR7zkb",
+    "our_approach_dJQKw8",
     "delivery_process_Adtgjg",
     "cta_banner_9deRhq",
+    "featured_client_story_ChKJVj",
     "faq_XyKTzC"
   ]
 }

@@ -8,6 +8,31 @@
  * ------------------------------------------------------------
  */
 {
+  "service_scope": {
+    "name": "服务范围",
+    "card_name": "服务卡片",
+    "eyebrow": "上标",
+    "heading": "标题",
+    "description": "介绍",
+    "font": "字体",
+    "text_color": "文字颜色",
+    "heading_gradient": "标题渐变",
+    "background": "分区背景",
+    "background_info": "留空显示页面背景；设置颜色或渐变后优先使用该设置。",
+    "card_background": "卡片背景",
+    "card_opacity": "卡片背景不透明度",
+    "card_border": "卡片边框颜色",
+    "card_radius": "卡片圆角",
+    "column_gap": "桌面端列间距",
+    "row_gap": "桌面端行间距",
+    "padding-block-start": "桌面端顶部间距",
+    "padding-block-end": "桌面端底部间距",
+    "padding_mobile_top": "手机端顶部间距",
+    "padding_mobile_bottom": "手机端底部间距",
+    "enable_reveal": "启用入场动画",
+    "card_heading": "卡片标题",
+    "card_description": "卡片说明"
+  },
   "client_story": {
     "name": "Featured Client Story",
     "metric_name": "Client result",

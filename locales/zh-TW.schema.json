@@ -8,6 +8,31 @@
  * ------------------------------------------------------------
  */
 {
+  "service_scope": {
+    "name": "Service scope",
+    "card_name": "Service card",
+    "eyebrow": "Eyebrow",
+    "heading": "Heading",
+    "description": "Introduction",
+    "font": "Font",
+    "text_color": "Text color",
+    "heading_gradient": "Heading gradient",
+    "background": "Section background",
+    "background_info": "Leave empty to show the page background. A selected color or gradient overrides it.",
+    "card_background": "Card background",
+    "card_opacity": "Card background opacity",
+    "card_border": "Card border color",
+    "card_radius": "Card corner radius",
+    "column_gap": "Column spacing (desktop)",
+    "row_gap": "Row spacing (desktop)",
+    "padding-block-start": "Desktop top padding",
+    "padding-block-end": "Desktop bottom padding",
+    "padding_mobile_top": "Mobile top padding",
+    "padding_mobile_bottom": "Mobile bottom padding",
+    "enable_reveal": "Enable entrance animation",
+    "card_heading": "Card heading",
+    "card_description": "Card description"
+  },
   "client_story": {
     "name": "Featured Client Story",
     "metric_name": "Client result",
