@@ -8,6 +8,10 @@
  * ------------------------------------------------------------
  */
 {
+  "footer_diagnosis": {
+    "form_anchor_id": "Form anchor ID",
+    "form_anchor_info": "Enter a unique ID such as growth-diagnosis (without #). Spaces and uppercase letters are normalized to lowercase hyphenated text. Link to #growth-diagnosis on this page, or /pages/contact#growth-diagnosis from another page that contains this footer. Leave empty to omit the custom anchor."
+  },
   "service_scope": {
     "name": "Service scope",
     "card_name": "Service card",

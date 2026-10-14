@@ -679,6 +679,82 @@
         "enable_reveal": true
       }
     },
+    "service_scope_VaDYAw": {
+      "type": "service-scope",
+      "blocks": {
+        "card_ETxkQz": {
+          "type": "card",
+          "settings": {
+            "heading": "Emall Strategy",
+            "description": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+          }
+        },
+        "card_wKwRVy": {
+          "type": "card",
+          "settings": {
+            "heading": "Emall Strategy",
+            "description": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+          }
+        },
+        "card_jTHQUi": {
+          "type": "card",
+          "settings": {
+            "heading": "Emall Strategy",
+            "description": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+          }
+        },
+        "card_HJg9Ee": {
+          "type": "card",
+          "settings": {
+            "heading": "Emall Strategy",
+            "description": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+          }
+        },
+        "card_xg8a6q": {
+          "type": "card",
+          "settings": {
+            "heading": "Emall Strategy",
+            "description": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+          }
+        },
+        "card_nMqphe": {
+          "type": "card",
+          "settings": {
+            "heading": "Emall Strategy",
+            "description": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "card_ETxkQz",
+        "card_wKwRVy",
+        "card_jTHQUi",
+        "card_HJg9Ee",
+        "card_xg8a6q",
+        "card_nMqphe"
+      ],
+      "name": "t:service_scope.name",
+      "settings": {
+        "eyebrow": "SERVICE SCOPE",
+        "heading": "What Is Included",
+        "description": "<p>A monular scope tailored to each service, growth priarity and operating need. Add or<br/>&nbsp;romove modulas as the progremme grows.</p>",
+        "font": "montserrat_n4",
+        "text_color": "#000000",
+        "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "background": "",
+        "card_background": "#FFFFFF",
+        "card_opacity": 58,
+        "card_border": "#FFFFFF",
+        "card_radius": 13,
+        "column_gap": 33,
+        "row_gap": 29,
+        "padding-block-start": 60,
+        "padding-block-end": 60,
+        "padding_mobile_top": 40,
+        "padding_mobile_bottom": 40,
+        "enable_reveal": true
+      }
+    },
     "delivery_process_Adtgjg": {
       "type": "delivery-process",
       "blocks": {
@@ -943,6 +1019,7 @@
     "partner_brands_z4GbiM",
     "business_challenge_iR7zkb",
     "our_approach_dJQKw8",
+    "service_scope_VaDYAw",
     "delivery_process_Adtgjg",
     "cta_banner_9deRhq",
     "featured_client_story_ChKJVj",

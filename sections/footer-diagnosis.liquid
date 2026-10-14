@@ -20,6 +20,7 @@
 {% liquid
   assign section_settings = section.settings
   assign form_id = 'FooterDiagnosis-' | append: section.id
+  assign form_anchor_id = section_settings.form_anchor_id | strip | remove: '#' | handleize
 %}
 
 {% style %}
@@ -99,7 +100,10 @@
       {% endif %}
     </div>
 
-    <footer-diagnosis class="footer-diagnosis__card">
+    <footer-diagnosis
+      class="footer-diagnosis__card"
+      {% if form_anchor_id != blank and form_anchor_id != form_id %}id="{{ form_anchor_id | escape }}" tabindex="-1"{% endif %}
+    >
       {%- form 'contact', id: form_id, class: 'footer-diagnosis__form' -%}
         <input type="hidden" name="contact[id]" value="{{ form_id }}">
 
@@ -386,6 +390,7 @@ letter-spacing: 0%;
 
   .footer-diagnosis__card {
     display: block;
+    scroll-margin-block-start: calc(var(--header-group-height, 0px) + 24px);
     padding: 46px 42px;
     color: #111111;
     background-color: var(--fd-card-bg, #FBFBFB);
@@ -764,6 +769,12 @@ letter-spacing: 0%;
     {
       "type": "header",
       "content": "t:names.contact_form"
+    },
+    {
+      "type": "text",
+      "id": "form_anchor_id",
+      "label": "t:footer_diagnosis.form_anchor_id",
+      "info": "t:footer_diagnosis.form_anchor_info"
     },
     {
       "type": "color",

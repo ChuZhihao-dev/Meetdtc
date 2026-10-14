@@ -8,6 +8,10 @@
  * ------------------------------------------------------------
  */
 {
+  "footer_diagnosis": {
+    "form_anchor_id": "表单锚点 ID",
+    "form_anchor_info": "填写页面中唯一的 ID，例如 growth-diagnosis（无需 #）。空格和大写字母会转为小写连字符格式。同页按钮链接填 #growth-diagnosis；跨页填写含该页脚的页面地址，例如 /pages/contact#growth-diagnosis。留空不添加自定义锚点。"
+  },
   "service_scope": {
     "name": "服务范围",
     "card_name": "服务卡片",
