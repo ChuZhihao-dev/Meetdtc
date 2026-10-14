@@ -1,0 +1,230 @@
+{% comment %}
+  Our approach: responsive editorial copy and a merchant-selected reference image.
+  Background is transparent unless explicitly set. Reveal reuses the theme lifecycle.
+  @example Add "Our approach", choose the image, and edit the two paragraphs.
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+  assign medium_font = s.font | font_modify: 'weight', '500'
+  assign semibold_font = s.font | font_modify: 'weight', '600'
+  assign desktop_image = s.image | default: s.image_mobile
+  assign mobile_image = s.image_mobile | default: desktop_image
+  assign image_alt = s.image_alt | default: desktop_image.alt
+  assign image_loading = 'lazy'
+  assign image_priority = 'auto'
+  if section.index == 1
+    assign image_loading = 'eager'
+    assign image_priority = 'high'
+  endif
+%}
+{% style %}
+  {{ medium_font | font_face: font_display: 'swap' }}
+  {{ semibold_font | font_face: font_display: 'swap' }}
+{% endstyle %}
+{% if s.enable_reveal %}
+  <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
+  {% render 'scroll-reveal-styles' %}
+{% endif %}
+<div class="our-approach__background" style="background: {{ s.background | default: 'transparent' }};" aria-hidden="true"></div>
+<div
+  class="section section--full-width spacing-style our-approach{% if desktop_image == blank %} our-approach--text-only{% endif %}"
+  style="{% render 'spacing-style', settings: s %}
+    --our-approach-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }};
+    --our-approach-text: {{ s.text_color }};
+    --our-approach-gradient: {{ s.heading_gradient | default: '#0B22B8' }};
+    --our-approach-mobile-top: {{ s.padding_mobile_top }}px;
+    --our-approach-mobile-bottom: {{ s.padding_mobile_bottom }}px;"
+  {% if s.enable_reveal %}data-reveal-scope{% endif %}
+>
+  <div class="our-approach__inner">
+    <div class="our-approach__copy" {% if s.enable_reveal %}data-reveal{% endif %}>
+      {% if s.eyebrow != blank %}<p class="our-approach__eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+      {% if s.heading != blank %}<h2 class="our-approach__heading">{{ s.heading | escape | newline_to_br }}</h2>{% endif %}
+      {% if s.body_primary != blank or s.body_secondary != blank %}
+        <div class="our-approach__body">
+          {% if s.body_primary != blank %}<div class="our-approach__paragraph our-approach__paragraph--primary">{{ s.body_primary }}</div>{% endif %}
+          {% if s.body_secondary != blank %}<div class="our-approach__paragraph our-approach__paragraph--secondary">{{ s.body_secondary }}</div>{% endif %}
+        </div>
+      {% endif %}
+    </div>
+    {% if desktop_image != blank %}
+      <div class="our-approach__media" {% if s.enable_reveal %}data-reveal{% endif %}>
+        <picture class="our-approach__picture">
+          {% if mobile_image != desktop_image %}
+            <source media="(max-width: 749px)" srcset="{{ mobile_image | image_url: width: 375 }} 375w, {{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1100 }} 1100w" sizes="calc(100vw - 40px)" width="{{ mobile_image.width }}" height="{{ mobile_image.height }}">
+          {% endif %}
+          {{ desktop_image | image_url: width: 2200 | image_tag: class: 'our-approach__image', widths: '375,550,750,1100,1500,1800,2200', sizes: '(min-width: 1440px) 587px, (min-width: 990px) 40.77vw, (min-width: 750px) calc(100vw - 64px), calc(100vw - 40px)', loading: image_loading, fetchpriority: image_priority, alt: image_alt }}
+        </picture>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% stylesheet %}
+  .our-approach__background { position: absolute; inset: 0; z-index: var(--layer-section-background, -1); pointer-events: none; }
+  .our-approach { overflow: clip; color: var(--our-approach-text, #000); font-family: var(--our-approach-font, var(--font-heading--family)); }
+  .our-approach__inner { width: 100%; max-width: 1440px; margin-inline: auto; display: grid; grid-template-columns: minmax(0, 729fr) minmax(0, 587fr); padding-inline: min(4.30556vw, 62px); align-items: start; min-width: 0; }
+  .our-approach__copy { min-width: 0; position: relative; z-index: 1; }
+  .our-approach__eyebrow { margin: 0 0 clamp(10px, 1.04167vw, 15px); font-size: clamp(18px, 1.66667vw, 24px); font-weight: 500; line-height: 1.583333; }
+  .our-approach__heading { margin: 0; font-family: inherit; font-size: clamp(40px, 4.02778vw, 58px); font-weight: 600; line-height: 1.034483; letter-spacing: normal; color: var(--our-approach-text, #000); background: var(--our-approach-gradient); background-clip: text; -webkit-text-fill-color: transparent; overflow-wrap: anywhere; }
+  .our-approach__body { margin-block-start: clamp(36px, 4.16667vw, 60px); display: grid; gap: 20px; font-size: clamp(18px, 1.66667vw, 24px); font-weight: 500; line-height: 1.583333; }
+  .our-approach__paragraph { width: 100%; overflow-wrap: anywhere; }
+  .our-approach__paragraph--primary { max-width: 77.7742%; }
+  .our-approach__paragraph--secondary { max-width: 75.6929%; }
+  .our-approach__paragraph > :first-child { margin-block-start: 0; }
+  .our-approach__paragraph > :last-child { margin-block-end: 0; }
+  .our-approach__paragraph a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
+  .our-approach__paragraph a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  .our-approach__media { min-width: 0; }
+  .our-approach__picture { display: block; }
+  .our-approach__image { display: block; width: auto; height: auto; max-width: 100%; -webkit-user-drag: none; user-select: none; }
+  .our-approach--text-only .our-approach__inner { grid-template-columns: minmax(0, 1fr); inset-inline-start: 0; padding-inline: min(4.30556vw, 62px); }
+  .our-approach--text-only .our-approach__copy { max-width: 900px; }
+  .our-approach--text-only .our-approach__paragraph { max-width: 729px; }
+  .our-approach.reveal-ready [data-reveal][data-state='before'] { transform: translateY(24px); }
+  @media screen and (max-width: 989px) {
+    .our-approach__inner, .our-approach--text-only .our-approach__inner { grid-template-columns: minmax(0, 1fr); inset-inline-start: 0; padding-inline: 32px; gap: 40px; }
+    .our-approach__heading { font-size: clamp(40px, 5.8vw, 48px); line-height: 1.15; }
+    .our-approach__heading br { display: none; }
+    .our-approach__body { margin-block-start: 28px; font-size: 20px; line-height: 1.6; }
+    .our-approach__paragraph--primary, .our-approach__paragraph--secondary { max-width: 100%; }
+  }
+  @media screen and (max-width: 749px) {
+    .our-approach { padding-block: var(--our-approach-mobile-top, 40px) var(--our-approach-mobile-bottom, 40px); }
+    .our-approach__inner, .our-approach--text-only .our-approach__inner { padding-inline: 20px; gap: 32px; }
+    .our-approach__eyebrow { font-size: 16px; line-height: 1.5; margin-block-end: 12px; }
+    .our-approach__heading { font-size: clamp(32px, 8.20513vw, 36px); line-height: 1.15; }
+    .our-approach__body { margin-block-start: 24px; gap: 20px; font-size: 18px; line-height: 1.611111; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .our-approach.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:our_approach.name",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:our_approach.eyebrow",
+      "default": "OUR APPROACH"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:our_approach.heading",
+      "default": "Design, buildand launch\non one team."
+    },
+    {
+      "type": "richtext",
+      "id": "body_primary",
+      "label": "t:our_approach.body_primary",
+      "default": "<p>We run discovery, design, build and launch with the same people. so nothing is lost in a handover. Scope is fixed up front - page count, markets and timeline - and written into the brief before any design starts.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "body_secondary",
+      "label": "t:our_approach.body_secondary",
+      "default": "<p>By combining customer data, audience strategy, automated journeys and conversion-led creative, we turn fragmented email activity into a coordinated, measurable retention programme.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:our_approach.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "t:our_approach.image_mobile"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "t:our_approach.image_alt"
+    },
+    {
+      "type": "font_picker",
+      "id": "font",
+      "label": "t:our_approach.font",
+      "default": "montserrat_n5"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:our_approach.text_color",
+      "default": "#000000"
+    },
+    {
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "t:our_approach.heading_gradient",
+      "default": "linear-gradient(122.1396deg, #0B22B8 11.742%, #9621C4 88.258%)"
+    },
+    {
+      "type": "color_background",
+      "id": "background",
+      "label": "t:our_approach.background",
+      "info": "t:our_approach.background_info"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:our_approach.padding-block-start",
+      "default": 60,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:our_approach.padding-block-end",
+      "default": 60,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_top",
+      "label": "t:our_approach.padding_mobile_top",
+      "default": 40,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_bottom",
+      "label": "t:our_approach.padding_mobile_bottom",
+      "default": 40,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_reveal",
+      "label": "t:our_approach.enable_reveal",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:our_approach.name",
+      "category": "t:categories.storytelling"
+    }
+  ]
+}
+{% endschema %}

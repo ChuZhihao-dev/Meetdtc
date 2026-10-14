@@ -1,0 +1,42 @@
+{% doc %}
+  Renders an editable client result in the parent section's metric grid.
+  @example Add a Client result block to Featured Client Story and enter a verified value.
+{% enddoc %}
+{% if block.settings.value != blank or block.settings.label != blank %}
+  <div class="client-story-metric" {{ block.shopify_attributes }}>
+    {% if block.settings.value != blank %}<p class="client-story-metric__value">{{ block.settings.value | escape }}</p>{% endif %}
+    {% if block.settings.label != blank %}<p class="client-story-metric__label">{{ block.settings.label | escape }}</p>{% endif %}
+  </div>
+{% endif %}
+{% stylesheet %}
+  .client-story-metric { min-inline-size: 0; text-align: center; }
+  .client-story-metric__value { margin: 0; font-size: 34px; font-weight: 600; line-height: 41px; background: var(--client-story-gradient); background-clip: text; -webkit-text-fill-color: transparent; overflow-wrap: anywhere; }
+  .client-story-metric__label { margin: 10px 0 0; font-size: 20px; font-weight: 500; line-height: 38px; overflow-wrap: anywhere; }
+  @media screen and (max-width: 749px) { .client-story-metric__value { font-size: 28px; line-height: 34px; } .client-story-metric__label { font-size: 14px; line-height: 22px; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:client_story.metric_name",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "value",
+      "label": "t:client_story.metric_value",
+      "default": "[XX%]"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:client_story.metric_label",
+      "default": "Primary result"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:client_story.metric_name"
+    }
+  ]
+}
+{% endschema %}

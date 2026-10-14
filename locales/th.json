@@ -8,6 +8,10 @@
  * ------------------------------------------------------------
  */
 {
+  "client_story": {
+    "image_title": "CASE STUDY IMAGE",
+    "image_description": "Replace with one client visual. campaign creative, website screen or project result."
+  },
   "blocks": {
     "load_video": "โหลดวิดีโอ: {{ description }}",
     "sold_out": "ขายหมดแล้ว",

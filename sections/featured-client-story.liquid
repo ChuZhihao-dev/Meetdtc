@@ -1,0 +1,355 @@
+{% comment %}
+  Featured Client Story. Editable case summary, metric blocks and responsive client media.
+  Metric blocks remain static. An empty destination is previewed only in the editor.
+  @example Add Featured Client Story, replace the copy and image, and configure the case link.
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+  assign color_id = 'client-story-' | append: section.id
+  assign regular_font = s.font | font_modify: 'weight', '400'
+  assign medium_font = s.font | font_modify: 'weight', '500'
+  assign semibold_font = s.font | font_modify: 'weight', '600'
+  assign desktop_image = s.image | default: s.image_mobile
+  assign mobile_image = s.image_mobile | default: desktop_image
+  assign image_alt = s.image_alt | default: desktop_image.alt
+  assign image_loading = 'lazy'
+  assign image_priority = 'auto'
+  if section.index == 1
+    assign image_loading = 'eager'
+    assign image_priority = 'high'
+  endif
+%}
+{% style %}
+  {{ regular_font | font_face: font_display: 'swap' }}
+  {{ medium_font | font_face: font_display: 'swap' }}
+  {{ semibold_font | font_face: font_display: 'swap' }}
+{% endstyle %}
+{% render 'contrast-override', text_color: s.text_color, section_id: color_id %}
+{% if s.enable_reveal %}
+  {% render 'scroll-reveal-styles' %}
+  <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
+{% endif %}
+<div class="client-story__background" style="background: {{ s.background | default: 'transparent' }};" aria-hidden="true"></div>
+<div
+  class="section section--full-width spacing-style client-story color-custom-{{ color_id }}"
+  style="{% render 'spacing-style', settings: s %}
+    --client-story-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }};
+    --client-story-panel: {{ s.panel_background | default: 'transparent' }};
+    --client-story-gradient: {{ s.heading_gradient | default: s.text_color }};
+    --client-story-accent: {{ s.accent_color }};
+    --client-story-border: rgb({{ s.accent_color.rgb }} / 0.17);
+    --client-story-media: {{ s.media_background }};
+    --client-story-button-background: {{ s.button_background }};
+    --client-story-button-color: {{ s.button_text_color }};
+    --client-story-radius: {{ s.card_radius }}px;"
+  {% if s.enable_reveal %}data-reveal-scope{% endif %}
+>
+  <div class="client-story__card" {% if s.enable_reveal %}data-reveal{% endif %}>
+    <div class="client-story__copy">
+      {% if s.eyebrow != blank %}<p class="client-story__eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+      {% if s.heading != blank %}<h2 class="client-story__heading">{{ s.heading | escape | newline_to_br }}</h2>{% endif %}
+      {% if s.description != blank %}<div class="client-story__description">{{ s.description }}</div>{% endif %}
+      {% capture metrics %}{% content_for 'blocks' %}{% endcapture %}
+      {% if metrics != blank %}<div class="client-story__metrics">{{ metrics }}</div>{% endif %}
+      {% if s.link_label != blank %}
+        {% if s.link != blank %}
+          <a class="client-story__button" href="{{ s.link | escape }}">{{ s.link_label | escape }}<span aria-hidden="true">→</span></a>
+        {% elsif request.design_mode %}
+          <span class="client-story__button client-story__button--preview">{{ s.link_label | escape }}<span aria-hidden="true">→</span></span>
+        {% endif %}
+      {% endif %}
+    </div>
+    <div class="client-story__media">
+      {% if desktop_image != blank %}
+        <picture class="client-story__picture">
+          {% if mobile_image != desktop_image %}
+            <source media="(max-width: 749px)" srcset="{{ mobile_image | image_url: width: 375 }} 375w, {{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1100 }} 1100w" sizes="calc(100vw - 40px)" width="{{ mobile_image.width }}" height="{{ mobile_image.height }}">
+          {% endif %}
+          {{ desktop_image | image_url: width: 2200 | image_tag: class: 'client-story__image', widths: '375,550,750,1100,1500,1800,2200', sizes: '(min-width: 1440px) 702px, (min-width: 990px) 49vw, (min-width: 750px) calc(100vw - 64px), calc(100vw - 40px)', loading: image_loading, fetchpriority: image_priority, alt: image_alt }}
+        </picture>
+      {% else %}
+        <div class="client-story__placeholder">
+          <span class="client-story__corner client-story__corner--start-top" aria-hidden="true"><img src="{{ 'client-story-corner-left.svg' | asset_url }}" width="40" height="35.5" alt="" loading="lazy"></span>
+          <span class="client-story__corner client-story__corner--start-bottom" aria-hidden="true"><img src="{{ 'client-story-corner-left.svg' | asset_url }}" width="40" height="35.5" alt="" loading="lazy"></span>
+          <span class="client-story__corner client-story__corner--end-top" aria-hidden="true"><img src="{{ 'client-story-corner-right.svg' | asset_url }}" width="40" height="35.5" alt="" loading="lazy"></span>
+          <span class="client-story__corner client-story__corner--end-bottom" aria-hidden="true"><img src="{{ 'client-story-corner-right.svg' | asset_url }}" width="40" height="35.5" alt="" loading="lazy"></span>
+          <div class="client-story__placeholder-copy">
+            <img class="client-story__placeholder-icon" src="{{ 'client-story-image.svg' | asset_url }}" width="80.0568" height="84.2463" alt="" loading="lazy">
+            <p class="client-story__placeholder-title">{{ 'client_story.image_title' | t }}</p>
+            <p class="client-story__placeholder-description">{{ 'client_story.image_description' | t }}</p>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% stylesheet %}
+  .client-story__background { position: absolute; inset: 0; z-index: var(--layer-section-background, -1); pointer-events: none; }
+  .client-story { font-family: var(--client-story-font, var(--font-heading--family)); color: var(--color-foreground); }
+  .client-story__card { position: relative; display: grid; grid-template-columns: minmax(0, 636fr) minmax(0, 702fr); inline-size: calc(100% - 100px); max-inline-size: 1340px; min-block-size: 704px; margin-inline: auto; border: 1px solid var(--client-story-border); border-radius: var(--client-story-radius); background: var(--client-story-panel); overflow: clip; }
+  .client-story__card::before { content: ''; position: absolute; inset-block: 0; inset-inline-start: 0; inline-size: 26px; background: var(--client-story-accent); pointer-events: none; }
+  .client-story__copy { min-inline-size: 0; padding: 40px 30px 20px 92px; }
+  .client-story__eyebrow { margin: 0 0 10px; font-size: 24px; font-weight: 500; line-height: 38px; overflow-wrap: anywhere; }
+  .client-story__heading { max-inline-size: 513px; margin: 0; font-family: inherit; font-size: 44px; font-weight: 600; line-height: 54px; letter-spacing: normal; background: var(--client-story-gradient); background-clip: text; -webkit-text-fill-color: transparent; overflow-wrap: anywhere; }
+  .client-story__description { max-inline-size: 513px; margin-block-start: 19px; font-size: 20px; font-weight: 500; line-height: 30px; overflow-wrap: anywhere; }
+  .client-story__description > :first-child { margin-block-start: 0; }
+  .client-story__description > :last-child { margin-block-end: 0; }
+  .client-story__description a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
+  .client-story__metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 193px)); gap: 15px 70px; max-inline-size: 456px; margin-block-start: 35px; margin-inline-start: -15px; }
+  .client-story__button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; max-inline-size: 100%; min-block-size: 53.176px; margin-block-start: 41px; margin-inline-start: 3px; padding: 8px 20px; border-radius: 54px; background: var(--client-story-button-background); color: var(--client-story-button-color); font-family: inherit; font-size: 21px; font-weight: 600; line-height: 1.5; text-align: center; text-decoration: none; overflow-wrap: anywhere; }
+  .client-story__button span { flex: none; }
+  .client-story__button:focus-visible, .client-story__description a:focus-visible { outline: 2px solid var(--client-story-accent); outline-offset: 4px; }
+  .client-story__button--preview { cursor: default; }
+  .client-story__media { position: relative; min-inline-size: 0; min-block-size: 702px; background: var(--client-story-media); }
+  .client-story__picture { display: block; position: absolute; inset: 0; }
+  .client-story__image { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; object-position: center; }
+  .client-story__placeholder { position: absolute; inset: 0; container-type: inline-size; }
+  .client-story__corner { position: absolute; }
+  /* Preserve the exported SVG dimensions instead of inheriting the theme's 100% image width. */
+  .client-story__corner img { display: block; inline-size: auto; block-size: auto; max-inline-size: none; }
+  .client-story__corner--start-top { inset-inline-start: 11.61%; inset-block-start: 5.63%; }
+  .client-story__corner--start-bottom { inset-inline-start: 11.61%; inset-block-end: 5.63%; transform: scaleY(-1); }
+  .client-story__corner--end-top { inset-inline-end: 11.61%; inset-block-start: 5.63%; transform: scaleX(-1); }
+  .client-story__corner--end-bottom { inset-inline-end: 11.61%; inset-block-end: 5.63%; transform: rotate(180deg); }
+  .client-story__placeholder-copy { position: absolute; inset-block-start: 36.32%; inset-inline: 8%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .client-story__placeholder-icon { display: block; flex: none; inline-size: auto; block-size: auto; max-inline-size: none; }
+  .client-story__placeholder-title { margin: 0; font-size: 25px; font-weight: 600; line-height: 30px; overflow-wrap: anywhere; }
+  .client-story__placeholder-copy > .client-story__placeholder-title { margin-block-start: 25px; }
+  .client-story__placeholder-description { max-inline-size: 454px; margin: 10px 0 0; font-size: 16px; font-weight: 400; line-height: 20px; overflow-wrap: anywhere; }
+  [dir='rtl'] .client-story__copy { padding-inline: 92px 30px; }
+  [dir='rtl'] .client-story__corner img { transform: scaleX(-1); }
+  @media screen and (min-width: 990px) and (max-width: 1439px) {
+    .client-story__card { inline-size: calc(100% - 64px); min-block-size: 0; }
+    .client-story__card::before { inline-size: 18px; }
+    .client-story__copy, [dir='rtl'] .client-story__copy { padding: 32px; padding-inline-start: 50px; }
+    .client-story__eyebrow { font-size: 18px; line-height: 28px; }
+    .client-story__heading { font-size: clamp(30px, 3.0556vw, 44px); line-height: 1.227273; }
+    .client-story__description { font-size: 18px; line-height: 28px; }
+    .client-story__metrics { gap: 15px 24px; margin-inline-start: 0; }
+    .client-story__button { margin-inline-start: 0; font-size: 18px; }
+    .client-story__media { min-block-size: 0; }
+    .client-story__placeholder-title { font-size: 22px; }
+  }
+  @media screen and (max-width: 989px) {
+    .client-story__card { inline-size: calc(100% - 64px); grid-template-columns: minmax(0, 1fr); min-block-size: 0; }
+    .client-story__card::before { inline-size: 12px; }
+    .client-story__copy, [dir='rtl'] .client-story__copy { padding: 36px; padding-inline-start: 48px; }
+    .client-story__eyebrow { font-size: 18px; line-height: 28px; }
+    .client-story__heading { max-inline-size: none; font-size: 36px; line-height: 1.23; }
+    .client-story__description { max-inline-size: none; font-size: 18px; line-height: 28px; }
+    .client-story__metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-inline-size: none; margin-inline-start: 0; }
+    .client-story__button { margin-block-start: 32px; margin-inline-start: 0; }
+    .client-story__media { min-block-size: 0; aspect-ratio: 1; }
+  }
+  @media screen and (max-width: 749px) {
+    .client-story__card { inline-size: calc(100% - 40px); }
+    .client-story__card::before { inline-size: 8px; }
+    .client-story__copy, [dir='rtl'] .client-story__copy { padding: 28px 20px; padding-inline-start: 28px; }
+    .client-story__eyebrow { font-size: 14px; line-height: 22px; }
+    .client-story__heading { font-size: clamp(26px, 7.2vw, 32px); line-height: 1.23; }
+    .client-story__description { margin-block-start: 20px; font-size: 16px; line-height: 26px; }
+    .client-story__metrics { margin-block-start: 28px; gap: 20px 12px; }
+    .client-story__button { font-size: 16px; padding-inline: 18px; }
+    .client-story__placeholder-copy { inset-block-start: 24%; }
+    .client-story__placeholder-title { font-size: 18px; line-height: 24px; }
+    .client-story__placeholder-copy > .client-story__placeholder-title { margin-block-start: 16px; }
+    .client-story__placeholder-description { font-size: 13px; line-height: 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .client-story.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:client_story.name",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "blocks": [
+    {
+      "type": "_client-story-metric"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:client_story.eyebrow",
+      "default": "FEATURED CLIENT STORY"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:client_story.heading",
+      "default": "[Client] achieved [core business result] with [service]."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:client_story.description",
+      "default": "<p>Summarise the client context, the ME approach and the verified business outcome in one concise paragraph.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:client_story.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "t:client_story.image_mobile"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "t:client_story.image_alt"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:client_story.link_label",
+      "default": "Vlaw Case Study"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:client_story.link",
+      "info": "t:client_story.link_info"
+    },
+    {
+      "type": "font_picker",
+      "id": "font",
+      "label": "t:client_story.font",
+      "default": "montserrat_n5"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:client_story.text_color",
+      "default": "#000000"
+    },
+    {
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "t:client_story.heading_gradient",
+      "default": "linear-gradient(108.133deg, #0B22B8 11.742%, #9621C4 88.258%)"
+    },
+    {
+      "type": "color_background",
+      "id": "background",
+      "label": "t:client_story.background",
+      "info": "t:client_story.background_info"
+    },
+    {
+      "type": "color_background",
+      "id": "panel_background",
+      "label": "t:client_story.panel_background",
+      "default": "linear-gradient(105.9376deg, rgba(19,98,250,0.05) 3.7241%, rgba(109,40,217,0.05) 96.276%)"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "t:client_story.accent_color",
+      "default": "#6D28D9"
+    },
+    {
+      "type": "color",
+      "id": "media_background",
+      "label": "t:client_story.media_background",
+      "default": "#FDFDFD"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "t:client_story.button_background",
+      "default": "#6D28D9"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:client_story.button_text_color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "t:client_story.card_radius",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:client_story.padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:client_story.padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_reveal",
+      "label": "t:client_story.enable_reveal",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:client_story.name",
+      "category": "t:categories.storytelling",
+      "blocks": {
+        "metric_1": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "[XX%]",
+            "label": "Primary result"
+          }
+        },
+        "metric_2": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "[XX%]",
+            "label": "Primary result"
+          }
+        },
+        "metric_3": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "[XX%]",
+            "label": "Primary result"
+          }
+        },
+        "metric_4": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "[XX%]",
+            "label": "Primary result"
+          }
+        }
+      },
+      "block_order": [
+        "metric_1",
+        "metric_2",
+        "metric_3",
+        "metric_4"
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -45,25 +45,29 @@
         "menu_1": {
           "type": "menu_column",
           "settings": {
-            "heading": "Company"
+            "heading": "Company",
+            "menu": ""
           }
         },
         "menu_2": {
           "type": "menu_column",
           "settings": {
-            "heading": "Services"
+            "heading": "Services",
+            "menu": ""
           }
         },
         "menu_3": {
           "type": "menu_column",
           "settings": {
-            "heading": "Expertise"
+            "heading": "Expertise",
+            "menu": ""
           }
         },
         "menu_4": {
           "type": "menu_column",
           "settings": {
-            "heading": "Agency Insights:"
+            "heading": "Agency Insights:",
+            "menu": ""
           }
         },
         "location_1": {
@@ -106,11 +110,14 @@
         "eyebrow": "FREE GROWTH DIAGNOSIS",
         "heading": "Request a Free Growth Diagnosis",
         "description": "<p>Tell us about your business and current challenges. Our team will review your needs, identify growth priorities and recommend the most suitable next steps.</p>",
-        "card_background": "#FFFFFF",
+        "gradient_left": "#1550ff",
+        "gradient_middle": "#6551f5",
+        "gradient_right": "#af67f7",
+        "card_background": "#ffffff",
         "card_radius": 32,
         "input_radius": 12,
-        "button_gradient_start": "#9B3CF0",
-        "button_gradient_end": "#4E63F0",
+        "button_gradient_start": "#9b3cf0",
+        "button_gradient_end": "#4e63f0",
         "name_label": "Your Name",
         "name_placeholder": "Your name",
         "company_label": "Company Name",
@@ -130,58 +137,9 @@
         "padding-block-start": 64,
         "padding-block-end": 64
       }
-    },
-    "footer_utilities_jLGE8U": {
-      "type": "footer-utilities",
-      "blocks": {
-        "footer_copyright_jweRK8": {
-          "type": "footer-copyright",
-          "settings": {
-            "show_powered_by": true,
-            "font_size": "0.75rem",
-            "case": "none"
-          },
-          "blocks": {}
-        },
-        "footer_policy_list_VCdnpa": {
-          "type": "footer-policy-list",
-          "settings": {
-            "font_size": "0.75rem",
-            "case": "none"
-          },
-          "blocks": {}
-        },
-        "social_links_Ew63Kq": {
-          "type": "social-links",
-          "settings": {
-            "facebook_url": "https://www.facebook.com/",
-            "instagram_url": "https://www.instagram.com/",
-            "youtube_url": "https://www.youtube.com/",
-            "tiktok_url": "https://www.tiktok.com/",
-            "twitter_url": "https://x.com/"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "footer_copyright_jweRK8",
-        "footer_policy_list_VCdnpa",
-        "social_links_Ew63Kq"
-      ],
-      "name": "t:names.utilities",
-      "settings": {
-        "section_width": "page-width",
-        "gap": 24,
-        "background_color": "{{ settings.color_palette.background }}",
-        "divider_thickness": 1,
-        "divider_color": "{{ settings.color_palette.color2 }}",
-        "padding-block-start": 20,
-        "padding-block-end": 48
-      }
     }
   },
   "order": [
-    "footer_diagnosis_H4xKm9",
-    "footer_utilities_jLGE8U"
+    "footer_diagnosis_H4xKm9"
   ]
 }
