@@ -1,18 +1,16 @@
 {% doc %}
-  Renders an editable challenge with optional destination and diagram association.
-  Its data attributes let the section Component read theme-block settings from the DOM.
+  Renders an editable challenge with an optional destination and section reveal animation.
   @example
-  <!-- Add a Challenge block to Business challenge and choose a diagram marker. -->
+  <!-- Add a Challenge block to Growth Potential. -->
 {% enddoc %}
 {% liquid
   assign s = block.settings
-  assign challenge_label = s.title | default: s.description | strip_html | strip | truncate: 80
   assign challenge_id = 'Challenge-' | append: section.id | append: '-' | append: block.id
 %}
 {% if s.title != blank or s.description != blank %}
-  <article id="{{ challenge_id }}" class="business-challenge-item" ref="items[]" data-marker="{{ s.marker }}" data-label="{{ challenge_label | default: section.settings.eyebrow | escape }}" {% if section.settings.enable_animation %}data-reveal{% endif %} {{ block.shopify_attributes }}>
+  <article id="{{ challenge_id }}" class="business-challenge-item" ref="items[]" {% if section.settings.enable_animation %}data-reveal{% endif %} {{ block.shopify_attributes }}>
     {% if s.title != blank %}
-      <h3 class="business-challenge-item__title" tabindex="-1">
+      <h3 class="business-challenge-item__title">
         {% if s.link != blank %}<a href="{{ s.link | escape }}">{{ s.title | escape }}</a>{% else %}{{ s.title | escape }}{% endif %}
       </h3>
     {% endif %}
@@ -20,17 +18,15 @@
   </article>
 {% endif %}
 {% stylesheet %}
-  .business-challenge-item { min-inline-size: 0; padding-block: 20px; border-block-end: 1px solid var(--challenge-divider); scroll-margin-block-start: calc(var(--header-group-height, 0px) + 24px); transition: background-color var(--animation-speed-slow) var(--animation-easing); }
+  .business-challenge-item { min-inline-size: 0; padding-block: 20px; border-block-end: 1px solid var(--challenge-divider); }
   .business-challenge-item:last-child { border-block-end: 0; }
   .business-challenge-item__title { margin: 0; font-family: inherit; font-size: 1.5rem; font-weight: 500; line-height: 1.5833; color: var(--challenge-accent); overflow-wrap: anywhere; }
   .business-challenge-item__title a { color: inherit; text-decoration: none; }
-  .business-challenge-item__title:focus-visible, .business-challenge-item__title a:focus-visible { outline: 2px solid var(--challenge-accent); outline-offset: 4px; }
+  .business-challenge-item__title a:focus-visible { outline: 2px solid var(--challenge-accent); outline-offset: 4px; }
   .business-challenge-item__description { margin-block-start: 10px; font-size: 1.1875rem; font-weight: 500; line-height: 2; color: var(--challenge-description); overflow-wrap: anywhere; }
   .business-challenge-item__description > :first-child { margin-block-start: 0; }
   .business-challenge-item__description > :last-child { margin-block-end: 0; }
-  .business-challenge-item[data-active] { background-color: var(--challenge-highlight); }
   @media screen and (max-width: 749px) { .business-challenge-item__title { font-size: 1.25rem; line-height: 1.4; } .business-challenge-item__description { font-size: 1rem; line-height: 1.625; } }
-  @media (prefers-reduced-motion: reduce) { .business-challenge-item { transition: none; } }
 {% endstylesheet %}
 
 {% schema %}

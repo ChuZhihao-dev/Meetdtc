@@ -369,6 +369,7 @@
       "type": "blog-grid",
       "name": "t:names.product_solutions_grid",
       "settings": {
+        "collection": "frontpage",
         "product_limit": 6,
         "heading": "<p>Solutions Built for&nbsp;<br/>Measurable Growth</p>",
         "read_more_label": "Read More →",

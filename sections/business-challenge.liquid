@@ -16,7 +16,6 @@
 <business-challenge-component
   class="business-challenge spacing-style color-custom-{{ color_id }}"
   data-animate="{{ s.enable_animation }}"
-  data-marker-label="{{ 'accessibility.view_business_challenge' | t: title: '[title]' | escape }}"
   style="
     {% render 'spacing-style', settings: s %}
     --challenge-font: {{ s.font }};
@@ -26,7 +25,6 @@
     --challenge-caption: {{ s.caption_color }};
     --challenge-center-color: {{ s.center_text_color }};
     --challenge-divider: {{ s.divider_color }};
-    --challenge-highlight: rgb({{ s.accent_color.rgb }} / 0.05);
     --gradient-from: {{ s.gradient_color_from }};
     --gradient-to: {{ s.gradient_color_to }};
     --gradient-angle: 112.81deg;
