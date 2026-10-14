@@ -1,213 +1,125 @@
-
-
-<script
-  src="{{ 'blog-posts-list.js' | asset_url }}"
-  type="module"
-  fetchpriority="low"
-></script>
-
+{% comment %}
+  Blog listing: editable introduction, tag navigation and horizontal article cards.
+  The keyed results boundary preserves category focus during filtering and pagination.
+  @example Reached through the blog template; article content comes from the current blog.
+{% endcomment %}
+<script src="{{ 'blog-posts-list.js' | asset_url }}" type="module"></script>
 {% liquid
-  if section.settings.background_color != blank
-    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
-  endif
+  render 'contrast-override', background_color: section.settings.background_color, text_color: section.settings.text_color, section_id: section.id
 %}
-
-<blog-posts-list section-id="{{ section.id }}">
-  <div
-    class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
-  ></div>
-  <div
-    class="
-      section
-      {% if section.settings.background_color != blank %}color-custom-{{ section.id }}{% endif %}
-      blog-posts
-      spacing-style
-      size-style
-    "
-    data-testid="blog-posts"
-    style="{% render 'spacing-style', settings: section.settings %}"
-  >
-    {% content_for 'blocks' %}
-
-    <div
-      ref="grid"
-      class="blog-posts-container"
-    >
-      {% liquid
-        assign items_on_page = blog.articles.size
-        assign image_index = 0
-
-        # The first two images reach the initial mobile viewport; later images use native lazy-loading.
-        assign eager_image_count = 2
-
-        # These sizes mirror --narrow-page-width in theme-styles-variables.liquid,
-        # --page-margin in base.css, and --columns-gap plus the mobile breakpoint below.
-        # Desktop content uses a 40px page margin on each side, with 36px column gaps.
-        # Compact cards use three columns and two gaps, standard cards use two columns and one gap,
-        # and the hero image uses 70% of the full-width card after its image-content gap.
-        assign compact_image_sizes = '(min-width: 1280px) 376px, (min-width: 750px) calc(33.33vw - 51px), calc(100vw - 32px)'
-        assign standard_image_sizes = '(min-width: 1280px) 582px, (min-width: 750px) calc(50vw - 58px), calc(100vw - 32px)'
-        assign hero_image_sizes = '(min-width: 1280px) 815px, (min-width: 750px) calc(70vw - 81px), calc(100vw - 32px)'
-      %}
-      {% for article in blog.articles %}
-        {% liquid
-          # Defaults for compact layout
-          assign col_span = 2
-          assign scale = 0.6
-          assign is_horizontal = false
-
-          case items_on_page
-            when 1
-              # Single post: full width hero
-              assign col_span = 6
-              assign scale = 1
-              assign is_horizontal = true
-            when 2
-              # Two posts: both standard side by side
-              assign col_span = 3
-              assign scale = 0.8
-            when 3
-              # Three posts: hero + 2 standard
-              if forloop.index == 1
-                assign col_span = 6
-                assign scale = 1
-                assign is_horizontal = true
-              else
-                assign col_span = 3
-                assign scale = 0.8
-              endif
-            when 4
-              # Four posts: all standard in 2x2 grid
-              assign col_span = 3
-              assign scale = 0.8
-            when 5
-              # Five posts: hero + 4 standard
-              if forloop.index == 1
-                assign col_span = 6
-                assign scale = 1
-                assign is_horizontal = true
-              else
-                assign col_span = 3
-                assign scale = 0.8
-              endif
-            else
-              # 6+ posts: hero, 2 standard, rest compact
-              if forloop.index == 1
-                assign col_span = 6
-                assign scale = 1
-                assign is_horizontal = true
-              elsif forloop.index <= 3
-                assign col_span = 3
-                assign scale = 0.8
-              else
-                assign col_span = 2
-                assign scale = 0.6
-              endif
-          endcase
-
-          case col_span
-            when 2
-              assign image_sizes = compact_image_sizes
-            when 3
-              assign image_sizes = standard_image_sizes
-            when 6
-              assign image_sizes = hero_image_sizes
-            else
-              # Safe fallback for a future span; add a matching sizes value with any new layout.
-              assign image_sizes = '100vw'
-          endcase
-
-          assign image_loading = 'lazy'
-          assign image_fetch_priority = 'auto'
-          if article.image
-            assign image_index = image_index | plus: 1
-
-            if image_index <= eager_image_count
-              assign image_loading = 'eager'
-            endif
-
-            if image_index == 1
-              assign image_fetch_priority = 'high'
-            endif
-          endif
-        %}
-        {% # Keep the mobile breakpoint in the style block below in sync with the responsive image sizes above. %}
-        {% style %}
-          [data-blog-index="{{ section.id }}-{{ forloop.index }}"] {
-            --col-span: {{ col_span }};
-            --blog-post-card-scale: {{ scale }};
-          }
-
-          @media screen and (max-width: 749px) {
-            [data-blog-index="{{ section.id }}-{{ forloop.index }}"] {
-              --col-span: 6;
-              --blog-post-card-scale: 0.5;
-            }
-          }
-        {% endstyle %}
-        <div
-          class="blog-post-item"
-          data-testid="blog-post-item"
-          data-blog-index="{{ section.id }}-{{ forloop.index }}"
-        >
-          {% content_for 'block',
-            id: 'static-blog-post-card',
-            type: '_blog-post-card',
-            article: article,
-            image_sizes: image_sizes,
-            image_loading: image_loading,
-            image_fetch_priority: image_fetch_priority,
-            is_horizontal: is_horizontal
-          %}
-        </div>
-      {% endfor %}
+<blog-posts-list
+  class="blog-list color-custom-{{ section.id }}"
+  section-id="{{ section.id }}"
+  data-animate="{{ section.settings.enable_reveal }}"
+  data-loading-text="{{ 'blog_filter.loading' | t | escape }}"
+  data-error-text="{{ 'blog_filter.error' | t | escape }}"
+  style="
+    --blog-intro-background: {{ section.settings.intro_background | default: section.settings.background_color }};
+    --blog-list-background: {{ section.settings.list_background | default: section.settings.background_color }};
+    --blog-filter-accent: {{ section.settings.category_accent }};
+    --blog-card-border: {{ section.settings.card_border }};
+    --blog-card-background: {{ section.settings.card_background }};
+    --blog-button-background: {{ section.settings.button_background }};
+    --blog-button-text: {{ section.settings.button_text }};
+  "
+>
+  <div class="blog-list__intro section section--page-width spacing-style"
+    style="--padding-block-start: {{ section.settings.padding-block-start }}px;">
+    <div class="blog-list__intro-content">
+      {% content_for 'blocks' %}
     </div>
+  </div>
+  <div class="blog-list__body section section--page-width spacing-style"
+    style="--padding-block-end: {{ section.settings.padding-block-end }}px;">
+    {% content_for 'block', type: '_blog-category-nav', id: 'static-blog-categories' %}
+    <div class="blog-filter-feedback">
+      <p ref="status" class="blog-filter-status visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
+      <button class="blog-filter-retry" type="button" on:click="/retry">{{ 'blog_filter.retry' | t }}</button>
+    </div>
+    {% paginate blog.articles by section.settings.posts_per_page %}
+      <div class="blog-posts-results" tabindex="-1" on:click="blog-posts-list/navigate"
+        data-hydration-key="blog-list-{{ section.id }}"
+        data-current-path="{{ request.path | escape }}"
+        data-loaded-text="{{ 'blog_filter.loaded' | t: count: paginate.items | escape }}">
+        <div ref="grid" class="blog-posts-container">
+          {% liquid
+            # Sizes mirror the desktop card columns and mobile card inset.
+            assign image_sizes = '(min-width: 1440px) 390px, (min-width: 750px) calc(30.97vw - 83px), calc(100vw - 76px)'
+          %}
+          {% for article in blog.articles %}
+            {% liquid
+              assign image_loading = 'lazy'
+              if forloop.first
+                assign image_loading = 'eager'
+              endif
+            %}
+            <div class="blog-post-item" data-testid="blog-post-item">
+              {% content_for 'block',
+                id: 'static-blog-post-card',
+                type: '_blog-post-card',
+                article: article,
+                image_sizes: image_sizes,
+                image_loading: image_loading,
+                image_fetch_priority: 'auto',
+                is_horizontal: true,
+                is_list: true
+              %}
+            </div>
+          {% endfor %}
+        </div>
+        {% if blog.articles.size == 0 %}<p class="blog-filter-empty">{{ 'blog_filter.empty' | t }}</p>{% endif %}
+        {% render 'pagination-controls', paginate: paginate %}
+      </div>
+    {% endpaginate %}
   </div>
 </blog-posts-list>
 
 {% stylesheet %}
-  /**
-   * Blog posts page layout
-   */
-  .blog-posts {
-    --page-content-width: var(--narrow-page-width);
-    --page-width: calc(var(--page-content-width) + (var(--page-margin) * 2));
-
-    /* Keep the responsive image sizes above in sync with this gap. */
-    --columns-gap: 36px;
-    --rows-gap: 36px;
+  .blog-list {
+    display: block;
+    --blog-post-card-scale: 0.52;
+    --columns-gap: clamp(24px, 6.67vw, 96px);
   }
-
-  .blog-posts-container {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1rem;
-    width: 100%;
-    column-gap: var(--columns-gap);
-    row-gap: var(--rows-gap);
+  .blog-list__intro {
+    --page-content-width: 1316px;
+    --page-width: calc(var(--page-content-width) + var(--page-margin) * 2);
+    isolation: isolate;
+    padding-block-start: calc(64px + var(--padding-block-start, 0px));
+    padding-block-end: 56px;
   }
-
-  /**
-   * Blog post item grid positioning and scaling.
-   * Layout is calculated in Liquid based on total article count.
-   * Mobile overrides are applied per-item in inline styles for proper specificity.
-   */
-  .blog-post-item {
-    grid-column: span var(--col-span);
-    background-color: var(--color-background);
+  .blog-list__intro::before,
+  .blog-list__body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
   }
-
-  /**
-   * When there's no image, the blog post item has a border.
-   */
-  .blog-post-item {
-    border: 1px solid rgb(var(--color-foreground-rgb) / var(--opacity-20));
-    padding: 0 1rem 1rem;
+  .blog-list__intro::before { background: var(--blog-intro-background, var(--color-background)); }
+  .blog-list__intro-content { display: grid; gap: 10px; min-inline-size: 0; }
+  .blog-list__body {
+    --page-content-width: 1309px;
+    --page-margin: max(24px, min(5.625vw, 81px), var(--safe-area-inset-left, 0px), var(--safe-area-inset-right, 0px));
+    --page-width: calc(var(--page-content-width) + var(--page-margin) * 2);
+    --full-page-grid-with-margins: minmax(var(--page-margin), 1fr) min(1309px, calc(100% - var(--page-margin) - min(3.47222vw, 50px))) minmax(min(3.47222vw, 50px), 1fr);
+    isolation: isolate;
+    padding-block-start: 53px;
   }
-
-  .blog-post-item:has(.blog-post-card__image-container) {
-    border: none;
-    padding: 0;
+  .blog-list__body::before { background: var(--blog-list-background, var(--color-background)); }
+  .blog-list__body .blog-categories { margin-block-end: 23px; }
+  .blog-posts-results { min-inline-size: 0; scroll-margin-block-start: calc(var(--header-group-height, 0px) + 24px); }
+  .blog-posts-results .pagination { --pagination-size: 44px; }
+  .blog-posts-container { display: grid; gap: 10px; inline-size: 100%; }
+  .blog-post-item { min-inline-size: 0; }
+  .blog-filter-status { margin: 0; }
+  .blog-filter-feedback { margin-block-end: 0; }
+  blog-posts-list[data-error] .blog-filter-feedback { margin-block-end: 16px; }
+  .blog-filter-retry { display: none; margin-block-start: 8px; min-block-size: 44px; color: inherit; cursor: pointer; }
+  blog-posts-list[data-error] .blog-filter-retry { display: inline-block; }
+  @media screen and (max-width: 749px) {
+    .blog-list__intro { padding-block-start: calc(40px + var(--padding-block-start, 0px)); padding-block-end: 32px; }
+    .blog-list__body { --page-margin: max(16px, var(--safe-area-inset-left, 0px), var(--safe-area-inset-right, 0px)); --full-page-grid-with-margins: var(--full-page-grid-margin) var(--full-page-grid-central-column-width) var(--full-page-grid-margin); padding-block-start: 24px; }
+    .blog-posts-container { gap: 16px; }
   }
 {% endstylesheet %}
 
@@ -247,7 +159,9 @@
     }
   ],
   "disabled_on": {
-    "groups": ["header"]
+    "groups": [
+      "header"
+    ]
   },
   "settings": [
     {
@@ -255,6 +169,54 @@
       "id": "background_color",
       "label": "t:settings.background_color",
       "placeholder": "t:settings.default"
+    },
+    {
+      "type": "color_background",
+      "id": "intro_background",
+      "label": "t:blog_filter.intro_background",
+      "default": "linear-gradient(166deg, #d9e0f9 0%, #f8f1ed 100%)"
+    },
+    {
+      "type": "color_background",
+      "id": "list_background",
+      "label": "t:blog_filter.list_background",
+      "default": "linear-gradient(148deg, #e6ecff 2.5%, #dbe1f8 97.5%)"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:settings.text_color",
+      "default": "#4b4b4b"
+    },
+    {
+      "type": "color",
+      "id": "category_accent",
+      "label": "t:blog_filter.category_accent",
+      "default": "#0c23b8"
+    },
+    {
+      "type": "color",
+      "id": "card_border",
+      "label": "t:blog_filter.card_border",
+      "default": "#1739ba"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "t:blog_filter.card_background",
+      "default": "#ffffff4d"
+    },
+    {
+      "type": "color_background",
+      "id": "button_background",
+      "label": "t:blog_filter.button_background",
+      "default": "linear-gradient(96deg, #7d38e9 0%, #607ff9 100%)"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "t:blog_filter.button_text",
+      "default": "#ffffff"
     },
     {
       "type": "header",
@@ -279,6 +241,21 @@
       "step": 1,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "range",
+      "id": "posts_per_page",
+      "label": "t:blog_filter.posts_per_page",
+      "min": 3,
+      "max": 24,
+      "step": 3,
+      "default": 6
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_reveal",
+      "label": "t:blog_filter.enable_reveal",
+      "default": true
     }
   ]
 }

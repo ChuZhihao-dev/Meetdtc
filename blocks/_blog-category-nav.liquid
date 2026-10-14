@@ -1,0 +1,32 @@
+{% doc %}
+  Renders All Categories and the current blog's complete article-tag navigation.
+  Uses all_tags so pagination and filtering never narrow the available categories.
+  @example Used as the static-blog-categories block on the main blog section.
+{% enddoc %}
+<nav on:click="blog-posts-list/navigate" class="blog-categories" aria-label="{{ 'blog_filter.categories' | t }}" {{ block.shopify_attributes }}>
+  <a href="{{ blog.url | escape }}" {% if current_tags == blank %}aria-current="page"{% endif %}>{{ 'blog_filter.all_categories' | t }}</a>
+  {% for tag in blog.all_tags %}
+    {% if tag != blank %}
+      <span class="blog-categories__item">
+        {% capture category_link %}{{ tag | escape | link_to_tag: tag }}{% endcapture %}
+        {% if current_tags contains tag %}
+          {% assign category_link = category_link | replace: '<a ', '<a aria-current="page" ' %}
+        {% endif %}
+        {{ category_link }}
+      </span>
+    {% endif %}
+  {% endfor %}
+</nav>
+{% stylesheet %}
+  .blog-categories { display: flex; flex-wrap: wrap; gap: 10px 30px; margin-block-end: 30px; min-inline-size: 0; }
+  .blog-categories a { display: inline-flex; align-items: center; min-block-size: 44px; color: var(--color-foreground-muted, var(--color-foreground)); font-family: var(--font-heading--family); font-size: 20px; font-weight: 600; line-height: 1.5; text-decoration: none; overflow-wrap: anywhere; }
+  .blog-categories a[aria-current='page'] { color: var(--blog-filter-accent, #0C23B8); }
+  .blog-categories a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  @media screen and (max-width: 749px) { .blog-categories { gap: 8px 18px; } .blog-categories a { font-size: 16px; } }
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "t:blog_filter.categories_name",
+  "tag": null
+}
+{% endschema %}

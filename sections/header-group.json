@@ -1,12 +1,4 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
+
 {
   "type": "header",
   "name": "t:names.header",
@@ -46,9 +38,62 @@
             "text_color_navigation_bar": "",
             "drawer_accordion": false,
             "drawer_accordion_expand_first": false,
-            "drawer_dividers": false
+            "drawer_dividers": false,
+            "active_color": "#0032f5"
           },
           "blocks": {}
+        },
+        "header-cta": {
+          "type": "group",
+          "static": true,
+          "blocks": {
+            "audit-button": {
+              "type": "button",
+              "name": "t:names.button",
+              "settings": {
+                "label": "Get a Free Audit >",
+                "link": "",
+                "open_in_new_tab": false,
+                "style_class": "button-custom",
+                "custom_button_background": "#5d6eea",
+                "custom_button_text": "#ffffff",
+                "custom_button_border": "#ffffff00",
+                "button_gradient": true,
+                "button_gradient_from": "#5d6eea",
+                "button_gradient_to": "#772cc7",
+                "button_gradient_angle": 90,
+                "button_gradient_start_position": 0,
+                "button_gradient_end_position": 100,
+                "button_custom_radius": true,
+                "button_radius": 50,
+                "button_font": "var(--font-heading--family)",
+                "button_font_size": "1rem",
+                "button_font_weight": "700",
+                "width": "fit-content",
+                "width_mobile": "fit-content"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "audit-button"
+          ],
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "flex-end",
+            "vertical_alignment": "center",
+            "gap": 8,
+            "width": "fit-content",
+            "width_mobile": "fit-content",
+            "height": "fit",
+            "background_media": "none",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          }
         }
       },
       "settings": {

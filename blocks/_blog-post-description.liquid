@@ -5,6 +5,7 @@
 
   @param {object} article - The article object
   @param {boolean} show_read_more - Whether to display the read more link
+  @param {boolean} [separate_read_more] - Render a sibling read more link, including when the excerpt is empty
   @param {boolean} [should_truncate] - Whether to truncate the content
   @param {string} [onboarding_text] - Optional placeholder text for onboarding mode
 {%- enddoc -%}
@@ -64,11 +65,15 @@
   %}
 
   <{{ element }} {{ attributes }}>
-    {{ content | strip_html | truncatewords: truncatewords }}
-    {% if show_read_more %}
+    {{ content | strip_html | truncatewords: truncatewords | escape }}
+    {% if show_read_more and separate_read_more != true %}
       <a href="{{ article.url }}">{{- 'content.read_more' | t -}}</a>
     {% endif %}
   </{{ element }}>
+{% endif %}
+
+{% if show_read_more and separate_read_more %}
+  <a class="blog-post-card__read-more" href="{{ article.url }}">{{ 'content.read_more' | t }}</a>
 {% endif %}
 
 {% stylesheet %}

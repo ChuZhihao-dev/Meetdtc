@@ -8,6 +8,16 @@
  * ------------------------------------------------------------
  */
 {
+  "blog_filter": {
+    "categories": "Blog categories",
+    "all_categories": "All Categories",
+    "loading": "Loading articles…",
+    "error": "Articles could not be loaded. Your previous list is still available.",
+    "retry": "Retry",
+    "loaded": "Found {{ count }} articles.",
+    "empty": "No articles found.",
+    "image_preview": "IMAGE / PREVIEW"
+  },
   "client_story": {
     "image_title": "CASE STUDY IMAGE",
     "image_description": "Replace with one client visual. campaign creative, website screen or project result."

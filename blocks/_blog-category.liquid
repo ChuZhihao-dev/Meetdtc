@@ -1,0 +1,26 @@
+{% doc %}
+  Renders a named article-tag link within the current blog's category navigation.
+  @example Add a Blog category block inside Blog categories and enter the exact article tag.
+{% enddoc %}
+{% liquid
+  assign category_tag = block.settings.tag | strip
+  assign label = block.settings.label | default: category_tag
+%}
+{% if category_tag != blank and label != blank %}
+  <span class="blog-categories__item" {{ block.shopify_attributes }}>
+    {% capture category_link %}{{ label | escape | link_to_tag: category_tag }}{% endcapture %}
+    {% if current_tags contains category_tag %}{% assign category_link = category_link | replace: '<a ', '<a aria-current="page" ' %}{% endif %}
+    {{ category_link }}
+  </span>
+{% endif %}
+{% schema %}
+{
+  "name": "t:blog_filter.category_name",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "label", "label": "t:blog_filter.label" },
+    { "type": "text", "id": "tag", "label": "t:blog_filter.tag", "info": "t:blog_filter.tag_info" }
+  ],
+  "presets": [{ "name": "t:blog_filter.category_name" }]
+}
+{% endschema %}

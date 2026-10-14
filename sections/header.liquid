@@ -105,6 +105,19 @@
     render 'header-actions', customer_account_menu: section.settings.customer_account_menu, display_style: section.settings.actions_display_style, section: section
   endcapture
 
+  capture header_cta
+    content_for 'block', type: 'group', id: 'header-cta'
+  endcapture
+  capture actions
+    echo actions
+    assign header_cta_content = header_cta | strip
+    if header_cta_content != blank
+      echo '<div class="header-cta">'
+      echo header_cta
+      echo '</div>'
+    endif
+  endcapture
+
   if shop.customer_accounts_enabled
     assign search_class = 'search-action--hidden-on-drawer'
   endif
@@ -828,6 +841,36 @@
     header-menu:only-child .overflow-menu::part(list) {
       justify-content: center;
     }
+  }
+
+  .header-cta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--gap-sm);
+    min-inline-size: 0;
+  }
+  .header-cta:not(:has(.group-block-content a.size-style)) {
+    display: none;
+  }
+  .header-cta a.size-style,
+  .header-cta a.size-style:hover {
+    --button-color: var(--color-white);
+    color: var(--color-white);
+  }
+  .header-cta a.size-style {
+    min-block-size: 44px;
+    padding-block: 7px;
+    padding-inline: 30px;
+    line-height: 1.2;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+  /* Drawer layout uses flattened columns, so the CTA occupies its own right-aligned row. */
+  .header[data-menu-style='drawer'] .header-cta {
+    grid-column: 1 / -1;
+    justify-self: end;
+    padding-block-end: var(--padding-sm);
   }
 
   .header__column--right {

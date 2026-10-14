@@ -7,14 +7,13 @@
 
 
 {% liquid
-  # Native layout also reuses the existing viewport-gated video component.
-  assign video_controls = true
+  # Playback is enhanced only while the background is visible; no player controls.
+  assign video_controls = false
   assign video_autoplay = false
   assign video_preload = 'none'
-  if section.settings.layout_style == 'growth'
-    assign video_controls = true
-    assign video_autoplay = false
-    assign video_preload = 'none'
+  assign video_loop = true
+  if section.settings.video_play_once
+    assign video_loop = false
   endif
   assign media_count = 0
   assign media_count_mobile = 0
@@ -202,7 +201,7 @@
         | video_tag:
           poster: nil,
           autoplay: video_autoplay,
-          loop: true,
+          loop: video_loop,
           controls: video_controls,
           preload: video_preload,
           muted: true,
@@ -241,7 +240,7 @@
           | video_tag:
             poster: nil,
             autoplay: video_autoplay,
-            loop: true,
+            loop: video_loop,
             controls: video_controls,
           preload: video_preload,
             muted: true,
@@ -314,7 +313,7 @@
         | video_tag:
           poster: nil,
           autoplay: video_autoplay,
-          loop: true,
+          loop: video_loop,
           controls: video_controls,
           preload: video_preload,
           muted: true,
@@ -353,7 +352,7 @@
           | video_tag:
             poster: nil,
             autoplay: video_autoplay,
-            loop: true,
+            loop: video_loop,
             controls: video_controls,
           preload: video_preload,
             muted: true,
@@ -436,6 +435,7 @@
 {% if has_hero_video %}<script src="{{ 'growth-hero.js' | asset_url }}" type="module" fetchpriority="low"></script>{% endif %}
 <growth-hero-component
   id="Hero-{{ section.id }}"
+  data-play-once="{{ section.settings.video_play_once }}"
   class="hero{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}{% if section.blocks.size == 0 and section.settings.section_height == 'auto' %} hero--no-blocks-auto-height{% endif %}{% if section.settings.stack_media_on_mobile %} hero--stack-mobile{% endif %}"
   style="
     --hero-border-style: {{ section.settings.border }};
@@ -527,7 +527,7 @@
       {{ hero_blocks }}
     </div>
   </div>
-  {% if has_hero_video %}{% render 'custom-hero-video-controls', media_id: hero_media_id %}{% endif %}
+  {% if has_hero_video %}{% render 'custom-hero-video-controls' %}{% endif %}
 </growth-hero-component>
 
 {% endif %}
@@ -804,6 +804,13 @@
         }
       ],
       "default": "standard"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_play_once",
+      "label": "t:settings.video_play_once",
+      "default": false,
+      "visible_if": "{{ section.settings.media_type_1 == 'video' or section.settings.media_type_2 == 'video' or section.settings.media_type_1_mobile == 'video' or section.settings.media_type_2_mobile == 'video' }}"
     },
     {
       "type": "header",

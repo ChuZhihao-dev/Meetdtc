@@ -15,6 +15,7 @@
   {% when 'mobile' %}
     <div
       class="header__drawer"
+      style="--header-menu-active-color: {{ block_settings.active_color }};"
       ref="headerDrawerContainer"
       data-hydration-key="header-drawer-mobile"
       {{ block.shopify_attributes }}
@@ -36,7 +37,7 @@
       %}
       <div
         class="menu-list menu-list--mobile{% if transparent == blank %} color-custom-{{ block.id }}{% endif %}"
-        style="--menu-horizontal-gap: 15px; --mobile-nav-margin: auto;"
+        style="--header-menu-active-color: {{ block_settings.active_color }}; --menu-horizontal-gap: 15px; --mobile-nav-margin: auto;"
         data-hydration-key="header-menu-mobile-navigation-bar"
         data-navigation-bar-enabled
       >
@@ -208,6 +209,7 @@
           aria-label="{{ 'accessibility.header_navigation_label' | t }}"
           style="
             {% render 'menu-font-styles', settings: block_settings, menu_type: 'mega_menu' %}
+            --header-menu-active-color: {{ block_settings.active_color }};
             --menu-top-level-font-weight: {{ block_settings.type_font_primary_weight | default: '700' }};
             --header-menu-link-gap: {{ block_settings.top_level_gap | default: 80 }}px;
           "
@@ -462,10 +464,15 @@
   }
 
   /* stylelint-disable-next-line selector-max-specificity */
-  .menu-list:not(:has(.menu-list__list-item:hover)) .menu-list__link--active,
+  .menu-list .menu-list__link--active,
   .menu-list .menu-list__list-item:where(:hover, :focus-within) .menu-list__link,
   .menu-list .menu-list__list-item:is([slot='more'], [slot='overflow']):has([aria-expanded='true']) .menu-list__link {
-    color: var(--menu-top-level-font-color);
+    color: var(--header-menu-active-color, #0032F5);
+  }
+
+  .menu-list--mobile a:is(:hover, :focus-visible, [aria-current='page']),
+  .header__drawer .menu-drawer__menu-item:is(:hover, :focus-visible, [aria-current='page'], .menu-drawer__menu-item--active) {
+    color: var(--header-menu-active-color, #0032F5);
   }
 
   .overflow-menu::part(list) {
@@ -667,7 +674,7 @@
     padding: var(--padding-2xs) 0;
 
     &:hover {
-      color: var(--menu-child-active-font-color);
+      color: var(--header-menu-active-color, #0032F5);
     }
   }
 
@@ -681,7 +688,7 @@
     color: var(--menu-parent-font-color);
 
     &:hover {
-      color: var(--menu-parent-active-font-color);
+      color: var(--header-menu-active-color, #0032F5);
     }
   }
 
@@ -874,6 +881,12 @@
       "id": "text_color",
       "label": "t:settings.text_color",
       "placeholder": "t:settings.default"
+    },
+    {
+      "type": "color",
+      "id": "active_color",
+      "label": "t:settings.header_menu_active_color",
+      "default": "#0032F5"
     },
     {
       "type": "header",

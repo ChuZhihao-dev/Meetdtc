@@ -1,18 +1,8 @@
 {% doc %}
-  Playback control for the existing native-layout Hero using GrowthHero's component.
-  @param {string} media_id - Unique ID of this hero's media container.
-  @example {% render 'custom-hero-video-controls', media_id: media_id %}
+  Shared poster and video visibility styles for the native-layout Hero.
+  @example {% render 'custom-hero-video-controls' %}
 {% enddoc %}
-<button ref="toggle" type="button" class="custom-hero-video__toggle" on:click="/togglePlayback"
-  aria-controls="{{ media_id }}" aria-label="{{ 'accessibility.play_video' | t | escape }}"
-  data-play-label="{{ 'accessibility.play_video' | t | escape }}"
-  data-pause-label="{{ 'accessibility.pause_video' | t | escape }}" hidden>
-  <span ref="icon" aria-hidden="true">▶</span>
-</button>
 {% stylesheet %}
-  .custom-hero-video__toggle { position: absolute; z-index: 3; inset-block-end: 20px; inset-inline-end: 20px; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--color-foreground); border-radius: 50%; background: var(--color-background); color: var(--color-foreground); cursor: pointer; }
-  .custom-hero-video__toggle[hidden] { display: none; }
-  .custom-hero-video__toggle:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
   .hero__video-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
   .hero[data-enhanced] video:not([data-playing]) { opacity: 0; }
 {% endstylesheet %}

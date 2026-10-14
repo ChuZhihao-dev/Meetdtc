@@ -1,11 +1,9 @@
 import { Component } from '@theme/component';
 
 /**
- * Enhances native Hero background videos with scoped playback controls.
+ * Plays visible Hero background videos, optionally once per video element.
  * @typedef {object} Refs
  * @property {HTMLElement} media
- * @property {HTMLButtonElement} [toggle]
- * @property {HTMLElement} [icon]
  * @extends Component<Refs>
  */
 class GrowthHero extends Component {
@@ -19,8 +17,6 @@ class GrowthHero extends Component {
   #motion = matchMedia('(prefers-reduced-motion: reduce)');
   #viewport = matchMedia('(max-width: 749px)');
   #visible = false;
-  #userPaused = false;
-  #userStarted = false;
   #revision = 0;
 
   connectedCallback() {
@@ -47,21 +43,18 @@ class GrowthHero extends Component {
       video.controls = false;
       video.muted = true;
       video.autoplay = false;
+      video.loop = this.dataset.playOnce !== 'true';
       video.addEventListener('playing', () => {
         video.setAttribute('data-playing', '');
-        this.#updateControl();
       }, { signal });
-      video.addEventListener('pause', this.#updateControl, { signal });
+      // Preserve the last frame when the same completed video is reconnected.
+      if (this.dataset.playOnce === 'true' && video.ended) video.setAttribute('data-playing', '');
       video.addEventListener('error', () => {
         video.removeAttribute('data-playing');
-        this.#updateControl();
       }, { signal });
     }
     this.setAttribute('data-enhanced', '');
-    this.#motion.addEventListener('change', () => {
-      this.#userStarted = false;
-      this.#sync();
-    }, { signal });
+    this.#motion.addEventListener('change', this.#sync, { signal });
     this.#viewport.addEventListener('change', this.#sync, { signal });
     document.addEventListener('visibilitychange', this.#sync, { signal });
     this.#observer = new IntersectionObserver((entries) => {
@@ -69,49 +62,28 @@ class GrowthHero extends Component {
       this.#sync();
     });
     this.#observer.observe(this);
-    this.#updateControl();
-  }
-
-  /** Public declarative click handler. @param {MouseEvent} event */
-  togglePlayback(event) {
-    if (!(event.currentTarget instanceof Element) && !(event.target instanceof Element)) return;
-    const playing = this.#videos.some((video) => !video.paused);
-    this.#userPaused = playing;
-    this.#userStarted = !playing;
-    this.#sync();
   }
 
   #sync = async () => {
     const revision = ++this.#revision;
-    const shouldPlay = this.#visible && !document.hidden && !this.#userPaused && (!this.#motion.matches || this.#userStarted);
+    const shouldPlay = this.#visible && !document.hidden && !this.#motion.matches;
     const visible = this.#videos.map((video) => video.getBoundingClientRect().width > 0);
     for (const [index, video] of this.#videos.entries()) {
-      if (!shouldPlay || !visible[index] || video.error) {
+      if (!shouldPlay || !visible[index] || video.error || (this.dataset.playOnce === 'true' && video.ended)) {
         video.pause();
         continue;
       }
       try {
         await video.play();
         if (revision !== this.#revision || !this.isConnected) {
-          if (!this.isConnected || !this.#visible || document.hidden || this.#userPaused) video.pause();
+          if (!this.isConnected || !this.#visible || document.hidden) video.pause();
           return;
         }
       } catch {
-        // Autoplay denial retains the poster and offers explicit user playback.
+        // Autoplay denial retains the static poster.
         video.removeAttribute('data-playing');
       }
     }
-    if (revision === this.#revision) this.#updateControl();
-  };
-
-  #updateControl = () => {
-    const button = this.refs.toggle;
-    if (!button) return;
-    const active = this.#videos.filter((video) => video.getBoundingClientRect().width > 0 && !video.error);
-    const playing = active.some((video) => !video.paused);
-    button.hidden = active.length === 0;
-    button.setAttribute('aria-label', (playing ? button.dataset.pauseLabel : button.dataset.playLabel) || '');
-    if (this.refs.icon) this.refs.icon.textContent = playing ? 'Ⅱ' : '▶';
   };
 
   #cleanup() {
@@ -120,7 +92,7 @@ class GrowthHero extends Component {
     this.#observer?.disconnect();
     for (const video of this.#videos) {
       video.pause();
-      video.controls = true;
+      video.controls = false;
       video.removeAttribute('data-playing');
     }
     this.#videos = [];

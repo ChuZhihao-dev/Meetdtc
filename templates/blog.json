@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "main": {
       "type": "main-blog",
@@ -15,21 +16,29 @@
           "type": "text",
           "name": "t:names.title",
           "settings": {
-            "text": "<h1>{{ closest.blog.title }}</h1>",
+            "text": "<h1>Blog</h1>",
             "width": "fit-content",
-            "max_width": "narrow",
+            "max_width": "none",
             "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "line_height": "normal",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "3.625rem",
+            "weight": "600",
+            "line_height": "1.2",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "gradient_text": true,
+            "gradient_color_from": "#0b22b8",
+            "gradient_color_to": "#9621c4",
+            "gradient_angle": 155,
+            "gradient_start_position": 1,
+            "gradient_end_position": 100,
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
-            "padding-block-start": 48,
-            "padding-block-end": 48,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -47,9 +56,11 @@
               "name": "t:names.title",
               "static": true,
               "settings": {
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "line_height": "normal",
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "1.125rem",
+                "weight": "700",
+                "line_height": "1.4",
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
@@ -57,7 +68,7 @@
                 "alignment": "left",
                 "show_alignment": false,
                 "padding-block-start": 0,
-                "padding-block-end": 10,
+                "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
@@ -71,6 +82,7 @@
                 "show_date": true,
                 "show_author": false,
                 "alignment": "left",
+                "text_color": "#6b6b6b",
                 "show_alignment": false,
                 "padding-block-start": 0,
                 "padding-block-end": 0
@@ -91,15 +103,45 @@
             }
           },
           "block_order": []
+        },
+        "static-blog-categories": {
+          "type": "_blog-category-nav",
+          "static": true,
+          "settings": {}
+        },
+        "introduction": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Explore practical insights on MarTech, AI and digital marketing for global growth.</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.5rem",
+            "weight": "500",
+            "line_height": "1.6",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#000000",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          }
         }
       },
       "block_order": [
-        "title"
+        "title",
+        "introduction"
       ],
       "settings": {
         "background_color": "{{ settings.color_palette.background }}",
+        "text_color": "#4b4b4b",
         "padding-block-start": 0,
-        "padding-block-end": 48
+        "padding-block-end": 60,
+        "posts_per_page": 6
       }
     }
   },

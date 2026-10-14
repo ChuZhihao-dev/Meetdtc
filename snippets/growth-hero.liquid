@@ -41,6 +41,7 @@
 {% endif %}
 
 <growth-hero-component
+  data-play-once="{{ section.settings.video_play_once }}"
   class="growth-hero color-custom-{{ color_id }}{% if section.settings.stack_media_on_mobile %} hero--stack-mobile{% endif %}"
   style="
     --growth-hero-gap: {{ section.settings.gap }}px;
@@ -82,21 +83,6 @@
       {{ children }}
     </div>
   </div>
-  {% if has_video %}
-    <button
-      ref="toggle"
-      type="button"
-      class="growth-hero__toggle"
-      on:click="/togglePlayback"
-      aria-controls="GrowthHeroMedia-{{ section.id }}"
-      data-play-label="{{ 'accessibility.play_video' | t | escape }}"
-      data-pause-label="{{ 'accessibility.pause_video' | t | escape }}"
-      aria-label="{{ 'accessibility.play_video' | t | escape }}"
-      hidden
-    >
-      <span ref="icon" aria-hidden="true">▶</span>
-    </button>
-  {% endif %}
 </growth-hero-component>
 
 {% stylesheet %}
@@ -139,22 +125,6 @@
     line-height: 1.8;
     overflow-wrap: anywhere;
   }
-  .growth-hero__toggle {
-    position: absolute;
-    z-index: 3;
-    inset-block-end: 20px;
-    inset-inline-end: 20px;
-    display: grid;
-    place-items: center;
-    inline-size: 44px;
-    block-size: 44px;
-    border: 1px solid var(--color-foreground);
-    border-radius: 50%;
-    background: var(--color-background);
-    color: var(--color-foreground);
-    cursor: pointer;
-  }
-  .growth-hero__toggle[hidden] { display: none; }
   .growth-hero__media video { pointer-events: auto; }
   .growth-hero[data-enhanced] .growth-hero__media video { pointer-events: none; }
   .growth-hero[data-enhanced] .growth-hero__media video:not([data-playing]) { opacity: 0; }
