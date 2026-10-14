@@ -29,6 +29,7 @@
     "slider_label": "Thanh trượt"
   },
   "accessibility": {
+    "view_business_challenge": "View challenge: {{ title }}",
     "play_model": "Phát mô hình 3D",
     "play_video": "Phát video",
     "unit_price": "Đơn giá",

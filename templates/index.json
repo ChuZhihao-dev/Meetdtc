@@ -455,8 +455,8 @@
         "optimization": "OPTIMIZATION",
         "opportunities": "GROWTH\nOPPORTUNITIES",
         "customer_growth": "CUSTOMER\nVALUE GROWTH",
-        "background_from": "#A9C5FF",
-        "background_to": "#CCD6FD",
+        "background_from": "#a9c5ff",
+        "background_to": "#ccd6fd",
         "padding-block-start": 84,
         "padding-block-end": 72
       }

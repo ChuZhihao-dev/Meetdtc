@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "main": {
       "type": "product-information",
@@ -38,6 +39,7 @@
             "media_columns": "two",
             "image_gap": 4,
             "large_first_image": false,
+            "icons_style": "arrow",
             "slideshow_controls_style": "counter",
             "slideshow_mobile_controls_style": "dots",
             "thumbnail_position": "right",
@@ -116,6 +118,7 @@
                 "border_opacity": 100,
                 "border_color": "",
                 "border_radius": 0,
+                "link": "",
                 "open_in_new_tab": false,
                 "placeholder": "",
                 "padding-block-start": 0,
@@ -135,11 +138,18 @@
                     "type_preset": "h3",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
+                    "weight": "",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
                     "text_color": "",
+                    "gradient_text": false,
+                    "gradient_color_from": "#2f6df6",
+                    "gradient_color_to": "#9333ea",
+                    "gradient_angle": 90,
+                    "gradient_start_position": 0,
+                    "gradient_end_position": 100,
                     "background": false,
                     "background_color": "#00000026",
                     "corner_radius": 0,
@@ -284,11 +294,18 @@
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
+                "weight": "",
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
                 "text_color": "",
+                "gradient_text": false,
+                "gradient_color_from": "#2f6df6",
+                "gradient_color_to": "#9333ea",
+                "gradient_angle": 90,
+                "gradient_start_position": 0,
+                "gradient_end_position": 100,
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -312,6 +329,7 @@
       "block_order": [
         "disclosures_g9mWze"
       ],
+      "disabled": true,
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
@@ -324,151 +342,172 @@
         "padding-block-end": 0
       }
     },
-    "product_recommendations_qggXJq": {
-      "type": "product-recommendations",
+    "product_hero_jiNakp": {
+      "type": "product-hero",
       "blocks": {
-        "text_cbcgyb": {
-          "type": "text",
-          "name": "t:names.header",
+        "button_JayDDj": {
+          "type": "button",
           "settings": {
-            "text": "<h3>You may also like </h3>",
+            "label": "Book a Free Growth Consultation →",
+            "link": "shopify://pages/contact",
+            "open_in_new_tab": false,
+            "style_class": "button-custom",
+            "custom_button_background": "#ffffff",
+            "custom_button_text": "#ffffff",
+            "custom_button_border": "rgba(0,0,0,0)",
+            "link_text_color": "",
+            "button_gradient": true,
+            "button_gradient_from": "#7a25c4",
+            "button_gradient_to": "#5e6eeb",
+            "button_gradient_angle": 90,
+            "button_gradient_start_position": 0,
+            "button_gradient_end_position": 100,
+            "button_custom_radius": true,
+            "button_radius": 50,
+            "button_font": "var(--font-heading--family)",
+            "button_font_size": "1.5rem",
+            "button_font_weight": "600",
+            "button_letter_spacing": "",
+            "button_case": "",
+            "button_icon_size": 16,
             "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h4",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
           },
           "blocks": {}
         },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
+        "button_yVLWje": {
+          "type": "button",
           "settings": {
-            "product_card_gap": 8,
-            "background_color": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 8,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "label": "See Pricing →",
+            "link": "#pricing",
+            "open_in_new_tab": false,
+            "style_class": "button-custom",
+            "custom_button_background": "#ffffff",
+            "custom_button_text": "#000000",
+            "custom_button_border": "rgba(0,0,0,0)",
+            "link_text_color": "",
+            "button_gradient": false,
+            "button_gradient_from": "#7a25c4",
+            "button_gradient_to": "#5e6eeb",
+            "button_gradient_angle": 90,
+            "button_gradient_start_position": 0,
+            "button_gradient_end_position": 100,
+            "button_custom_radius": true,
+            "button_radius": 50,
+            "button_font": "var(--font-heading--family)",
+            "button_font_size": "1.5rem",
+            "button_font_weight": "600",
+            "button_letter_spacing": "",
+            "button_case": "",
+            "button_icon_size": 16,
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
           },
-          "blocks": {
-            "product_card_gallery_DNizbJ": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_M7MJkb": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_gLWgA6": {
-              "type": "price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "text_color": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_card_gallery_DNizbJ",
-            "product_title_M7MJkb",
-            "price_gLWgA6"
-          ]
+          "blocks": {}
         }
       },
       "block_order": [
-        "text_cbcgyb"
+        "button_JayDDj",
+        "button_yVLWje"
       ],
-      "name": "t:names.product_recommendations",
+      "name": "t:product_hero.name",
       "settings": {
-        "product": "{{ closest.product }}",
-        "recommendation_type": "related",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 4,
-        "columns": 4,
-        "mobile_columns": "2",
-        "columns_gap": 12,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "gap": 28,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "eyebrow": "WEB DEVELOPMENT",
+        "heading": "Websites Built to Sell.\nNot Just to Look Good",
+        "heading_tag": "h1",
+        "description": "We design and build sites that turn visitors into enquiries - scoped by page\ncount, timeline and budget, so you know what you are buying before we start.",
+        "background_from": "#F7E9F5",
+        "background_to": "#C7E2F4",
+        "heading_from": "#0C23B8",
+        "heading_to": "#7C21C2",
+        "description_color": "#6B6A6A",
+        "section_height": "large",
+        "padding-block-start": 84,
+        "padding-block-end": 184
+      }
+    },
+    "business_challenge_iR7zkb": {
+      "type": "business-challenge",
+      "blocks": {
+        "business_challenge_item_XDJAAj": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Challenge theme",
+            "description": "<p>Describe the issue and its business impact in one or two sentences.</p>",
+            "link": "",
+            "marker": "1"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_fgEXyy": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Challenge theme",
+            "description": "<p>Describe the issue and its business impact in one or two sentences.</p>",
+            "link": "",
+            "marker": "2"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_YMxyyL": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Challenge theme",
+            "description": "<p>Describe the issue and its business impact in one or two sentences.</p>",
+            "link": "",
+            "marker": "3"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_WaNjic": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Challenge theme",
+            "description": "<p>Describe the issue and its business impact in one or two sentences.</p>",
+            "link": "",
+            "marker": "3"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "business_challenge_item_XDJAAj",
+        "business_challenge_item_fgEXyy",
+        "business_challenge_item_YMxyyL",
+        "business_challenge_item_WaNjic"
+      ],
+      "name": "t:names.business_challenge",
+      "settings": {
+        "eyebrow": "BUSINESS CHALLENGE",
+        "heading": "Your website is where most of your marketing spend quietly leaks.",
+        "center_text": "GROWTH\nPOTENTIAL",
+        "caption": "Existing potential is not being fully converted into business value.",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "gradient_text": true,
+        "gradient_color_from": "#0B22B8",
+        "gradient_color_to": "#9621C4",
+        "background_color": "#F5EBF4",
+        "text_color": "#000000",
+        "accent_color": "#7222C1",
+        "description_color": "#6B6B6B",
+        "caption_color": "#686868",
+        "center_text_color": "#FFFFFF",
+        "divider_color": "#000000",
+        "center_tint": "",
+        "enable_animation": true,
+        "padding-block-start": 36,
+        "padding-block-end": 60
       }
     }
   },
   "order": [
     "main",
-    "product_recommendations_qggXJq"
+    "product_hero_jiNakp",
+    "business_challenge_iR7zkb"
   ]
 }

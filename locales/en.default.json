@@ -9,6 +9,7 @@
  */
 {
   "accessibility": {
+    "view_business_challenge": "View challenge: {{ title }}",
     "account": "Account",
     "active_filters": "Active filters:",
     "cart": "Cart",

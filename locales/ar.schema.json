@@ -8,6 +8,18 @@
  * ------------------------------------------------------------
  */
 {
+  "product_hero": {
+    "height_desktop": "Desktop height",
+    "height_mobile": "Mobile height",
+    "height_info": "Set to 0 for automatic height. Includes top and bottom padding; expands when content needs more space.",
+    "name": "Product hero",
+    "web": "Product hero — Web Development",
+    "seo": "Product hero — SEO & AEO",
+    "heading_tag": "Heading tag",
+    "background_from": "Background gradient start",
+    "background_to": "Background gradient end",
+    "description_color": "Description color"
+  },
   "aidea": {
     "name": "AIDEA model",
     "diagram": "Model labels",
@@ -267,6 +279,8 @@
     "media_type_info": "تمت تعبئة الميزات من روابط القائمة الخاصة بك"
   },
   "names": {
+    "business_challenge": "Growth Potential",
+    "business_challenge_item": "Challenge",
     "services_globe": "Services globe",
     "footer_diagnosis": "Growth diagnosis footer",
     "footer_feature": "Advantage",
@@ -443,6 +457,10 @@
     "partner_brands": "Partner brands"
   },
   "options": {
+    "challenge_marker_none": "No association",
+    "challenge_marker_1": "Marker 1 — left",
+    "challenge_marker_2": "Marker 2 — lower right",
+    "challenge_marker_3": "Marker 3 — upper right",
     "growth_hero": "Growth hero",
     "icon_arrow_up_right": "Arrow up-right",
     "icon_browser": "Browser window",
@@ -734,6 +752,15 @@
     "below_media": "أسفل الوسائط"
   },
   "settings": {
+    "challenge_caption_text": "Diagram caption",
+    "challenge_center_text": "Center text",
+    "challenge_accent": "Challenge title color",
+    "challenge_description_color": "Challenge description color",
+    "challenge_caption_color": "Diagram caption color",
+    "challenge_center_color": "Center text color",
+    "challenge_center_tint": "Circle tint (optional)",
+    "challenge_animation": "Animate on scroll",
+    "challenge_marker": "Associated diagram marker",
     "web_commerce": "Web commerce",
     "customer_growth": "Customer growth",
     "ai_technology": "AI & technology",

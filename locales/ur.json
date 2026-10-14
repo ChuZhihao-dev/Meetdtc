@@ -9,6 +9,7 @@
  */
 {
   "accessibility": {
+    "view_business_challenge": "View challenge: {{ title }}",
     "account": "اکاؤنٹ",
     "active_filters": "فعال فلٹر:",
     "cart": "کارٹ",

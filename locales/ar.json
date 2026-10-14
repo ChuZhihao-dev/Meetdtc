@@ -9,6 +9,7 @@
  */
 {
   "accessibility": {
+    "view_business_challenge": "View challenge: {{ title }}",
     "account": "الحساب",
     "active_filters": "عوامل التصفية النشطة:",
     "cart": "سلة التسوق",

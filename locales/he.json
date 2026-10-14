@@ -9,6 +9,7 @@
  */
 {
   "accessibility": {
+    "view_business_challenge": "View challenge: {{ title }}",
     "account": "חשבון",
     "active_filters": "מסננים פעילים:",
     "cart": "סל",

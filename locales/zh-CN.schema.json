@@ -8,6 +8,18 @@
  * ------------------------------------------------------------
  */
 {
+  "product_hero": {
+    "height_desktop": "桌面端高度",
+    "height_mobile": "手机端高度",
+    "height_info": "设为 0 时自动适应内容。高度包含上下内边距；内容超出时自动撑高。",
+    "name": "产品与服务 Hero",
+    "web": "产品 Hero — 网站开发",
+    "seo": "产品 Hero — SEO 与 AEO",
+    "heading_tag": "标题层级",
+    "background_from": "背景渐变起始色",
+    "background_to": "背景渐变结束色",
+    "description_color": "说明文字颜色"
+  },
   "aidea": {
     "name": "AIDEA 增长模型",
     "diagram": "模型文案",
@@ -24,6 +36,8 @@
     "customer_growth": "客户价值增长"
   },
   "names": {
+    "business_challenge": "Growth Potential",
+    "business_challenge_item": "挑战项",
     "services_globe": "服务地球",
     "footer_diagnosis": "Growth diagnosis footer",
     "footer_feature": "Advantage",
@@ -200,6 +214,15 @@
     "partner_brands": "Partner brands"
   },
   "settings": {
+    "challenge_caption_text": "图形说明",
+    "challenge_center_text": "圆心文字",
+    "challenge_accent": "挑战标题颜色",
+    "challenge_description_color": "挑战说明颜色",
+    "challenge_caption_color": "图形说明颜色",
+    "challenge_center_color": "圆心文字颜色",
+    "challenge_center_tint": "圆心染色（可选）",
+    "challenge_animation": "启用进入视口动画",
+    "challenge_marker": "关联图形标记",
     "web_commerce": "网站商业",
     "customer_growth": "客户增长",
     "ai_technology": "AI 与技术",
@@ -647,6 +670,10 @@
     "alt_text": "替代文本"
   },
   "options": {
+    "challenge_marker_none": "不关联",
+    "challenge_marker_1": "标记 1 — 左侧",
+    "challenge_marker_2": "标记 2 — 右下",
+    "challenge_marker_3": "标记 3 — 右上",
     "growth_hero": "增长型首屏",
     "icon_arrow_up_right": "Arrow up-right",
     "icon_browser": "Browser window",

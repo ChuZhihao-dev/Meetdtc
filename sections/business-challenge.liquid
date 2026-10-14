@@ -1,0 +1,308 @@
+{% comment %}
+  Growth potential. Editable challenge list and an associated growth-potential diagram.
+  DOM order stays introduction, figure, then challenges at every viewport size.
+  @example
+  <!-- Add Growth potential below the homepage Hero and edit its Challenge blocks. -->
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+  assign color_id = 'business-challenge-' | append: section.id
+%}
+{% render 'contrast-override', background_color: s.background_color, text_color: s.text_color, section_id: color_id %}
+{% render 'text-block-styles' %}
+{% if s.enable_animation %}{% render 'scroll-reveal-styles' %}{% endif %}
+<script src="{{ 'business-challenge.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+<business-challenge-component
+  class="business-challenge spacing-style color-custom-{{ color_id }}"
+  data-animate="{{ s.enable_animation }}"
+  data-marker-label="{{ 'accessibility.view_business_challenge' | t: title: '[title]' | escape }}"
+  style="
+    {% render 'spacing-style', settings: s %}
+    --challenge-font: {{ s.font }};
+    --challenge-heading-size: {{ s.font_size }};
+    --challenge-accent: {{ s.accent_color }};
+    --challenge-description: {{ s.description_color }};
+    --challenge-caption: {{ s.caption_color }};
+    --challenge-center-color: {{ s.center_text_color }};
+    --challenge-divider: {{ s.divider_color }};
+    --challenge-highlight: rgb({{ s.accent_color.rgb }} / 0.05);
+    --gradient-from: {{ s.gradient_color_from }};
+    --gradient-to: {{ s.gradient_color_to }};
+    --gradient-angle: 112.81deg;
+    --gradient-start: 11.742%;
+    --gradient-end: 88.258%;
+  "
+>
+  <div class="business-challenge__layout">
+    <div class="business-challenge__intro" {% if s.enable_animation %}data-reveal ref="reveals[]"{% endif %}>
+      {% if s.eyebrow != blank %}<p class="business-challenge__eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+      {% if s.heading != blank %}<h2 class="business-challenge__heading text-block{% if s.gradient_text %} text-block--gradient{% endif %}">{{ s.heading | escape }}</h2>{% endif %}
+    </div>
+    <figure class="business-challenge__figure" {% if s.enable_animation %}data-reveal ref="reveals[]"{% endif %}>
+      {% render 'challenge-diagram', center_text: s.center_text, center_tint: s.center_tint %}
+      {% if s.caption != blank %}<figcaption class="business-challenge__caption">{{ s.caption | escape }}</figcaption>{% endif %}
+    </figure>
+    <div class="business-challenge__list">
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</business-challenge-component>
+
+{% stylesheet %}
+  .business-challenge { display: block; container-type: inline-size; font-family: var(--challenge-font, var(--font-heading--family)); color: var(--color-foreground); }
+  .business-challenge__layout { display: grid; grid-template-columns: minmax(0, 484px) minmax(0, 1fr); grid-template-areas: 'figure intro' 'figure list'; grid-template-rows: auto auto; gap: 60px 90px; inline-size: calc(100% - 48px); max-inline-size: 1316px; margin-inline: auto; align-items: start; }
+  .business-challenge__intro { grid-area: intro; min-inline-size: 0; max-inline-size: 732px; }
+  .business-challenge__eyebrow { margin: 0 0 15px; font-size: 1.5rem; font-weight: 500; line-height: 1.5833; overflow-wrap: anywhere; }
+  .business-challenge__heading { margin: 0; font-family: inherit; font-size: min(var(--challenge-heading-size), 4.028cqw); font-weight: 600; line-height: 1.0345; letter-spacing: normal; overflow-wrap: anywhere; text-wrap: pretty; color: var(--color-foreground); }
+  .business-challenge__figure { grid-area: figure; min-inline-size: 0; inline-size: 100%; max-inline-size: 484px; margin: 82px 0 0; }
+  .business-challenge__caption { max-inline-size: 436px; margin-block-start: 33px; margin-inline: auto; padding-inline: 8px; font-size: 1.1875rem; font-weight: 500; line-height: 1.4737; text-align: center; overflow-wrap: anywhere; color: var(--challenge-caption); }
+  .business-challenge__list { grid-area: list; min-inline-size: 0; max-inline-size: 704px; }
+  .business-challenge.reveal-ready [data-reveal] { transform: translateY(16px); transition-duration: 0.4s; transition-delay: calc(var(--reveal-index, 0) * 60ms); }
+  .business-challenge.reveal-ready .business-challenge__figure[data-reveal] { transform: translateY(16px) scale(0.97); }
+  .business-challenge.reveal-ready [data-reveal][data-state='in'] { transform: none; }
+  @media screen and (min-width: 750px) and (max-width: 1099px) { .business-challenge__layout { grid-template-columns: minmax(0, 36%) minmax(0, 1fr); gap: 40px 32px; } .business-challenge__heading { font-size: min(var(--challenge-heading-size), 2.625rem); line-height: 1.1; } .business-challenge__figure { margin-block-start: 70px; } }
+  @media screen and (max-width: 749px) {
+    .business-challenge__layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'intro' 'figure' 'list'; gap: 32px; }
+    .business-challenge__eyebrow { font-size: 1rem; line-height: 1.5; margin-block-end: 12px; }
+    .business-challenge__heading { font-size: min(var(--challenge-heading-size), 2rem); line-height: 1.125; }
+    .business-challenge__figure { max-inline-size: 320px; margin: 0; justify-self: center; }
+    .business-challenge__caption { margin-block-start: 24px; font-size: 1rem; line-height: 1.5; }
+  }
+  @media (prefers-reduced-motion: reduce) { .business-challenge.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; } .business-challenge.reveal-ready .business-challenge__figure[data-reveal] { transform: none; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.business_challenge",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "blocks": [
+    {
+      "type": "_business-challenge-item"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.business_challenge",
+      "category": "t:categories.storytelling",
+      "blocks": {
+        "challenge_1": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Challenge theme",
+            "description": "<p>Describe the issue and its business impact in one or two sentences.</p>",
+            "marker": "1"
+          }
+        },
+        "challenge_2": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Challenge theme",
+            "description": "<p>Describe the issue and its business impact in one or two sentences.</p>",
+            "marker": "2"
+          }
+        },
+        "challenge_3": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Challenge theme",
+            "description": "<p>Describe the issue and its business impact in one or two sentences.</p>",
+            "marker": "3"
+          }
+        },
+        "challenge_4": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Challenge theme",
+            "description": "<p>Describe the issue and its business impact in one or two sentences.</p>",
+            "marker": "3"
+          }
+        }
+      },
+      "block_order": [
+        "challenge_1",
+        "challenge_2",
+        "challenge_3",
+        "challenge_4"
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:settings.eyebrow",
+      "default": "BUSINESS CHALLENGE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:settings.heading",
+      "default": "Your website is where most of your marketing spend quietly leaks."
+    },
+    {
+      "type": "textarea",
+      "id": "center_text",
+      "label": "t:settings.challenge_center_text",
+      "default": "GROWTH\nPOTENTIAL"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "t:settings.challenge_caption_text",
+      "default": "Existing potential is not being fully converted into business value."
+    },
+    {
+      "type": "select",
+      "id": "font",
+      "label": "t:settings.font",
+      "options": [
+        {
+          "value": "var(--font-heading--family)",
+          "label": "t:options.heading"
+        },
+        {
+          "value": "var(--font-body--family)",
+          "label": "t:options.body"
+        },
+        {
+          "value": "var(--font-subheading--family)",
+          "label": "t:options.subheading"
+        },
+        {
+          "value": "var(--font-accent--family)",
+          "label": "t:options.accent"
+        }
+      ],
+      "default": "var(--font-heading--family)"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "t:settings.size",
+      "options": [
+        {
+          "value": "2rem",
+          "label": "32px"
+        },
+        {
+          "value": "2.5rem",
+          "label": "40px"
+        },
+        {
+          "value": "3rem",
+          "label": "48px"
+        },
+        {
+          "value": "3.625rem",
+          "label": "58px"
+        },
+        {
+          "value": "4rem",
+          "label": "64px"
+        }
+      ],
+      "default": "3.625rem"
+    },
+    {
+      "type": "checkbox",
+      "id": "gradient_text",
+      "label": "t:settings.gradient_text",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#0B22B8",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#9621C4",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:settings.background_color",
+      "default": "#F5EBF4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:settings.text_color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "t:settings.challenge_accent",
+      "default": "#7222C1"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "t:settings.challenge_description_color",
+      "default": "#6B6B6B"
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "t:settings.challenge_caption_color",
+      "default": "#686868"
+    },
+    {
+      "type": "color",
+      "id": "center_text_color",
+      "label": "t:settings.challenge_center_color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "t:settings.color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "center_tint",
+      "label": "t:settings.challenge_center_tint",
+      "alpha": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "t:settings.challenge_animation",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ]
+}
+{% endschema %}

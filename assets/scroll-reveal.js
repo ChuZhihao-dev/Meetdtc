@@ -31,6 +31,7 @@ function initReveal(root) {
   root.classList.add(READY_CLASS);
 
   const viewportHeight = window.innerHeight;
+  const useTimeline = root.hasAttribute('data-reveal-timeline');
 
   targets.forEach((target, index) => {
     target.style.setProperty('--reveal-index', String(index));
@@ -42,7 +43,7 @@ function initReveal(root) {
 
     const rect = target.getBoundingClientRect();
     const inView = rect.bottom > 0 && rect.top < viewportHeight;
-    target.dataset.state = inView ? 'in' : 'before';
+    target.dataset.state = !useTimeline && inView ? 'in' : 'before';
   });
 
   const observer = new IntersectionObserver(
@@ -50,6 +51,13 @@ function initReveal(root) {
       for (const entry of entries) {
         const target = entry.target;
         if (!entry.isIntersecting) continue;
+        if (useTimeline) {
+          targets.forEach((item) => {
+            if (item.dataset.state !== 'in') item.dataset.state = 'in';
+          });
+          observer.unobserve(root);
+          continue;
+        }
         target.dataset.state = 'in';
         observer.unobserve(target);
       }
@@ -57,9 +65,13 @@ function initReveal(root) {
     { rootMargin: ROOT_MARGIN, threshold: 0 }
   );
 
-  targets.forEach((target) => {
-    if (target.dataset.state !== 'in') observer.observe(target);
-  });
+  if (useTimeline) {
+    if (Array.from(targets).some((target) => target.dataset.state !== 'in')) observer.observe(root);
+  } else {
+    targets.forEach((target) => {
+      if (target.dataset.state !== 'in') observer.observe(target);
+    });
+  }
   observers.set(root, observer);
 }
 

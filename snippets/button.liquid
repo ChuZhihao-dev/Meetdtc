@@ -76,6 +76,9 @@
 {%- endif -%}
 
 <a
+  {% if has_gradient %}
+    data-button-gradient="true"
+  {% endif %}
   {% if link == blank %}
     role="link"
     aria-disabled="true"
