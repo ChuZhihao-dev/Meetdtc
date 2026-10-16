@@ -8,6 +8,56 @@
  * ------------------------------------------------------------
  */
 {
+  "partner_brands": {
+    "font_size_58": "58px",
+    "motion": "Logo movement",
+    "static": "Static",
+    "left": "Scroll left",
+    "right": "Scroll right"
+  },
+  "text_columns": {
+    "name": "Text columns",
+    "eyebrow": "Eyebrow",
+    "heading": "Heading",
+    "body": "Body",
+    "footer": "Supporting text",
+    "font": "Font",
+    "background": "Background",
+    "text_color": "Text color",
+    "heading_gradient": "Heading gradient",
+    "accent_color": "Supporting text color",
+    "top": "Top padding",
+    "bottom": "Bottom padding"
+  },
+  "stats_counter": {
+    "name": "Stats counter",
+    "stat": "Statistic",
+    "value": "Number",
+    "value_info": "Enter the final number, such as 10, 1,000 or 2.5. Counts from zero when visible.",
+    "suffix": "Suffix",
+    "description": "Description",
+    "font": "Font",
+    "background": "Background",
+    "text_color": "Text color",
+    "accent_color": "Suffix color",
+    "enable_animation": "Enable counting from zero",
+    "top": "Top padding",
+    "bottom": "Bottom padding"
+  },
+  "icon_list": {
+    "name": "Icon list",
+    "item": "Icon item",
+    "font": "Font",
+    "background": "Background",
+    "text_color": "Text color",
+    "enable_reveal": "Enable timeline entrance animation",
+    "icon": "Logo / icon",
+    "icon_width": "Logo width",
+    "heading": "Heading",
+    "description": "Description",
+    "top": "Top padding",
+    "bottom": "Bottom padding"
+  },
   "process_steps": {
   "name": "Process steps",
   "step": "Step",
@@ -21,11 +71,6 @@
   "card_background": "Card background",
   "accent_color": "Accent color",
   "icon": "Logo / icon",
-  "default_icon": "Default icon",
-  "none": "None",
-  "diagnose": "Diagnose",
-  "build": "Build",
-  "operate": "Operate",
   "points": "Bullet points (one per line)",
   "enable_reveal": "Enable entrance animation",
   "top": "Top padding",

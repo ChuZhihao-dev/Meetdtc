@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "page_background_phTEcT": {
+      "type": "page-background",
+      "name": "t:names.page_background",
+      "settings": {
+        "background_type": "gradient",
+        "background_color": "#FFFFFF",
+        "gradient_color_from": "#D8E0F8",
+        "gradient_color_to": "#F7F1ED",
+        "gradient_angle": 160
+      }
+    },
     "main": {
       "type": "main-page",
       "blocks": {
@@ -119,6 +130,164 @@
         "section_height": "large",
         "padding-block-start": 0,
         "padding-block-end": 0
+      }
+    },
+    "stats_counter_4jcwP3": {
+      "type": "stats-counter",
+      "blocks": {
+        "stat_U7MJkh": {
+          "type": "stat",
+          "settings": {
+            "value": "10",
+            "suffix": "+",
+            "description": "Years of technical service experience"
+          }
+        },
+        "stat_JxPfCa": {
+          "type": "stat",
+          "settings": {
+            "value": "1,000",
+            "suffix": "+",
+            "description": "Clients served"
+          }
+        },
+        "stat_MV4MQc": {
+          "type": "stat",
+          "settings": {
+            "value": "50",
+            "suffix": "+",
+            "description": "Countries and regions covered"
+          }
+        },
+        "stat_KPHFTW": {
+          "type": "stat",
+          "settings": {
+            "value": "3",
+            "suffix": "",
+            "description": "Industries served\nE-commerce · Apps · Gaming"
+          }
+        }
+      },
+      "block_order": [
+        "stat_U7MJkh",
+        "stat_JxPfCa",
+        "stat_MV4MQc",
+        "stat_KPHFTW"
+      ],
+      "name": "t:stats_counter.name",
+      "settings": {
+        "font": "montserrat_n4",
+        "background": "",
+        "text_color": "#000000",
+        "accent_color": "#772CC8",
+        "enable_animation": true,
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
+    },
+    "text_columns_zLbfNR": {
+      "type": "text-columns",
+      "name": "t:text_columns.name",
+      "settings": {
+        "eyebrow": "Who We Are",
+        "heading": "Rooted in Global Marketing Experience",
+        "body": "<p>Meet Experience helps businesses grow globally through AI and MarTech. We bring together digital consulting, technical implementation and ongoing operations across websites and e-commerce, customer engagement, data analytics and cloud infrastructure.</p><p>Backed by Meetsocial Group’s global marketing experience and technology partner network, we connect business needs with practical digital solutions.</p>",
+        "footer": "Singapore · Shanghai · Shenzhen",
+        "font": "montserrat_n4",
+        "background": "",
+        "text_color": "#000000",
+        "heading_gradient": "linear-gradient(103.593deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "accent_color": "#0B22B7",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "icon_list_9K4KTK": {
+      "type": "icon-list",
+      "blocks": {
+        "item_78CYMW": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Icon_3.svg",
+            "icon_width": 58,
+            "heading": "Our Mission",
+            "description": "To turn AI and MarTech into practical capabilities that support our clients’ growth."
+          }
+        },
+        "item_zUUBtL": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Icon_4.svg",
+            "icon_width": 64,
+            "heading": "Our Vision",
+            "description": "To be a trusted digital technology partner for businesses growing globally."
+          }
+        }
+      },
+      "block_order": [
+        "item_78CYMW",
+        "item_zUUBtL"
+      ],
+      "name": "t:icon_list.name",
+      "settings": {
+        "font": "montserrat_n4",
+        "background": "#DCE1F5",
+        "text_color": "#000000",
+        "enable_reveal": true,
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "process_steps_qynAB8": {
+      "type": "process-steps",
+      "blocks": {
+        "step_BPbYhf": {
+          "type": "step",
+          "settings": {
+            "icon": "shopify://shop_images/Icon.svg",
+            "heading": "Diagnose & Advise",
+            "description": "Understand your business and define the right approach.",
+            "points": "Assess goals and capabilities\nIdentify gaps using the AIDEA model\nDefine priorities and a roadmap"
+          }
+        },
+        "step_pVWbkD": {
+          "type": "step",
+          "settings": {
+            "icon": "shopify://shop_images/Icon_1.svg",
+            "heading": "Build & Implement",
+            "description": "Turn the roadmap into working solutions.",
+            "points": "Build and configure digital solutions\nIntegrate relevant systems and data\nSupport testing and launch"
+          }
+        },
+        "step_jQVxjt": {
+          "type": "step",
+          "settings": {
+            "icon": "shopify://shop_images/Icon_2.svg",
+            "heading": "Operate & Optimise",
+            "description": "Support ongoing operations and continuous improvement.",
+            "points": "Provide ongoing operational support\nMonitor performance against agreed goals\nImprove through testing and insights"
+          }
+        }
+      },
+      "block_order": [
+        "step_BPbYhf",
+        "step_pVWbkD",
+        "step_jQVxjt"
+      ],
+      "name": "t:process_steps.name",
+      "settings": {
+        "eyebrow": "Our Approach",
+        "heading": "How We Work",
+        "description": "<p>Understand the business. Put the plan into practice. Keep improving.</p>",
+        "font": "montserrat_n4",
+        "background": "linear-gradient(126.153deg, rgba(227, 230, 244, 1) 12.189%, rgba(231, 232, 242, 1) 87.811%)",
+        "heading_gradient": "linear-gradient(125.956deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "text_color": "#000000",
+        "card_background": "#ffffff",
+        "accent_color": "#0032f5",
+        "enable_reveal": true,
+        "padding-block-start": 80,
+        "padding-block-end": 80
       }
     },
     "partner_brands_erTVx4": {
@@ -266,8 +435,13 @@
     }
   },
   "order": [
+    "page_background_phTEcT",
     "main",
     "product_hero_9Lty7G",
+    "stats_counter_4jcwP3",
+    "text_columns_zLbfNR",
+    "icon_list_9K4KTK",
+    "process_steps_qynAB8",
     "partner_brands_erTVx4"
   ]
 }

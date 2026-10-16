@@ -12,8 +12,11 @@ class BusinessChallenge extends Component {
   #controller;
   /** @type {IntersectionObserver | undefined} */
   #observer;
+  /** @type {IntersectionObserver | undefined} */
+  #orbitObserver;
   #motion = matchMedia('(prefers-reduced-motion: reduce)');
   #expanded = false;
+  #diagramVisible = false;
 
   connectedCallback() {
     super.connectedCallback();
@@ -35,9 +38,13 @@ class BusinessChallenge extends Component {
     this.#controller = new AbortController();
     const { signal } = this.#controller;
     this.#motion.addEventListener('change', this.#initializeReveal, { signal });
+    this.#motion.addEventListener('change', this.#initializeOrbit, { signal });
     if (window.Shopify?.designMode) this.addEventListener('shopify:block:select', this.#onBlockSelect, { signal });
+    document.addEventListener('visibilitychange', this.#updateOrbitPlayback, { signal });
+    this.addEventListener('animationend', this.#finishEntrance, { signal });
     this.#updateDisclosure();
     this.#initializeReveal();
+    this.#initializeOrbit();
   }
 
   /** Reveal all remaining entries, then move keyboard focus into the revealed content. */
@@ -102,7 +109,34 @@ class BusinessChallenge extends Component {
     this.classList.add('reveal-ready');
   };
 
+  #initializeOrbit = () => {
+    this.#orbitObserver?.disconnect();
+    this.removeAttribute('data-orbit-ready');
+    this.removeAttribute('data-orbit-running');
+    const diagram = this.querySelector('.challenge-diagram');
+    if (this.dataset.animate !== 'true' || this.#motion.matches || window.Shopify?.designMode || !diagram || !('IntersectionObserver' in window)) return;
+    this.setAttribute('data-orbit-ready', '');
+    this.#orbitObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) this.#diagramVisible = entry.isIntersecting;
+      this.#updateOrbitPlayback();
+    });
+    this.#orbitObserver.observe(diagram);
+  };
+
+  #updateOrbitPlayback = () => {
+    this.toggleAttribute('data-orbit-running', this.hasAttribute('data-orbit-ready') && this.#diagramVisible && !document.hidden);
+  };
+
+  /** Release finished entrance animations so static artwork can shed animation layers. @param {AnimationEvent} event */
+  #finishEntrance = (event) => {
+    if (event.animationName !== 'challenge-expand' || !(event.target instanceof HTMLElement)) return;
+    event.target.setAttribute('data-enter-complete', '');
+  };
+
   #cleanup() {
+    this.#orbitObserver?.disconnect();
+    this.removeAttribute('data-orbit-ready');
+    this.removeAttribute('data-orbit-running');
     this.#controller?.abort();
     this.#observer?.disconnect();
     this.classList.remove('reveal-ready');

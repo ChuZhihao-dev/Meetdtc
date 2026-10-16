@@ -30,12 +30,6 @@
               <div class="process-steps__icon" aria-hidden="true">
                 {% if block.settings.icon != blank %}
                   {{ block.settings.icon | image_url: width: 180 | image_tag: widths: '60, 120, 180', sizes: '45px', loading: 'lazy', alt: '' }}
-                {% elsif block.settings.default_icon != 'none' %}
-                  {% assign icon_file = 'process-steps-' | append: block.settings.default_icon | append: '.svg' %}
-                  {% case block.settings.default_icon %}
-                    {% when 'diagnose' or 'build' %}<img src="{{ icon_file | asset_url }}" width="45" height="45" alt="" loading="lazy">
-                    {% when 'operate' %}<img src="{{ icon_file | asset_url }}" width="46" height="45" alt="" loading="lazy">
-                  {% endcase %}
                 {% endif %}
               </div>
               <span class="process-steps__number" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
@@ -83,6 +77,21 @@
   .process-steps.reveal-ready [data-reveal][data-state='before'] { transform: translateY(24px); }
   .process-steps.reveal-ready .process-steps__intro { transition-duration: 500ms; }
   .process-steps.reveal-ready .process-steps__intro[data-state='before'] { transform: translateY(16px); }
+  /* Keep hover translation independent of the entrance transform and its stagger. */
+  .process-steps .process-steps__card,
+  .process-steps.reveal-ready .process-steps__card[data-reveal] {
+    transition:
+      opacity 600ms var(--ease-out-cubic) calc(var(--reveal-index, 0) * 120ms),
+      transform 600ms var(--ease-out-cubic) calc(var(--reveal-index, 0) * 120ms),
+      translate var(--animation-speed-medium) var(--ease-out-cubic),
+      box-shadow var(--animation-speed-medium) var(--ease-out-cubic);
+  }
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .process-steps__card:hover {
+      translate: 0 -4px;
+      box-shadow: 0 14px 30px rgb(0 0 0 / 0.28);
+    }
+  }
   @media screen and (max-width: 1099px) {
     .process-steps__inner { padding-inline: 32px; }
     .process-steps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -98,9 +107,12 @@
     .process-steps__card-heading { font-size: 22px; line-height: 1.4; }
     .process-steps__description-slot p { min-height: 0; }
     .process-steps.reveal-ready [data-reveal] { transition-delay: 0ms; }
+    .process-steps.reveal-ready .process-steps__card[data-reveal] { transition-delay: 0ms; }
   }
   @media (prefers-reduced-motion: reduce) {
     .process-steps.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; }
+    .process-steps .process-steps__card,
+    .process-steps.reveal-ready .process-steps__card[data-reveal] { translate: none; transition: none; }
   }
   @media (forced-colors: active) {
     .process-steps__heading { color: CanvasText; background: none; -webkit-text-fill-color: currentColor; }
@@ -212,30 +224,6 @@
           "label": "t:process_steps.icon"
         },
         {
-          "type": "select",
-          "id": "default_icon",
-          "label": "t:process_steps.default_icon",
-          "options": [
-            {
-              "value": "none",
-              "label": "t:process_steps.none"
-            },
-            {
-              "value": "diagnose",
-              "label": "t:process_steps.diagnose"
-            },
-            {
-              "value": "build",
-              "label": "t:process_steps.build"
-            },
-            {
-              "value": "operate",
-              "label": "t:process_steps.operate"
-            }
-          ],
-          "default": "none"
-        },
-        {
           "type": "text",
           "id": "heading",
           "label": "t:process_steps.heading"
@@ -261,7 +249,6 @@
         {
           "type": "step",
           "settings": {
-            "default_icon": "diagnose",
             "heading": "Diagnose & Advise",
             "description": "Understand your business and define the right approach.",
             "points": "Assess goals and capabilities\nIdentify gaps using the AIDEA model\nDefine priorities and a roadmap"
@@ -270,7 +257,6 @@
         {
           "type": "step",
           "settings": {
-            "default_icon": "build",
             "heading": "Build & Implement",
             "description": "Turn the roadmap into working solutions.",
             "points": "Build and configure digital solutions\nIntegrate relevant systems and data\nSupport testing and launch"
@@ -279,7 +265,6 @@
         {
           "type": "step",
           "settings": {
-            "default_icon": "operate",
             "heading": "Operate & Optimise",
             "description": "Support ongoing operations and continuous improvement.",
             "points": "Provide ongoing operational support\nMonitor performance against agreed goals\nImprove through testing and insights"

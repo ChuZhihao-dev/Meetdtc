@@ -1,0 +1,178 @@
+{% comment %}
+  Stats counter: editable statistics with one-shot counting from zero on viewport entry.
+  Final values render in Liquid; animation is decorative and never announced live.
+  @example Add Stats counter and edit each Statistic's number, suffix and description.
+{% endcomment %}
+{% assign s = section.settings %}
+{% render 'custom-section-fonts', font: s.font %}
+{% if s.enable_animation %}<script src="{{ 'stats-counter.js' | asset_url }}" type="module" fetchpriority="low"></script>{% endif %}
+<div class="section-background" style="background: {{ s.background | default: 'transparent' }};"></div>
+<stats-counter-component class="section section--full-width spacing-style stats-counter"
+  style="{% render 'spacing-style', settings: s %} --stats-counter-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }}; --stats-counter-text: {{ s.text_color }}; --stats-counter-accent: {{ s.accent_color }};"
+  {% if s.enable_animation %}data-animate{% endif %}>
+  <ul class="stats-counter__items" role="list">
+    {% for block in section.blocks %}
+      {% if block.settings.value != blank or block.settings.description != blank or request.design_mode %}
+        <li class="stats-counter__item" {{ block.shopify_attributes }}>
+          {% if block.settings.value != blank %}
+            <div class="stats-counter__amount" dir="ltr">
+              <span class="visually-hidden">{{ block.settings.value | escape }}{{ block.settings.suffix | escape }}</span>
+              <span class="stats-counter__value" data-final="{{ block.settings.value | escape }}" aria-hidden="true"><span ref="values[]" data-value="{{ block.settings.value | escape }}">{{ block.settings.value | escape }}</span></span>{% if block.settings.suffix != blank %}<span class="stats-counter__suffix" aria-hidden="true">{{ block.settings.suffix | escape }}</span>{% endif %}
+            </div>
+          {% endif %}
+          {% if block.settings.description != blank %}<p class="stats-counter__description">{{ block.settings.description | escape | newline_to_br }}</p>{% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</stats-counter-component>
+{% stylesheet %}
+  .stats-counter { color: var(--stats-counter-text); font-family: var(--stats-counter-font, var(--font-heading--family)); }
+  .stats-counter__items { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px 32px; width: 100%; max-width: 1258px; margin: 0 auto; padding: 0 40px; list-style: none; }
+  .stats-counter__item { flex: 0 0 auto; width: max-content; max-width: 100%; min-width: 0; text-align: center; }
+  .stats-counter__amount { display: flex; align-items: baseline; justify-content: center; flex-wrap: nowrap; white-space: nowrap; min-width: 0; font-size: clamp(44px, 6.52778vw, 94px); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: normal; }
+  /* Reserve final-value width so counting does not move the suffix or adjacent groups. */
+  .stats-counter__value { display: inline-grid; flex-shrink: 0; }
+  .stats-counter__value::before { content: attr(data-final); visibility: hidden; grid-area: 1 / 1; }
+  .stats-counter__value > span { grid-area: 1 / 1; text-align: end; }
+  .stats-counter__suffix { color: var(--stats-counter-accent); font-size: 0.69149em; }
+  .stats-counter__description { max-width: 238px; margin: 14px auto 0; font-size: 13px; font-weight: 400; line-height: 1.41; overflow-wrap: anywhere; }
+  @media screen and (max-width: 989px) {
+    .stats-counter__items { padding-inline: 32px; }
+    .stats-counter__amount { font-size: clamp(52px, 8vw, 76px); }
+  }
+  @media screen and (max-width: 749px) {
+    .stats-counter__items { padding-inline: 20px; column-gap: 20px; }
+    .stats-counter__amount { font-size: clamp(32px, 8.5vw, 60px); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:stats_counter.name",
+  "max_blocks": 8,
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "font_picker",
+      "id": "font",
+      "label": "t:stats_counter.font",
+      "default": "montserrat_n4"
+    },
+    {
+      "type": "color_background",
+      "id": "background",
+      "label": "t:stats_counter.background",
+      "default": "linear-gradient(126deg, #E3E6F4, #DCE1F5)"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:stats_counter.text_color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "t:stats_counter.accent_color",
+      "default": "#772CC8"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "t:stats_counter.enable_animation",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:stats_counter.top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:stats_counter.bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "t:stats_counter.stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "t:stats_counter.value",
+          "info": "t:stats_counter.value_info",
+          "default": "10"
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "t:stats_counter.suffix"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "t:stats_counter.description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:stats_counter.name",
+      "category": "t:categories.storytelling",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "value": "10",
+            "suffix": "+",
+            "description": "Years of technical service experience"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "1,000",
+            "suffix": "+",
+            "description": "Clients served"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "50",
+            "suffix": "+",
+            "description": "Countries and regions covered"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "3",
+            "suffix": "",
+            "description": "Industries served\nE-commerce · Apps · Gaming"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

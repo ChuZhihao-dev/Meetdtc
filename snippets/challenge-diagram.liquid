@@ -9,21 +9,23 @@
 
 <div class="challenge-diagram">
   <div class="challenge-diagram__layers" aria-hidden="true">
-    <span class="challenge-diagram__layer" style="--challenge-layer-size: 38.0165%;"><img src="{{ 'challenge-core-base.svg' | asset_url }}" width="184" height="184" alt="" loading="lazy"></span>
-    <span class="challenge-diagram__layer" style="--challenge-layer-size: 47.1074%;"><img src="{{ 'challenge-core-halo.svg' | asset_url }}" width="228" height="228" alt="" loading="lazy"></span>
-    <span class="challenge-diagram__layer" style="--challenge-layer-size: 38.0165%;"><img src="{{ 'challenge-core-ring.svg' | asset_url }}" width="184" height="184" alt="" loading="lazy"></span>
-    <span class="challenge-diagram__layer" data-ring="2" style="--challenge-layer-size: 72.314%;"><img src="{{ 'challenge-ring-middle.svg' | asset_url }}" width="350" height="350" alt="" loading="lazy"></span>
-    <span class="challenge-diagram__layer" data-ring="3" style="--challenge-layer-size: 85.9504%;"><img src="{{ 'challenge-ring-outer.svg' | asset_url }}" width="416" height="416" alt="" loading="lazy"></span>
-    <span class="challenge-diagram__layer" data-ring="1" style="--challenge-layer-size: 100%;"><img src="{{ 'challenge-ring-boundary.svg' | asset_url }}" width="484" height="484" alt="" loading="lazy"></span>
-    <span class="challenge-diagram__layer" style="--challenge-layer-size: 57.0248%;"><img src="{{ 'challenge-ring-inner.svg' | asset_url }}" width="276" height="276" alt="" loading="lazy"></span>
+    <span class="challenge-diagram__layer" style="--challenge-enter-delay:0s;--challenge-enter-scale:.96;--challenge-layer-size: 38.0165%;"><img src="{{ 'challenge-core-base.svg' | asset_url }}" width="184" height="184" alt="" loading="lazy"></span>
+    <span class="challenge-diagram__layer" style="--challenge-enter-delay:.12s;--challenge-enter-scale:.92;--challenge-layer-size: 47.1074%;"><img src="{{ 'challenge-core-halo.svg' | asset_url }}" width="228" height="228" alt="" loading="lazy"></span>
+    <span class="challenge-diagram__layer" style="--challenge-enter-delay:.08s;--challenge-enter-scale:.96;--challenge-layer-size: 38.0165%;"><img src="{{ 'challenge-core-ring.svg' | asset_url }}" width="184" height="184" alt="" loading="lazy"></span>
+    <span class="challenge-diagram__layer" data-ring="2" style="--challenge-enter-delay:.30s;--challenge-enter-scale:.84;--challenge-layer-size: 72.314%;"><img src="{{ 'challenge-ring-middle.svg' | asset_url }}" width="350" height="350" alt="" loading="lazy"></span>
+    <span class="challenge-diagram__layer" data-ring="3" style="--challenge-enter-delay:.42s;--challenge-enter-scale:.80;--challenge-layer-size: 85.9504%;"><img src="{{ 'challenge-ring-outer.svg' | asset_url }}" width="416" height="416" alt="" loading="lazy"></span>
+    <span class="challenge-diagram__layer" data-ring="1" style="--challenge-enter-delay:.54s;--challenge-enter-scale:.76;--challenge-layer-size: 100%;"><img src="{{ 'challenge-ring-boundary.svg' | asset_url }}" width="484" height="484" alt="" loading="lazy"></span>
+    <span class="challenge-diagram__layer" style="--challenge-enter-delay:.18s;--challenge-enter-scale:.88;--challenge-layer-size: 57.0248%;"><img src="{{ 'challenge-ring-inner.svg' | asset_url }}" width="276" height="276" alt="" loading="lazy"></span>
     {% if center_tint != blank %}<span class="challenge-diagram__tint" style="background-color: {{ center_tint }};"></span>{% endif %}
   </div>
   {% if center_text != blank %}<p class="challenge-diagram__center">{{ center_text | escape | newline_to_br }}</p>{% endif %}
+  <span class="challenge-diagram__orbit" aria-hidden="true">
   {% for marker in (1..3) %}
-    <span class="challenge-diagram__marker challenge-diagram__marker--{{ marker }}" data-marker-slot="{{ marker }}">
-      <span class="challenge-diagram__decoration" aria-hidden="true"><img src="{{ 'challenge-marker.svg' | asset_url }}" width="38" height="38" alt="" loading="lazy"><span>−</span></span>
-    </span>
+      <span class="challenge-diagram__marker challenge-diagram__marker--{{ marker }}" data-marker-slot="{{ marker }}">
+        <span class="challenge-diagram__decoration" aria-hidden="true"><img src="{{ 'challenge-marker.svg' | asset_url }}" width="38" height="38" alt="" loading="lazy"><span>−</span></span>
+      </span>
   {% endfor %}
+  </span>
 </div>
 
 {% stylesheet %}
@@ -33,6 +35,7 @@
   .challenge-diagram__layer img { display: block; inline-size: 100%; block-size: auto; }
   .challenge-diagram__tint { position: absolute; inset: 30.992%; border-radius: 50%; mix-blend-mode: color; }
   .challenge-diagram__center { position: absolute; inset-block-start: 50%; inset-inline-start: 50%; translate: -50% -50%; inline-size: 38.0165%; max-block-size: 38%; margin: 0; font-size: clamp(1rem, 4.9587cqw, 1.5rem); font-weight: 600; line-height: 1.25; text-align: center; overflow-wrap: anywhere; color: var(--challenge-center-color); }
+  .challenge-diagram__orbit { position: absolute; inset: 0; pointer-events: none; }
   .challenge-diagram__marker { position: absolute; inline-size: 44px; block-size: 44px; translate: -50% -50%; }
   .challenge-diagram__marker--1 { inset-inline-start: 7.6446%; inset-block-start: 58.0579%; }
   .challenge-diagram__marker--2 { inset-inline-start: 71.0744%; inset-block-start: 83.0579%; }
@@ -42,5 +45,42 @@
   .challenge-diagram__decoration span { grid-area: 1 / 1; }
   [dir='rtl'] .challenge-diagram__layer, [dir='rtl'] .challenge-diagram__center { translate: 50% -50%; }
   [dir='rtl'] .challenge-diagram__marker { translate: 50% -50%; }
+  /* Overlapping expansion settles softly; markers fade into an already moving orbit. */
+  business-challenge-component[data-orbit-ready] .challenge-diagram__layer:not([data-enter-complete]),
+  business-challenge-component[data-orbit-ready] .challenge-diagram__center:not([data-enter-complete]),
+  business-challenge-component[data-orbit-ready] .challenge-diagram__tint:not([data-enter-complete]),
+  business-challenge-component[data-orbit-ready] .challenge-diagram__decoration:not([data-enter-complete]) {
+    animation: challenge-expand calc(var(--animation-speed-slow) * 5) var(--ease-out-cubic) var(--challenge-enter-delay, 0s) both;
+    animation-play-state: paused;
+  }
+  business-challenge-component[data-orbit-ready] .challenge-diagram__decoration:not([data-enter-complete]) { --challenge-enter-delay: 1s; --challenge-enter-scale: .96; }
+  business-challenge-component[data-orbit-running] .challenge-diagram__layer:not([data-enter-complete]),
+  business-challenge-component[data-orbit-running] .challenge-diagram__center:not([data-enter-complete]),
+  business-challenge-component[data-orbit-running] .challenge-diagram__tint:not([data-enter-complete]),
+  business-challenge-component[data-orbit-running] .challenge-diagram__decoration:not([data-enter-complete]) { animation-play-state: running; }
+  @keyframes challenge-expand {
+    from { opacity: 0; scale: var(--challenge-enter-scale, 1); }
+    to { opacity: 1; scale: 1; }
+  }
+  /* Counter-rotation keeps each minus horizontal throughout its orbit. */
+  business-challenge-component[data-orbit-ready] .challenge-diagram__orbit {
+    animation: challenge-orbit 24s linear 1.1s infinite;
+    animation-play-state: paused;
+  }
+  business-challenge-component[data-orbit-ready] .challenge-diagram__marker {
+    animation: challenge-orbit 24s linear 1.1s infinite reverse;
+    animation-play-state: paused;
+  }
+  business-challenge-component[data-orbit-running] .challenge-diagram__orbit,
+  business-challenge-component[data-orbit-running] .challenge-diagram__marker { animation-play-state: running; }
+  @keyframes challenge-orbit { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    business-challenge-component[data-orbit-ready] .challenge-diagram__layer:not([data-enter-complete]),
+    business-challenge-component[data-orbit-ready] .challenge-diagram__center:not([data-enter-complete]),
+    business-challenge-component[data-orbit-ready] .challenge-diagram__tint:not([data-enter-complete]),
+    business-challenge-component[data-orbit-ready] .challenge-diagram__decoration:not([data-enter-complete]),
+    business-challenge-component[data-orbit-ready] .challenge-diagram__orbit,
+    business-challenge-component[data-orbit-ready] .challenge-diagram__marker { animation: none; }
+  }
   @media screen and (max-width: 749px) { .challenge-diagram__center { font-size: 1.125rem; line-height: 1.3333; } }
 {% endstylesheet %}

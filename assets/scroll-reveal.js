@@ -43,7 +43,8 @@ class ScrollReveal extends Component {
   #reveal = () => {
     this.#show();
     const targets = [...this.querySelectorAll('[data-reveal]')];
-    if (this.#motion.matches || !targets.length || window.Shopify?.designMode) return;
+    if (this.#motion.matches || !targets.length) return;
+    if (window.Shopify?.designMode && !this.hasAttribute('data-reveal-in-editor')) return;
     const timeline = this.hasAttribute('data-reveal-timeline');
     // Batch layout reads before dataset/style writes, including multi-card lists.
     const visible = targets.map((target) => {

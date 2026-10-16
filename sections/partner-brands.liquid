@@ -22,7 +22,7 @@
   "
 ></div>
 
-<div
+<partner-brands-component
   class="section section--page-width partner-brands spacing-style"
   style="{% render 'spacing-style', settings: section_settings %}
     --brand-logo-gap: {{ section_settings.logo_gap }}px;
@@ -69,9 +69,10 @@
   {% if logos != blank %}
     <div class="partner-brands__logos">{{ logos }}</div>
   {% endif %}
-</div>
+</partner-brands-component>
 
 {% stylesheet %}
+  .partner-brands__logos { min-width: 0; }
   .partner-brands__background {
     background-image: linear-gradient(
       var(--brand-bg-angle, 105deg),
@@ -83,6 +84,7 @@
   .partner-brands__heading {
     color: var(--color-foreground);
     margin-block-end: 32px;
+    text-align: var(--text-align, center);
   }
 
   /* Full-bleed divider: `force-full-width` spans the section's outer grid columns. */
@@ -194,6 +196,10 @@
         {
           "value": "2rem",
           "label": "32px"
+        },
+        {
+          "value": "3.625rem",
+          "label": "t:partner_brands.font_size_58"
         }
       ],
       "default": "1.3125rem"
@@ -531,7 +537,14 @@
               "type": "_brand-logo"
             }
           },
-          "block_order": ["logo_1", "logo_2", "logo_3", "logo_4", "logo_5", "logo_6"]
+          "block_order": [
+            "logo_1",
+            "logo_2",
+            "logo_3",
+            "logo_4",
+            "logo_5",
+            "logo_6"
+          ]
         },
         "row_2": {
           "type": "_brand-row",
@@ -552,10 +565,19 @@
               "type": "_brand-logo"
             }
           },
-          "block_order": ["logo_7", "logo_8", "logo_9", "logo_10", "logo_11"]
+          "block_order": [
+            "logo_7",
+            "logo_8",
+            "logo_9",
+            "logo_10",
+            "logo_11"
+          ]
         }
       },
-      "block_order": ["row_1", "row_2"]
+      "block_order": [
+        "row_1",
+        "row_2"
+      ]
     }
   ]
 }

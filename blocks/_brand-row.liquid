@@ -1,15 +1,24 @@
+{% liquid
+  assign logo_motion = block.settings.logo_motion | default: 'static'
+%}
+{% if logo_motion != 'static' %}
+  <script src="{{ 'partner-brands.js' | asset_url }}" type="module" fetchpriority="low"></script>
+{% endif %}
 
 
 {%- capture children -%}
   {% content_for 'blocks' %}
 {%- endcapture -%}
 
-<div class="brand-row" {{ block.shopify_attributes }}>
-  {{ children }}
+{% comment %} The original group stays selectable; runtime copies are inert and have no editor identity. {% endcomment %}
+<div class="brand-row" data-motion="{{ logo_motion }}" ref="rows[]" {{ block.shopify_attributes }}>
+  <div class="brand-row__track"><div class="brand-row__items">{{ children }}</div></div>
 </div>
 
 {% stylesheet %}
-  .brand-row {
+  .brand-row { width: 100%; min-width: 0; }
+  .brand-row__track { width: 100%; }
+  .brand-row__items {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -18,6 +27,11 @@
     column-gap: var(--brand-logo-gap, 78px);
     row-gap: calc(var(--brand-logo-gap, 78px) / 2);
   }
+  .brand-row--scrolling { overflow: hidden; }
+  .brand-row--scrolling .brand-row__track { display: flex; width: max-content; direction: ltr; }
+  .brand-row--scrolling .brand-row__items { flex: 0 0 auto; flex-wrap: nowrap; justify-content: flex-start; width: max-content; padding-inline-end: var(--brand-logo-gap, 78px); }
+  .brand-row--scrolling .brand-logo { flex-shrink: 0; max-width: none; }
+  .brand-row--scrolling .brand-logo__image { max-width: none; }
 {% endstylesheet %}
 
 {% schema %}
@@ -33,6 +47,28 @@
     {
       "name": "t:names.row",
       "category": "t:categories.storytelling"
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "logo_motion",
+      "label": "t:partner_brands.motion",
+      "default": "static",
+      "options": [
+        {
+          "value": "static",
+          "label": "t:partner_brands.static"
+        },
+        {
+          "value": "left",
+          "label": "t:partner_brands.left"
+        },
+        {
+          "value": "right",
+          "label": "t:partner_brands.right"
+        }
+      ]
     }
   ]
 }

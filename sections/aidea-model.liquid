@@ -19,11 +19,10 @@
     </div>
     <div class="aidea-model__diagram" ref="diagram">
       {% comment %}Paint backgrounds and connectors first so satellite discs cannot cover their icons.{% endcomment %}
-      <img data-aidea-part="ambient" class="aidea-model__orbit" src="{{ 'aidea-orbit.png' | asset_url }}" alt="" width="1800" height="1800" decoding="async" loading="lazy" style="--aidea-delay:3.6s;left:-12.5694444%;top:-50.2142857%;width:125.0000000%;height:183.6734694%;">
       <img data-aidea-part="core" class="aidea-model__asset" src="{{ 'aidea-center.png' | asset_url }}" alt="" width="980" height="980" decoding="async" loading="lazy" style="--aidea-delay:0s;left:15.9027778%;top:-8.3673469%;width:68.0555556%;height:100.0000000%;">
-      <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-arc-top.png' | asset_url }}" alt="" width="580" height="117" decoding="async" loading="lazy" style="--aidea-delay:3.2s;--aidea-line-clip:inset(0 100% 0 0);left:29.8054861%;top:-0.0918367%;width:40.2501389%;height:11.9387755%;transform:scaleY(-1);">
-      <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-arc-left.png' | asset_url }}" alt="" width="311" height="521" decoding="async" loading="lazy" style="--aidea-delay:3.5s;--aidea-line-clip:inset(0 0 100% 0);left:20.6944444%;top:31.3877551%;width:21.5625000%;height:53.1345918%;transform:scaleY(-1);">
-      <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-arc-right.png' | asset_url }}" alt="" width="312" height="522" decoding="async" loading="lazy" style="--aidea-delay:3.35s;--aidea-line-clip:inset(100% 0 0 0);left:57.5000000%;top:31.3571429%;width:21.6666667%;height:53.1802041%;transform:scaleY(-1);">
+      <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-arc-top.png' | asset_url }}" alt="" width="580" height="117" decoding="async" loading="lazy" style="--aidea-delay:2s;--aidea-duration:calc(var(--animation-speed-slow) * 3);--aidea-line-clip:inset(0 100% 0 0);left:29.8054861%;top:-0.0918367%;width:40.2501389%;height:11.9387755%;transform:scaleY(-1);">
+      <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-arc-left.png' | asset_url }}" alt="" width="311" height="521" decoding="async" loading="lazy" style="--aidea-delay:2.2s;--aidea-duration:calc(var(--animation-speed-slow) * 3);--aidea-line-clip:inset(0 0 100% 0);left:20.6944444%;top:31.3877551%;width:21.5625000%;height:53.1345918%;transform:scaleY(-1);">
+      <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-arc-right.png' | asset_url }}" alt="" width="312" height="522" decoding="async" loading="lazy" style="--aidea-delay:2.1s;--aidea-duration:calc(var(--animation-speed-slow) * 3);--aidea-line-clip:inset(100% 0 0 0);left:57.5000000%;top:31.3571429%;width:21.6666667%;height:53.1802041%;transform:scaleY(-1);">
       <img data-aidea-part="core" class="aidea-model__asset" src="{{ 'aidea-triangle.svg' | asset_url }}" alt="" width="404.667" height="324.774" decoding="async" loading="lazy" style="--aidea-delay:0.2s;left:35.8796528%;top:29.7067347%;width:28.1018750%;height:33.1402041%;">
       <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-connector-bottom.svg' | asset_url }}" alt="" width="10.6667" height="70.8333" decoding="async" loading="lazy" style="--aidea-delay:2.8s;--aidea-line-clip:inset(0 0 100% 0);left:49.5601840%;top:63.8673469%;width:0.7407431%;height:7.2278878%;">
       <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-connector-left.svg' | asset_url }}" alt="" width="10.6667" height="70.8333" decoding="async" loading="lazy" style="--aidea-delay:2.8s;--aidea-line-clip:inset(100% 0 0 0);left:34.1009375%;top:29.6879337%;width:0.7407431%;height:7.2278878%;transform:translate(-50%,-50%) rotate(-60deg);">
@@ -71,11 +70,6 @@
     max-width: 1440px;
     margin-inline: auto;
     min-width: 0;
-  }
-  .aidea-model__orbit {
-    position: absolute;
-    max-width: none;
-    pointer-events: none;
   }
   .aidea-model__intro {
     position: relative;
@@ -128,7 +122,7 @@
   /* Build outward from the centre; separate translate/scale preserve asset rotations and label centring. */
   .aidea-model[data-motion-ready] [data-aidea-part] {
     transition-property: opacity, translate, scale, clip-path;
-    transition-duration: calc(var(--animation-speed-slow) * 5);
+    transition-duration: var(--aidea-duration, calc(var(--animation-speed-slow) * 5));
     transition-timing-function: var(--ease-out-cubic);
     transition-delay: var(--aidea-delay, 0s);
   }
