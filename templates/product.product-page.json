@@ -394,18 +394,18 @@
       ],
       "name": "t:product_hero.name",
       "settings": {
-        "eyebrow": "SEO & AEO",
-        "heading": "Get Found on Google.\nGet Quoted by Al.",
+        "eyebrow": "Search Engine Optimization",
+        "heading": "Turn Search Demand into Qualified Traffic and Leads",
         "heading_tag": "h1",
-        "description": "We fix what stops search engines reading your site, then build the content that\nearns rankings - and make sure Al answers cite you instead of your competitors.",
+        "description": "We help businesses reach customers searching for their products and services. Through technical improvements, targeted content, and ongoing optimization, we strengthen search visibility and create clearer paths from discovery to enquiry or purchase.",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
         "heading_to": "#7c21c2",
         "description_color": "#6b6a6a",
         "section_height": "full-screen",
-        "padding-block-start": 84,
-        "padding-block-end": 184
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "partner_brands_z4GbiM": {
@@ -557,8 +557,8 @@
         "business_challenge_item_XDJAAj": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Challenge theme",
-            "description": "<p>Describe the issue and its business impact in one or two sentences.</p>",
+            "title": "Customers Find Your Competitors First",
+            "description": "<p>We identify valuable searches and optimize the pages that should help customers find your business.</p>",
             "link": "",
             "marker": "1"
           },
@@ -567,8 +567,8 @@
         "business_challenge_item_fgEXyy": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Challenge theme",
-            "description": "<p>Describe the issue and its business impact in one or two sentences.</p>",
+            "title": "Your Key Pages Get Little Attention",
+            "description": "<p>We investigate visibility gaps and improve the structure, relevance, and accessibility of important pages.</p>",
             "link": "",
             "marker": "2"
           },
@@ -577,8 +577,8 @@
         "business_challenge_item_YMxyyL": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Challenge theme",
-            "description": "<p>Describe the issue and its business impact in one or two sentences.</p>",
+            "title": "Your Content Brings Few Enquiries",
+            "description": "<p>We align content with buying questions and strengthen the paths to products, services, and contact forms.</p>",
             "link": "",
             "marker": "3"
           },
@@ -587,8 +587,38 @@
         "business_challenge_item_WaNjic": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Challenge theme",
-            "description": "<p>Describe the issue and its business impact in one or two sentences.</p>",
+            "title": "You Publish Without Knowing What Works",
+            "description": "<p>We build a prioritized content plan around customer demand, competitive gaps, and business relevance.</p>",
+            "link": "",
+            "marker": "3"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_7xTGhk": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "You Publish Without Knowing What Works",
+            "description": "<p>We build a prioritized content plan around customer demand, competitive gaps, and business relevance.</p>",
+            "link": "",
+            "marker": "3"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_m3pzPp": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Website Changes Create New Problems",
+            "description": "<p>We review important changes and provide guidance on URLs, redirects, internal links, and search accessibility.</p>",
+            "link": "",
+            "marker": "3"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_qLLxAD": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "You Cannot See What SEO Contributes",
+            "description": "<p>We connect search reporting with website engagement and tracked conversions to make progress easier to assess.</p>",
             "link": "",
             "marker": "3"
           },
@@ -599,12 +629,15 @@
         "business_challenge_item_XDJAAj",
         "business_challenge_item_fgEXyy",
         "business_challenge_item_YMxyyL",
-        "business_challenge_item_WaNjic"
+        "business_challenge_item_WaNjic",
+        "business_challenge_item_7xTGhk",
+        "business_challenge_item_m3pzPp",
+        "business_challenge_item_qLLxAD"
       ],
       "name": "t:names.business_challenge",
       "settings": {
         "eyebrow": "BUSINESS CHALLENGE",
-        "heading": "Your website is where most of your marketing spend quietly leaks.",
+        "heading": "Missed Searches Mean Missed Business Opportunities",
         "center_text": "GROWTH\nPOTENTIAL",
         "caption": "Existing potential is not being fully converted into business value.",
         "font": "var(--font-heading--family)",
@@ -620,6 +653,8 @@
         "center_text_color": "#ffffff",
         "divider_color": "#000000",
         "center_tint": "",
+        "initial_visible_items": 4,
+        "sticky_figure": true,
         "enable_animation": true,
         "padding-block-start": 36,
         "padding-block-end": 60
@@ -630,10 +665,10 @@
       "name": "t:our_approach.name",
       "settings": {
         "eyebrow": "OUR APPROACH",
-        "heading": "Design, buildand launch\non one team.",
-        "body_primary": "<p>We run discovery, design, build and launch with the same people. so nothing is lost in a handover. Scope is fixed up front - page count, markets and timeline - and written into the brief before any design starts.</p>",
-        "body_secondary": "<p>By combining customer data, audience strategy, automated journeys and conversion-led creative, we turn fragmented email activity into a coordinated, measurable retention programme.</p>",
-        "image": "shopify://shop_images/image_122_1.webp",
+        "heading": "Connect Every SEO Priority to a Customer Need",
+        "body_primary": "<p>Our approach starts with your business goals, target markets, and the searches customers make before buying. We map those searches to the right pages, then prioritize technical improvements, page optimization, content development, and relevant authority building.<br/><br/></p>",
+        "body_secondary": "<p>You receive a clear roadmap, defined deliverables, and reporting tied to agreed goals. This keeps work focused on meaningful opportunities and reduces wasted effort on disconnected articles or keywords with little business value.<br/><br/></p>",
+        "image": "shopify://shop_images/seo-approach-retangle_f2dbfe00-e452-41ad-b360-aa612abcd52f.png",
         "image_alt": "",
         "font": "montserrat_n5",
         "text_color": "#000000",
@@ -652,43 +687,43 @@
         "card_ETxkQz": {
           "type": "card",
           "settings": {
-            "heading": "Emall Strategy",
-            "description": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+            "heading": "SEO Audit & Roadmap",
+            "description": "<p>We assess your website and competitive landscape. You receive an audit, a prioritized issue list, and a phased optimization roadmap.<br/><br/></p>"
           }
         },
         "card_wKwRVy": {
           "type": "card",
           "settings": {
-            "heading": "Emall Strategy",
-            "description": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+            "heading": "Keyword & Search Intent Research",
+            "description": "<p>We research product, category, comparison, and problem-based searches. You receive a keyword set mapped to existing pages and new content opportunities.<br/><br/></p>"
           }
         },
         "card_jTHQUi": {
           "type": "card",
           "settings": {
-            "heading": "Emall Strategy",
-            "description": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+            "heading": "Technical SEO",
+            "description": "<p>We review crawling, indexing, duplicate pages, redirects, sitemaps, and performance issues. You receive implementation recommendations and checks for agreed fixes.<br/><br/></p>"
           }
         },
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
-            "heading": "Emall Strategy",
-            "description": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+            "heading": "Site Structure & Internal Linking",
+            "description": "<p>We review navigation, page hierarchy, and internal links. You receive recommendations that connect related content and make important pages easier to discover.<br/><br/></p>"
           }
         },
         "card_xg8a6q": {
           "type": "card",
           "settings": {
-            "heading": "Emall Strategy",
-            "description": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+            "heading": "Core Page Optimization",
+            "description": "<p>We improve agreed product, category, service, and landing pages. You receive page-level recommendations or revised copy within the selected scope.<br/><br/></p>"
           }
         },
         "card_nMqphe": {
           "type": "card",
           "settings": {
-            "heading": "Emall Strategy",
-            "description": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+            "heading": "Content Strategy & Production",
+            "description": "<p>We plan content around customer questions and commercial priorities. You receive a content calendar, briefs, and agreed new or updated articles.<br/><br/></p>"
           }
         }
       },
@@ -704,7 +739,7 @@
       "settings": {
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
-        "description": "<p>A monular scope tailored to each service, growth priarity and operating need. Add or<br/>&nbsp;romove modulas as the progremme grows.</p>",
+        "description": "<p>Our SEO service brings research, website improvements, content, and measurement into one coordinated program.<br/><br/></p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
@@ -728,41 +763,41 @@
         "step_PMTbKg": {
           "type": "step",
           "settings": {
-            "heading": "Audit & Discovery",
-            "description": "<p>Aesess channel performance, customer data, lifecycle gaps and current operations.</p>",
-            "deliverable": "Core deliverable: Opportunity diagnosis"
+            "heading": "Understand Your Business",
+            "description": "<p><strong>We confirm your products, target markets, competitors, business goals, and available website data.</strong></p>",
+            "deliverable": ""
           }
         },
         "step_RK4exK": {
           "type": "step",
           "settings": {
-            "heading": "Audit & Discovery",
-            "description": "<p>Aesess channel performance, customer data, lifecycle gaps and current operations.</p>",
-            "deliverable": "Core deliverable: Opportunity diagnosis"
+            "heading": "Establish the Baseline",
+            "description": "<p><strong>We assess website health, search performance, and content gaps to identify the starting point.</strong></p>",
+            "deliverable": ""
           }
         },
         "step_jFFWg7": {
           "type": "step",
           "settings": {
-            "heading": "Audit & Discovery",
-            "description": "<p>Aesess channel performance, customer data, lifecycle gaps and current operations.</p>",
-            "deliverable": "Core deliverable: Opportunity diagnosis"
+            "heading": "Set the Priorities",
+            "description": "<p><strong>We agree on target pages, keyword groups, deliverables, responsibilities, and the optimization roadmap.</strong></p>",
+            "deliverable": ""
           }
         },
         "step_tL7iNB": {
           "type": "step",
           "settings": {
-            "heading": "Audit & Discovery",
-            "description": "<p>Aesess channel performance, customer data, lifecycle gaps and current operations.</p>",
-            "deliverable": "Core deliverable: Opportunity diagnosis"
+            "heading": "Implement Improvements",
+            "description": "<p><strong>We deliver the agreed technical, page, content, and authority work with your team.</strong></p>",
+            "deliverable": ""
           }
         },
         "step_Qb6M37": {
           "type": "step",
           "settings": {
-            "heading": "Audit & Discovery",
-            "description": "<p>Aesess channel performance, customer data, lifecycle gaps and current operations.</p>",
-            "deliverable": "Core deliverable: Opportunity diagnosis"
+            "heading": "Review and Refine",
+            "description": "<p><strong>We evaluate results and adjust priorities based on performance, customer demand, and implementation progress.</strong></p>",
+            "deliverable": ""
           }
         }
       },
@@ -776,8 +811,8 @@
       "name": "Delivery process",
       "settings": {
         "eyebrow": "DELIVERY PROCESS",
-        "heading": "How the Engagement Moves From Diagnosis to Growth",
-        "description": "<p>A clear delivery structure connects strategic decisions, creative execution and continuous optimisation.</p>",
+        "heading": "A Clear Plan, Consistent Execution, and Regular Review",
+        "description": "<p><strong>Each stage defines what we will do, what you will receive, and where your team’s input is needed.</strong></p>",
         "background": "linear-gradient(135.439deg, rgba(211, 216, 246, 1) 2.204%, rgba(253, 243, 255, 1) 97.796%)",
         "heading_gradient": "linear-gradient(107.919deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
         "text_color": "#000000",
@@ -793,32 +828,32 @@
         "client_story_metric_zLRcgq": {
           "type": "_client-story-metric",
           "settings": {
-            "value": "[XX%]",
-            "label": "Primary result"
+            "value": "50,674",
+            "label": "Estimated Monthly Organic Traffic"
           },
           "blocks": {}
         },
         "client_story_metric_jtqQkg": {
           "type": "_client-story-metric",
           "settings": {
-            "value": "[XX%]",
-            "label": "Primary result"
+            "value": "1,889",
+            "label": "Keywords on Google’s First Page"
           },
           "blocks": {}
         },
         "client_story_metric_MwnYiR": {
           "type": "_client-story-metric",
           "settings": {
-            "value": "[XX%]",
-            "label": "Primary result"
+            "value": "+354%",
+            "label": "Growth in First-Page Keywords"
           },
           "blocks": {}
         },
         "client_story_metric_JWPK8E": {
           "type": "_client-story-metric",
           "settings": {
-            "value": "[XX%]",
-            "label": "Primary result"
+            "value": "1,800+",
+            "label": "Increase in Referring Domains"
           },
           "blocks": {}
         }
@@ -832,8 +867,9 @@
       "name": "t:client_story.name",
       "settings": {
         "eyebrow": "FEATURED CLIENT STORY",
-        "heading": "[Client] achieved [core business result] with [service].",
-        "description": "<p>Summarise the client context, the ME approach and the verified business outcome in one concise paragraph.</p>",
+        "heading": "Robotic Pool Cleaner Brand Grows First-Page Keywords by 354% with SEO",
+        "description": "<p><br/>ME helped a robotic pool cleaner brand improve its US search visibility through technical SEO, content and backlink development. In nine months, Google first-page keywords grew from 416 to 1,889, with over 1,800 new referring domains.<br/><br/></p>",
+        "image": "shopify://shop_images/pool-cleaner-case-square.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",
         "link": "",
@@ -858,8 +894,8 @@
         "faq_row_XdLKBG": {
           "type": "_faq-row",
           "settings": {
-            "question": "What is MarTech, and how can it support global growth?",
-            "answer": "<p>MarTech brings strategy, technology, data and execution together to help businesses attract, convert and retain customers. For businesses expanding across markets, it connects websites, marketing, customer operations and data into a more measurable growth system.</p>",
+            "question": "What does your SEO service include?",
+            "answer": "<p>Our proposed service covers nine areas, from research and technical SEO to content and reporting. Your agreement specifies the pages, articles, markets, and implementation work included.<br/><br/></p>",
             "open_by_default": true
           },
           "blocks": {}
@@ -867,8 +903,8 @@
         "faq_row_ckALeW": {
           "type": "_faq-row",
           "settings": {
-            "question": "What MarTech solutions does ME provide?",
-            "answer": "<p>ME provides a connected set of services across web design and development, SEO, CRO, lifecycle and affiliate marketing, so strategy and execution work as one system.</p>",
+            "question": "How long does SEO take to show results?",
+            "answer": "<p>Timing depends on the website’s starting point, competition, and implementation. We establish a baseline during the initial audit and set review milestones around the agreed roadmap.<br/><br/></p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -876,8 +912,8 @@
         "faq_row_8DWdMn": {
           "type": "_faq-row",
           "settings": {
-            "question": "Can ME support both strategy and implementation?",
-            "answer": "<p>Yes. We help define the strategy and then implement it end to end, so you're not handing plans between agencies.</p>",
+            "question": "Do you guarantee first-page rankings?",
+            "answer": "<p>We do not guarantee a specific ranking. We agree on target keyword groups, deliverables, and performance measures so you can assess both the work completed and its results.<br/><br/></p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -885,8 +921,8 @@
         "faq_row_6Vcq7e": {
           "type": "_faq-row",
           "settings": {
-            "question": "How Can We Get Started with ME?",
-            "answer": "<p>Get in touch and we'll start with a short discovery session to understand your goals, markets and current setup.</p>",
+            "question": "Do you work with ecommerce and B2B websites?",
+            "answer": "<p>The program can be structured for either. Ecommerce projects prioritize categories, products, and purchases; B2B projects prioritize services, supplier evaluation, and qualified enquiries.<br/><br/></p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -894,8 +930,53 @@
         "faq_row_idcK38": {
           "type": "_faq-row",
           "settings": {
-            "question": "How Can We Get Started with ME?",
-            "answer": "<p>Get in touch and we'll start with a short discovery session to understand your goals, markets and current setup.</p>",
+            "question": "Can you work with our existing developers and content team?",
+            "answer": "<p>Yes. The scope can cover recommendations, production, or shared implementation. We define one owner for each action so responsibilities remain clear.<br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_mtDEQH": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Do we need to create new content?",
+            "answer": "<p>We assess existing content first. The content plan identifies three types of action: improve an existing page, consolidate overlapping pages, or create a new page.<br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_TfzdMb": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Can you support multiple countries and languages?",
+            "answer": "<p>Yes, subject to the agreed scope. Each target market receives its own keyword and page mapping rather than relying on a single translated keyword list.<br/><br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_CGMX33": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "How do you measure SEO performance?",
+            "answer": "<p>We use Google Search Console for search performance and GA4 for website behavior and tracked conversions. The report connects those findings to agreed business goals.<br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_H88kCk": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Is link building included?",
+            "answer": "<p>It can be included in the selected scope. We specify resource criteria, deliverables, and reporting separately so you know what link development involves.<br/><br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_ABzErp": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "What do you need from us to get started?",
+            "answer": "<p>We need your website URL, target markets, priority products or services, and business goals. Access to Search Console and GA4 supports a more detailed assessment.<br/><br/></p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -906,7 +987,12 @@
         "faq_row_ckALeW",
         "faq_row_8DWdMn",
         "faq_row_6Vcq7e",
-        "faq_row_idcK38"
+        "faq_row_idcK38",
+        "faq_row_mtDEQH",
+        "faq_row_TfzdMb",
+        "faq_row_CGMX33",
+        "faq_row_H88kCk",
+        "faq_row_ABzErp"
       ],
       "name": "t:names.faq_section",
       "settings": {

@@ -7,15 +7,17 @@
 {% liquid
   assign s = section.settings
   assign color_id = 'business-challenge-' | append: section.id
+  assign initial_visible_items = s.initial_visible_items | default: 4
 %}
 {% render 'contrast-override', background_color: s.background_color, text_color: s.text_color, section_id: color_id %}
 {% render 'text-block-styles' %}
 {% if s.enable_animation %}{% render 'scroll-reveal-styles' %}{% endif %}
-{% if s.enable_animation %}<script src="{{ 'business-challenge.js' | asset_url }}" type="module" fetchpriority="low"></script>{% endif %}
+{% if s.enable_animation or section.blocks.size > initial_visible_items %}<script src="{{ 'business-challenge.js' | asset_url }}" type="module" fetchpriority="low"></script>{% endif %}
 
 <business-challenge-component
   class="business-challenge spacing-style color-custom-{{ color_id }}"
   data-animate="{{ s.enable_animation }}"
+  data-visible-items="{{ initial_visible_items }}"
   style="
     {% render 'spacing-style', settings: s %}
     --challenge-font: {{ s.font }};
@@ -37,12 +39,23 @@
       {% if s.eyebrow != blank %}<p class="business-challenge__eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
       {% if s.heading != blank %}<h2 class="business-challenge__heading text-block{% if s.gradient_text %} text-block--gradient{% endif %}">{{ s.heading | escape }}</h2>{% endif %}
     </div>
-    <figure class="business-challenge__figure" {% if s.enable_animation %}data-reveal ref="reveals[]"{% endif %}>
+    <figure class="business-challenge__figure{% if s.sticky_figure %} sticky-content--desktop{% endif %}" {% if s.enable_animation %}data-reveal ref="reveals[]"{% endif %}>
       {% render 'challenge-diagram', center_text: s.center_text, center_tint: s.center_tint %}
       {% if s.caption != blank %}<figcaption class="business-challenge__caption">{{ s.caption | escape }}</figcaption>{% endif %}
     </figure>
     <div class="business-challenge__list">
-      {% content_for 'blocks' %}
+      <div id="ChallengeItems-{{ section.id }}" class="business-challenge__items">
+        {% content_for 'blocks' %}
+      </div>
+      <button
+        type="button"
+        class="business-challenge__more"
+        ref="more"
+        on:click="/expand"
+        aria-expanded="false"
+        aria-controls="ChallengeItems-{{ section.id }}"
+        hidden
+      >{{ 'growth_potential.read_more' | t }}</button>
     </div>
   </div>
 </business-challenge-component>
@@ -56,9 +69,25 @@
   .business-challenge__figure { grid-area: figure; min-inline-size: 0; inline-size: 100%; max-inline-size: 484px; margin: 82px 0 0; }
   .business-challenge__caption { max-inline-size: 436px; margin-block-start: 33px; margin-inline: auto; padding-inline: 8px; font-size: 1.1875rem; font-weight: 500; line-height: 1.4737; text-align: center; overflow-wrap: anywhere; color: var(--challenge-caption); }
   .business-challenge__list { grid-area: list; min-inline-size: 0; max-inline-size: 704px; }
+  .business-challenge__more { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; min-block-size: 44px; max-inline-size: 100%; margin-block-start: 24px; padding: 10px 24px; border: 1px solid var(--challenge-accent); border-radius: var(--style-border-radius-buttons-primary, 24px); background: transparent; color: var(--challenge-accent); font: inherit; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; cursor: pointer; transition: color calc(var(--animation-speed-slow) * 2) var(--ease-out-cubic); }
+  .business-challenge__more[hidden], .business-challenge-item[hidden] { display: none; }
+  .business-challenge__more::before { content: ''; position: absolute; z-index: -1; inset: 0; background: var(--challenge-accent); transform: scaleX(0); transform-origin: left center; transition: transform calc(var(--animation-speed-slow) * 2) var(--ease-out-cubic); pointer-events: none; }
+  .business-challenge__more:focus-visible { color: #fff; outline: 2px solid var(--challenge-accent); outline-offset: 4px; }
+  .business-challenge__more:focus-visible::before { transform: scaleX(1); }
+  @media (hover: hover) and (pointer: fine) {
+    .business-challenge__more:hover { color: #fff; }
+    .business-challenge__more:hover::before { transform: scaleX(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .business-challenge__more, .business-challenge__more::before { transition: none; }
+  }
   .business-challenge.reveal-ready [data-reveal] { transform: translateY(16px); transition-duration: 0.4s; transition-delay: calc(var(--reveal-index, 0) * 60ms); }
   .business-challenge.reveal-ready .business-challenge__figure[data-reveal] { transform: translateY(16px) scale(0.97); }
   .business-challenge.reveal-ready [data-reveal][data-state='in'] { transform: none; }
+  @media screen and (min-width: 750px) {
+    .business-challenge__figure.sticky-content--desktop { align-self: start; inset-block-start: calc(var(--sticky-header-offset, 0px) + 24px); }
+    #header-group:has(> .header-section > #header-component[data-sticky-state='active']) ~ * .business-challenge__figure.sticky-content--desktop { --sticky-header-offset: var(--header-height); }
+  }
   @media screen and (min-width: 750px) and (max-width: 1099px) { .business-challenge__layout { grid-template-columns: minmax(0, 36%) minmax(0, 1fr); gap: 40px 32px; } .business-challenge__heading { font-size: min(var(--challenge-heading-size), 2.625rem); line-height: 1.1; } .business-challenge__figure { margin-block-start: 70px; } }
   @media screen and (max-width: 749px) {
     .business-challenge__layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'intro' 'figure' 'list'; gap: 32px; }
@@ -275,6 +304,23 @@
       "id": "center_tint",
       "label": "t:settings.challenge_center_tint",
       "alpha": true
+    },
+    {
+      "type": "range",
+      "id": "initial_visible_items",
+      "label": "t:settings.challenge_initial_visible_items",
+      "info": "t:settings.challenge_initial_visible_items_info",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_figure",
+      "label": "t:settings.challenge_sticky_figure",
+      "info": "t:settings.challenge_sticky_figure_info",
+      "default": true
     },
     {
       "type": "checkbox",

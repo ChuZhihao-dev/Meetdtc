@@ -1021,7 +1021,9 @@
   @media (hover: hover) {
     /* Column-specific dimming effect when any interactive element is hovered
         Multiple selectors for performance: each simple :has() check is faster than one complex selector with multiple conditions */
-    .header__column:has(header-menu:hover),
+    .header__column:has(header-menu:not(.header-menu--floating):hover),
+    .header__column:has(.header-menu--floating .menu-list__trigger:hover),
+    .header__column:has(.header-menu--floating .menu-list__list-item > .menu-list__link:hover),
     .header__column:has(.header-actions__action:hover),
     .header__column:has(.header__icon--menu:hover) {
       header-menu:not(:hover),

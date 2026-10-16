@@ -198,7 +198,7 @@
 
     <header-menu
       ref="headerMenu"
-      class="header-menu"
+      class="header-menu{% if menu_content_type == 'text' %} header-menu--floating{% endif %}"
       {{ block.shopify_attributes }}
       data-hydration-key="header-menu"
       data-skip-node-update
@@ -848,6 +848,77 @@
   /* Hide product cards in collapsed submenus from the IntersectionObserver that fires product view events */
   .menu-list__list-item:not(:has([aria-expanded='true'])) > .menu-list__submenu product-component {
     display: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .header-menu--floating .menu-list__list-item:not([slot='overflow']) > .menu-list__submenu {
+      inset-block-start: 100%;
+      inset-inline: auto;
+      left: var(--floating-menu-left, 24px);
+      width: min(340px, calc(100vw - 48px));
+      padding: 8px 0 0;
+      clip-path: none;
+    }
+
+    .header-menu--floating .menu-list__list-item:not([slot='overflow']) > .menu-list__submenu > .menu-list__submenu-inner {
+      display: block;
+      padding: 12px 20px;
+      border: 1px solid rgb(var(--color-background-rgb) / 90%);
+      border-radius: 16px;
+      background: rgb(var(--color-background-rgb) / 94%);
+      box-shadow: 0 20px 48px rgb(var(--color-foreground-rgb) / 10%);
+      backdrop-filter: blur(16px);
+      transform: none;
+      translate: 0 8px;
+      transition: opacity var(--animation-speed-slow) var(--ease-out-cubic), translate var(--animation-speed-slow) var(--ease-out-cubic);
+      max-block-size: calc(100dvh - var(--header-height) - 32px);
+    }
+
+    .header-menu--floating .menu-list__list-item:not([slot='overflow']) > .menu-list__submenu[data-active]:not([inert]) > .menu-list__submenu-inner { translate: 0; }
+
+    .header-menu--floating .menu-list__list-item:not([slot='overflow']) > .menu-list__submenu .mega-menu {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header-menu--floating .menu-list__list-item:not([slot='overflow']) > .menu-list__submenu :is(.mega-menu__grid, .mega-menu__list, .mega-menu__column) {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      grid-column: auto;
+      gap: 4px;
+      min-inline-size: 0;
+    }
+
+    .header-menu--floating .menu-list__list-item:not([slot='overflow']) > .menu-list__submenu .mega-menu__link {
+      display: flex;
+      align-items: center;
+      min-block-size: 36px;
+      padding: 4px 0;
+      font-size: calc(var(--menu-parent-font-size) * 0.875);
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--color-foreground);
+      transition: color var(--animation-speed) var(--animation-easing);
+    }
+
+    .header-menu--floating .menu-list__list-item:not([slot='overflow']) > .menu-list__submenu .mega-menu__link:is(:hover, :focus-visible) { color: var(--header-menu-active-color); }
+    .header-menu--floating .menu-list__list-item:not([slot='overflow']) > .menu-list__trigger > .menu-list__disclosure {
+      inset-inline-start: calc(100% - var(--header-menu-link-gap, 80px) / 2 + 6px);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .header-menu--floating .menu-list__list-item:not([slot='overflow']):not([slot='more']) .menu-list__link[data-safety-box='true']::after { display: none; }
+
+    /* Floating panels own their background even during close. Only More uses
+       the full-width underlay; revealing it on inert would flash its closing height. */
+    .header:has(.header-menu--floating:not([data-overflow-expanded='true'])) .header__underlay-open { visibility: hidden; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .header-menu--floating .menu-list__list-item:not([slot='overflow']) > .menu-list__submenu > .menu-list__submenu-inner { translate: none; transition: none; }
   }
 {% endstylesheet %}
 

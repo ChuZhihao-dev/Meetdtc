@@ -3,10 +3,12 @@
   @example Add "AIDEA model" in the theme editor and customize the model copy.
 {% endcomment %}
 
+{% unless section.settings.enable_animation == false %}
+  <script src="{{ 'aidea-model.js' | asset_url }}" type="module" fetchpriority="low"></script>
+{% endunless %}
 <div class="section-background aidea-model__background" style="--aidea-bg-from:{{ section.settings.background_from }};--aidea-bg-to:{{ section.settings.background_to }};"></div>
-<div class="section section--full-width spacing-style aidea-model" style="{% render 'spacing-style', settings: section.settings %}">
+<aidea-model-component data-animate="{{ section.settings.enable_animation | default: true, allow_false: true }}" class="section section--full-width spacing-style aidea-model" style="{% render 'spacing-style', settings: section.settings %}">
   <div class="aidea-model__content">
-    <img class="aidea-model__orbit" src="{{ 'aidea-329.svg' | asset_url }}" alt="" width="1440" height="1335" decoding="async" loading="lazy">
     <div class="aidea-model__intro">
       {% if section.settings.heading != blank %}
         <h2 class="aidea-model__heading">{{ section.settings.heading | escape }}</h2>
@@ -15,35 +17,37 @@
         <p class="aidea-model__description">{{ section.settings.description | escape | newline_to_br }}</p>
       {% endif %}
     </div>
-    <div class="aidea-model__diagram">
-      <img class="aidea-model__asset" src="{{ 'aidea-331.svg' | asset_url }}" alt="" width="980" height="980" decoding="async" loading="lazy" style="left:15.90278%;top:-8.36735%;width:68.05556%;height:100%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-332.svg' | asset_url }}" alt="" width="580" height="117" decoding="async" loading="lazy" style="left:29.8055%;top:-0.09178%;width:40.25014%;height:11.93878%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-335.svg' | asset_url }}" alt="" width="405" height="325" decoding="async" loading="lazy" style="left:35.87964%;top:29.717%;width:28.10184%;height:33.14015%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-345.svg' | asset_url }}" alt="" width="200" height="200" decoding="async" loading="lazy" style="left:19.02778%;top:11.12245%;width:13.88889%;height:20.40816%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-357.svg' | asset_url }}" alt="" width="156" height="156" decoding="async" loading="lazy" style="left:44.51389%;top:5.5102%;width:10.83333%;height:15.91837%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-358.png' | asset_url }}" alt="" width="58" height="57" decoding="async" loading="lazy" style="left:47.84722%;top:8.67347%;width:4.02778%;height:5.81633%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-363.png' | asset_url }}" alt="" width="62" height="62" decoding="async" loading="lazy" style="left:65%;top:48.97959%;width:4.30556%;height:6.32653%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-367.png' | asset_url }}" alt="" width="66" height="66" decoding="async" loading="lazy" style="left:30.27778%;top:48.26531%;width:4.58333%;height:6.73469%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-333.svg' | asset_url }}" alt="" width="311" height="521" decoding="async" loading="lazy" style="left:20.69444%;top:31.38781%;width:21.5625%;height:53.12635%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-334.svg' | asset_url }}" alt="" width="11" height="71" decoding="async" loading="lazy" style="left:49.56019%;top:63.87755%;width:0.74073%;height:7.22788%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-340.svg' | asset_url }}" alt="" width="63" height="39" decoding="async" loading="lazy" style="left:31.92125%;top:27.61896%;width:4.34435%;height:3.97451%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-341.svg' | asset_url }}" alt="" width="63" height="39" decoding="async" loading="lazy" style="left:63.50694%;top:27.61896%;width:4.34436%;height:3.97451%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-355.svg' | asset_url }}" alt="" width="312" height="522" decoding="async" loading="lazy" style="left:57.5%;top:31.38779%;width:21.66667%;height:53.17198%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-345.svg' | asset_url }}" alt="" width="200" height="200" decoding="async" loading="lazy" style="left:42.98611%;top:72.2449%;width:13.88889%;height:20.40816%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-345.svg' | asset_url }}" alt="" width="200" height="200" decoding="async" loading="lazy" style="left:67.29167%;top:11.22449%;width:13.88889%;height:20.40816%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-357.svg' | asset_url }}" alt="" width="156" height="156" decoding="async" loading="lazy" style="left:61.875%;top:46.73469%;width:10.83333%;height:15.91837%;">
-      <img class="aidea-model__asset" src="{{ 'aidea-357.svg' | asset_url }}" alt="" width="156" height="156" decoding="async" loading="lazy" style="left:27.15278%;top:46.73469%;width:10.83333%;height:15.91837%;">
-      <div class="aidea-model__label" style="left:49.93056%;top:34.18367%;width:24.30556%;font-size:1.66667cqw;line-height:1.5;">{{ section.settings.ai_label | escape | newline_to_br }}</div>
-      <div class="aidea-model__label" style="left:49.96528%;top:39.38776%;width:12.5%;font-size:8.33333cqw;line-height:1.2;">{{ section.settings.ai | escape | newline_to_br }}</div>
-      <div class="aidea-model__label" style="left:25.97222%;top:12.2449%;width:10.41667%;font-size:7.36111cqw;line-height:1.2075471698113207;">{{ section.settings.data_letter | escape | newline_to_br }}</div>
-      <div class="aidea-model__label" style="left:26.07639%;top:23.26531%;width:12.15278%;font-size:1.31944cqw;line-height:1.2105263157894737;">{{ section.settings.data_label | escape | newline_to_br }}</div>
-      <div class="aidea-model__label" style="left:74.27083%;top:12.2449%;width:10.41667%;font-size:7.36111cqw;line-height:1.2075471698113207;">{{ section.settings.experience_letter | escape | newline_to_br }}</div>
-      <div class="aidea-model__label" style="left:74.20139%;top:23.26531%;width:11.80556%;font-size:1.31944cqw;line-height:1.2105263157894737;">{{ section.settings.experience_label | escape | newline_to_br }}</div>
-      <div class="aidea-model__label" style="left:49.96528%;top:73.16327%;width:10.41667%;font-size:7.36111cqw;line-height:1.2075471698113207;">{{ section.settings.achievement_letter | escape | newline_to_br }}</div>
-      <div class="aidea-model__label" style="left:49.89583%;top:83.57143%;width:12.15278%;font-size:1.31944cqw;line-height:1.2105263157894737;">{{ section.settings.achievement_label | escape | newline_to_br }}</div>
-      <div class="aidea-model__label aidea-model__label--blue" style="left:49.96528%;top:14.69388%;width:9.72222%;font-size:1.04167cqw;line-height:2.24;">{{ section.settings.optimization | escape | newline_to_br }}</div>
-      <div class="aidea-model__label aidea-model__label--blue" style="left:67.25694%;top:55.20408%;width:9.72222%;font-size:1.04167cqw;line-height:1.24;">{{ section.settings.opportunities | escape | newline_to_br }}</div>
-      <div class="aidea-model__label aidea-model__label--blue" style="left:32.56944%;top:54.69388%;width:9.72222%;font-size:1.04167cqw;line-height:1.24;">{{ section.settings.customer_growth | escape | newline_to_br }}</div>
+    <div class="aidea-model__diagram" ref="diagram">
+      {% comment %}Paint backgrounds and connectors first so satellite discs cannot cover their icons.{% endcomment %}
+      <img data-aidea-part="ambient" class="aidea-model__orbit" src="{{ 'aidea-orbit.png' | asset_url }}" alt="" width="1800" height="1800" decoding="async" loading="lazy" style="--aidea-delay:3.6s;left:-12.5694444%;top:-50.2142857%;width:125.0000000%;height:183.6734694%;">
+      <img data-aidea-part="core" class="aidea-model__asset" src="{{ 'aidea-center.png' | asset_url }}" alt="" width="980" height="980" decoding="async" loading="lazy" style="--aidea-delay:0s;left:15.9027778%;top:-8.3673469%;width:68.0555556%;height:100.0000000%;">
+      <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-arc-top.png' | asset_url }}" alt="" width="580" height="117" decoding="async" loading="lazy" style="--aidea-delay:3.2s;--aidea-line-clip:inset(0 100% 0 0);left:29.8054861%;top:-0.0918367%;width:40.2501389%;height:11.9387755%;transform:scaleY(-1);">
+      <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-arc-left.png' | asset_url }}" alt="" width="311" height="521" decoding="async" loading="lazy" style="--aidea-delay:3.5s;--aidea-line-clip:inset(0 0 100% 0);left:20.6944444%;top:31.3877551%;width:21.5625000%;height:53.1345918%;transform:scaleY(-1);">
+      <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-arc-right.png' | asset_url }}" alt="" width="312" height="522" decoding="async" loading="lazy" style="--aidea-delay:3.35s;--aidea-line-clip:inset(100% 0 0 0);left:57.5000000%;top:31.3571429%;width:21.6666667%;height:53.1802041%;transform:scaleY(-1);">
+      <img data-aidea-part="core" class="aidea-model__asset" src="{{ 'aidea-triangle.svg' | asset_url }}" alt="" width="404.667" height="324.774" decoding="async" loading="lazy" style="--aidea-delay:0.2s;left:35.8796528%;top:29.7067347%;width:28.1018750%;height:33.1402041%;">
+      <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-connector-bottom.svg' | asset_url }}" alt="" width="10.6667" height="70.8333" decoding="async" loading="lazy" style="--aidea-delay:2.8s;--aidea-line-clip:inset(0 0 100% 0);left:49.5601840%;top:63.8673469%;width:0.7407431%;height:7.2278878%;">
+      <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-connector-left.svg' | asset_url }}" alt="" width="10.6667" height="70.8333" decoding="async" loading="lazy" style="--aidea-delay:2.8s;--aidea-line-clip:inset(100% 0 0 0);left:34.1009375%;top:29.6879337%;width:0.7407431%;height:7.2278878%;transform:translate(-50%,-50%) rotate(-60deg);">
+      <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-connector-right.svg' | asset_url }}" alt="" width="10.6667" height="70.8333" decoding="async" loading="lazy" style="--aidea-delay:2.8s;--aidea-line-clip:inset(100% 0 0 0);left:65.6716319%;top:29.6879337%;width:0.7407431%;height:7.2278878%;transform:translate(-50%,-50%) rotate(60deg);">
+      <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-node.svg' | asset_url }}" alt="" width="200" height="200" decoding="async" loading="lazy" style="--aidea-delay:0.75s;--aidea-from-x:6cqw;--aidea-from-y:3.5cqw;left:19.0277778%;top:11.1122449%;width:13.8888889%;height:20.4081633%;">
+      <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-node.svg' | asset_url }}" alt="" width="200" height="200" decoding="async" loading="lazy" style="--aidea-delay:1.15s;--aidea-from-x:0cqw;--aidea-from-y:-7cqw;left:42.9861111%;top:72.2346939%;width:13.8888889%;height:20.4081633%;">
+      <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-node.svg' | asset_url }}" alt="" width="200" height="200" decoding="async" loading="lazy" style="--aidea-delay:0.95s;--aidea-from-x:-6cqw;--aidea-from-y:3.5cqw;left:67.2916667%;top:11.2142857%;width:13.8888889%;height:20.4081633%;">
+      <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-satellite.png' | asset_url }}" alt="" width="156" height="156" decoding="async" loading="lazy" style="--aidea-delay:1.35s;--aidea-from-x:0cqw;--aidea-from-y:4cqw;left:44.5138889%;top:5.5000000%;width:10.8333333%;height:15.9183673%;">
+      <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-satellite.png' | asset_url }}" alt="" width="156" height="156" decoding="async" loading="lazy" style="--aidea-delay:1.5s;--aidea-from-x:-4cqw;--aidea-from-y:-2cqw;left:61.8750000%;top:46.7244898%;width:10.8333333%;height:15.9183673%;">
+      <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-satellite.png' | asset_url }}" alt="" width="156" height="156" decoding="async" loading="lazy" style="--aidea-delay:1.65s;--aidea-from-x:4cqw;--aidea-from-y:-2cqw;left:27.1527778%;top:46.7244898%;width:10.8333333%;height:15.9183673%;">
+      <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-358.png' | asset_url }}" alt="" width="58" height="58" decoding="async" loading="lazy" style="--aidea-delay:1.35s;--aidea-from-x:0cqw;--aidea-from-y:4cqw;left:47.8472222%;top:8.6122449%;width:4.0277778%;height:5.9183673%;">
+      <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-363.png' | asset_url }}" alt="" width="62" height="62" decoding="async" loading="lazy" style="--aidea-delay:1.5s;--aidea-from-x:-4cqw;--aidea-from-y:-2cqw;left:65.0000000%;top:48.9693878%;width:4.3055556%;height:6.3265306%;">
+      <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-367.png' | asset_url }}" alt="" width="66" height="66" decoding="async" loading="lazy" style="--aidea-delay:1.65s;--aidea-from-x:4cqw;--aidea-from-y:-2cqw;left:30.2777778%;top:48.2551020%;width:4.5833333%;height:6.7346939%;">
+      <div data-aidea-part="core" class="aidea-model__label" style="--aidea-delay:0.25s;left:49.9305556%;top:34.1734694%;width:24.3055556%;font-size:1.6666667cqw;line-height:1.5000000;">{{ section.settings.ai_label | escape | newline_to_br }}</div>
+      <div data-aidea-part="core" class="aidea-model__label" style="--aidea-delay:0.25s;left:49.9652778%;top:41.6224490%;width:12.5000000%;font-size:8.3333333cqw;line-height:0.4000000;">{{ section.settings.ai | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.75s;--aidea-from-x:6cqw;--aidea-from-y:3.5cqw;left:25.9722222%;top:15.9081633%;width:10.4166667%;font-size:7.3611111cqw;line-height:0.4528302;">{{ section.settings.data_letter | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.75s;--aidea-from-x:6cqw;--aidea-from-y:3.5cqw;left:26.0763889%;top:23.2551020%;width:12.1527778%;font-size:1.3194444cqw;line-height:1.2105263;">{{ section.settings.data_label | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.95s;--aidea-from-x:-6cqw;--aidea-from-y:3.5cqw;left:74.2708333%;top:15.9081633%;width:10.4166667%;font-size:7.3611111cqw;line-height:0.4528302;">{{ section.settings.experience_letter | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.95s;--aidea-from-x:-6cqw;--aidea-from-y:3.5cqw;left:74.2013889%;top:23.2551020%;width:11.8055556%;font-size:1.3194444cqw;line-height:1.2105263;">{{ section.settings.experience_label | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:1.15s;--aidea-from-x:0cqw;--aidea-from-y:-7cqw;left:49.9652778%;top:76.5204082%;width:10.4166667%;font-size:7.3611111cqw;line-height:0.4528302;">{{ section.settings.achievement_letter | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:1.15s;--aidea-from-x:0cqw;--aidea-from-y:-7cqw;left:49.8958333%;top:83.5612245%;width:12.1527778%;font-size:1.3194444cqw;line-height:1.2105263;">{{ section.settings.achievement_label | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--blue" style="--aidea-delay:1.35s;--aidea-from-x:0cqw;--aidea-from-y:4cqw;left:49.9652778%;top:14.6836735%;width:9.7222222%;font-size:1.0416667cqw;line-height:2.2400000;">{{ section.settings.optimization | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--blue" style="--aidea-delay:1.5s;--aidea-from-x:-4cqw;--aidea-from-y:-2cqw;left:67.2569444%;top:55.1938776%;width:9.7222222%;font-size:1.0416667cqw;line-height:1.2400000;">{{ section.settings.opportunities | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--blue" style="--aidea-delay:1.65s;--aidea-from-x:4cqw;--aidea-from-y:-2cqw;left:32.5694444%;top:54.6836735%;width:9.7222222%;font-size:1.0416667cqw;line-height:1.2400000;">{{ section.settings.customer_growth | escape | newline_to_br }}</div>
     </div>
     <ul class="aidea-model__mobile-labels">
       {% assign label_keys = 'ai_label,data_label,experience_label,achievement_label,optimization,customer_growth,opportunities' | split: ',' %}
@@ -54,13 +58,13 @@
       {% endfor %}
     </ul>
   </div>
-</div>
+</aidea-model-component>
 
 {% stylesheet %}
   .aidea-model__background {
     background: linear-gradient(122deg, var(--aidea-bg-from), var(--aidea-bg-to));
   }
-  .aidea-model { overflow: clip; }
+  .aidea-model { display: block; overflow: clip; }
   .aidea-model__content {
     position: relative;
     width: 100%;
@@ -70,10 +74,7 @@
   }
   .aidea-model__orbit {
     position: absolute;
-    top: -84px;
-    left: 0;
-    width: 100%;
-    height: auto;
+    max-width: none;
     pointer-events: none;
   }
   .aidea-model__intro {
@@ -105,7 +106,7 @@
   .aidea-model__diagram {
     position: relative;
     aspect-ratio: 1440 / 980;
-    width: 80%;
+    width: 100%;
     margin-inline: auto;
     margin-block-start: 85px;
     container-type: inline-size;
@@ -123,6 +124,26 @@
   }
   .aidea-model__label--blue { color: #1362fa; }
   .aidea-model__mobile-labels { display: none; }
+
+  /* Build outward from the centre; separate translate/scale preserve asset rotations and label centring. */
+  .aidea-model[data-motion-ready] [data-aidea-part] {
+    transition-property: opacity, translate, scale, clip-path;
+    transition-duration: calc(var(--animation-speed-slow) * 5);
+    transition-timing-function: var(--ease-out-cubic);
+    transition-delay: var(--aidea-delay, 0s);
+  }
+  .aidea-model[data-motion-ready]:not([data-entered]) [data-aidea-part] { opacity: 0; }
+  .aidea-model[data-motion-ready]:not([data-entered]) [data-aidea-part='core'] { scale: 0.94; }
+  .aidea-model[data-motion-ready]:not([data-entered]) [data-aidea-part='node'] {
+    translate: var(--aidea-from-x, 0cqw) var(--aidea-from-y, 0cqw);
+    scale: 0.94;
+  }
+  .aidea-model[data-motion-ready] [data-aidea-part='line'] { clip-path: inset(0 0 0 0); }
+  .aidea-model[data-motion-ready]:not([data-entered]) [data-aidea-part='line'] { clip-path: var(--aidea-line-clip); }
+  @media (prefers-reduced-motion: reduce) {
+    .aidea-model[data-motion-ready] [data-aidea-part] { opacity: 1; translate: none; scale: none; clip-path: none; transition: none; }
+  }
+
   @media screen and (max-width: 749px) {
     .aidea-model__description { margin-block-start: 24px; }
     .aidea-model__diagram { width: 116%; margin-inline: -8%; margin-block-start: 40px; }
@@ -153,6 +174,12 @@
     ]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "t:settings.challenge_animation",
+      "default": true
+    },
     {
       "type": "text",
       "id": "heading",

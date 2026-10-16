@@ -4,6 +4,7 @@ import { Component } from '@theme/component';
  * @typedef {object} Refs
  * @property {HTMLElement[]} [items]
  * @property {HTMLElement[]} [reveals]
+ * @property {HTMLButtonElement} [more]
  * @extends Component<Refs>
  */
 class BusinessChallenge extends Component {
@@ -12,6 +13,7 @@ class BusinessChallenge extends Component {
   /** @type {IntersectionObserver | undefined} */
   #observer;
   #motion = matchMedia('(prefers-reduced-motion: reduce)');
+  #expanded = false;
 
   connectedCallback() {
     super.connectedCallback();
@@ -33,12 +35,50 @@ class BusinessChallenge extends Component {
     this.#controller = new AbortController();
     const { signal } = this.#controller;
     this.#motion.addEventListener('change', this.#initializeReveal, { signal });
+    if (window.Shopify?.designMode) this.addEventListener('shopify:block:select', this.#onBlockSelect, { signal });
+    this.#updateDisclosure();
     this.#initializeReveal();
   }
 
+  /** Reveal all remaining entries, then move keyboard focus into the revealed content. */
+  expand() {
+    const firstHidden = this.refs.items?.find((item) => item.hidden);
+    this.#expanded = true;
+    this.#updateDisclosure();
+    this.#initializeReveal();
+    if (!firstHidden) return;
+    const heading = firstHidden.querySelector('h3');
+    const target = heading instanceof HTMLElement ? heading : firstHidden;
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  }
+
+  #updateDisclosure() {
+    const items = this.refs.items || [];
+    const visibleCount = Math.max(1, Number.parseInt(this.dataset.visibleItems || '4', 10) || 4);
+    for (const [index, item] of items.entries()) {
+      item.hidden = !this.#expanded && index >= visibleCount;
+      item.toggleAttribute('data-last-visible', index === (this.#expanded ? items.length : Math.min(visibleCount, items.length)) - 1);
+    }
+    if (this.refs.more) {
+      this.refs.more.hidden = this.#expanded || items.length <= visibleCount;
+      this.refs.more.setAttribute('aria-expanded', String(this.#expanded));
+    }
+  }
+
+  /** Keep hidden blocks editable when selected in the theme editor. @param {Event} event */
+  #onBlockSelect = (event) => {
+    if (!(event.target instanceof Element)) return;
+    const item = event.target.closest('.business-challenge-item');
+    if (!(item instanceof HTMLElement) || !item.hidden || !this.refs.items?.includes(item)) return;
+    this.#expanded = true;
+    this.#updateDisclosure();
+    this.#initializeReveal();
+  };
+
   #initializeReveal = () => {
     this.#observer?.disconnect();
-    const targets = [...(this.refs.reveals || []), ...(this.refs.items || [])].filter((item) => item.hasAttribute('data-reveal'));
+    const targets = [...(this.refs.reveals || []), ...(this.refs.items || [])].filter((item) => !item.hidden && item.hasAttribute('data-reveal'));
     if (this.dataset.animate !== 'true' || this.#motion.matches || window.Shopify?.designMode || !targets.length) {
       this.classList.remove('reveal-ready');
       return;

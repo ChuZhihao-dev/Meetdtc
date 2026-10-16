@@ -44,6 +44,9 @@ class HeaderMenu extends Component {
   /** @type {ReturnType<typeof setTimeout> | undefined} */
   #hoverDispatchTimer;
 
+  /** @type {ReturnType<typeof setTimeout> | undefined} */
+  #floatingCloseTimer;
+
   connectedCallback() {
     super.connectedCallback();
 
@@ -69,6 +72,7 @@ class HeaderMenu extends Component {
     this.#cleanupSubmenuResizeObserver();
     clearTimeout(this.#hoverDispatchTimer);
     this.#hoverDispatchTimer = undefined;
+    clearTimeout(this.#floatingCloseTimer);
   }
 
   /**
@@ -76,6 +80,7 @@ class HeaderMenu extends Component {
    */
   #resizeListener = debounce(() => {
     setHeaderMenuStyle();
+    if (this.#submenuMeasurement) this.#scheduleSubmenuMeasurement(this.#submenuMeasurement);
   }, 100);
 
   #overflowSubmenuListener = () => {
@@ -221,9 +226,16 @@ class HeaderMenu extends Component {
   #startPointerTracking(item, previousItem) {
     if (previousItem) {
       this.#stopPointerTracking(previousItem);
-    } else {
-      document.body.addEventListener('pointermove', this.#onPointerMove);
     }
+
+    // Full-width mega menus use a row-wide safety box. Floating panels instead
+    // use a short leave delay so that box cannot intercept neighbouring links.
+    if (this.classList.contains('header-menu--floating') && !item.closest('[slot="overflow"], [slot="more"]')) {
+      document.body.removeEventListener('pointermove', this.#onPointerMove);
+      this.#stopPointerTracking(item);
+      return;
+    }
+    document.body.addEventListener('pointermove', this.#onPointerMove);
 
     const rect = item.getBoundingClientRect();
     const isOverlap = this.headerComponent?.hasAttribute('data-submenu-overlap-bottom-row');
@@ -277,6 +289,7 @@ class HeaderMenu extends Component {
   activate = (event) => {
     if (!(event.target instanceof Element) || !this.headerComponent) return;
 
+    clearTimeout(this.#floatingCloseTimer);
     const item = findMenuItem(event.target);
 
     if (!item || item == this.#state.activeItem) return;
@@ -387,6 +400,19 @@ class HeaderMenu extends Component {
       return;
     }
 
+    if (
+      event.type === 'pointerleave' &&
+      this.classList.contains('header-menu--floating') &&
+      !this.#state.activeItem?.closest('[slot="overflow"], [slot="more"]')
+    ) {
+      clearTimeout(this.#floatingCloseTimer);
+      const activeItem = this.#state.activeItem;
+      this.#floatingCloseTimer = setTimeout(() => {
+        if (this.#state.activeItem !== activeItem || activeItem?.matches(':hover')) return;
+        this.#deactivate();
+      }, 180);
+      return;
+    }
     this.#deactivate();
   }
 
@@ -402,6 +428,7 @@ class HeaderMenu extends Component {
     // which must close regardless of pointer position.
     if (!force && (this.overflowListHovered || this.overflowMenu?.matches(':hover'))) return;
 
+    clearTimeout(this.#floatingCloseTimer);
     clearTimeout(this.#hoverDispatchTimer);
     this.#hoverDispatchTimer = undefined;
 
@@ -525,6 +552,9 @@ class HeaderMenu extends Component {
   #updateSubmenuHeight(measurement) {
     if (this.#submenuMeasurement !== measurement || this.#state.activeItem !== measurement.item) return;
 
+    if (measurement.isDefaultSlot && this.classList.contains('header-menu--floating')) {
+      this.#positionFloatingSubmenu(measurement.item, measurement.target);
+    }
     let submenuHeight = measurement.target.offsetHeight;
 
     if (!measurement.isDefaultSlot) {
@@ -535,6 +565,26 @@ class HeaderMenu extends Component {
     }
 
     this.#setSubmenuHeights(submenuHeight, this.#getHeaderVisibleHeight());
+  }
+
+  /** Anchor text menus to their trigger and keep the panel within the viewport.
+   * @param {HTMLElement} item
+   * @param {HTMLElement} submenu
+   */
+  #positionFloatingSubmenu(item, submenu) {
+    const title = item.querySelector('.menu-list__link-title');
+    const parent = submenu.offsetParent;
+    if (!(title instanceof HTMLElement) || !(parent instanceof HTMLElement)) return;
+    const titleRect = title.getBoundingClientRect();
+    const parentRect = parent.getBoundingClientRect();
+    const style = getComputedStyle(title);
+    const width = submenu.offsetWidth;
+    const viewportWidth = document.documentElement.clientWidth;
+    const preferredLeft = style.direction === 'rtl'
+      ? titleRect.right - Number.parseFloat(style.paddingRight) - width
+      : titleRect.left + Number.parseFloat(style.paddingLeft);
+    const left = Math.max(24, Math.min(preferredLeft, viewportWidth - width - 24));
+    submenu.style.setProperty('--floating-menu-left', `${left - parentRect.left}px`);
   }
 
   /**

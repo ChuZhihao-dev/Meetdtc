@@ -8,6 +8,29 @@
  * ------------------------------------------------------------
  */
 {
+  "process_steps": {
+  "name": "Process steps",
+  "step": "Step",
+  "eyebrow": "Eyebrow",
+  "heading": "Heading",
+  "description": "Description",
+  "font": "Font",
+  "background": "Section background",
+  "heading_gradient": "Heading gradient",
+  "text_color": "Text color",
+  "card_background": "Card background",
+  "accent_color": "Accent color",
+  "icon": "Logo / icon",
+  "default_icon": "Default icon",
+  "none": "None",
+  "diagnose": "Diagnose",
+  "build": "Build",
+  "operate": "Operate",
+  "points": "Bullet points (one per line)",
+  "enable_reveal": "Enable entrance animation",
+  "top": "Top padding",
+  "bottom": "Bottom padding"
+},
   "work_catalog": {
     "name": "Our Work",
     "intro_background": "Introduction background",
@@ -943,6 +966,10 @@
     "challenge_caption_color": "Diagram caption color",
     "challenge_center_color": "Center text color",
     "challenge_center_tint": "Circle tint (optional)",
+    "challenge_sticky_figure": "Keep diagram sticky on desktop",
+    "challenge_sticky_figure_info": "Keeps the diagram and caption below the sticky header while scrolling, until the section ends. Disabled on mobile.",
+    "challenge_initial_visible_items": "Initially visible items",
+    "challenge_initial_visible_items_info": "Shows this many items initially. Read more reveals the remaining items; no button is shown when all items already fit.",
     "challenge_animation": "Animate on scroll",
     "challenge_marker": "Associated diagram marker",
     "web_commerce": "Web commerce",

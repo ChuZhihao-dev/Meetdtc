@@ -1,0 +1,292 @@
+{% comment %}
+  Process steps: editable cards with shared title and description tracks per row.
+  @example Add Process steps in the editor; upload icons and reorder Step blocks.
+{% endcomment %}
+{% assign s = section.settings %}
+{% render 'custom-section-fonts', font: s.font %}
+{% capture card_context %}process-steps-{{ section.id }}{% endcapture %}
+{% render 'contrast-override', section_id: card_context, background_color: s.card_background, text_color: s.text_color, preset: 'content' %}
+{% if s.enable_reveal %}
+  {% render 'scroll-reveal-styles' %}
+  <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
+{% endif %}
+<div class="section-background" style="background: {{ s.background | default: 'transparent' }};"></div>
+<scroll-reveal-component class="section section--full-width spacing-style process-steps"
+  style="{% render 'spacing-style', settings: s %} --process-steps-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }}; --process-steps-text: {{ s.text_color }}; --process-steps-gradient: {{ s.heading_gradient | default: s.text_color }}; --process-steps-card: {{ s.card_background }}; --process-steps-accent: {{ s.accent_color }};"
+  {% if s.enable_reveal %}data-reveal-scope{% endif %}>
+  <div class="process-steps__inner">
+    {% if s.eyebrow != blank or s.heading != blank or s.description != blank %}
+      <div class="process-steps__intro" {% if s.enable_reveal %}data-reveal{% endif %}>
+        {% if s.eyebrow != blank %}<p class="process-steps__eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+        {% if s.heading != blank %}<h2 class="process-steps__heading">{{ s.heading | escape }}</h2>{% endif %}
+        {% if s.description != blank %}<div class="process-steps__description">{{ s.description }}</div>{% endif %}
+      </div>
+    {% endif %}
+    {% if section.blocks.size > 0 %}
+      <ol class="process-steps__grid" role="list">
+        {% for block in section.blocks %}
+          <li class="process-steps__card color-custom-{{ card_context }}" {% if s.enable_reveal %}data-reveal{% endif %} {{ block.shopify_attributes }}>
+            <div class="process-steps__top">
+              <div class="process-steps__icon" aria-hidden="true">
+                {% if block.settings.icon != blank %}
+                  {{ block.settings.icon | image_url: width: 180 | image_tag: widths: '60, 120, 180', sizes: '45px', loading: 'lazy', alt: '' }}
+                {% elsif block.settings.default_icon != 'none' %}
+                  {% assign icon_file = 'process-steps-' | append: block.settings.default_icon | append: '.svg' %}
+                  {% case block.settings.default_icon %}
+                    {% when 'diagnose' or 'build' %}<img src="{{ icon_file | asset_url }}" width="45" height="45" alt="" loading="lazy">
+                    {% when 'operate' %}<img src="{{ icon_file | asset_url }}" width="46" height="45" alt="" loading="lazy">
+                  {% endcase %}
+                {% endif %}
+              </div>
+              <span class="process-steps__number" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+            </div>
+            <div class="process-steps__title-slot">{% if block.settings.heading != blank %}<h3 class="process-steps__card-heading">{{ block.settings.heading | escape }}</h3>{% endif %}</div>
+            <div class="process-steps__description-slot">{% if block.settings.description != blank %}<p>{{ block.settings.description | escape | newline_to_br }}</p>{% endif %}</div>
+            <div class="process-steps__points-slot">
+              {% if block.settings.points != blank %}
+                {% assign points = block.settings.points | newline_to_br | split: '<br />' %}
+                <ul class="process-steps__points" role="list">
+                  {% for point in points %}{% assign text = point | strip %}{% if text != blank %}<li>{{ text | escape }}</li>{% endif %}{% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+    {% endif %}
+  </div>
+</scroll-reveal-component>
+{% stylesheet %}
+  .process-steps { color: var(--process-steps-text); font-family: var(--process-steps-font, var(--font-heading--family)); }
+  .process-steps__inner { width: 100%; max-width: 1440px; min-width: 0; margin-inline: auto; padding-inline: 80px; }
+  .process-steps__intro { margin-block-end: 39px; overflow-wrap: anywhere; }
+  .process-steps__eyebrow { margin: 0 0 10px; font-size: 24px; font-weight: 500; line-height: 38px; }
+  .process-steps__heading { margin: 0; color: inherit; font-family: inherit; font-size: clamp(36px, 4.02778vw, 58px); font-weight: 600; line-height: 1.22414; letter-spacing: normal; background: var(--process-steps-gradient); background-clip: text; -webkit-text-fill-color: transparent; }
+  .process-steps__description { margin-block-start: 10px; font-size: 24px; font-weight: 500; line-height: 38px; }
+  .process-steps__description > :first-child { margin-block-start: 0; }
+  .process-steps__description > :last-child { margin-block-end: 0; }
+  .process-steps__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 16px; margin: 0; padding: 0; list-style: none; }
+  .process-steps__card { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0; min-width: 0; min-height: 339px; padding: 30px 27px 34px; border: 1.5px solid var(--process-steps-card); border-radius: 17.5px; background: var(--process-steps-card); box-shadow: 0 9px 24.3px rgb(0 0 0 / 0.25); overflow-wrap: anywhere; }
+  .process-steps__top { display: flex; justify-content: space-between; align-items: flex-start; min-height: 52px; }
+  .process-steps__icon { display: grid; place-items: start; width: 46px; height: 45px; flex-shrink: 0; }
+  .process-steps__icon img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .process-steps__number { padding-block-start: 4px; color: var(--process-steps-accent); opacity: 0.24; font-size: 36px; font-weight: 600; line-height: 31px; }
+  .process-steps__title-slot { padding-block-start: 18px; }
+  .process-steps__card-heading { margin: 0; color: inherit; font-family: inherit; font-size: 25px; font-weight: 600; line-height: 31px; letter-spacing: normal; }
+  .process-steps__description-slot { padding-block-start: 20px; font-size: 16px; font-weight: 400; line-height: 22px; }
+  .process-steps__description-slot p { margin: 0; min-height: 44px; }
+  .process-steps__points-slot { padding-block-start: 20px; }
+  .process-steps__points { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; font-size: 14px; font-weight: 400; line-height: 22px; }
+  .process-steps__points li { position: relative; padding-inline-start: 14px; }
+  .process-steps__points li::before { content: '•'; position: absolute; inset-inline-start: 0; color: var(--process-steps-accent); }
+  .process-steps.reveal-ready [data-reveal] { transition-delay: calc(var(--reveal-index, 0) * 120ms); }
+  .process-steps.reveal-ready [data-reveal][data-state='before'] { transform: translateY(24px); }
+  .process-steps.reveal-ready .process-steps__intro { transition-duration: 500ms; }
+  .process-steps.reveal-ready .process-steps__intro[data-state='before'] { transform: translateY(16px); }
+  @media screen and (max-width: 1099px) {
+    .process-steps__inner { padding-inline: 32px; }
+    .process-steps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .process-steps__description { font-size: 20px; line-height: 1.6; }
+  }
+  @media screen and (max-width: 749px) {
+    .process-steps__inner { padding-inline: 20px; }
+    .process-steps__grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    .process-steps__intro { margin-block-end: 32px; }
+    .process-steps__eyebrow { font-size: 16px; line-height: 1.5; }
+    .process-steps__description { font-size: 18px; line-height: 1.6; }
+    .process-steps__card { min-height: 0; padding: 24px; }
+    .process-steps__card-heading { font-size: 22px; line-height: 1.4; }
+    .process-steps__description-slot p { min-height: 0; }
+    .process-steps.reveal-ready [data-reveal] { transition-delay: 0ms; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .process-steps.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; }
+  }
+  @media (forced-colors: active) {
+    .process-steps__heading { color: CanvasText; background: none; -webkit-text-fill-color: currentColor; }
+    .process-steps__card { border-color: CanvasText; }
+    .process-steps__number { opacity: 1; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:process_steps.name",
+  "max_blocks": 12,
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:process_steps.eyebrow",
+      "default": "Our Approach"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:process_steps.heading",
+      "default": "How We Work"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:process_steps.description",
+      "default": "<p>Understand the business. Put the plan into practice. Keep improving.</p>"
+    },
+    {
+      "type": "font_picker",
+      "id": "font",
+      "label": "t:process_steps.font",
+      "default": "montserrat_n4"
+    },
+    {
+      "type": "color_background",
+      "id": "background",
+      "label": "t:process_steps.background",
+      "default": "linear-gradient(126.153deg, #E3E6F4 12.189%, #E7E8F2 87.811%)"
+    },
+    {
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "t:process_steps.heading_gradient",
+      "default": "linear-gradient(125.956deg, #0B22B8 11.742%, #9621C4 88.258%)"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:process_steps.text_color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "t:process_steps.card_background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "t:process_steps.accent_color",
+      "default": "#0032F5"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_reveal",
+      "label": "t:process_steps.enable_reveal",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:process_steps.top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:process_steps.bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "t:process_steps.step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "t:process_steps.icon"
+        },
+        {
+          "type": "select",
+          "id": "default_icon",
+          "label": "t:process_steps.default_icon",
+          "options": [
+            {
+              "value": "none",
+              "label": "t:process_steps.none"
+            },
+            {
+              "value": "diagnose",
+              "label": "t:process_steps.diagnose"
+            },
+            {
+              "value": "build",
+              "label": "t:process_steps.build"
+            },
+            {
+              "value": "operate",
+              "label": "t:process_steps.operate"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:process_steps.heading"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "t:process_steps.description"
+        },
+        {
+          "type": "textarea",
+          "id": "points",
+          "label": "t:process_steps.points"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:process_steps.name",
+      "category": "t:categories.storytelling",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "default_icon": "diagnose",
+            "heading": "Diagnose & Advise",
+            "description": "Understand your business and define the right approach.",
+            "points": "Assess goals and capabilities\nIdentify gaps using the AIDEA model\nDefine priorities and a roadmap"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "default_icon": "build",
+            "heading": "Build & Implement",
+            "description": "Turn the roadmap into working solutions.",
+            "points": "Build and configure digital solutions\nIntegrate relevant systems and data\nSupport testing and launch"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "default_icon": "operate",
+            "heading": "Operate & Optimise",
+            "description": "Support ongoing operations and continuous improvement.",
+            "points": "Provide ongoing operational support\nMonitor performance against agreed goals\nImprove through testing and insights"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

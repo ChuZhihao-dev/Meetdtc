@@ -129,7 +129,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "Book a Free Growth Consultation →",
-            "link": "shopify://collections/all",
+            "link": "#growth-diagnosis",
             "open_in_new_tab": false,
             "style_class": "button-custom",
             "custom_button_background": "",
@@ -407,7 +407,7 @@
         "card_padding_block_end": 24,
         "card_padding_inline_start": 16,
         "card_padding_inline_end": 16,
-        "view_all_label": "VIEW ALL SERVICES",
+        "view_all_label": "",
         "view_all_link": ""
       }
     },
@@ -671,7 +671,7 @@
         "heading_gap": 64,
         "list_gap": 30,
         "view_all_label": "View all articles →",
-        "view_all_link": "shopify://blogs/news",
+        "view_all_link": "shopify://blogs/solutions",
         "link_color": "#106efa",
         "padding-block-start": 72,
         "padding-block-end": 92
@@ -693,7 +693,7 @@
           "type": "_faq-row",
           "settings": {
             "question": "What MarTech solutions does ME provide?",
-            "answer": "<p>ME provides a connected set of services across web design and development, SEO, CRO, lifecycle and affiliate marketing, so strategy and execution work as one system.</p>",
+            "answer": "<p>Our MarTech service areas include Web Development, SEO, Conversion Rate Optimisation, Email Marketing, Affiliate Marketing, WhatsApp Marketing, Trustpilot & Reviews, Loyalty & Membership, and AI & Cloud. Services can be engaged individually or combined into one connected growth programme.<br/><br/></p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -702,7 +702,7 @@
           "type": "_faq-row",
           "settings": {
             "question": "Can ME support both strategy and implementation?",
-            "answer": "<p>Yes. We help define the strategy and then implement it end to end, so you're not handing plans between agencies.</p>",
+            "answer": "<p>Yes. We can support the full process, from growth diagnosis and priority setting to planning, implementation, campaign execution, tracking and ongoing optimisation.<br/><br/></p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -710,8 +710,8 @@
         "faq_row_bHFFxt": {
           "type": "_faq-row",
           "settings": {
-            "question": "How Can We Get Started with ME?",
-            "answer": "<p>Get in touch and we'll start with a short discovery session to understand your goals, markets and current setup.</p>",
+            "question": "Which markets and platforms does ME work across?",
+            "answer": "<p>We help businesses expand into global markets, with a focus on clients based in Singapore, Hong Kong, Taiwan and mainland China. With offices in Singapore, Shanghai and Shenzhen, ME provides support in English and Chinese, connecting the commerce, marketing and analytics platforms that fit each client’s growth needs.<br/><br/></p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -720,7 +720,7 @@
           "type": "_faq-row",
           "settings": {
             "question": "How Can We Get Started with ME?",
-            "answer": "<p>Get in touch and we'll start with a short discovery session to understand your goals, markets and current setup.</p>",
+            "answer": "<p>Tell us about your business, target market and current challenges. Request a free growth diagnosis below and our team will review your priorities, then come back with suitable next steps.<br/><br/></p>",
             "open_by_default": false
           },
           "blocks": {}

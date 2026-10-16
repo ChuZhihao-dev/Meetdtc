@@ -1,0 +1,227 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "name": "t:names.title",
+          "settings": {
+            "text": "<h1>Blog</h1>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "3.625rem",
+            "weight": "600",
+            "line_height": "1.2",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "gradient_text": true,
+            "gradient_color_from": "#0b22b8",
+            "gradient_color_to": "#9621c4",
+            "gradient_angle": 155,
+            "gradient_start_position": 1,
+            "gradient_end_position": 100,
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "introduction": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Explore practical insights on MarTech, AI and digital marketing for global growth.</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.5rem",
+            "weight": "500",
+            "line_height": "1.6",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#000000",
+            "gradient_text": false,
+            "gradient_color_from": "#2f6df6",
+            "gradient_color_to": "#9333ea",
+            "gradient_angle": 90,
+            "gradient_start_position": 0,
+            "gradient_end_position": 100,
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "static-blog-categories": {
+          "type": "_blog-category-nav",
+          "static": true,
+          "settings": {},
+          "blocks": {}
+        },
+        "static-blog-post-card": {
+          "type": "_blog-post-card",
+          "static": true,
+          "settings": {
+            "alignment": "left",
+            "background_color": ""
+          },
+          "blocks": {
+            "blog-post-details": {
+              "type": "_blog-post-info-text",
+              "name": "t:names.details",
+              "static": true,
+              "settings": {
+                "show_date": true,
+                "show_author": false,
+                "type_preset": "",
+                "alignment": "left",
+                "text_color": "#6b6b6b",
+                "show_alignment": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "image": {
+              "type": "_blog-post-image",
+              "static": true,
+              "settings": {
+                "height": "large",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 4
+              },
+              "blocks": {}
+            },
+            "heading": {
+              "type": "_heading",
+              "name": "t:names.title",
+              "static": true,
+              "settings": {
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "1.125rem",
+                "weight": "700",
+                "line_height": "1.4",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text": "",
+                "read_only": true,
+                "alignment": "left",
+                "show_alignment": false,
+                "text_color": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "content": {
+              "type": "_blog-post-description",
+              "static": true,
+              "settings": {
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "padding-block-start": 16,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        }
+      },
+      "block_order": [
+        "title",
+        "introduction"
+      ],
+      "disabled": true,
+      "settings": {
+        "background_color": "{{ settings.color_palette.background }}",
+        "intro_background": "linear-gradient(166deg, #d9e0f9 0%, #f8f1ed 100%)",
+        "list_background": "linear-gradient(148deg, #e6ecff 2.5%, #dbe1f8 97.5%)",
+        "text_color": "#4b4b4b",
+        "category_accent": "#0c23b8",
+        "card_border": "#1739ba",
+        "card_background": "#ffffff4d",
+        "button_background": "linear-gradient(96deg, #7d38e9 0%, #607ff9 100%)",
+        "button_text": "#ffffff",
+        "padding-block-start": 0,
+        "padding-block-end": 60,
+        "posts_per_page": 6,
+        "enable_reveal": true
+      }
+    },
+    "main_our_work_VcmPig": {
+      "type": "main-our-work",
+      "name": "t:work_catalog.name",
+      "settings": {
+        "blog": "solutions",
+        "heading": "Our Work",
+        "description": "<p>See how we help businesses grow through MarTech, technology and marketing.</p>",
+        "heading_gradient": "linear-gradient(132deg, rgba(11, 34, 184, 1) 2.6%, rgba(150, 33, 196, 1) 50%)",
+        "intro_background": "linear-gradient(168deg, rgba(217, 224, 249, 1), rgba(248, 241, 237, 1) 100%)",
+        "list_background": "linear-gradient(180deg, rgba(230, 236, 255, 1), rgba(219, 225, 248, 1) 100%)",
+        "filter_background": "linear-gradient(162deg, rgba(218, 226, 255, 1) 1%, rgba(193, 205, 249, 1) 99%)",
+        "text_color": "#000000",
+        "muted_color": "#6b6b6b",
+        "filter_color": "#555971",
+        "filter_heading_color": "#7422c2",
+        "accent_color": "#0032f5",
+        "card_background": "#ffffff4d",
+        "card_border": "#ffffff",
+        "card_radius": 16,
+        "media_background": "#ebebeb",
+        "media_border": "#bfbfbf",
+        "placeholder_color": "#8d8d8d",
+        "posts_per_page": 9,
+        "enable_reveal": true,
+        "padding-block-start": 60,
+        "padding-block-end": 40
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main_our_work_VcmPig"
+  ]
+}

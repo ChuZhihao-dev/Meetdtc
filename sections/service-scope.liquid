@@ -110,6 +110,8 @@
   .service-scope__grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    /* Stretch card boxes equally; keep their content in normal document flow. */
+    grid-auto-rows: 1fr;
     gap: var(--service-scope-row-gap, 29px) var(--service-scope-column-gap, 33px);
     width: calc(100% - min(3.05556vw, 44px));
     margin: 0;
@@ -127,7 +129,27 @@
     background: var(--service-scope-card-background, #ffffff94);
     overflow-wrap: anywhere;
   }
+  .service-scope .service-scope__card,
+  .service-scope.reveal-ready .service-scope__card {
+    transition-property: opacity, transform, translate, box-shadow;
+    transition-duration: 0.6s, 0.6s, calc(var(--animation-speed-slow) * 1.5), calc(var(--animation-speed-slow) * 1.5);
+    transition-timing-function: var(--ease-out-cubic);
+  }
+  .service-scope.reveal-ready .service-scope__card[data-reveal] {
+    transition-delay: min(calc(var(--reveal-index, 0) * 60ms), 240ms), min(calc(var(--reveal-index, 0) * 60ms), 240ms), 0s, 0s;
+  }
+  .service-scope__card:has(:focus-visible) {
+    translate: 0 -4px;
+    box-shadow: 0 12px 28px -12px color-mix(in srgb, var(--service-scope-text) 22%, transparent);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .service-scope__card:hover {
+      translate: 0 -4px;
+      box-shadow: 0 12px 28px -12px color-mix(in srgb, var(--service-scope-text) 22%, transparent);
+    }
+  }
   .service-scope__card-heading {
+    min-block-size: 2lh;
     margin: 0;
     color: inherit;
     font-family: inherit;
@@ -164,10 +186,12 @@
     .service-scope__grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
     .service-scope__intro + .service-scope__grid { margin-block-start: 32px; }
     .service-scope__card { min-height: 0; }
-    .service-scope__card-heading { font-size: 22px; }
+    .service-scope__card-heading { min-block-size: 0; font-size: 22px; }
     .service-scope__card-heading + .service-scope__card-description { margin-block-start: 16px; }
   }
   @media (prefers-reduced-motion: reduce) {
+    .service-scope .service-scope__card,
+    .service-scope.reveal-ready .service-scope__card { translate: none; transition: none; }
     .service-scope.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; }
   }
   @media (forced-colors: active) {

@@ -1,0 +1,1039 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "page_background_n8zJR6": {
+      "type": "page-background",
+      "name": "t:names.page_background",
+      "settings": {
+        "background_type": "gradient",
+        "background_color": "#ffffff",
+        "gradient_color_from": "#f7eaf3",
+        "gradient_color_to": "#dbe5f3",
+        "gradient_angle": 176
+      }
+    },
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "disclosures_g9mWze": {
+          "type": "disclosures",
+          "name": "t:names.disclosures",
+          "settings": {
+            "heading": "Disclosures",
+            "heading_preset": "h5",
+            "open_by_default": false,
+            "icon": "caret",
+            "disclosure_heading_preset": "h6",
+            "text_color": "",
+            "dividers": true,
+            "divider_color": "{{ settings.color_palette.color2 }}",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "grid",
+            "media_columns": "two",
+            "image_gap": 4,
+            "large_first_image": false,
+            "icons_style": "arrow",
+            "slideshow_controls_style": "counter",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "right",
+            "thumbnail_width": 44,
+            "thumbnail_radius": 0,
+            "aspect_ratio": "adapt",
+            "constrain_to_viewport": true,
+            "media_fit": "contain",
+            "media_radius": 0,
+            "extend_media": false,
+            "zoom": true,
+            "video_loop": false,
+            "hide_variants": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 28,
+            "sticky_details_desktop": true,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 24,
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "group_icgrde": {
+              "type": "group",
+              "name": "t:names.header",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_xrnftG": {
+                  "type": "text",
+                  "name": "t:names.product_title",
+                  "settings": {
+                    "text": "<h1>{{ closest.product.title }}</h1>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h3",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "weight": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "gradient_text": false,
+                    "gradient_color_from": "#2f6df6",
+                    "gradient_color_to": "#9333ea",
+                    "gradient_angle": 90,
+                    "gradient_start_position": 0,
+                    "gradient_end_position": 100,
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "price_tVjtKg": {
+                  "type": "price",
+                  "settings": {
+                    "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": false,
+                    "type_preset": "paragraph",
+                    "width": "100%",
+                    "alignment": "left",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "text_color": "",
+                    "padding-block-start": 4,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_xrnftG",
+                "price_tVjtKg"
+              ]
+            },
+            "divider_VJhene": {
+              "type": "_divider",
+              "name": "t:names.divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "divider_color": "{{ settings.color_palette.color2 }}",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "variant_picker_R3rGDr": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": false,
+                "option_label_text_color": "",
+                "variant_style_class": "default",
+                "custom_variant_background": "{{ settings.color_palette.background }}",
+                "custom_variant_text": "{{ settings.color_palette.foreground }}",
+                "custom_variant_border": "{{ settings.color_palette.foreground }}",
+                "selected_variant_style_class": "default",
+                "custom_selected_variant_background": "{{ settings.color_palette.foreground }}",
+                "custom_selected_variant_text": "{{ settings.color_palette.background }}",
+                "custom_selected_variant_border": "{{ settings.color_palette.foreground }}",
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_eYQEYi": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": true,
+                "text_color": "",
+                "show_pickup_availability": false,
+                "gift_card_form": true,
+                "recipient_button_style": "default",
+                "recipient_button_background": "{{ settings.color_palette.background }}",
+                "recipient_button_text": "{{ settings.color_palette.foreground }}",
+                "recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_style": "default",
+                "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_text": "{{ settings.color_palette.background }}",
+                "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "input_style": "default",
+                "input_background_color": "{{ settings.color_palette.background }}",
+                "input_text_color": "{{ settings.color_palette.foreground }}",
+                "input_border_color": "{{ settings.color_palette.foreground }}",
+                "border_width": 1,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {
+                    "input_style": "default",
+                    "input_background_color": "{{ settings.color_palette.background }}",
+                    "input_text_color": "{{ settings.color_palette.foreground }}",
+                    "input_border_color": "{{ settings.color_palette.foreground }}",
+                    "border_width": 1,
+                    "border_radius": 0
+                  },
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button",
+                    "custom_button_background": "{{ settings.color_palette.foreground }}",
+                    "custom_button_text": "{{ settings.color_palette.background }}",
+                    "custom_button_border": "{{ settings.color_palette.background }}"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "text_aEtTtq": {
+              "type": "text",
+              "name": "t:names.product_description",
+              "settings": {
+                "text": "{{ closest.product.description }}",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "weight": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "gradient_text": false,
+                "gradient_color_from": "#2f6df6",
+                "gradient_color_to": "#9333ea",
+                "gradient_angle": 90,
+                "gradient_start_position": 0,
+                "gradient_end_position": 100,
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "group_icgrde",
+            "divider_VJhene",
+            "variant_picker_R3rGDr",
+            "buy_buttons_eYQEYi",
+            "text_aEtTtq"
+          ]
+        }
+      },
+      "block_order": [
+        "disclosures_g9mWze"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": false,
+        "limit_details_width": false,
+        "gap": 48,
+        "enable_sticky_add_to_cart": true,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "product_hero_jiNakp": {
+      "type": "product-hero",
+      "blocks": {
+        "button_JayDDj": {
+          "type": "button",
+          "settings": {
+            "label": "Book a Free Growth Consultation →",
+            "link": "#growth-diagnosis",
+            "open_in_new_tab": false,
+            "style_class": "button-custom",
+            "custom_button_background": "#ffffff",
+            "custom_button_text": "#ffffff",
+            "custom_button_border": "rgba(0,0,0,0)",
+            "link_text_color": "",
+            "button_gradient": true,
+            "button_gradient_from": "#7a25c4",
+            "button_gradient_to": "#5e6eeb",
+            "button_gradient_angle": 90,
+            "button_gradient_start_position": 0,
+            "button_gradient_end_position": 100,
+            "button_custom_radius": true,
+            "button_radius": 50,
+            "button_font": "var(--font-heading--family)",
+            "button_font_size": "1.5rem",
+            "button_font_weight": "600",
+            "button_letter_spacing": "",
+            "button_case": "",
+            "button_icon_size": 16,
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "button_JayDDj"
+      ],
+      "name": "t:product_hero.name",
+      "settings": {
+        "eyebrow": "Website Design & Development",
+        "heading": "Turn Your Website Into\n a Foundation for Global Growth",
+        "heading_tag": "h1",
+        "description": "We bring strategy, design, development and systems integration together to build Shopify, WordPress and custom websites that make buying easier, generate qualified enquiries and support your next stage of growth.",
+        "background_from": "#f7e9f5",
+        "background_to": "#c7e2f4",
+        "heading_from": "#0c23b8",
+        "heading_to": "#7c21c2",
+        "description_color": "#6b6a6a",
+        "section_height": "full-screen",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "partner_brands_z4GbiM": {
+      "type": "partner-brands",
+      "blocks": {
+        "brand_row_PrWVTn": {
+          "type": "_brand-row",
+          "settings": {},
+          "blocks": {
+            "brand_logo_b8nyYi": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_fWcXd8": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_1.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_4qJCgJ": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_2.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_mEGeYg": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_4.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_mbdQht": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_3.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "brand_logo_b8nyYi",
+            "brand_logo_fWcXd8",
+            "brand_logo_4qJCgJ",
+            "brand_logo_mEGeYg",
+            "brand_logo_mbdQht"
+          ]
+        },
+        "brand_row_4zdXEJ": {
+          "type": "_brand-row",
+          "settings": {},
+          "blocks": {
+            "brand_logo_rT6BCw": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_6.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_hGjmae": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_7.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_rU66cn": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_9.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_xBwQDq": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_10.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "brand_logo_rT6BCw",
+            "brand_logo_hGjmae",
+            "brand_logo_rU66cn",
+            "brand_logo_xBwQDq"
+          ]
+        }
+      },
+      "block_order": [
+        "brand_row_PrWVTn",
+        "brand_row_4zdXEJ"
+      ],
+      "name": "t:names.partner_brands",
+      "settings": {
+        "heading": "<p>Trusted by Leading Brands Across Global Markets</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "1.3125rem",
+        "weight": "600",
+        "line_height": "1.4",
+        "letter_spacing": "normal",
+        "alignment": "center",
+        "wrap": "pretty",
+        "gradient_text": true,
+        "gradient_color_from": "#0c23b8",
+        "gradient_color_to": "#7c21c2",
+        "gradient_angle": 90,
+        "gradient_start_position": 27,
+        "gradient_end_position": 72,
+        "background_gradient_from": "#efe6f3",
+        "background_gradient_to": "#e2cdf4",
+        "background_gradient_angle": 100,
+        "thickness": 0.5,
+        "divider_color": "#707070",
+        "width_percent": 100,
+        "logo_gap": 78,
+        "row_gap": 16,
+        "logo_height": 94,
+        "padding-block-start": 42,
+        "padding-block-end": 37
+      }
+    },
+    "business_challenge_iR7zkb": {
+      "type": "business-challenge",
+      "blocks": {
+        "business_challenge_item_XDJAAj": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Your Website Looks Like Everyone Else’s",
+            "description": "<p>We translate your brand identity into distinctive visual design that helps customers recognize and remember your business.<br/><br/></p>",
+            "link": "",
+            "marker": "1"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_fgEXyy": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Your Products Deserve a Better First Impression",
+            "description": "<p>We combine compelling visuals, clear messaging and intuitive layouts to communicate product value and build customer confidence.<br/><br/></p>",
+            "link": "",
+            "marker": "2"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_YMxyyL": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Your Mobile Experience Is Losing Customers",
+            "description": "<p>We turn responsive designs into fast, easy-to-use pages through careful development and testing across devices.<br/><br/></p>",
+            "link": "",
+            "marker": "3"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_WaNjic": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Your Website Can’t Deliver the Features You Need",
+            "description": "<p>We develop and integrate the features your customers need, from product selection and checkout to B2B enquiries.<br/><br/></p>",
+            "link": "",
+            "marker": "3"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_QJCAVp": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Your Website and Business Systems Don’t Work Together",
+            "description": "<p>We connect your website with ERP, CRM and other platforms through APIs that support your operational workflows.<br/><br/></p>",
+            "link": "",
+            "marker": "3"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_bhwQpF": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "Your Website Can’t Keep Up With Your Growth",
+            "description": "<p>We build flexible website structures and provide clear technical handovers so your team can confidently expand and improve.<br/><br/></p>",
+            "link": "",
+            "marker": "3"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "business_challenge_item_XDJAAj",
+        "business_challenge_item_fgEXyy",
+        "business_challenge_item_YMxyyL",
+        "business_challenge_item_WaNjic",
+        "business_challenge_item_QJCAVp",
+        "business_challenge_item_bhwQpF"
+      ],
+      "name": "t:names.business_challenge",
+      "settings": {
+        "eyebrow": "BUSINESS CHALLENGE",
+        "heading": "Your Website Could Be Costing You Sales and Qualified Leads",
+        "center_text": "GROWTH\nPOTENTIAL",
+        "caption": "Existing potential is not being fully converted into business value.",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "gradient_text": true,
+        "gradient_color_from": "#0b22b8",
+        "gradient_color_to": "#9621c4",
+        "background_color": "rgba(0,0,0,0)",
+        "text_color": "#000000",
+        "accent_color": "#7222c1",
+        "description_color": "#6b6b6b",
+        "caption_color": "#686868",
+        "center_text_color": "#ffffff",
+        "divider_color": "#000000",
+        "center_tint": "",
+        "initial_visible_items": 4,
+        "sticky_figure": true,
+        "enable_animation": true,
+        "padding-block-start": 36,
+        "padding-block-end": 60
+      }
+    },
+    "our_approach_dJQKw8": {
+      "type": "our-approach",
+      "name": "t:our_approach.name",
+      "settings": {
+        "eyebrow": "OUR APPROACH",
+        "heading": "Start With Your Business. Build Around Your Customers.",
+        "body_primary": "<p>One Integrated Plan, the Right Platform and a Clear Path to Launch<br/><br/></p>",
+        "body_secondary": "<p>We map your business goals, customer journeys and operational needs before choosing the platform and defining the build. From template-based Shopify stores and WordPress websites to custom development with source code handover, our approach connects design decisions with technical delivery. An agreed scope, milestone reviews and acceptance criteria help reduce rework, integration surprises and uncertainty at launch.<br/><br/></p>",
+        "image": "shopify://shop_images/image_122_1.webp",
+        "image_alt": "",
+        "font": "montserrat_n5",
+        "text_color": "#000000",
+        "heading_gradient": "linear-gradient(122.1396deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "background": "",
+        "padding-block-start": 60,
+        "padding-block-end": 60,
+        "padding_mobile_top": 40,
+        "padding_mobile_bottom": 40,
+        "enable_reveal": true
+      }
+    },
+    "service_scope_VaDYAw": {
+      "type": "service-scope",
+      "blocks": {
+        "card_ETxkQz": {
+          "type": "card",
+          "settings": {
+            "heading": "Business Discovery & Website Planning",
+            "description": "<p>We review your brand, products, competitors and customer needs to plan your website structure and customer journeys. You receive a project brief, sitemap and wireframes for agreed pages.<br/><br/><br/></p>"
+          }
+        },
+        "card_wKwRVy": {
+          "type": "card",
+          "settings": {
+            "heading": "UI & Responsive Design",
+            "description": "<p>We design agreed pages around your brand and customer journeys. You receive approved desktop and mobile designs ready for development.<br/><br/></p>"
+          }
+        },
+        "card_jTHQUi": {
+          "type": "card",
+          "settings": {
+            "heading": "Website Development",
+            "description": "<p>We implement the approved designs through theme customization or custom development. You receive a working website with the agreed pages and features.<br/><br/></p>"
+          }
+        },
+        "card_HJg9Ee": {
+          "type": "card",
+          "settings": {
+            "heading": "Business Systems & API Integration",
+            "description": "<p>We implement agreed connections with your business systems. You receive working integrations and documentation of the configured data flows.<br/><br/></p>"
+          }
+        },
+        "card_xg8a6q": {
+          "type": "card",
+          "settings": {
+            "heading": "Performance, Quality & Acceptance",
+            "description": "<p>We check agreed functionality, responsive behavior, browser compatibility and performance. You receive a test report and an acceptance-ready website.<br/><br/></p>"
+          }
+        },
+        "card_nMqphe": {
+          "type": "card",
+          "settings": {
+            "heading": "Launch & Handover",
+            "description": "<p>We deploy your website and explain how to manage it. You receive agreed access, operating guides and project files, including source code for custom builds.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "card_ETxkQz",
+        "card_wKwRVy",
+        "card_jTHQUi",
+        "card_HJg9Ee",
+        "card_xg8a6q",
+        "card_nMqphe"
+      ],
+      "name": "t:service_scope.name",
+      "settings": {
+        "eyebrow": "SERVICE SCOPE",
+        "heading": "What Is Included",
+        "description": "<p>A monular scope tailored to each service, growth priarity and operating need. Add or<br/>&nbsp;romove modulas as the progremme grows.</p>",
+        "font": "montserrat_n4",
+        "text_color": "#000000",
+        "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "background": "",
+        "card_background": "#ffffff",
+        "card_opacity": 58,
+        "card_border": "#ffffff",
+        "card_radius": 13,
+        "column_gap": 33,
+        "row_gap": 29,
+        "padding-block-start": 60,
+        "padding-block-end": 60,
+        "padding_mobile_top": 40,
+        "padding_mobile_bottom": 40,
+        "enable_reveal": true
+      }
+    },
+    "delivery_process_Adtgjg": {
+      "type": "delivery-process",
+      "blocks": {
+        "step_PMTbKg": {
+          "type": "step",
+          "settings": {
+            "heading": "Audit & Discovery",
+            "description": "<p>We agree the website structure, platform, functional scope, deliverables and project schedule.<br/><br/></p>",
+            "deliverable": ""
+          }
+        },
+        "step_RK4exK": {
+          "type": "step",
+          "settings": {
+            "heading": "Plan & Define",
+            "description": "<p>Aesess channel performance, customer data, lifecycle gaps and current operations.</p>",
+            "deliverable": ""
+          }
+        },
+        "step_jFFWg7": {
+          "type": "step",
+          "settings": {
+            "heading": "Design & Approve",
+            "description": "<p>We develop the user experience and visual designs, then review key pages with your team before development.<br/><br/></p>",
+            "deliverable": ""
+          }
+        },
+        "step_tL7iNB": {
+          "type": "step",
+          "settings": {
+            "heading": "Build & Integrate",
+            "description": "<p>We develop the approved website and implement agreed functionality and system connections.<br/><br/></p>",
+            "deliverable": ""
+          }
+        },
+        "step_Qb6M37": {
+          "type": "step",
+          "settings": {
+            "heading": "Test & Accept",
+            "description": "<p>We test the agreed scope, resolve identified issues and guide your team through acceptance.<br/><br/></p>",
+            "deliverable": ""
+          }
+        },
+        "step_99GRHR": {
+          "type": "step",
+          "settings": {
+            "heading": "Launch & Enable",
+            "description": "<p>We launch the website, complete the handover and begin any agreed post-launch support.<br/><br/></p>",
+            "deliverable": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_PMTbKg",
+        "step_RK4exK",
+        "step_jFFWg7",
+        "step_tL7iNB",
+        "step_Qb6M37",
+        "step_99GRHR"
+      ],
+      "name": "Delivery process",
+      "settings": {
+        "eyebrow": "DELIVERY PROCESS",
+        "heading": "Your Vision. One Team. From Concept to Launch.",
+        "description": "<p>We bring planning, design and development together, with clear milestones and hands-on guidance—so you always know what’s next and who’s accountable.<br/><br/></p>",
+        "background": "linear-gradient(135.439deg, rgba(211, 216, 246, 1) 2.204%, rgba(253, 243, 255, 1) 97.796%)",
+        "heading_gradient": "linear-gradient(107.919deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "text_color": "#000000",
+        "accent_color": "#9621c4",
+        "step_gap": 60,
+        "padding-block-start": 60,
+        "padding-block-end": 100
+      }
+    },
+    "cta_banner_9deRhq": {
+      "type": "cta-banner",
+      "name": "t:names.cta_banner",
+      "settings": {
+        "heading": "Fixed Scope. Fixed Price.",
+        "description": "<p>Scoped by page count, number of markets and whether you need e-commerce.</p>",
+        "link_label": "See Packages & Pricing",
+        "link": "#",
+        "font": "var(--font-heading--family)",
+        "font_size": "2.5rem",
+        "weight": "700",
+        "line_height": "1.1",
+        "letter_spacing": "normal",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#ffffff",
+        "gradient_color_to": "#f8e5ff",
+        "gradient_angle": 96,
+        "gradient_start_position": 12,
+        "gradient_end_position": 88,
+        "description_color": "#ffffff",
+        "background_gradient_from": "rgba(0,0,0,0)",
+        "background_gradient_to": "rgba(0,0,0,0)",
+        "background_gradient_angle": 104,
+        "panel_gradient_from": "#6379ef",
+        "panel_gradient_to": "#b62cf6",
+        "panel_gradient_angle": 92,
+        "panel_radius": 23,
+        "button_background": "#ffffff",
+        "button_text_color": "#6d28d9",
+        "button_radius": 30,
+        "padding-block-start": 72,
+        "padding-block-end": 68,
+        "panel_padding_block_start": 40,
+        "panel_padding_inline_end": 48,
+        "panel_padding_block_end": 40,
+        "panel_padding_inline_start": 48
+      }
+    },
+    "featured_client_story_ChKJVj": {
+      "type": "featured-client-story",
+      "blocks": {
+        "client_story_metric_zLRcgq": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "+28%",
+            "label": "Cart-to-Checkout Rate"
+          },
+          "blocks": {}
+        },
+        "client_story_metric_jtqQkg": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "+36%",
+            "label": "Website Performance"
+          },
+          "blocks": {}
+        },
+        "client_story_metric_MwnYiR": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "+26%",
+            "label": "Keywords Ranking in Search"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "client_story_metric_zLRcgq",
+        "client_story_metric_jtqQkg",
+        "client_story_metric_MwnYiR"
+      ],
+      "name": "t:client_story.name",
+      "settings": {
+        "eyebrow": "FEATURED CLIENT STORY",
+        "heading": "Shopify Plus redesign drives 28% higher \ncart-to-checkout rate.",
+        "description": "<p><br/>ME refreshed the brand’s UI/UX and migrated its Magento store to Shopify Plus, creating a faster, smoother shopping experience.<br/><br/></p>",
+        "image_alt": "",
+        "link_label": "Vlaw Case Study",
+        "link": "",
+        "font": "montserrat_n5",
+        "text_color": "#000000",
+        "heading_gradient": "linear-gradient(108.133deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "background": "",
+        "panel_background": "linear-gradient(105.9376deg, rgba(19, 98, 250, 0.05) 3.724%, rgba(109, 40, 217, 0.05) 96.276%)",
+        "accent_color": "#6d28d9",
+        "media_background": "#fdfdfd",
+        "button_background": "#6d28d9",
+        "button_text_color": "#ffffff",
+        "card_radius": 28,
+        "padding-block-start": 60,
+        "padding-block-end": 60,
+        "enable_reveal": false
+      }
+    },
+    "faq_XyKTzC": {
+      "type": "faq",
+      "blocks": {
+        "faq_row_XdLKBG": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Can you create a unique website that reflects our brand?",
+            "answer": "<p>Yes. We translate your brand identity and product positioning into a distinctive website experience. Our design scope covers two core screen formats—desktop and mobile—with key page designs reviewed before development.<br/><br/></p>",
+            "open_by_default": true
+          },
+          "blocks": {}
+        },
+        "faq_row_ckALeW": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "How do I choose the right platform for my website?",
+            "answer": "<p>We help you compare platforms against your business requirements. Shopify suits commerce-focused projects, WordPress supports content-led websites, and custom development accommodates more specialized needs. We assess four areas: customer experience, functionality, integrations and ongoing management.<br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_8DWdMn": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Do you offer both template-based and fully custom websites?",
+            "answer": "<p>Yes. We offer two approaches: template-based builds and custom website development. Template projects adapt an existing foundation, while custom projects allow more tailored layouts, interactions and functionality.<br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_6Vcq7e": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Can you redesign or upgrade our existing website?",
+            "answer": "<p>Yes. We can improve your current website’s design, user experience and functionality. Before defining the scope, we review three areas: what to retain, what to improve and what to rebuild.<br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_idcK38": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Can you connect our website to our existing business systems?",
+            "answer": "<p>Yes. We provide API integration with systems such as ERP and CRM platforms, subject to their available interfaces and access permissions. Each integration defines three essentials: the data exchanged, the direction of transfer and the synchronization rules.<br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_98nUKV": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "How long does a website project take?",
+            "answer": "<p>The timeline depends on design complexity, functionality and integrations. Our indicative development phase is 2–10 weeks, followed by 1–2 weeks of integration testing. Planning and UI design are scheduled separately, and the full timeline is confirmed after scoping.<br/><br/><br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_yPBYkf": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Will we receive the source code and be able to manage the website ourselves?",
+            "answer": "<p>Custom development projects include source code handover within the agreed scope. Handover covers three areas: relevant access, operating guidance and project files. For Shopify and WordPress projects, we clarify the editable components and any third-party licensing dependencies.<br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "faq_row_XdLKBG",
+        "faq_row_ckALeW",
+        "faq_row_8DWdMn",
+        "faq_row_6Vcq7e",
+        "faq_row_idcK38",
+        "faq_row_98nUKV",
+        "faq_row_yPBYkf"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "<p>About Working With ME</p>",
+        "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "weight": "600",
+        "line_height": "1.3",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#0b22b8",
+        "gradient_color_to": "#9621c4",
+        "gradient_angle": 92,
+        "gradient_start_position": 0,
+        "gradient_end_position": 15,
+        "background_gradient_from": "rgba(0,0,0,0)",
+        "background_gradient_to": "rgba(0,0,0,0)",
+        "background_gradient_angle": 104,
+        "row_background": "#e5e6ff",
+        "row_radius": 16,
+        "row_gap": 8,
+        "question_color": "#3f4eff",
+        "answer_color": "#595959",
+        "icon_color": "#3f4eff",
+        "heading_gap": 52,
+        "list_max_width": 1140,
+        "padding-block-start": 92,
+        "padding-block-end": 96
+      }
+    }
+  },
+  "order": [
+    "page_background_n8zJR6",
+    "main",
+    "product_hero_jiNakp",
+    "partner_brands_z4GbiM",
+    "business_challenge_iR7zkb",
+    "our_approach_dJQKw8",
+    "service_scope_VaDYAw",
+    "delivery_process_Adtgjg",
+    "cta_banner_9deRhq",
+    "featured_client_story_ChKJVj",
+    "faq_XyKTzC"
+  ]
+}

@@ -35,7 +35,13 @@
 
 {% stylesheet %}
   .product-hero {
+    /* Center within the selected section height; saved asymmetric spacing only sets a safe inset. */
+    --product-hero-safe-padding: max(var(--padding-block-start, 0px), var(--padding-block-end, 0px));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    padding-block: calc(var(--product-hero-safe-padding) + var(--section-top-offset, 0px)) var(--product-hero-safe-padding);
   }
   .product-hero__background {
     background-image: linear-gradient(92.19deg, var(--product-hero-bg-from) 1.07%, var(--product-hero-bg-to) 98.93%);
@@ -305,7 +311,7 @@
       "max": 240,
       "step": 4,
       "unit": "px",
-      "default": 184
+      "default": 84
     }
   ],
   "presets": [

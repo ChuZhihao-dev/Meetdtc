@@ -113,6 +113,7 @@
         "gradient_left": "#1550ff",
         "gradient_middle": "#6551f5",
         "gradient_right": "#af67f7",
+        "form_anchor_id": "growth-diagnosis",
         "card_background": "#ffffff",
         "card_radius": 32,
         "input_radius": 12,

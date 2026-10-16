@@ -19,7 +19,7 @@
 {% endif %}
 {% stylesheet %}
   .business-challenge-item { min-inline-size: 0; padding-block: 20px; border-block-end: 1px solid var(--challenge-divider); }
-  .business-challenge-item:last-child { border-block-end: 0; }
+  .business-challenge-item:last-child, .business-challenge-item[data-last-visible] { border-block-end: 0; }
   .business-challenge-item__title { margin: 0; font-family: inherit; font-size: 1.5rem; font-weight: 500; line-height: 1.5833; color: var(--challenge-accent); overflow-wrap: anywhere; }
   .business-challenge-item__title a { color: inherit; text-decoration: none; }
   .business-challenge-item__title a:focus-visible { outline: 2px solid var(--challenge-accent); outline-offset: 4px; }
