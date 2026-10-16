@@ -174,7 +174,16 @@
         "text_color_transparent_product": "",
         "enable_transparent_header_collection": true,
         "collection_inverse_logo": false,
-        "text_color_transparent_collection": ""
+        "text_color_transparent_collection": "",
+        "enable_transparent_header_about": true,
+        "about_inverse_logo": false,
+        "text_color_transparent_about": "",
+        "enable_transparent_header_contact": true,
+        "contact_inverse_logo": false,
+        "text_color_transparent_contact": "",
+        "enable_transparent_header_blog": true,
+        "blog_inverse_logo": false,
+        "text_color_transparent_blog": ""
       }
     }
   },

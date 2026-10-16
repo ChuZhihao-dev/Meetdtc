@@ -1,0 +1,21 @@
+{% doc %}
+  Shared purple focus styling for footer, drawer and Contact enquiry forms.
+  @example {% render 'contact-form-focus-styles' %}
+{% enddoc %}
+{% stylesheet %}
+  .contact-form-focus { --contact-form-focus-color: #6e5bf0; }
+  .contact-form-focus :is(input, textarea):focus {
+    border-color: var(--contact-form-focus-color);
+    outline: 2px solid var(--contact-form-focus-color);
+    outline-offset: 1px;
+    box-shadow: none;
+  }
+  .contact-form-focus button:focus-visible {
+    outline: 2px solid var(--contact-form-focus-color);
+    outline-offset: 1px;
+    box-shadow: none;
+  }
+  @media (forced-colors: active) {
+    .contact-form-focus { --contact-form-focus-color: Highlight; }
+  }
+{% endstylesheet %}

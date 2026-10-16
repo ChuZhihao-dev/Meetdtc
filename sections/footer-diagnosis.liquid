@@ -1,14 +1,8 @@
 {% comment %}
-  Growth diagnosis footer.
-  Renders the CTA (marketing copy + feature list) and a native Shopify contact
-  form in a white card, a four-column menu area, and a locations area anchored
-  to the right half on desktop, all on one continuous gradient background.
-  @example
-  <!-- Added to the footer group; edit copy, pick menus, and set locations -->
-  NOTES:
-  - Styles live in this section's {% stylesheet %} (Horizon pattern, scoped to
-    .footer-diagnosis) instead of a standalone asset, so they are delivered with
-    the section response.
+  Growth diagnosis: introduction, feature list and native Shopify enquiry form.
+  Owns the shared diagnosis drawer and its form styling.
+  Page rules omit only the consultation region; the drawer remains rendered.
+  @example Add to the footer group; edit introduction, feature blocks and form labels.
 {% endcomment %}
 
 <script
@@ -21,28 +15,47 @@
   assign section_settings = section.settings
   assign form_id = 'FooterDiagnosis-' | append: section.id
   assign form_anchor_id = section_settings.form_anchor_id | strip | remove: '#' | handleize
+  assign show_diagnosis = true
+  assign current_title = page.title | default: product.title | default: article.title | default: collection.title | default: blog.title | default: page_title | strip | downcase
+  assign current_handle = page.handle | default: product.handle | default: article.handle | default: collection.handle | default: blog.handle | downcase
+  assign current_path = request.path | downcase
+  assign excluded_names = section_settings.hidden_pages | replace: '，', ',' | newline_to_br | replace: '<br />', ',' | split: ','
+  for excluded_name in excluded_names
+    assign excluded_name = excluded_name | strip | downcase
+    if excluded_name == blank
+      continue
+    endif
+    if excluded_name == current_title or excluded_name == current_handle or excluded_name == current_path
+      assign show_diagnosis = false
+      break
+    endif
+    if template.name == 'index' and excluded_name == '首页'
+      assign show_diagnosis = false
+      break
+    endif
+  endfor
 %}
 
 
 
-<div class="section-background footer-diagnosis__background"></div>
+{% if show_diagnosis %}
+  <div class="section-background footer-diagnosis__background"
+    style="background: linear-gradient(116.77deg, {{ section_settings.gradient_left }} 0%, {{ section_settings.gradient_middle }} 55%, {{ section_settings.gradient_right }} 100%);"></div>
+{% endif %}
 
 <div
-  class="section section--page-width footer-diagnosis spacing-style"
+  class="section section--page-width footer-diagnosis spacing-style{% unless show_diagnosis %} footer-diagnosis--drawer-only{% endunless %}"
   style="{% render 'spacing-style', settings: section_settings %}
-    --fd-bg-angle: {{ section_settings.gradient_angle }}deg;
-    --fd-bg-from: {{ section_settings.gradient_color_from }};
-    --fd-bg-to: {{ section_settings.gradient_color_to }};
     --fd-card-bg: {{ section_settings.card_background }};
     --fd-card-radius: {{ section_settings.card_radius }}px;
     --fd-input-radius: {{ section_settings.input_radius }}px;
     --fd-btn-from: {{ section_settings.button_gradient_start }};
     --fd-btn-to: {{ section_settings.button_gradient_end }};
-    --fd-section-gap: {{ section_settings.section_spacing }}px;
     --fd-column-gap: {{ section_settings.desktop_column_gap }}px;
   "
   {{ section.shopify_attributes }}
 >
+  {% if show_diagnosis %}
   <div class="footer-diagnosis__top">
     <div class="footer-diagnosis__intro">
       {% if section_settings.eyebrow != blank %}
@@ -58,7 +71,7 @@
       {% endif %}
 
       {%- capture features -%}
-        {% for block in section.blocks limit: 11 %}
+        {% for block in section.blocks %}
           {%- if block.type == 'feature' -%}
             {%- liquid
               assign feature_icon = block.settings.icon
@@ -100,67 +113,13 @@
 
     {% render 'custom-footer-diagnosis-form', section_settings: section_settings, form_id: form_id, form_anchor_id: form_anchor_id %}
   </div>
-
-  {%- capture menus -%}
-    {% for block in section.blocks limit: 11 %}
-      {%- if block.type == 'menu_column' -%}
-        <div class="footer-diagnosis__menu" {{ block.shopify_attributes }}>
-          {% if block.settings.heading != blank %}
-            <p class="footer-diagnosis__menu-title">{{ block.settings.heading }}</p>
-          {% endif %}
-          {% if block.settings.menu != blank and block.settings.menu.links.size > 0 %}
-            <ul>
-              {% for link in block.settings.menu.links limit: 50 %}
-                <li>
-                  <a href="{{ link.url }}">{{ link.title }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% elsif request.design_mode %}
-            <p class="footer-diagnosis__menu-empty">{{ 'content.select_menu' | t }}</p>
-          {% endif %}
-        </div>
-      {%- endif -%}
-    {% endfor %}
-  {%- endcapture -%}
-
-  {% if menus != blank %}
-    <div class="footer-diagnosis__menus">{{ menus }}</div>
   {% endif %}
 
-  {%- capture locations -%}
-    {% for block in section.blocks limit: 11 %}
-      {%- if block.type == 'location' -%}
-        <div class="footer-diagnosis__location" {{ block.shopify_attributes }}>
-          {% if block.settings.city != blank %}
-            <p class="footer-diagnosis__location-city">{{ block.settings.city }}</p>
-          {% endif %}
-          {% if block.settings.address != blank %}
-            <div class="footer-diagnosis__location-address">{{ block.settings.address }}</div>
-          {% endif %}
-        </div>
-      {%- endif -%}
-    {% endfor %}
-  {%- endcapture -%}
-
-  {% if locations != blank %}
-    <div class="footer-diagnosis__locations">
-      {% if section_settings.locations_heading != blank %}
-        <p class="footer-diagnosis__locations-title">{{ section_settings.locations_heading }}</p>
-      {% endif %}
-      <div class="footer-diagnosis__locations-grid">{{ locations }}</div>
-    </div>
-  {% endif %}
+  {% render 'growth-diagnosis-drawer', section_settings: section_settings, section_id: section.id %}
 </div>
 
 {% stylesheet %}
-  .footer-diagnosis__background {
-    background-image: linear-gradient(
-      var(--fd-bg-angle, 120deg),
-      var(--fd-bg-from, #0048ff) 6.48%,
-      var(--fd-bg-to, #f200ff40) 100.95%
-    );
-  }
+  .footer-diagnosis--drawer-only { padding-block: 0; }
 
   .footer-diagnosis {
     font-family: var(--font-heading--family);
@@ -185,15 +144,15 @@
   .footer-diagnosis__eyebrow {
     margin: 0;
     font-weight: 500;
-    font-size: 24px;
-    line-height: 38px;
+    font-size: var(--fluid-body-24, 24px);
+    line-height: var(--fluid-leading-1-583333, 38px);
     text-transform: uppercase;
   }
 
   .footer-diagnosis__heading {
     font-weight: 700;
-    font-size: 46.1px;
-    line-height: 54px;
+    font-size: var(--fluid-heading-46-1, 46.1px);
+    line-height: var(--fluid-leading-1-171367, 54px);
   }
 
   .footer-diagnosis__heading > :first-child,
@@ -203,7 +162,7 @@
 
   .footer-diagnosis__description {
     font-weight: 500;
-    font-size: 24px;
+    font-size: var(--fluid-body-24, 24px);
     line-height: 120%;
 letter-spacing: normal;
 
@@ -228,7 +187,7 @@ letter-spacing: normal;
     gap: 14px;
     align-items: center;
     font-weight: 600;
-    font-size: 20px;
+    font-size: var(--fluid-body-20, 20px);
     line-height: 100%;
   }
 
@@ -304,11 +263,6 @@ letter-spacing: normal;
     color: #9aa0b4;
   }
 
-  .footer-diagnosis__input:focus-visible {
-    border-color: #6e5bf0;
-    outline: 2px solid #6e5bf0;
-    outline-offset: 1px;
-  }
 
   .footer-diagnosis__input--textarea {
     min-height: 132px;
@@ -355,99 +309,6 @@ letter-spacing: normal;
     background-color: #e7f7ee;
   }
 
-  .footer-diagnosis__menus {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--fd-column-gap, 48px);
-    margin-block-start: var(--fd-section-gap,70px);
-  }
-
-  .footer-diagnosis__menu {
-    min-width: 0;
-  }
-
-  .footer-diagnosis__menu-title {
-    margin: 0 0 16px;
-    font-weight: 600;
-    font-size: 21px;
-    line-height: 25.2px;
-    letter-spacing: -0.99px;
-  }
-
-  .footer-diagnosis__menu ul {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .footer-diagnosis__menu a {
-    font-size: 0.75rem;
-    color: #ffffff;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  .footer-diagnosis__menu a:hover,
-  .footer-diagnosis__menu a:focus-visible {
-    opacity: 0.8;
-  }
-
-  .footer-diagnosis__menu-empty {
-    margin: 0;
-    font-size: 0.75rem;
-    opacity: 0.8;
-  }
-
-  .footer-diagnosis__locations {
-    margin-block-start: var(--fd-section-gap, 56px);
-  }
-
-  .footer-diagnosis__locations-title {
-    margin: 0 0 20px;
-    font-family: var(--font-body--family);
-    font-weight: 500;
-    font-size: 21px;
-    line-height: 25.2px;
-    letter-spacing: -0.99px;
-  }
-
-  .footer-diagnosis__locations-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-  }
-
-  .footer-diagnosis__location {
-    min-width: 0;
-  }
-
-  .footer-diagnosis__location-city {
-    margin: 0 0 14px;
-    font-family: var(--font-body--family);
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16.8px;
-    letter-spacing: -0.15px;
-  }
-
-  .footer-diagnosis__location-address {
-   font-family: var(--font-body--family);
-   font-weight: 400;
-   font-size: 14px;
-   line-height: 22.4px;
-   letter-spacing: -0.15px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    /* Desktop: the locations block sits in the right half, not centered. */
-    .footer-diagnosis__locations {
-      margin-inline-start: 50%;
-    }
-  }
-
   @media screen and (max-width: 1023px) {
     .footer-diagnosis__top {
       grid-template-columns: minmax(0, 1fr);
@@ -455,16 +316,17 @@ letter-spacing: normal;
     }
 
     .footer-diagnosis__heading {
-      font-size: 2rem;
+      font-size: var(--fluid-heading-46-1, 2rem);
     }
 
-    .footer-diagnosis__menus {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 32px;
-    }
   }
 
   @media screen and (max-width: 767px) {
+    .footer-diagnosis__submit{
+      font-size:14px;
+      min-height:48px;
+      padding:6px 10px;
+    }
     .footer-diagnosis__card {
       padding: 20px;
     }
@@ -474,31 +336,25 @@ letter-spacing: normal;
     }
 
     .footer-diagnosis__heading {
-      font-size: 1.75rem;
+      font-size: var(--fluid-heading-46-1, 1.75rem);
     }
 
     .footer-diagnosis__description {
-      font-size: 1.0625rem;
+      font-size: var(--fluid-body-24, 1.0625rem);
     }
 
-    .footer-diagnosis__locations-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
   }
 
-  @media screen and (max-width: 479px) {
-    .footer-diagnosis__locations-grid {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
 {% endstylesheet %}
 
 {% schema %}
 {
-  "max_blocks": 11,
+  "max_blocks": 4,
   "name": "t:names.footer_diagnosis",
   "enabled_on": {
-    "groups": ["footer"]
+    "groups": [
+      "footer"
+    ]
   },
   "blocks": [
     {
@@ -542,46 +398,16 @@ letter-spacing: normal;
           "default": "Expert Diagnosis"
         }
       ]
-    },
-    {
-      "type": "menu_column",
-      "name": "t:names.menu",
-      "limit": 4,
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "t:settings.heading",
-          "default": "Company"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "label": "t:settings.menu"
-        }
-      ]
-    },
-    {
-      "type": "location",
-      "name": "t:names.footer_location",
-      "limit": 3,
-      "settings": [
-        {
-          "type": "text",
-          "id": "city",
-          "label": "t:settings.text",
-          "default": "New York City"
-        },
-        {
-          "type": "textarea",
-          "id": "address",
-          "label": "t:settings.description",
-          "default": "HQ in Soho,\nNew York"
-        }
-      ]
     }
   ],
   "settings": [
+    {
+      "type": "textarea",
+      "id": "hidden_pages",
+      "label": "t:footer_surface.hidden_pages",
+      "info": "t:footer_surface.hidden_pages_info",
+      "placeholder": "t:footer_surface.hidden_pages_placeholder"
+    },
     {
       "type": "text",
       "id": "eyebrow",
@@ -601,42 +427,51 @@ letter-spacing: normal;
       "default": "<p>Tell us about your business and current challenges. Our team will review your needs, identify growth priorities and recommend the most suitable next steps.</p>"
     },
     {
-      "type": "header",
-      "content": "t:content.background"
+      "type": "text",
+      "id": "submit_label",
+      "label": "t:settings.text",
+      "default": "Get My Free Growth Diagnosis"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_advanced",
+      "label": "t:footer_surface.advanced",
+      "default": false
     },
     {
       "type": "color",
       "id": "gradient_left",
       "label": "t:settings.color",
-      "default": "#1550FF"
+      "default": "#1550FF",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "color",
       "id": "gradient_middle",
       "label": "t:settings.color",
-      "default": "#6551F5"
+      "default": "#6551F5",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "color",
       "id": "gradient_right",
       "label": "t:settings.color",
-      "default": "#AF67F7"
-    },
-    {
-      "type": "header",
-      "content": "t:names.contact_form"
+      "default": "#AF67F7",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "text",
       "id": "form_anchor_id",
       "label": "t:footer_diagnosis.form_anchor_id",
-      "info": "t:footer_diagnosis.form_anchor_info"
+      "info": "t:footer_diagnosis.form_anchor_info",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "color",
       "id": "card_background",
       "label": "t:settings.background_color",
-      "default": "#FFFFFF"
+      "default": "#FFFFFF",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "range",
@@ -646,7 +481,8 @@ letter-spacing: normal;
       "max": 60,
       "step": 1,
       "unit": "px",
-      "default": 32
+      "default": 32,
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "range",
@@ -656,111 +492,106 @@ letter-spacing: normal;
       "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 12
+      "default": 12,
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "color",
       "id": "button_gradient_start",
       "label": "t:settings.gradient_color_from",
-      "default": "#9B3CF0"
+      "default": "#9B3CF0",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "color",
       "id": "button_gradient_end",
       "label": "t:settings.gradient_color_to",
-      "default": "#4E63F0"
+      "default": "#4E63F0",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "text",
       "id": "name_label",
       "label": "t:settings.form_name_label",
-      "default": "Your Name"
+      "default": "Your Name",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "text",
       "id": "name_placeholder",
       "label": "t:settings.form_name_placeholder",
-      "default": "Your name"
+      "default": "Your name",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "text",
       "id": "company_label",
       "label": "t:settings.form_company_label",
-      "default": "Company Name"
+      "default": "Company Name",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "text",
       "id": "company_placeholder",
       "label": "t:settings.form_company_placeholder",
-      "default": "Your company"
+      "default": "Your company",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "text",
       "id": "email_label",
       "label": "t:settings.form_email_label",
-      "default": "Work Email"
+      "default": "Work Email",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "text",
       "id": "email_placeholder",
       "label": "t:settings.form_email_placeholder",
-      "default": "you@company.com"
+      "default": "you@company.com",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "text",
       "id": "phone_label",
       "label": "t:settings.form_phone_label",
-      "default": "Contact Number"
+      "default": "Contact Number",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "text",
       "id": "phone_placeholder",
       "label": "t:settings.form_phone_placeholder",
-      "default": "+ 65 1234 5678"
+      "default": "+ 65 1234 5678",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "text",
       "id": "website_label",
       "label": "t:settings.form_website_label",
-      "default": "Company Website"
+      "default": "Company Website",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "text",
       "id": "website_placeholder",
       "label": "t:settings.form_website_placeholder",
-      "default": "https://"
+      "default": "https://",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "text",
       "id": "goals_label",
       "label": "t:settings.form_goals_label",
-      "default": "Tell Us About Your Goals or Challenges"
+      "default": "Tell Us About Your Goals or Challenges",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "text",
       "id": "goals_placeholder",
       "label": "t:settings.form_goals_placeholder",
-      "default": "Tell us what your business does, the challenges you are facing, and what you would like to achieve."
-    },
-    {
-      "type": "text",
-      "id": "submit_label",
-      "label": "t:settings.text",
-      "default": "Get My Free Growth Diagnosis"
-    },
-    {
-      "type": "header",
-      "content": "t:content.locations"
-    },
-    {
-      "type": "text",
-      "id": "locations_heading",
-      "label": "t:settings.heading",
-      "default": "Headquartered in NYC with strategic global hubs across:"
-    },
-    {
-      "type": "header",
-      "content": "t:content.layout"
+      "default": "Tell us what your business does, the challenges you are facing, and what you would like to achieve.",
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "range",
@@ -770,21 +601,8 @@ letter-spacing: normal;
       "max": 120,
       "step": 4,
       "unit": "px",
-      "default": 48
-    },
-    {
-      "type": "range",
-      "id": "section_spacing",
-      "label": "t:settings.vertical_gap",
-      "min": 0,
-      "max": 160,
-      "step": 4,
-      "unit": "px",
-      "default": 56
-    },
-    {
-      "type": "header",
-      "content": "t:content.padding"
+      "default": 48,
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "range",
@@ -794,7 +612,8 @@ letter-spacing: normal;
       "max": 160,
       "step": 4,
       "unit": "px",
-      "default": 64
+      "default": 64,
+      "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
       "type": "range",
@@ -804,7 +623,8 @@ letter-spacing: normal;
       "max": 160,
       "step": 4,
       "unit": "px",
-      "default": 64
+      "default": 64,
+      "visible_if": "{{ section.settings.show_advanced }}"
     }
   ],
   "presets": [
@@ -836,9 +656,7 @@ letter-spacing: normal;
         "goals_label": "Tell Us About Your Goals or Challenges",
         "goals_placeholder": "Tell us what your business does, the challenges you are facing, and what you would like to achieve.",
         "submit_label": "Get My Free Growth Diagnosis",
-        "locations_heading": "Headquartered in NYC with strategic global hubs across:",
         "desktop_column_gap": 48,
-        "section_spacing": 56,
         "padding-block-start": 64,
         "padding-block-end": 64
       },
@@ -870,65 +688,13 @@ letter-spacing: normal;
             "icon": "shield",
             "text": "Your Information is Secure"
           }
-        },
-        "menu_1": {
-          "type": "menu_column",
-          "settings": {
-            "heading": "Company"
-          }
-        },
-        "menu_2": {
-          "type": "menu_column",
-          "settings": {
-            "heading": "Services"
-          }
-        },
-        "menu_3": {
-          "type": "menu_column",
-          "settings": {
-            "heading": "Expertise"
-          }
-        },
-        "menu_4": {
-          "type": "menu_column",
-          "settings": {
-            "heading": "Agency Insights:"
-          }
-        },
-        "location_1": {
-          "type": "location",
-          "settings": {
-            "city": "New York City",
-            "address": "HQ in Soho,\nNew York"
-          }
-        },
-        "location_2": {
-          "type": "location",
-          "settings": {
-            "city": "Miami",
-            "address": "Brickell,\nMiami"
-          }
-        },
-        "location_3": {
-          "type": "location",
-          "settings": {
-            "city": "Dubai",
-            "address": "Trade Centre 2,\nDubai"
-          }
         }
       },
       "block_order": [
         "feature_1",
         "feature_2",
         "feature_3",
-        "feature_4",
-        "menu_1",
-        "menu_2",
-        "menu_3",
-        "menu_4",
-        "location_1",
-        "location_2",
-        "location_3"
+        "feature_4"
       ]
     }
   ]

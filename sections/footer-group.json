@@ -11,6 +11,200 @@
   "type": "footer",
   "name": "t:names.footer",
   "sections": {
+    "brand_footer_YTnKD7": {
+      "type": "brand-footer",
+      "blocks": {
+        "navigation_link_6nFETf": {
+          "type": "navigation_link",
+          "settings": {
+            "column": "services",
+            "label": "Web Development",
+            "link": ""
+          }
+        },
+        "navigation_link_XWLL3t": {
+          "type": "navigation_link",
+          "settings": {
+            "column": "services",
+            "label": "SEO & AEO",
+            "link": ""
+          }
+        },
+        "navigation_link_cPKcFh": {
+          "type": "navigation_link",
+          "settings": {
+            "column": "services",
+            "label": "Conversion Rate Optimization (CRO)",
+            "link": ""
+          }
+        },
+        "navigation_link_WecGfd": {
+          "type": "navigation_link",
+          "settings": {
+            "column": "services",
+            "label": "Email Marketing",
+            "link": ""
+          }
+        },
+        "navigation_link_g9zfNj": {
+          "type": "navigation_link",
+          "settings": {
+            "column": "services",
+            "label": "Affiliate Marketing",
+            "link": ""
+          }
+        },
+        "navigation_link_rDCwrz": {
+          "type": "navigation_link",
+          "settings": {
+            "column": "services",
+            "label": "WhatsApp Marketing",
+            "link": ""
+          }
+        },
+        "navigation_link_QqML48": {
+          "type": "navigation_link",
+          "settings": {
+            "column": "company",
+            "label": "About Us",
+            "link": "shopify://pages/about-us"
+          }
+        },
+        "navigation_link_BmCrgq": {
+          "type": "navigation_link",
+          "settings": {
+            "column": "company",
+            "label": "Our Work",
+            "link": "shopify://blogs/solutions"
+          }
+        },
+        "navigation_link_J8VLCT": {
+          "type": "navigation_link",
+          "settings": {
+            "column": "company",
+            "label": "Contact Us",
+            "link": "shopify://pages/contact"
+          }
+        },
+        "office_t7XXar": {
+          "type": "office",
+          "settings": {
+            "city": "Singapore",
+            "address": "112 Robinson Road, #06-03, Singapore 068902",
+            "link": ""
+          }
+        },
+        "office_JFXiee": {
+          "type": "office",
+          "settings": {
+            "city": "Shanghai",
+            "address": "Floors 3–8, No. 35 Loushanguan Road, Changning District, Shanghai, China",
+            "link": ""
+          }
+        },
+        "office_jDkBqF": {
+          "type": "office",
+          "settings": {
+            "city": "Shenzhen",
+            "address": "25th Floor, Hanking Center, Futian District, Shenzhen, China",
+            "link": ""
+          }
+        },
+        "platform_mxmyae": {
+          "type": "platform",
+          "settings": {
+            "label": "Shopify",
+            "link": ""
+          }
+        },
+        "platform_H8f7Te": {
+          "type": "platform",
+          "settings": {
+            "label": "Klaviyo",
+            "link": ""
+          }
+        },
+        "platform_NyL6h7": {
+          "type": "platform",
+          "settings": {
+            "label": "Omnisend",
+            "link": ""
+          }
+        },
+        "platform_XJFP8Q": {
+          "type": "platform",
+          "settings": {
+            "label": "Trustpilot",
+            "link": ""
+          }
+        },
+        "platform_LnCL9y": {
+          "type": "platform",
+          "settings": {
+            "label": "impact.com",
+            "link": ""
+          }
+        },
+        "platform_8qVMBx": {
+          "type": "platform",
+          "settings": {
+            "label": "Awin",
+            "link": ""
+          }
+        },
+        "platform_jkkXjw": {
+          "type": "platform",
+          "settings": {
+            "label": "Rakuten Advertising",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "navigation_link_6nFETf",
+        "navigation_link_XWLL3t",
+        "navigation_link_cPKcFh",
+        "navigation_link_WecGfd",
+        "navigation_link_g9zfNj",
+        "navigation_link_rDCwrz",
+        "navigation_link_QqML48",
+        "navigation_link_BmCrgq",
+        "navigation_link_J8VLCT",
+        "office_t7XXar",
+        "office_JFXiee",
+        "office_jDkBqF",
+        "platform_mxmyae",
+        "platform_H8f7Te",
+        "platform_NyL6h7",
+        "platform_XJFP8Q",
+        "platform_LnCL9y",
+        "platform_8qVMBx",
+        "platform_jkkXjw"
+      ],
+      "name": "t:brand_footer.name",
+      "settings": {
+        "logo_width": 224,
+        "description": "Integrated MarTech for global growth — website and e-commerce, customer acquisition, lifecycle marketing and data intelligence.",
+        "services_heading": "Services",
+        "services_menu": "",
+        "company_heading": "Company",
+        "company_menu": "",
+        "contact_heading": "Get in touch",
+        "email": "enquiry@meetdtc.com",
+        "whatsapp": "",
+        "whatsapp_link": "",
+        "hours": "",
+        "platforms_heading": "Platforms & ecosystem",
+        "copyright_name": "Meet Experience",
+        "bottom_note": "",
+        "background": "linear-gradient(115deg, rgba(38, 59, 164, 1), rgba(86, 34, 182, 1) 55%, rgba(117, 39, 199, 1) 100%)",
+        "text_color": "#FFFFFF",
+        "platform_background": "#F8F7FF",
+        "platform_text": "#21164F",
+        "padding-block-start": 64,
+        "padding-block-end": 24
+      }
+    },
     "footer_diagnosis_H4xKm9": {
       "type": "footer-diagnosis",
       "blocks": {
@@ -41,69 +235,13 @@
             "icon": "shield",
             "text": "Your Information is Secure"
           }
-        },
-        "menu_1": {
-          "type": "menu_column",
-          "settings": {
-            "heading": "Company",
-            "menu": ""
-          }
-        },
-        "menu_2": {
-          "type": "menu_column",
-          "settings": {
-            "heading": "Services",
-            "menu": ""
-          }
-        },
-        "menu_3": {
-          "type": "menu_column",
-          "settings": {
-            "heading": "Expertise",
-            "menu": ""
-          }
-        },
-        "menu_4": {
-          "type": "menu_column",
-          "settings": {
-            "heading": "Agency Insights:",
-            "menu": ""
-          }
-        },
-        "location_1": {
-          "type": "location",
-          "settings": {
-            "city": "New York City",
-            "address": "HQ in Soho,\nNew York"
-          }
-        },
-        "location_2": {
-          "type": "location",
-          "settings": {
-            "city": "Miami",
-            "address": "Brickell,\nMiami"
-          }
-        },
-        "location_3": {
-          "type": "location",
-          "settings": {
-            "city": "Dubai",
-            "address": "Trade Centre 2,\nDubai"
-          }
         }
       },
       "block_order": [
         "feature_1",
         "feature_2",
         "feature_3",
-        "feature_4",
-        "menu_1",
-        "menu_2",
-        "menu_3",
-        "menu_4",
-        "location_1",
-        "location_2",
-        "location_3"
+        "feature_4"
       ],
       "name": "Growth diagnosis footer",
       "settings": {
@@ -132,15 +270,14 @@
         "goals_label": "Tell Us About Your Goals or Challenges",
         "goals_placeholder": "Tell us what your business does, the challenges you are facing, and what you would like to achieve.",
         "submit_label": "Get My Free Growth Diagnosis",
-        "locations_heading": "Headquartered in NYC with strategic global hubs across:",
         "desktop_column_gap": 48,
-        "section_spacing": 56,
         "padding-block-start": 64,
         "padding-block-end": 64
       }
     }
   },
   "order": [
-    "footer_diagnosis_H4xKm9"
+    "footer_diagnosis_H4xKm9",
+    "brand_footer_YTnKD7"
   ]
 }

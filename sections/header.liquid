@@ -27,6 +27,15 @@
   elsif section.settings.enable_transparent_header_collection and template.name == 'collection'
     assign transparent = 'always'
     assign transparent_text_color_setting = section.settings.text_color_transparent_collection
+  elsif section.settings.enable_transparent_header_about and template.name == 'page' and template.suffix == 'about-us'
+    assign transparent = 'always'
+    assign transparent_text_color_setting = section.settings.text_color_transparent_about
+  elsif section.settings.enable_transparent_header_contact and template.name == 'page' and template.suffix == 'contact'
+    assign transparent = 'always'
+    assign transparent_text_color_setting = section.settings.text_color_transparent_contact
+  elsif section.settings.enable_transparent_header_blog and template.name == 'blog'
+    assign transparent = 'always'
+    assign transparent_text_color_setting = section.settings.text_color_transparent_blog
   endif
 
   if section.settings.enable_sticky_header == 'always'
@@ -837,9 +846,18 @@
   .header__column--center {
     justify-content: center;
     grid-area: center;
+    min-width: 0;
 
     header-menu:only-child .overflow-menu::part(list) {
       justify-content: center;
+    }
+
+    header-menu,
+    .header-menu__inner,
+    .menu-list,
+    .overflow-menu {
+      min-width: 0;
+      max-width: 100%;
     }
   }
 
@@ -900,9 +918,9 @@
 
     /* If menu is in center column */
     &:has(.header__column--center header-menu) {
-      --header-center: auto;
-      --header-left: minmax(max-content, 1fr);
-      --header-right: minmax(max-content, 1fr);
+      --header-center: minmax(0, max-content);
+      --header-left: minmax(var(--header-balanced-side, 0px), 1fr);
+      --header-right: minmax(var(--header-balanced-side, 0px), 1fr);
     }
 
     /* If there is no center column, make the column the menu is in grow eagerly */
@@ -1867,6 +1885,78 @@
       "label": "t:settings.text_color_transparent",
       "placeholder": "t:settings.default",
       "visible_if": "{{ section.settings.enable_transparent_header_collection }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.about_page"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent_header_about",
+      "label": "t:settings.transparent_background",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "about_inverse_logo",
+      "label": "t:settings.inverse_logo",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_transparent_header_about }}"
+    },
+    {
+      "type": "color",
+      "id": "text_color_transparent_about",
+      "label": "t:settings.text_color_transparent",
+      "placeholder": "t:settings.default",
+      "visible_if": "{{ section.settings.enable_transparent_header_about }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.contact_page"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent_header_contact",
+      "label": "t:settings.transparent_background",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "contact_inverse_logo",
+      "label": "t:settings.inverse_logo",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_transparent_header_contact }}"
+    },
+    {
+      "type": "color",
+      "id": "text_color_transparent_contact",
+      "label": "t:settings.text_color_transparent",
+      "placeholder": "t:settings.default",
+      "visible_if": "{{ section.settings.enable_transparent_header_contact }}"
+    },
+    {
+      "type": "header",
+      "content": "t:settings.blog"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent_header_blog",
+      "label": "t:settings.transparent_background",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_inverse_logo",
+      "label": "t:settings.inverse_logo",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_transparent_header_blog }}"
+    },
+    {
+      "type": "color",
+      "id": "text_color_transparent_blog",
+      "label": "t:settings.text_color_transparent",
+      "placeholder": "t:settings.default",
+      "visible_if": "{{ section.settings.enable_transparent_header_blog }}"
     }
   ],
   "presets": []

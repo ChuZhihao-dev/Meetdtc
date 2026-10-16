@@ -5,33 +5,14 @@
   @param {string} form_anchor_id - Optional merchant-configured anchor.
   @example {% render 'custom-footer-diagnosis-form', section_settings: section.settings, form_id: form_id, form_anchor_id: form_anchor_id %}
 {% enddoc %}
+{% render 'contact-form-focus-styles' %}
     <footer-diagnosis
       class="footer-diagnosis__card"
       {% if form_anchor_id != blank and form_anchor_id != form_id %}id="{{ form_anchor_id | escape }}" tabindex="-1"{% endif %}
     >
-      {%- form 'contact', id: form_id, class: 'footer-diagnosis__form' -%}
+      {%- form 'contact', id: form_id, class: 'footer-diagnosis__form contact-form-focus' -%}
         <input type="hidden" name="contact[id]" value="{{ form_id }}">
 
-        {%- if form.errors and form.id == form_id -%}
-          <div class="footer-diagnosis__error" role="alert" tabindex="-1" autofocus>
-            {{- 'icon-error.svg' | inline_asset_content -}}
-            <div>
-              {%- for field in form.errors -%}
-                <p>
-                  {{- form.errors.translated_fields[field] | capitalize }}
-                  {{ form.errors.messages[field] -}}
-                </p>
-              {%- endfor -%}
-            </div>
-          </div>
-        {%- endif -%}
-
-        {%- if form.posted_successfully? and form.id == form_id -%}
-          <div class="footer-diagnosis__success" role="status" tabindex="-1" autofocus>
-            {{- 'icon-checkmark.svg' | inline_asset_content -}}
-            <span>{{ 'blocks.contact_form.post_success' | t }}</span>
-          </div>
-        {%- endif -%}
 
         <div class="footer-diagnosis__fields">
           <div class="footer-diagnosis__field">
@@ -133,8 +114,10 @@
           </div>
 
           <div class="footer-diagnosis__field footer-diagnosis__field--full">
+            {% render 'contact-form-feedback', form: form, form_id: form_id, variant: 'footer' %}
             <button type="submit" class="footer-diagnosis__submit">
               {{- section_settings.submit_label -}}
+              {% render 'contact-submit-indicator' %}
             </button>
           </div>
         </div>

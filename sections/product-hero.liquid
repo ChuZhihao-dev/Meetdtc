@@ -11,7 +11,7 @@
 
 
 <div class="section-background product-hero__background" style="--product-hero-bg-from:{{ section.settings.background_from }};--product-hero-bg-to:{{ section.settings.background_to }};"></div>
-<scroll-reveal-component class="section section--full-width section--height-{{ section.settings.section_height | default: 'large' }} spacing-style product-hero" data-reveal-scope data-reveal-timeline style="{% render 'spacing-style', settings: section.settings %}--product-hero-description-color:{{ section.settings.description_color }};">
+<scroll-reveal-component class="section section--full-width section--height-{{ section.settings.section_height | default: 'large' }} spacing-style product-hero" data-reveal-scope data-reveal-timeline style="{% render 'spacing-style', settings: section.settings %}--product-hero-description-color:{{ section.settings.description_color }};--product-hero-content-position:{{ section.settings.content_position | default: 'center' }};">
   <div class="product-hero__content">
     {% if section.settings.eyebrow != blank %}
       <p class="product-hero__eyebrow" data-reveal>{{ section.settings.eyebrow | escape }}</p>
@@ -35,13 +35,12 @@
 
 {% stylesheet %}
   .product-hero {
-    /* Center within the selected section height; saved asymmetric spacing only sets a safe inset. */
-    --product-hero-safe-padding: max(var(--padding-block-start, 0px), var(--padding-block-end, 0px));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-block: calc(var(--product-hero-safe-padding) + var(--section-top-offset, 0px)) var(--product-hero-safe-padding);
+    /* The selected height is the outer border box; padding belongs to the inner content. */
+    display: block;
+    height: var(--section-min-height);
+    min-height: 0;
+    padding-block: 0;
+    overflow: auto;
   }
   .product-hero__background {
     background-image: linear-gradient(92.19deg, var(--product-hero-bg-from) 1.07%, var(--product-hero-bg-to) 98.93%);
@@ -50,6 +49,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: safe var(--product-hero-content-position, center);
+    min-height: 100%;
+    padding-block: calc(var(--padding-block-start, 0px) + var(--section-top-offset, 0px)) var(--padding-block-end, 0px);
     gap: 40px;
     width: 100%;
     max-width: 1440px;
@@ -62,7 +64,7 @@
   .product-hero__eyebrow {
     max-width: 1042px;
     margin: 0;
-    font-size: clamp(20px, 1.94445vw, 28px);
+    font-size: var(--fluid-body-28, clamp(20px, 1.94445vw, 28px));
     font-weight: 600;
     line-height: 1.22;
     color: #000;
@@ -72,7 +74,7 @@
     max-width: 1042px;
     margin: 0;
     font-family: inherit;
-    font-size: clamp(36px, 4.86112vw, 70px);
+    font-size: var(--fluid-heading-70, clamp(36px, 4.86112vw, 70px));
     font-weight: 600;
     line-height: 1.2143;
     letter-spacing: 0;
@@ -83,7 +85,7 @@
     width: 100%;
     max-width: 1152px;
     margin: 0;
-    font-size: clamp(18px, 1.94445vw, 28px);
+    font-size: var(--fluid-body-28, clamp(18px, 1.94445vw, 28px));
     font-weight: 500;
     line-height: 1.22;
     color: var(--product-hero-description-color);
@@ -161,17 +163,20 @@
     }
   }
   @media screen and (max-width: 749px) {
+    .product-hero__eyebrow{
+font-size:16px;
+    }
     .product-hero__content { gap: 24px; }
-    .product-hero__heading { font-size: clamp(32px, 6vw, 44px); }
-    .product-hero__description { line-height: 1.5; }
+    .product-hero__heading { font-size:28px; }
+    .product-hero__description { line-height: 1.5;font-size:14px;}
     .product-hero__description br { display: none; }
     .product-hero__actions { flex-direction: column; align-items: center; gap: 16px; }
     .product-hero__actions > :is(.button, .button-secondary, .button-custom) {
       flex: none;
       width: 100%;
-      min-height: 60px;
-      padding: 16px 20px;
-      font-size: 18px;
+      min-height: 48px;
+      padding: 8px 10px;
+      font-size: 14px;
       line-height: 1.5;
     }
   }
@@ -288,6 +293,17 @@
         }
       ],
       "default": "large"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "t:product_hero.content_position",
+      "options": [
+        { "value": "flex-start", "label": "t:product_hero.position_top" },
+        { "value": "center", "label": "t:product_hero.position_center" },
+        { "value": "flex-end", "label": "t:product_hero.position_bottom" }
+      ],
+      "default": "center"
     },
     {
       "type": "header",

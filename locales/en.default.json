@@ -8,6 +8,22 @@
  * ------------------------------------------------------------
  */
 {
+  "contact_submit": { "submitting": "Submitting…" },
+  "contact_section": {
+    "submit": "Send enquiry",
+    "name": "Your Name",
+    "company": "Company Name",
+    "email": "Work Email",
+    "phone": "Contact Number",
+    "website": "Company Website",
+    "goals": "Tell Us About Your Goals or Challenges",
+    "name_placeholder": "Your name",
+    "company_placeholder": "Your company",
+    "email_placeholder": "you@company.com",
+    "phone_placeholder": "+65 1234 5678",
+    "website_placeholder": "https://",
+    "goals_placeholder": "Tell us what your business does, the challenges you are facing, and what you would like to achieve."
+  },
   "growth_potential": {
     "read_more": "Read more"
   },

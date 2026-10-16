@@ -394,16 +394,17 @@
       ],
       "name": "t:product_hero.name",
       "settings": {
-        "eyebrow": "Search Engine Optimization",
-        "heading": "Turn Search Demand into Qualified Traffic and Leads",
+        "eyebrow": "Generative Engine Optimization",
+        "heading": "Help Your Brand Become Part of the AI Answer",
         "heading_tag": "h1",
-        "description": "We help businesses reach customers searching for their products and services. Through technical improvements, targeted content, and ongoing optimization, we strengthen search visibility and create clearer paths from discovery to enquiry or purchase.",
+        "description": "We help businesses improve how their brands appear in AI-generated answers. Through customer question research, clear brand information, useful content, and relevant third-party coverage, we build a measurable program around brand mentions, recommendations, and citations.",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
         "heading_to": "#7c21c2",
         "description_color": "#6b6a6a",
         "section_height": "full-screen",
+        "content_position": "center",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
@@ -413,7 +414,9 @@
       "blocks": {
         "brand_row_PrWVTn": {
           "type": "_brand-row",
-          "settings": {},
+          "settings": {
+            "logo_motion": "static"
+          },
           "blocks": {
             "brand_logo_b8nyYi": {
               "type": "_brand-logo",
@@ -471,7 +474,9 @@
         },
         "brand_row_4zdXEJ": {
           "type": "_brand-row",
-          "settings": {},
+          "settings": {
+            "logo_motion": "static"
+          },
           "blocks": {
             "brand_logo_rT6BCw": {
               "type": "_brand-logo",
@@ -557,8 +562,8 @@
         "business_challenge_item_XDJAAj": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Customers Find Your Competitors First",
-            "description": "<p>We identify valuable searches and optimize the pages that should help customers find your business.</p>",
+            "title": "1.AI Recommends Your Competitors",
+            "description": "<p>We identify the questions where competitors appear and prioritize relevant opportunities for your brand.</p>",
             "link": "",
             "marker": "1"
           },
@@ -567,8 +572,8 @@
         "business_challenge_item_fgEXyy": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Your Key Pages Get Little Attention",
-            "description": "<p>We investigate visibility gaps and improve the structure, relevance, and accessibility of important pages.</p>",
+            "title": "2. AI Describes Your Products Incorrectly",
+            "description": "<p>We clarify product facts and improve consistency across your website and selected external sources.</p>",
             "link": "",
             "marker": "2"
           },
@@ -577,8 +582,8 @@
         "business_challenge_item_YMxyyL": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Your Content Brings Few Enquiries",
-            "description": "<p>We align content with buying questions and strengthen the paths to products, services, and contact forms.</p>",
+            "title": "3. Your Website Rarely Appears as a Source",
+            "description": "<p>We analyze cited pages and develop content that directly addresses relevant customer questions.</p>",
             "link": "",
             "marker": "3"
           },
@@ -587,18 +592,8 @@
         "business_challenge_item_WaNjic": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "You Publish Without Knowing What Works",
-            "description": "<p>We build a prioritized content plan around customer demand, competitive gaps, and business relevance.</p>",
-            "link": "",
-            "marker": "3"
-          },
-          "blocks": {}
-        },
-        "business_challenge_item_7xTGhk": {
-          "type": "_business-challenge-item",
-          "settings": {
-            "title": "You Publish Without Knowing What Works",
-            "description": "<p>We build a prioritized content plan around customer demand, competitive gaps, and business relevance.</p>",
+            "title": "4. You Do Not Know What Customers Ask AI",
+            "description": "<p>We build a structured question set around products, comparisons, use cases, and buying decisions.</p>",
             "link": "",
             "marker": "3"
           },
@@ -607,8 +602,8 @@
         "business_challenge_item_m3pzPp": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Website Changes Create New Problems",
-            "description": "<p>We review important changes and provide guidance on URLs, redirects, internal links, and search accessibility.</p>",
+            "title": "5.  Your Results Change Between Tests",
+            "description": "<p>We track a fixed question set under agreed conditions and evaluate patterns across repeated observations.</p>",
             "link": "",
             "marker": "3"
           },
@@ -617,8 +612,8 @@
         "business_challenge_item_qLLxAD": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "You Cannot See What SEO Contributes",
-            "description": "<p>We connect search reporting with website engagement and tracked conversions to make progress easier to assess.</p>",
+            "title": "6. More Published Content Produces Little Progress",
+            "description": "<p>We prioritize question coverage, factual support, and source relevance to guide content investment.</p>",
             "link": "",
             "marker": "3"
           },
@@ -630,14 +625,13 @@
         "business_challenge_item_fgEXyy",
         "business_challenge_item_YMxyyL",
         "business_challenge_item_WaNjic",
-        "business_challenge_item_7xTGhk",
         "business_challenge_item_m3pzPp",
         "business_challenge_item_qLLxAD"
       ],
       "name": "t:names.business_challenge",
       "settings": {
         "eyebrow": "BUSINESS CHALLENGE",
-        "heading": "Missed Searches Mean Missed Business Opportunities",
+        "heading": "If Your Brand Is Missing from the Answer, Customers May Never Consider It",
         "center_text": "GROWTH\nPOTENTIAL",
         "caption": "Existing potential is not being fully converted into business value.",
         "font": "var(--font-heading--family)",
@@ -665,10 +659,10 @@
       "name": "t:our_approach.name",
       "settings": {
         "eyebrow": "OUR APPROACH",
-        "heading": "Connect Every SEO Priority to a Customer Need",
-        "body_primary": "<p>Our approach starts with your business goals, target markets, and the searches customers make before buying. We map those searches to the right pages, then prioritize technical improvements, page optimization, content development, and relevant authority building.<br/><br/></p>",
-        "body_secondary": "<p>You receive a clear roadmap, defined deliverables, and reporting tied to agreed goals. This keeps work focused on meaningful opportunities and reduces wasted effort on disconnected articles or keywords with little business value.<br/><br/></p>",
-        "image": "shopify://shop_images/seo-approach-retangle_f2dbfe00-e452-41ad-b360-aa612abcd52f.png",
+        "heading": "Start with Customer Questions. Improve the Information Behind the Answers.",
+        "body_primary": "<p>We research the questions customers ask when discovering products, comparing brands, and evaluating suppliers. We then examine AI responses, competitor mentions, and cited sources to identify gaps in your brand information and content coverage.<br/></p>",
+        "body_secondary": "<p>Each priority connects a customer question to a specific content or information improvement and a monitoring measure. You receive a clear execution plan and evidence of observed changes, helping you assess progress without relying on isolated screenshots.<br/><br/></p>",
+        "image": "shopify://shop_images/geo_our-approach.png",
         "image_alt": "",
         "font": "montserrat_n5",
         "text_color": "#000000",
@@ -687,43 +681,43 @@
         "card_ETxkQz": {
           "type": "card",
           "settings": {
-            "heading": "SEO Audit & Roadmap",
-            "description": "<p>We assess your website and competitive landscape. You receive an audit, a prioritized issue list, and a phased optimization roadmap.<br/><br/></p>"
+            "heading": "AI Visibility Baseline",
+            "description": "<p>We test an agreed question set across selected AI platforms. You receive a baseline of brand mentions, recommendations, citations, and competitor presence.</p>"
           }
         },
         "card_wKwRVy": {
           "type": "card",
           "settings": {
-            "heading": "Keyword & Search Intent Research",
-            "description": "<p>We research product, category, comparison, and problem-based searches. You receive a keyword set mapped to existing pages and new content opportunities.<br/><br/></p>"
+            "heading": "Customer Question & Prompt Research",
+            "description": "<p>We research questions across discovery, comparison, evaluation, purchase, and use. You receive a prioritized prompt library organized by topic, intent, and market.</p>"
           }
         },
         "card_jTHQUi": {
           "type": "card",
           "settings": {
-            "heading": "Technical SEO",
-            "description": "<p>We review crawling, indexing, duplicate pages, redirects, sitemaps, and performance issues. You receive implementation recommendations and checks for agreed fixes.<br/><br/></p>"
+            "heading": "Competitor & Citation Analysis",
+            "description": "<p>We examine which brands and sources appear in relevant answers. You receive a competitor comparison and a map of citation and content opportunities.</p>"
           }
         },
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
-            "heading": "Site Structure & Internal Linking",
-            "description": "<p>We review navigation, page hierarchy, and internal links. You receive recommendations that connect related content and make important pages easier to discover.<br/><br/></p>"
+            "heading": "Brand & Product Fact Review",
+            "description": "<p>We review brand descriptions, product specifications, credentials, and supporting evidence. You receive a verified fact sheet and recommendations for resolving inconsistencies.</p>"
           }
         },
         "card_xg8a6q": {
           "type": "card",
           "settings": {
-            "heading": "Core Page Optimization",
-            "description": "<p>We improve agreed product, category, service, and landing pages. You receive page-level recommendations or revised copy within the selected scope.<br/><br/></p>"
+            "heading": "Website Accessibility & Content Structure",
+            "description": "<p>We assess whether important information is accessible and clearly presented. You receive recommendations for page structure, factual detail, and relevant structured data.</p>"
           }
         },
         "card_nMqphe": {
           "type": "card",
           "settings": {
-            "heading": "Content Strategy & Production",
-            "description": "<p>We plan content around customer questions and commercial priorities. You receive a content calendar, briefs, and agreed new or updated articles.<br/><br/></p>"
+            "heading": "Answer-Focused Content Development",
+            "description": "<p>We plan comparisons, buying guides, use cases, and question-led content. You receive briefs and agreed new or revised content supported by available evidence.</p>"
           }
         }
       },
@@ -739,7 +733,7 @@
       "settings": {
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
-        "description": "<p>Our SEO service brings research, website improvements, content, and measurement into one coordinated program.<br/><br/></p>",
+        "description": "<p>Our GEO service connects question research, brand information, content, external sources, and ongoing answer monitoring.</p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
@@ -763,40 +757,40 @@
         "step_PMTbKg": {
           "type": "step",
           "settings": {
-            "heading": "Understand Your Business",
-            "description": "<p><strong>We confirm your products, target markets, competitors, business goals, and available website data.</strong></p>",
+            "heading": "Define Your Audience",
+            "description": "<p>We confirm target markets, languages, products, competitors, AI platforms, and business goals.</p>",
             "deliverable": ""
           }
         },
         "step_RK4exK": {
           "type": "step",
           "settings": {
-            "heading": "Establish the Baseline",
-            "description": "<p><strong>We assess website health, search performance, and content gaps to identify the starting point.</strong></p>",
+            "heading": "Build the Question Set",
+            "description": "<p>We select representative customer questions and establish the monitoring conditions.</p>",
             "deliverable": ""
           }
         },
         "step_jFFWg7": {
           "type": "step",
           "settings": {
-            "heading": "Set the Priorities",
-            "description": "<p><strong>We agree on target pages, keyword groups, deliverables, responsibilities, and the optimization roadmap.</strong></p>",
+            "heading": "Diagnose the Gaps",
+            "description": "<p><strong>We analyze brand presence, answer accuracy, competitor coverage, and cited sources.</strong></p>",
             "deliverable": ""
           }
         },
         "step_tL7iNB": {
           "type": "step",
           "settings": {
-            "heading": "Implement Improvements",
-            "description": "<p><strong>We deliver the agreed technical, page, content, and authority work with your team.</strong></p>",
+            "heading": "Improve the Information",
+            "description": "<p>We deliver agreed website, brand fact, content, and external-source improvements.</p>",
             "deliverable": ""
           }
         },
         "step_Qb6M37": {
           "type": "step",
           "settings": {
-            "heading": "Review and Refine",
-            "description": "<p><strong>We evaluate results and adjust priorities based on performance, customer demand, and implementation progress.</strong></p>",
+            "heading": "Monitor and Refine",
+            "description": "<p>We review repeated observations and adjust priorities based on measured gaps and changes.</p>",
             "deliverable": ""
           }
         }
@@ -811,8 +805,8 @@
       "name": "Delivery process",
       "settings": {
         "eyebrow": "DELIVERY PROCESS",
-        "heading": "A Clear Plan, Consistent Execution, and Regular Review",
-        "description": "<p><strong>Each stage defines what we will do, what you will receive, and where your team’s input is needed.</strong></p>",
+        "heading": "From AI Visibility Baseline to Focused Improvement",
+        "description": "<p>We define the monitoring scope, execution priorities, and review method before optimization begins.</p>",
         "background": "linear-gradient(135.439deg, rgba(211, 216, 246, 1) 2.204%, rgba(253, 243, 255, 1) 97.796%)",
         "heading_gradient": "linear-gradient(107.919deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
         "text_color": "#000000",
@@ -828,32 +822,32 @@
         "client_story_metric_zLRcgq": {
           "type": "_client-story-metric",
           "settings": {
-            "value": "50,674",
-            "label": "Estimated Monthly Organic Traffic"
+            "value": "18% → 60%",
+            "label": "Overall Brand Mention Rate"
           },
           "blocks": {}
         },
         "client_story_metric_jtqQkg": {
           "type": "_client-story-metric",
           "settings": {
-            "value": "1,889",
-            "label": "Keywords on Google’s First Page"
+            "value": "30% → 80%",
+            "label": "Brand Visibility — Prompt Coverage"
           },
           "blocks": {}
         },
         "client_story_metric_MwnYiR": {
           "type": "_client-story-metric",
           "settings": {
-            "value": "+354%",
-            "label": "Growth in First-Page Keywords"
+            "value": "20% → 64%",
+            "label": "ChatGPT Brand Mention Rate"
           },
           "blocks": {}
         },
         "client_story_metric_JWPK8E": {
           "type": "_client-story-metric",
           "settings": {
-            "value": "1,800+",
-            "label": "Increase in Referring Domains"
+            "value": "16% → 56%",
+            "label": "Gemini Brand Mention Rate"
           },
           "blocks": {}
         }
@@ -867,9 +861,9 @@
       "name": "t:client_story.name",
       "settings": {
         "eyebrow": "FEATURED CLIENT STORY",
-        "heading": "Robotic Pool Cleaner Brand Grows First-Page Keywords by 354% with SEO",
-        "description": "<p><br/>ME helped a robotic pool cleaner brand improve its US search visibility through technical SEO, content and backlink development. In nine months, Google first-page keywords grew from 416 to 1,889, with over 1,800 new referring domains.<br/><br/></p>",
-        "image": "shopify://shop_images/pool-cleaner-case-square.png",
+        "heading": "GEO Lifts a Portable Power Brand’s AI Mention Rate to 60%",
+        "description": "<p>Through clearer product information, comparison content and third-party coverage, this four-month scenario shows AI mention rate rising from 18% to 60% across ChatGPT and Gemini.</p>",
+        "image": "shopify://shop_images/b8f297d560a397b1d5b515362c3c2991.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",
         "link": "",
@@ -894,8 +888,8 @@
         "faq_row_XdLKBG": {
           "type": "_faq-row",
           "settings": {
-            "question": "What does your SEO service include?",
-            "answer": "<p>Our proposed service covers nine areas, from research and technical SEO to content and reporting. Your agreement specifies the pages, articles, markets, and implementation work included.<br/><br/></p>",
+            "question": "Q1. What is GEO? What is GEO?",
+            "answer": "<p>GEO is work aimed at improving a brand’s presence in AI-generated answers. Our program focuses on three outcomes: mentions, recommendations, and citations.</p>",
             "open_by_default": true
           },
           "blocks": {}
@@ -903,8 +897,8 @@
         "faq_row_ckALeW": {
           "type": "_faq-row",
           "settings": {
-            "question": "How long does SEO take to show results?",
-            "answer": "<p>Timing depends on the website’s starting point, competition, and implementation. We establish a baseline during the initial audit and set review milestones around the agreed roadmap.<br/><br/></p>",
+            "question": "Q2. How is GEO different from SEO?",
+            "answer": "<p>SEO focuses on visibility in search results. GEO examines how a brand appears in AI answers; the two services share work on accessible pages, clear information, and useful content.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -912,8 +906,8 @@
         "faq_row_8DWdMn": {
           "type": "_faq-row",
           "settings": {
-            "question": "Do you guarantee first-page rankings?",
-            "answer": "<p>We do not guarantee a specific ranking. We agree on target keyword groups, deliverables, and performance measures so you can assess both the work completed and its results.<br/><br/></p>",
+            "question": "Q3. Which AI platforms can the program cover?",
+            "answer": "<p>The scope may include ChatGPT, Gemini, Perplexity, Google AI Overviews, or other agreed platforms. We confirm platform availability, collection methods, and reporting coverage before starting.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -921,8 +915,8 @@
         "faq_row_6Vcq7e": {
           "type": "_faq-row",
           "settings": {
-            "question": "Do you work with ecommerce and B2B websites?",
-            "answer": "<p>The program can be structured for either. Ecommerce projects prioritize categories, products, and purchases; B2B projects prioritize services, supplier evaluation, and qualified enquiries.<br/><br/></p>",
+            "question": "Q4. Can you guarantee that AI will recommend our brand?",
+            "answer": "<p>A recommendation in every answer cannot be guaranteed. We agree on a prompt set, monitoring conditions, and review period to evaluate observed performance consistently.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -930,8 +924,8 @@
         "faq_row_idcK38": {
           "type": "_faq-row",
           "settings": {
-            "question": "Can you work with our existing developers and content team?",
-            "answer": "<p>Yes. The scope can cover recommendations, production, or shared implementation. We define one owner for each action so responsibilities remain clear.<br/><br/></p>",
+            "question": "Q5. How do you choose the questions to monitor?",
+            "answer": "<p>We organize questions into five stages: discovery, comparison, evaluation, purchase, and use. We then prioritize them by relevance to your products, audience, and markets.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -939,8 +933,8 @@
         "faq_row_mtDEQH": {
           "type": "_faq-row",
           "settings": {
-            "question": "Do we need to create new content?",
-            "answer": "<p>We assess existing content first. The content plan identifies three types of action: improve an existing page, consolidate overlapping pages, or create a new page.<br/><br/></p>",
+            "question": "Q6. What is the difference between a mention, a recommendation, and a citation?",
+            "answer": "<p>A mention names your brand, a recommendation presents it as a suitable option, and a citation links to a source. We report these as separate measures.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -948,8 +942,8 @@
         "faq_row_TfzdMb": {
           "type": "_faq-row",
           "settings": {
-            "question": "Can you support multiple countries and languages?",
-            "answer": "<p>Yes, subject to the agreed scope. Each target market receives its own keyword and page mapping rather than relying on a single translated keyword list.<br/><br/><br/></p>",
+            "question": "Q7. Why do AI answers differ between tests?",
+            "answer": "<p>Answers can vary with the question, context, platform, and test conditions. We use an agreed setup and repeated observations rather than judge performance from one answer.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -957,8 +951,8 @@
         "faq_row_CGMX33": {
           "type": "_faq-row",
           "settings": {
-            "question": "How do you measure SEO performance?",
-            "answer": "<p>We use Google Search Console for search performance and GA4 for website behavior and tracked conversions. The report connects those findings to agreed business goals.<br/><br/></p>",
+            "question": "Q8. Does publishing more articles guarantee more AI visibility?",
+            "answer": "<p>No. We assess each content opportunity against a target question, supporting evidence, and an identified information gap before adding it to the plan.<br/><br/></p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -966,8 +960,8 @@
         "faq_row_H88kCk": {
           "type": "_faq-row",
           "settings": {
-            "question": "Is link building included?",
-            "answer": "<p>It can be included in the selected scope. We specify resource criteria, deliverables, and reporting separately so you know what link development involves.<br/><br/><br/></p>",
+            "question": "Q9. Can you support different countries and languages?",
+            "answer": "<p>Yes, within the agreed scope. Each market receives its own prompt set and content priorities, and results are reported separately where the monitoring setup supports it.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -975,8 +969,26 @@
         "faq_row_ABzErp": {
           "type": "_faq-row",
           "settings": {
-            "question": "What do you need from us to get started?",
-            "answer": "<p>We need your website URL, target markets, priority products or services, and business goals. Access to Search Console and GA4 supports a more detailed assessment.<br/><br/></p>",
+            "question": "Q10. How do you measure progress?",
+            "answer": "<p>We compare results against the baseline using the same defined prompt set and reporting method. Core measures include mention rate, recommendation rate, citation rate, and prompt coverage.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_WTzBV7": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q11. Can GEO performance be connected to leads or sales?",
+            "answer": "<p>We can review identifiable AI referral visits and tracked conversions where data is available. Answer visibility and website conversions are reported separately because not every AI interaction produces a visit.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_YVKwqV": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q12. What information do you need from us?",
+            "answer": "<p>We need your website, brand names, priority products, target markets, and competitors. Product specifications and supporting credentials help us check information accuracy.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -992,7 +1004,9 @@
         "faq_row_TfzdMb",
         "faq_row_CGMX33",
         "faq_row_H88kCk",
-        "faq_row_ABzErp"
+        "faq_row_ABzErp",
+        "faq_row_WTzBV7",
+        "faq_row_YVKwqV"
       ],
       "name": "t:names.faq_section",
       "settings": {

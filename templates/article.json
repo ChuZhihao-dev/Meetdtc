@@ -6,8 +6,20 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
+    "page_background_KE47cd": {
+      "type": "page-background",
+      "name": "t:names.page_background",
+      "settings": {
+        "background_type": "gradient",
+        "background_color": "#FFFFFF",
+        "gradient_color_from": "#F8EFF8",
+        "gradient_color_to": "#CBD5FD",
+        "gradient_angle": 180
+      }
+    },
     "section": {
       "type": "main-blog-post",
       "blocks": {
@@ -21,10 +33,19 @@
             "alignment": "center",
             "type_preset": "h2",
             "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "weight": "",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
+            "gradient_text": false,
+            "gradient_color_from": "#2f6df6",
+            "gradient_color_to": "#9333ea",
+            "gradient_angle": 90,
+            "gradient_start_position": 0,
+            "gradient_end_position": 100,
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -41,10 +62,14 @@
           "settings": {
             "show_date": true,
             "show_author": false,
+            "type_preset": "",
             "alignment": "center",
+            "text_color": "",
             "show_alignment": true,
             "padding-block-start": 0,
-            "padding-block-end": 0
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {}
         },
@@ -53,6 +78,8 @@
           "name": "t:names.featured_image",
           "settings": {
             "image": "{{ article.image }}",
+            "link": "",
+            "image_ratio": "adapt",
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -61,6 +88,7 @@
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
+            "border_color": "",
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -71,7 +99,9 @@
         },
         "blog-post-content": {
           "type": "_blog-post-content",
-          "settings": {},
+          "settings": {
+            "text_color": ""
+          },
           "blocks": {}
         }
       },
@@ -91,6 +121,7 @@
     }
   },
   "order": [
+    "page_background_KE47cd",
     "section"
   ]
 }

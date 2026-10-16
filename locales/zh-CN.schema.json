@@ -8,6 +8,39 @@
  * ------------------------------------------------------------
  */
 {
+  "footer_surface": {
+    "hidden_pages": "不显示表单的页面",
+    "hidden_pages_info": "默认所有页面显示。填写准确的页面名称、链接末尾名称或页面路径，每行一个，也可用逗号分隔。例如 Contact Us、contact、/pages/contact。首页填写“首页”或 /。不区分大小写，仅隐藏页脚咨询区，弹窗仍可使用。",
+    "hidden_pages_placeholder": "Contact Us\ncontact\n/pages/contact",
+    "advanced": "显示高级设置",
+    "menu_info": "选择 Shopify 菜单后自动读取菜单名称、链接及子菜单，链接统一在 Shopify 菜单中维护。",
+    "whatsapp_info": "请填写包含国家区号的号码，自动生成 WhatsApp 链接；可在高级设置中覆盖链接。",
+    "logo_info": "留空自动使用全局主题 Logo。",
+    "legacy_heading": "旧版导航标题",
+    "legacy_navigation": "旧版导航链接（兼容）",
+    "legacy_info": "仅兼容已有页脚。请在组件设置中选择菜单替代这些链接，新添加的页脚直接使用菜单选择器。",
+    "share_background": "与咨询模块共用背景",
+    "shared_background": "统一页脚背景",
+    "visibility": "咨询模块显示规则",
+    "show_on_home": "在首页显示",
+    "show_on_product": "在产品页面显示",
+    "show_on_collection": "在集合页面显示",
+    "show_on_blog": "在博客列表及标签页面显示",
+    "show_on_article": "在文章详情页显示",
+    "show_on_page": "在普通页面显示",
+    "show_on_other": "在其他页面显示",
+    "excluded_page": "隐藏指定页面的咨询模块",
+    "page": "排除的页面",
+    "visibility_info": "仅控制上方咨询模块，弹窗表单仍然可用。可添加页面排除区块来隐藏指定页面的咨询模块。",
+    "background_info": "统一控制 Growth diagnosis 与 Brand footer 的渐变背景。隐藏咨询模块后，背景会适应剩余页脚高度，并保留已有颜色配置。"
+  },
+  "fluid_typography": {
+    "heading": "响应式文字",
+    "enable": "启用内容文字响应式缩放",
+    "info": "在 375–1440px 屏宽之间平滑缩放。比例表示手机字号相对桌面字号的大小。小字保留原字号，导航、按钮、表单、计数器和图表标签保留独立规则。关闭后恢复原有字号。",
+    "heading_ratio": "手机端标题比例",
+    "body": "手机端正文比例"
+  },
   "work_catalog": {
     "name": "Our Work 产品案例",
     "intro_background": "介绍区域背景",
@@ -1095,6 +1128,8 @@
     "direction_top_start": "左上方"
   },
   "content": {
+    "about_page": "关于我们页面",
+    "contact_page": "联系页面",
     "services_globe": "服务",
     "locations": "Locations",
     "page_background_hint": "Sets the page background color for the template this section is added to. Give a page its own template to use a different background.",

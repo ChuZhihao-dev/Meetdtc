@@ -1,0 +1,21 @@
+{% doc %}
+  Server-confirmed contact feedback, scoped by form ID and enhanced using the submission anchor.
+  @param {form} form - Current Shopify contact form object.
+  @param {string} form_id - Unique ID of the form that owns the feedback.
+  @param {string} [variant] - Use 'footer' for footer/drawer presentation.
+  @example {% render 'contact-form-feedback', form: form, form_id: form_id, variant: 'footer' %}
+{% enddoc %}
+{% if form.errors %}
+  <div id="{{ form_id }}-errors" class="{% if variant == 'footer' %}footer-diagnosis__error{% else %}contact-enquiry__feedback{% endif %}" data-contact-feedback data-feedback-kind="error" role="alert" tabindex="-1" {% unless form.id == form_id %}hidden{% endunless %}>
+    {{ form.errors | default_errors }}
+  </div>
+{% elsif form.posted_successfully? %}
+  <div class="{% if variant == 'footer' %}footer-diagnosis__success{% else %}contact-enquiry__feedback{% endif %}" data-contact-feedback data-feedback-kind="success" role="status" tabindex="-1" {% unless form.id == form_id %}hidden{% endunless %}>
+    {{ 'blocks.contact_form.post_success' | t }}
+  </div>
+{% endif %}
+{% stylesheet %}
+  .contact-form-focus [data-contact-feedback][hidden] { display: none; }
+  /* Native contact responses retain the submitted form's anchor without JavaScript. */
+  .contact-form-focus:target [data-contact-feedback][hidden] { display: block; }
+{% endstylesheet %}

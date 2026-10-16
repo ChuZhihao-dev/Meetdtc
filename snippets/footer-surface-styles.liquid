@@ -1,0 +1,15 @@
+{% doc %}
+  Owns the shared footer surface. Brand footer supplies its merchant background.
+  Growth diagnosis retains its own background when Brand footer is absent.
+  @example {% render 'footer-surface-styles' %} before #site-footer in the layout.
+{% enddoc %}
+{% stylesheet %}
+  .footer-surface:has(.brand-footer[data-shared-background='true']) {
+    background: var(--footer-surface-background);
+  }
+
+  .footer-surface:has(.brand-footer[data-shared-background='true']) .footer-diagnosis__background,
+  .footer-surface:has(.brand-footer[data-shared-background='true']) .brand-footer__background {
+    display: none;
+  }
+{% endstylesheet %}

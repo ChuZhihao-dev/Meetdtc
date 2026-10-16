@@ -437,6 +437,7 @@
         "heading_to": "#7c21c2",
         "description_color": "#6b6a6a",
         "section_height": "full-screen",
+        "content_position": "center",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
@@ -446,7 +447,9 @@
       "blocks": {
         "brand_row_PrWVTn": {
           "type": "_brand-row",
-          "settings": {},
+          "settings": {
+            "logo_motion": "left"
+          },
           "blocks": {
             "brand_logo_b8nyYi": {
               "type": "_brand-logo",
@@ -504,7 +507,9 @@
         },
         "brand_row_4zdXEJ": {
           "type": "_brand-row",
-          "settings": {},
+          "settings": {
+            "logo_motion": "right"
+          },
           "blocks": {
             "brand_logo_rT6BCw": {
               "type": "_brand-logo",
@@ -590,8 +595,8 @@
         "business_challenge_item_XDJAAj": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Your Website Looks Like Everyone Else’s",
-            "description": "<p>We translate your brand identity into distinctive visual design that helps customers recognize and remember your business.<br/><br/></p>",
+            "title": "1. Your Website Looks Like Everyone Else’s",
+            "description": "<p>We translate your brand identity into distinctive visual design that helps customers recognize and remember your business.</p>",
             "link": "",
             "marker": "1"
           },
@@ -600,8 +605,8 @@
         "business_challenge_item_fgEXyy": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Your Products Deserve a Better First Impression",
-            "description": "<p>We combine compelling visuals, clear messaging and intuitive layouts to communicate product value and build customer confidence.<br/><br/></p>",
+            "title": "2. Your Products Deserve a Better First Impression",
+            "description": "<p>We combine compelling visuals, clear messaging and intuitive layouts to communicate product value and build customer confidence.</p>",
             "link": "",
             "marker": "2"
           },
@@ -610,8 +615,8 @@
         "business_challenge_item_YMxyyL": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Your Mobile Experience Is Losing Customers",
-            "description": "<p>We turn responsive designs into fast, easy-to-use pages through careful development and testing across devices.<br/><br/></p>",
+            "title": "3. Your Mobile Experience Is Losing Customers",
+            "description": "<p>We turn responsive designs into fast, easy-to-use pages through careful development and testing across devices.</p>",
             "link": "",
             "marker": "3"
           },
@@ -620,8 +625,8 @@
         "business_challenge_item_WaNjic": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Your Website Can’t Deliver the Features You Need",
-            "description": "<p>We develop and integrate the features your customers need, from product selection and checkout to B2B enquiries.<br/><br/></p>",
+            "title": "4. Your Website Can’t Deliver the Features You Need",
+            "description": "<p>We develop and integrate the features your customers need, from product selection and checkout to B2B enquiries.</p>",
             "link": "",
             "marker": "3"
           },
@@ -630,8 +635,8 @@
         "business_challenge_item_QJCAVp": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Your Website and Business Systems Don’t Work Together",
-            "description": "<p>We connect your website with ERP, CRM and other platforms through APIs that support your operational workflows.<br/><br/></p>",
+            "title": "5. Your Website and Business Systems Don’t Work Together",
+            "description": "<p>We connect your website with ERP, CRM and other platforms through APIs that support your operational workflows.</p>",
             "link": "",
             "marker": "3"
           },
@@ -640,8 +645,8 @@
         "business_challenge_item_bhwQpF": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "Your Website Can’t Keep Up With Your Growth",
-            "description": "<p>We build flexible website structures and provide clear technical handovers so your team can confidently expand and improve.<br/><br/></p>",
+            "title": "6. Your Website Can’t Keep Up With Your Growth",
+            "description": "<p>We build flexible website structures and provide clear technical handovers so your team can confidently expand and improve.</p>",
             "link": "",
             "marker": "3"
           },
@@ -690,7 +695,7 @@
         "heading": "Start With Your Business. Build Around Your Customers.",
         "body_primary": "<p>One Integrated Plan, the Right Platform and a Clear Path to Launch<br/><br/></p>",
         "body_secondary": "<p>We map your business goals, customer journeys and operational needs before choosing the platform and defining the build. From template-based Shopify stores and WordPress websites to custom development with source code handover, our approach connects design decisions with technical delivery. An agreed scope, milestone reviews and acceptance criteria help reduce rework, integration surprises and uncertainty at launch.<br/><br/></p>",
-        "image": "shopify://shop_images/image_122_1.webp",
+        "image": "shopify://shop_images/web-development_our-approach.png",
         "image_alt": "",
         "font": "montserrat_n5",
         "text_color": "#000000",
@@ -785,8 +790,8 @@
         "step_PMTbKg": {
           "type": "step",
           "settings": {
-            "heading": "Audit & Discovery",
-            "description": "<p>We agree the website structure, platform, functional scope, deliverables and project schedule.<br/><br/></p>",
+            "heading": "Discover & Align",
+            "description": "<p>We confirm your business goals, audience, current challenges and project priorities.</p>",
             "deliverable": ""
           }
         },
@@ -794,7 +799,7 @@
           "type": "step",
           "settings": {
             "heading": "Plan & Define",
-            "description": "<p>Aesess channel performance, customer data, lifecycle gaps and current operations.</p>",
+            "description": "<p>We agree the website structure, platform, functional scope, deliverables and project schedule.<br/><br/></p>",
             "deliverable": ""
           }
         },
@@ -802,7 +807,7 @@
           "type": "step",
           "settings": {
             "heading": "Design & Approve",
-            "description": "<p>We develop the user experience and visual designs, then review key pages with your team before development.<br/><br/></p>",
+            "description": "<p>We develop the user experience and visual designs, then review key pages with your team before development.</p>",
             "deliverable": ""
           }
         },
@@ -810,7 +815,7 @@
           "type": "step",
           "settings": {
             "heading": "Build & Integrate",
-            "description": "<p>We develop the approved website and implement agreed functionality and system connections.<br/><br/></p>",
+            "description": "<p>We develop the approved website and implement agreed functionality and system connections.</p>",
             "deliverable": ""
           }
         },
@@ -818,15 +823,15 @@
           "type": "step",
           "settings": {
             "heading": "Test & Accept",
-            "description": "<p>We test the agreed scope, resolve identified issues and guide your team through acceptance.<br/><br/></p>",
+            "description": "<p>We test the agreed scope, resolve identified issues and guide your team through acceptance.</p>",
             "deliverable": ""
           }
         },
-        "step_99GRHR": {
+        "step_VLQaFK": {
           "type": "step",
           "settings": {
             "heading": "Launch & Enable",
-            "description": "<p>We launch the website, complete the handover and begin any agreed post-launch support.<br/><br/></p>",
+            "description": "<p>We launch the website, complete the handover and begin any agreed post-launch support.</p>",
             "deliverable": ""
           }
         }
@@ -837,7 +842,7 @@
         "step_jFFWg7",
         "step_tL7iNB",
         "step_Qb6M37",
-        "step_99GRHR"
+        "step_VLQaFK"
       ],
       "name": "Delivery process",
       "settings": {
@@ -930,6 +935,7 @@
         "eyebrow": "FEATURED CLIENT STORY",
         "heading": "Shopify Plus redesign drives 28% higher \ncart-to-checkout rate.",
         "description": "<p><br/>ME refreshed the brand’s UI/UX and migrated its Magento store to Shopify Plus, creating a faster, smoother shopping experience.<br/><br/></p>",
+        "image": "shopify://shop_images/web-development_case_studies.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",
         "link": "",

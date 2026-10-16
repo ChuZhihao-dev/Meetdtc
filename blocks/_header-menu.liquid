@@ -175,25 +175,7 @@
           {%- endif -%}
         </li>
       {% endfor %}
-      <li
-        class="menu-list__list-item"
-        slot="more"
-        on:blur="/deactivate"
-        on:pointerenter="/activate"
-        on:pointerleave="/deactivate"
-      >
-        <button
-          class="menu-list__link button-unstyled"
-          aria-haspopup="true"
-          aria-expanded="false"
-          ref="menuitem"
-          on:click="/toggle"
-          data-testid="header-menu-more-button"
-          data-skip-node-update
-        >
-          <span class="menu-list__link-title">{{ 'actions.more' | t }}</span>
-        </button>
-      </li>
+      <li class="menu-list__list-item" slot="more" aria-hidden="true" inert></li>
     {% endcapture %}
 
     <header-menu
@@ -219,7 +201,7 @@
             class: class,
             ref: 'overflowMenu',
             children: children,
-            minimum-items: 2,
+            minimum-items: block_settings.menu.links.size,
             data-testid: 'header-menu-overflow-list',
             attributes: 'data-skip-node-update'
           %}
@@ -481,6 +463,15 @@
 
     gap: 0;
     margin-inline: calc(-1 * var(--header-menu-link-gap, var(--menu-horizontal-gap)) / 2);
+  }
+
+  /* Keep a zero-width measurement sentinel; any overflow switches to the drawer. */
+  .header-menu .menu-list__list-item[slot='more'] {
+    width: 0;
+    min-width: 0;
+    overflow: hidden;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .overflow-menu {

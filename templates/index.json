@@ -129,7 +129,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "Book a Free Growth Consultation →",
-            "link": "#growth-diagnosis",
+            "link": "#growth-diagnosis-popup",
             "open_in_new_tab": false,
             "style_class": "button-custom",
             "custom_button_background": "",
@@ -643,7 +643,7 @@
         "eyebrow": "INSIGHTS",
         "heading": "<p>Real Questions. Plain Answers.</p>",
         "description": "<p>The three things almost every client asks before they start.</p>",
-        "blog": "articles",
+        "blog": "blogs",
         "post_limit": 3,
         "link_label": "Read →",
         "font": "var(--font-heading--family)",
@@ -671,7 +671,7 @@
         "heading_gap": 64,
         "list_gap": 30,
         "view_all_label": "View all articles →",
-        "view_all_link": "shopify://blogs/solutions",
+        "view_all_link": "shopify://blogs/our-works",
         "link_color": "#106efa",
         "padding-block-start": 72,
         "padding-block-end": 92

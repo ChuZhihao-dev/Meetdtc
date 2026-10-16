@@ -606,7 +606,7 @@ body,
   font-family: var(--font-paragraph--family);
   font-style: var(--font-paragraph--style);
   font-weight: var(--font-paragraph--weight);
-  font-size: var(--font-paragraph--size);
+  font-size: var(--fluid-preset-paragraph, var(--font-paragraph--size));
   line-height: var(--font-paragraph--line-height);
   text-transform: var(--font-paragraph--case);
   -webkit-font-smoothing: antialiased;
@@ -636,7 +636,7 @@ h1,
   font-family: var(--font-h1--family);
   font-style: var(--font-h1--style);
   font-weight: var(--font-h1--weight);
-  font-size: var(--font-h1--size);
+  font-size: var(--fluid-preset-h1, var(--font-h1--size));
   line-height: var(--font-h1--line-height);
   letter-spacing: var(--font-h1--letter-spacing);
   text-transform: var(--font-h1--case);
@@ -658,7 +658,7 @@ h2,
   font-family: var(--font-h2--family);
   font-style: var(--font-h2--style);
   font-weight: var(--font-h2--weight);
-  font-size: var(--font-h2--size);
+  font-size: var(--fluid-preset-h2, var(--font-h2--size));
   line-height: var(--font-h2--line-height);
   letter-spacing: var(--font-h2--letter-spacing);
   text-transform: var(--font-h2--case);
@@ -681,7 +681,7 @@ h3,
   font-family: var(--font-h3--family);
   font-style: var(--font-h3--style);
   font-weight: var(--font-h3--weight);
-  font-size: var(--font-h3--size);
+  font-size: var(--fluid-preset-h3, var(--font-h3--size));
   line-height: var(--font-h3--line-height);
   letter-spacing: var(--font-h3--letter-spacing);
   text-transform: var(--font-h3--case);
@@ -703,7 +703,7 @@ h4,
   font-family: var(--font-h4--family);
   font-style: var(--font-h4--style);
   font-weight: var(--font-h4--weight);
-  font-size: var(--font-h4--size);
+  font-size: var(--fluid-preset-h4, var(--font-h4--size));
   line-height: var(--font-h4--line-height);
   letter-spacing: var(--font-h4--letter-spacing);
   text-transform: var(--font-h4--case);
@@ -725,7 +725,7 @@ h5,
   font-family: var(--font-h5--family);
   font-style: var(--font-h5--style);
   font-weight: var(--font-h5--weight);
-  font-size: var(--font-h5--size);
+  font-size: var(--fluid-preset-h5, var(--font-h5--size));
   line-height: var(--font-h5--line-height);
   letter-spacing: var(--font-h5--letter-spacing);
   text-transform: var(--font-h5--case);
@@ -747,7 +747,7 @@ h6,
   font-family: var(--font-h6--family);
   font-style: var(--font-h6--style);
   font-weight: var(--font-h6--weight);
-  font-size: var(--font-h6--size);
+  font-size: var(--fluid-preset-h6, var(--font-h6--size));
   line-height: var(--font-h6--line-height);
   letter-spacing: var(--font-h6--letter-spacing);
   text-transform: var(--font-h6--case);
@@ -1145,7 +1145,7 @@ summary:hover {
 
 .custom-font-size,
 .custom-font-size > * {
-  font-size: var(--font-size);
+  font-size: var(--fluid-custom-font-size, var(--font-size));
 }
 
 .custom-font-weight,

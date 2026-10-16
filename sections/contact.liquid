@@ -1,0 +1,370 @@
+{% comment %}
+  Contact: one region containing an enquiry form and merchant-owned contact details/offices.
+  @example Add Contact to a page template, configure links, and upload contact icons.
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+  assign form_id = 'ContactEnquiry-' | append: section.id
+  assign color_id = 'contact-enquiry-' | append: section.id
+  assign office_count = 0
+  for block in section.blocks
+    if block.type == 'office'
+      if block.settings.label != blank or block.settings.value != blank
+        assign office_count = office_count | plus: 1
+      endif
+    endif
+  endfor
+%}
+{% render 'custom-section-fonts', font: s.font %}
+{% render 'contrast-override', section_id: color_id, background_color: s.card_background, text_color: s.text_color %}
+<div class="section-background" style="background: {{ s.background | default: 'transparent' }};"></div>
+<div class="section section--full-width spacing-style contact-enquiry"
+  style="{% render 'spacing-style', settings: s %} --contact-enquiry-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }}; --contact-enquiry-text: {{ s.text_color }}; --contact-enquiry-heading: {{ s.heading_gradient | default: s.text_color }}; --contact-enquiry-accent: {{ s.accent_color }}; --contact-enquiry-button-background: {{ s.button_background }}; --contact-enquiry-button-text: {{ s.button_text }};">
+  <div class="contact-enquiry__inner">
+    {% if s.heading != blank or s.description != blank %}
+      <div class="contact-enquiry__intro">
+        {% if s.heading != blank %}<h2 class="contact-enquiry__heading">{{ s.heading | escape }}</h2>{% endif %}
+        {% if s.description != blank %}<p class="contact-enquiry__description">{{ s.description | escape | newline_to_br }}</p>{% endif %}
+      </div>
+    {% endif %}
+    <div class="contact-enquiry__columns">
+      <div class="contact-enquiry__panel color-custom-{{ color_id }}" style="{% render 'input-custom-styles', block_settings: s %}">
+        {% render 'contact-enquiry-form', section_settings: s, form_id: form_id %}
+      </div>
+      <div class="contact-enquiry__panel contact-enquiry__information color-custom-{{ color_id }}">
+        {% if s.info_heading != blank %}<h3 class="contact-enquiry__info-heading">{{ s.info_heading | escape }}</h3>{% endif %}
+        {% if s.info_description != blank %}<p class="contact-enquiry__info-description">{{ s.info_description | escape | newline_to_br }}</p>{% endif %}
+        <div class="contact-enquiry__details">
+          {% for block in section.blocks %}
+            {% if block.type == 'detail' %}
+              {% if block.settings.value != blank or request.design_mode %}
+                <div class="contact-enquiry__detail" {{ block.shopify_attributes }}>
+                  <div class="contact-enquiry__detail-label">
+                    {% if block.settings.icon != blank %}{{ block.settings.icon | image_url: width: 72 | image_tag: widths: '24, 48, 72', sizes: '24px', loading: 'lazy', alt: '', class: 'contact-enquiry__icon' }}{% endif %}
+                    {% if block.settings.label != blank %}<p>{{ block.settings.label | escape }}</p>{% endif %}
+                  </div>
+                  {% if block.settings.value != blank %}<div class="contact-enquiry__detail-value">{% if block.settings.link != blank %}<a href="{{ block.settings.link | escape }}">{{ block.settings.value | escape | newline_to_br }}</a>{% else %}{{ block.settings.value | escape | newline_to_br }}{% endif %}</div>{% endif %}
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          {% if office_count > 0 or request.design_mode %}
+            <div class="contact-enquiry__detail contact-enquiry__offices">
+              <div class="contact-enquiry__detail-label">
+                {% if s.offices_icon != blank %}{{ s.offices_icon | image_url: width: 72 | image_tag: widths: '24, 48, 72', sizes: '24px', loading: 'lazy', alt: '', class: 'contact-enquiry__icon' }}{% endif %}
+                {% if s.offices_label != blank %}<p>{{ s.offices_label | escape }}</p>{% endif %}
+              </div>
+              <div class="contact-enquiry__office-list">
+                {% for block in section.blocks %}
+                  {% if block.type == 'office' %}
+                    {% if block.settings.label != blank or block.settings.value != blank or request.design_mode %}
+                      <div class="contact-enquiry__office" {{ block.shopify_attributes }}>
+                        {% if block.settings.label != blank %}<h4>{{ block.settings.label | escape }}</h4>{% endif %}
+                        {% if block.settings.value != blank %}<address>{% if block.settings.link != blank %}<a href="{{ block.settings.link | escape }}">{{ block.settings.value | escape | newline_to_br }}</a>{% else %}{{ block.settings.value | escape | newline_to_br }}{% endif %}</address>{% endif %}
+                      </div>
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% stylesheet %}
+  .contact-enquiry { color: var(--contact-enquiry-text); font-family: var(--contact-enquiry-font, var(--font-heading--family)); }
+  .contact-enquiry__inner { width: 100%; max-width: 1440px; min-width: 0; margin-inline: auto; padding-inline: 80px; }
+  .contact-enquiry__intro { margin-block-end: 60px; overflow-wrap: anywhere; }
+  .contact-enquiry__heading, .contact-enquiry__info-heading { margin: 0; color: inherit; font-family: inherit; font-weight: 600; letter-spacing: normal; line-height: 1.22; background: var(--contact-enquiry-heading); background-clip: text; -webkit-text-fill-color: transparent; }
+  .contact-enquiry__heading { font-size: var(--fluid-heading-58, clamp(36px, 4.02778vw, 58px)); }
+  .contact-enquiry__description { margin: 0; font-size: var(--fluid-body-24, 24px); font-weight: 500; line-height: var(--fluid-leading-1-583333, 38px); }
+  .contact-enquiry__columns { display: grid; grid-template-columns: minmax(0, 615fr) minmax(0, 632fr); align-items: start; gap: 30px; }
+  .contact-enquiry__panel { min-width: 0; padding: 42px; border-radius: 40px; overflow-wrap: anywhere; }
+  .contact-enquiry__info-heading { font-size: var(--fluid-heading-46, clamp(32px, 3.19444vw, 46px)); }
+  .contact-enquiry__info-description { margin: 10px 0 0; font-size: var(--fluid-body-24, 24px); font-weight: 500; line-height: var(--fluid-leading-1-041667, 25px); }
+  .contact-enquiry__details { display: grid; gap: 40px; margin-block-start: 40px; }
+  .contact-enquiry__detail { display: grid; grid-template-columns: minmax(0, 205fr) minmax(0, 247fr); gap: 40px; align-items: start; }
+  .contact-enquiry__detail-label { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 26px; align-items: start; font-size: var(--fluid-body-20, 20px); font-weight: 500; line-height: var(--fluid-leading-1-25, 25px); }
+  .contact-enquiry__detail-label p { grid-column: 2; margin: 0; }
+  .contact-enquiry__icon { width: 24px; height: 24px; object-fit: contain; }
+  .contact-enquiry__detail-value { font-size: var(--fluid-body-16, 16px); font-weight: 400; line-height: var(--fluid-leading-1-5625, 25px); }
+  .contact-enquiry__office-list { display: grid; gap: 38px; }
+  .contact-enquiry__office h4 { margin: 0 0 20px; color: inherit; font-family: inherit; font-size: var(--fluid-heading-16, 16px); font-weight: 600; line-height: var(--fluid-leading-1-25, 20px); letter-spacing: normal; }
+  .contact-enquiry__office address { font-size: var(--fluid-body-14, 14px); font-weight: 400; font-style: normal; line-height: var(--fluid-leading-1-428571, 20px); }
+  .contact-enquiry a { color: var(--contact-enquiry-accent); text-decoration: underline; text-underline-offset: 0.15em; }
+  .contact-enquiry a:focus { outline: none; }
+  .contact-enquiry a:focus-visible { text-decoration-thickness: 3px; }
+  @media screen and (max-width: 1199px) {
+    .contact-enquiry__inner { padding-inline: 32px; }
+    .contact-enquiry__panel { padding: 28px; }
+    .contact-enquiry__detail { gap: 20px; }
+    .contact-enquiry__detail-label { gap: 12px; font-size: var(--fluid-body-20, 17px); }
+    .contact-enquiry__info-description { font-size: var(--fluid-body-24, 20px); line-height: 1.5; }
+  }
+  @media screen and (max-width: 989px) {
+    .contact-enquiry__columns { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media screen and (max-width: 749px) {
+    .contact-enquiry__inner { padding-inline: 20px; }
+    .contact-enquiry__intro { margin-block-end: 32px; }
+    .contact-enquiry__description { margin-block-start: 10px; font-size: var(--fluid-body-24, 18px); line-height: 1.6; }
+    .contact-enquiry__panel { padding: 24px; border-radius: 24px; }
+    .contact-enquiry__info-description { font-size: var(--fluid-body-24, 18px); }
+    .contact-enquiry__detail { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+    .contact-enquiry__detail-label { grid-template-columns: 24px minmax(0, 1fr); }
+    .contact-enquiry__office-list { gap: 28px; }
+  }
+  @media (forced-colors: active) {
+    .contact-enquiry__heading, .contact-enquiry__info-heading { color: CanvasText; background: none; -webkit-text-fill-color: currentColor; }
+    .contact-enquiry__panel { border: 1px solid CanvasText; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:contact_section.name",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "max_blocks": 16,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:contact_section.heading",
+      "default": "Contact Us"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:contact_section.description",
+      "default": "Tell us about your business and goals. Let’s find the right next step."
+    },
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "t:contact_section.info_heading",
+      "default": "Get in Touch"
+    },
+    {
+      "type": "textarea",
+      "id": "info_description",
+      "label": "t:contact_section.info_description",
+      "default": "Use the form or contact us directly to discuss your project."
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "t:contact_section.submit_label",
+      "default": "Get My Free Growth Diagnosis"
+    },
+    {
+      "type": "textarea",
+      "id": "privacy",
+      "label": "t:contact_section.privacy",
+      "default": "Your details will be used to respond to your enquiry."
+    },
+    {
+      "type": "text",
+      "id": "offices_label",
+      "label": "t:contact_section.offices_label",
+      "default": "Our Offices"
+    },
+    {
+      "type": "image_picker",
+      "id": "offices_icon",
+      "label": "t:contact_section.offices_icon"
+    },
+    {
+      "type": "font_picker",
+      "id": "font",
+      "label": "t:contact_section.font",
+      "default": "montserrat_n4"
+    },
+    {
+      "type": "color_background",
+      "id": "background",
+      "label": "t:contact_section.background",
+      "default": "linear-gradient(164.59deg, #D8E0F8 0.157%, #F7F1ED 99.843%)"
+    },
+    {
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "t:contact_section.heading_gradient",
+      "default": "linear-gradient(134.978deg, #0B22B8 11.742%, #9621C4 88.258%)"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:contact_section.text_color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "t:contact_section.card_background",
+      "default": "#FBFBFB"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "t:contact_section.accent_color",
+      "default": "#1122B8"
+    },
+    {
+      "type": "color_background",
+      "id": "button_background",
+      "label": "t:contact_section.button_background",
+      "default": "linear-gradient(102.817deg, #7C21C2 0.416%, #5D70EB 99.584%)"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "t:contact_section.button_text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "input_background_color",
+      "label": "t:contact_section.input_background_color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "input_text_color",
+      "label": "t:contact_section.input_text_color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "t:contact_section.input_border_color",
+      "default": "#878787"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:contact_section.top",
+      "min": 0,
+      "max": 240,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:contact_section.bottom",
+      "min": 0,
+      "max": 240,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "detail",
+      "name": "t:contact_section.detail",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "t:contact_section.icon"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:contact_section.label"
+        },
+        {
+          "type": "textarea",
+          "id": "value",
+          "label": "t:contact_section.value"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:contact_section.link"
+        }
+      ]
+    },
+    {
+      "type": "office",
+      "name": "t:contact_section.office",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:contact_section.label"
+        },
+        {
+          "type": "textarea",
+          "id": "value",
+          "label": "t:contact_section.value"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:contact_section.link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:contact_section.name",
+      "category": "t:categories.forms",
+      "blocks": [
+        {
+          "type": "detail",
+          "settings": {
+            "label": "Email",
+            "value": "enquiry@meetdtc.com",
+            "link": "mailto:enquiry@meetdtc.com"
+          }
+        },
+        {
+          "type": "detail",
+          "settings": {
+            "label": "WhatsApp"
+          }
+        },
+        {
+          "type": "detail",
+          "settings": {
+            "label": "Hours",
+            "value": "Monday–Friday\nUTC+8"
+          }
+        },
+        {
+          "type": "office",
+          "settings": {
+            "label": "Singapore",
+            "value": "112 Robinson Road, #06-03, Singapore 068902"
+          }
+        },
+        {
+          "type": "office",
+          "settings": {
+            "label": "Shanghai",
+            "value": "Floors 3–8, No. 35 Loushanguan Road, Changning District, Shanghai, China"
+          }
+        },
+        {
+          "type": "office",
+          "settings": {
+            "label": "Shenzhen",
+            "value": "25th Floor, Hanking Center, Futian District, Shenzhen, China"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,10 +1,18 @@
 {% comment %}
   Blog listing: editable introduction, tag navigation and horizontal article cards.
-  The keyed results boundary preserves category focus during filtering and pagination.
-  @example Reached through the blog template; article content comes from the current blog.
+  The selected blog supplies articles and tags, falling back to the current blog.
+  Native tag routes scope articles before pagination; page links keep that route.
+  @example Select a blog in section settings or use the current blog template context.
 {% endcomment %}
 <script src="{{ 'blog-posts-list.js' | asset_url }}" type="module"></script>
 {% liquid
+  assign listing_blog = section.settings.blog | default: blog
+  assign listing_path = listing_blog.url
+  if listing_blog.handle == blog.handle
+    # Keep the route-scoped object so native tag filtering applies to pagination.
+    assign listing_blog = blog
+    assign listing_path = request.path
+  endif
   render 'contrast-override', background_color: section.settings.background_color, text_color: section.settings.text_color, section_id: section.id
 %}
 <blog-posts-list
@@ -31,22 +39,22 @@
   </div>
   <div class="blog-list__body section section--page-width spacing-style"
     style="--padding-block-end: {{ section.settings.padding-block-end }}px;">
-    {% content_for 'block', type: '_blog-category-nav', id: 'static-blog-categories' %}
+    {% content_for 'block', type: '_blog-category-nav', id: 'static-blog-categories', closest.blog: listing_blog %}
     <div class="blog-filter-feedback">
       <p ref="status" class="blog-filter-status visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
       <button class="blog-filter-retry" type="button" on:click="/retry">{{ 'blog_filter.retry' | t }}</button>
     </div>
-    {% paginate blog.articles by section.settings.posts_per_page %}
-      <div class="blog-posts-results" tabindex="-1" on:click="blog-posts-list/navigate"
+    {% paginate listing_blog.articles by section.settings.posts_per_page %}
+      <div class="blog-posts-results" tabindex="-1"
         data-hydration-key="blog-list-{{ section.id }}"
-        data-current-path="{{ request.path | escape }}"
+        data-current-path="{{ listing_path | escape }}"
         data-loaded-text="{{ 'blog_filter.loaded' | t: count: paginate.items | escape }}">
         <div ref="grid" class="blog-posts-container">
           {% liquid
             # Sizes mirror the desktop card columns and mobile card inset.
             assign image_sizes = '(min-width: 1440px) 390px, (min-width: 750px) calc(30.97vw - 83px), calc(100vw - 76px)'
           %}
-          {% for article in blog.articles %}
+          {% for article in listing_blog.articles %}
             {% liquid
               assign image_loading = 'lazy'
               if forloop.first
@@ -67,7 +75,7 @@
             </div>
           {% endfor %}
         </div>
-        {% if blog.articles.size == 0 %}<p class="blog-filter-empty">{{ 'blog_filter.empty' | t }}</p>{% endif %}
+        {% if listing_blog.articles.size == 0 %}<p class="blog-filter-empty">{{ 'blog_filter.empty' | t }}</p>{% endif %}
         {% render 'pagination-controls', paginate: paginate %}
       </div>
     {% endpaginate %}
@@ -108,7 +116,73 @@
   .blog-list__body::before { background: var(--blog-list-background, var(--color-background)); }
   .blog-list__body .blog-categories { margin-block-end: 23px; }
   .blog-posts-results { min-inline-size: 0; scroll-margin-block-start: calc(var(--header-group-height, 0px) + 24px); }
-  .blog-posts-results .pagination { --pagination-size: 44px; }
+  .blog-list .pagination {
+    --pagination-size: 44px;
+    --pagination-inset: 0px;
+    --pagination-radius: 0;
+    margin-block: clamp(28px, 4vw, 48px) 0;
+    padding: 4px 0 8px;
+    font-family: var(--font-heading--family);
+  }
+  .blog-list .pagination__list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px;
+    max-inline-size: 100%;
+  }
+  .blog-list .pagination__item { flex: 0 0 auto; }
+  .blog-list .pagination__item:first-child { margin-inline-end: 16px; }
+  .blog-list .pagination__item:last-child { margin-inline-start: 16px; }
+  .blog-list .pagination__item--gap { inline-size: 24px; }
+  .blog-list .pagination__link {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-foreground);
+    font-size: 15px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    text-underline-offset: 7px;
+    text-decoration-thickness: 1px;
+    transition: color var(--hover-transition-duration) var(--hover-transition-timing),
+      opacity var(--hover-transition-duration) var(--hover-transition-timing);
+  }
+  /* Keep pagination text-only in both shared highlight implementations. */
+  .blog-list .pagination__list::before,
+  .blog-list .pagination__link::before,
+  .blog-list .pagination__link::after {
+    display: none;
+    content: none;
+  }
+  .blog-list .pagination__link[aria-current='page'] {
+    background: transparent;
+    color: var(--blog-filter-accent, var(--color-foreground));
+    font-weight: 600;
+    text-decoration-line: underline;
+  }
+  .blog-list .pagination__link:focus-visible {
+    outline: 2px solid var(--blog-filter-accent, var(--color-foreground));
+    outline-offset: 3px;
+  }
+  .blog-list .pagination__link--disabled { opacity: 0.35; }
+  .blog-list .pagination__link--arrow {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--blog-filter-accent, var(--color-foreground));
+  }
+  .blog-list .pagination__link--arrow svg { inline-size: 10px; block-size: 16px; }
+  @media (hover: hover) and (pointer: fine) {
+    .blog-list a.pagination__link:hover {
+      color: var(--blog-filter-accent, var(--color-foreground));
+    }
+    .blog-list a.pagination__link--page:hover { text-decoration-line: underline; }
+    .blog-list a.pagination__link--arrow:hover { opacity: 0.65; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .blog-list .pagination__link { transition: none; }
+  }
   .blog-posts-container { display: grid; gap: 10px; inline-size: 100%; }
   .blog-post-item { min-inline-size: 0; }
   .blog-filter-status { margin: 0; }
@@ -120,6 +194,10 @@
     .blog-list__intro { padding-block-start: calc(40px + var(--padding-block-start, 0px)); padding-block-end: 32px; }
     .blog-list__body { --page-margin: max(16px, var(--safe-area-inset-left, 0px), var(--safe-area-inset-right, 0px)); --full-page-grid-with-margins: var(--full-page-grid-margin) var(--full-page-grid-central-column-width) var(--full-page-grid-margin); padding-block-start: 24px; }
     .blog-posts-container { gap: 16px; }
+    .blog-list .pagination__list { gap: 0; }
+    .blog-list .pagination__item:first-child { margin-inline-end: 8px; }
+    .blog-list .pagination__item:last-child { margin-inline-start: 8px; }
+    .blog-list .pagination__item--gap { inline-size: 16px; }
   }
 {% endstylesheet %}
 
@@ -164,6 +242,11 @@
     ]
   },
   "settings": [
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "t:settings.blog"
+    },
     {
       "type": "color",
       "id": "background_color",

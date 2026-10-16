@@ -74,9 +74,9 @@
   .client-story__card { position: relative; display: grid; grid-template-columns: minmax(0, 636fr) minmax(0, 702fr); inline-size: calc(100% - 100px); max-inline-size: 1340px; min-block-size: 704px; margin-inline: auto; border: 1px solid var(--client-story-border); border-radius: var(--client-story-radius); background: var(--client-story-panel); overflow: clip; }
   .client-story__card::before { content: ''; position: absolute; inset-block: 0; inset-inline-start: 0; inline-size: 26px; background: var(--client-story-accent); pointer-events: none; }
   .client-story__copy { min-inline-size: 0; padding: 40px 30px 20px 92px; }
-  .client-story__eyebrow { margin: 0 0 10px; font-size: 24px; font-weight: 500; line-height: 38px; overflow-wrap: anywhere; }
-  .client-story__heading { max-inline-size: 513px; margin: 0; font-family: inherit; font-size: 44px; font-weight: 600; line-height: 54px; letter-spacing: normal; background: var(--client-story-gradient); background-clip: text; -webkit-text-fill-color: transparent; overflow-wrap: anywhere; }
-  .client-story__description { max-inline-size: 513px; margin-block-start: 19px; font-size: 20px; font-weight: 500; line-height: 30px; overflow-wrap: anywhere; }
+  .client-story__eyebrow { margin: 0 0 10px; font-size: var(--fluid-body-24, 24px); font-weight: 500; line-height: var(--fluid-leading-1-583333, 38px); overflow-wrap: anywhere; }
+  .client-story__heading { max-inline-size: 513px; margin: 0; font-family: inherit; font-size: var(--fluid-heading-40, 40px); font-weight: 600; line-height: var(--fluid-leading-1-227273, 54px); letter-spacing: normal; background: var(--client-story-gradient); background-clip: text; -webkit-text-fill-color: transparent; overflow-wrap: anywhere; }
+  .client-story__description { max-inline-size: 513px; margin-block-start: 19px; font-size: var(--fluid-body-20, 20px); font-weight: 500; line-height: var(--fluid-leading-1-5, 30px); overflow-wrap: anywhere; }
   .client-story__description > :first-child { margin-block-start: 0; }
   .client-story__description > :last-child { margin-block-end: 0; }
   .client-story__description a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
@@ -93,9 +93,9 @@
 .client-story__card { inline-size: calc(100% - 64px); min-block-size: 0; }
   .client-story__card::before { inline-size: 18px; }
   .client-story__copy, [dir='rtl'] .client-story__copy { padding: 32px; padding-inline-start: 50px; }
-  .client-story__eyebrow { font-size: 18px; line-height: 28px; }
-  .client-story__heading { font-size: clamp(30px, 3.0556vw, 44px); line-height: 1.227273; }
-  .client-story__description { font-size: 18px; line-height: 28px; }
+  .client-story__eyebrow { font-size: var(--fluid-body-24, 18px); line-height: var(--fluid-leading-1-583333, 28px); }
+  .client-story__heading { font-size: var(--fluid-heading-44, clamp(30px, 3.0556vw, 44px)); line-height: 1.227273; }
+  .client-story__description { font-size: var(--fluid-body-20, 18px); line-height: var(--fluid-leading-1-5, 28px); }
   .client-story__metrics { gap: 15px 24px; margin-inline-start: 0; }
   .client-story__button { margin-inline-start: 0; font-size: 18px; }
   .client-story__media { min-block-size: 0; }
@@ -104,9 +104,9 @@
 .client-story__card { inline-size: calc(100% - 64px); grid-template-columns: minmax(0, 1fr); min-block-size: 0; }
   .client-story__card::before { inline-size: 12px; }
   .client-story__copy, [dir='rtl'] .client-story__copy { padding: 36px; padding-inline-start: 48px; }
-  .client-story__eyebrow { font-size: 18px; line-height: 28px; }
-  .client-story__heading { max-inline-size: none; font-size: 36px; line-height: 1.23; }
-  .client-story__description { max-inline-size: none; font-size: 18px; line-height: 28px; }
+  .client-story__eyebrow { font-size: var(--fluid-body-24, 18px); line-height: var(--fluid-leading-1-583333, 28px); }
+  .client-story__heading { max-inline-size: none; font-size: var(--fluid-heading-44, 36px); line-height: 1.23; }
+  .client-story__description { max-inline-size: none; font-size: var(--fluid-body-20, 18px); line-height: var(--fluid-leading-1-5, 28px); }
   .client-story__metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-inline-size: none; margin-inline-start: 0; }
   .client-story__button { margin-block-start: 32px; margin-inline-start: 0; }
   .client-story__media { min-block-size: 0; aspect-ratio: 1; }
@@ -115,9 +115,9 @@
 .client-story__card { inline-size: calc(100% - 40px); }
   .client-story__card::before { inline-size: 8px; }
   .client-story__copy, [dir='rtl'] .client-story__copy { padding: 28px 20px; padding-inline-start: 28px; }
-  .client-story__eyebrow { font-size: 14px; line-height: 22px; }
-  .client-story__heading { font-size: clamp(26px, 7.2vw, 32px); line-height: 1.23; }
-  .client-story__description { margin-block-start: 20px; font-size: 16px; line-height: 26px; }
+  .client-story__eyebrow { font-size: var(--fluid-body-24, 14px); line-height: var(--fluid-leading-1-583333, 22px); }
+  .client-story__heading { font-size: var(--fluid-heading-44, clamp(26px, 7.2vw, 32px)); line-height: 1.23; }
+  .client-story__description { margin-block-start: 20px; font-size: var(--fluid-body-20, 16px); line-height: var(--fluid-leading-1-5, 26px); }
   .client-story__metrics { margin-block-start: 28px; gap: 20px 12px; }
   .client-story__button { font-size: 16px; padding-inline: 18px; }
   }

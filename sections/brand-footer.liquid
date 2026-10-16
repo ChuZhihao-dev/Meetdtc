@@ -1,0 +1,500 @@
+{% comment %}
+  Brand footer: brand, two navigation columns, contact/offices, platform strip and copyright.
+  Selected menus replace their fallback navigation blocks. Contact details are merchant-owned.
+  @example Add Brand footer after Growth diagnosis; choose Services/Company menus and upload logos.
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+  assign logo = s.logo | default: settings.logo
+  assign color_id = 'brand-footer-' | append: section.id
+  assign platform_color_id = color_id | append: '-platforms'
+  assign logo_sizes = s.logo_width | append: 'px'
+  assign whatsapp_url = s.whatsapp_link
+  if whatsapp_url == blank and s.whatsapp != blank
+    assign whatsapp_digits = ''
+    assign whatsapp_characters = s.whatsapp | split: ''
+    for character in whatsapp_characters
+      if '0123456789' contains character
+        assign whatsapp_digits = whatsapp_digits | append: character
+      endif
+    endfor
+    if whatsapp_digits.size >= 7
+      assign whatsapp_url = 'https://wa.me/' | append: whatsapp_digits
+    endif
+  endif
+%}
+{% render 'contrast-override', section_id: color_id, text_color: s.text_color %}
+{% render 'contrast-override', section_id: platform_color_id, background_color: s.platform_background, text_color: s.platform_text %}
+{% style %}
+  #site-footer { --footer-surface-background: {{ s.shared_background }}; }
+{% endstyle %}
+<div class="section-background brand-footer__background" style="background: {{ s.background }};"></div>
+<div class="section section--full-width spacing-style brand-footer color-custom-{{ color_id }}" data-shared-background="{{ s.share_background }}"
+  style="{% render 'spacing-style', settings: s %} --brand-footer-logo-width: {{ s.logo_width }}px;">
+  <div class="brand-footer__inner">
+    <div class="brand-footer__main">
+      <div class="brand-footer__brand">
+        <a class="brand-footer__logo{% if logo != blank %} brand-footer__logo--image{% endif %}" href="{{ routes.root_url }}">
+          {% if logo != blank %}
+            {{ logo | image_url: width: 960 | image_tag: widths: '224, 448, 640, 960', sizes: logo_sizes, loading: 'lazy', alt: shop.name }}
+          {% else %}{{ shop.name | escape }}{% endif %}
+        </a>
+        {% if s.description != blank %}<p class="brand-footer__description">{{ s.description | escape | newline_to_br }}</p>{% endif %}
+      </div>
+      {% assign columns = 'services,company' | split: ',' %}
+      {% for column in columns %}
+        {% liquid
+          assign menu_key = column | append: '_menu'
+          assign heading_key = column | append: '_heading'
+          assign menu = s[menu_key]
+          assign heading = menu.title | default: s[heading_key]
+        %}
+        {% capture links %}
+          {% if menu != blank and menu.links.size > 0 %}
+            {% for link in menu.links %}
+              <li><a href="{{ link.url | escape }}">{{ link.title | escape }}</a>
+                {% if link.links.size > 0 %}<ul class="brand-footer__subnav">{% for child in link.links %}<li><a href="{{ child.url | escape }}">{{ child.title | escape }}</a>{% if child.links.size > 0 %}<ul class="brand-footer__subnav">{% for grandchild in child.links %}<li><a href="{{ grandchild.url | escape }}">{{ grandchild.title | escape }}</a></li>{% endfor %}</ul>{% endif %}</li>{% endfor %}</ul>{% endif %}
+              </li>
+            {% endfor %}
+          {% else %}
+            {% for block in section.blocks %}
+              {% if block.type == 'navigation_link' and block.settings.column == column %}
+                {% if block.settings.label != blank or request.design_mode %}
+                  <li {{ block.shopify_attributes }}>{% if block.settings.link != blank %}<a href="{{ block.settings.link | escape }}">{{ block.settings.label | escape }}</a>{% else %}<span>{{ block.settings.label | escape }}</span>{% endif %}</li>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endcapture %}
+        {% if links != blank %}
+          <nav class="brand-footer__navigation" aria-label="{{ heading | default: menu.title | default: column | escape }}">
+            {% if heading != blank %}<h2 class="brand-footer__heading">{{ heading | escape }}</h2>{% endif %}
+            <ul class="brand-footer__links" role="list">{{ links }}</ul>
+          </nav>
+        {% endif %}
+      {% endfor %}
+      <div class="brand-footer__contact">
+        {% if s.contact_heading != blank %}<h2 class="brand-footer__heading">{{ s.contact_heading | escape }}</h2>{% endif %}
+        {% if s.email != blank %}<a class="brand-footer__email" href="mailto:{{ s.email | strip | escape }}">{{ s.email | escape }}</a>{% endif %}
+        {% if s.whatsapp != blank %}<p class="brand-footer__contact-line">{% if whatsapp_url != blank %}<a href="{{ whatsapp_url | escape }}">{{ s.whatsapp | escape }}</a>{% else %}{{ s.whatsapp | escape }}{% endif %}</p>{% endif %}
+        {% if s.hours != blank %}<p class="brand-footer__contact-line">{{ s.hours | escape | newline_to_br }}</p>{% endif %}
+        <div class="brand-footer__offices">
+          {% for block in section.blocks %}
+            {% if block.type == 'office' %}
+              {% if block.settings.city != blank or block.settings.address != blank or request.design_mode %}
+                <div class="brand-footer__office" {{ block.shopify_attributes }}>
+                  {% if block.settings.city != blank %}<h3>{{ block.settings.city | escape }}</h3>{% endif %}
+                  {% if block.settings.address != blank %}<address>{% if block.settings.link != blank %}<a href="{{ block.settings.link | escape }}">{{ block.settings.address | escape | newline_to_br }}</a>{% else %}{{ block.settings.address | escape | newline_to_br }}{% endif %}</address>{% endif %}
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% capture platforms %}
+      {% for block in section.blocks %}
+        {% if block.type == 'platform' %}
+          {% if block.settings.image != blank or block.settings.label != blank or request.design_mode %}
+            <li class="brand-footer__platform" {{ block.shopify_attributes }}>
+              {% if block.settings.link != blank %}<a href="{{ block.settings.link | escape }}">{% endif %}
+              {% if block.settings.image != blank %}
+                {% assign platform_alt = block.settings.label | default: block.settings.image.alt %}
+                {{ block.settings.image | image_url: width: 480 | image_tag: widths: '120, 240, 480', sizes: '(max-width: 749px) 120px, 160px', loading: 'lazy', alt: platform_alt }}
+              {% else %}<span>{{ block.settings.label | escape }}</span>{% endif %}
+              {% if block.settings.link != blank %}</a>{% endif %}
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endcapture %}
+    {% if platforms != blank %}
+      <div class="brand-footer__platforms">
+        {% if s.platforms_heading != blank %}<h2 class="brand-footer__heading">{{ s.platforms_heading | escape }}</h2>{% endif %}
+        <ul class="brand-footer__platform-strip color-custom-{{ platform_color_id }}" role="list">{{ platforms }}</ul>
+      </div>
+    {% endif %}
+    <div class="brand-footer__bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ s.copyright_name | default: shop.name | escape }}</p>
+      {% if s.bottom_note != blank %}<p>{{ s.bottom_note | escape }}</p>{% endif %}
+    </div>
+  </div>
+</div>
+{% stylesheet %}
+  .brand-footer {
+    --color-foreground-muted: color-mix(in srgb, var(--color-foreground) 80%, transparent);
+    font-family: var(--font-heading--family);
+  }
+  .brand-footer__inner { width: 100%; max-width: 1440px; min-width: 0; margin-inline: auto; padding-inline: 64px; }
+  .brand-footer__main { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr) minmax(0, 0.75fr) minmax(0, 1.2fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
+  .brand-footer__main > * { min-width: 0; overflow-wrap: anywhere; }
+  .brand-footer__logo { display: inline-block; max-width: 100%; font-size: 22px; font-weight: 600; line-height: 1.3; }
+  .brand-footer__logo--image { width: var(--brand-footer-logo-width); padding: 14px 16px; border-radius: 12px; background: #fff; }
+  .brand-footer__logo img { display: block; width: 100%; height: auto; }
+  .brand-footer__description { margin: 24px 0 0; font-size: var(--fluid-body-15, 15px); font-weight: 400; line-height: 1.75; color: var(--color-foreground-muted); }
+  .brand-footer__heading { margin: 0 0 20px; color: var(--color-foreground-muted); font-family: inherit; font-size: var(--fluid-heading-12, 12px); font-weight: 600; line-height: 1.5; letter-spacing: 0.12em; text-transform: uppercase; overflow-wrap: anywhere; }
+  .brand-footer__links, .brand-footer__subnav { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; font-size: var(--fluid-body-14, 14px); font-weight: 400; line-height: 1.6; }
+  .brand-footer__subnav { margin-block-start: 12px; padding-inline-start: 12px; }
+  .brand-footer a { color: inherit; text-decoration: none; text-underline-offset: 0.22em; }
+  .brand-footer a:hover { text-decoration: underline; }
+  .brand-footer a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 3px; }
+  .brand-footer__email { display: inline-block; font-size: var(--fluid-body-15, 15px); line-height: 1.6; }
+  .brand-footer__contact-line { margin: 12px 0 0; font-size: var(--fluid-body-13, 13px); line-height: 1.65; color: var(--color-foreground-muted); }
+  .brand-footer__offices { display: grid; gap: 22px; margin-block-start: 24px; }
+  .brand-footer__office h3 { margin: 0 0 6px; color: inherit; font-family: inherit; font-size: var(--fluid-heading-15, 15px); font-weight: 600; line-height: 1.5; letter-spacing: normal; }
+  .brand-footer__office address { font-size: var(--fluid-body-13, 13px); font-weight: 400; font-style: normal; line-height: 1.65; color: var(--color-foreground-muted); }
+  .brand-footer__platforms { margin-block-start: 56px; }
+  .brand-footer__platforms .brand-footer__heading { margin-block-end: 16px; }
+  .brand-footer__platform-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; gap: 24px 32px; margin: 0; padding: 24px; border-radius: 16px; list-style: none; }
+  .brand-footer__platform { display: flex; align-items: center; justify-content: center; max-width: 100%; font-size: var(--fluid-body-12, 12px); font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+  .brand-footer__platform a { display: flex; align-items: center; justify-content: center; }
+  .brand-footer__platform img { display: block; width: auto; height: auto; max-width: 160px; max-height: 32px; object-fit: contain; }
+  .brand-footer__bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px 32px; margin-block-start: 40px; padding-block-start: 20px; border-block-start: 1px solid rgb(var(--color-foreground-rgb) / var(--opacity-20)); color: var(--color-foreground-muted); font-size: var(--fluid-body-12, 12px); line-height: 1.65; }
+  .brand-footer__bottom p { min-width: 0; max-width: 100%; margin: 0; overflow-wrap: anywhere; }
+  @media screen and (max-width: 1099px) {
+    .brand-footer__inner { padding-inline: 32px; }
+    .brand-footer__main { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+  }
+  @media screen and (max-width: 749px) {
+    .brand-footer__inner { padding-inline: 20px; }
+    .brand-footer__main { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
+    .brand-footer__brand, .brand-footer__contact { grid-column: 1 / -1; }
+    .brand-footer__description { max-width: 440px; margin-block-start: 20px; font-size: var(--fluid-body-15, 14px); }
+    .brand-footer__heading { margin-block-end: 16px; }
+    .brand-footer__platforms { margin-block-start: 40px; }
+    .brand-footer__platform-strip { justify-content: center; gap: 20px 24px; padding: 24px 16px; }
+    .brand-footer__platform img { max-width: 120px; max-height: 28px; }
+    .brand-footer__bottom { flex-direction: column; margin-block-start: 32px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:brand_footer.name",
+  "enabled_on": {
+    "groups": [
+      "footer"
+    ]
+  },
+  "max_blocks": 32,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:brand_footer.logo",
+      "info": "t:footer_surface.logo_info"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:brand_footer.description",
+      "default": "Integrated MarTech for global growth — website and e-commerce, customer acquisition, lifecycle marketing and data intelligence."
+    },
+    {
+      "type": "link_list",
+      "id": "services_menu",
+      "label": "t:brand_footer.services_menu",
+      "info": "t:footer_surface.menu_info"
+    },
+    {
+      "type": "link_list",
+      "id": "company_menu",
+      "label": "t:brand_footer.company_menu",
+      "info": "t:footer_surface.menu_info"
+    },
+    {
+      "type": "text",
+      "id": "contact_heading",
+      "label": "t:brand_footer.contact_heading",
+      "default": "Get in touch"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "t:brand_footer.email",
+      "default": "enquiry@meetdtc.com"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp",
+      "label": "t:brand_footer.whatsapp",
+      "info": "t:footer_surface.whatsapp_info"
+    },
+    {
+      "type": "textarea",
+      "id": "hours",
+      "label": "t:brand_footer.hours"
+    },
+    {
+      "type": "text",
+      "id": "platforms_heading",
+      "label": "t:brand_footer.platforms_heading",
+      "default": "Platforms & ecosystem"
+    },
+    {
+      "type": "text",
+      "id": "copyright_name",
+      "label": "t:brand_footer.copyright_name",
+      "default": "Meet Experience"
+    },
+    {
+      "type": "text",
+      "id": "bottom_note",
+      "label": "t:brand_footer.bottom_note"
+    },
+    {
+      "type": "color_background",
+      "id": "shared_background",
+      "label": "t:footer_surface.shared_background",
+      "info": "t:footer_surface.background_info",
+      "default": "linear-gradient(119.64deg, #0048FF 6.48%, rgba(242, 0, 255, 0.25) 100.95%)",
+      "visible_if": "{{ section.settings.share_background }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_advanced",
+      "label": "t:footer_surface.advanced",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "t:brand_footer.logo_width",
+      "min": 120,
+      "max": 320,
+      "step": 4,
+      "unit": "px",
+      "default": 224,
+      "visible_if": "{{ section.settings.show_advanced }}"
+    },
+    {
+      "type": "text",
+      "id": "services_heading",
+      "label": "t:footer_surface.legacy_heading",
+      "default": "Services",
+      "visible_if": "{{ section.settings.show_advanced and section.settings.services_menu == blank }}"
+    },
+    {
+      "type": "text",
+      "id": "company_heading",
+      "label": "t:footer_surface.legacy_heading",
+      "default": "Company",
+      "visible_if": "{{ section.settings.show_advanced and section.settings.company_menu == blank }}"
+    },
+    {
+      "type": "url",
+      "id": "whatsapp_link",
+      "label": "t:brand_footer.whatsapp_link",
+      "visible_if": "{{ section.settings.show_advanced }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "share_background",
+      "label": "t:footer_surface.share_background",
+      "default": true,
+      "visible_if": "{{ section.settings.show_advanced }}"
+    },
+    {
+      "type": "color_background",
+      "id": "background",
+      "label": "t:brand_footer.background",
+      "default": "linear-gradient(115deg, #263BA4 0%, #5622B6 55%, #7527C7 100%)",
+      "visible_if": "{{ section.settings.show_advanced and section.settings.share_background == false }}"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:brand_footer.text_color",
+      "default": "#FFFFFF",
+      "visible_if": "{{ section.settings.show_advanced }}"
+    },
+    {
+      "type": "color",
+      "id": "platform_background",
+      "label": "t:brand_footer.platform_background",
+      "default": "#F8F7FF",
+      "visible_if": "{{ section.settings.show_advanced }}"
+    },
+    {
+      "type": "color",
+      "id": "platform_text",
+      "label": "t:brand_footer.platform_text",
+      "default": "#21164F",
+      "visible_if": "{{ section.settings.show_advanced }}"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:brand_footer.top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 64,
+      "visible_if": "{{ section.settings.show_advanced }}"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:brand_footer.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24,
+      "visible_if": "{{ section.settings.show_advanced }}"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "navigation_link",
+      "name": "t:footer_surface.legacy_navigation",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:footer_surface.legacy_info"
+        },
+        {
+          "type": "select",
+          "id": "column",
+          "label": "t:brand_footer.column",
+          "options": [
+            {
+              "value": "services",
+              "label": "t:brand_footer.services"
+            },
+            {
+              "value": "company",
+              "label": "t:brand_footer.company"
+            }
+          ],
+          "default": "services"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:brand_footer.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:brand_footer.link"
+        }
+      ]
+    },
+    {
+      "type": "office",
+      "name": "t:brand_footer.office",
+      "settings": [
+        {
+          "type": "text",
+          "id": "city",
+          "label": "t:brand_footer.city"
+        },
+        {
+          "type": "textarea",
+          "id": "address",
+          "label": "t:brand_footer.address"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:brand_footer.link"
+        }
+      ]
+    },
+    {
+      "type": "platform",
+      "name": "t:brand_footer.platform",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:brand_footer.image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:brand_footer.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:brand_footer.link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:brand_footer.name",
+      "category": "t:categories.footer",
+      "blocks": [
+        {
+          "type": "office",
+          "settings": {
+            "city": "Singapore",
+            "address": "112 Robinson Road, #06-03, Singapore 068902"
+          }
+        },
+        {
+          "type": "office",
+          "settings": {
+            "city": "Shanghai",
+            "address": "Floors 3–8, No. 35 Loushanguan Road, Changning District, Shanghai, China"
+          }
+        },
+        {
+          "type": "office",
+          "settings": {
+            "city": "Shenzhen",
+            "address": "25th Floor, Hanking Center, Futian District, Shenzhen, China"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "label": "Shopify"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "label": "Klaviyo"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "label": "Omnisend"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "label": "Trustpilot"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "label": "impact.com"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "label": "Awin"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "label": "Rakuten Advertising"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

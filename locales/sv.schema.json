@@ -8,6 +8,32 @@
  * ------------------------------------------------------------
  */
 {
+  "footer_surface": {
+    "hidden_pages": "Hide consultation on these pages",
+    "hidden_pages_info": "Visible by default. Enter exact page titles, handles or paths, one per line or separated by commas. Example: Contact Us, contact, /pages/contact. Use / for the home page. Matching ignores case. Only the consultation area is hidden; the popup remains available.",
+    "hidden_pages_placeholder": "Contact Us\ncontact\n/pages/contact",
+    "advanced": "Show advanced settings",
+    "menu_info": "Select a Shopify menu. Its title, links and nested links are read automatically; maintain links in Shopify Menus.",
+    "whatsapp_info": "Include the country code. The WhatsApp link is generated automatically; an advanced custom link can override it.",
+    "logo_info": "Leave blank to use the global theme logo.",
+    "legacy_heading": "Legacy navigation heading",
+    "legacy_navigation": "Legacy navigation link",
+    "legacy_info": "Kept for existing footer configurations. Select a menu in section settings to replace these links; new footers use menu pickers.",
+    "share_background": "Share background with consultation",
+    "shared_background": "Shared footer background",
+    "visibility": "Consultation visibility",
+    "show_on_home": "Show on the home page",
+    "show_on_product": "Show on product pages",
+    "show_on_collection": "Show on collection pages",
+    "show_on_blog": "Show on blog listing and tag pages",
+    "show_on_article": "Show on article pages",
+    "show_on_page": "Show on regular pages",
+    "show_on_other": "Show on other pages",
+    "excluded_page": "Hide consultation on a page",
+    "page": "Excluded page",
+    "visibility_info": "These controls hide only the consultation section. The popup form stays available. Add page exclusion blocks for individual pages.",
+    "background_info": "Controls the shared gradient behind Growth diagnosis and Brand footer. When consultation is hidden, this background fits the remaining footer. Existing colors are preserved."
+  },
   "work_catalog": {
     "name": "Our Work collection",
     "intro_background": "Introduction background",
@@ -1095,6 +1121,8 @@
     "direction_top_start": "Uppe till vänster"
   },
   "content": {
+    "about_page": "About page",
+    "contact_page": "Contact page",
     "services_globe": "Services",
     "locations": "Locations",
     "page_background_hint": "Sets the page background color for the template this section is added to. Give a page its own template to use a different background.",

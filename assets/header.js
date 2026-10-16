@@ -66,6 +66,41 @@ class HeaderComponent extends Component {
    */
   #scrollRafId = null;
 
+  #balanceFrame = null;
+  #balanceObserver = new ResizeObserver(() => this.#scheduleBalance());
+
+  #scheduleBalance = () => {
+    if (this.#balanceFrame !== null) cancelAnimationFrame(this.#balanceFrame);
+    this.#balanceFrame = requestAnimationFrame(() => {
+      this.#balanceFrame = null;
+      // Measure children, not the flexible grid tracks, to avoid resize feedback loops.
+      const measurements = [];
+      for (const row of this.querySelectorAll('.header__columns')) {
+        if (!row.querySelector(':scope > .header__column--center header-menu')) continue;
+        const widths = ['left', 'right'].map((side) => {
+          const column = row.querySelector(`:scope > .header__column--${side}`);
+          if (!(column instanceof HTMLElement)) return 0;
+          const children = [...column.children].filter((child) => child.getBoundingClientRect().width > 0);
+          const gap = parseFloat(getComputedStyle(column).columnGap) || 0;
+          return children.reduce((width, child) => width + child.getBoundingClientRect().width, 0) + Math.max(0, children.length - 1) * gap;
+        });
+        measurements.push({ row, width: Math.ceil(Math.max(...widths)) });
+      }
+      for (const { row, width } of measurements) row.style.setProperty('--header-balanced-side', `${width}px`);
+    });
+  };
+
+  #observeBalancedColumns() {
+    this.#balanceObserver.disconnect();
+    for (const row of this.querySelectorAll('.header__columns')) {
+      this.#balanceObserver.observe(row);
+      for (const column of row.querySelectorAll(':scope > .header__column--left, :scope > .header__column--right')) {
+        for (const child of column.children) this.#balanceObserver.observe(child);
+      }
+    }
+    this.#scheduleBalance();
+  }
+
   /**
    * Keeps the global `--header-height` custom property up to date,
    * which other theme components can then consume
@@ -223,6 +258,7 @@ class HeaderComponent extends Component {
 
   connectedCallback() {
     super.connectedCallback();
+    this.#observeBalancedColumns();
     this.#resizeObserver.observe(this);
     this.addEventListener('overflowMinimum', this.#handleOverflowMinimum);
 
@@ -239,8 +275,16 @@ class HeaderComponent extends Component {
     }
   }
 
+  updatedCallback() {
+    super.updatedCallback();
+    this.#observeBalancedColumns();
+  }
+
   disconnectedCallback() {
     super.disconnectedCallback();
+    this.#balanceObserver.disconnect();
+    if (this.#balanceFrame !== null) cancelAnimationFrame(this.#balanceFrame);
+    this.#balanceFrame = null;
     this.#resizeObserver.disconnect();
     this.#intersectionObserver?.disconnect();
     this.removeEventListener('overflowMinimum', this.#handleOverflowMinimum);

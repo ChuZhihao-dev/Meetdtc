@@ -281,6 +281,8 @@
     --line-height--body-normal: 1.4;
     --line-height--body-loose: 1.6;
 
+    {% render 'fluid-typography-variables' %}
+
     /* Typography presets */
     {% liquid
       assign font_sizes = "paragraph, h1, h2, h3, h4, h5, h6" | split: ", "

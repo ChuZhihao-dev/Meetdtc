@@ -1,0 +1,42 @@
+{% doc %}
+  Emits global content font tokens inside the existing :root style owner.
+  Small copy keeps its original size; controls and diagram labels use their own rules.
+  @example {% render 'fluid-typography-variables' %}
+{% enddoc %}
+{%- if settings.enable_fluid_typography -%}
+  {%- assign kinds = 'heading,body' | split: ',' -%}
+  {%- for kind in kinds -%}
+    {%- if kind == 'heading' -%}
+      {%- assign sizes = '12,15,16,24,25,40,44,46,46.1,58,70' | split: ',' -%}
+    {%- else -%}
+      {%- assign sizes = '12,13,14,15,16,19,20,24,28,30' | split: ',' -%}
+    {%- endif -%}
+    {%- for size in sizes -%}
+      --fluid-{{ kind }}-{{ size | replace: '.', '-' }}: {% render 'fluid-font-size', desktop_size: size, kind: kind %};
+    {%- endfor -%}
+  {%- endfor -%}
+  {%- assign presets = 'paragraph,h1,h2,h3,h4,h5,h6' | split: ',' -%}
+  {%- for preset in presets -%}
+    {%- liquid
+      assign size_id = 'type_size_' | append: preset
+      assign kind = 'heading'
+      if preset == 'paragraph'
+        assign kind = 'body'
+      endif
+    -%}
+    --fluid-preset-{{ preset }}: {% render 'fluid-font-size', desktop_size: settings[size_id], kind: kind %};
+  {%- endfor -%}
+  --fluid-leading-1-583333: 1.583333;
+  --fluid-leading-1-24: 1.24;
+  --fluid-leading-1-375: 1.375;
+  --fluid-leading-1-571429: 1.571429;
+  --fluid-leading-1-5: 1.5;
+  --fluid-leading-1-041667: 1.041667;
+  --fluid-leading-1-25: 1.25;
+  --fluid-leading-1-5625: 1.5625;
+  --fluid-leading-1-428571: 1.428571;
+  --fluid-leading-1-2: 1.2;
+  --fluid-leading-1-214286: 1.214286;
+  --fluid-leading-1-171367: 1.171367;
+  --fluid-leading-1-227273: 1.227273;
+{%- endif -%}

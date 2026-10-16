@@ -1,0 +1,16 @@
+{% doc %}
+  Shared native contact-submit spinner and a single scoped loading announcement.
+  Render inside the submit button; the form component controls aria-busy.
+  @example {% render 'contact-submit-indicator' %}
+{% enddoc %}
+<span class="contact-submit__spinner" aria-hidden="true"></span>
+<span class="visually-hidden" role="status" data-contact-submit-status data-loading-label="{{ 'contact_submit.submitting' | t | escape }}"></span>
+{% stylesheet %}
+  .contact-submit__spinner { display: none; flex-shrink: 0; width: 1em; height: 1em; margin-inline-start: 10px; vertical-align: -0.12em; border: 2px solid currentColor; border-inline-end-color: transparent; border-radius: 50%; }
+  button[aria-busy='true'] > .contact-submit__spinner { display: inline-block; animation: contact-submit-spin 700ms linear infinite; }
+  button[aria-busy='true'] { cursor: progress; }
+  @keyframes contact-submit-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    button[aria-busy='true'] > .contact-submit__spinner { animation: none; }
+  }
+{% endstylesheet %}

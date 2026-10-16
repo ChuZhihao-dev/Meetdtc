@@ -55,6 +55,16 @@
       {%- else -%}
         --font-size: {{ settings.font_size }};
       {%- endif -%}
+      {% liquid
+        if settings.font_size contains 'rem' and font_size_rem > 0
+          assign content_kind = 'body'
+          if type == 'heading' or type == 'display' or font_size_rem >= 2
+            assign content_kind = 'heading'
+          endif
+          assign desktop_size = font_size_rem | times: 16
+          render 'fluid-font-size', desktop_size: desktop_size, kind: content_kind, css_variable: '--fluid-custom-font-size'
+        endif
+      %}
     {%- endif -%}
     {%- if settings.weight != blank -%}
       --font-weight: {{ settings.weight }};

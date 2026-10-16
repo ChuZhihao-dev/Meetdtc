@@ -159,7 +159,8 @@
         {{ content_for_layout }}
       </main>
 
-      <footer>
+      {% render 'footer-surface-styles' %}
+      <footer id="site-footer" class="footer-surface">
         {% sections 'footer-group' %}
       </footer>
     </div>

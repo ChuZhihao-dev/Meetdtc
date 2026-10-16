@@ -1,0 +1,69 @@
+{% doc %}
+  Native six-field enquiry form with scoped server feedback and no JavaScript dependency.
+  @param {object} section_settings - Button copy and privacy note.
+  @param {string} form_id - Unique form identity, including the section ID.
+  @example {% render 'contact-enquiry-form', section_settings: section.settings, form_id: 'Contact-main' %}
+{% enddoc %}
+{% render 'contact-form-focus-styles' %}
+<script src="{{ 'footer-diagnosis.js' | asset_url }}" type="module" fetchpriority="low"></script>
+<contact-enquiry-form>
+{% form 'contact', id: form_id, class: 'contact-enquiry__form contact-form-focus' %}
+  <input type="hidden" name="contact[id]" value="{{ form_id | escape }}">
+  {% liquid
+    assign form_matches = false
+    if form.id == form_id
+      assign form_matches = true
+    endif
+  %}
+  <div class="contact-enquiry__fields">
+    <div class="contact-enquiry__field">
+      <label for="{{ form_id }}-name">{{ 'contact_section.name' | t }} <span aria-hidden="true">*</span></label>
+      <input type="text" id="{{ form_id }}-name" name="contact[name]" placeholder="{{ 'contact_section.name_placeholder' | t | escape }}" required autocomplete="name" value="{% if form.name %}{{ form.name | escape }}{% elsif customer %}{{ customer.name | escape }}{% endif %}">
+    </div>
+    <div class="contact-enquiry__field">
+      <label for="{{ form_id }}-company">{{ 'contact_section.company' | t }}</label>
+      <input type="text" id="{{ form_id }}-company" name="contact[Company Name]" placeholder="{{ 'contact_section.company_placeholder' | t | escape }}" autocomplete="organization" value="">
+    </div>
+    <div class="contact-enquiry__field">
+      <label for="{{ form_id }}-email">{{ 'contact_section.email' | t }} <span aria-hidden="true">*</span></label>
+      <input type="email" id="{{ form_id }}-email" name="contact[email]" placeholder="{{ 'contact_section.email_placeholder' | t | escape }}" required autocomplete="email" value="{% if form.email %}{{ form.email | escape }}{% elsif customer %}{{ customer.email | escape }}{% endif %}" spellcheck="false" autocapitalize="off" {% if form_matches and form.errors contains 'email' %}aria-invalid="true" aria-describedby="{{ form_id }}-errors"{% endif %}>
+    </div>
+    <div class="contact-enquiry__field">
+      <label for="{{ form_id }}-phone">{{ 'contact_section.phone' | t }}</label>
+      <input type="tel" id="{{ form_id }}-phone" name="contact[phone]" placeholder="{{ 'contact_section.phone_placeholder' | t | escape }}" autocomplete="tel" value="{% if form.phone %}{{ form.phone | escape }}{% elsif customer %}{{ customer.phone | escape }}{% endif %}">
+    </div>
+    <div class="contact-enquiry__field contact-enquiry__field--full">
+      <label for="{{ form_id }}-website">{{ 'contact_section.website' | t }} <span aria-hidden="true">*</span></label>
+      <input type="url" id="{{ form_id }}-website" name="contact[Company Website]" placeholder="{{ 'contact_section.website_placeholder' | t | escape }}" required autocomplete="url" value="" spellcheck="false" autocapitalize="off">
+    </div>
+    <div class="contact-enquiry__field contact-enquiry__field--full">
+      <label for="{{ form_id }}-goals">{{ 'contact_section.goals' | t }} <span aria-hidden="true">*</span></label>
+      <textarea id="{{ form_id }}-goals" name="contact[body]" placeholder="{{ 'contact_section.goals_placeholder' | t | escape }}" required rows="4">{{ form.body | escape }}</textarea>
+    </div>
+  </div>
+  {% render 'contact-form-feedback', form: form, form_id: form_id %}
+  <button type="submit" class="contact-enquiry__submit">{% if section_settings.submit_label != blank %}{{ section_settings.submit_label | escape }}{% else %}{{ 'contact_section.submit' | t }}{% endif %}{% render 'contact-submit-indicator' %}</button>
+  {% if section_settings.privacy != blank %}<p class="contact-enquiry__privacy">{{ section_settings.privacy | escape }}</p>{% endif %}
+{% endform %}
+</contact-enquiry-form>
+{% stylesheet %}
+  contact-enquiry-form { display: block; }
+  .contact-enquiry__form { min-width: 0; }
+  .contact-enquiry__fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 16px; }
+  .contact-enquiry__field { display: grid; align-content: start; gap: 12px; min-width: 0; }
+  .contact-enquiry__field--full { grid-column: 1 / -1; }
+  .contact-enquiry__field label { font-size: 17px; font-weight: 600; line-height: 20px; overflow-wrap: anywhere; }
+  .contact-enquiry__field input, .contact-enquiry__field textarea { width: 100%; min-width: 0; min-height: 55px; padding: 15px 20px; color: var(--color-input-text); background: var(--color-input-background); border: 0.5px solid var(--color-input-border); border-radius: 16px; font: inherit; font-size: 15px; line-height: 24px; }
+  .contact-enquiry__field textarea { min-height: 132px; resize: vertical; }
+  .contact-enquiry__field :is(input, textarea)::placeholder { color: var(--color-input-text); opacity: 0.55; }
+  .contact-enquiry__submit { width: 100%; min-height: 62px; margin-block-start: 30px; padding: 13px 20px; border: 0; border-radius: 47px; color: var(--contact-enquiry-button-text); background: var(--contact-enquiry-button-background); font: inherit; font-size: 20px; font-weight: 700; line-height: 36px; overflow-wrap: anywhere; cursor: pointer; }
+  .contact-enquiry__privacy { margin: 14px 0 0; font-size: 13px; line-height: 1.5; color: var(--color-foreground-muted); overflow-wrap: anywhere; }
+  .contact-enquiry__feedback { margin-block: 24px 0; overflow-wrap: anywhere; }
+  .contact-enquiry__feedback:not([hidden]) + .contact-enquiry__submit,
+  .contact-enquiry__form:target .contact-enquiry__feedback + .contact-enquiry__submit { margin-block-start: 16px; }
+  .contact-enquiry__feedback:focus { outline: none; }
+  @media screen and (max-width: 749px) {
+    .contact-enquiry__fields { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .contact-enquiry__submit { font-size: 17px; line-height: 1.5; }
+  }
+{% endstylesheet %}

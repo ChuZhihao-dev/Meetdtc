@@ -1,18 +1,23 @@
 {% doc %}
-  Renders All Categories and the current blog's complete article-tag navigation.
+  Renders All Categories and the supplied blog's complete article-tag navigation.
+  Reads closest.blog from the parent section, falling back to the current blog.
   Uses all_tags so pagination and filtering never narrow the available categories.
+  Links navigate directly to Shopify's native blog tag routes.
   @example Used as the static-blog-categories block on the main blog section.
 {% enddoc %}
-<nav on:click="blog-posts-list/navigate" class="blog-categories" aria-label="{{ 'blog_filter.categories' | t }}" {{ block.shopify_attributes }}>
-  <a href="{{ blog.url | escape }}" {% if current_tags == blank %}aria-current="page"{% endif %}>{{ 'blog_filter.all_categories' | t }}</a>
-  {% for tag in blog.all_tags %}
+{% liquid
+  assign navigation_blog = closest.blog | default: blog
+  assign active_tags = null
+  if navigation_blog.handle == blog.handle
+    assign active_tags = current_tags
+  endif
+%}
+<nav class="blog-categories" aria-label="{{ 'blog_filter.categories' | t }}" {{ block.shopify_attributes }}>
+  <a href="{{ navigation_blog.url | escape }}" {% if active_tags == blank %}aria-current="page"{% endif %}>{{ 'blog_filter.all_categories' | t }}</a>
+  {% for tag in navigation_blog.all_tags %}
     {% if tag != blank %}
       <span class="blog-categories__item">
-        {% capture category_link %}{{ tag | escape | link_to_tag: tag }}{% endcapture %}
-        {% if current_tags contains tag %}
-          {% assign category_link = category_link | replace: '<a ', '<a aria-current="page" ' %}
-        {% endif %}
-        {{ category_link }}
+        <a href="{{ navigation_blog.url | escape }}/tagged/{{ tag | handleize }}" {% if active_tags contains tag %}aria-current="page"{% endif %}>{{ tag | escape }}</a>
       </span>
     {% endif %}
   {% endfor %}

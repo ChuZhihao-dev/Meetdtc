@@ -1,0 +1,62 @@
+{% doc %}
+  Shared diagnosis drawer using the footer's merchant settings and form styles.
+  Links to #growth-diagnosis-popup open it; without JavaScript the anchor reaches the footer.
+  @param {object} section_settings - Footer content and presentation settings.
+  @param {string} section_id - Owning footer section identity.
+  @example {% render 'growth-diagnosis-drawer', section_settings: section.settings, section_id: section.id %}
+{% enddoc %}
+{% liquid
+  assign drawer_form_id = 'DiagnosisDrawerForm-' | append: section_id
+  assign heading_id = 'DiagnosisDrawerHeading-' | append: section_id
+%}
+{% render 'dialog-styles' %}
+<script src="{{ 'growth-diagnosis-drawer.js' | asset_url }}" type="module" fetchpriority="low"></script>
+<growth-diagnosis-drawer id="growth-diagnosis-popup">
+  <dialog ref="dialog" class="dialog-modal dialog-drawer diagnosis-drawer" scroll-lock aria-labelledby="{{ heading_id }}">
+    <button type="button" class="diagnosis-drawer__close button button-unstyled" on:click="/closeDialog" aria-label="{{ 'accessibility.close_dialog' | t }}">
+      {{ 'icon-close.svg' | inline_asset_content }}
+    </button>
+    <div class="diagnosis-drawer__intro">
+      {% if section_settings.eyebrow != blank %}<p class="diagnosis-drawer__eyebrow">{{ section_settings.eyebrow | escape }}</p>{% endif %}
+      <h2 id="{{ heading_id }}" class="diagnosis-drawer__heading">{{ section_settings.heading }}</h2>
+      {% if section_settings.description != blank %}<div class="diagnosis-drawer__description rte">{{ section_settings.description }}</div>{% endif %}
+    </div>
+    {% render 'custom-footer-diagnosis-form', section_settings: section_settings, form_id: drawer_form_id, form_anchor_id: '' %}
+  </dialog>
+</growth-diagnosis-drawer>
+
+{% stylesheet %}
+  .diagnosis-drawer {
+    position: fixed;
+    inset: 0;
+    margin: 0 0 0 auto;
+    width: min(600px, 100dvw);
+    max-width: 100dvw;
+    height: 100dvh;
+    max-height: 100dvh;
+    padding: max(64px, var(--safe-area-inset-top)) max(32px, var(--safe-area-inset-right)) max(32px, var(--safe-area-inset-bottom)) max(32px, var(--safe-area-inset-left));
+    border-radius: 0;
+    background: var(--fd-card-bg, #fff);
+    color: #111;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    font-family: var(--font-heading--family);
+  }
+  .diagnosis-drawer:modal { max-height: 100dvh; }
+  .diagnosis-drawer::backdrop { background: rgb(var(--backdrop-color-rgb, 0 0 0) / var(--opacity-40)); backdrop-filter: none; animation: none; }
+  .diagnosis-drawer__close { position: absolute; inset-block-start: max(12px, var(--safe-area-inset-top)); right: max(16px, var(--safe-area-inset-right)); display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid currentColor; border-radius: 50%; color: inherit; }
+  .diagnosis-drawer__close svg { width: 18px; height: 18px; }
+  .diagnosis-drawer__intro { display: grid; gap: 12px; margin-block-end: 28px; min-width: 0; }
+  .diagnosis-drawer__eyebrow { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: .12em; }
+  .diagnosis-drawer__heading { margin: 0; font-family: inherit; font-size: clamp(24px, 4vw, 30px); line-height: 1.2; overflow-wrap: anywhere; }
+  .diagnosis-drawer__description { font-size: 16px; line-height: 1.5; overflow-wrap: anywhere; }
+  .diagnosis-drawer__description > :first-child, .diagnosis-drawer__description > :last-child { margin-block: 0; }
+  .diagnosis-drawer .footer-diagnosis__card { padding: 0; border-radius: 0; }
+  .diagnosis-drawer .footer-diagnosis__fields { gap: 24px 16px; }
+  .diagnosis-drawer .footer-diagnosis__label { line-height: 1.35; }
+  .diagnosis-drawer .footer-diagnosis__input { min-width: 0; line-height: 1.5; min-height: 50px; }
+  .diagnosis-drawer .footer-diagnosis__input--textarea { min-height: 132px; }
+  .diagnosis-drawer .footer-diagnosis__submit { font-size: 17px; line-height: 1.5; min-height: 54px; }
+  @media screen and (max-width: 479px) { .diagnosis-drawer { padding-inline: max(20px, var(--safe-area-inset-left)) max(20px, var(--safe-area-inset-right)); } }
+  @media (prefers-reduced-motion: reduce) { .diagnosis-drawer[open], .diagnosis-drawer[open].dialog-closing { animation: none; } }
+{% endstylesheet %}

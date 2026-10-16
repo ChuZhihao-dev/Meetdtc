@@ -10,6 +10,12 @@
     assign use_inverse_logo = true
   elsif section.settings.enable_transparent_header_collection and template.name == 'collection' and section.settings.collection_inverse_logo == true
     assign use_inverse_logo = true
+  elsif section.settings.enable_transparent_header_about and template.name == 'page' and template.suffix == 'about-us' and section.settings.about_inverse_logo == true
+    assign use_inverse_logo = true
+  elsif section.settings.enable_transparent_header_contact and template.name == 'page' and template.suffix == 'contact' and section.settings.contact_inverse_logo == true
+    assign use_inverse_logo = true
+  elsif section.settings.enable_transparent_header_blog and template.name == 'blog' and section.settings.blog_inverse_logo == true
+    assign use_inverse_logo = true
   endif
 
   if use_inverse_logo
