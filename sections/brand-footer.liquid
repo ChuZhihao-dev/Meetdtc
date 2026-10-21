@@ -1,11 +1,11 @@
 {% comment %}
   Brand footer: brand, two navigation columns, contact/offices, platform strip and copyright.
-  Selected menus replace their fallback navigation blocks. Contact details are merchant-owned.
+  Navigation comes exclusively from selected Shopify menus. Contact details are merchant-owned.
   @example Add Brand footer after Growth diagnosis; choose Services/Company menus and upload logos.
 {% endcomment %}
 {% liquid
   assign s = section.settings
-  assign logo = s.logo | default: settings.logo
+  assign logo = s.logo | default: settings.logo_inverse | default: settings.logo
   assign color_id = 'brand-footer-' | append: section.id
   assign platform_color_id = color_id | append: '-platforms'
   assign logo_sizes = s.logo_width | append: 'px'
@@ -24,7 +24,9 @@
   endif
 %}
 {% render 'contrast-override', section_id: color_id, text_color: s.text_color %}
-{% render 'contrast-override', section_id: platform_color_id, background_color: s.platform_background, text_color: s.platform_text %}
+{% if s.platform_surface %}
+  {% render 'contrast-override', section_id: platform_color_id, background_color: s.platform_background, text_color: s.platform_text %}
+{% endif %}
 {% style %}
   #site-footer { --footer-surface-background: {{ s.shared_background }}; }
 {% endstyle %}
@@ -34,7 +36,7 @@
   <div class="brand-footer__inner">
     <div class="brand-footer__main">
       <div class="brand-footer__brand">
-        <a class="brand-footer__logo{% if logo != blank %} brand-footer__logo--image{% endif %}" href="{{ routes.root_url }}">
+        <a class="brand-footer__logo{% if logo != blank %} brand-footer__logo--image{% endif %}{% if s.logo_surface %} brand-footer__logo--surface{% endif %}" href="{{ routes.root_url }}">
           {% if logo != blank %}
             {{ logo | image_url: width: 960 | image_tag: widths: '224, 448, 640, 960', sizes: logo_sizes, loading: 'lazy', alt: shop.name }}
           {% else %}{{ shop.name | escape }}{% endif %}
@@ -45,9 +47,8 @@
       {% for column in columns %}
         {% liquid
           assign menu_key = column | append: '_menu'
-          assign heading_key = column | append: '_heading'
           assign menu = s[menu_key]
-          assign heading = menu.title | default: s[heading_key]
+          assign heading = menu.title
         %}
         {% capture links %}
           {% if menu != blank and menu.links.size > 0 %}
@@ -56,18 +57,10 @@
                 {% if link.links.size > 0 %}<ul class="brand-footer__subnav">{% for child in link.links %}<li><a href="{{ child.url | escape }}">{{ child.title | escape }}</a>{% if child.links.size > 0 %}<ul class="brand-footer__subnav">{% for grandchild in child.links %}<li><a href="{{ grandchild.url | escape }}">{{ grandchild.title | escape }}</a></li>{% endfor %}</ul>{% endif %}</li>{% endfor %}</ul>{% endif %}
               </li>
             {% endfor %}
-          {% else %}
-            {% for block in section.blocks %}
-              {% if block.type == 'navigation_link' and block.settings.column == column %}
-                {% if block.settings.label != blank or request.design_mode %}
-                  <li {{ block.shopify_attributes }}>{% if block.settings.link != blank %}<a href="{{ block.settings.link | escape }}">{{ block.settings.label | escape }}</a>{% else %}<span>{{ block.settings.label | escape }}</span>{% endif %}</li>
-                {% endif %}
-              {% endif %}
-            {% endfor %}
           {% endif %}
         {% endcapture %}
         {% if links != blank %}
-          <nav class="brand-footer__navigation" aria-label="{{ heading | default: menu.title | default: column | escape }}">
+          <nav class="brand-footer__navigation brand-footer__navigation--{{ column }}" aria-label="{{ heading | escape }}">
             {% if heading != blank %}<h2 class="brand-footer__heading">{{ heading | escape }}</h2>{% endif %}
             <ul class="brand-footer__links" role="list">{{ links }}</ul>
           </nav>
@@ -100,7 +93,7 @@
               {% if block.settings.link != blank %}<a href="{{ block.settings.link | escape }}">{% endif %}
               {% if block.settings.image != blank %}
                 {% assign platform_alt = block.settings.label | default: block.settings.image.alt %}
-                {{ block.settings.image | image_url: width: 480 | image_tag: widths: '120, 240, 480', sizes: '(max-width: 749px) 120px, 160px', loading: 'lazy', alt: platform_alt }}
+                {{ block.settings.image | image_url: width: 480 | image_tag: widths: '120, 240, 480', sizes: '(max-width: 749px) 140px, 200px', loading: 'lazy', alt: platform_alt }}
               {% else %}<span>{{ block.settings.label | escape }}</span>{% endif %}
               {% if block.settings.link != blank %}</a>{% endif %}
             </li>
@@ -111,7 +104,7 @@
     {% if platforms != blank %}
       <div class="brand-footer__platforms">
         {% if s.platforms_heading != blank %}<h2 class="brand-footer__heading">{{ s.platforms_heading | escape }}</h2>{% endif %}
-        <ul class="brand-footer__platform-strip color-custom-{{ platform_color_id }}" role="list">{{ platforms }}</ul>
+        <ul class="brand-footer__platform-strip{% if s.platform_surface %} brand-footer__platform-strip--surface color-custom-{{ platform_color_id }}{% endif %}" role="list">{{ platforms }}</ul>
       </div>
     {% endif %}
     <div class="brand-footer__bottom">
@@ -121,50 +114,54 @@
   </div>
 </div>
 {% stylesheet %}
-  .brand-footer {
-    --color-foreground-muted: color-mix(in srgb, var(--color-foreground) 80%, transparent);
-    font-family: var(--font-heading--family);
-  }
-  .brand-footer__inner { width: 100%; max-width: 1440px; min-width: 0; margin-inline: auto; padding-inline: 64px; }
-  .brand-footer__main { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr) minmax(0, 0.75fr) minmax(0, 1.2fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
+  .brand-footer { font-family: var(--font-heading--family); }
+  .brand-footer__inner { width: calc(100% - 48px); max-width: 1322px; min-width: 0; margin-inline: auto; padding-inline: 10px; }
+  .brand-footer__main { display: grid; grid-template-columns: minmax(0, 357fr) minmax(0, 268fr) minmax(0, 129fr) minmax(0, 248fr); gap: clamp(28px, 5.4vw, 80px); align-items: start; max-width: 1276px; margin-inline: auto; }
   .brand-footer__main > * { min-width: 0; overflow-wrap: anywhere; }
+  .brand-footer__navigation--services { grid-column: 2; }
+  .brand-footer__navigation--company { grid-column: 3; }
+  .brand-footer__contact { grid-column: 4; }
   .brand-footer__logo { display: inline-block; max-width: 100%; font-size: 22px; font-weight: 600; line-height: 1.3; }
-  .brand-footer__logo--image { width: var(--brand-footer-logo-width); padding: 14px 16px; border-radius: 12px; background: #fff; }
+  .brand-footer__logo--image { width: var(--brand-footer-logo-width); }
+  .brand-footer__logo--surface { padding: 14px 16px; border-radius: 12px; background: #fff; }
   .brand-footer__logo img { display: block; width: 100%; height: auto; }
-  .brand-footer__description { margin: 24px 0 0; font-size: var(--fluid-body-15, 15px); font-weight: 400; line-height: 1.75; color: var(--color-foreground-muted); }
-  .brand-footer__heading { margin: 0 0 20px; color: var(--color-foreground-muted); font-family: inherit; font-size: var(--fluid-heading-12, 12px); font-weight: 600; line-height: 1.5; letter-spacing: 0.12em; text-transform: uppercase; overflow-wrap: anywhere; }
-  .brand-footer__links, .brand-footer__subnav { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; font-size: var(--fluid-body-14, 14px); font-weight: 400; line-height: 1.6; }
-  .brand-footer__subnav { margin-block-start: 12px; padding-inline-start: 12px; }
+  .brand-footer__description { max-width: 357px; margin: 20px 0 0; color: inherit; font-family: var(--font-body--family); font-size: var(--fluid-body-16, 16px); font-weight: 400; line-height: 1.3; }
+  .brand-footer__heading { margin: 0 0 20px; color: inherit; font-family: inherit; font-size: var(--fluid-heading-21, 21px); font-weight: 600; line-height: 1.2; letter-spacing: 1px; text-transform: uppercase; overflow-wrap: anywhere; }
+  .brand-footer__links, .brand-footer__subnav { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: var(--fluid-body-14, 14px); font-weight: 600; line-height: 1.7; letter-spacing: -0.15px; }
+  .brand-footer__subnav { margin-block-start: 8px; padding-inline-start: 12px; }
   .brand-footer a { color: inherit; text-decoration: none; text-underline-offset: 0.22em; }
   .brand-footer a:hover { text-decoration: underline; }
   .brand-footer a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 3px; }
-  .brand-footer__email { display: inline-block; font-size: var(--fluid-body-15, 15px); line-height: 1.6; }
-  .brand-footer__contact-line { margin: 12px 0 0; font-size: var(--fluid-body-13, 13px); line-height: 1.65; color: var(--color-foreground-muted); }
-  .brand-footer__offices { display: grid; gap: 22px; margin-block-start: 24px; }
-  .brand-footer__office h3 { margin: 0 0 6px; color: inherit; font-family: inherit; font-size: var(--fluid-heading-15, 15px); font-weight: 600; line-height: 1.5; letter-spacing: normal; }
-  .brand-footer__office address { font-size: var(--fluid-body-13, 13px); font-weight: 400; font-style: normal; line-height: 1.65; color: var(--color-foreground-muted); }
-  .brand-footer__platforms { margin-block-start: 56px; }
-  .brand-footer__platforms .brand-footer__heading { margin-block-end: 16px; }
-  .brand-footer__platform-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; gap: 24px 32px; margin: 0; padding: 24px; border-radius: 16px; list-style: none; }
-  .brand-footer__platform { display: flex; align-items: center; justify-content: center; max-width: 100%; font-size: var(--fluid-body-12, 12px); font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
-  .brand-footer__platform a { display: flex; align-items: center; justify-content: center; }
-  .brand-footer__platform img { display: block; width: auto; height: auto; max-width: 160px; max-height: 32px; object-fit: contain; }
-  .brand-footer__bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px 32px; margin-block-start: 40px; padding-block-start: 20px; border-block-start: 1px solid rgb(var(--color-foreground-rgb) / var(--opacity-20)); color: var(--color-foreground-muted); font-size: var(--fluid-body-12, 12px); line-height: 1.65; }
+  .brand-footer__email { display: inline-block; font-size: var(--fluid-body-14, 14px); font-weight: 600; line-height: 1.6; }
+  .brand-footer__contact-line { margin: 8px 0 0; font-size: var(--fluid-body-12, 12px); font-weight: 500; line-height: 1.8667; }
+  .brand-footer__offices { display: grid; gap: 12px; margin-block-start: 12px; }
+  .brand-footer__office h3 { margin: 0 0 4px; color: inherit; font-family: inherit; font-size: var(--fluid-heading-14, 14px); font-weight: 600; line-height: 1.6; letter-spacing: normal; }
+  .brand-footer__office address { font-size: var(--fluid-body-12, 12px); font-weight: 500; font-style: normal; line-height: 1.8667; }
+  .brand-footer__platforms { margin-block-start: 80px; }
+  .brand-footer__platforms .brand-footer__heading { margin-block-end: 8px; text-transform: none; }
+  .brand-footer__platform-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 28px; min-block-size: 117px; margin: 0; padding: 14px 0; list-style: none; }
+  .brand-footer__platform-strip--surface { padding-inline: 24px; border-radius: 13px; }
+  .brand-footer__platform { display: flex; flex: 1 1 100px; align-items: center; justify-content: center; min-width: 0; max-width: 200px; font-size: var(--fluid-body-14, 14px); font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+  .brand-footer__platform a { display: flex; align-items: center; justify-content: center; max-width: 100%; }
+  .brand-footer__platform img { display: block; width: auto; height: auto; max-width: 100%; max-height: 87px; object-fit: contain; }
+  .brand-footer__bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px 32px; margin-block-start: 80px; padding-block-start: 20px; border-block-start: 1px solid rgb(var(--color-foreground-rgb) / var(--opacity-50)); font-size: var(--fluid-body-16, 16px); font-weight: 400; line-height: 1.575; }
   .brand-footer__bottom p { min-width: 0; max-width: 100%; margin: 0; overflow-wrap: anywhere; }
   @media screen and (max-width: 1099px) {
-    .brand-footer__inner { padding-inline: 32px; }
     .brand-footer__main { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+    .brand-footer__navigation, .brand-footer__contact { grid-column: auto; }
+    .brand-footer__platforms, .brand-footer__bottom { margin-block-start: 56px; }
   }
   @media screen and (max-width: 749px) {
-    .brand-footer__inner { padding-inline: 20px; }
+    .brand-footer__inner { width: 100%; padding-inline: 20px; }
     .brand-footer__main { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
     .brand-footer__brand, .brand-footer__contact { grid-column: 1 / -1; }
-    .brand-footer__description { max-width: 440px; margin-block-start: 20px; font-size: var(--fluid-body-15, 14px); }
+    .brand-footer__description { max-width: 440px; }
     .brand-footer__heading { margin-block-end: 16px; }
     .brand-footer__platforms { margin-block-start: 40px; }
-    .brand-footer__platform-strip { justify-content: center; gap: 20px 24px; padding: 24px 16px; }
-    .brand-footer__platform img { max-width: 120px; max-height: 28px; }
-    .brand-footer__bottom { flex-direction: column; margin-block-start: 32px; }
+    .brand-footer__platform-strip { justify-content: center; gap: 24px; padding-block: 16px; }
+    .brand-footer__platform { flex-basis: calc(50% - 12px); max-width: 140px; }
+    .brand-footer__platform img { max-height: 60px; }
+    .brand-footer__bottom { flex-direction: column; margin-block-start: 40px; }
   }
 {% endstylesheet %}
 
@@ -257,6 +254,20 @@
       "default": false
     },
     {
+      "type": "checkbox",
+      "id": "logo_surface",
+      "label": "t:footer_surface.logo_surface",
+      "default": false,
+      "visible_if": "{{ section.settings.show_advanced }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "platform_surface",
+      "label": "t:footer_surface.platform_surface",
+      "default": false,
+      "visible_if": "{{ section.settings.show_advanced }}"
+    },
+    {
       "type": "range",
       "id": "logo_width",
       "label": "t:brand_footer.logo_width",
@@ -266,20 +277,6 @@
       "unit": "px",
       "default": 224,
       "visible_if": "{{ section.settings.show_advanced }}"
-    },
-    {
-      "type": "text",
-      "id": "services_heading",
-      "label": "t:footer_surface.legacy_heading",
-      "default": "Services",
-      "visible_if": "{{ section.settings.show_advanced and section.settings.services_menu == blank }}"
-    },
-    {
-      "type": "text",
-      "id": "company_heading",
-      "label": "t:footer_surface.legacy_heading",
-      "default": "Company",
-      "visible_if": "{{ section.settings.show_advanced and section.settings.company_menu == blank }}"
     },
     {
       "type": "url",
@@ -313,14 +310,14 @@
       "id": "platform_background",
       "label": "t:brand_footer.platform_background",
       "default": "#F8F7FF",
-      "visible_if": "{{ section.settings.show_advanced }}"
+      "visible_if": "{{ section.settings.show_advanced and section.settings.platform_surface }}"
     },
     {
       "type": "color",
       "id": "platform_text",
       "label": "t:brand_footer.platform_text",
       "default": "#21164F",
-      "visible_if": "{{ section.settings.show_advanced }}"
+      "visible_if": "{{ section.settings.show_advanced and section.settings.platform_surface }}"
     },
     {
       "type": "range",
@@ -346,42 +343,6 @@
     }
   ],
   "blocks": [
-    {
-      "type": "navigation_link",
-      "name": "t:footer_surface.legacy_navigation",
-      "settings": [
-        {
-          "type": "paragraph",
-          "content": "t:footer_surface.legacy_info"
-        },
-        {
-          "type": "select",
-          "id": "column",
-          "label": "t:brand_footer.column",
-          "options": [
-            {
-              "value": "services",
-              "label": "t:brand_footer.services"
-            },
-            {
-              "value": "company",
-              "label": "t:brand_footer.company"
-            }
-          ],
-          "default": "services"
-        },
-        {
-          "type": "text",
-          "id": "label",
-          "label": "t:brand_footer.label"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "t:brand_footer.link"
-        }
-      ]
-    },
     {
       "type": "office",
       "name": "t:brand_footer.office",

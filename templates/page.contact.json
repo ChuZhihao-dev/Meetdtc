@@ -114,8 +114,8 @@
         "detail_fAyRXH": {
           "type": "detail",
           "settings": {
-            "label": "Hours",
-            "value": "Monday–Friday\nUTC+8",
+            "label": "Monday - Friday",
+            "value": "10:00 AM-7:00 PM (UTC+8)",
             "link": ""
           }
         },
@@ -165,11 +165,11 @@
         "background": "linear-gradient(164.59deg, rgba(216, 224, 248, 1) 0.157%, rgba(247, 241, 237, 1) 99.843%)",
         "heading_gradient": "linear-gradient(134.978deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
         "text_color": "#000000",
-        "card_background": "#FBFBFB",
-        "accent_color": "#1122B8",
+        "card_background": "#fbfbfb",
+        "accent_color": "#1122b8",
         "button_background": "linear-gradient(102.817deg, rgba(124, 33, 194, 1) 0.416%, rgba(93, 112, 235, 1) 99.584%)",
-        "button_text": "#FFFFFF",
-        "input_background_color": "#FFFFFF",
+        "button_text": "#ffffff",
+        "input_background_color": "#ffffff",
         "input_text_color": "#000000",
         "input_border_color": "#878787",
         "padding-block-start": 80,

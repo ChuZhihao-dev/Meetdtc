@@ -11,200 +11,6 @@
   "type": "footer",
   "name": "t:names.footer",
   "sections": {
-    "brand_footer_YTnKD7": {
-      "type": "brand-footer",
-      "blocks": {
-        "navigation_link_6nFETf": {
-          "type": "navigation_link",
-          "settings": {
-            "column": "services",
-            "label": "Web Development",
-            "link": ""
-          }
-        },
-        "navigation_link_XWLL3t": {
-          "type": "navigation_link",
-          "settings": {
-            "column": "services",
-            "label": "SEO & AEO",
-            "link": ""
-          }
-        },
-        "navigation_link_cPKcFh": {
-          "type": "navigation_link",
-          "settings": {
-            "column": "services",
-            "label": "Conversion Rate Optimization (CRO)",
-            "link": ""
-          }
-        },
-        "navigation_link_WecGfd": {
-          "type": "navigation_link",
-          "settings": {
-            "column": "services",
-            "label": "Email Marketing",
-            "link": ""
-          }
-        },
-        "navigation_link_g9zfNj": {
-          "type": "navigation_link",
-          "settings": {
-            "column": "services",
-            "label": "Affiliate Marketing",
-            "link": ""
-          }
-        },
-        "navigation_link_rDCwrz": {
-          "type": "navigation_link",
-          "settings": {
-            "column": "services",
-            "label": "WhatsApp Marketing",
-            "link": ""
-          }
-        },
-        "navigation_link_QqML48": {
-          "type": "navigation_link",
-          "settings": {
-            "column": "company",
-            "label": "About Us",
-            "link": "shopify://pages/about-us"
-          }
-        },
-        "navigation_link_BmCrgq": {
-          "type": "navigation_link",
-          "settings": {
-            "column": "company",
-            "label": "Our Work",
-            "link": "shopify://blogs/solutions"
-          }
-        },
-        "navigation_link_J8VLCT": {
-          "type": "navigation_link",
-          "settings": {
-            "column": "company",
-            "label": "Contact Us",
-            "link": "shopify://pages/contact"
-          }
-        },
-        "office_t7XXar": {
-          "type": "office",
-          "settings": {
-            "city": "Singapore",
-            "address": "112 Robinson Road, #06-03, Singapore 068902",
-            "link": ""
-          }
-        },
-        "office_JFXiee": {
-          "type": "office",
-          "settings": {
-            "city": "Shanghai",
-            "address": "Floors 3–8, No. 35 Loushanguan Road, Changning District, Shanghai, China",
-            "link": ""
-          }
-        },
-        "office_jDkBqF": {
-          "type": "office",
-          "settings": {
-            "city": "Shenzhen",
-            "address": "25th Floor, Hanking Center, Futian District, Shenzhen, China",
-            "link": ""
-          }
-        },
-        "platform_mxmyae": {
-          "type": "platform",
-          "settings": {
-            "label": "Shopify",
-            "link": ""
-          }
-        },
-        "platform_H8f7Te": {
-          "type": "platform",
-          "settings": {
-            "label": "Klaviyo",
-            "link": ""
-          }
-        },
-        "platform_NyL6h7": {
-          "type": "platform",
-          "settings": {
-            "label": "Omnisend",
-            "link": ""
-          }
-        },
-        "platform_XJFP8Q": {
-          "type": "platform",
-          "settings": {
-            "label": "Trustpilot",
-            "link": ""
-          }
-        },
-        "platform_LnCL9y": {
-          "type": "platform",
-          "settings": {
-            "label": "impact.com",
-            "link": ""
-          }
-        },
-        "platform_8qVMBx": {
-          "type": "platform",
-          "settings": {
-            "label": "Awin",
-            "link": ""
-          }
-        },
-        "platform_jkkXjw": {
-          "type": "platform",
-          "settings": {
-            "label": "Rakuten Advertising",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "navigation_link_6nFETf",
-        "navigation_link_XWLL3t",
-        "navigation_link_cPKcFh",
-        "navigation_link_WecGfd",
-        "navigation_link_g9zfNj",
-        "navigation_link_rDCwrz",
-        "navigation_link_QqML48",
-        "navigation_link_BmCrgq",
-        "navigation_link_J8VLCT",
-        "office_t7XXar",
-        "office_JFXiee",
-        "office_jDkBqF",
-        "platform_mxmyae",
-        "platform_H8f7Te",
-        "platform_NyL6h7",
-        "platform_XJFP8Q",
-        "platform_LnCL9y",
-        "platform_8qVMBx",
-        "platform_jkkXjw"
-      ],
-      "name": "t:brand_footer.name",
-      "settings": {
-        "logo_width": 224,
-        "description": "Integrated MarTech for global growth — website and e-commerce, customer acquisition, lifecycle marketing and data intelligence.",
-        "services_heading": "Services",
-        "services_menu": "",
-        "company_heading": "Company",
-        "company_menu": "",
-        "contact_heading": "Get in touch",
-        "email": "enquiry@meetdtc.com",
-        "whatsapp": "",
-        "whatsapp_link": "",
-        "hours": "",
-        "platforms_heading": "Platforms & ecosystem",
-        "copyright_name": "Meet Experience",
-        "bottom_note": "",
-        "background": "linear-gradient(115deg, rgba(38, 59, 164, 1), rgba(86, 34, 182, 1) 55%, rgba(117, 39, 199, 1) 100%)",
-        "text_color": "#FFFFFF",
-        "platform_background": "#F8F7FF",
-        "platform_text": "#21164F",
-        "padding-block-start": 64,
-        "padding-block-end": 24
-      }
-    },
     "footer_diagnosis_H4xKm9": {
       "type": "footer-diagnosis",
       "blocks": {
@@ -245,9 +51,12 @@
       ],
       "name": "Growth diagnosis footer",
       "settings": {
+        "hidden_pages": "contact",
         "eyebrow": "FREE GROWTH DIAGNOSIS",
         "heading": "Request a Free Growth Diagnosis",
         "description": "<p>Tell us about your business and current challenges. Our team will review your needs, identify growth priorities and recommend the most suitable next steps.</p>",
+        "submit_label": "Get My Free Growth Diagnosis",
+        "show_advanced": false,
         "gradient_left": "#1550ff",
         "gradient_middle": "#6551f5",
         "gradient_right": "#af67f7",
@@ -269,10 +78,133 @@
         "website_placeholder": "https://",
         "goals_label": "Tell Us About Your Goals or Challenges",
         "goals_placeholder": "Tell us what your business does, the challenges you are facing, and what you would like to achieve.",
-        "submit_label": "Get My Free Growth Diagnosis",
         "desktop_column_gap": 48,
         "padding-block-start": 64,
         "padding-block-end": 64
+      }
+    },
+    "brand_footer_YTnKD7": {
+      "type": "brand-footer",
+      "blocks": {
+        "office_xVVfcE": {
+          "type": "office",
+          "settings": {
+            "city": "Monday - Friday",
+            "address": "10:00 AM-7:00 PM (UTC+8)",
+            "link": ""
+          }
+        },
+        "office_t7XXar": {
+          "type": "office",
+          "settings": {
+            "city": "Singapore",
+            "address": "112 Robinson Road, #06-03, Singapore 068902",
+            "link": ""
+          }
+        },
+        "office_JFXiee": {
+          "type": "office",
+          "settings": {
+            "city": "Shanghai",
+            "address": "Floors 3–8, No. 35 Loushanguan Road, Changning District, Shanghai, China",
+            "link": ""
+          }
+        },
+        "office_jDkBqF": {
+          "type": "office",
+          "settings": {
+            "city": "Shenzhen",
+            "address": "25th Floor, Hanking Center, Futian District, Shenzhen, China",
+            "link": ""
+          }
+        },
+        "platform_mxmyae": {
+          "type": "platform",
+          "settings": {
+            "image": "shopify://shop_images/shopify_partners_2.png",
+            "label": "Shopify",
+            "link": ""
+          }
+        },
+        "platform_H8f7Te": {
+          "type": "platform",
+          "settings": {
+            "image": "shopify://shop_images/klayviyo_2.png",
+            "label": "Klaviyo",
+            "link": ""
+          }
+        },
+        "platform_NyL6h7": {
+          "type": "platform",
+          "settings": {
+            "image": "shopify://shop_images/3335b2698126216af3b178eaa81836de3b7a705a.png",
+            "label": "impact",
+            "link": ""
+          }
+        },
+        "platform_XJFP8Q": {
+          "type": "platform",
+          "settings": {
+            "image": "shopify://shop_images/eb61df2bb48e7a5e01428fec29bf5d9cc6952a77.png",
+            "label": "Trustpilot",
+            "link": ""
+          }
+        },
+        "platform_8qVMBx": {
+          "type": "platform",
+          "settings": {
+            "image": "shopify://shop_images/abc0fdd9fb74791ff31cf83cf6f9371356f9f905.png",
+            "label": "Awin",
+            "link": ""
+          }
+        },
+        "platform_jkkXjw": {
+          "type": "platform",
+          "settings": {
+            "image": "shopify://shop_images/36723c48589dc7d15dacd6d038f881d7b1f98bc3.png",
+            "label": "Rakuten Advertising",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "office_xVVfcE",
+        "office_t7XXar",
+        "office_JFXiee",
+        "office_jDkBqF",
+        "platform_mxmyae",
+        "platform_H8f7Te",
+        "platform_NyL6h7",
+        "platform_XJFP8Q",
+        "platform_8qVMBx",
+        "platform_jkkXjw"
+      ],
+      "name": "t:brand_footer.name",
+      "settings": {
+        "logo": "shopify://shop_images/Group_1597884435.png",
+        "description": "Integrated MarTech for global growth — website and e-commerce, customer acquisition, lifecycle marketing and data intelligence.",
+        "services_menu": "services",
+        "company_menu": "company",
+        "contact_heading": "Get in touch",
+        "email": "enquiry@meetdtc.com",
+        "whatsapp": "WhatsApp: + 1555 - 452 - 0029",
+        "hours": "",
+        "platforms_heading": "Platforms & ecosystem",
+        "copyright_name": "Meet Experience",
+        "bottom_note": "",
+        "shared_background": "linear-gradient(119.64deg, rgba(0, 72, 255, 1) 6.48%, rgba(242, 0, 255, 0.25) 100.95%)",
+        "show_advanced": false,
+        "logo_surface": false,
+        "platform_surface": false,
+        "logo_width": 224,
+        "whatsapp_link": "",
+        "share_background": true,
+        "background": "linear-gradient(115deg, rgba(38, 59, 164, 1), rgba(86, 34, 182, 1) 55%, rgba(117, 39, 199, 1) 100%)",
+        "text_color": "#ffffff",
+        "platform_background": "#f8f7ff",
+        "platform_text": "#21164f",
+        "padding-block-start": 64,
+        "padding-block-end": 24
       }
     }
   },

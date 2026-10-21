@@ -397,7 +397,7 @@
         "eyebrow": "Email Marketing",
         "heading": "Turn Email Into a Predictable Revenue Engine",
         "heading_tag": "h1",
-        "description": "We help DTC brands build a full-fidelity email marketing engine — from platform selection and system setup to lifecycle strategy and operations coaching — that lifts open rates, conversion and email's share of GMV, creating a second growth engine beyond paid traffic.",
+        "description": "ME help DTC brands build a full-fidelity email marketing engine — from platform selection and system setup to lifecycle strategy and operations coaching — that lifts open rates, conversion and email's share of GMV, creating a second growth engine beyond paid traffic.",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
@@ -822,7 +822,7 @@
           },
           "blocks": {}
         },
-        "client_story_metric_jtqQkg": {
+        "client_story_metric_MwnYiR": {
           "type": "_client-story-metric",
           "settings": {
             "value": "22%+",
@@ -830,34 +830,36 @@
           },
           "blocks": {}
         },
-        "client_story_metric_MwnYiR": {
-          "type": "_client-story-metric",
+        "client_story_benefit_kimBeg": {
+          "type": "_client-story-benefit",
+          "name": "t:client_story.benefit_name",
           "settings": {
-            "value": "full lifecycle coverage",
-            "label": "Nurture touchpoints"
+            "heading": "full lifecycle coverage",
+            "description": "Nurture touchpoints"
           },
           "blocks": {}
         },
-        "client_story_metric_JWPK8E": {
-          "type": "_client-story-metric",
+        "client_story_benefit_q4UNpf": {
+          "type": "_client-story-benefit",
+          "name": "t:client_story.benefit_name",
           "settings": {
-            "value": "shortened for high-intent buyers",
-            "label": "Decision cycle"
+            "heading": "shortened for high-intent buyers",
+            "description": "Decision cycle"
           },
           "blocks": {}
         }
       },
       "block_order": [
         "client_story_metric_zLRcgq",
-        "client_story_metric_jtqQkg",
         "client_story_metric_MwnYiR",
-        "client_story_metric_JWPK8E"
+        "client_story_benefit_kimBeg",
+        "client_story_benefit_q4UNpf"
       ],
       "name": "t:client_story.name",
       "settings": {
         "eyebrow": "FEATURED CLIENT STORY",
-        "heading": "Lifecycle Email Doubles a Furniture Brand’s Revenue Share",
-        "description": "<p>ME built lifecycle email flows for a high-ticket furniture brand, nurturing buyers from sign-up to win-back. In three months, email revenue grew 40%+ and its share of total GMV doubled to over 22%.</p>",
+        "heading": "Furniture Brand Achieved 2× Email GMV Share with Lifecycle Marketing",
+        "description": "<p>A furniture brand faced long buying cycles and low email revenue. ME built lifecycle flows and personalised nurturing, growing email GMV by 40%+ and doubling its GMV share to over 22% in three months.<br/></p>",
         "image": "shopify://shop_images/b8f297d560a397b1d5b515362c3c2991.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",

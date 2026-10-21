@@ -397,7 +397,7 @@
         "eyebrow": "Search Engine Optimization",
         "heading": "Turn Search Demand into Qualified Traffic and Leads",
         "heading_tag": "h1",
-        "description": "We help businesses reach customers searching for their products and services. Through technical improvements, targeted content, and ongoing optimization, we strengthen search visibility and create clearer paths from discovery to enquiry or purchase.",
+        "description": "ME help businesses reach customers searching for their products and services. Through technical improvements, targeted content, and ongoing optimization, we strengthen search visibility and create clearer paths from discovery to enquiry or purchase.",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
@@ -758,7 +758,7 @@
           "type": "step",
           "settings": {
             "heading": "Understand Your Business",
-            "description": "<p><strong>We confirm your products, target markets, competitors, business goals, and available website data.</strong></p>",
+            "description": "<p>We confirm your products, target markets, competitors, business goals, and available website data.</p>",
             "deliverable": ""
           }
         },
@@ -766,7 +766,7 @@
           "type": "step",
           "settings": {
             "heading": "Establish the Baseline",
-            "description": "<p><strong>We assess website health, search performance, and content gaps to identify the starting point.</strong></p>",
+            "description": "<p>We assess website health, search performance, and content gaps to identify the starting point.</p>",
             "deliverable": ""
           }
         },
@@ -774,7 +774,7 @@
           "type": "step",
           "settings": {
             "heading": "Set the Priorities",
-            "description": "<p><strong>We agree on target pages, keyword groups, deliverables, responsibilities, and the optimization roadmap.</strong></p>",
+            "description": "<p>We agree on target pages, keyword groups, deliverables, responsibilities, and the optimization roadmap.</p>",
             "deliverable": ""
           }
         },
@@ -782,7 +782,7 @@
           "type": "step",
           "settings": {
             "heading": "Implement Improvements",
-            "description": "<p><strong>We deliver the agreed technical, page, content, and authority work with your team.</strong></p>",
+            "description": "<p>We deliver the agreed technical, page, content, and authority work with your team.</p>",
             "deliverable": ""
           }
         },
@@ -790,7 +790,7 @@
           "type": "step",
           "settings": {
             "heading": "Review and Refine",
-            "description": "<p><strong>We evaluate results and adjust priorities based on performance, customer demand, and implementation progress.</strong></p>",
+            "description": "<p>We evaluate results and adjust priorities based on performance, customer demand, and implementation progress.</p>",
             "deliverable": ""
           }
         }
@@ -806,7 +806,7 @@
       "settings": {
         "eyebrow": "DELIVERY PROCESS",
         "heading": "A Clear Plan, Consistent Execution, and Regular Review",
-        "description": "<p><strong>Each stage defines what we will do, what you will receive, and where your team’s input is needed.</strong></p>",
+        "description": "<p>Each stage defines what we will do, what you will receive, and where your team’s input is needed.</p>",
         "background": "linear-gradient(135.439deg, rgba(211, 216, 246, 1) 2.204%, rgba(253, 243, 255, 1) 97.796%)",
         "heading_gradient": "linear-gradient(107.919deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
         "text_color": "#000000",
@@ -861,8 +861,8 @@
       "name": "t:client_story.name",
       "settings": {
         "eyebrow": "FEATURED CLIENT STORY",
-        "heading": "Robotic Pool Cleaner Brand Grows First-Page Keywords by 354% with SEO",
-        "description": "<p><br/>ME helped a robotic pool cleaner brand improve its US search visibility through technical SEO, content and backlink development. In nine months, Google first-page keywords grew from 416 to 1,889, with over 1,800 new referring domains.<br/><br/></p>",
+        "heading": "Pool Cleaner Brand Achieved 354% First-Page Keyword Growth with SEO",
+        "description": "<p>A robotic pool cleaner brand needed stronger US search visibility. ME improved technical SEO, content and backlinks, growing Google first-page keywords from 416 to 1,889 in nine months.<br/><br/></p>",
         "image": "shopify://shop_images/pool-cleaner-case-square.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",

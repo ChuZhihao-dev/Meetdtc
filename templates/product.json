@@ -430,7 +430,7 @@
         "eyebrow": "Website Design & Development",
         "heading": "Turn Your Website Into\n a Foundation for Global Growth",
         "heading_tag": "h1",
-        "description": "We bring strategy, design, development and systems integration together to build Shopify, WordPress and custom websites that make buying easier, generate qualified enquiries and support your next stage of growth.",
+        "description": "ME bring strategy, design, development and systems integration together to build Shopify, WordPress and custom websites that make buying easier, generate qualified enquiries and support your next stage of growth.",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
@@ -766,7 +766,7 @@
       "settings": {
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
-        "description": "<p>A monular scope tailored to each service, growth priarity and operating need. Add or<br/>&nbsp;romove modulas as the progremme grows.</p>",
+        "description": "<p>Six connected workstreams cover planning, design, development and launch, with deliverables tailored to your agreed project scope.</p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
@@ -908,11 +908,12 @@
           },
           "blocks": {}
         },
-        "client_story_metric_jtqQkg": {
-          "type": "_client-story-metric",
+        "client_story_benefit_3rerXj": {
+          "type": "_client-story-benefit",
+          "name": "t:client_story.benefit_name",
           "settings": {
-            "value": "+36%",
-            "label": "Website Performance"
+            "heading": "Full-Lifecycle Nurturing",
+            "description": "Engage buyers from sign-up to win-back."
           },
           "blocks": {}
         },
@@ -923,18 +924,28 @@
             "label": "Keywords Ranking in Search"
           },
           "blocks": {}
+        },
+        "client_story_benefit_raQ8gY": {
+          "type": "_client-story-benefit",
+          "name": "t:client_story.benefit_name",
+          "settings": {
+            "heading": "Shorter Decision Cycles",
+            "description": "Help high-intent buyers reach purchase decisions sooner."
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "client_story_metric_zLRcgq",
-        "client_story_metric_jtqQkg",
-        "client_story_metric_MwnYiR"
+        "client_story_benefit_3rerXj",
+        "client_story_metric_MwnYiR",
+        "client_story_benefit_raQ8gY"
       ],
       "name": "t:client_story.name",
       "settings": {
         "eyebrow": "FEATURED CLIENT STORY",
-        "heading": "Shopify Plus redesign drives 28% higher \ncart-to-checkout rate.",
-        "description": "<p><br/>ME refreshed the brand’s UI/UX and migrated its Magento store to Shopify Plus, creating a faster, smoother shopping experience.<br/><br/></p>",
+        "heading": "Fashion Brand Achieved 28% Higher Cart-to-Checkout Rate with Shopify Plus",
+        "description": "<p>An outdated Magento store limited a fashion brand’s experience and growth. ME redesigned its UI/UX and migrated it to Shopify Plus, improving website performance, cart-to-checkout rate and search visibility.<br/></p>",
         "image": "shopify://shop_images/web-development_case_studies.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",

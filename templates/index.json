@@ -214,7 +214,9 @@
       "blocks": {
         "brand_row_cenTg7": {
           "type": "_brand-row",
-          "settings": {},
+          "settings": {
+            "logo_motion": "left"
+          },
           "blocks": {
             "brand_logo_EzCeMM": {
               "type": "_brand-logo",
@@ -272,7 +274,9 @@
         },
         "brand_row_ByPFP4": {
           "type": "_brand-row",
-          "settings": {},
+          "settings": {
+            "logo_motion": "right"
+          },
           "blocks": {
             "brand_logo_7jej6C": {
               "type": "_brand-logo",
@@ -359,7 +363,7 @@
         "heading": "Build Smarter,\nScale Faster",
         "description": "<p>From strategy and technology to data and execution, we help global brands connect every stage of the customer journey through integrated Martech solutions that drive measurable growth.</p>",
         "link_label": "Explore Our Work →",
-        "link": "#shopify-section-template--27942911082650__our_work_W6j7hw",
+        "link": "shopify://blogs/our-works",
         "font": "var(--font-heading--family)",
         "font_size": "3.625rem",
         "gradient_text": true,
@@ -382,7 +386,7 @@
       "name": "t:names.product_solutions_grid",
       "settings": {
         "collection": "frontpage",
-        "product_limit": 6,
+        "product_limit": 9,
         "heading": "<p>Solutions Built for&nbsp;<br/>Measurable Growth</p>",
         "read_more_label": "Read More →",
         "font": "var(--font-heading--family)",
@@ -418,7 +422,7 @@
         "heading": "Not Sure Where to Focus Your Growth Efforts?",
         "description": "<p>Tell us about your goals and challenges. We'll help identify the right solutions, platforms and next steps.</p>",
         "link_label": "Find the Right Solution",
-        "link": "#",
+        "link": "#growth-diagnosis",
         "font": "var(--font-heading--family)",
         "font_size": "2.5rem",
         "weight": "700",
@@ -454,6 +458,7 @@
       "type": "aidea-model",
       "name": "t:aidea.name",
       "settings": {
+        "enable_animation": true,
         "heading": "AIDEA model",
         "description": "Based on the AIDEA model, we have developed a marketing growth methodology",
         "ai_label": "Artificial Intelligence",
@@ -557,36 +562,39 @@
         "result_card_pb89L6": {
           "type": "_result-card",
           "settings": {
-            "tag": "Client logo",
-            "description": "<p>Two or three lines here: where the client was, what we changed, and what it was worth. Say it the way Verz does – from what to what, and why it mattered.</p>",
-            "metric_1_value": "00%",
-            "metric_1_label": "Metric to be filled",
-            "metric_2_value": "0.0x",
-            "metric_2_label": "Metric to be filled"
+            "image": "shopify://shop_images/ebike-cover.png",
+            "tag": "E-Bike Brand",
+            "description": "<p>Partnering with ME to scale high-ticket sales across North America and Europe, the brand used tiered management and targeted cycling media recruitment to build a network of over 1,000 quality affiliates.<br/><br/></p>",
+            "metric_1_value": "$1,700",
+            "metric_1_label": "average order value",
+            "metric_2_value": "$22",
+            "metric_2_label": "earnings per click"
           },
           "blocks": {}
         },
         "result_card_6aemjH": {
           "type": "_result-card",
           "settings": {
-            "tag": "Client logo",
-            "description": "<p>Two or three lines here: where the client was, what we changed, and what it was worth. Say it the way Verz does – from what to what, and why it mattered.</p>",
-            "metric_1_value": "00%",
-            "metric_1_label": "Metric to be filled",
-            "metric_2_value": "0.0x",
-            "metric_2_label": "Metric to be filled"
+            "image": "shopify://shop_images/wearable-cooling-cover.png",
+            "tag": "Cooling Wearables",
+            "description": "<p>To capture seasonal demand across North America and Europe, the brand aligned affiliate campaigns with key summer sales, achieving an impressive 8.3× peak-season ROI with ME’s coordinated resource allocation.</p>",
+            "metric_1_value": "8.3×",
+            "metric_1_label": "peak-season affiliate ROI",
+            "metric_2_value": "+68.5%",
+            "metric_2_label": " affiliate revenue growth"
           },
           "blocks": {}
         },
         "result_card_8yBrPr": {
           "type": "_result-card",
           "settings": {
-            "tag": "Client logo",
-            "description": "<p>Two or three lines here: where the client was, what we changed, and what it was worth. Say it the way Verz does – from what to what, and why it mattered.</p>",
-            "metric_1_value": "00%",
-            "metric_1_label": "Metric to be filled",
-            "metric_2_value": "0.0x",
-            "metric_2_label": "Metric to be filled"
+            "image": "shopify://shop_images/projector-cover.png",
+            "tag": "Smart Projector",
+            "description": "<p>Starting from zero, the projector brand partnered with ME to launch across the United States, Germany, and France. Structured publisher recruitment drove a rapid 17.3× surge in monthly revenue.</p>",
+            "metric_1_value": "120+ ",
+            "metric_1_label": "monthly active publishers",
+            "metric_2_value": "17.3×",
+            "metric_2_label": "monthly affiliate revenue"
           },
           "blocks": {}
         }

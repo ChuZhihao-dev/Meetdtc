@@ -122,13 +122,15 @@
   .footer-diagnosis--drawer-only { padding-block: 0; }
 
   .footer-diagnosis {
+    --page-content-width: 1276px;
+    --page-width: calc(var(--page-content-width) + var(--page-margin) * 2);
     font-family: var(--font-heading--family);
     color: #ffffff;
   }
 
   .footer-diagnosis__top {
     display: grid;
-    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    grid-template-columns: minmax(0, 534fr) minmax(0, 707fr);
     gap: var(--fd-column-gap, 48px);
     align-items: start;
     width: 100%;
@@ -139,6 +141,7 @@
     flex-direction: column;
     gap: 15px;
     min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .footer-diagnosis__eyebrow {
@@ -163,9 +166,8 @@
   .footer-diagnosis__description {
     font-weight: 500;
     font-size: var(--fluid-body-24, 24px);
-    line-height: 120%;
-letter-spacing: normal;
-
+    line-height: 1.333333;
+    letter-spacing: normal;
   }
 
   .footer-diagnosis__description > :first-child,
@@ -177,7 +179,7 @@ letter-spacing: normal;
     display: flex;
     flex-direction: column;
     gap: 21px;
-    margin: 12px 0 0;
+    margin: 0;
     padding: 0;
     list-style: none;
   }
@@ -188,7 +190,7 @@ letter-spacing: normal;
     align-items: center;
     font-weight: 600;
     font-size: var(--fluid-body-20, 20px);
-    line-height: 100%;
+    line-height: 1.4;
   }
 
   .footer-diagnosis__feature-icon {
@@ -241,30 +243,31 @@ letter-spacing: normal;
   .footer-diagnosis__label {
     font-weight: 600;
     font-size: 17px;
-    line-height: 100%;
+    line-height: 21px;
     letter-spacing: normal;
-    color:#000000;
+    color: #000000;
   }
 
   .footer-diagnosis__input {
     width: 100%;
-    min-height: 44px;
-    padding: 10px 20px;
+    min-height: 55px;
+    padding: 9px 20px;
     font-weight: 400;
     font-size: 15px;
     line-height: 36px;
     letter-spacing: normal;
     background-color: #ffffff;
-    border: 1px solid #878787;
+    border: 0.5px solid #878787;
     border-radius: var(--fd-input-radius, 16px);
   }
 
   .footer-diagnosis__input::placeholder {
-    color: #9aa0b4;
+    color: #898989;
   }
 
 
   .footer-diagnosis__input--textarea {
+    block-size: 132px;
     min-height: 132px;
     resize: vertical;
   }
@@ -279,7 +282,7 @@ letter-spacing: normal;
     letter-spacing: normal;
     color: #ffffff;
     cursor: pointer;
-    background-image: linear-gradient(90deg, var(--fd-btn-from, #9b3cf0) 0%, var(--fd-btn-to, #4e63f0) 100%);
+    background-image: linear-gradient(105deg, var(--fd-btn-from, #9b3cf0) 0.42%, var(--fd-btn-to, #4e63f0) 99.58%);
     border: 0;
     border-radius: 999px;
   }
@@ -322,10 +325,12 @@ letter-spacing: normal;
   }
 
   @media screen and (max-width: 767px) {
+    .footer-diagnosis__input { font-size: 16px; line-height: 1.5; padding-block: 14px; }
     .footer-diagnosis__submit{
-      font-size:14px;
-      min-height:48px;
-      padding:6px 10px;
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 48px;
+      padding: 12px 16px;
     }
     .footer-diagnosis__card {
       padding: 20px;
@@ -481,7 +486,7 @@ letter-spacing: normal;
       "max": 60,
       "step": 1,
       "unit": "px",
-      "default": 32,
+      "default": 40,
       "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
@@ -492,7 +497,7 @@ letter-spacing: normal;
       "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 12,
+      "default": 16,
       "visible_if": "{{ section.settings.show_advanced }}"
     },
     {
@@ -639,8 +644,8 @@ letter-spacing: normal;
         "gradient_middle": "#6551F5",
         "gradient_right": "#AF67F7",
         "card_background": "#FFFFFF",
-        "card_radius": 32,
-        "input_radius": 12,
+        "card_radius": 40,
+        "input_radius": 16,
         "button_gradient_start": "#9B3CF0",
         "button_gradient_end": "#4E63F0",
         "name_label": "Your Name",

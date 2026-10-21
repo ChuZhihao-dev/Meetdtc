@@ -84,7 +84,7 @@
           "type": "button",
           "settings": {
             "label": "Talk to Our Team →",
-            "link": "shopify://pages/contact",
+            "link": "#growth-diagnosis",
             "open_in_new_tab": false,
             "style_class": "button-custom",
             "custom_button_background": "#ffffff",

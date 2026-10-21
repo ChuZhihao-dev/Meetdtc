@@ -1,0 +1,48 @@
+{% doc %}
+  Renders an editable benefit heading and description in the client story's result grid.
+  Inherits the parent section's font, text color and heading gradient.
+  @example Add a Client benefit block after a Client result block in Featured Client Story.
+{% enddoc %}
+{% if block.settings.heading != blank or block.settings.description != blank %}
+  <div class="client-story-benefit" {{ block.shopify_attributes }}>
+    {% if block.settings.heading != blank %}<p class="client-story-benefit__heading">{{ block.settings.heading | escape }}</p>{% endif %}
+    {% if block.settings.description != blank %}<p class="client-story-benefit__description">{{ block.settings.description | escape | newline_to_br }}</p>{% endif %}
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .client-story-benefit { min-inline-size: 0; padding-block-start: 1px; text-align: start; }
+  .client-story-benefit__heading { margin: 0; font-family: inherit; font-size: var(--fluid-body-20, 20px); font-weight: 600; line-height: 1.2; background: var(--client-story-gradient); background-clip: text; -webkit-text-fill-color: transparent; overflow-wrap: anywhere; }
+  .client-story-benefit__description { margin: 0; color: inherit; font-size: var(--fluid-body-16, 16px); font-weight: 500; line-height: 1.125; overflow-wrap: anywhere; }
+  .client-story-benefit__heading + .client-story-benefit__description { margin-block-start: 5px; }
+  @media screen and (max-width: 749px) {
+    .client-story-benefit__heading { font-size: var(--fluid-body-20, 16px); }
+    .client-story-benefit__description { font-size: var(--fluid-body-16, 14px); line-height: 1.4; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:client_story.benefit_name",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:client_story.benefit_heading",
+      "default": "Full-Lifecycle Nurturing"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:client_story.benefit_description",
+      "default": "Engage buyers from sign-up to win-back."
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:client_story.benefit_name"
+    }
+  ]
+}
+{% endschema %}

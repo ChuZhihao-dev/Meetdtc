@@ -1,6 +1,6 @@
 {% comment %}
-  Featured Client Story. Editable case summary, metric blocks and responsive client media.
-  Metric blocks remain static. An empty destination is previewed only in the editor.
+  Featured Client Story. Editable case summary, result and benefit blocks, and responsive client media.
+  Blocks follow merchant order. An empty destination is previewed only in the editor.
   @example Add Featured Client Story, replace the copy and image, and configure the case link.
 {% endcomment %}
 {% liquid
@@ -81,6 +81,7 @@
   .client-story__description > :last-child { margin-block-end: 0; }
   .client-story__description a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
   .client-story__metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 193px)); gap: 15px 70px; max-inline-size: 456px; margin-block-start: 35px; margin-inline-start: -15px; }
+  .client-story__metrics:has(.client-story-benefit) { --client-story-metric-align: start; --client-story-metric-value-size: 34px; --client-story-metric-label-size: 20px; --client-story-metric-label-gap: 3px; grid-template-columns: minmax(0, 193fr) minmax(0, 265fr); align-items: start; gap: 36px 13px; max-inline-size: 471px; margin-inline-start: 0; }
   .client-story__button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; max-inline-size: 100%; min-block-size: 53.176px; margin-block-start: 41px; margin-inline-start: 3px; padding: 8px 20px; border-radius: 54px; background: var(--client-story-button-background); color: var(--client-story-button-color); font-family: inherit; font-size: 21px; font-weight: 600; line-height: 1.5; text-align: center; text-decoration: none; overflow-wrap: anywhere; }
   .client-story__button span { flex: none; }
   .client-story__button:focus-visible, .client-story__description a:focus-visible { outline: 2px solid var(--client-story-accent); outline-offset: 4px; }
@@ -108,6 +109,7 @@
   .client-story__heading { max-inline-size: none; font-size: var(--fluid-heading-44, 36px); line-height: 1.23; }
   .client-story__description { max-inline-size: none; font-size: var(--fluid-body-20, 18px); line-height: var(--fluid-leading-1-5, 28px); }
   .client-story__metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-inline-size: none; margin-inline-start: 0; }
+  .client-story__metrics:has(.client-story-benefit) { max-inline-size: none; }
   .client-story__button { margin-block-start: 32px; margin-inline-start: 0; }
   .client-story__media { min-block-size: 0; aspect-ratio: 1; }
   }
@@ -119,6 +121,7 @@
   .client-story__heading { font-size: var(--fluid-heading-44, clamp(26px, 7.2vw, 32px)); line-height: 1.23; }
   .client-story__description { margin-block-start: 20px; font-size: var(--fluid-body-20, 16px); line-height: var(--fluid-leading-1-5, 26px); }
   .client-story__metrics { margin-block-start: 28px; gap: 20px 12px; }
+  .client-story__metrics:has(.client-story-benefit) { --client-story-metric-value-size: 28px; --client-story-metric-label-size: 14px; gap: 24px 12px; }
   .client-story__button { font-size: 16px; padding-inline: 18px; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -139,6 +142,9 @@
   "blocks": [
     {
       "type": "_client-story-metric"
+    },
+    {
+      "type": "_client-story-benefit"
     }
   ],
   "settings": [
@@ -317,6 +323,46 @@
         "metric_2",
         "metric_3",
         "metric_4"
+      ]
+    },
+    {
+      "name": "t:client_story.benefit_preset_name",
+      "category": "t:categories.storytelling",
+      "blocks": {
+        "metric_1": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "[XX%]",
+            "label": "Primary result"
+          }
+        },
+        "benefit_1": {
+          "type": "_client-story-benefit",
+          "settings": {
+            "heading": "Full-Lifecycle Nurturing",
+            "description": "Engage buyers from sign-up\nto win-back."
+          }
+        },
+        "metric_2": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "[XX%]",
+            "label": "Primary result"
+          }
+        },
+        "benefit_2": {
+          "type": "_client-story-benefit",
+          "settings": {
+            "heading": "Shorter Decision Cycles",
+            "description": "Help high-intent buyers reach purchase decisions sooner."
+          }
+        }
+      },
+      "block_order": [
+        "metric_1",
+        "benefit_1",
+        "metric_2",
+        "benefit_2"
       ]
     }
   ]

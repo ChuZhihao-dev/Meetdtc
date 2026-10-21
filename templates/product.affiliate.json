@@ -1,0 +1,1050 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "page_background_n8zJR6": {
+      "type": "page-background",
+      "name": "t:names.page_background",
+      "settings": {
+        "background_type": "gradient",
+        "background_color": "#ffffff",
+        "gradient_color_from": "#f7eaf3",
+        "gradient_color_to": "#dbe5f3",
+        "gradient_angle": 176
+      }
+    },
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "disclosures_g9mWze": {
+          "type": "disclosures",
+          "name": "t:names.disclosures",
+          "settings": {
+            "heading": "Disclosures",
+            "heading_preset": "h5",
+            "open_by_default": false,
+            "icon": "caret",
+            "disclosure_heading_preset": "h6",
+            "text_color": "",
+            "dividers": true,
+            "divider_color": "{{ settings.color_palette.color2 }}",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "grid",
+            "media_columns": "two",
+            "image_gap": 4,
+            "large_first_image": false,
+            "icons_style": "arrow",
+            "slideshow_controls_style": "counter",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "right",
+            "thumbnail_width": 44,
+            "thumbnail_radius": 0,
+            "aspect_ratio": "adapt",
+            "constrain_to_viewport": true,
+            "media_fit": "contain",
+            "media_radius": 0,
+            "extend_media": false,
+            "zoom": true,
+            "video_loop": false,
+            "hide_variants": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 28,
+            "sticky_details_desktop": true,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 24,
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "group_icgrde": {
+              "type": "group",
+              "name": "t:names.header",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_xrnftG": {
+                  "type": "text",
+                  "name": "t:names.product_title",
+                  "settings": {
+                    "text": "<h1>{{ closest.product.title }}</h1>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h3",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "weight": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "gradient_text": false,
+                    "gradient_color_from": "#2f6df6",
+                    "gradient_color_to": "#9333ea",
+                    "gradient_angle": 90,
+                    "gradient_start_position": 0,
+                    "gradient_end_position": 100,
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "price_tVjtKg": {
+                  "type": "price",
+                  "settings": {
+                    "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": false,
+                    "type_preset": "paragraph",
+                    "width": "100%",
+                    "alignment": "left",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "text_color": "",
+                    "padding-block-start": 4,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_xrnftG",
+                "price_tVjtKg"
+              ]
+            },
+            "divider_VJhene": {
+              "type": "_divider",
+              "name": "t:names.divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "divider_color": "{{ settings.color_palette.color2 }}",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "variant_picker_R3rGDr": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": false,
+                "option_label_text_color": "",
+                "variant_style_class": "default",
+                "custom_variant_background": "{{ settings.color_palette.background }}",
+                "custom_variant_text": "{{ settings.color_palette.foreground }}",
+                "custom_variant_border": "{{ settings.color_palette.foreground }}",
+                "selected_variant_style_class": "default",
+                "custom_selected_variant_background": "{{ settings.color_palette.foreground }}",
+                "custom_selected_variant_text": "{{ settings.color_palette.background }}",
+                "custom_selected_variant_border": "{{ settings.color_palette.foreground }}",
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_eYQEYi": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": true,
+                "text_color": "",
+                "show_pickup_availability": false,
+                "gift_card_form": true,
+                "recipient_button_style": "default",
+                "recipient_button_background": "{{ settings.color_palette.background }}",
+                "recipient_button_text": "{{ settings.color_palette.foreground }}",
+                "recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_style": "default",
+                "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_text": "{{ settings.color_palette.background }}",
+                "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "input_style": "default",
+                "input_background_color": "{{ settings.color_palette.background }}",
+                "input_text_color": "{{ settings.color_palette.foreground }}",
+                "input_border_color": "{{ settings.color_palette.foreground }}",
+                "border_width": 1,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {
+                    "input_style": "default",
+                    "input_background_color": "{{ settings.color_palette.background }}",
+                    "input_text_color": "{{ settings.color_palette.foreground }}",
+                    "input_border_color": "{{ settings.color_palette.foreground }}",
+                    "border_width": 1,
+                    "border_radius": 0
+                  },
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button",
+                    "custom_button_background": "{{ settings.color_palette.foreground }}",
+                    "custom_button_text": "{{ settings.color_palette.background }}",
+                    "custom_button_border": "{{ settings.color_palette.background }}"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "text_aEtTtq": {
+              "type": "text",
+              "name": "t:names.product_description",
+              "settings": {
+                "text": "{{ closest.product.description }}",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "weight": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "gradient_text": false,
+                "gradient_color_from": "#2f6df6",
+                "gradient_color_to": "#9333ea",
+                "gradient_angle": 90,
+                "gradient_start_position": 0,
+                "gradient_end_position": 100,
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "group_icgrde",
+            "divider_VJhene",
+            "variant_picker_R3rGDr",
+            "buy_buttons_eYQEYi",
+            "text_aEtTtq"
+          ]
+        }
+      },
+      "block_order": [
+        "disclosures_g9mWze"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": false,
+        "limit_details_width": false,
+        "gap": 48,
+        "enable_sticky_add_to_cart": true,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "product_hero_jiNakp": {
+      "type": "product-hero",
+      "blocks": {
+        "button_JayDDj": {
+          "type": "button",
+          "settings": {
+            "label": "Book a Free Growth Consultation →",
+            "link": "#growth-diagnosis",
+            "open_in_new_tab": false,
+            "style_class": "button-custom",
+            "custom_button_background": "#ffffff",
+            "custom_button_text": "#ffffff",
+            "custom_button_border": "rgba(0,0,0,0)",
+            "link_text_color": "",
+            "button_gradient": true,
+            "button_gradient_from": "#7a25c4",
+            "button_gradient_to": "#5e6eeb",
+            "button_gradient_angle": 90,
+            "button_gradient_start_position": 0,
+            "button_gradient_end_position": 100,
+            "button_custom_radius": true,
+            "button_radius": 50,
+            "button_font": "var(--font-heading--family)",
+            "button_font_size": "1.5rem",
+            "button_font_weight": "600",
+            "button_letter_spacing": "",
+            "button_case": "",
+            "button_icon_size": 16,
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "button_JayDDj"
+      ],
+      "name": "t:product_hero.name",
+      "settings": {
+        "eyebrow": "Affiliate Marketing",
+        "heading": "Turn the Right Partnerships into Your Next Growth Channel",
+        "heading_tag": "h1",
+        "description": "ME helps brands build and grow affiliate programs through targeted partner recruitment, hands-on management, and performance optimization. Connect with partners who reach your customers, turn recommendations into sales, and build lasting value from every partnership.",
+        "background_from": "#f7e9f5",
+        "background_to": "#c7e2f4",
+        "heading_from": "#0c23b8",
+        "heading_to": "#7c21c2",
+        "description_color": "#6b6a6a",
+        "section_height": "full-screen",
+        "content_position": "center",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "partner_brands_z4GbiM": {
+      "type": "partner-brands",
+      "blocks": {
+        "brand_row_PrWVTn": {
+          "type": "_brand-row",
+          "settings": {
+            "logo_motion": "static"
+          },
+          "blocks": {
+            "brand_logo_b8nyYi": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_fWcXd8": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_1.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_4qJCgJ": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_2.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_mEGeYg": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_4.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_mbdQht": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_3.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "brand_logo_b8nyYi",
+            "brand_logo_fWcXd8",
+            "brand_logo_4qJCgJ",
+            "brand_logo_mEGeYg",
+            "brand_logo_mbdQht"
+          ]
+        },
+        "brand_row_4zdXEJ": {
+          "type": "_brand-row",
+          "settings": {
+            "logo_motion": "static"
+          },
+          "blocks": {
+            "brand_logo_rT6BCw": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_6.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_hGjmae": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_7.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_rU66cn": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_9.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_xBwQDq": {
+              "type": "_brand-logo",
+              "settings": {
+                "image": "shopify://shop_images/Container_10.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "brand_logo_rT6BCw",
+            "brand_logo_hGjmae",
+            "brand_logo_rU66cn",
+            "brand_logo_xBwQDq"
+          ]
+        }
+      },
+      "block_order": [
+        "brand_row_PrWVTn",
+        "brand_row_4zdXEJ"
+      ],
+      "name": "t:names.partner_brands",
+      "settings": {
+        "heading": "<p>Trusted by Leading Brands Across Global Markets</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "1.3125rem",
+        "weight": "600",
+        "line_height": "1.4",
+        "letter_spacing": "normal",
+        "alignment": "center",
+        "wrap": "pretty",
+        "gradient_text": true,
+        "gradient_color_from": "#0c23b8",
+        "gradient_color_to": "#7c21c2",
+        "gradient_angle": 90,
+        "gradient_start_position": 27,
+        "gradient_end_position": 72,
+        "background_gradient_from": "#efe6f3",
+        "background_gradient_to": "#e2cdf4",
+        "background_gradient_angle": 100,
+        "thickness": 0.5,
+        "divider_color": "#707070",
+        "width_percent": 100,
+        "logo_gap": 78,
+        "row_gap": 16,
+        "logo_height": 94,
+        "padding-block-start": 42,
+        "padding-block-end": 37
+      }
+    },
+    "business_challenge_iR7zkb": {
+      "type": "business-challenge",
+      "blocks": {
+        "business_challenge_item_XDJAAj": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "1.  You’re struggling to find the right partners.",
+            "description": "<p>We identify and recruit partners whose audiences, content, and markets fit your brand.</p>",
+            "link": "",
+            "marker": "1"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_fgEXyy": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "2.  Partners sign up, but few drive sales.",
+            "description": "<p>We activate partners with clear onboarding, relevant offers, and ongoing communication.</p>",
+            "link": "",
+            "marker": "2"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_YMxyyL": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "3.  Your sales depend on a handful of partners.",
+            "description": "<p>We diversify your partner mix to uncover new audiences and reduce concentration.</p>",
+            "link": "",
+            "marker": "3"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_WaNjic": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "4.  You’re paying commissions without seeing clear value.",
+            "description": "<p>We review partner contributions and commission structures to align spending with your business goals.</p>",
+            "link": "",
+            "marker": "3"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_m3pzPp": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "5.  Managing the program takes too much time.",
+            "description": "<p>We manage recruitment, communications, and campaign coordination so your team can focus on the wider business.</p>",
+            "link": "",
+            "marker": "3"
+          },
+          "blocks": {}
+        },
+        "business_challenge_item_qLLxAD": {
+          "type": "_business-challenge-item",
+          "settings": {
+            "title": "6.  You can’t tell what’s working.",
+            "description": "<p>We translate program data into clear reporting and practical priorities for improvement.</p>",
+            "link": "",
+            "marker": "3"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "business_challenge_item_XDJAAj",
+        "business_challenge_item_fgEXyy",
+        "business_challenge_item_YMxyyL",
+        "business_challenge_item_WaNjic",
+        "business_challenge_item_m3pzPp",
+        "business_challenge_item_qLLxAD"
+      ],
+      "name": "t:names.business_challenge",
+      "settings": {
+        "eyebrow": "BUSINESS CHALLENGE",
+        "heading": "Your Affiliate Program Should Be Creating More Opportunities to Grow",
+        "center_text": "GROWTH\nPOTENTIAL",
+        "caption": "Existing potential is not being fully converted into business value.",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "gradient_text": true,
+        "gradient_color_from": "#0b22b8",
+        "gradient_color_to": "#9621c4",
+        "background_color": "rgba(0,0,0,0)",
+        "text_color": "#000000",
+        "accent_color": "#7222c1",
+        "description_color": "#6b6b6b",
+        "caption_color": "#686868",
+        "center_text_color": "#ffffff",
+        "divider_color": "#000000",
+        "center_tint": "",
+        "initial_visible_items": 4,
+        "sticky_figure": true,
+        "enable_animation": true,
+        "padding-block-start": 36,
+        "padding-block-end": 60
+      }
+    },
+    "our_approach_dJQKw8": {
+      "type": "our-approach",
+      "name": "t:our_approach.name",
+      "settings": {
+        "eyebrow": "OUR APPROACH",
+        "heading": "Build Around Your Customers. Grow Through the Right Partners.",
+        "body_primary": "<p>We start with your products, customers, target markets, and commercial goals. From there, we shape your affiliate strategy, recruit relevant partners, and give them the offers, content, and support they need to promote your brand.</p>",
+        "body_secondary": "<p>As the program develops, we assess partner activity, sales quality, and costs together. This helps you make informed decisions about where to invest, which relationships to develop, and how to grow without relying too heavily on a small group of partners.</p>",
+        "image": "shopify://shop_images/affiliate-marketing_our-approach.png",
+        "image_alt": "",
+        "font": "montserrat_n5",
+        "text_color": "#000000",
+        "heading_gradient": "linear-gradient(122.1396deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "background": "",
+        "padding-block-start": 60,
+        "padding-block-end": 60,
+        "padding_mobile_top": 40,
+        "padding_mobile_bottom": 40,
+        "enable_reveal": true
+      }
+    },
+    "service_scope_VaDYAw": {
+      "type": "service-scope",
+      "blocks": {
+        "card_ETxkQz": {
+          "type": "card",
+          "settings": {
+            "heading": "Program Audit & Growth Strategy",
+            "description": "<p>We assess your existing program or launch readiness, customer journey, and commercial goals. You receive a prioritized roadmap with opportunities, recommended actions, and measures of success.</p>"
+          }
+        },
+        "card_wKwRVy": {
+          "type": "card",
+          "settings": {
+            "heading": "Platform Selection & Program Setup",
+            "description": "<p>We evaluate platform requirements and support program configuration, application criteria, and partner terms. You receive a setup plan and launch checklist tailored to your business.</p>"
+          }
+        },
+        "card_jTHQUi": {
+          "type": "card",
+          "settings": {
+            "heading": "Tracking & Measurement Coordination",
+            "description": "<p>We work with your platform and technical teams to define tracking requirements and validate key conversion events. You receive a measurement plan and documented validation findings.</p>"
+          }
+        },
+        "card_HJg9Ee": {
+          "type": "card",
+          "settings": {
+            "heading": "Partner Research & Recruitment",
+            "description": "<p>We identify relevant publishers, creators, and other affiliate partners, then manage outreach and applications. You receive a qualified prospect pipeline and recruitment updates.</p>"
+          }
+        },
+        "card_xg8a6q": {
+          "type": "card",
+          "settings": {
+            "heading": "Partner Onboarding & Activation",
+            "description": "<p>We guide approved partners through your program, offers, and promotional resources. You receive an onboarding pack and activation plan designed to turn sign-ups into active partnerships.</p>"
+          }
+        },
+        "card_nMqphe": {
+          "type": "card",
+          "settings": {
+            "heading": "Commission & Incentive Planning",
+            "description": "<p>We develop commission recommendations and promotional incentives around your margins and objectives. You receive a proposed commission structure with clear eligibility and performance criteria.</p>"
+          }
+        },
+        "card_C7f6z4": {
+          "type": "card",
+          "settings": {
+            "heading": "Campaign & Content Coordination",
+            "description": "<p>We coordinate partner briefs, promotional calendars, and asset requirements for launches and seasonal campaigns. You receive a campaign plan and partner-ready promotional guidance.</p>"
+          }
+        },
+        "card_Vc9BCV": {
+          "type": "card",
+          "settings": {
+            "heading": "Partner Quality & Program Monitoring",
+            "description": "<p>We review partner activity against agreed program rules and flag concerns for action. You receive monitoring findings and recommendations to help protect your brand and budget.</p>"
+          }
+        },
+        "card_ib8EG6": {
+          "type": "card",
+          "settings": {
+            "heading": "Performance Reporting & Optimization",
+            "description": "<p>We analyze partner activity, conversions, revenue, and program costs. You receive performance reports with clear findings, priorities, and recommended next steps.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "card_ETxkQz",
+        "card_wKwRVy",
+        "card_jTHQUi",
+        "card_HJg9Ee",
+        "card_xg8a6q",
+        "card_nMqphe",
+        "card_C7f6z4",
+        "card_Vc9BCV",
+        "card_ib8EG6"
+      ],
+      "name": "t:service_scope.name",
+      "settings": {
+        "eyebrow": "SERVICE SCOPE",
+        "heading": "What Is Included",
+        "description": "<p>End-to-end affiliate program support, from strategy and setup to partner development and ongoing optimization.<br/><br/></p>",
+        "font": "montserrat_n4",
+        "text_color": "#000000",
+        "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "background": "",
+        "card_background": "#ffffff",
+        "card_opacity": 58,
+        "card_border": "#ffffff",
+        "card_radius": 13,
+        "column_gap": 33,
+        "row_gap": 29,
+        "padding-block-start": 60,
+        "padding-block-end": 60,
+        "padding_mobile_top": 40,
+        "padding_mobile_bottom": 40,
+        "enable_reveal": true
+      }
+    },
+    "delivery_process_Adtgjg": {
+      "type": "delivery-process",
+      "blocks": {
+        "step_PMTbKg": {
+          "type": "step",
+          "settings": {
+            "heading": "Discover & Assess",
+            "description": "<p>We review your business goals, target markets, website readiness, and existing affiliate activity.</p>",
+            "deliverable": ""
+          }
+        },
+        "step_RK4exK": {
+          "type": "step",
+          "settings": {
+            "heading": "Build the Plan",
+            "description": "<p>We define your partner strategy, commission approach, measurement framework, and launch priorities.</p>",
+            "deliverable": ""
+          }
+        },
+        "step_jFFWg7": {
+          "type": "step",
+          "settings": {
+            "heading": "Set Up & Validate",
+            "description": "<p>We coordinate program setup, prepare partner materials, and check tracking before launch.</p>",
+            "deliverable": ""
+          }
+        },
+        "step_tL7iNB": {
+          "type": "step",
+          "settings": {
+            "heading": "Recruit & Activate",
+            "description": "<p>We approach relevant partners, onboard approved applicants, and support their first promotions.</p>",
+            "deliverable": ""
+          }
+        },
+        "step_Qb6M37": {
+          "type": "step",
+          "settings": {
+            "heading": "Measure & Improve",
+            "description": "<p>We review results, develop productive relationships, and refine the program as new opportunities emerge.</p>",
+            "deliverable": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_PMTbKg",
+        "step_RK4exK",
+        "step_jFFWg7",
+        "step_tL7iNB",
+        "step_Qb6M37"
+      ],
+      "name": "Delivery process",
+      "settings": {
+        "eyebrow": "DELIVERY PROCESS",
+        "heading": "A Clear Path from Program Planning to Ongoing Growth",
+        "description": "<p>Each stage defines what needs to happen, what your team needs to provide, and how progress will be assessed.</p>",
+        "background": "linear-gradient(135.439deg, rgba(211, 216, 246, 1) 2.204%, rgba(253, 243, 255, 1) 97.796%)",
+        "heading_gradient": "linear-gradient(107.919deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "text_color": "#000000",
+        "accent_color": "#9621c4",
+        "step_gap": 60,
+        "padding-block-start": 60,
+        "padding-block-end": 100
+      }
+    },
+    "featured_client_story_ChKJVj": {
+      "type": "featured-client-story",
+      "blocks": {
+        "client_story_metric_zLRcgq": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "1,032",
+            "label": "Quality Affiliate Partners"
+          },
+          "blocks": {}
+        },
+        "client_story_metric_jtqQkg": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "$1,700",
+            "label": "Average Order Value"
+          },
+          "blocks": {}
+        },
+        "client_story_metric_MwnYiR": {
+          "type": "_client-story-metric",
+          "settings": {
+            "value": "$22",
+            "label": "Earnings per Click（EPC）"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "client_story_metric_zLRcgq",
+        "client_story_metric_jtqQkg",
+        "client_story_metric_MwnYiR"
+      ],
+      "name": "t:client_story.name",
+      "settings": {
+        "eyebrow": "FEATURED CLIENT STORY",
+        "heading": "E-Bike Brand Built a 1,032-Partner Network with Affiliate Marketing",
+        "description": "<p>An e-bike brand sought to expand sales across North America and Europe. ME recruited relevant publishers and creators, tailored partner incentives and strengthened attribution, building a network of 1,032 quality affiliates.<br/></p>",
+        "image": "shopify://shop_images/affiliate_marketing.png",
+        "image_alt": "",
+        "link_label": "Vlaw Case Study",
+        "link": "",
+        "font": "montserrat_n5",
+        "text_color": "#000000",
+        "heading_gradient": "linear-gradient(108.133deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "background": "",
+        "panel_background": "linear-gradient(105.9376deg, rgba(19, 98, 250, 0.05) 3.724%, rgba(109, 40, 217, 0.05) 96.276%)",
+        "accent_color": "#6d28d9",
+        "media_background": "#fdfdfd",
+        "button_background": "#6d28d9",
+        "button_text_color": "#ffffff",
+        "card_radius": 28,
+        "padding-block-start": 60,
+        "padding-block-end": 60,
+        "enable_reveal": false
+      }
+    },
+    "faq_XyKTzC": {
+      "type": "faq",
+      "blocks": {
+        "faq_row_XdLKBG": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q1. What is affiliate marketing?",
+            "answer": "<p>Affiliate marketing is a partnership model in which publishers, creators, or other partners promote your products and earn a commission for qualifying actions, such as completed sales. Tracking links or codes connect those actions to the referring partner.</p>",
+            "open_by_default": true
+          },
+          "blocks": {}
+        },
+        "faq_row_ckALeW": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q2. Can ME help us launch a new affiliate program?",
+            "answer": "<p>Yes. Our proposed launch scope covers strategy, platform and setup coordination, tracking validation, partner materials, and recruitment. We first assess your website, product offering, and margins to define a practical starting point.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_8DWdMn": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q3. Can you improve an existing affiliate program?",
+            "answer": "<p>Yes. We review your partner mix, activity levels, commission structure, and measurement setup. The findings help determine whether the priority is recruitment, partner activation, cost efficiency, or broader program changes.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_6Vcq7e": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q4. What types of partners can we work with?",
+            "answer": "<p>Potential partners include content publishers, creators, review and comparison sites, and loyalty or rewards platforms. The right mix depends on your customers, markets, product category, and commercial objectives.<br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_idcK38": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q5. How do you choose affiliate partners?",
+            "answer": "<p>We assess audience relevance, market coverage, content quality, promotional methods, and alignment with your brand. Recruitment focuses on partners with a clear role in your customer journey.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_mtDEQH": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q6. How are affiliate commissions decided?",
+            "answer": "<p>Commission recommendations consider product margins, order value, acquisition goals, and partner contribution. Different rates or incentives may be proposed for different products, partner groups, or qualifying actions.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_TfzdMb": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q7. How do you measure performance?",
+            "answer": "<p>We agree on a measurement framework before launch or optimization. Depending on the data available, this can include active partners, conversions, affiliate revenue, new customer orders, and acquisition costs. Attributed sales alone do not establish incremental growth.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_CGMX33": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q8. How soon can we expect results?",
+            "answer": "<p>Timing depends on your starting point, platform readiness, partner recruitment, and customer purchase cycle. We establish milestones during planning and distinguish early indicators, such as partner activation, from sales outcomes.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_H88kCk": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q9. What will our team need to provide?",
+            "answer": "<p>Typical inputs include website and platform access, product information, brand guidelines, promotional assets, and commercial parameters. Your team also approves program terms, commissions, and key offers.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_ABzErp": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q10. Does affiliate marketing replace our other marketing channels?",
+            "answer": "<p>Affiliate marketing can complement paid media, SEO, email, and other channels. Coordinating promotions and measurement across channels helps create a consistent customer experience and makes overlapping contributions easier to assess.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "faq_row_XdLKBG",
+        "faq_row_ckALeW",
+        "faq_row_8DWdMn",
+        "faq_row_6Vcq7e",
+        "faq_row_idcK38",
+        "faq_row_mtDEQH",
+        "faq_row_TfzdMb",
+        "faq_row_CGMX33",
+        "faq_row_H88kCk",
+        "faq_row_ABzErp"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "<p>About Working With ME</p>",
+        "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "weight": "600",
+        "line_height": "1.3",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#0b22b8",
+        "gradient_color_to": "#9621c4",
+        "gradient_angle": 92,
+        "gradient_start_position": 0,
+        "gradient_end_position": 15,
+        "background_gradient_from": "rgba(0,0,0,0)",
+        "background_gradient_to": "rgba(0,0,0,0)",
+        "background_gradient_angle": 104,
+        "row_background": "#e5e6ff",
+        "row_radius": 16,
+        "row_gap": 8,
+        "question_color": "#3f4eff",
+        "answer_color": "#595959",
+        "icon_color": "#3f4eff",
+        "heading_gap": 52,
+        "list_max_width": 1140,
+        "padding-block-start": 92,
+        "padding-block-end": 96
+      }
+    }
+  },
+  "order": [
+    "page_background_n8zJR6",
+    "main",
+    "product_hero_jiNakp",
+    "partner_brands_z4GbiM",
+    "business_challenge_iR7zkb",
+    "our_approach_dJQKw8",
+    "service_scope_VaDYAw",
+    "delivery_process_Adtgjg",
+    "featured_client_story_ChKJVj",
+    "faq_XyKTzC"
+  ]
+}

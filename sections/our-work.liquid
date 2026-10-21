@@ -1,7 +1,7 @@
 {% comment %}
   Our work.
   Renders a left-aligned label, a gradient headline, and supporting copy above a
-  horizontal, scroll-snapped row of merchant-managed result cards.
+  responsive, page-width grid of merchant-managed result cards.
   @example
   <!-- Add the "Our work" section, then edit each result card block -->
 {% endcomment %}
@@ -41,6 +41,7 @@
     --work-heading-gap: {{ section_settings.heading_gap }}px;
     --work-card-width: {{ section_settings.card_width }}px;
     --work-card-height: {{ section_settings.card_height }}px;
+    --work-card-aspect-ratio: {{ section_settings.card_width }} / {{ section_settings.card_height }};
     --work-card-gap: {{ section_settings.card_gap }}px;
     --work-card-radius: {{ section_settings.card_radius }}px;
     --work-card-media-radius: {{ section_settings.card_media_radius }}px;
@@ -100,7 +101,7 @@
   {%- endcapture -%}
 
   {% if result_cards != blank %}
-    <div class="our-work__track force-full-width">{{ result_cards }}</div>
+    <div class="our-work__track">{{ result_cards }}</div>
   {% endif %}
 </scroll-reveal-component>
 
@@ -158,38 +159,59 @@
   }
 
   .our-work__track {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, min(var(--work-card-width, 497px), 320px)), 1fr));
     gap: var(--work-card-gap, 40px);
     width: 100%;
+    min-width: 0;
     margin-block-start: var(--work-heading-gap, 40px);
-    padding-inline: max(var(--page-margin), calc((100% - var(--work-content-width, 1280px)) / 2));
-    overflow-x: auto;
-    /* Keep vertical gestures on the page, including while cards reveal. */
-    overflow-y: hidden;
-    overscroll-behavior: auto;
-    touch-action: pan-x pan-y pinch-zoom;
-    scroll-snap-type: x proximity;
-    scroll-padding-inline-start: max(var(--page-margin), calc((100% - var(--work-content-width, 1280px)) / 2));
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .our-work__track::-webkit-scrollbar {
-    display: none;
-  }
-
-  .our-work__track > * {
-    scroll-snap-align: start;
   }
 
   .our-work__track > .result-card {
-    /* Zoom scales media, type and spacing together and reduces layout size. */
-    zoom: 0.85;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    /* Preserve the configured proportions as grid columns resize; content may grow. */
+    /* aspect-ratio: var(--work-card-aspect-ratio, 497 / 653); */
+    padding-block: calc(var(--work-card-padding-block-start, 46px) * 0.65) calc(var(--work-card-padding-block-end, 46px) * 0.65);
+    padding-inline: calc(var(--work-card-padding-inline-start, 37px) * 0.65) calc(var(--work-card-padding-inline-end, 37px) * 0.65);
   }
 
-  .our-work.reveal-ready .our-work__track > .result-card[data-reveal] {
-    /* Fade cards without extending the track's vertical scroll bounds. */
-    transform: none;
+  .our-work__track .result-card__body {
+    min-height: auto;
+  }
+
+  .our-work__track .result-card__tag {
+    margin-block-start: 20px;
+  }
+
+  .our-work__track .result-card__description {
+    margin-block-start: 16px;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  .our-work__track .result-card__description > :first-child {
+    margin-block-start: 0;
+  }
+
+  .our-work__track .result-card__description > :last-child {
+    margin-block-end: 0;
+  }
+
+  .our-work__track .result-card__metric-value {
+    font-size: 40px;
+    line-height: 1.1;
+  }
+
+  .our-work__track .result-card__metrics {
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .our-work__track .result-card__metric {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   @media screen and (max-width: 749px) {
@@ -205,6 +227,10 @@
     .our-work__description {
       font-size: 1.125rem;
       line-height: 1.3;
+    }
+
+    .our-work__track > .result-card {
+      aspect-ratio: auto;
     }
 
     .our-work__track {

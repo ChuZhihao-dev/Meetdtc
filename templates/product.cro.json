@@ -360,7 +360,7 @@
           "type": "button",
           "settings": {
             "label": "Book a Free Growth Consultation →",
-            "link": "shopify://pages/contact",
+            "link": "#growth-diagnosis",
             "open_in_new_tab": false,
             "style_class": "button-custom",
             "custom_button_background": "#ffffff",
@@ -397,7 +397,7 @@
         "eyebrow": "Conversion Rate Optimization",
         "heading": "Turn more of your existing traffic into revenue.",
         "heading_tag": "h1",
-        "description": "We combine data analysis with user behavior insight to find conversion barriers, then validate every improvement with A/B testing — continuously lifting add-to-cart, checkout and conversion rates across your store.",
+        "description": "ME combine data analysis with user behavior insight to find conversion barriers, then validate every improvement with A/B testing — continuously lifting add-to-cart, checkout and conversion rates across your store.",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
@@ -670,43 +670,64 @@
         "card_ETxkQz": {
           "type": "card",
           "settings": {
-            "heading": "SEO Audit & Roadmap",
-            "description": "<p>We assess your website and competitive landscape. You receive an audit, a prioritized issue list, and a phased optimization roadmap.<br/><br/></p>"
+            "heading": "Conversion Data Diagnosis",
+            "description": "<p>We analyze GA4, heatmaps and user paths; you get a prioritized list of conversion barriers.</p>"
           }
         },
         "card_wKwRVy": {
           "type": "card",
           "settings": {
-            "heading": "Keyword & Search Intent Research",
-            "description": "<p>We research product, category, comparison, and problem-based searches. You receive a keyword set mapped to existing pages and new content opportunities.<br/><br/></p>"
+            "heading": "User Research",
+            "description": "<p>We study real visitor behavior and feedback; you get clear insight into why users drop off.</p>"
           }
         },
         "card_jTHQUi": {
           "type": "card",
           "settings": {
-            "heading": "Technical SEO",
-            "description": "<p>We review crawling, indexing, duplicate pages, redirects, sitemaps, and performance issues. You receive implementation recommendations and checks for agreed fixes.<br/><br/></p>"
+            "heading": "Optimization Hypotheses",
+            "description": "<p>We turn insights into testable assumptions; you get a structured optimization roadmap.</p>"
           }
         },
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
-            "heading": "Site Structure & Internal Linking",
-            "description": "<p>We review navigation, page hierarchy, and internal links. You receive recommendations that connect related content and make important pages easier to discover.<br/><br/></p>"
+            "heading": "Page Optimization Design",
+            "description": "<p>We design optimized page variants; you get redesigns that reduce decision friction.</p>"
           }
         },
         "card_xg8a6q": {
           "type": "card",
           "settings": {
-            "heading": "Core Page Optimization",
-            "description": "<p>We improve agreed product, category, service, and landing pages. You receive page-level recommendations or revised copy within the selected scope.<br/><br/></p>"
+            "heading": "A/B Test Setup & Execution",
+            "description": "<p>We configure traffic split and multivariate experiments; you get statistically reliable results.</p>"
           }
         },
         "card_nMqphe": {
           "type": "card",
           "settings": {
-            "heading": "Content Strategy & Production",
-            "description": "<p>We plan content around customer questions and commercial priorities. You receive a content calendar, briefs, and agreed new or updated articles.<br/><br/></p>"
+            "heading": "Tracking & Fine-grained Data",
+            "description": "<p>We set up precise conversion and key-behavior tracking; you get clear data on every variant.</p>"
+          }
+        },
+        "card_arTm9i": {
+          "type": "card",
+          "settings": {
+            "heading": "Iteration & Winning Release",
+            "description": "<p>We iterate variants until a winner emerges; you get the best-performing version live.</p>"
+          }
+        },
+        "card_mxgcYn": {
+          "type": "card",
+          "settings": {
+            "heading": "Price Testing",
+            "description": "<p>We test price and margin scenarios; you get validated pricing that lifts revenue per visitor.</p>"
+          }
+        },
+        "card_6hNiPV": {
+          "type": "card",
+          "settings": {
+            "heading": "Ongoing Optimization Retainer",
+            "description": "<p>We run monthly cycles every 2–3 weeks; you get continuous conversion growth.</p>"
           }
         }
       },
@@ -716,13 +737,16 @@
         "card_jTHQUi",
         "card_HJg9Ee",
         "card_xg8a6q",
-        "card_nMqphe"
+        "card_nMqphe",
+        "card_arTm9i",
+        "card_mxgcYn",
+        "card_6hNiPV"
       ],
       "name": "t:service_scope.name",
       "settings": {
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
-        "description": "<p>from diagnosis to continuous growth, one complete optimization system.<br/><br/></p>",
+        "description": "<p>From diagnosis to continuous growth, one complete optimization system.<br/><br/></p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
@@ -746,40 +770,48 @@
         "step_PMTbKg": {
           "type": "step",
           "settings": {
-            "heading": "Understand Your Business",
-            "description": "<p><strong>We confirm your products, target markets, competitors, business goals, and available website data.</strong></p>",
+            "heading": "Data Insight",
+            "description": "<p>We analyze GA4 and heatmaps to find conversion barriers.</p>",
             "deliverable": ""
           }
         },
         "step_RK4exK": {
           "type": "step",
           "settings": {
-            "heading": "Establish the Baseline",
-            "description": "<p><strong>We assess website health, search performance, and content gaps to identify the starting point.</strong></p>",
+            "heading": "User Research",
+            "description": "<p>We study real behavior to understand why users drop off.</p>",
             "deliverable": ""
           }
         },
         "step_jFFWg7": {
           "type": "step",
           "settings": {
-            "heading": "Set the Priorities",
-            "description": "<p><strong>We agree on target pages, keyword groups, deliverables, responsibilities, and the optimization roadmap.</strong></p>",
+            "heading": "Hypothesis",
+            "description": "<p>We turn insights into prioritized, testable assumptions.</p>",
             "deliverable": ""
           }
         },
         "step_tL7iNB": {
           "type": "step",
           "settings": {
-            "heading": "Implement Improvements",
-            "description": "<p><strong>We deliver the agreed technical, page, content, and authority work with your team.</strong></p>",
+            "heading": "Page Design",
+            "description": "<p>We build optimized page variants ready for testing.</p>",
             "deliverable": ""
           }
         },
         "step_Qb6M37": {
           "type": "step",
           "settings": {
-            "heading": "Review and Refine",
-            "description": "<p><strong>We evaluate results and adjust priorities based on performance, customer demand, and implementation progress.</strong></p>",
+            "heading": "A/B Testing",
+            "description": "<p>We run experiments to identify the winning version.</p>",
+            "deliverable": ""
+          }
+        },
+        "step_JNQR3T": {
+          "type": "step",
+          "settings": {
+            "heading": "Conversion Growth",
+            "description": "<p>&nbsp;We publish the winner and start the next cycle.</p>",
             "deliverable": ""
           }
         }
@@ -789,13 +821,14 @@
         "step_RK4exK",
         "step_jFFWg7",
         "step_tL7iNB",
-        "step_Qb6M37"
+        "step_Qb6M37",
+        "step_JNQR3T"
       ],
       "name": "Delivery process",
       "settings": {
         "eyebrow": "DELIVERY PROCESS",
-        "heading": "A Clear Plan, Consistent Execution, and Regular Review",
-        "description": "<p><strong>Each stage defines what we will do, what you will receive, and where your team’s input is needed.</strong></p>",
+        "heading": "A proven six-step loop that turns insights into verified conversion wins.",
+        "description": "<p>Every change is validated by real data before it goes live — no more redesigning by guesswork.</p>",
         "background": "linear-gradient(135.439deg, rgba(211, 216, 246, 1) 2.204%, rgba(253, 243, 255, 1) 97.796%)",
         "heading_gradient": "linear-gradient(107.919deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
         "text_color": "#000000",
@@ -811,32 +844,32 @@
         "client_story_metric_zLRcgq": {
           "type": "_client-story-metric",
           "settings": {
-            "value": "50,674",
-            "label": "Estimated Monthly Organic Traffic"
+            "value": "+42%",
+            "label": "Add-to-cart rate"
           },
           "blocks": {}
         },
         "client_story_metric_jtqQkg": {
           "type": "_client-story-metric",
           "settings": {
-            "value": "1,889",
-            "label": "Keywords on Google’s First Page"
+            "value": "+11.64%",
+            "label": "Conversion"
           },
           "blocks": {}
         },
         "client_story_metric_MwnYiR": {
           "type": "_client-story-metric",
           "settings": {
-            "value": "+354%",
-            "label": "Growth in First-Page Keywords"
+            "value": "+209",
+            "label": "Month Orders"
           },
           "blocks": {}
         },
         "client_story_metric_JWPK8E": {
           "type": "_client-story-metric",
           "settings": {
-            "value": "1,800+",
-            "label": "Increase in Referring Domains"
+            "value": "+$17,178",
+            "label": "Month Revenue"
           },
           "blocks": {}
         }
@@ -850,9 +883,9 @@
       "name": "t:client_story.name",
       "settings": {
         "eyebrow": "FEATURED CLIENT STORY",
-        "heading": "Robotic Pool Cleaner Brand Grows First-Page Keywords by 354% with SEO",
-        "description": "<p><br/>ME helped a robotic pool cleaner brand improve its US search visibility through technical SEO, content and backlink development. In nine months, Google first-page keywords grew from 416 to 1,889, with over 1,800 new referring domains.<br/><br/></p>",
-        "image": "shopify://shop_images/pool-cleaner-case-square.png",
+        "heading": "Xinghan Achieved 42% Higher Add-to-Cart Rate with CRO",
+        "description": "<p>Ahead of Black Friday, Xinghan needed to improve a stagnant conversion funnel. ME identified barriers, redesigned key pages and ran A/B tests, increasing add-to-cart rate by 42% within one testing cycle.<br/></p>",
+        "image": "shopify://shop_images/b8f297d560a397b1d5b515362c3c2991_46b592d8-74b3-46cf-b17b-02f516045be4.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",
         "link": "",
@@ -877,8 +910,8 @@
         "faq_row_XdLKBG": {
           "type": "_faq-row",
           "settings": {
-            "question": "What does your SEO service include?",
-            "answer": "<p>Our proposed service covers nine areas, from research and technical SEO to content and reporting. Your agreement specifies the pages, articles, markets, and implementation work included.<br/><br/></p>",
+            "question": "Q1. Do we need a professional A/B testing tool?",
+            "answer": "<p>No. Without a tool, we run two-version tests with GA4 and lightweight tracking; with a tool, we run multivariate experiments.</p>",
             "open_by_default": true
           },
           "blocks": {}
@@ -886,8 +919,8 @@
         "faq_row_ckALeW": {
           "type": "_faq-row",
           "settings": {
-            "question": "How long does SEO take to show results?",
-            "answer": "<p>Timing depends on the website’s starting point, competition, and implementation. We establish a baseline during the initial audit and set review milestones around the agreed roadmap.<br/><br/></p>",
+            "question": "Q2. How long does one test take?",
+            "answer": "<p>One experiment takes about 3–5 weeks, including 2–3 weeks of testing; retainer cycles run every 2–3 weeks.<br/></p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -895,8 +928,8 @@
         "faq_row_8DWdMn": {
           "type": "_faq-row",
           "settings": {
-            "question": "Do you guarantee first-page rankings?",
-            "answer": "<p>We do not guarantee a specific ranking. We agree on target keyword groups, deliverables, and performance measures so you can assess both the work completed and its results.<br/><br/></p>",
+            "question": "Q3. What if no version beats the original?",
+            "answer": "<p>We extend the service for free until a winning page is found — that's our delivery guarantee.<br/></p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -904,8 +937,8 @@
         "faq_row_6Vcq7e": {
           "type": "_faq-row",
           "settings": {
-            "question": "Do you work with ecommerce and B2B websites?",
-            "answer": "<p>The program can be structured for either. Ecommerce projects prioritize categories, products, and purchases; B2B projects prioritize services, supplier evaluation, and qualified enquiries.<br/><br/></p>",
+            "question": "Q4. Can you test pricing?",
+            "answer": "<p>Yes. Price testing covers AOV and margin — one client saw conversion +11.64% and +$17,178 monthly revenue.<br/><br/></p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -913,8 +946,8 @@
         "faq_row_idcK38": {
           "type": "_faq-row",
           "settings": {
-            "question": "Can you work with our existing developers and content team?",
-            "answer": "<p>Yes. The scope can cover recommendations, production, or shared implementation. We define one owner for each action so responsibilities remain clear.<br/><br/></p>",
+            "question": "Q5. How much traffic do we need?",
+            "answer": "<p>New sites can start with the no-tool mode; sites with 50K+ monthly visitors unlock advanced multivariate testing.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -922,44 +955,8 @@
         "faq_row_mtDEQH": {
           "type": "_faq-row",
           "settings": {
-            "question": "Do we need to create new content?",
-            "answer": "<p>We assess existing content first. The content plan identifies three types of action: improve an existing page, consolidate overlapping pages, or create a new page.<br/><br/></p>",
-            "open_by_default": false
-          },
-          "blocks": {}
-        },
-        "faq_row_TfzdMb": {
-          "type": "_faq-row",
-          "settings": {
-            "question": "Can you support multiple countries and languages?",
-            "answer": "<p>Yes, subject to the agreed scope. Each target market receives its own keyword and page mapping rather than relying on a single translated keyword list.<br/><br/><br/></p>",
-            "open_by_default": false
-          },
-          "blocks": {}
-        },
-        "faq_row_CGMX33": {
-          "type": "_faq-row",
-          "settings": {
-            "question": "How do you measure SEO performance?",
-            "answer": "<p>We use Google Search Console for search performance and GA4 for website behavior and tracked conversions. The report connects those findings to agreed business goals.<br/><br/></p>",
-            "open_by_default": false
-          },
-          "blocks": {}
-        },
-        "faq_row_H88kCk": {
-          "type": "_faq-row",
-          "settings": {
-            "question": "Is link building included?",
-            "answer": "<p>It can be included in the selected scope. We specify resource criteria, deliverables, and reporting separately so you know what link development involves.<br/><br/><br/></p>",
-            "open_by_default": false
-          },
-          "blocks": {}
-        },
-        "faq_row_ABzErp": {
-          "type": "_faq-row",
-          "settings": {
-            "question": "What do you need from us to get started?",
-            "answer": "<p>We need your website URL, target markets, priority products or services, and business goals. Access to Search Console and GA4 supports a more detailed assessment.<br/><br/></p>",
+            "question": "Q7.  Which industries does this fit?",
+            "answer": "<p>3C, home, apparel, beauty, auto parts and more — it also combines with web build, SEO, EDM and membership.<br/><br/></p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -971,11 +968,7 @@
         "faq_row_8DWdMn",
         "faq_row_6Vcq7e",
         "faq_row_idcK38",
-        "faq_row_mtDEQH",
-        "faq_row_TfzdMb",
-        "faq_row_CGMX33",
-        "faq_row_H88kCk",
-        "faq_row_ABzErp"
+        "faq_row_mtDEQH"
       ],
       "name": "t:names.faq_section",
       "settings": {

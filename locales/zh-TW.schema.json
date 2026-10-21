@@ -9,6 +9,8 @@
  */
 {
   "footer_surface": {
+    "logo_surface": "显示 Logo 底框",
+    "platform_surface": "显示认证 Logo 底框",
     "hidden_pages": "不显示表单的页面",
     "hidden_pages_info": "默认所有页面显示。填写准确的页面名称、链接末尾名称或页面路径，每行一个，也可用逗号分隔。例如 Contact Us、contact、/pages/contact。首页填写“首页”或 /。不区分大小写，仅隐藏页脚咨询区，弹窗仍可使用。",
     "hidden_pages_placeholder": "Contact Us\ncontact\n/pages/contact",
@@ -16,9 +18,6 @@
     "menu_info": "选择 Shopify 菜单后自动读取菜单名称、链接及子菜单，链接统一在 Shopify 菜单中维护。",
     "whatsapp_info": "请填写包含国家区号的号码，自动生成 WhatsApp 链接；可在高级设置中覆盖链接。",
     "logo_info": "留空自动使用全局主题 Logo。",
-    "legacy_heading": "旧版导航标题",
-    "legacy_navigation": "旧版导航链接（兼容）",
-    "legacy_info": "仅兼容已有页脚。请在组件设置中选择菜单替代这些链接，新添加的页脚直接使用菜单选择器。",
     "share_background": "与咨询模块共用背景",
     "shared_background": "统一页脚背景",
     "visibility": "咨询模块显示规则",
@@ -113,6 +112,10 @@
     "metric_name": "Client result",
     "metric_value": "指標數值",
     "metric_label": "指標說明",
+    "benefit_name": "客戶成效說明",
+    "benefit_heading": "成效標題",
+    "benefit_description": "成效描述",
+    "benefit_preset_name": "客戶案例（含成效說明）",
     "eyebrow": "上标",
     "heading": "標題",
     "description": "案例简介",

@@ -9,6 +9,8 @@
  */
 {
   "footer_surface": {
+    "logo_surface": "Show logo background",
+    "platform_surface": "Show platform logo background",
     "hidden_pages": "Hide consultation on these pages",
     "hidden_pages_info": "Visible by default. Enter exact page titles, handles or paths, one per line or separated by commas. Example: Contact Us, contact, /pages/contact. Use / for the home page. Matching ignores case. Only the consultation area is hidden; the popup remains available.",
     "hidden_pages_placeholder": "Contact Us\ncontact\n/pages/contact",
@@ -16,9 +18,6 @@
     "menu_info": "Select a Shopify menu. Its title, links and nested links are read automatically; maintain links in Shopify Menus.",
     "whatsapp_info": "Include the country code. The WhatsApp link is generated automatically; an advanced custom link can override it.",
     "logo_info": "Leave blank to use the global theme logo.",
-    "legacy_heading": "Legacy navigation heading",
-    "legacy_navigation": "Legacy navigation link",
-    "legacy_info": "Kept for existing footer configurations. Select a menu in section settings to replace these links; new footers use menu pickers.",
     "share_background": "Share background with consultation",
     "shared_background": "Shared footer background",
     "visibility": "Consultation visibility",
@@ -113,6 +112,10 @@
     "metric_name": "Client result",
     "metric_value": "Result value",
     "metric_label": "Result label",
+    "benefit_name": "Müşteri faydası",
+    "benefit_heading": "Fayda başlığı",
+    "benefit_description": "Fayda açıklaması",
+    "benefit_preset_name": "Faydalar içeren müşteri hikayesi",
     "eyebrow": "Eyebrow",
     "heading": "Heading",
     "description": "Case summary",

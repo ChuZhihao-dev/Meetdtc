@@ -397,7 +397,7 @@
         "eyebrow": "Generative Engine Optimization",
         "heading": "Help Your Brand Become Part of the AI Answer",
         "heading_tag": "h1",
-        "description": "We help businesses improve how their brands appear in AI-generated answers. Through customer question research, clear brand information, useful content, and relevant third-party coverage, we build a measurable program around brand mentions, recommendations, and citations.",
+        "description": "ME help businesses improve how their brands appear in AI-generated answers. Through customer question research, clear brand information, useful content, and relevant third-party coverage, we build a measurable program around brand mentions, recommendations, and citations.",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
@@ -562,7 +562,7 @@
         "business_challenge_item_XDJAAj": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "1.AI Recommends Your Competitors",
+            "title": "1. AI Recommends Your Competitors",
             "description": "<p>We identify the questions where competitors appear and prioritize relevant opportunities for your brand.</p>",
             "link": "",
             "marker": "1"
@@ -774,7 +774,7 @@
           "type": "step",
           "settings": {
             "heading": "Diagnose the Gaps",
-            "description": "<p><strong>We analyze brand presence, answer accuracy, competitor coverage, and cited sources.</strong></p>",
+            "description": "<p>We analyze brand presence, answer accuracy, competitor coverage, and cited sources.</p>",
             "deliverable": ""
           }
         },
@@ -861,8 +861,8 @@
       "name": "t:client_story.name",
       "settings": {
         "eyebrow": "FEATURED CLIENT STORY",
-        "heading": "GEO Lifts a Portable Power Brand’s AI Mention Rate to 60%",
-        "description": "<p>Through clearer product information, comparison content and third-party coverage, this four-month scenario shows AI mention rate rising from 18% to 60% across ChatGPT and Gemini.</p>",
+        "heading": "Portable Power Brand Achieved 60% AI Mention Rate with GEO",
+        "description": "<p>This illustrative scenario addresses low AI visibility for a portable power brand. Clearer product information, comparison content and third-party coverage increased brand mention rate from 18% to 60% across ChatGPT and Gemini over four months.</p>",
         "image": "shopify://shop_images/b8f297d560a397b1d5b515362c3c2991.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",
