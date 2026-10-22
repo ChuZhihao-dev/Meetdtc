@@ -8,6 +8,22 @@
  * ------------------------------------------------------------
  */
 {
+  "me_picks": {
+    "auto_categories": "自動讀取商品系列導覽",
+    "auto_categories_info": "自動顯示商店可存取的商品系列，名稱與連結隨後台更新。關閉後使用分類區塊。未選擇全部優惠商品系列時，All Offers 返回商店全部商品。",
+    "name": "ME PICKS collection",
+    "all_collection": "All offers collection",
+    "all_label": "All offers label",
+    "category": "Offer category",
+    "category_label": "Category label",
+    "category_info": "Leave blank to use the selected collection's title. A category without a collection is displayed as text.",
+    "show_preview": "Show sample cards in the theme editor",
+    "preview_info": "Shows the design's 16 sample cards in the editor only. Turn off to preview real products. Storefront visitors always see the current collection's products.",
+    "product_info": "卡片讀取商品標題、主圖與所屬商品系列（無系列時使用商品類型）。選填商品中繼欄位：custom.offer_summary（單行文字）、custom.offer_terms（多行文字）、custom.offer_code（單行文字）、custom.offer_url（URL）。僅 Get Offer 開啟該商品設定的品牌連結。",
+    "background_gradient": "Page background gradient",
+    "code_background": "Discount code background",
+    "code_color": "Discount code text"
+  },
   "footer_surface": {
     "logo_surface": "显示 Logo 底框",
     "platform_surface": "显示认证 Logo 底框",

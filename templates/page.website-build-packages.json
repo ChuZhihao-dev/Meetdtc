@@ -1,0 +1,259 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "t:names.title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "weight": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "gradient_text": false,
+            "gradient_color_from": "#2f6df6",
+            "gradient_color_to": "#9333ea",
+            "gradient_angle": 90,
+            "gradient_start_position": 0,
+            "gradient_end_position": 100,
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {
+            "text_color": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "product_hero_dBiWNK": {
+      "type": "product-hero",
+      "name": "t:product_hero.name",
+      "settings": {
+        "eyebrow": "WEBSITE BUILD PACKAGES",
+        "heading": "Choose the Right Build\nfor Your Business",
+        "heading_tag": "h1",
+        "description": "Official Shopify theme launch, an enhanced Shopify or WordPress build,\nor a website developed around your business.",
+        "background_from": "#f7e9f5",
+        "background_to": "#c7e2f4",
+        "heading_from": "#0c23b8",
+        "heading_to": "#7c21c2",
+        "description_color": "#6b6a6a",
+        "section_height": "large",
+        "content_position": "center",
+        "padding-block-start": 84,
+        "padding-block-end": 84
+      }
+    },
+    "page_background_WJkREX": {
+      "type": "page-background",
+      "name": "t:names.page_background",
+      "settings": {
+        "background_type": "gradient",
+        "background_color": "#ffffff",
+        "gradient_color_from": "#d8e0f8",
+        "gradient_color_to": "#f7f1ed",
+        "gradient_angle": 168
+      }
+    },
+    "delivery_process_hJFRQK": {
+      "type": "delivery-process",
+      "blocks": {
+        "step_9h39bp": {
+          "type": "step",
+          "settings": {
+            "heading": "Discover & Assess",
+            "description": "<p>We review your business goals, target markets, website readiness, and existing affiliate activity.</p>",
+            "deliverable": ""
+          }
+        },
+        "step_M7QT3T": {
+          "type": "step",
+          "settings": {
+            "heading": "Build the Plan",
+            "description": "<p>We define your partner strategy, commission approach, measurement framework, and launch priorities.</p>",
+            "deliverable": ""
+          }
+        },
+        "step_aDgpjc": {
+          "type": "step",
+          "settings": {
+            "heading": "Set Up & Validate",
+            "description": "<p>We coordinate program setup, prepare partner materials, and check tracking before launch.</p>",
+            "deliverable": ""
+          }
+        },
+        "step_HbhB4g": {
+          "type": "step",
+          "settings": {
+            "heading": "Recruit & Activate",
+            "description": "<p>We approach relevant partners, onboard approved applicants, and support their first promotions.</p>",
+            "deliverable": ""
+          }
+        },
+        "step_4EMHpA": {
+          "type": "step",
+          "settings": {
+            "heading": "Measure & Improve",
+            "description": "<p>We review results, develop productive relationships, and refine the program as new opportunities emerge.</p>",
+            "deliverable": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_9h39bp",
+        "step_M7QT3T",
+        "step_aDgpjc",
+        "step_HbhB4g",
+        "step_4EMHpA"
+      ],
+      "name": "Delivery process",
+      "settings": {
+        "eyebrow": "DELIVERY PROCESS",
+        "heading": "From Your Brief\nto a Website\nReady to Launch",
+        "description": "<p>A clear build process, from confirming your requirements to implementation and handover.</p>",
+        "background": "",
+        "heading_gradient": "linear-gradient(107.919deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "text_color": "#000000",
+        "accent_color": "#9621c4",
+        "step_gap": 60,
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
+    },
+    "faq_FKqUjK": {
+      "type": "faq",
+      "blocks": {
+        "faq_row_6L8JYN": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "What is MarTech, and how can it support global growth?",
+            "answer": "<p>MarTech brings strategy, technology, data and execution together to help businesses attract, convert and retain customers. For businesses expanding across markets, it connects websites, marketing, customer operations and data into a more measurable growth system.</p>",
+            "open_by_default": true
+          },
+          "blocks": {}
+        },
+        "faq_row_Nxk7Qg": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "What MarTech solutions does ME provide?",
+            "answer": "<p>Our MarTech service areas include Web Development, SEO, Conversion Rate Optimisation, Email Marketing, Affiliate Marketing, WhatsApp Marketing, Trustpilot & Reviews, Loyalty & Membership, and AI & Cloud. Services can be engaged individually or combined into one connected growth programme.<br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_XiLH9X": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Can ME support both strategy and implementation?",
+            "answer": "<p>Yes. We can support the full process, from growth diagnosis and priority setting to planning, implementation, campaign execution, tracking and ongoing optimisation.<br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_X4L7Gj": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Which markets and platforms does ME work across?",
+            "answer": "<p>We help businesses expand into global markets, with a focus on clients based in Singapore, Hong Kong, Taiwan and mainland China. With offices in Singapore, Shanghai and Shenzhen, ME provides support in English and Chinese, connecting the commerce, marketing and analytics platforms that fit each client’s growth needs.<br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_tGbwJD": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "How Can We Get Started with ME?",
+            "answer": "<p>Tell us about your business, target market and current challenges. Request a free growth diagnosis below and our team will review your priorities, then come back with suitable next steps.<br/><br/></p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "faq_row_6L8JYN",
+        "faq_row_Nxk7Qg",
+        "faq_row_XiLH9X",
+        "faq_row_X4L7Gj",
+        "faq_row_tGbwJD"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "<p>About Working With ME</p>",
+        "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
+        "font": "var(--font-heading--family)",
+        "font_size": "3.625rem",
+        "weight": "600",
+        "line_height": "1.3",
+        "wrap": "balance",
+        "gradient_text": true,
+        "gradient_color_from": "#0b22b8",
+        "gradient_color_to": "#9621c4",
+        "gradient_angle": 92,
+        "gradient_start_position": 0,
+        "gradient_end_position": 15,
+        "background_gradient_from": "rgba(0,0,0,0)",
+        "background_gradient_to": "rgba(0,0,0,0)",
+        "background_gradient_angle": 104,
+        "row_background": "#e5e6ff",
+        "row_radius": 16,
+        "row_gap": 8,
+        "question_color": "#3f4eff",
+        "answer_color": "#595959",
+        "icon_color": "#3f4eff",
+        "heading_gap": 52,
+        "list_max_width": 1140,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_hero_dBiWNK",
+    "page_background_WJkREX",
+    "delivery_process_hJFRQK",
+    "faq_FKqUjK"
+  ]
+}

@@ -8,6 +8,22 @@
  * ------------------------------------------------------------
  */
 {
+  "me_picks": {
+    "categories": "优惠分类",
+    "get_offer": "领取优惠",
+    "get_offer_for": "领取 {{ brand }} 的优惠（在新标签页打开）",
+    "code_for": "{{ brand }} 的折扣码",
+    "copy_code": "复制 {{ brand }} 的折扣码",
+    "copied": "已复制！",
+    "copy_manual": "请选择并手动复制折扣码。",
+    "empty": "此产品系列暂无优惠。",
+    "image_preview": "图片 / 预览",
+    "sample_brand": "[ 品牌 01 ]",
+    "sample_category": "电商",
+    "sample_summary": "首单享 85 折",
+    "sample_terms": "最低消费 S$60",
+    "preview_notice": "布局预览：示例优惠仅显示在主题编辑器中。关闭示例卡片可查看当前产品系列的真实产品。"
+  },
   "growth_potential": {
     "read_more": "查看更多"
   },

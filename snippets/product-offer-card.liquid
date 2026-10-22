@@ -1,0 +1,86 @@
+{% doc %}
+  A brand offer backed by its product title, image and assigned collection.
+  Image/title never navigate to the product page.
+  Optional custom.offer_summary, offer_terms, offer_code and offer_url supply the offer.
+  @param {product} [product] - Product supplying the brand and offer.
+  @param {collection} [current_collection] - Collection currently being browsed.
+  @param {collection} [all_offers_collection] - Optional total collection, omitted from category labels.
+  @param {string} section_id - Owning section's ID for unique code fields.
+  @param {number} index - Card position within its owning section.
+  @param {string} [loading] - Responsive image loading strategy, defaults to lazy.
+  @param {boolean} [preview] - Non-interactive sample, used only in the theme editor.
+  @example {% render 'product-offer-card', product: product, current_collection: collection, section_id: section.id, index: forloop.index %}
+{% enddoc %}
+{% render 'product-offer-card-styles' %}
+{% liquid
+  assign brand = product.title | default: product.vendor
+  assign category = ''
+  if current_collection != blank and current_collection.handle != 'all' and current_collection.handle != 'frontpage' and current_collection.id != all_offers_collection.id
+    assign category = current_collection.title
+  else
+    for product_collection in product.collections limit: 50
+      unless product_collection.handle == 'all' or product_collection.handle == 'frontpage' or product_collection.id == all_offers_collection.id
+        assign category = product_collection.title
+        break
+      endunless
+    endfor
+  endif
+  assign category = category | default: product.type
+  assign summary = product.metafields.custom.offer_summary.value
+  assign terms = product.metafields.custom.offer_terms.value
+  assign code = product.metafields.custom.offer_code.value | strip
+  assign offer_url = product.metafields.custom.offer_url.value | strip
+  assign https_prefix = offer_url | slice: 0, 8 | downcase
+  assign http_prefix = offer_url | slice: 0, 7 | downcase
+  assign valid_url = false
+  if https_prefix == 'https://' or http_prefix == 'http://'
+    assign valid_url = true
+  endif
+  assign image = product.featured_image
+  assign image_alt = image.alt | default: brand
+  assign loading = loading | default: 'lazy'
+  assign code_id = 'OfferCode-' | append: section_id | append: '-' | append: index
+  if preview
+    assign brand = 'me_picks.sample_brand' | t
+    assign category = 'me_picks.sample_category' | t
+    assign summary = 'me_picks.sample_summary' | t
+    assign terms = 'me_picks.sample_terms' | t
+    assign code = 'MEPICK15'
+  endif
+%}
+<article class="offer-card">
+  <div class="offer-card__media">
+    {% if image != blank %}
+      {{ image | image_url: width: 1000 | image_tag: width: image.width, height: image.height, widths: '297, 450, 594, 750, 1000', sizes: '(min-width: 1354px) 297px, (min-width: 1200px) calc((100vw - 166px) / 4), (min-width: 990px) calc((100vw - 132px) / 3), (min-width: 750px) calc((100vw - 98px) / 2), calc(100vw - 32px)', loading: loading, decoding: 'async', alt: image_alt, class: 'offer-card__image' }}
+    {% else %}
+      <span class="offer-card__placeholder" aria-hidden="true">{{ 'me_picks.image_preview' | t }}</span>
+    {% endif %}
+  </div>
+  <div class="offer-card__body">
+    {% if category != blank %}<p class="offer-card__category">{{ category | escape }}</p>{% endif %}
+    <h2 class="offer-card__brand">{{ brand | escape }}</h2>
+    {% if summary != blank %}<p class="offer-card__summary">{{ summary | escape }}</p>{% endif %}
+    {% if terms != blank %}<p class="offer-card__terms">{{ terms | escape | newline_to_br }}</p>{% endif %}
+    <div class="offer-card__actions">
+      {% if code != blank %}
+        {% if preview %}
+          <span class="offer-card__code">{{ code | escape }}</span>
+        {% else %}
+          <offer-code-component data-copied="{{ 'me_picks.copied' | t | escape }}" data-manual="{{ 'me_picks.copy_manual' | t | escape }}">
+            <label class="visually-hidden" for="{{ code_id }}">{{ 'me_picks.code_for' | t: brand: brand | escape }}</label>
+            <input class="offer-card__code" id="{{ code_id }}" ref="code" type="text" value="{{ code | escape }}" readonly>
+            <button class="offer-card__code" ref="copy" type="button" on:click="/copyCode" hidden aria-label="{{ 'me_picks.copy_code' | t: brand: brand | escape }}">
+              <span ref="copyText">{{ code | escape }}</span>
+            </button>
+            <span class="visually-hidden" ref="status" role="status" aria-atomic="true"></span>
+          </offer-code-component>
+        {% endif %}
+      {% endif %}
+      {% if preview %}
+        <span class="offer-card__button">{{ 'me_picks.get_offer' | t }}</span>
+      {% elsif valid_url %}
+        <a class="offer-card__button" href="{{ offer_url | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ 'me_picks.get_offer_for' | t: brand: brand | escape }}">{{ 'me_picks.get_offer' | t }}</a>
+      {% endif %}
+    </div>
+  </div>
+</article>

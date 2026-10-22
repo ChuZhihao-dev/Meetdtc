@@ -1,0 +1,103 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-me-picks",
+      "blocks": {
+        "ecommerce": {
+          "type": "category",
+          "settings": {
+            "collection": "e-commerce",
+            "label": "E-Commerce"
+          }
+        },
+        "beauty": {
+          "type": "category",
+          "settings": {
+            "collection": "beauty",
+            "label": "Beauty"
+          }
+        },
+        "fashion": {
+          "type": "category",
+          "settings": {
+            "collection": "fashion",
+            "label": "Fashion"
+          }
+        },
+        "travel": {
+          "type": "category",
+          "settings": {
+            "collection": "travel",
+            "label": "Travel"
+          }
+        },
+        "food": {
+          "type": "category",
+          "settings": {
+            "collection": "food-beverage",
+            "label": "Food & Beverage"
+          }
+        },
+        "tech": {
+          "type": "category",
+          "settings": {
+            "collection": "tech-apps",
+            "label": "Tech & Apps"
+          }
+        },
+        "home": {
+          "type": "category",
+          "settings": {
+            "collection": "home-living",
+            "label": "Home & Living"
+          }
+        }
+      },
+      "block_order": [
+        "ecommerce",
+        "beauty",
+        "fashion",
+        "travel",
+        "food",
+        "tech",
+        "home"
+      ],
+      "settings": {
+        "heading": "ME PICKS",
+        "description": "<p>Offers From Brands In Our Network</p>",
+        "auto_categories": false,
+        "all_offers_collection": "all-offers",
+        "all_offers_label": "All Offers",
+        "products_per_page": 16,
+        "show_preview": false,
+        "background_color": "#e6eaf6",
+        "background_gradient": "linear-gradient(145deg, rgba(215, 224, 249, 1) 45%, rgba(230, 234, 246, 1) 98%)",
+        "text_color": "#1f1f1f",
+        "heading_gradient": "linear-gradient(135deg, rgba(11, 34, 184, 1) 12%, rgba(150, 33, 196, 1) 88%)",
+        "accent_color": "#0022ff",
+        "card_background": "#ffffff4d",
+        "card_border": "#ffffff",
+        "media_background": "#ebebeb",
+        "card_radius": 16,
+        "code_background": "#a4b3ea",
+        "code_color": "#172363",
+        "button_background": "linear-gradient(101deg, rgba(31, 38, 251, 1), rgba(187, 0, 186, 1) 100%)",
+        "button_color": "#ffffff",
+        "padding-block-start": 100,
+        "padding-block-end": 84
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

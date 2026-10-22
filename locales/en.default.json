@@ -8,6 +8,22 @@
  * ------------------------------------------------------------
  */
 {
+  "me_picks": {
+    "categories": "Offer categories",
+    "get_offer": "Get Offer",
+    "get_offer_for": "Get the offer from {{ brand }} (opens in a new tab)",
+    "code_for": "Discount code for {{ brand }}",
+    "copy_code": "Copy the discount code for {{ brand }}",
+    "copied": "Copied!",
+    "copy_manual": "Select and copy the discount code manually.",
+    "empty": "No offers in this collection yet.",
+    "image_preview": "IMAGE / PREVIEW",
+    "sample_brand": "[ Brand 01 ]",
+    "sample_category": "E-Commerce",
+    "sample_summary": "15% off your first order",
+    "sample_terms": "Min. spend S$60",
+    "preview_notice": "Layout preview — these sample offers appear only in the theme editor. Turn off sample cards to see the collection's products."
+  },
   "contact_submit": { "submitting": "Submitting…" },
   "contact_section": {
     "submit": "Send enquiry",
