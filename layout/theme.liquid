@@ -18,6 +18,11 @@
     {%- render 'view-transition-opt-in' -%}
 
     {%- render 'meta-tags' -%}
+    {%- if request.page_type == 'product' and product != blank -%}
+      <script type="application/ld+json">
+        {{ product | structured_data }}
+      </script>
+    {%- endif -%}
     {%- render 'stylesheets' -%}
     {%- render 'card-hover-effect-styles' -%}
     {%- render 'scripts' -%}

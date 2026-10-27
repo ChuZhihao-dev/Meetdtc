@@ -398,11 +398,13 @@
         "heading": "Turn more of your existing traffic into revenue.",
         "heading_tag": "h1",
         "description": "ME combine data analysis with user behavior insight to find conversion barriers, then validate every improvement with A/B testing — continuously lifting add-to-cart, checkout and conversion rates across your store.",
+        "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
         "heading_to": "#7c21c2",
         "description_color": "#6b6a6a",
+        "service_labels_color": "#3e4c81",
         "section_height": "full-screen",
         "content_position": "center",
         "padding-block-start": 0,
@@ -671,63 +673,81 @@
           "type": "card",
           "settings": {
             "heading": "Conversion Data Diagnosis",
-            "description": "<p>We analyze GA4, heatmaps and user paths; you get a prioritized list of conversion barriers.</p>"
+            "description": "<p>We analyze GA4, heatmaps and user paths; you get a prioritized list of conversion barriers.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_wKwRVy": {
           "type": "card",
           "settings": {
             "heading": "User Research",
-            "description": "<p>We study real visitor behavior and feedback; you get clear insight into why users drop off.</p>"
+            "description": "<p>We study real visitor behavior and feedback; you get clear insight into why users drop off.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_jTHQUi": {
           "type": "card",
           "settings": {
             "heading": "Optimization Hypotheses",
-            "description": "<p>We turn insights into testable assumptions; you get a structured optimization roadmap.</p>"
+            "description": "<p>We turn insights into testable assumptions; you get a structured optimization roadmap.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
             "heading": "Page Optimization Design",
-            "description": "<p>We design optimized page variants; you get redesigns that reduce decision friction.</p>"
+            "description": "<p>We design optimized page variants; you get redesigns that reduce decision friction.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_xg8a6q": {
           "type": "card",
           "settings": {
             "heading": "A/B Test Setup & Execution",
-            "description": "<p>We configure traffic split and multivariate experiments; you get statistically reliable results.</p>"
+            "description": "<p>We configure traffic split and multivariate experiments; you get statistically reliable results.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_nMqphe": {
           "type": "card",
           "settings": {
             "heading": "Tracking & Fine-grained Data",
-            "description": "<p>We set up precise conversion and key-behavior tracking; you get clear data on every variant.</p>"
+            "description": "<p>We set up precise conversion and key-behavior tracking; you get clear data on every variant.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_arTm9i": {
           "type": "card",
           "settings": {
             "heading": "Iteration & Winning Release",
-            "description": "<p>We iterate variants until a winner emerges; you get the best-performing version live.</p>"
+            "description": "<p>We iterate variants until a winner emerges; you get the best-performing version live.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_mxgcYn": {
           "type": "card",
           "settings": {
             "heading": "Price Testing",
-            "description": "<p>We test price and margin scenarios; you get validated pricing that lifts revenue per visitor.</p>"
+            "description": "<p>We test price and margin scenarios; you get validated pricing that lifts revenue per visitor.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_6hNiPV": {
           "type": "card",
           "settings": {
             "heading": "Ongoing Optimization Retainer",
-            "description": "<p>We run monthly cycles every 2–3 weeks; you get continuous conversion growth.</p>"
+            "description": "<p>We run monthly cycles every 2–3 weeks; you get continuous conversion growth.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         }
       },
@@ -744,11 +764,13 @@
       ],
       "name": "t:service_scope.name",
       "settings": {
+        "layout": "standard",
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
         "description": "<p>From diagnosis to continuous growth, one complete optimization system.<br/><br/></p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
+        "card_heading_color": "#241c52",
         "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
         "background": "",
         "card_background": "#ffffff",
@@ -883,9 +905,9 @@
       "name": "t:client_story.name",
       "settings": {
         "eyebrow": "FEATURED CLIENT STORY",
-        "heading": "Xinghan Achieved 42% Higher Add-to-Cart Rate with CRO",
-        "description": "<p>Ahead of Black Friday, Xinghan needed to improve a stagnant conversion funnel. ME identified barriers, redesigned key pages and ran A/B tests, increasing add-to-cart rate by 42% within one testing cycle.<br/></p>",
-        "image": "shopify://shop_images/b8f297d560a397b1d5b515362c3c2991_46b592d8-74b3-46cf-b17b-02f516045be4.png",
+        "heading": "A Laser Equipment Brand Achieved 42% Higher Add-to-Cart Rate with CRO",
+        "description": "<p>Customers needed an easier way to compare product packages. ME added a “What’s in the Box?” popup and ran an A/B test. During the test period, the optimized page achieved a 42% higher add-to-cart rate and a 3.25% higher average order value than the control.</p>",
+        "image": "shopify://shop_images/CRO.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",
         "link": "",

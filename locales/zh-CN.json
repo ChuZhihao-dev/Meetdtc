@@ -8,6 +8,12 @@
  * ------------------------------------------------------------
  */
 {
+  "website_packages": {
+    "selected_package": "所选套餐：",
+    "from": "起价",
+    "pricing_unavailable": "价格即将公布",
+    "select_product": "请选择服务产品，准备就绪后开启价格与购买。"
+  },
   "me_picks": {
     "categories": "优惠分类",
     "get_offer": "领取优惠",
@@ -399,5 +405,23 @@
       "success_moderated": "评论已发布，等待审核",
       "success": "评论已发布"
     }
+  },
+  "contact_submit": {
+    "submitting": "Submitting…"
+  },
+  "contact_section": {
+    "submit": "Send enquiry",
+    "name": "Your Name",
+    "company": "Company Name",
+    "email": "Work Email",
+    "phone": "Contact Number",
+    "website": "Company Website",
+    "goals": "Tell Us About Your Goals or Challenges",
+    "name_placeholder": "Your name",
+    "company_placeholder": "Your company",
+    "email_placeholder": "you@company.com",
+    "phone_placeholder": "+65 1234 5678",
+    "website_placeholder": "https://",
+    "goals_placeholder": "Tell us what your business does, the challenges you are facing, and what you would like to achieve."
   }
 }

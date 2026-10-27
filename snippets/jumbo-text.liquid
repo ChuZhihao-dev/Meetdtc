@@ -1,5 +1,5 @@
 {%- doc -%}
-  Renders text that stretches to fit the full width of its container.
+  Renders decorative text using the configured H1 size and optional entrance effects.
 
   @param {string} [text] - The text to be rendered.
   @param {object} [block_settings] - The block settings object, defaults to block.settings
@@ -111,6 +111,7 @@
     font-style: var(--font-style, normal);
     color: var(--color, inherit);
     font-weight: var(--font-weight, inherit);
+    font-size: var(--font-h1--size);
     letter-spacing: var(--letter-spacing, -0.02em);
     line-height: var(--line-height, 1);
     opacity: 0;
@@ -137,7 +138,9 @@
 
   .jumbo-text-line {
     display: inline-flex;
-    white-space: pre;
+    white-space: pre-wrap;
+    max-inline-size: 100%;
+    overflow-wrap: anywhere;
   }
 
   @media (prefers-reduced-motion: no-preference) {

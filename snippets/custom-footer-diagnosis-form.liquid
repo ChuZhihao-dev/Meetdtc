@@ -12,6 +12,7 @@
     >
       {%- form 'contact', id: form_id, class: 'footer-diagnosis__form contact-form-focus' -%}
         <input type="hidden" name="contact[id]" value="{{ form_id }}">
+        {% render 'website-package-enquiry' %}
 
 
         <div class="footer-diagnosis__fields">

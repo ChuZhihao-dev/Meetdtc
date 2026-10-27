@@ -29,11 +29,19 @@ export default class BlogPostsList extends Component {
     this.#controller = new AbortController();
     const { signal } = this.#controller;
     this.#motion.addEventListener('change', this.#reveal, { signal });
+    window.addEventListener('popstate', this.#handlePopState, { signal });
     const section = this.closest('.shopify-section');
     if (section) this.#cachePage(this.#activeUrl, section.outerHTML);
     this.#updateCategories();
     this.#reveal(true);
   }
+
+  #handlePopState = () => {
+    const currentUrl = new URL(location.href);
+    if (currentUrl.href !== this.#activeUrl.href) {
+      void this.#render(currentUrl, false, false);
+    }
+  };
 
   updatedCallback() {
     super.updatedCallback();
@@ -78,11 +86,15 @@ export default class BlogPostsList extends Component {
 
   /** Retry the latest failed request without submitting any form. */
   retry() {
-    if (this.#pendingUrl) void this.#render(this.#pendingUrl, true);
+    if (this.#pendingUrl) void this.#render(this.#pendingUrl, true, true);
   }
 
-  /** @param {URL} url @param {boolean} moveFocus */
-  async #render(url, moveFocus) {
+  /**
+   * @param {URL} url
+   * @param {boolean} moveFocus
+   * @param {boolean} [pushHistory=true]
+   */
+  async #render(url, moveFocus, pushHistory = true) {
     const request = ++this.#request;
     this.#pendingUrl = url;
     this.removeAttribute('data-error');
@@ -122,6 +134,9 @@ export default class BlogPostsList extends Component {
       if (!useCached) this.#cachePage(url, html);
       this.#activeUrl = new URL(url);
       this.#activeUrl.pathname = nextResults.dataset.currentPath || url.pathname;
+      if (pushHistory && location.href !== url.href) {
+        history.pushState({ path: url.pathname }, '', url.href);
+      }
       this.#pendingUrl = undefined;
       if (this.refs.status) this.refs.status.textContent = nextResults.dataset.loadedText || '';
       if (moveFocus) {
@@ -150,10 +165,12 @@ export default class BlogPostsList extends Component {
   }
 
   #updateCategories() {
-    const path = this.querySelector(this.resultsSelector)?.getAttribute('data-current-path') || location.pathname;
+    const rawPath = this.querySelector(this.resultsSelector)?.getAttribute('data-current-path') || location.pathname;
+    const path = decodeURI(rawPath).replace(/\/$/, '');
     for (const link of this.querySelectorAll(`${this.filterSelector} a`)) {
       if (!(link instanceof HTMLAnchorElement)) continue;
-      if (new URL(link.href).pathname === path) link.setAttribute('aria-current', 'page');
+      const linkPath = decodeURI(new URL(link.href).pathname).replace(/\/$/, '');
+      if (linkPath === path) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
     }
   }

@@ -116,7 +116,7 @@
 {% stylesheet %}
   .brand-footer { font-family: var(--font-heading--family); }
   .brand-footer__inner { width: calc(100% - 48px); max-width: 1322px; min-width: 0; margin-inline: auto; padding-inline: 10px; }
-  .brand-footer__main { display: grid; grid-template-columns: minmax(0, 357fr) minmax(0, 268fr) minmax(0, 129fr) minmax(0, 248fr); gap: clamp(28px, 5.4vw, 80px); align-items: start; max-width: 1276px; margin-inline: auto; }
+  .brand-footer__main { display: grid; grid-template-columns: minmax(0, 357fr) minmax(0, 268fr) minmax(0, 129fr) minmax(0, 248fr); gap: clamp(28px, 5.4vw, 72px); align-items: start; max-width: 1276px; margin-inline: auto; }
   .brand-footer__main > * { min-width: 0; overflow-wrap: anywhere; }
   .brand-footer__navigation--services { grid-column: 2; }
   .brand-footer__navigation--company { grid-column: 3; }
@@ -125,26 +125,26 @@
   .brand-footer__logo--image { width: var(--brand-footer-logo-width); }
   .brand-footer__logo--surface { padding: 14px 16px; border-radius: 12px; background: #fff; }
   .brand-footer__logo img { display: block; width: 100%; height: auto; }
-  .brand-footer__description { max-width: 357px; margin: 20px 0 0; color: inherit; font-family: var(--font-body--family); font-size: var(--fluid-body-16, 16px); font-weight: 400; line-height: 1.3; }
-  .brand-footer__heading { margin: 0 0 20px; color: inherit; font-family: inherit; font-size: var(--fluid-heading-21, 21px); font-weight: 600; line-height: 1.2; letter-spacing: 1px; text-transform: uppercase; overflow-wrap: anywhere; }
-  .brand-footer__links, .brand-footer__subnav { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: var(--fluid-body-14, 14px); font-weight: 600; line-height: 1.7; letter-spacing: -0.15px; }
+  .brand-footer__description { max-width: 357px; margin: 20px 0 0; color: inherit; font-family: var(--font-body--family); font-size: 16px; font-weight: 400; line-height: 1.3; }
+  .brand-footer__heading { margin: 0 0 20px; color: inherit; font-family: inherit; font-size: 21px; font-weight: 600; line-height: 1.2; letter-spacing: 1px; text-transform: uppercase; overflow-wrap: anywhere; }
+  .brand-footer__links, .brand-footer__subnav { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: 14px; font-weight: 600; line-height: 1.7; letter-spacing: -0.15px; }
   .brand-footer__subnav { margin-block-start: 8px; padding-inline-start: 12px; }
   .brand-footer a { color: inherit; text-decoration: none; text-underline-offset: 0.22em; }
   .brand-footer a:hover { text-decoration: underline; }
   .brand-footer a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 3px; }
-  .brand-footer__email { display: inline-block; font-size: var(--fluid-body-14, 14px); font-weight: 600; line-height: 1.6; }
-  .brand-footer__contact-line { margin: 8px 0 0; font-size: var(--fluid-body-12, 12px); font-weight: 500; line-height: 1.8667; }
+  .brand-footer__email { display: inline-block; font-size: 14px; font-weight: 600; line-height: 1.6; }
+  .brand-footer__contact-line { margin: 8px 0 0; font-size: 12px; font-weight: 500; line-height: 1.8667; }
   .brand-footer__offices { display: grid; gap: 12px; margin-block-start: 12px; }
-  .brand-footer__office h3 { margin: 0 0 4px; color: inherit; font-family: inherit; font-size: var(--fluid-heading-14, 14px); font-weight: 600; line-height: 1.6; letter-spacing: normal; }
-  .brand-footer__office address { font-size: var(--fluid-body-12, 12px); font-weight: 500; font-style: normal; line-height: 1.8667; }
+  .brand-footer__office h3 { margin: 0 0 4px; color: inherit; font-family: inherit; font-size: 14px; font-weight: 600; line-height: 1.6; letter-spacing: normal; }
+  .brand-footer__office address { font-size: 12px; font-weight: 500; font-style: normal; line-height: 1.8667; }
   .brand-footer__platforms { margin-block-start: 80px; }
   .brand-footer__platforms .brand-footer__heading { margin-block-end: 8px; text-transform: none; }
   .brand-footer__platform-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 28px; min-block-size: 117px; margin: 0; padding: 14px 0; list-style: none; }
   .brand-footer__platform-strip--surface { padding-inline: 24px; border-radius: 13px; }
-  .brand-footer__platform { display: flex; flex: 1 1 100px; align-items: center; justify-content: center; min-width: 0; max-width: 200px; font-size: var(--fluid-body-14, 14px); font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+  .brand-footer__platform { display: flex; flex: 1 1 100px; align-items: center; justify-content: center; min-width: 0; max-width: 200px; font-size: 14px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
   .brand-footer__platform a { display: flex; align-items: center; justify-content: center; max-width: 100%; }
   .brand-footer__platform img { display: block; width: auto; height: auto; max-width: 100%; max-height: 87px; object-fit: contain; }
-  .brand-footer__bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px 32px; margin-block-start: 80px; padding-block-start: 20px; border-block-start: 1px solid rgb(var(--color-foreground-rgb) / var(--opacity-50)); font-size: var(--fluid-body-16, 16px); font-weight: 400; line-height: 1.575; }
+  .brand-footer__bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px 32px; margin-block-start: 80px; padding-block-start: 20px; border-block-start: 1px solid rgb(var(--color-foreground-rgb) / var(--opacity-50)); font-size: 16px; font-weight: 400; line-height: 1.575; }
   .brand-footer__bottom p { min-width: 0; max-width: 100%; margin: 0; overflow-wrap: anywhere; }
   @media screen and (max-width: 1099px) {
     .brand-footer__main { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }

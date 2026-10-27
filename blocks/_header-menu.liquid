@@ -310,7 +310,7 @@
     font-family: var(--menu-top-level-font-family);
     font-style: var(--menu-top-level-font-style);
     font-weight: var(--menu-top-level-font-weight);
-    font-size: var(--menu-top-level-font-size);
+    font-size: var(--menu-top-level-font-size-desktop, var(--menu-top-level-font-size));
     line-height: var(--menu-top-level-font-line-height);
     text-transform: var(--menu-top-level-font-case);
     color: var(--menu-top-level-font-color);
@@ -338,10 +338,6 @@
     &:hover,
     &:focus {
       color: var(--menu-top-level-font-color);
-    }
-
-    @media screen and (min-width: 750px) {
-      font-size: var(--menu-top-level-font-size-desktop);
     }
   }
 
@@ -887,7 +883,7 @@
       align-items: center;
       min-block-size: 36px;
       padding: 4px 0;
-      font-size: calc(var(--menu-parent-font-size) * 0.875);
+
       font-weight: 500;
       line-height: 1.4;
       color: var(--color-foreground);

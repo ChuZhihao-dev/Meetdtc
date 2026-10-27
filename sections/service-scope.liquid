@@ -1,10 +1,15 @@
 {% comment %}
   Service scope: editable introduction and a responsive list of service modules.
   Empty background shows the page background; card transparency is independent.
+  The included layout adds centered copy and optional merchant-uploaded icons.
   @example Add "Service scope" and edit, add or reorder its service cards.
 {% endcomment %}
 {% liquid
   assign s = section.settings
+  assign included_layout = false
+  if s.layout == 'included'
+    assign included_layout = true
+  endif
   assign card_alpha = s.card_opacity | divided_by: 100.0
   assign card_count = 0
   for block in section.blocks limit: 50
@@ -20,10 +25,11 @@
 {% endif %}
 <div class="service-scope__background" style="background: {{ s.background | default: 'transparent' }};" aria-hidden="true"></div>
 <scroll-reveal-component
-  class="section section--full-width spacing-style service-scope{% if request.design_mode %} service-scope--editor{% endif %}"
+  class="section section--full-width spacing-style service-scope{% if included_layout %} service-scope--included{% endif %}{% if request.design_mode %} service-scope--editor{% endif %}"
   style="{% render 'spacing-style', settings: s %}
     --service-scope-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }};
     --service-scope-text: {{ s.text_color }};
+    --service-scope-card-heading: {{ s.card_heading_color | default: s.text_color }};
     --service-scope-gradient: {{ s.heading_gradient | default: s.text_color }};
     --service-scope-card-background: {{ s.card_background | color_modify: 'alpha', card_alpha }};
     --service-scope-card-border: {{ s.card_border }};
@@ -33,13 +39,14 @@
     --service-scope-mobile-top: {{ s.padding_mobile_top }}px;
     --service-scope-mobile-bottom: {{ s.padding_mobile_bottom }}px;"
   {% if s.enable_reveal %}data-reveal-scope{% endif %}
+  {% if s.enable_reveal and included_layout %}data-reveal-timeline="desktop" data-reveal-margin="0px 0px -15% 0px"{% endif %}
 >
   <div class="service-scope__inner">
     {% if s.eyebrow != blank or s.heading != blank or s.description != blank %}
-      <div class="service-scope__intro" {% if s.enable_reveal %}data-reveal{% endif %}>
+      <div class="service-scope__intro" {% if s.enable_reveal and included_layout == false %}data-reveal{% endif %}>
         {% if s.eyebrow != blank %}<p class="service-scope__eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
-        {% if s.heading != blank %}<h2 class="service-scope__heading">{{ s.heading | escape }}</h2>{% endif %}
-        {% if s.description != blank %}<div class="service-scope__description">{{ s.description }}</div>{% endif %}
+        {% if s.heading != blank %}<h2 class="service-scope__heading" {% if s.enable_reveal and included_layout %}data-reveal{% endif %}>{{ s.heading | escape }}</h2>{% endif %}
+        {% if s.description != blank %}<div class="service-scope__description" {% if s.enable_reveal and included_layout %}data-reveal{% endif %}>{{ s.description }}</div>{% endif %}
       </div>
     {% endif %}
     {% if card_count > 0 %}
@@ -47,8 +54,14 @@
         {% for block in section.blocks limit: 50 %}
           {% if block.settings.heading != blank or block.settings.description != blank or request.design_mode %}
             <li class="service-scope__card" {% if s.enable_reveal %}data-reveal{% endif %} {{ block.shopify_attributes }}>
+              {% if block.settings.icon != blank %}
+                <img class="service-scope__card-icon" src="{{ block.settings.icon | image_url: width: 64 }}" width="32" height="32" alt="" loading="lazy">
+              {% endif %}
               {% if block.settings.heading != blank %}<h3 class="service-scope__card-heading">{{ block.settings.heading | escape }}</h3>{% endif %}
               {% if block.settings.description != blank %}<div class="service-scope__card-description">{{ block.settings.description }}</div>{% endif %}
+              {% if block.settings.link != blank and block.settings.link_label != blank %}
+                <a class="service-scope__card-link" href="{{ block.settings.link | escape }}">{{ block.settings.link_label | escape }}{% if block.settings.heading != blank %}<span class="visually-hidden"> — {{ block.settings.heading | escape }}</span>{% endif %}</a>
+              {% endif %}
             </li>
           {% endif %}
         {% endfor %}
@@ -77,18 +90,18 @@
   .service-scope__intro { display: grid; gap: 10px; min-width: 0; }
   .service-scope__eyebrow {
     margin: 0;
-    font-size: var(--fluid-body-24, clamp(18px, 1.66667vw, 24px));
+    font-size: 20px;
     font-weight: 500;
-    line-height: 1.583333;
+    line-height: 1.53;
     overflow-wrap: anywhere;
   }
   .service-scope__heading {
     max-width: 1306px;
     margin: 0;
     font-family: inherit;
-    font-size: var(--fluid-heading-58, clamp(40px, 4.02778vw, 58px));
+    font-size: 48px;
     font-weight: 600;
-    line-height: 1.224138;
+    line-height: 1.2;
     letter-spacing: normal;
     color: inherit;
     background: var(--service-scope-gradient, #0b22b8);
@@ -98,7 +111,7 @@
   }
   .service-scope__description {
     max-width: 1098.617px;
-    font-size: var(--fluid-body-24, clamp(20px, 1.66667vw, 24px));
+    font-size: 24px;
     font-weight: 500;
     line-height: 1.583333;
     overflow-wrap: anywhere;
@@ -153,13 +166,15 @@
     margin: 0;
     color: inherit;
     font-family: inherit;
-    font-size: var(--fluid-heading-25, clamp(22px, 1.73611vw, 25px));
+    font-size: 25px;
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: normal;
   }
-  .service-scope__card-description { font-size: var(--fluid-body-16, 16px); font-weight: 400; line-height: 1.25; }
+  .service-scope__card-description { font-size: 16px; font-weight: 400; line-height: 1.25; }
   .service-scope__card-heading + .service-scope__card-description { margin-block-start: 20px; }
+  .service-scope__card-icon { display: block; inline-size: 32px; block-size: 32px; margin-block-end: 14px; object-fit: contain; }
+  .service-scope__card-link { display: inline-flex; align-items: center; min-block-size: 44px; margin-block-start: 10px; color: inherit; font-size: 14px; font-weight: 600; text-underline-offset: 0.2em; }
   .service-scope__description a,
   .service-scope__card-description a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
   .service-scope a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
@@ -168,25 +183,18 @@
   .service-scope--editor.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; }
   @media screen and (max-width: 989px) {
     .service-scope__inner { padding-inline: 32px; }
-    .service-scope__heading { font-size: var(--fluid-heading-58, clamp(40px, 5.8vw, 48px)); line-height: 1.2; }
-    .service-scope__description { font-size: var(--fluid-body-24, 20px); line-height: 1.6; }
     .service-scope__grid { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
     .service-scope__card { padding: 24px; }
-    .service-scope__card-heading { font-size: var(--fluid-heading-25, 22px); line-height: 1.3; }
-    .service-scope__card-description { line-height: 1.5; }
     .service-scope__description br { display: none; }
   }
   @media screen and (max-width: 749px) {
     .service-scope { padding-block: var(--service-scope-mobile-top, 40px) var(--service-scope-mobile-bottom, 40px); }
     .service-scope__inner { padding-inline: 20px; }
     .service-scope__intro { gap: 12px; }
-    .service-scope__eyebrow { font-size: var(--fluid-body-24, 16px); line-height: 1.5; }
-    .service-scope__heading { font-size: var(--fluid-heading-58, clamp(32px, 8.20513vw, 36px)); line-height: 1.15; }
-    .service-scope__description { font-size: var(--fluid-body-24, 18px); line-height: 1.611111; }
     .service-scope__grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
     .service-scope__intro + .service-scope__grid { margin-block-start: 32px; }
     .service-scope__card { min-height: 0; }
-    .service-scope__card-heading { min-block-size: 0; font-size: var(--fluid-heading-25, 22px); }
+    .service-scope__card-heading { min-block-size: 0; }
     .service-scope__card-heading + .service-scope__card-description { margin-block-start: 16px; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -197,6 +205,41 @@
   @media (forced-colors: active) {
     .service-scope__heading { color: CanvasText; background: none; -webkit-text-fill-color: currentColor; }
     .service-scope__card { border-color: CanvasText; }
+  }
+  .service-scope--included .service-scope__inner { max-inline-size: 1440px; padding-inline: clamp(24px, 5.55556vw, 80px); }
+  .service-scope--included .service-scope__intro { text-align: center; }
+  .service-scope--included .service-scope__heading { max-inline-size: none; font-size: 58px; line-height: 1.45; }
+  .service-scope--included .service-scope__description { max-inline-size: none; font-size: 24px; font-weight: 400; line-height: 1.45; }
+  .service-scope--included .service-scope__grid { inline-size: 100%; grid-auto-rows: auto; gap: var(--service-scope-row-gap) var(--service-scope-column-gap); }
+  .service-scope--included .service-scope__intro + .service-scope__grid { margin-block-start: 10px; }
+  .service-scope--included .service-scope__card { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; min-block-size: 220px; padding: 24px; border-width: 0; }
+  .service-scope--included .service-scope__card-icon { flex-shrink: 0; margin: 0; }
+  .service-scope--included .service-scope__card-heading { min-block-size: 0; color: var(--service-scope-card-heading); font-size: 21px; line-height: 1.45; }
+  .service-scope--included .service-scope__card-description { font-size: 14px; line-height: 1.45; }
+  .service-scope--included .service-scope__card-heading + .service-scope__card-description { margin-block-start: 0; }
+  .service-scope--included .service-scope__card-link { margin-block-start: auto; color: var(--service-scope-card-heading); }
+  .service-scope--included .service-scope__card,
+  .service-scope--included.reveal-ready .service-scope__card { transition-duration: 0.55s, 0.55s, var(--animation-speed), var(--animation-speed); }
+  .service-scope--included.reveal-ready [data-reveal] { transition: opacity 550ms var(--ease-out-cubic), transform 550ms var(--ease-out-cubic); transition-delay: calc(var(--reveal-index, 0) * 80ms); }
+  .service-scope--included.reveal-ready .service-scope__heading[data-reveal] { transition-duration: 600ms; transition-delay: 0ms; }
+  .service-scope--included.reveal-ready .service-scope__heading[data-state='before'] { transform: translateY(20px); }
+  .service-scope--included.reveal-ready .service-scope__description[data-reveal] { transition-duration: 500ms; transition-delay: 100ms; }
+  .service-scope--included.reveal-ready .service-scope__description[data-state='before'] { transform: translateY(16px); }
+  .service-scope--included.reveal-ready .service-scope__card[data-reveal] { transition: opacity 550ms var(--ease-out-cubic), transform 550ms var(--ease-out-cubic), translate var(--animation-speed) var(--ease-out-cubic), box-shadow var(--animation-speed) var(--ease-out-cubic); transition-delay: calc(var(--reveal-index, 0) * 80ms), calc(var(--reveal-index, 0) * 80ms), 0ms, 0ms; }
+  @media screen and (max-width: 989px) {
+    .service-scope--included .service-scope__inner { padding-inline: 32px; }
+    .service-scope--included.reveal-ready .service-scope__card[data-reveal] { transition-delay: 0ms; }
+  }
+  @media screen and (max-width: 749px) {
+    .service-scope--included .service-scope__inner { padding-inline: 24px; }
+    .service-scope--included .service-scope__intro { gap: 10px; }
+    .service-scope--included .service-scope__intro + .service-scope__grid { margin-block-start: 24px; }
+    .service-scope--included .service-scope__card { min-block-size: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .service-scope--included.reveal-ready [data-reveal],
+    .service-scope--included.reveal-ready [data-reveal][data-state='before'] { opacity: 1; transform: none; transition: none; }
+    .service-scope--included.reveal-ready .service-scope__card[data-reveal] { transition: none; }
   }
 {% endstylesheet %}
 
@@ -211,6 +254,22 @@
     ]
   },
   "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:service_scope.layout",
+      "options": [
+        {
+          "value": "standard",
+          "label": "t:service_scope.layout_standard"
+        },
+        {
+          "value": "included",
+          "label": "t:service_scope.layout_included"
+        }
+      ],
+      "default": "standard"
+    },
     {
       "type": "text",
       "id": "eyebrow",
@@ -240,6 +299,13 @@
       "id": "text_color",
       "label": "t:service_scope.text_color",
       "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_heading_color",
+      "label": "t:service_scope.card_heading_color",
+      "default": "#241C52",
+      "visible_if": "{{ section.settings.layout == 'included' }}"
     },
     {
       "type": "color_background",
@@ -358,6 +424,12 @@
       "name": "t:service_scope.card_name",
       "settings": [
         {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "t:service_scope.card_icon",
+          "info": "t:service_scope.card_icon_info"
+        },
+        {
           "type": "text",
           "id": "heading",
           "label": "t:service_scope.card_heading",
@@ -368,6 +440,18 @@
           "id": "description",
           "label": "t:service_scope.card_description",
           "default": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:settings.link"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "t:service_scope.card_link_label",
+          "default": "Learn more",
+          "visible_if": "{{ block.settings.link != blank }}"
         }
       ]
     }
@@ -395,6 +479,96 @@
         {
           "type": "card"
         }
+      ]
+    },
+    {
+      "name": "t:service_scope.included_name",
+      "category": "t:categories.storytelling",
+      "settings": {
+        "layout": "included",
+        "eyebrow": "",
+        "heading": "Included in Every Project",
+        "description": "<p>The shared foundations of your website build.</p>",
+        "font": "montserrat_n4",
+        "text_color": "#5e5a8a",
+        "card_heading_color": "#241c52",
+        "heading_gradient": "linear-gradient(90deg, #211fc7 0%, #7a21d4 100%)",
+        "background": "",
+        "card_background": "#ffffff",
+        "card_opacity": 100,
+        "card_border": "#ffffff",
+        "card_radius": 18,
+        "column_gap": 20,
+        "row_gap": 20,
+        "padding-block-start": 40,
+        "padding-block-end": 40,
+        "padding_mobile_top": 40,
+        "padding_mobile_bottom": 40,
+        "enable_reveal": true
+      },
+      "blocks": {
+        "responsive": {
+          "type": "card",
+          "settings": {
+            "heading": "Responsive Pages & Blog",
+            "description": "<p>Desktop and mobile layouts, plus blog page setup.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "store": {
+          "type": "card",
+          "settings": {
+            "heading": "Store Setup & Core Functions",
+            "description": "<p>Brand, payment, checkout, shipping and market settings, with accounts, search, product management and order tracking.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "analytics": {
+          "type": "card",
+          "settings": {
+            "heading": "Analytics & Search Foundations",
+            "description": "<p>GA4, Search Console, Meta Pixel and heatmaps, plus XML sitemap and robots.txt configuration.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "marketing": {
+          "type": "card",
+          "settings": {
+            "heading": "Marketing & Engagement",
+            "description": "<p>Subscriber discounts, announcement promotions, live chat, social links and review modules.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "handover": {
+          "type": "card",
+          "settings": {
+            "heading": "Handover & Learning Resources",
+            "description": "<p>Shopify operating guides, connection tutorials and page samples, plus store operations courses, advertising courses and industry reports.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "advertising": {
+          "type": "card",
+          "settings": {
+            "heading": "Advertising Preparation & Assistance",
+            "description": "<p>Pre-advertising website checks, advertising account-opening guidance and priority review assistance.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        }
+      },
+      "block_order": [
+        "responsive",
+        "store",
+        "analytics",
+        "marketing",
+        "handover",
+        "advertising"
       ]
     }
   ]

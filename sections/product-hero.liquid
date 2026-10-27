@@ -1,14 +1,12 @@
 {% comment %}
   Product hero for service pages. Header-free, centered copy with up to two
-  editable theme buttons. One button centers; two buttons sit side by side.
-  @example Add Product hero, edit the copy, and keep one or two button blocks.
+  editable theme buttons and an optional service label list.
+  @example Add Product hero, enter service labels one per line, and optionally add buttons.
 {% endcomment %}
 
 {% render 'text-block-styles' %}
 {% render 'scroll-reveal-styles' %}
 <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
-
-
 
 <div class="section-background product-hero__background" style="--product-hero-bg-from:{{ section.settings.background_from }};--product-hero-bg-to:{{ section.settings.background_to }};"></div>
 <scroll-reveal-component class="section section--full-width section--height-{{ section.settings.section_height | default: 'large' }} spacing-style product-hero" data-reveal-scope data-reveal-timeline style="{% render 'spacing-style', settings: section.settings %}--product-hero-description-color:{{ section.settings.description_color }};--product-hero-content-position:{{ section.settings.content_position | default: 'center' }};">
@@ -25,6 +23,13 @@
     {% endif %}
     {% if section.settings.description != blank %}
       <p class="product-hero__description" data-reveal>{{ section.settings.description | escape | newline_to_br }}</p>
+    {% endif %}
+    {% capture service_labels %}
+      {% render 'service-labels', labels: section.settings.service_labels, color: section.settings.service_labels_color %}
+    {% endcapture %}
+    {% assign service_labels = service_labels | strip %}
+    {% if service_labels != blank %}
+      <div class="product-hero__services" data-reveal>{{ service_labels }}</div>
     {% endif %}
     {% capture actions %}{% content_for 'blocks' %}{% endcapture %}
     {% if actions != blank %}
@@ -52,7 +57,7 @@
     justify-content: safe var(--product-hero-content-position, center);
     min-height: 100%;
     padding-block: calc(var(--padding-block-start, 0px) + var(--section-top-offset, 0px)) var(--padding-block-end, 0px);
-    gap: 40px;
+    gap: 28px;
     width: 100%;
     max-width: 1440px;
     min-width: 0;
@@ -64,7 +69,7 @@
   .product-hero__eyebrow {
     max-width: 1042px;
     margin: 0;
-    font-size: var(--fluid-body-28, clamp(20px, 1.94445vw, 28px));
+    font-size: 28px;
     font-weight: 600;
     line-height: 1.22;
     color: #000;
@@ -74,9 +79,9 @@
     max-width: 1042px;
     margin: 0;
     font-family: inherit;
-    font-size: var(--fluid-heading-70, clamp(36px, 4.86112vw, 70px));
+    font-size: 56px;
     font-weight: 600;
-    line-height: 1.2143;
+    line-height: 1.2;
     letter-spacing: 0;
     overflow-wrap: anywhere;
     text-wrap: balance;
@@ -85,7 +90,7 @@
     width: 100%;
     max-width: 1152px;
     margin: 0;
-    font-size: var(--fluid-body-28, clamp(18px, 1.94445vw, 28px));
+    font-size: 20px;
     font-weight: 500;
     line-height: 1.22;
     color: var(--product-hero-description-color);
@@ -98,6 +103,11 @@
     gap: 40px;
     width: 100%;
     max-width: 1096px;
+  }
+  .product-hero__services {
+    width: 100%;
+    max-width: 1152px;
+    min-width: 0;
   }
   .product-hero__actions > :is(.button, .button-secondary, .button-custom) {
     flex: 0 1 528px;
@@ -163,12 +173,7 @@
     }
   }
   @media screen and (max-width: 749px) {
-    .product-hero__eyebrow{
-font-size:16px;
-    }
     .product-hero__content { gap: 24px; }
-    .product-hero__heading { font-size:28px; }
-    .product-hero__description { line-height: 1.5;font-size:14px;}
     .product-hero__description br { display: none; }
     .product-hero__actions { flex-direction: column; align-items: center; gap: 16px; }
     .product-hero__actions > :is(.button, .button-secondary, .button-custom) {
@@ -176,8 +181,7 @@ font-size:16px;
       width: 100%;
       min-height: 48px;
       padding: 8px 10px;
-      font-size: 14px;
-      line-height: 1.5;
+
     }
   }
 {% endstylesheet %}
@@ -233,6 +237,12 @@ font-size:16px;
       "default": "We design and build sites that turn visitors into enquiries - scoped by page\ncount, timeline and budget, so you know what you are buying before we start."
     },
     {
+      "type": "textarea",
+      "id": "service_labels",
+      "label": "t:product_hero.service_labels",
+      "info": "t:product_hero.service_labels_info"
+    },
+    {
       "type": "header",
       "content": "t:content.appearance"
     },
@@ -265,6 +275,13 @@ font-size:16px;
       "id": "description_color",
       "label": "t:product_hero.description_color",
       "default": "#6B6A6A"
+    },
+    {
+      "type": "color",
+      "id": "service_labels_color",
+      "label": "t:product_hero.service_labels_color",
+      "default": "#3E4C81",
+      "visible_if": "{{ section.settings.service_labels != blank }}"
     },
     {
       "type": "header",

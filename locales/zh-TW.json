@@ -8,6 +8,12 @@
  * ------------------------------------------------------------
  */
 {
+  "website_packages": {
+    "selected_package": "所選方案：",
+    "from": "起價",
+    "pricing_unavailable": "價格即將公布",
+    "select_product": "請選取服務產品，準備就緒後啟用價格與購買。"
+  },
   "me_picks": {
     "categories": "Offer categories",
     "get_offer": "Get Offer",
@@ -399,5 +405,23 @@
       "default_title": "預設標題",
       "sticky_add_to_cart": "快速加入購物車列"
     }
+  },
+  "contact_submit": {
+    "submitting": "Submitting…"
+  },
+  "contact_section": {
+    "submit": "Send enquiry",
+    "name": "Your Name",
+    "company": "Company Name",
+    "email": "Work Email",
+    "phone": "Contact Number",
+    "website": "Company Website",
+    "goals": "Tell Us About Your Goals or Challenges",
+    "name_placeholder": "Your name",
+    "company_placeholder": "Your company",
+    "email_placeholder": "you@company.com",
+    "phone_placeholder": "+65 1234 5678",
+    "website_placeholder": "https://",
+    "goals_placeholder": "Tell us what your business does, the challenges you are facing, and what you would like to achieve."
   }
 }

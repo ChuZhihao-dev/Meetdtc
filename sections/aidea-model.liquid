@@ -19,7 +19,7 @@
     </div>
     <div class="aidea-model__diagram" ref="diagram">
       {% comment %}Paint backgrounds and connectors first so satellite discs cannot cover their icons.{% endcomment %}
-      <img data-aidea-part="core" class="aidea-model__asset" src="{{ 'aidea-center.png' | asset_url }}" alt="" width="980" height="980" decoding="async" loading="lazy" style="--aidea-delay:0s;left:15.9027778%;top:-8.3673469%;width:68.0555556%;height:100.0000000%;">
+      <img data-aidea-part="core" class="aidea-model__asset" src="{{ 'aidea-center.webp' | asset_url }}" alt="" width="980" height="980" decoding="async" loading="lazy" style="--aidea-delay:0s;left:15.9027778%;top:-8.3673469%;width:68.0555556%;height:100.0000000%;">
       <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-arc-top.png' | asset_url }}" alt="" width="580" height="117" decoding="async" loading="lazy" style="--aidea-delay:2s;--aidea-duration:calc(var(--animation-speed-slow) * 3);--aidea-line-clip:inset(0 100% 0 0);left:29.8054861%;top:-0.0918367%;width:40.2501389%;height:11.9387755%;transform:scaleY(-1);">
       <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-arc-left.png' | asset_url }}" alt="" width="311" height="521" decoding="async" loading="lazy" style="--aidea-delay:2.2s;--aidea-duration:calc(var(--animation-speed-slow) * 3);--aidea-line-clip:inset(0 0 100% 0);left:20.6944444%;top:31.3877551%;width:21.5625000%;height:53.1345918%;transform:scaleY(-1);">
       <img data-aidea-part="line" class="aidea-model__asset" src="{{ 'aidea-arc-right.png' | asset_url }}" alt="" width="312" height="522" decoding="async" loading="lazy" style="--aidea-delay:2.1s;--aidea-duration:calc(var(--animation-speed-slow) * 3);--aidea-line-clip:inset(100% 0 0 0);left:57.5000000%;top:31.3571429%;width:21.6666667%;height:53.1802041%;transform:scaleY(-1);">
@@ -36,17 +36,17 @@
       <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-358.png' | asset_url }}" alt="" width="58" height="58" decoding="async" loading="lazy" style="--aidea-delay:1.35s;--aidea-from-x:0cqw;--aidea-from-y:4cqw;left:47.8472222%;top:8.6122449%;width:4.0277778%;height:5.9183673%;">
       <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-363.png' | asset_url }}" alt="" width="62" height="62" decoding="async" loading="lazy" style="--aidea-delay:1.5s;--aidea-from-x:-4cqw;--aidea-from-y:-2cqw;left:65.0000000%;top:48.9693878%;width:4.3055556%;height:6.3265306%;">
       <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-367.png' | asset_url }}" alt="" width="66" height="66" decoding="async" loading="lazy" style="--aidea-delay:1.65s;--aidea-from-x:4cqw;--aidea-from-y:-2cqw;left:30.2777778%;top:48.2551020%;width:4.5833333%;height:6.7346939%;">
-      <div data-aidea-part="core" class="aidea-model__label" style="--aidea-delay:0.25s;left:49.9305556%;top:34.1734694%;width:24.3055556%;font-size:1.6666667cqw;line-height:1.5000000;">{{ section.settings.ai_label | escape | newline_to_br }}</div>
-      <div data-aidea-part="core" class="aidea-model__label" style="--aidea-delay:0.25s;left:49.9652778%;top:41.6224490%;width:12.5000000%;font-size:8.3333333cqw;line-height:0.4000000;">{{ section.settings.ai | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.75s;--aidea-from-x:6cqw;--aidea-from-y:3.5cqw;left:25.9722222%;top:15.9081633%;width:10.4166667%;font-size:7.3611111cqw;line-height:0.4528302;">{{ section.settings.data_letter | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.75s;--aidea-from-x:6cqw;--aidea-from-y:3.5cqw;left:26.0763889%;top:23.2551020%;width:12.1527778%;font-size:1.3194444cqw;line-height:1.2105263;">{{ section.settings.data_label | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.95s;--aidea-from-x:-6cqw;--aidea-from-y:3.5cqw;left:74.2708333%;top:15.9081633%;width:10.4166667%;font-size:7.3611111cqw;line-height:0.4528302;">{{ section.settings.experience_letter | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.95s;--aidea-from-x:-6cqw;--aidea-from-y:3.5cqw;left:74.2013889%;top:23.2551020%;width:11.8055556%;font-size:1.3194444cqw;line-height:1.2105263;">{{ section.settings.experience_label | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:1.15s;--aidea-from-x:0cqw;--aidea-from-y:-7cqw;left:49.9652778%;top:76.5204082%;width:10.4166667%;font-size:7.3611111cqw;line-height:0.4528302;">{{ section.settings.achievement_letter | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:1.15s;--aidea-from-x:0cqw;--aidea-from-y:-7cqw;left:49.8958333%;top:83.5612245%;width:12.1527778%;font-size:1.3194444cqw;line-height:1.2105263;">{{ section.settings.achievement_label | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--blue" style="--aidea-delay:1.35s;--aidea-from-x:0cqw;--aidea-from-y:4cqw;left:49.9652778%;top:14.6836735%;width:9.7222222%;font-size:1.0416667cqw;line-height:2.2400000;">{{ section.settings.optimization | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--blue" style="--aidea-delay:1.5s;--aidea-from-x:-4cqw;--aidea-from-y:-2cqw;left:67.2569444%;top:55.1938776%;width:9.7222222%;font-size:1.0416667cqw;line-height:1.2400000;">{{ section.settings.opportunities | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--blue" style="--aidea-delay:1.65s;--aidea-from-x:4cqw;--aidea-from-y:-2cqw;left:32.5694444%;top:54.6836735%;width:9.7222222%;font-size:1.0416667cqw;line-height:1.2400000;">{{ section.settings.customer_growth | escape | newline_to_br }}</div>
+      <div data-aidea-part="core" class="aidea-model__label" style="--aidea-delay:0.25s;left:49.9305556%;top:34.1734694%;width:24.3055556%;font-size:24px;line-height:1.5000000;">{{ section.settings.ai_label | escape | newline_to_br }}</div>
+      <div data-aidea-part="core" class="aidea-model__label" style="--aidea-delay:0.25s;left:49.9652778%;top:41.6224490%;width:12.5000000%;font-size:120px;line-height:0.4000000;">{{ section.settings.ai | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.75s;--aidea-from-x:6cqw;--aidea-from-y:3.5cqw;left:25.9722222%;top:15.9081633%;width:10.4166667%;font-size:106px;line-height:0.4528302;">{{ section.settings.data_letter | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.75s;--aidea-from-x:6cqw;--aidea-from-y:3.5cqw;left:26.0763889%;top:23.2551020%;width:12.1527778%;font-size:19px;line-height:1.2105263;">{{ section.settings.data_label | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.95s;--aidea-from-x:-6cqw;--aidea-from-y:3.5cqw;left:74.2708333%;top:15.9081633%;width:10.4166667%;font-size:106px;line-height:0.4528302;">{{ section.settings.experience_letter | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.95s;--aidea-from-x:-6cqw;--aidea-from-y:3.5cqw;left:74.2013889%;top:23.2551020%;width:11.8055556%;font-size:19px;line-height:1.2105263;">{{ section.settings.experience_label | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:1.15s;--aidea-from-x:0cqw;--aidea-from-y:-7cqw;left:49.9652778%;top:76.5204082%;width:10.4166667%;font-size:106px;line-height:0.4528302;">{{ section.settings.achievement_letter | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:1.15s;--aidea-from-x:0cqw;--aidea-from-y:-7cqw;left:49.8958333%;top:83.5612245%;width:12.1527778%;font-size:19px;line-height:1.2105263;">{{ section.settings.achievement_label | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--blue" style="--aidea-delay:1.35s;--aidea-from-x:0cqw;--aidea-from-y:4cqw;left:49.9652778%;top:14.6836735%;width:9.7222222%;font-size:15px;line-height:2.2400000;">{{ section.settings.optimization | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--blue" style="--aidea-delay:1.5s;--aidea-from-x:-4cqw;--aidea-from-y:-2cqw;left:67.2569444%;top:55.1938776%;width:9.7222222%;font-size:15px;line-height:1.2400000;">{{ section.settings.opportunities | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--blue" style="--aidea-delay:1.65s;--aidea-from-x:4cqw;--aidea-from-y:-2cqw;left:32.5694444%;top:54.6836735%;width:9.7222222%;font-size:15px;line-height:1.2400000;">{{ section.settings.customer_growth | escape | newline_to_br }}</div>
     </div>
     <ul class="aidea-model__mobile-labels">
       {% assign label_keys = 'ai_label,data_label,experience_label,achievement_label,optimization,customer_growth,opportunities' | split: ',' %}
@@ -79,7 +79,7 @@
   .aidea-model__heading {
     margin: 0;
     font-family: inherit;
-    font-size: var(--fluid-heading-58, clamp(32px, 4.02778vw, 58px));
+    font-size: 48px;
     font-weight: 600;
     line-height: 1.22;
     overflow-wrap: anywhere;
@@ -90,8 +90,8 @@
   }
   .aidea-model__description {
     max-width: 857px;
-    margin-block: 40px 0;
-    font-size: var(--fluid-body-30, clamp(18px, 2.08333vw, 30px));
+    margin-block: 24px 0;
+    font-size: 24px;
     font-weight: 500;
     line-height: 1.23;
     color: #000;
@@ -149,13 +149,15 @@
       padding: 0;
       list-style: none;
       font-family: var(--font-body--family);
-      font-size: 14px;
+
       line-height: 1.4;
       color: #0b22b8;
     }
     .aidea-model__mobile-labels li { padding: 12px; border-radius: 12px; background: #ffffffb3; }
     .aidea-model__mobile-labels li:first-child { grid-column: 1 / -1; }
   }
+
+  .aidea-model__mobile-labels { font-size: 14px; }
 {% endstylesheet %}
 
 {% schema %}

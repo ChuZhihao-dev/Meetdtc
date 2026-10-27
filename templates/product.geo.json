@@ -398,11 +398,13 @@
         "heading": "Help Your Brand Become Part of the AI Answer",
         "heading_tag": "h1",
         "description": "ME help businesses improve how their brands appear in AI-generated answers. Through customer question research, clear brand information, useful content, and relevant third-party coverage, we build a measurable program around brand mentions, recommendations, and citations.",
+        "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
         "heading_to": "#7c21c2",
         "description_color": "#6b6a6a",
+        "service_labels_color": "#3e4c81",
         "section_height": "full-screen",
         "content_position": "center",
         "padding-block-start": 0,
@@ -682,42 +684,54 @@
           "type": "card",
           "settings": {
             "heading": "AI Visibility Baseline",
-            "description": "<p>We test an agreed question set across selected AI platforms. You receive a baseline of brand mentions, recommendations, citations, and competitor presence.</p>"
+            "description": "<p>We test an agreed question set across selected AI platforms. You receive a baseline of brand mentions, recommendations, citations, and competitor presence.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_wKwRVy": {
           "type": "card",
           "settings": {
             "heading": "Customer Question & Prompt Research",
-            "description": "<p>We research questions across discovery, comparison, evaluation, purchase, and use. You receive a prioritized prompt library organized by topic, intent, and market.</p>"
+            "description": "<p>We research questions across discovery, comparison, evaluation, purchase, and use. You receive a prioritized prompt library organized by topic, intent, and market.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_jTHQUi": {
           "type": "card",
           "settings": {
             "heading": "Competitor & Citation Analysis",
-            "description": "<p>We examine which brands and sources appear in relevant answers. You receive a competitor comparison and a map of citation and content opportunities.</p>"
+            "description": "<p>We examine which brands and sources appear in relevant answers. You receive a competitor comparison and a map of citation and content opportunities.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
             "heading": "Brand & Product Fact Review",
-            "description": "<p>We review brand descriptions, product specifications, credentials, and supporting evidence. You receive a verified fact sheet and recommendations for resolving inconsistencies.</p>"
+            "description": "<p>We review brand descriptions, product specifications, credentials, and supporting evidence. You receive a verified fact sheet and recommendations for resolving inconsistencies.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_xg8a6q": {
           "type": "card",
           "settings": {
             "heading": "Website Accessibility & Content Structure",
-            "description": "<p>We assess whether important information is accessible and clearly presented. You receive recommendations for page structure, factual detail, and relevant structured data.</p>"
+            "description": "<p>We assess whether important information is accessible and clearly presented. You receive recommendations for page structure, factual detail, and relevant structured data.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_nMqphe": {
           "type": "card",
           "settings": {
             "heading": "Answer-Focused Content Development",
-            "description": "<p>We plan comparisons, buying guides, use cases, and question-led content. You receive briefs and agreed new or revised content supported by available evidence.</p>"
+            "description": "<p>We plan comparisons, buying guides, use cases, and question-led content. You receive briefs and agreed new or revised content supported by available evidence.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         }
       },
@@ -731,11 +745,13 @@
       ],
       "name": "t:service_scope.name",
       "settings": {
+        "layout": "standard",
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
         "description": "<p>Our GEO service connects question research, brand information, content, external sources, and ongoing answer monitoring.</p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
+        "card_heading_color": "#241c52",
         "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
         "background": "",
         "card_background": "#ffffff",
@@ -863,7 +879,7 @@
         "eyebrow": "FEATURED CLIENT STORY",
         "heading": "Portable Power Brand Achieved 60% AI Mention Rate with GEO",
         "description": "<p>This illustrative scenario addresses low AI visibility for a portable power brand. Clearer product information, comparison content and third-party coverage increased brand mention rate from 18% to 60% across ChatGPT and Gemini over four months.</p>",
-        "image": "shopify://shop_images/b8f297d560a397b1d5b515362c3c2991.png",
+        "image": "shopify://shop_images/geo.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",
         "link": "",

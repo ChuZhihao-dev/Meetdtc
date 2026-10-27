@@ -70,19 +70,21 @@
       "type": "product-hero",
       "name": "t:product_hero.name",
       "settings": {
-        "eyebrow": "WEBSITE BUILD PACKAGES",
+        "eyebrow": "",
         "heading": "Choose the Right Build\nfor Your Business",
         "heading_tag": "h1",
-        "description": "Official Shopify theme launch, an enhanced Shopify or WordPress build,\nor a website developed around your business.",
+        "description": "",
+        "service_labels": "Shopify\nWordPress\nCustom development",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
         "heading_to": "#7c21c2",
         "description_color": "#6b6a6a",
-        "section_height": "large",
+        "service_labels_color": "#3e4c81",
+        "section_height": "small",
         "content_position": "center",
-        "padding-block-start": 84,
-        "padding-block-end": 84
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "page_background_WJkREX": {
@@ -96,46 +98,232 @@
         "gradient_angle": 168
       }
     },
+    "website_packages": {
+      "type": "website-packages",
+      "blocks": {
+        "basic": {
+          "type": "_website-package",
+          "settings": {
+            "mode": "product",
+            "product": "basic-shopify-theme-launch",
+            "enable_purchase": true,
+            "approach": "01 / THEME LAUNCH",
+            "heading": "Basic",
+            "subtitle": "Shopify Theme Launch",
+            "platforms": "Shopify only",
+            "audience": "For a straightforward online store launch.",
+            "features": "Official Shopify theme implementation\n8 core e-commerce pages\n30 product uploads · 1 blog article upload\nHomepage SEO setup\nUp to 3 machine-translated languages\nApprox. 2-week delivery*\n2 months of post-launch support",
+            "highlight": false,
+            "purchase_label": "Purchase Now →",
+            "quote_price": "Request a Quote",
+            "quote_label": "Discuss Your Project →",
+            "quote_link": ""
+          },
+          "blocks": {}
+        },
+        "advanced": {
+          "type": "_website-package",
+          "settings": {
+            "mode": "product",
+            "product": "advanced-enhanced-website-build",
+            "enable_purchase": true,
+            "approach": "02 / ENHANCED BUILD",
+            "heading": "Advanced",
+            "subtitle": "Enhanced Website Build",
+            "platforms": "Shopify / WordPress",
+            "audience": "For businesses needing more pages and tailored page builds.",
+            "features": "8 core e-commerce pages + up to 6 custom-built pages\nUp to 3 operational pages\n50 product uploads · 10 blog article uploads\nEnhanced on-page SEO & sitemap planning\nProduct recommendations · Up to 10 standard GA4 events\nUp to 3 machine-translated languages\nApprox. 4-week delivery*\n3 months of post-launch support",
+            "highlight": true,
+            "purchase_label": "Purchase Now →",
+            "quote_price": "Request a Quote",
+            "quote_label": "Discuss Your Project →",
+            "quote_link": ""
+          },
+          "blocks": {}
+        },
+        "custom": {
+          "type": "_website-package",
+          "settings": {
+            "mode": "quote",
+            "product": "",
+            "enable_purchase": false,
+            "approach": "03 / CUSTOM BUILD",
+            "heading": "Custom",
+            "subtitle": "Custom Design & Development",
+            "platforms": "Shopify / WordPress / Custom code",
+            "audience": "For tailored design, functionality and integrations.",
+            "features": "Project-specific design and development\nPage scope and content quantities assessed for your project\nFeatures and integrations assessed against your requirements\nSEO and tracking scope confirmed for your project\nDelivery timeline confirmed after assessment\n3 months of post-launch support",
+            "highlight": false,
+            "purchase_label": "Purchase Now →",
+            "quote_price": "Request a Quote",
+            "quote_label": "Discuss Your Project →",
+            "quote_link": "#growth-diagnosis"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "basic",
+        "advanced",
+        "custom"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "heading_gradient": "linear-gradient(90deg, rgba(33, 31, 199, 1), rgba(122, 33, 212, 1) 100%)",
+        "heading_color": "#241c52",
+        "text_color": "#5e5a8a",
+        "muted_color": "#777394",
+        "accent_color": "#5b34c6",
+        "audience_color": "#1b0bca",
+        "background": "",
+        "card_background": "#ffffff",
+        "card_border": "#e6dff7",
+        "label_background": "linear-gradient(90deg, rgba(248, 237, 245, 1), rgba(209, 232, 247, 1) 100%)",
+        "button_background": "linear-gradient(90deg, rgba(68, 32, 246, 1), rgba(220, 5, 225, 1) 100%)",
+        "button_color": "#ffffff",
+        "note": "",
+        "enable_reveal": true,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "included_every_project": {
+      "type": "service-scope",
+      "blocks": {
+        "responsive": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Frame.svg",
+            "heading": "Responsive Pages & Blog",
+            "description": "<p>Desktop and mobile layouts, plus blog page setup.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "store": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_4bb3c3d8-6451-4bf2-9b95-7f5ad251b7fb.svg",
+            "heading": "Store Setup & Core Functions",
+            "description": "<p>Brand, payment, checkout, shipping and market settings, with accounts, search, product management and order tracking.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "analytics": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_aba9fa92-a0d8-4861-b967-51cdfc12e810.svg",
+            "heading": "Analytics & Search Foundations",
+            "description": "<p>GA4, Search Console, Meta Pixel and heatmaps, plus XML sitemap and robots.txt configuration.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "marketing": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_0bbef38c-9689-4666-8a74-821b72b43d57.svg",
+            "heading": "Marketing & Engagement",
+            "description": "<p>Subscriber discounts, announcement promotions, live chat, social links and review modules.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "handover": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Frame__2.svg",
+            "heading": "Handover & Learning Resources",
+            "description": "<p>Shopify operating guides, connection tutorials and page samples, plus store operations courses, advertising courses and industry reports.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "advertising": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Frame__3.svg",
+            "heading": "Advertising Preparation & Assistance",
+            "description": "<p>Pre-advertising website checks, advertising account-opening guidance and priority review assistance.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        }
+      },
+      "block_order": [
+        "responsive",
+        "store",
+        "analytics",
+        "marketing",
+        "handover",
+        "advertising"
+      ],
+      "name": "t:service_scope.included_name",
+      "settings": {
+        "layout": "included",
+        "eyebrow": "",
+        "heading": "Included in Every Project",
+        "description": "<p>The shared foundations of your website build.</p>",
+        "font": "montserrat_n4",
+        "text_color": "#5e5a8a",
+        "card_heading_color": "#241c52",
+        "heading_gradient": "linear-gradient(90deg, rgba(33, 31, 199, 1), rgba(122, 33, 212, 1) 100%)",
+        "background": "",
+        "card_background": "#ffffff",
+        "card_opacity": 100,
+        "card_border": "#ffffff",
+        "card_radius": 18,
+        "column_gap": 20,
+        "row_gap": 20,
+        "padding-block-start": 40,
+        "padding-block-end": 40,
+        "padding_mobile_top": 40,
+        "padding_mobile_bottom": 40,
+        "enable_reveal": true
+      }
+    },
     "delivery_process_hJFRQK": {
       "type": "delivery-process",
       "blocks": {
         "step_9h39bp": {
           "type": "step",
           "settings": {
-            "heading": "Discover & Assess",
-            "description": "<p>We review your business goals, target markets, website readiness, and existing affiliate activity.</p>",
+            "heading": "Scope & Materials",
+            "description": "<p>Confirm your package, platform, required content and delivery scope.</p>",
             "deliverable": ""
           }
         },
         "step_M7QT3T": {
           "type": "step",
           "settings": {
-            "heading": "Build the Plan",
-            "description": "<p>We define your partner strategy, commission approach, measurement framework, and launch priorities.</p>",
+            "heading": "Theme, Template or Design",
+            "description": "<p>Use an official Shopify theme, a selected template or a custom design approach.</p>",
             "deliverable": ""
           }
         },
         "step_aDgpjc": {
           "type": "step",
           "settings": {
-            "heading": "Set Up & Validate",
-            "description": "<p>We coordinate program setup, prepare partner materials, and check tracking before launch.</p>",
+            "heading": "Build & Configuration",
+            "description": "<p>Implement the agreed pages, content, store setup and functionality.</p>",
             "deliverable": ""
           }
         },
         "step_HbhB4g": {
           "type": "step",
           "settings": {
-            "heading": "Recruit & Activate",
-            "description": "<p>We approach relevant partners, onboard approved applicants, and support their first promotions.</p>",
+            "heading": "Review & Preparation",
+            "description": "<p>Review the agreed build and complete the applicable pre-advertising check.</p>",
             "deliverable": ""
           }
         },
         "step_4EMHpA": {
           "type": "step",
           "settings": {
-            "heading": "Measure & Improve",
-            "description": "<p>We review results, develop productive relationships, and refine the program as new opportunities emerge.</p>",
+            "heading": "Handover & Support",
+            "description": "<p>Provide the applicable guides and resources, with 2 months of Basic support or 3 months for Advanced and Custom.</p>",
             "deliverable": ""
           }
         }
@@ -167,8 +355,8 @@
         "faq_row_6L8JYN": {
           "type": "_faq-row",
           "settings": {
-            "question": "What is MarTech, and how can it support global growth?",
-            "answer": "<p>MarTech brings strategy, technology, data and execution together to help businesses attract, convert and retain customers. For businesses expanding across markets, it connects websites, marketing, customer operations and data into a more measurable growth system.</p>",
+            "question": "Q1. What do the page quantities mean?",
+            "answer": "<p>Basic includes 8 core e-commerce page types: homepage, category, product, brand/about, order tracking, contact, policies and FAQ. Advanced includes these 8 core page types plus up to 6 custom-built pages, built specifically for your project rather than using Shopify’s ready-made page templates. It also includes up to 3 operational pages, such as affiliate programme pages, review aggregation pages or quizzes. Custom page quantities are assessed for your project.</p>",
             "open_by_default": true
           },
           "blocks": {}
@@ -176,8 +364,8 @@
         "faq_row_Nxk7Qg": {
           "type": "_faq-row",
           "settings": {
-            "question": "What MarTech solutions does ME provide?",
-            "answer": "<p>Our MarTech service areas include Web Development, SEO, Conversion Rate Optimisation, Email Marketing, Affiliate Marketing, WhatsApp Marketing, Trustpilot & Reviews, Loyalty & Membership, and AI & Cloud. Services can be engaged individually or combined into one connected growth programme.<br/><br/></p>",
+            "question": "Q2. How do theme-based and custom-built pages differ?",
+            "answer": "<p>Theme-based pages use the selected theme’s existing sections and layouts. The up to 6 additional pages in Advanced are built specifically for your project rather than using Shopify’s ready-made page templates. Operational pages can include affiliate programme pages, review aggregation pages and quizzes. The agreed project scope defines the functionality and any integrations.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -185,8 +373,8 @@
         "faq_row_XiLH9X": {
           "type": "_faq-row",
           "settings": {
-            "question": "Can ME support both strategy and implementation?",
-            "answer": "<p>Yes. We can support the full process, from growth diagnosis and priority setting to planning, implementation, campaign execution, tracking and ongoing optimisation.<br/><br/></p>",
+            "question": "Q3. How do SEO and tracking differ between packages?",
+            "answer": "<p>Basic includes homepage SEO. Advanced adds meta title, description, URL, image alt text and structured-content optimisation, sitemap planning and up to 10 standard GA4 tracking events. Custom requirements are assessed for your project.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -194,8 +382,8 @@
         "faq_row_X4L7Gj": {
           "type": "_faq-row",
           "settings": {
-            "question": "Which markets and platforms does ME work across?",
-            "answer": "<p>We help businesses expand into global markets, with a focus on clients based in Singapore, Hong Kong, Taiwan and mainland China. With offices in Singapore, Shanghai and Shenzhen, ME provides support in English and Chinese, connecting the commerce, marketing and analytics platforms that fit each client’s growth needs.<br/><br/></p>",
+            "question": "Q4. Are multilingual features included?",
+            "answer": "<p>Basic and Advanced include configuration for up to 3 machine-translated languages. Custom multilingual and currency requirements are assessed for your project.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -203,8 +391,44 @@
         "faq_row_tGbwJD": {
           "type": "_faq-row",
           "settings": {
-            "question": "How Can We Get Started with ME?",
-            "answer": "<p>Tell us about your business, target market and current challenges. Request a free growth diagnosis below and our team will review your priorities, then come back with suitable next steps.<br/><br/></p>",
+            "question": "Q5.  What do I need to provide, and when does delivery start?",
+            "answer": "<p>Please provide the copy, images, videos and other materials required for the website. Delivery estimates start after all required materials are received: approximately 2 weeks for Basic and 4 weeks for Advanced. Custom delivery is assessed for your project.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_RhamPq": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q6. Are themes, subscriptions and third-party tools included?",
+            "answer": "<p>Third-party theme licences, platform subscriptions, domains, paid apps and email-service fees are not included in the build fee. Email capture and outreach tools follow their applicable billing arrangements: qualified-traffic-based billing for Basic and per-user prepayment for Advanced.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_aRPt6t": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q7. What if I need additional services?",
+            "answer": "<p>Extra uploads, custom page design, feature development, third-party integrations, visual assets and additional SEO can be assessed for your project. Services may be included in your package or incur an additional fee. Scope and any fees are confirmed before work begins.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_wTi8Tc": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q8. What support is included after handover?",
+            "answer": "<p>Basic includes 2 months of post-launch support. Advanced and Custom include 3 months. Shopify handover resources include admin manuals, domain and payment connection tutorials, and policy and basic-page samples.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_MfHYWK": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q9. Does advertising account assistance guarantee approval?",
+            "answer": "<p>Account-opening guidance and priority review assistance are included. Final approval is subject to the advertising platform’s review.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -215,13 +439,17 @@
         "faq_row_Nxk7Qg",
         "faq_row_XiLH9X",
         "faq_row_X4L7Gj",
-        "faq_row_tGbwJD"
+        "faq_row_tGbwJD",
+        "faq_row_RhamPq",
+        "faq_row_aRPt6t",
+        "faq_row_wTi8Tc",
+        "faq_row_MfHYWK"
       ],
       "name": "t:names.faq_section",
       "settings": {
         "eyebrow": "FAQ",
-        "heading": "<p>About Working With ME</p>",
-        "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
+        "heading": "<p>About Your Website Build</p>",
+        "description": "<p>Package scope, delivery and the details to know before you begin.</p>",
         "font": "var(--font-heading--family)",
         "font_size": "3.625rem",
         "weight": "600",
@@ -253,6 +481,8 @@
     "main",
     "product_hero_dBiWNK",
     "page_background_WJkREX",
+    "website_packages",
+    "included_every_project",
     "delivery_process_hJFRQK",
     "faq_FKqUjK"
   ]

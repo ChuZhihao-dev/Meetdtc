@@ -36,6 +36,8 @@ class AccordionCustom extends HTMLElement {
   #controller = new AbortController();
 
   connectedCallback() {
+    this.#controller.abort();
+    this.#controller = new AbortController();
     const { signal } = this.#controller;
 
     this.#setDefaultOpenState();
@@ -79,7 +81,7 @@ class AccordionCustom extends HTMLElement {
   #handleContentClick = (event) => {
     if (!this.details.open) return;
 
-    if (!(/** @type {Element} */ (event.target).closest('[data-accordion-close]'))) return;
+    if (!(event.target instanceof Element) || !event.target.closest('[data-accordion-close]')) return;
 
     this.summary.focus({ preventScroll: true });
     this.details.open = false;

@@ -8,6 +8,44 @@
  * ------------------------------------------------------------
  */
 {
+  "website_packages": {
+    "enable_purchase": "Enable pricing and purchase",
+    "name": "Website packages",
+    "card": "Website package",
+    "mode": "Card type",
+    "product_mode": "Product",
+    "quote_mode": "Quotation",
+    "product": "Service product",
+    "approach": "Approach label",
+    "heading": "Heading",
+    "eyebrow": "Eyebrow",
+    "subtitle": "Subtitle",
+    "platforms": "Supported platforms",
+    "audience": "Who it is for",
+    "features": "Deliverables",
+    "features_info": "One deliverable per line. Blank lines are ignored.",
+    "highlight": "Highlight this package",
+    "purchase_label": "Purchase button label",
+    "quote_price": "Quotation heading",
+    "quote_label": "Enquiry button label",
+    "quote_link": "Enquiry link",
+    "heading_gradient": "Heading gradient",
+    "heading_color": "Card heading color",
+    "text_color": "Description color",
+    "muted_color": "Secondary price color",
+    "accent_color": "Accent color",
+    "audience_color": "Audience text color",
+    "background": "Section background",
+    "card_background": "Card background",
+    "card_border": "Card border",
+    "label_background": "Label background",
+    "button_background": "Button background",
+    "button_color": "Button text color",
+    "note": "Footnote",
+    "enable_reveal": "Enable entrance animation",
+    "top": "Top padding",
+    "bottom": "Bottom padding"
+  },
   "me_picks": {
     "auto_categories": "Automatically load collection navigation",
     "auto_categories_info": "Lists the store's accessible collections using their current titles and links. Turn off to use category blocks. All Offers opens all store products unless an all-offers collection is selected.",
@@ -239,6 +277,14 @@
     "form_anchor_info": "Enter a unique ID such as growth-diagnosis (without #). Spaces and uppercase letters are normalized to lowercase hyphenated text. Link to #growth-diagnosis on this page, or /pages/contact#growth-diagnosis from another page that contains this footer. Leave empty to omit the custom anchor."
   },
   "service_scope": {
+    "layout": "Layout",
+    "layout_standard": "Service scope",
+    "layout_included": "Project inclusions",
+    "included_name": "Included in every project",
+    "card_heading_color": "Card heading color",
+    "card_icon": "Card icon",
+    "card_icon_info": "Upload or select an SVG or image from Files. A square 32 × 32 icon is recommended.",
+    "card_link_label": "Link label",
     "name": "Service scope",
     "card_name": "Service card",
     "eyebrow": "Eyebrow",
@@ -317,6 +363,9 @@
     "enable_reveal": "Enable entrance animation"
   },
   "product_hero": {
+    "service_labels": "Service labels",
+    "service_labels_info": "One label per line. Reorder the lines to change their order; leave empty to hide.",
+    "service_labels_color": "Service label color",
     "content_position": "Content vertical position",
     "position_top": "Top",
     "position_center": "Center",
@@ -372,6 +421,7 @@
     "text": "Text"
   },
   "content": {
+    "transparent_header": "Site-wide transparent header",
     "about_page": "About page",
     "contact_page": "Contact page",
     "services_globe": "Services",

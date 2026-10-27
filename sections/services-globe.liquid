@@ -48,7 +48,7 @@
         <img class="services-globe__glow" src="{{ 'services-globe-glow.svg' | asset_url }}" width="1097" height="688" alt="" decoding="async" loading="lazy">
         <img class="services-globe__orbit" src="{{ 'services-globe-orbit.png' | asset_url }}" width="1245" height="1003" alt="" decoding="async" loading="lazy">
         <services-globe-component class="services-globe__renderer" data-rotate="{{ s.auto_rotate }}">
-          <img ref="fallback" class="services-globe__fallback" src="{{ 'services-globe-fallback.png' | asset_url }}" width="1148" height="1148" alt="" decoding="async" loading="lazy">
+          <img ref="fallback" class="services-globe__fallback" src="{{ 'services-globe-fallback.webp' | asset_url }}" width="1148" height="1148" alt="" decoding="async" loading="lazy">
           <div ref="host" class="services-globe__canvas-host"><canvas ref="canvas" class="services-globe__canvas" width="1148" height="1148"></canvas></div>
         </services-globe-component>
       </div>
@@ -77,23 +77,23 @@
     padding-inline: 5.833cqw;
   }
   .services-globe__title, .services-globe__copy { min-inline-size: 0; }
-  .services-globe__eyebrow { margin: 0 0 0.694cqw; font-size: clamp(1rem, 1.667cqw, 1.5rem); font-weight: 500; line-height: 1.583; }
+  .services-globe__eyebrow { margin: 0 0 0.694cqw; font-size: 20px; font-weight: 500; line-height: 1.583; }
   .services-globe__heading {
     margin: 0;
     font-family: inherit;
-    font-size: min(var(--services-heading-size), 4.028cqw);
+    font-size: var(--services-heading-size);
     font-weight: 600;
-    line-height: 1.224;
+    line-height: 1.2;
     letter-spacing: normal;
     overflow-wrap: anywhere;
     text-wrap: pretty;
     color: var(--color-foreground);
   }
   .services-globe__copy { padding-block-start: 3.333cqw; }
-  .services-globe__description { font-size: clamp(1rem, 1.667cqw, 1.5rem); font-weight: 500; line-height: 1.583; overflow-wrap: anywhere; }
+  .services-globe__description { font-size: 1.5rem; font-weight: 500; line-height: 1.583; overflow-wrap: anywhere; }
   .services-globe__description > :first-child { margin-block-start: 0; }
   .services-globe__description > :last-child { margin-block-end: 0; }
-  .services-globe__link { display: inline-block; margin-block-start: 1.944cqw; font-size: clamp(1rem, 1.597cqw, 1.4375rem); font-weight: 400; line-height: 1.217; color: var(--services-link-color); text-decoration: underline; text-underline-offset: 3px; }
+  .services-globe__link { display: inline-block; margin-block-start: 1.944cqw; font-size: 1.4375rem; font-weight: 400; line-height: 1.217; color: var(--services-link-color); text-decoration: underline; text-underline-offset: 3px; }
   .services-globe__link:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
   .services-globe__visual { position: relative; block-size: 36.042cqw; margin-block-start: 9.097cqw; }
   .services-globe__art { position: absolute; inset: 0; pointer-events: none; }
@@ -107,7 +107,7 @@
   .services-globe__renderer[data-ready] .services-globe__fallback { visibility: hidden; }
   .services-globe__renderer[data-ready] .services-globe__canvas { opacity: 1; }
   .services-globe__services { position: relative; margin: 0; padding: 0; list-style: none; }
-  .services-globe__service { position: absolute; max-inline-size: 24%; translate: -50% 0; font-size: clamp(1rem, 1.806cqw, 1.625rem); font-weight: 600; line-height: 1.231; text-align: center; overflow-wrap: anywhere; }
+  .services-globe__service { position: absolute; max-inline-size: 24%; translate: -50% 0; font-size: 1.625rem; font-weight: 600; line-height: 1.231; text-align: center; overflow-wrap: anywhere; }
   .services-globe__service--web_commerce { inset-inline-start: 17.222%; inset-block-start: 13.958cqw; }
   .services-globe__service--customer_growth { inset-inline-start: 31.84%; inset-block-start: 5cqw; }
   .services-globe__service--ai_technology { inset-inline-start: 50.417%; inset-block-start: 0; }
@@ -116,12 +116,11 @@
   [dir='rtl'] .services-globe__service { translate: 50% 0; }
   @media screen and (max-width: 749px) {
     .services-globe__intro { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 40px 24px 0; }
-    .services-globe__heading { font-size: min(var(--services-heading-size), 2.5rem); }
     .services-globe__copy { padding-block-start: 0; }
     .services-globe__link { min-block-size: 44px; margin-block-start: 16px; }
     .services-globe__visual { display: flex; flex-direction: column; block-size: auto; margin-block-start: 32px; }
     .services-globe__services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; padding-inline: 24px; }
-    .services-globe__service { position: static; max-inline-size: none; translate: none; font-size: 1rem; }
+    .services-globe__service { position: static; max-inline-size: none; translate: none; }
     .services-globe__service:last-child { grid-column: 1 / -1; }
     .services-globe__art { position: relative; order: 1; block-size: 55cqw; margin-block-start: 24px; }
     .services-globe__renderer { inset-block-start: -27.7cqw; inset-inline-start: 0; inline-size: 100%; }

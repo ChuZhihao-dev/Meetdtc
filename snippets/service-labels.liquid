@@ -1,0 +1,62 @@
+{%- doc -%}
+  Renders a centered, wrapping list of service labels with decorative dot separators.
+  Blank lines are ignored; an empty list produces no markup. Typography inherits
+  the caller's font family. Render this snippet to include its component styles.
+
+  @param {string} labels - Plain text labels, one per line, in display order
+  @param {color} [color] - Text color; inherits when omitted
+
+  @example
+  {% render 'service-labels', labels: section.settings.service_labels, color: section.settings.service_labels_color %}
+{%- enddoc -%}
+
+{%- liquid
+  assign label_lines = labels | escape | newline_to_br | split: '<br />'
+  assign has_label = false
+-%}
+{%- capture items -%}
+  {%- for line in label_lines -%}
+    {%- assign label = line | strip -%}
+    {%- if label != blank -%}
+      <li class="service-labels__item">
+        {%- if has_label -%}<span class="service-labels__separator" aria-hidden="true">·</span>{%- endif -%}
+        <span>{{ label }}</span>
+      </li>
+      {%- assign has_label = true -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if has_label -%}
+  <ul class="service-labels" role="list"{% if color != blank %} style="--service-labels-color: {{ color }};"{% endif %}>{{ items }}</ul>
+{%- endif -%}
+
+{% stylesheet %}
+  .service-labels {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--service-labels-color, inherit);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.75;
+  }
+  .service-labels__item {
+    display: inline-flex;
+    align-items: baseline;
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .service-labels__item > span:last-child {
+    min-width: 0;
+  }
+  .service-labels__separator {
+    flex-shrink: 0;
+    margin-inline: 10px;
+    font-weight: 800;
+  }
+{% endstylesheet %}

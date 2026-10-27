@@ -1,10 +1,27 @@
+{% doc %}
+  Renders a merchant-authored question and answer with native disclosure behavior.
+  The containing FAQ section owns the FAQPage microdata scope.
+  @example {% content_for 'block', type: '_faq-row', id: 'question' %}
+{% enddoc %}
+
 {% liquid
   assign block_settings = block.settings
+  assign answer_text = block_settings.answer | strip_html | strip
+  assign render_faq_row = request.design_mode
+  if block_settings.question != blank and answer_text != blank
+    assign render_faq_row = true
+  endif
 %}
 
+{% if render_faq_row %}
 {%- capture faq_row_details -%}
   <details
     class="faq-row"
+    {% if block_settings.question != blank and answer_text != blank %}
+      itemprop="mainEntity"
+      itemscope
+      itemtype="https://schema.org/Question"
+    {% endif %}
     data-reveal
     {% if block_settings.open_by_default %}
       open
@@ -15,11 +32,11 @@
       <span class="faq-row__toggle svg-wrapper icon-plus" aria-hidden="true">
         {{- 'icon-plus.svg' | inline_asset_content -}}
       </span>
-      <span class="faq-row__question">{{ block_settings.question }}</span>
+      <span class="faq-row__question" itemprop="name">{{ block_settings.question | escape }}</span>
     </summary>
 
-    <div class="details-content faq-row__answer">
-      {{ block_settings.answer }}
+    <div class="details-content faq-row__answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+      <div class="faq-row__answer-text" itemprop="text">{{ block_settings.answer }}</div>
     </div>
   </details>
 {%- endcapture -%}
@@ -30,6 +47,7 @@
   open_by_default_on_desktop: block_settings.open_by_default,
   open_by_default_on_mobile: block_settings.open_by_default
 %}
+{% endif %}
 
 {% stylesheet %}
   .faq-row {
@@ -92,11 +110,11 @@
     color: var(--faq-answer-color, #595959);
   }
 
-  .faq-row__answer > :first-child {
+  .faq-row__answer-text > :first-child {
     margin-block-start: 0;
   }
 
-  .faq-row__answer > :last-child {
+  .faq-row__answer-text > :last-child {
     margin-block-end: 0;
   }
 
@@ -107,7 +125,7 @@
 
     .faq-row__summary {
       gap: 12px;
-      font-size: 18px;
+
     }
 
     .faq-row__summary .faq-row__toggle {
@@ -123,8 +141,7 @@
     .faq-row__answer {
       padding-block: 12px 24px;
       padding-inline-start: calc(28px + 12px);
-      font-size: 16px;
-      line-height: 24px;
+
     }
   }
   .faq-row::details-content, .faq-row .details-content { transition: opacity var(--animation-speed-slow) var(--animation-easing); }

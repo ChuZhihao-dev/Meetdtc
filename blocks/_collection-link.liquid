@@ -90,14 +90,12 @@
 
 {% stylesheet %}
   .collection-links__link {
-    --min-font-size: var(--font-size--4xl);
-    --max-font-size: var(--font-size--6xl);
 
     display: flex;
     color: inherit;
     text-decoration: none;
     text-wrap: pretty;
-    font-size: clamp(var(--min-font-size), 4.5vw, var(--max-font-size));
+    font-size: var(--font-size--6xl);
 
     /* When hovering over container, dim non-current links (text layout only) */
     @media (hover: hover) {
@@ -124,8 +122,6 @@
     }
 
     @media screen and (max-width: 749px) {
-      --min-font-size: var(--font-size--3xl);
-      --max-font-size: var(--font-size--5xl);
 
       [layout='spotlight'] & {
         white-space: normal;

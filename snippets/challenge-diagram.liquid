@@ -34,13 +34,13 @@
   .challenge-diagram__layer { position: absolute; inset-block-start: 50%; inset-inline-start: 50%; inline-size: var(--challenge-layer-size); translate: -50% -50%; }
   .challenge-diagram__layer img { display: block; inline-size: 100%; block-size: auto; }
   .challenge-diagram__tint { position: absolute; inset: 30.992%; border-radius: 50%; mix-blend-mode: color; }
-  .challenge-diagram__center { position: absolute; inset-block-start: 50%; inset-inline-start: 50%; translate: -50% -50%; inline-size: 38.0165%; max-block-size: 38%; margin: 0; font-size: clamp(1rem, 4.9587cqw, 1.5rem); font-weight: 600; line-height: 1.25; text-align: center; overflow-wrap: anywhere; color: var(--challenge-center-color); }
+  .challenge-diagram__center { position: absolute; inset-block-start: 50%; inset-inline-start: 50%; translate: -50% -50%; inline-size: 38.0165%; max-block-size: 38%; margin: 0; font-size: 1.5rem; font-weight: 600; line-height: 1.25; text-align: center; overflow-wrap: anywhere; color: var(--challenge-center-color); }
   .challenge-diagram__orbit { position: absolute; inset: 0; pointer-events: none; }
   .challenge-diagram__marker { position: absolute; inline-size: 44px; block-size: 44px; translate: -50% -50%; }
   .challenge-diagram__marker--1 { inset-inline-start: 7.6446%; inset-block-start: 58.0579%; }
   .challenge-diagram__marker--2 { inset-inline-start: 71.0744%; inset-block-start: 83.0579%; }
   .challenge-diagram__marker--3 { inset-inline-start: 84.0909%; inset-block-start: 18.3884%; }
-  .challenge-diagram__decoration { position: absolute; inset: 0; display: grid; place-items: center; inline-size: 44px; block-size: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #616161; font-family: inherit; font-size: clamp(1rem, 4.9587cqw, 1.5rem); font-weight: 300; line-height: 1; }
+  .challenge-diagram__decoration { position: absolute; inset: 0; display: grid; place-items: center; inline-size: 44px; block-size: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #616161; font-family: inherit; font-size: 1.5rem; font-weight: 300; line-height: 1; }
   .challenge-diagram__decoration img { grid-area: 1 / 1; inline-size: 7.8512cqw; block-size: auto; }
   .challenge-diagram__decoration span { grid-area: 1 / 1; }
   [dir='rtl'] .challenge-diagram__layer, [dir='rtl'] .challenge-diagram__center { translate: 50% -50%; }
@@ -82,5 +82,4 @@
     business-challenge-component[data-orbit-ready] .challenge-diagram__orbit,
     business-challenge-component[data-orbit-ready] .challenge-diagram__marker { animation: none; }
   }
-  @media screen and (max-width: 749px) { .challenge-diagram__center { font-size: 1.125rem; line-height: 1.3333; } }
 {% endstylesheet %}

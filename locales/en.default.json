@@ -8,6 +8,12 @@
  * ------------------------------------------------------------
  */
 {
+  "website_packages": {
+    "selected_package": "Selected package:",
+    "pricing_unavailable": "Pricing coming soon",
+    "select_product": "Select a service product, then enable pricing and purchase when it is ready.",
+    "from": "From"
+  },
   "me_picks": {
     "categories": "Offer categories",
     "get_offer": "Get Offer",

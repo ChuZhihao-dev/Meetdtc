@@ -8,6 +8,12 @@
  * ------------------------------------------------------------
  */
 {
+  "website_packages": {
+    "selected_package": "Selected package:",
+    "pricing_unavailable": "Pricing coming soon",
+    "select_product": "Select a service product, then enable pricing and purchase when it is ready.",
+    "from": "From"
+  },
   "me_picks": {
     "categories": "Offer categories",
     "get_offer": "Get Offer",
@@ -406,5 +412,23 @@
       "default_title": "Titlu implicit",
       "sticky_add_to_cart": "Bara de adăugare rapidă în coș"
     }
+  },
+  "contact_submit": {
+    "submitting": "Submitting…"
+  },
+  "contact_section": {
+    "submit": "Send enquiry",
+    "name": "Your Name",
+    "company": "Company Name",
+    "email": "Work Email",
+    "phone": "Contact Number",
+    "website": "Company Website",
+    "goals": "Tell Us About Your Goals or Challenges",
+    "name_placeholder": "Your name",
+    "company_placeholder": "Your company",
+    "email_placeholder": "you@company.com",
+    "phone_placeholder": "+65 1234 5678",
+    "website_placeholder": "https://",
+    "goals_placeholder": "Tell us what your business does, the challenges you are facing, and what you would like to achieve."
   }
 }

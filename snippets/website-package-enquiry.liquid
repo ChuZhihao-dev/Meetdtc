@@ -1,0 +1,14 @@
+{% doc %}
+  Optional package context for contact forms, populated by footer-diagnosis.js
+  from the website_package query parameter. Ordinary enquiries hide this row.
+  @example {% render 'website-package-enquiry' %}
+{% enddoc %}
+<input type="hidden" name="contact[Website package]" data-website-package disabled>
+<p class="website-package-enquiry" data-website-package-summary hidden>
+  <span>{{ 'website_packages.selected_package' | t }}</span>
+  <strong data-website-package-name></strong>
+</p>
+{% stylesheet %}
+  .website-package-enquiry { display: flex; flex-wrap: wrap; gap: 0.5ch; margin: 0 0 20px; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+  .website-package-enquiry[hidden] { display: none; }
+{% endstylesheet %}

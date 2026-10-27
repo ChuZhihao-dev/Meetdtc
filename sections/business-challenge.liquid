@@ -22,8 +22,6 @@
     {% render 'spacing-style', settings: s %}
     --challenge-font: {{ s.font }};
     --challenge-heading-size: {{ s.font_size }};
-    {% assign challenge_desktop_size = s.font_size | remove: 'rem' | times: 16.0 %}
-    {% render 'fluid-font-size', desktop_size: challenge_desktop_size, kind: 'heading', css_variable: '--challenge-fluid-heading' %}
     --challenge-accent: {{ s.accent_color }};
     --challenge-description: {{ s.description_color }};
     --challenge-caption: {{ s.caption_color }};
@@ -66,10 +64,10 @@
   .business-challenge { display: block; container-type: inline-size; font-family: var(--challenge-font, var(--font-heading--family)); color: var(--color-foreground); }
   .business-challenge__layout { display: grid; grid-template-columns: minmax(0, 484px) minmax(0, 1fr); grid-template-areas: 'figure intro' 'figure list'; grid-template-rows: auto auto; gap: 60px 90px; inline-size: calc(100% - 48px); max-inline-size: 1316px; margin-inline: auto; align-items: start; }
   .business-challenge__intro { grid-area: intro; min-inline-size: 0; max-inline-size: 732px; }
-  .business-challenge__eyebrow { margin: 0 0 15px; font-size: var(--fluid-body-24, 1.5rem); font-weight: 500; line-height: 1.5833; overflow-wrap: anywhere; }
-  .business-challenge__heading { margin: 0; font-family: inherit; font-size: var(--challenge-fluid-heading, min(var(--challenge-heading-size), 4.028cqw)); font-weight: 600; line-height: 1.0345; letter-spacing: normal; overflow-wrap: anywhere; text-wrap: pretty; color: var(--color-foreground); }
+  .business-challenge__eyebrow { margin: 0 0 15px; font-size: 20px; font-weight: 500; line-height: 1.5833; overflow-wrap: anywhere; }
+  .business-challenge__heading { margin: 0; font-family: inherit; font-size: var(--challenge-heading-size); font-weight: 600; line-height: 1.2; letter-spacing: normal; overflow-wrap: anywhere; text-wrap: pretty; color: var(--color-foreground); }
   .business-challenge__figure { grid-area: figure; min-inline-size: 0; inline-size: 100%; max-inline-size: 484px; margin: 82px 0 0; }
-  .business-challenge__caption { max-inline-size: 436px; margin-block-start: 33px; margin-inline: auto; padding-inline: 8px; font-size: var(--fluid-body-19, 1.1875rem); font-weight: 500; line-height: 1.4737; text-align: center; overflow-wrap: anywhere; color: var(--challenge-caption); }
+  .business-challenge__caption { max-inline-size: 436px; margin-block-start: 33px; margin-inline: auto; padding-inline: 8px; font-size: 1.1875rem; font-weight: 500; line-height: 1.4737; text-align: center; overflow-wrap: anywhere; color: var(--challenge-caption); }
   .business-challenge__list { grid-area: list; min-inline-size: 0; max-inline-size: 704px; }
   .business-challenge__more { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; min-block-size: 44px; max-inline-size: 100%; margin-block-start: 24px; padding: 10px 24px; border: 1px solid var(--challenge-accent); border-radius: var(--style-border-radius-buttons-primary, 24px); background: transparent; color: var(--challenge-accent); font: inherit; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; cursor: pointer; transition: color calc(var(--animation-speed-slow) * 2) var(--ease-out-cubic); }
   .business-challenge__more[hidden], .business-challenge-item[hidden] { display: none; }
@@ -90,13 +88,12 @@
     .business-challenge__figure.sticky-content--desktop { align-self: start; inset-block-start: calc(var(--sticky-header-offset, 0px) + 24px); }
     #header-group:has(> .header-section > #header-component[data-sticky-state='active']) ~ * .business-challenge__figure.sticky-content--desktop { --sticky-header-offset: var(--header-height); }
   }
-  @media screen and (min-width: 750px) and (max-width: 1099px) { .business-challenge__layout { grid-template-columns: minmax(0, 36%) minmax(0, 1fr); gap: 40px 32px; } .business-challenge__heading { font-size: var(--challenge-fluid-heading, min(var(--challenge-heading-size), 2.625rem)); line-height: 1.1; } .business-challenge__figure { margin-block-start: 70px; } }
+  @media screen and (min-width: 750px) and (max-width: 1099px) { .business-challenge__layout { grid-template-columns: minmax(0, 36%) minmax(0, 1fr); gap: 40px 32px; } .business-challenge__figure { margin-block-start: 70px; } }
   @media screen and (max-width: 749px) {
     .business-challenge__layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'intro' 'figure' 'list'; gap: 32px; }
-    .business-challenge__eyebrow { font-size: var(--fluid-body-24, 1rem); line-height: 1.5; margin-block-end: 12px; }
-    .business-challenge__heading { font-size: var(--challenge-fluid-heading, min(var(--challenge-heading-size), 2rem)); line-height: 1.125; }
+    .business-challenge__eyebrow { margin-block-end: 12px; }
     .business-challenge__figure { max-inline-size: 320px; margin: 0; justify-self: center; }
-    .business-challenge__caption { margin-block-start: 24px; font-size: var(--fluid-body-19, 1rem); line-height: 1.5; }
+    .business-challenge__caption { margin-block-start: 24px; }
   }
   @media (prefers-reduced-motion: reduce) { .business-challenge.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; } .business-challenge.reveal-ready .business-challenge__figure[data-reveal] { transform: none; } }
 {% endstylesheet %}

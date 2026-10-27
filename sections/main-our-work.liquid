@@ -8,11 +8,18 @@
   assign s = section.settings
   assign color_id = 'work-catalog-' | append: section.id
   assign work_blog = s.blog | default: blog
+  assign listing_blog = work_blog
+  assign listing_path = listing_blog.url
+  if blog != blank and listing_blog.handle == blog.handle
+    # Keep the route-scoped object so native tag filtering applies to pagination.
+    assign listing_blog = blog
+    assign listing_path = request.path
+  endif
   assign navigation_tags = work_blog.all_tags
   assign preview = false
-  if request.design_mode and work_blog == blank
+  if request.design_mode and listing_blog == blank
     assign preview = true
-  elsif request.design_mode and work_blog.articles_count == 0 and current_tags == blank
+  elsif request.design_mode and listing_blog.articles_count == 0 and current_tags == blank
     assign preview = true
   endif
 %}
@@ -59,15 +66,11 @@
       <div class="work-catalog__content">
         <p ref="status" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
         <button class="work-catalog__retry" type="button" on:click="/retry">{{ 'work_catalog.retry' | t }}</button>
-        {% if work_blog == blank %}
-          {% render 'work-catalog-results', preview: preview %}
-        {% elsif section.settings.blog != blank %}
-          {% paginate section.settings.blog.articles by s.posts_per_page %}
-            {% render 'work-catalog-results', blog: section.settings.blog, paginate: paginate, preview: preview %}
-          {% endpaginate %}
+        {% if listing_blog == blank %}
+          {% render 'work-catalog-results', preview: preview, listing_path: listing_path %}
         {% else %}
-          {% paginate blog.articles by s.posts_per_page %}
-            {% render 'work-catalog-results', blog: blog, paginate: paginate, preview: preview %}
+          {% paginate listing_blog.articles by s.posts_per_page %}
+            {% render 'work-catalog-results', blog: listing_blog, paginate: paginate, preview: preview, listing_path: listing_path %}
           {% endpaginate %}
         {% endif %}
       </div>
@@ -78,7 +81,7 @@
   .work-catalog { display: block; font-family: var(--font-heading--family); }
   .work-catalog__hero { padding-block-start: calc(64px + var(--padding-block-start, 0px)); background: var(--work-intro-background); }
   .work-catalog__intro { max-inline-size: 1440px; min-inline-size: 0; margin-inline: auto; padding: 0 min(5.625vw, 81px) 68px; }
-  .work-catalog__heading { max-inline-size: 686px; margin: 0; color: var(--color-foreground); font-family: inherit; font-size: clamp(40px, 4.02778vw, 58px); font-weight: 600; line-height: 71px; letter-spacing: normal; background: var(--work-heading-gradient); background-clip: text; -webkit-text-fill-color: transparent; overflow-wrap: anywhere; }
+  .work-catalog__heading { max-inline-size: 686px; margin: 0; color: var(--color-foreground); font-family: inherit; font-size: 58px; font-weight: 600; line-height: 71px; letter-spacing: normal; background: var(--work-heading-gradient); background-clip: text; -webkit-text-fill-color: transparent; overflow-wrap: anywhere; }
   .work-catalog__description { max-inline-size: 983px; margin-inline-start: 5px; font-size: 24px; font-weight: 500; line-height: 38px; overflow-wrap: anywhere; }
   .work-catalog__description > :first-child { margin-block-start: 0; }
   .work-catalog__description > :last-child { margin-block-end: 0; }
@@ -114,8 +117,7 @@
   @media screen and (max-width: 749px) {
     .work-catalog__hero { padding-block-start: calc(40px + var(--padding-block-start, 0px)); }
     .work-catalog__intro { padding: 0 16px 36px; }
-    .work-catalog__heading { font-size: 40px; line-height: 1.22; }
-    .work-catalog__description { margin-inline-start: 0; margin-block-start: 10px; font-size: 18px; line-height: 1.6; }
+    .work-catalog__description { margin-inline-start: 0; margin-block-start: 10px; }
     .work-catalog__layout { padding-inline: 16px; gap: 24px; }
     .work-catalog__grid { grid-template-columns: minmax(0, 1fr); }
     .work-catalog__filters { padding: 20px; }

@@ -117,44 +117,7 @@
       },
       {
         "type": "header",
-        "content": "t:fluid_typography.heading"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_fluid_typography",
-        "label": "t:fluid_typography.enable",
-        "default": true,
-        "info": "t:fluid_typography.info"
-      },
-      {
-        "type": "range",
-        "id": "fluid_heading_mobile_ratio",
-        "label": "t:fluid_typography.heading_ratio",
-        "min": 50,
-        "max": 100,
-        "step": 5,
-        "default": 60,
-        "unit": "%",
-        "visible_if": "{{ settings.enable_fluid_typography }}"
-      },
-      {
-        "type": "range",
-        "id": "fluid_body_mobile_ratio",
-        "label": "t:fluid_typography.body",
-        "min": 65,
-        "max": 100,
-        "step": 5,
-        "default": 75,
-        "unit": "%",
-        "visible_if": "{{ settings.enable_fluid_typography }}"
-      },
-      {
-        "type": "header",
         "content": "t:content.text_presets"
-      },
-      {
-        "type": "paragraph",
-        "content": "t:content.responsive_font_sizes"
       },
       {
         "type": "header",

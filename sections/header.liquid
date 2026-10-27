@@ -1,5 +1,8 @@
-
-
+{% comment %}
+  Header contract: one transparency setting applies to every storefront template.
+  Sticky and expanded navigation states retain their existing background behavior.
+  @example Configure the global transparent header, logo and text color in the header editor.
+{% endcomment %}
 {% liquid
   assign order = 'logo,menu,localization,search,drawer_search,actions'
 
@@ -18,24 +21,9 @@
     render 'slideshow-styles'
   endif
 
-  if section.settings.enable_transparent_header_home and template.name == 'index'
+  if section.settings.enable_transparent_header
     assign transparent = 'always'
-    assign transparent_text_color_setting = section.settings.text_color_transparent_home
-  elsif section.settings.enable_transparent_header_product and template.name == 'product'
-    assign transparent = 'always'
-    assign transparent_text_color_setting = section.settings.text_color_transparent_product
-  elsif section.settings.enable_transparent_header_collection and template.name == 'collection'
-    assign transparent = 'always'
-    assign transparent_text_color_setting = section.settings.text_color_transparent_collection
-  elsif section.settings.enable_transparent_header_about and template.name == 'page' and template.suffix == 'about-us'
-    assign transparent = 'always'
-    assign transparent_text_color_setting = section.settings.text_color_transparent_about
-  elsif section.settings.enable_transparent_header_contact and template.name == 'page' and template.suffix == 'contact'
-    assign transparent = 'always'
-    assign transparent_text_color_setting = section.settings.text_color_transparent_contact
-  elsif section.settings.enable_transparent_header_blog and template.name == 'blog'
-    assign transparent = 'always'
-    assign transparent_text_color_setting = section.settings.text_color_transparent_blog
+    assign transparent_text_color_setting = section.settings.text_color_transparent
   endif
 
   if section.settings.enable_sticky_header == 'always'
@@ -111,7 +99,9 @@
   endif
 
   capture actions
-    render 'header-actions', customer_account_menu: section.settings.customer_account_menu, display_style: section.settings.actions_display_style, section: section
+    unless section.settings.actions_display_style == 'none'
+      render 'header-actions', customer_account_menu: section.settings.customer_account_menu, display_style: section.settings.actions_display_style, section: section
+    endunless
   endcapture
 
   capture header_cta
@@ -349,15 +339,28 @@
 
 <script type="application/ld+json">
   {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": {{ request.origin | append: '/#organization' | json }},
     "name": {{ shop.name | json }},
     {% if settings.logo %}
       "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
     {% endif %}
-    "url": {{ request.origin | append: page.url | json }}
+    "url": {{ request.origin | json }}
   }
 </script>
+{% if request.page_type == 'index' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": {{ request.origin | append: '/#website' | json }},
+      "name": {{ shop.name | json }},
+      "url": {{ request.origin | json }},
+      "publisher": { "@id": {{ request.origin | append: '/#organization' | json }} }
+    }
+  </script>
+{% endif %}
 
 <header-component
   id="header-component"
@@ -405,9 +408,6 @@
   <div
     class="header__underlay header__underlay-open"
   ></div>
-  {%- if request.page_type == 'index' -%}
-    <h1 class="visually-hidden">{{ shop.name }}</h1>
-  {%- endif -%}
   {% for row in rows %}
     {% liquid
       assign background = 'background_color_' | append: row
@@ -877,6 +877,9 @@
     color: var(--color-white);
   }
   .header-cta a.size-style {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-block-size: 44px;
     padding-block: 7px;
     padding-inline: 30px;
@@ -884,11 +887,10 @@
     text-align: center;
     overflow-wrap: anywhere;
   }
-  /* Drawer layout uses flattened columns, so the CTA occupies its own right-aligned row. */
-  .header[data-menu-style='drawer'] .header-cta {
-    grid-column: 1 / -1;
-    justify-self: end;
-    padding-block-end: var(--padding-sm);
+  @media screen and (min-width: 750px) {
+    #header-component[data-menu-style='menu'] .header__columns:has(.header-cta a[href]):not(:has(header-actions, .search-action)) {
+      grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+    }
   }
 
   .header__column--right {
@@ -1028,6 +1030,76 @@
       grid-area: rightB;
       justify-content: flex-end;
     }
+  }
+
+  /* Flattened drawer columns need a dedicated track for the service CTA. */
+  #header-component[data-menu-style='drawer']:has(.header-cta a[href]):not(:has(header-actions, .search-action)) {
+    .header__columns {
+      grid-template-columns: 44px minmax(0, 1fr) minmax(0, auto);
+      grid-template-areas: 'leftA center rightB';
+      column-gap: var(--gap-sm);
+    }
+
+    .header-logo {
+      justify-self: start;
+      min-inline-size: 0;
+      max-inline-size: 100%;
+    }
+
+    .header-logo > span {
+      min-inline-size: 0;
+    }
+
+    .header-logo__image {
+      max-inline-size: 100%;
+      block-size: auto;
+    }
+
+    .header-cta {
+      grid-area: rightB;
+      justify-self: end;
+      max-inline-size: 100%;
+    }
+
+    .header-cta a.size-style {
+      padding-inline: var(--padding-sm);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+  #header-component:has(.header-cta a[href]):not(:has(header-actions, .search-action)) {
+    .header__columns {
+      grid-template-columns: 44px minmax(0, 1fr) minmax(0, auto);
+      grid-template-areas: 'leftA center rightB';
+      column-gap: var(--gap-sm);
+    }
+
+    .header-logo {
+      justify-self: start;
+      min-inline-size: 0;
+      max-inline-size: 100%;
+    }
+
+    .header-logo > span {
+      min-inline-size: 0;
+    }
+
+    .header-logo__image {
+      max-inline-size: 100%;
+      block-size: auto;
+    }
+
+    .header-cta {
+      grid-area: rightB;
+      justify-self: end;
+      max-inline-size: 100%;
+    }
+
+    .header-cta a.size-style {
+      padding-inline: var(--padding-sm);
+    }
+  }
+
   }
 
   /* Single column layout if there are no columns within */
@@ -1673,6 +1745,10 @@
       "info": "t:info.actions_display_style",
       "options": [
         {
+          "value": "none",
+          "label": "t:options.hidden"
+        },
+        {
           "value": "icon",
           "label": "t:options.icons"
         },
@@ -1816,147 +1892,27 @@
     },
     {
       "type": "header",
-      "content": "t:content.home_page"
+      "content": "t:content.transparent_header"
     },
     {
       "type": "checkbox",
-      "id": "enable_transparent_header_home",
+      "id": "enable_transparent_header",
       "label": "t:settings.transparent_background",
       "default": false
     },
     {
       "type": "checkbox",
-      "id": "home_inverse_logo",
+      "id": "transparent_inverse_logo",
       "label": "t:settings.inverse_logo",
       "default": false,
-      "visible_if": "{{ section.settings.enable_transparent_header_home }}"
+      "visible_if": "{{ section.settings.enable_transparent_header }}"
     },
     {
       "type": "color",
-      "id": "text_color_transparent_home",
+      "id": "text_color_transparent",
       "label": "t:settings.text_color_transparent",
       "placeholder": "t:settings.default",
-      "visible_if": "{{ section.settings.enable_transparent_header_home }}"
-    },
-    {
-      "type": "header",
-      "content": "t:content.product_page"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_transparent_header_product",
-      "label": "t:settings.transparent_background",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "product_inverse_logo",
-      "label": "t:settings.inverse_logo",
-      "default": false,
-      "visible_if": "{{ section.settings.enable_transparent_header_product }}"
-    },
-    {
-      "type": "color",
-      "id": "text_color_transparent_product",
-      "label": "t:settings.text_color_transparent",
-      "placeholder": "t:settings.default",
-      "visible_if": "{{ section.settings.enable_transparent_header_product }}"
-    },
-    {
-      "type": "header",
-      "content": "t:content.collection_page"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_transparent_header_collection",
-      "label": "t:settings.transparent_background",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "collection_inverse_logo",
-      "label": "t:settings.inverse_logo",
-      "default": false,
-      "visible_if": "{{ section.settings.enable_transparent_header_collection }}"
-    },
-    {
-      "type": "color",
-      "id": "text_color_transparent_collection",
-      "label": "t:settings.text_color_transparent",
-      "placeholder": "t:settings.default",
-      "visible_if": "{{ section.settings.enable_transparent_header_collection }}"
-    },
-    {
-      "type": "header",
-      "content": "t:content.about_page"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_transparent_header_about",
-      "label": "t:settings.transparent_background",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "about_inverse_logo",
-      "label": "t:settings.inverse_logo",
-      "default": false,
-      "visible_if": "{{ section.settings.enable_transparent_header_about }}"
-    },
-    {
-      "type": "color",
-      "id": "text_color_transparent_about",
-      "label": "t:settings.text_color_transparent",
-      "placeholder": "t:settings.default",
-      "visible_if": "{{ section.settings.enable_transparent_header_about }}"
-    },
-    {
-      "type": "header",
-      "content": "t:content.contact_page"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_transparent_header_contact",
-      "label": "t:settings.transparent_background",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "contact_inverse_logo",
-      "label": "t:settings.inverse_logo",
-      "default": false,
-      "visible_if": "{{ section.settings.enable_transparent_header_contact }}"
-    },
-    {
-      "type": "color",
-      "id": "text_color_transparent_contact",
-      "label": "t:settings.text_color_transparent",
-      "placeholder": "t:settings.default",
-      "visible_if": "{{ section.settings.enable_transparent_header_contact }}"
-    },
-    {
-      "type": "header",
-      "content": "t:settings.blog"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_transparent_header_blog",
-      "label": "t:settings.transparent_background",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "blog_inverse_logo",
-      "label": "t:settings.inverse_logo",
-      "default": false,
-      "visible_if": "{{ section.settings.enable_transparent_header_blog }}"
-    },
-    {
-      "type": "color",
-      "id": "text_color_transparent_blog",
-      "label": "t:settings.text_color_transparent",
-      "placeholder": "t:settings.default",
-      "visible_if": "{{ section.settings.enable_transparent_header_blog }}"
+      "visible_if": "{{ section.settings.enable_transparent_header }}"
     }
   ],
   "presets": []

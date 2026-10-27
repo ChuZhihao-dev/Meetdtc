@@ -398,11 +398,13 @@
         "heading": "Turn Search Demand into Qualified Traffic and Leads",
         "heading_tag": "h1",
         "description": "ME help businesses reach customers searching for their products and services. Through technical improvements, targeted content, and ongoing optimization, we strengthen search visibility and create clearer paths from discovery to enquiry or purchase.",
+        "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
         "heading_to": "#7c21c2",
         "description_color": "#6b6a6a",
+        "service_labels_color": "#3e4c81",
         "section_height": "full-screen",
         "content_position": "center",
         "padding-block-start": 0,
@@ -635,7 +637,7 @@
         "center_text": "GROWTH\nPOTENTIAL",
         "caption": "Existing potential is not being fully converted into business value.",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "3rem",
         "gradient_text": true,
         "gradient_color_from": "#0b22b8",
         "gradient_color_to": "#9621c4",
@@ -682,42 +684,54 @@
           "type": "card",
           "settings": {
             "heading": "SEO Audit & Roadmap",
-            "description": "<p>We assess your website and competitive landscape. You receive an audit, a prioritized issue list, and a phased optimization roadmap.<br/><br/></p>"
+            "description": "<p>We assess your website and competitive landscape. You receive an audit, a prioritized issue list, and a phased optimization roadmap.<br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_wKwRVy": {
           "type": "card",
           "settings": {
             "heading": "Keyword & Search Intent Research",
-            "description": "<p>We research product, category, comparison, and problem-based searches. You receive a keyword set mapped to existing pages and new content opportunities.<br/><br/></p>"
+            "description": "<p>We research product, category, comparison, and problem-based searches. You receive a keyword set mapped to existing pages and new content opportunities.<br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_jTHQUi": {
           "type": "card",
           "settings": {
             "heading": "Technical SEO",
-            "description": "<p>We review crawling, indexing, duplicate pages, redirects, sitemaps, and performance issues. You receive implementation recommendations and checks for agreed fixes.<br/><br/></p>"
+            "description": "<p>We review crawling, indexing, duplicate pages, redirects, sitemaps, and performance issues. You receive implementation recommendations and checks for agreed fixes.<br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
             "heading": "Site Structure & Internal Linking",
-            "description": "<p>We review navigation, page hierarchy, and internal links. You receive recommendations that connect related content and make important pages easier to discover.<br/><br/></p>"
+            "description": "<p>We review navigation, page hierarchy, and internal links. You receive recommendations that connect related content and make important pages easier to discover.<br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_xg8a6q": {
           "type": "card",
           "settings": {
             "heading": "Core Page Optimization",
-            "description": "<p>We improve agreed product, category, service, and landing pages. You receive page-level recommendations or revised copy within the selected scope.<br/><br/></p>"
+            "description": "<p>We improve agreed product, category, service, and landing pages. You receive page-level recommendations or revised copy within the selected scope.<br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_nMqphe": {
           "type": "card",
           "settings": {
             "heading": "Content Strategy & Production",
-            "description": "<p>We plan content around customer questions and commercial priorities. You receive a content calendar, briefs, and agreed new or updated articles.<br/><br/></p>"
+            "description": "<p>We plan content around customer questions and commercial priorities. You receive a content calendar, briefs, and agreed new or updated articles.<br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         }
       },
@@ -731,11 +745,13 @@
       ],
       "name": "t:service_scope.name",
       "settings": {
+        "layout": "standard",
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
         "description": "<p>Our SEO service brings research, website improvements, content, and measurement into one coordinated program.<br/><br/></p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
+        "card_heading_color": "#241c52",
         "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
         "background": "",
         "card_background": "#ffffff",
@@ -888,7 +904,7 @@
         "faq_row_XdLKBG": {
           "type": "_faq-row",
           "settings": {
-            "question": "What does your SEO service include?",
+            "question": "Q1. What does your SEO service include?",
             "answer": "<p>Our proposed service covers nine areas, from research and technical SEO to content and reporting. Your agreement specifies the pages, articles, markets, and implementation work included.<br/><br/></p>",
             "open_by_default": true
           },
@@ -897,7 +913,7 @@
         "faq_row_ckALeW": {
           "type": "_faq-row",
           "settings": {
-            "question": "How long does SEO take to show results?",
+            "question": "Q2. How long does SEO take to show results?",
             "answer": "<p>Timing depends on the website’s starting point, competition, and implementation. We establish a baseline during the initial audit and set review milestones around the agreed roadmap.<br/><br/></p>",
             "open_by_default": false
           },
@@ -906,7 +922,7 @@
         "faq_row_8DWdMn": {
           "type": "_faq-row",
           "settings": {
-            "question": "Do you guarantee first-page rankings?",
+            "question": "Q3. Do you guarantee first-page rankings?",
             "answer": "<p>We do not guarantee a specific ranking. We agree on target keyword groups, deliverables, and performance measures so you can assess both the work completed and its results.<br/><br/></p>",
             "open_by_default": false
           },
@@ -915,7 +931,7 @@
         "faq_row_6Vcq7e": {
           "type": "_faq-row",
           "settings": {
-            "question": "Do you work with ecommerce and B2B websites?",
+            "question": "Q4. Do you work with ecommerce and B2B websites?",
             "answer": "<p>The program can be structured for either. Ecommerce projects prioritize categories, products, and purchases; B2B projects prioritize services, supplier evaluation, and qualified enquiries.<br/><br/></p>",
             "open_by_default": false
           },
@@ -924,7 +940,7 @@
         "faq_row_idcK38": {
           "type": "_faq-row",
           "settings": {
-            "question": "Can you work with our existing developers and content team?",
+            "question": "Q5. Can you work with our existing developers and content team?",
             "answer": "<p>Yes. The scope can cover recommendations, production, or shared implementation. We define one owner for each action so responsibilities remain clear.<br/><br/></p>",
             "open_by_default": false
           },
@@ -933,7 +949,7 @@
         "faq_row_mtDEQH": {
           "type": "_faq-row",
           "settings": {
-            "question": "Do we need to create new content?",
+            "question": "Q6. Do we need to create new content?",
             "answer": "<p>We assess existing content first. The content plan identifies three types of action: improve an existing page, consolidate overlapping pages, or create a new page.<br/><br/></p>",
             "open_by_default": false
           },
@@ -942,7 +958,7 @@
         "faq_row_TfzdMb": {
           "type": "_faq-row",
           "settings": {
-            "question": "Can you support multiple countries and languages?",
+            "question": "Q7. Can you support multiple countries and languages?",
             "answer": "<p>Yes, subject to the agreed scope. Each target market receives its own keyword and page mapping rather than relying on a single translated keyword list.<br/><br/><br/></p>",
             "open_by_default": false
           },
@@ -951,7 +967,7 @@
         "faq_row_CGMX33": {
           "type": "_faq-row",
           "settings": {
-            "question": "How do you measure SEO performance?",
+            "question": "Q8. How do you measure SEO performance?",
             "answer": "<p>We use Google Search Console for search performance and GA4 for website behavior and tracked conversions. The report connects those findings to agreed business goals.<br/><br/></p>",
             "open_by_default": false
           },
@@ -960,7 +976,7 @@
         "faq_row_H88kCk": {
           "type": "_faq-row",
           "settings": {
-            "question": "Is link building included?",
+            "question": "Q9. Is link building included?",
             "answer": "<p>It can be included in the selected scope. We specify resource criteria, deliverables, and reporting separately so you know what link development involves.<br/><br/><br/></p>",
             "open_by_default": false
           },
@@ -969,7 +985,7 @@
         "faq_row_ABzErp": {
           "type": "_faq-row",
           "settings": {
-            "question": "What do you need from us to get started?",
+            "question": "Q10. What do you need from us to get started?",
             "answer": "<p>We need your website URL, target markets, priority products or services, and business goals. Access to Search Console and GA4 supports a more detailed assessment.<br/><br/></p>",
             "open_by_default": false
           },
@@ -994,7 +1010,7 @@
         "heading": "<p>About Working With ME</p>",
         "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "3rem",
         "weight": "600",
         "line_height": "1.3",
         "wrap": "balance",

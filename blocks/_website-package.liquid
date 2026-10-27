@@ -1,0 +1,273 @@
+{% doc %}
+  Renders one product-backed or quotation package in Website packages.
+  Merchant copy is independent of the product; all purchase prices and availability
+  come from block.settings.product. Unbound products never show invented prices.
+  @example Add a Website package block, select a product, and enter deliverables one per line.
+{% enddoc %}
+{% liquid
+  assign s = block.settings
+  assign package_product = s.product
+  assign package_ready = false
+  if package_product != blank and s.enable_purchase
+    assign package_ready = true
+  endif
+  assign title = s.heading | default: package_product.title
+  assign variant = package_product.selected_or_first_available_variant
+  unless variant.available
+    assign variant = package_product.first_available_variant
+  endunless
+  assign purchase_form_id = 'PackageCheckout-' | append: section.id | append: '-' | append: block.id
+  assign checkout_path = routes.root_url | append: '/checkout' | replace: '//', '/'
+  assign feature_lines = s.features | escape | newline_to_br | split: '<br />'
+  assign purchase_label = s.purchase_label
+  if purchase_label == blank
+    assign purchase_label = 'content.checkout' | t
+  endif
+  assign quote_link = s.quote_link
+  if s.mode == 'quote' and quote_link != blank
+    assign link_parts = quote_link | split: '#'
+    assign quote_link = link_parts.first
+    assign separator = '?'
+    if quote_link contains '?'
+      assign separator = '&'
+    endif
+    assign package_name = title | url_encode
+    assign quote_link = quote_link | append: separator | append: 'website_package=' | append: package_name
+    if link_parts.size > 1
+      assign quote_link = quote_link | append: '#' | append: link_parts.last
+    endif
+  endif
+%}
+{% capture features %}
+  {% for line in feature_lines %}
+    {% assign feature = line | strip %}
+    {% if feature != blank %}<li><span aria-hidden="true">✓</span><span>{{ feature }}</span></li>{% endif %}
+  {% endfor %}
+{% endcapture %}
+{% assign features = features | strip %}
+<article class="website-package{% if s.highlight %} website-package--highlight{% endif %}" {% if section.settings.enable_reveal %}data-reveal{% endif %} {{ block.shopify_attributes }}>
+  {% if s.approach != blank %}<p class="website-package__approach">{{ s.approach | escape }}</p>{% endif %}
+  {% if title != blank %}<h3 class="website-package__heading">{{ title | escape }}</h3>{% endif %}
+  {% if s.subtitle != blank %}<p class="website-package__subtitle">{{ s.subtitle | escape }}</p>{% endif %}
+  {% if s.platforms != blank %}<p class="website-package__platforms">{{ s.platforms | escape }}</p>{% endif %}
+  <div class="website-package__pricing">
+    {% if s.mode == 'quote' %}
+      {% if s.quote_price != blank %}<p class="website-package__quote-price">{{ s.quote_price | escape }}</p>{% endif %}
+    {% elsif package_ready %}
+      {% if package_product.price_varies %}
+        <span class="website-package__from">{{ 'website_packages.from' | t }}</span>
+        <span class="website-package__variable-price">{% render 'format-price', price: package_product.price_min %}</span>
+      {% else %}
+        {% render 'price', product_resource: package_product, show_sale_price_first: true %}
+      {% endif %}
+    {% else %}
+      <p class="website-package__unconfigured">{{ 'website_packages.pricing_unavailable' | t }}</p>
+      {% if request.design_mode %}<p class="website-package__setup">{{ 'website_packages.select_product' | t }}</p>{% endif %}
+    {% endif %}
+  </div>
+  {% if s.audience != blank %}<p class="website-package__audience">{{ s.audience | escape }}</p>{% endif %}
+  {% if features != blank %}<ul class="website-package__features" role="list">{{ features }}</ul>{% endif %}
+  <div class="website-package__action">
+    {% if s.mode == 'quote' %}
+      {% if quote_link != blank and s.quote_label != blank %}<a class="button website-package__button" href="{{ quote_link | escape }}">{{ s.quote_label | escape }}<span class="visually-hidden"> — {{ title | escape }}</span></a>{% endif %}
+    {% elsif package_ready and package_product.available %}
+      <website-package-checkout>
+        {% form 'product', package_product, id: purchase_form_id, class: 'website-package__purchase-form', return_to: checkout_path %}
+          {% if package_product.variants.size > 1 %}
+            <label class="website-package__variant-label" for="{{ purchase_form_id }}-variant">{{ package_product.options | join: ' / ' | escape }}</label>
+            <select class="website-package__variant" id="{{ purchase_form_id }}-variant" name="id" ref="variant" on:change="/selectVariant">
+              {% for option_variant in package_product.variants %}
+                <option value="{{ option_variant.id }}" data-quantity="{{ option_variant.quantity_rule.min | default: 1 }}" {% if option_variant.id == variant.id %}selected{% endif %} {% unless option_variant.available %}disabled{% endunless %}>
+                  {{ option_variant.title | escape }}{% if package_product.price_varies %} — {{ option_variant.price | money_with_currency | strip_html | escape }}{% endif %}{% unless option_variant.available %} — {{ 'products.product.sold_out' | t }}{% endunless %}
+                </option>
+              {% endfor %}
+            </select>
+          {% else %}
+            <input type="hidden" name="id" value="{{ variant.id }}">
+          {% endif %}
+          <input type="hidden" name="quantity" value="{{ variant.quantity_rule.min | default: 1 }}" ref="quantity">
+          <button class="button website-package__button" type="submit" name="add">{{ purchase_label | escape }}<span class="visually-hidden"> — {{ title | escape }}</span></button>
+        {% endform %}
+        {% if package_product.variants.size > 1 %}
+          <noscript>
+            <style>#{{ purchase_form_id }} { display: none; }</style>
+            <div class="website-package__purchase-fallback">
+              {% for option_variant in package_product.variants %}
+                {% if option_variant.available %}
+                  <a class="button website-package__button" href="{{ routes.cart_url }}/{{ option_variant.id }}:{{ option_variant.quantity_rule.min | default: 1 }}">{{ purchase_label | escape }} — {{ option_variant.title | escape }}{% if package_product.price_varies %} — {{ option_variant.price | money_with_currency | strip_html | escape }}{% endif %}</a>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </noscript>
+        {% endif %}
+      </website-package-checkout>
+    {% else %}
+      <button class="button website-package__button" type="button" disabled>{% if package_ready %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.unavailable' | t }}{% endif %}</button>
+    {% endif %}
+  </div>
+</article>
+{% stylesheet %}
+  .website-package { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 12px; min-inline-size: 0; min-block-size: 696px; padding: 25px; border: 1px solid var(--packages-border); border-radius: 18px; background: var(--packages-card-background); color: var(--packages-heading-color); font-size: 14px; line-height: 1.45; overflow-wrap: anywhere; transition: scale var(--animation-speed) var(--ease-out-cubic), border-color var(--animation-speed) var(--ease-out-cubic), box-shadow var(--animation-speed) var(--ease-out-cubic); }
+  .website-package p { margin: 0; }
+  .website-package__approach { min-block-size: 37px; padding: 10px 14px; border-radius: 8px; background: var(--packages-label-background); color: var(--packages-accent); font-size: 12px; font-weight: 500; }
+  .website-package__heading { margin: 0; color: inherit; font-family: inherit; font-size: 22px; font-weight: 600; line-height: 1.45; letter-spacing: normal; }
+  .website-package__subtitle { color: var(--packages-text); }
+  .website-package__platforms { color: var(--packages-accent); font-size: 12px; font-weight: 500; }
+  .website-package__pricing { min-block-size: 84px; }
+  .website-package__pricing > [ref='priceContainer'] { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .website-package__pricing .price,
+  .website-package__variable-price { font-size: 38px; font-weight: 600; line-height: 1.45; white-space: normal; }
+  .website-package__pricing .compare-at-price { color: var(--packages-muted); font-size: 12px; font-weight: 500; line-height: 1.45; white-space: normal; }
+  .website-package__quote-price { font-size: 29px; font-weight: 600; line-height: 1.9; }
+  .website-package__from { display: block; color: var(--packages-muted); font-size: 12px; }
+  .website-package__unconfigured { font-size: 22px; font-weight: 600; }
+  .website-package__setup { color: var(--packages-text); font-size: 12px; }
+  .website-package__audience { min-block-size: 52px; color: var(--packages-audience); }
+  .website-package__features { display: flex; flex: 1; flex-direction: column; gap: 10px; min-block-size: 270px; margin: 0; padding: 0; list-style: none; }
+  .website-package__features li { display: flex; gap: 8px; align-items: baseline; min-inline-size: 0; }
+  .website-package__features li > :first-child { flex-shrink: 0; }
+  .website-package__features li > :last-child { min-inline-size: 0; }
+  .website-package__action { margin-block-start: auto; }
+  website-package-checkout { display: block; }
+  .website-package__purchase-form,
+  .website-package__purchase-fallback { display: grid; gap: 12px; }
+  .website-package__variant-label { color: var(--packages-text); font-size: 12px; }
+  .website-package__variant { inline-size: 100%; min-inline-size: 0; min-block-size: 44px; padding: 10px 12px; border: 1px solid var(--packages-border); border-radius: 8px; background: var(--packages-card-background); color: var(--packages-heading-color); font: inherit; }
+  .website-package__variant:focus-visible { outline: 2px solid var(--packages-accent); outline-offset: 3px; }
+  .website-package .website-package__button { --button-color: var(--packages-button-color); --button-background-color: transparent; --button-border-width: 0px; display: flex; align-items: center; justify-content: center; inline-size: 100%; min-block-size: 50px; padding: 15px 20px; border: 0; border-radius: 999px; background: var(--packages-button-background); color: var(--packages-button-color); font-family: inherit; font-size: 14px; font-weight: 600; line-height: 1.45; text-align: center; white-space: normal; transition: opacity var(--animation-speed) var(--ease-out-cubic), transform var(--animation-speed) var(--ease-out-cubic); }
+  .website-package__button:focus-visible { outline: 2px solid var(--packages-accent); outline-offset: 4px; }
+  .website-package__button:disabled { opacity: var(--opacity-50); }
+  .website-package:has(:focus-visible) { box-shadow: 0 12px 28px -12px color-mix(in srgb, var(--packages-accent) 25%, transparent); }
+  .website-packages.reveal-ready .website-package[data-reveal] { transition-property: opacity, transform, scale, border-color, box-shadow; transition-duration: 550ms, 550ms, var(--animation-speed), var(--animation-speed), var(--animation-speed); transition-timing-function: var(--ease-out-cubic); transition-delay: calc(var(--reveal-index, 0) * 100ms), calc(var(--reveal-index, 0) * 100ms), 0ms, 0ms, 0ms; }
+  @media (hover: hover) and (pointer: fine) {
+    .website-package:hover { z-index: 1; border-color: var(--packages-accent); scale: 1.025; box-shadow: 0 12px 28px -12px color-mix(in srgb, var(--packages-accent) 25%, transparent); }
+    .website-package--highlight:hover { box-shadow: inset 0 0 0 0.5px var(--packages-accent), 0 12px 28px -12px color-mix(in srgb, var(--packages-accent) 25%, transparent); }
+    .website-package__button:not(:disabled):hover { opacity: 0.9; }
+  }
+  @media screen and (max-width: 989px) { .website-packages.reveal-ready .website-package[data-reveal] { transition-delay: 0ms; } }
+  @media screen and (max-width: 749px) {
+    .website-package { min-block-size: 0; padding: 24px; }
+    .website-package__features { min-block-size: 0; }
+    .website-package__action { margin-block-start: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .website-package,
+    .website-package:hover,
+    .website-packages.reveal-ready .website-package[data-reveal],
+    .website-package__button { scale: none; translate: none; transition: none; }
+  }
+  @media (forced-colors: active) {
+    .website-package { border-color: CanvasText; }
+    .website-package .website-package__button { border: 1px solid ButtonText; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:website_packages.card",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "mode",
+      "label": "t:website_packages.mode",
+      "options": [
+        {
+          "value": "product",
+          "label": "t:website_packages.product_mode"
+        },
+        {
+          "value": "quote",
+          "label": "t:website_packages.quote_mode"
+        }
+      ],
+      "default": "product"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:website_packages.product"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_purchase",
+      "label": "t:website_packages.enable_purchase",
+      "default": false,
+      "visible_if": "{{ block.settings.mode == 'product' }}"
+    },
+    {
+      "type": "text",
+      "id": "approach",
+      "label": "t:website_packages.approach",
+      "default": "01 / THEME LAUNCH"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:website_packages.heading",
+      "default": "Basic"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "t:website_packages.subtitle",
+      "default": "Shopify Theme Launch"
+    },
+    {
+      "type": "text",
+      "id": "platforms",
+      "label": "t:website_packages.platforms",
+      "default": "Shopify only"
+    },
+    {
+      "type": "textarea",
+      "id": "audience",
+      "label": "t:website_packages.audience"
+    },
+    {
+      "type": "textarea",
+      "id": "features",
+      "label": "t:website_packages.features",
+      "info": "t:website_packages.features_info"
+    },
+    {
+      "type": "checkbox",
+      "id": "highlight",
+      "label": "t:website_packages.highlight",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "purchase_label",
+      "label": "t:website_packages.purchase_label",
+      "default": "Purchase Now →",
+      "visible_if": "{{ block.settings.mode == 'product' }}"
+    },
+    {
+      "type": "text",
+      "id": "quote_price",
+      "label": "t:website_packages.quote_price",
+      "default": "Request a Quote",
+      "visible_if": "{{ block.settings.mode == 'quote' }}"
+    },
+    {
+      "type": "text",
+      "id": "quote_label",
+      "label": "t:website_packages.quote_label",
+      "default": "Discuss Your Project →",
+      "visible_if": "{{ block.settings.mode == 'quote' }}"
+    },
+    {
+      "type": "url",
+      "id": "quote_link",
+      "label": "t:website_packages.quote_link",
+      "visible_if": "{{ block.settings.mode == 'quote' }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:website_packages.card"
+    }
+  ]
+}
+{% endschema %}

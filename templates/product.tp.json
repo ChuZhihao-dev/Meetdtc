@@ -398,11 +398,13 @@
         "heading": "Achieve accumulation of brand trust assets and improvement of conversion",
         "heading_tag": "h1",
         "description": "ME help enterprises address insufficient trust from overseas buyers, difficulty in publicly showcasing genuine reviews, and lack of credible content materials for AI search, and ultimately boost website conversion rates, enhance AI Visibility, and drive growth in cross-border orders.",
+        "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
         "heading_to": "#7c21c2",
         "description_color": "#6b6a6a",
+        "service_labels_color": "#3e4c81",
         "section_height": "full-screen",
         "content_position": "center",
         "padding-block-start": 0,
@@ -624,7 +626,7 @@
         "center_text": "GROWTH\nPOTENTIAL",
         "caption": "Existing potential is not being fully converted into business value.",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "3rem",
         "gradient_text": true,
         "gradient_color_from": "#0b22b8",
         "gradient_color_to": "#9621c4",
@@ -671,63 +673,81 @@
           "type": "card",
           "settings": {
             "heading": "Account Setup & Profile Optimization",
-            "description": "<p>We guide your profile setup; you get a polished, trust-ready page.<br/><br/></p>"
+            "description": "<p>We guide your profile setup; you get a polished, trust-ready page.<br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_wKwRVy": {
           "type": "card",
           "settings": {
             "heading": "Invitation Strategy & Automation",
-            "description": "<p>We recommend the right invitation path; you get a compliant, automated invitation system up and running.<br/><br/></p>"
+            "description": "<p>We recommend the right invitation path; you get a compliant, automated invitation system up and running.<br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_jTHQUi": {
           "type": "card",
           "settings": {
             "heading": "Review Response Management",
-            "description": "<p>We build reply standards with you; you get a trained team and a consistent process.</p>"
+            "description": "<p>We build reply standards with you; you get a trained team and a consistent process.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
             "heading": "Data Analytics &  Report",
-            "description": "<p>We interpret your dashboard data; you get regular insights and clear next steps.</p>"
+            "description": "<p>We interpret your dashboard data; you get regular insights and clear next steps.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_xg8a6q": {
           "type": "card",
           "settings": {
             "heading": "Trust Display & TrustBox",
-            "description": "<p>We recommend widget placement; you get TrustBox live on key pages.</p>"
+            "description": "<p>We recommend widget placement; you get TrustBox live on key pages.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_nMqphe": {
           "type": "card",
           "settings": {
             "heading": "AI Search Visibility",
-            "description": "<p>We measure AI citations; you get a diagnostic tied to your review strategy.</p>"
+            "description": "<p>We measure AI citations; you get a diagnostic tied to your review strategy.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_fYwQHW": {
           "type": "card",
           "settings": {
             "heading": "Milestone Strategy Review",
-            "description": "<p>We review performance together; you get a regular health check with clear priorities for what’s next.</p>"
+            "description": "<p>We review performance together; you get a regular health check with clear priorities for what’s next.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_QDddRW": {
           "type": "card",
           "settings": {
             "heading": "Free 1-on-1 Coaching",
-            "description": "<p>Your coach is available for check-ins; you get hands-on guidance at no cost.</p>"
+            "description": "<p>Your coach is available for check-ins; you get hands-on guidance at no cost.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_jeyUjU": {
           "type": "card",
           "settings": {
             "heading": "Paid Analytics or Managed Ops",
-            "description": "<p>&nbsp;We offer paid projects or managed operations; you get a tailored solution.</p>"
+            "description": "<p>&nbsp;We offer paid projects or managed operations; you get a tailored solution.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         }
       },
@@ -744,11 +764,13 @@
       ],
       "name": "t:service_scope.name",
       "settings": {
+        "layout": "standard",
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
         "description": "<p>Earn trust, grow reviews, maximize impact — guided every step.<br/><br/><br/><br/></p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
+        "card_heading_color": "#241c52",
         "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
         "background": "",
         "card_background": "#ffffff",
@@ -886,7 +908,7 @@
         "eyebrow": "FEATURED CLIENT STORY",
         "heading": "E-Mobility Brand Achieved a 4.2 TrustScore with Trustpilot",
         "description": "<p>A North American e-mobility brand faced low ratings and inefficient review management. ME automated invitations and improved response workflows, lifting its TrustScore from 3.2 to 4.2 and reducing 1–2-star reviews from 37% to 5%.<br/><br/></p>",
-        "image": "shopify://shop_images/b8f297d560a397b1d5b515362c3c2991_46b592d8-74b3-46cf-b17b-02f516045be4.png",
+        "image": "shopify://shop_images/TP.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",
         "link": "",
@@ -997,7 +1019,7 @@
         "heading": "<p>About Working With ME</p>",
         "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "3rem",
         "weight": "600",
         "line_height": "1.3",
         "wrap": "balance",

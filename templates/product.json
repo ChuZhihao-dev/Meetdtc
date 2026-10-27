@@ -392,7 +392,7 @@
           "type": "button",
           "settings": {
             "label": "See Pricing →",
-            "link": "#pricing",
+            "link": "shopify://pages/website-build-packages",
             "open_in_new_tab": false,
             "style_class": "button-custom",
             "custom_button_background": "#ffffff",
@@ -431,11 +431,13 @@
         "heading": "Turn Your Website Into\n a Foundation for Global Growth",
         "heading_tag": "h1",
         "description": "ME bring strategy, design, development and systems integration together to build Shopify, WordPress and custom websites that make buying easier, generate qualified enquiries and support your next stage of growth.",
+        "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
         "heading_to": "#7c21c2",
         "description_color": "#6b6a6a",
+        "service_labels_color": "#3e4c81",
         "section_height": "full-screen",
         "content_position": "center",
         "padding-block-start": 0,
@@ -668,7 +670,7 @@
         "center_text": "GROWTH\nPOTENTIAL",
         "caption": "Existing potential is not being fully converted into business value.",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "3rem",
         "gradient_text": true,
         "gradient_color_from": "#0b22b8",
         "gradient_color_to": "#9621c4",
@@ -715,42 +717,54 @@
           "type": "card",
           "settings": {
             "heading": "Business Discovery & Website Planning",
-            "description": "<p>We review your brand, products, competitors and customer needs to plan your website structure and customer journeys. You receive a project brief, sitemap and wireframes for agreed pages.<br/><br/><br/></p>"
+            "description": "<p>We review your brand, products, competitors and customer needs to plan your website structure and customer journeys. You receive a project brief, sitemap and wireframes for agreed pages.<br/><br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_wKwRVy": {
           "type": "card",
           "settings": {
             "heading": "UI & Responsive Design",
-            "description": "<p>We design agreed pages around your brand and customer journeys. You receive approved desktop and mobile designs ready for development.<br/><br/></p>"
+            "description": "<p>We design agreed pages around your brand and customer journeys. You receive approved desktop and mobile designs ready for development.<br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_jTHQUi": {
           "type": "card",
           "settings": {
             "heading": "Website Development",
-            "description": "<p>We implement the approved designs through theme customization or custom development. You receive a working website with the agreed pages and features.<br/><br/></p>"
+            "description": "<p>We implement the approved designs through theme customization or custom development. You receive a working website with the agreed pages and features.<br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
             "heading": "Business Systems & API Integration",
-            "description": "<p>We implement agreed connections with your business systems. You receive working integrations and documentation of the configured data flows.<br/><br/></p>"
+            "description": "<p>We implement agreed connections with your business systems. You receive working integrations and documentation of the configured data flows.<br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_xg8a6q": {
           "type": "card",
           "settings": {
             "heading": "Performance, Quality & Acceptance",
-            "description": "<p>We check agreed functionality, responsive behavior, browser compatibility and performance. You receive a test report and an acceptance-ready website.<br/><br/></p>"
+            "description": "<p>We check agreed functionality, responsive behavior, browser compatibility and performance. You receive a test report and an acceptance-ready website.<br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_nMqphe": {
           "type": "card",
           "settings": {
             "heading": "Launch & Handover",
-            "description": "<p>We deploy your website and explain how to manage it. You receive agreed access, operating guides and project files, including source code for custom builds.<br/><br/></p>"
+            "description": "<p>We deploy your website and explain how to manage it. You receive agreed access, operating guides and project files, including source code for custom builds.<br/><br/></p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         }
       },
@@ -764,11 +778,13 @@
       ],
       "name": "t:service_scope.name",
       "settings": {
+        "layout": "standard",
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
         "description": "<p>Six connected workstreams cover planning, design, development and launch, with deliverables tailored to your agreed project scope.</p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
+        "card_heading_color": "#241c52",
         "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
         "background": "",
         "card_background": "#ffffff",
@@ -865,7 +881,7 @@
         "heading": "Fixed Scope. Fixed Price.",
         "description": "<p>Scoped by page count, number of markets and whether you need e-commerce.</p>",
         "link_label": "See Packages & Pricing",
-        "link": "#",
+        "link": "shopify://pages/website-build-packages",
         "font": "var(--font-heading--family)",
         "font_size": "2.5rem",
         "weight": "700",
@@ -908,38 +924,27 @@
           },
           "blocks": {}
         },
-        "client_story_benefit_3rerXj": {
-          "type": "_client-story-benefit",
-          "name": "t:client_story.benefit_name",
+        "client_story_metric_MwnYiR": {
+          "type": "_client-story-metric",
           "settings": {
-            "heading": "Full-Lifecycle Nurturing",
-            "description": "Engage buyers from sign-up to win-back."
+            "value": "+36%",
+            "label": "Website Performance"
           },
           "blocks": {}
         },
-        "client_story_metric_MwnYiR": {
+        "client_story_metric_FpxMcy": {
           "type": "_client-story-metric",
           "settings": {
             "value": "+26%",
             "label": "Keywords Ranking in Search"
           },
           "blocks": {}
-        },
-        "client_story_benefit_raQ8gY": {
-          "type": "_client-story-benefit",
-          "name": "t:client_story.benefit_name",
-          "settings": {
-            "heading": "Shorter Decision Cycles",
-            "description": "Help high-intent buyers reach purchase decisions sooner."
-          },
-          "blocks": {}
         }
       },
       "block_order": [
         "client_story_metric_zLRcgq",
-        "client_story_benefit_3rerXj",
         "client_story_metric_MwnYiR",
-        "client_story_benefit_raQ8gY"
+        "client_story_metric_FpxMcy"
       ],
       "name": "t:client_story.name",
       "settings": {
@@ -971,7 +976,7 @@
         "faq_row_XdLKBG": {
           "type": "_faq-row",
           "settings": {
-            "question": "Can you create a unique website that reflects our brand?",
+            "question": "Q1. Can you create a unique website that reflects our brand?",
             "answer": "<p>Yes. We translate your brand identity and product positioning into a distinctive website experience. Our design scope covers two core screen formats—desktop and mobile—with key page designs reviewed before development.<br/><br/></p>",
             "open_by_default": true
           },
@@ -980,7 +985,7 @@
         "faq_row_ckALeW": {
           "type": "_faq-row",
           "settings": {
-            "question": "How do I choose the right platform for my website?",
+            "question": "Q2. How do I choose the right platform for my website?",
             "answer": "<p>We help you compare platforms against your business requirements. Shopify suits commerce-focused projects, WordPress supports content-led websites, and custom development accommodates more specialized needs. We assess four areas: customer experience, functionality, integrations and ongoing management.<br/><br/></p>",
             "open_by_default": false
           },
@@ -989,7 +994,7 @@
         "faq_row_8DWdMn": {
           "type": "_faq-row",
           "settings": {
-            "question": "Do you offer both template-based and fully custom websites?",
+            "question": "Q3. Do you offer both template-based and fully custom websites?",
             "answer": "<p>Yes. We offer two approaches: template-based builds and custom website development. Template projects adapt an existing foundation, while custom projects allow more tailored layouts, interactions and functionality.<br/><br/></p>",
             "open_by_default": false
           },
@@ -998,7 +1003,7 @@
         "faq_row_6Vcq7e": {
           "type": "_faq-row",
           "settings": {
-            "question": "Can you redesign or upgrade our existing website?",
+            "question": "Q4. Can you redesign or upgrade our existing website?",
             "answer": "<p>Yes. We can improve your current website’s design, user experience and functionality. Before defining the scope, we review three areas: what to retain, what to improve and what to rebuild.<br/><br/></p>",
             "open_by_default": false
           },
@@ -1007,7 +1012,7 @@
         "faq_row_idcK38": {
           "type": "_faq-row",
           "settings": {
-            "question": "Can you connect our website to our existing business systems?",
+            "question": "Q5. Can you connect our website to our existing business systems?",
             "answer": "<p>Yes. We provide API integration with systems such as ERP and CRM platforms, subject to their available interfaces and access permissions. Each integration defines three essentials: the data exchanged, the direction of transfer and the synchronization rules.<br/><br/></p>",
             "open_by_default": false
           },
@@ -1016,7 +1021,7 @@
         "faq_row_98nUKV": {
           "type": "_faq-row",
           "settings": {
-            "question": "How long does a website project take?",
+            "question": "Q6. How long does a website project take?",
             "answer": "<p>The timeline depends on design complexity, functionality and integrations. Our indicative development phase is 2–10 weeks, followed by 1–2 weeks of integration testing. Planning and UI design are scheduled separately, and the full timeline is confirmed after scoping.<br/><br/><br/><br/></p>",
             "open_by_default": false
           },
@@ -1025,7 +1030,7 @@
         "faq_row_yPBYkf": {
           "type": "_faq-row",
           "settings": {
-            "question": "Will we receive the source code and be able to manage the website ourselves?",
+            "question": "Q7. Will we receive the source code and be able to manage the website ourselves?",
             "answer": "<p>Custom development projects include source code handover within the agreed scope. Handover covers three areas: relevant access, operating guidance and project files. For Shopify and WordPress projects, we clarify the editable components and any third-party licensing dependencies.<br/><br/></p>",
             "open_by_default": false
           },
@@ -1047,7 +1052,7 @@
         "heading": "<p>About Working With ME</p>",
         "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "3rem",
         "weight": "600",
         "line_height": "1.3",
         "wrap": "balance",

@@ -4,6 +4,7 @@
   Renders the blog article image block for use within featured blog posts cards.
 
   @param {object} image - The image object
+  @param {string} [image_alt_fallback] - Article title when the image has no alternative text.
   @param {string} parent_block_id - The block.id of the parent blog post card
 {%- enddoc -%}
 
@@ -11,6 +12,7 @@
 {% render 'resource-image',
   content_type: 'articles',
   image_source: image,
+  alt_text_fallback: image_alt_fallback,
   parent_block_id: parent_block_id,
   block_settings: block.settings,
   section_settings: section.settings,

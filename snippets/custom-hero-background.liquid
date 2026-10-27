@@ -1,0 +1,52 @@
+{% doc %}
+  Renders the standard Hero background independently of its content layout.
+  @param {section} section - Hero section with media and overlay settings.
+  @param {string} media - Captured responsive image/video markup.
+  @param {number} media_count - Desktop media slot count.
+  @param {number} media_count_mobile - Mobile media slot count.
+  @param {boolean} has_video - Whether selected media includes video.
+  @param {string} image_loading - Poster loading strategy.
+  @param {string} poster_priority - Poster fetch priority.
+  @example
+  {% render 'custom-hero-background', section: section, media: media, media_count: media_count, media_count_mobile: media_count_mobile, has_video: has_hero_video, image_loading: image_loading, poster_priority: hero_poster_priority %}
+{% enddoc %}
+
+{% liquid
+  assign media_id = 'HeroMedia-' | append: section.id
+  assign poster = section.settings.video_1.preview_image | default: section.settings.video_2.preview_image
+%}
+
+<div class="hero__background">
+  {% if has_video and poster != blank %}
+    {{ poster | image_url: width: 1920 | image_tag: widths: '750,1100,1500,1920', sizes: '100vw', loading: image_loading, fetchpriority: poster_priority, decoding: 'async', class: 'hero__video-poster', alt: '' }}
+  {% endif %}
+  <div
+    id="{{ media_id }}" ref="media"
+    class="hero__media-grid"
+    style="--hero-media-count: {{ media_count }};--hero-media-count-mobile: {{ media_count_mobile }};{%- if section.settings.image_1 != blank -%} --hero-media-aspect-ratio: {{ section.settings.image_1.aspect_ratio }};{% endif %}"
+    data-testid="hero-media-wrapper"
+  >
+    {% liquid
+      if section.settings.toggle_overlay
+        render 'overlay', settings: section.settings
+      endif
+    %}
+    {{ media }}
+  </div>
+</div>
+
+{% if has_video %}{% render 'custom-hero-video-controls' %}{% endif %}
+
+{% stylesheet %}
+  .hero__background {
+    position: absolute;
+    inset: 0;
+    isolation: isolate;
+    overflow: hidden;
+    z-index: var(--layer-base);
+  }
+
+  .hero--no-blocks-auto-height .hero__background {
+    position: relative;
+  }
+{% endstylesheet %}

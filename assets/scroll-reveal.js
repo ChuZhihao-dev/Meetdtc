@@ -1,10 +1,15 @@
 import { Component } from '@theme/component';
 
-/** Shared one-shot reveal. Native connection/removal also covers editor reloads. */
+/**
+ * Shared one-shot reveal. Native connection/removal also covers editor reloads.
+ * data-reveal-timeline="desktop" batches at >=990px and reveals individually below.
+ * data-reveal-margin overrides the observer margin, including initially visible targets.
+ */
 class ScrollReveal extends Component {
   #observer;
   #controller;
   #motion = matchMedia('(prefers-reduced-motion: reduce)');
+  #desktop = matchMedia('(min-width: 990px)');
 
   connectedCallback() {
     super.connectedCallback();
@@ -27,6 +32,9 @@ class ScrollReveal extends Component {
     this.#controller = new AbortController();
     const { signal } = this.#controller;
     this.#motion.addEventListener('change', this.#reveal, { signal });
+    if (this.getAttribute('data-reveal-timeline') === 'desktop') {
+      this.#desktop.addEventListener('change', this.#reveal, { signal });
+    }
     if (window.Shopify?.designMode) {
       // Keep block selection immediate; editor handlers never run on storefronts.
       this.addEventListener('shopify:block:select', this.#show, { signal });
@@ -45,7 +53,9 @@ class ScrollReveal extends Component {
     const targets = [...this.querySelectorAll('[data-reveal]')];
     if (this.#motion.matches || !targets.length) return;
     if (window.Shopify?.designMode && !this.hasAttribute('data-reveal-in-editor')) return;
-    const timeline = this.hasAttribute('data-reveal-timeline');
+    const timeline = this.hasAttribute('data-reveal-timeline') &&
+      (this.getAttribute('data-reveal-timeline') !== 'desktop' || this.#desktop.matches);
+    const margin = this.getAttribute('data-reveal-margin');
     // Batch layout reads before dataset/style writes, including multi-card lists.
     const visible = targets.map((target) => {
       const rect = target.getBoundingClientRect();
@@ -62,11 +72,11 @@ class ScrollReveal extends Component {
         entry.target.dataset.state = 'in';
         observer.unobserve(entry.target);
       }
-    }, { rootMargin: '-12% 0px 0px 0px', threshold: 0 });
+    }, { rootMargin: margin || '-12% 0px 0px 0px', threshold: 0 });
     this.#observer = observer;
     targets.forEach((target, index) => {
       target.style.setProperty('--reveal-index', String(index));
-      if (target.dataset.state !== 'in') target.dataset.state = !timeline && visible[index] ? 'in' : 'before';
+      if (target.dataset.state !== 'in') target.dataset.state = !timeline && !margin && visible[index] ? 'in' : 'before';
       if (!timeline && target.dataset.state !== 'in') observer.observe(target);
     });
     if (timeline && targets.some((target) => target.dataset.state !== 'in')) observer.observe(this);

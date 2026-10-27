@@ -104,7 +104,7 @@
   .me-picks { background: var(--me-picks-background, var(--color-background)); font-family: var(--font-heading--family); }
   .me-picks__inner { inline-size: calc(100% - 32px); max-inline-size: 1290px; min-inline-size: 0; margin-inline: auto; }
   .me-picks__intro { padding-block: calc(40px + var(--me-picks-top)) 36px; }
-  .me-picks__heading { max-inline-size: 917px; margin: 0; color: var(--color-foreground); font-family: inherit; font-size: clamp(36px, 4.02778vw, 58px); font-weight: 600; line-height: 1.22; letter-spacing: normal; overflow-wrap: anywhere; }
+  .me-picks__heading { max-inline-size: 917px; margin: 0; color: var(--color-foreground); font-family: inherit; font-size: 58px; font-weight: 600; line-height: 1.22; letter-spacing: normal; overflow-wrap: anywhere; }
   @supports (background-clip: text) {
     .me-picks__heading { background: var(--me-picks-heading-gradient); background-clip: text; -webkit-text-fill-color: transparent; }
   }
@@ -124,8 +124,7 @@
   @media screen and (min-width: 750px) {
     .me-picks__inner { inline-size: calc(100% - 64px); }
     .me-picks__intro { padding-block: calc(64px + var(--me-picks-top)) 55px; }
-    .me-picks__description { margin-block-start: 0; font-size: 24px; line-height: 38px; }
-    .me-picks__category { font-size: 16px; }
+    .me-picks__description { margin-block-start: 0; }
     .me-picks__results { padding-block-start: 54px; }
     .me-picks__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px; }
   }

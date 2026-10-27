@@ -9,6 +9,7 @@
 <contact-enquiry-form>
 {% form 'contact', id: form_id, class: 'contact-enquiry__form contact-form-focus' %}
   <input type="hidden" name="contact[id]" value="{{ form_id | escape }}">
+  {% render 'website-package-enquiry' %}
   {% liquid
     assign form_matches = false
     if form.id == form_id
@@ -64,6 +65,5 @@
   .contact-enquiry__feedback:focus { outline: none; }
   @media screen and (max-width: 749px) {
     .contact-enquiry__fields { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-    .contact-enquiry__submit { font-size: 17px; line-height: 1.5; }
   }
 {% endstylesheet %}

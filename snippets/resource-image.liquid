@@ -6,6 +6,7 @@
 
   @param {string} content_type - Type of content: 'articles' | 'collections'
   @param {object} [image_source] - Image object for articles (auto-determined for collections)
+  @param {string} [alt_text_fallback] - Resource title when the image has no alternative text.
   @param {string} parent_block_id - Parent block ID for CSS targeting
   @param {object} block_settings - Block settings object
   @param {object} [section_settings] - Section settings for layout-aware sizing
@@ -49,6 +50,7 @@
     assign image_resource = image_source
   elsif content_type == 'collections'
     assign collection = closest.collection
+    assign alt_text_fallback = collection.title
     assign image_resource = collection.image
     if image_resource == blank
       assign image_resource = collection.products.first.featured_image
@@ -56,6 +58,8 @@
   else
     assign image_resource = image_source
   endif
+
+  assign image_alt = image_resource.alt | default: alt_text_fallback
 
   # Calculate aspect ratio
   assign ratio = 1
@@ -154,7 +158,7 @@
     {{
       image_resource
       | image_url: width: 3840
-      | image_tag: widths: widths, class: 'resource-image__image', sizes: sizes, loading: loading
+      | image_tag: widths: widths, class: 'resource-image__image', sizes: sizes, loading: loading, alt: image_alt
     }}
   </div>
 {% else %}

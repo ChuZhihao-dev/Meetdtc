@@ -4,11 +4,12 @@
   @param {blog} [blog] - Blog whose articles render; omitted for editor preview.
   @param {object} [paginate] - Paginate object from the owning section.
   @param {boolean} [preview] - Editor-only placeholder state.
-  @example {% render 'work-catalog-results', blog: blog, paginate: paginate, preview: preview %}
+  @param {string} [listing_path] - Route path for the current listing.
+  @example {% render 'work-catalog-results', blog: blog, paginate: paginate, preview: preview, listing_path: listing_path %}
 {% enddoc %}
 <div class="work-catalog__results" tabindex="-1" on:click="work-catalog-component/navigate"
   data-hydration-key="work-catalog-{{ section.id }}"
-  data-current-path="{{ request.path | escape }}"
+  data-current-path="{{ listing_path | default: request.path | escape }}"
   data-loaded-text="{{ 'work_catalog.loaded' | t | escape }}">
   <div ref="grid" class="work-catalog__grid">
     {% if blog != blank %}
@@ -28,7 +29,7 @@
       {% endfor %}
     {% endif %}
   </div>
-  {% if blog != blank and blog.articles_count == 0 and preview == false %}
+  {% if blog != blank and blog.articles.size == 0 and preview == false %}
     <p class="work-catalog__empty">{{ 'work_catalog.empty' | t }}</p>
   {% elsif blog == blank and preview == false %}
     <p class="work-catalog__empty">{{ 'work_catalog.empty' | t }}</p>

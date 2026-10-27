@@ -122,12 +122,14 @@
         "heading": "Meet Experience",
         "heading_tag": "h1",
         "description": "AI & MarTech Consulting, Implementation and Operations",
+        "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
         "heading_to": "#7c21c2",
         "description_color": "#6b6a6a",
-        "section_height": "large",
+        "service_labels_color": "#3e4c81",
+        "section_height": "medium",
         "content_position": "center",
         "padding-block-start": 0,
         "padding-block-end": 0
@@ -304,7 +306,7 @@
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/shopify_partners.png",
+                "image": "shopify://shop_images/shopify_platinum_partner_transparent_8f3a_529f6848-8d19-47f6-9148-96d85b95ed69.png",
                 "link": "",
                 "alt": ""
               },
@@ -314,7 +316,7 @@
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/Group_1597884445.png",
+                "image": "shopify://shop_images/klaviyo_master_platinum_badge.png",
                 "link": "",
                 "alt": ""
               },
@@ -324,7 +326,7 @@
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/Group_1597884446.png",
+                "image": "shopify://shop_images/omnisend_transparent_5d2e.png",
                 "link": "",
                 "alt": ""
               },
@@ -334,7 +336,17 @@
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/Group_1597884447.png",
+                "image": "shopify://shop_images/trustpilot_transparent.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_TmHXQA": {
+              "type": "_brand-logo",
+              "name": "t:names.logo",
+              "settings": {
+                "image": "shopify://shop_images/BytePlus_Platinum_Partner_d8a6a072-9801-497f-9c86-31bf63c54680.png",
                 "link": "",
                 "alt": ""
               },
@@ -345,7 +357,8 @@
             "brand_logo_eVKkr3",
             "brand_logo_YwdKLT",
             "brand_logo_dWjDcp",
-            "brand_logo_AcXgVw"
+            "brand_logo_AcXgVw",
+            "brand_logo_TmHXQA"
           ]
         },
         "brand_row_XwTdAR": {
@@ -358,7 +371,17 @@
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/Group_1597884442.png",
+                "image": "shopify://shop_images/google-cloud-premier-co-sell-partner_916b404a-aa8f-4ea1-9a6d-d49ca9885abe.png",
+                "link": "",
+                "alt": ""
+              },
+              "blocks": {}
+            },
+            "brand_logo_LYpjnU": {
+              "type": "_brand-logo",
+              "name": "t:names.logo",
+              "settings": {
+                "image": "shopify://shop_images/impact_transparent.png",
                 "link": "",
                 "alt": ""
               },
@@ -368,7 +391,7 @@
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/Group_1597884443.png",
+                "image": "shopify://shop_images/awin_transparent_8e2c.png",
                 "link": "",
                 "alt": ""
               },
@@ -378,7 +401,7 @@
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/Group_1597884441.png",
+                "image": "shopify://shop_images/rakuten_transparent_7a4f.png",
                 "link": "",
                 "alt": ""
               },
@@ -387,6 +410,7 @@
           },
           "block_order": [
             "brand_logo_7XGRdb",
+            "brand_logo_LYpjnU",
             "brand_logo_fQwP3y",
             "brand_logo_Ghm8KV"
           ]

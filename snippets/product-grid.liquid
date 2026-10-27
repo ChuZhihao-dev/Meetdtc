@@ -167,9 +167,9 @@
       </ul>
       {% if enable_infinite_scroll != false %}
         <span ref="viewMoreNext"></span>
-      {% else %}
-        {% render 'pagination-controls', paginate: paginate %}
       {% endif %}
+      {% comment %}Keep real page links available when infinite scrolling is delayed or unavailable.{% endcomment %}
+      {% render 'pagination-controls', paginate: paginate %}
     {% endif %}
   </div>
 </div>

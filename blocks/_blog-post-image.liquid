@@ -11,6 +11,7 @@
 
 {% liquid
   assign image = article.image
+  assign image_alt = image.alt | default: article.title
   assign block_settings = block.settings
   assign sizes = image_sizes | default: '100vw'
   assign loading = image_loading | default: 'eager'
@@ -34,7 +35,8 @@
   class="blog-post-card__image-container"
   {{ block.shopify_attributes }}
 >
-  <a href="{{ article.url }}">
+  {% if image != blank %}
+  <a href="{{ article.url | escape }}">
     {{
       image
       | image_url: width: 2000
@@ -45,11 +47,12 @@
         sizes: sizes,
         loading: loading,
         fetchpriority: fetch_priority,
-        alt: image.alt,
+        alt: image_alt,
         class: image_class,
         style: image_border_style
     }}
   </a>
+  {% endif %}
 </div>
 
 {% stylesheet %}

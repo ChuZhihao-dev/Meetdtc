@@ -398,11 +398,13 @@
         "heading": "Turn Email Into a Predictable Revenue Engine",
         "heading_tag": "h1",
         "description": "ME help DTC brands build a full-fidelity email marketing engine — from platform selection and system setup to lifecycle strategy and operations coaching — that lifts open rates, conversion and email's share of GMV, creating a second growth engine beyond paid traffic.",
+        "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
         "heading_from": "#0c23b8",
         "heading_to": "#7c21c2",
         "description_color": "#6b6a6a",
+        "service_labels_color": "#3e4c81",
         "section_height": "full-screen",
         "content_position": "center",
         "padding-block-start": 0,
@@ -671,63 +673,81 @@
           "type": "card",
           "settings": {
             "heading": "EDM Diagnosis",
-            "description": "<p>We assess your collection, flows, campaigns and segmentation; you get a prioritized growth roadmap.</p>"
+            "description": "<p>We assess your collection, flows, campaigns and segmentation; you get a prioritized growth roadmap.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_wKwRVy": {
           "type": "card",
           "settings": {
             "heading": "Platform Selection & System Setup",
-            "description": "<p>We choose and configure the right platform; you get a live email system with brand assets and tracking in place.</p>"
+            "description": "<p>We choose and configure the right platform; you get a live email system with brand assets and tracking in place.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_jTHQUi": {
           "type": "card",
           "settings": {
             "heading": "Data & Tag System",
-            "description": "<p>We structure profile fields, tags and consent status; you get clean, segmentable subscriber data.</p>"
+            "description": "<p>We structure profile fields, tags and consent status; you get clean, segmentable subscriber data.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
             "heading": "Collection & Pop-up Optimization",
-            "description": "<p>We design sign-up pop-ups, forms and teaser bars; you get higher subscription rates and a growing owned audience.</p>"
+            "description": "<p>We design sign-up pop-ups, forms and teaser bars; you get higher subscription rates and a growing owned audience.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_xg8a6q": {
           "type": "card",
           "settings": {
             "heading": "Lifecycle Flow Building",
-            "description": "<p>We build welcome, abandoned-cart, browse-abandonment, post-purchase and win-back journeys; you get automated emails that convert around the clock.</p>"
+            "description": "<p>We build welcome, abandoned-cart, browse-abandonment, post-purchase and win-back journeys; you get automated emails that convert around the clock.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_nMqphe": {
           "type": "card",
           "settings": {
             "heading": "Campaign Planning & Execution",
-            "description": "<p>We plan the marketing calendar, write copy and design emails; you get on-time, on-brand campaigns with A/B testing built in.</p>"
+            "description": "<p>We plan the marketing calendar, write copy and design emails; you get on-time, on-brand campaigns with A/B testing built in.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_JAzWDX": {
           "type": "card",
           "settings": {
             "heading": "Audience Segmentation",
-            "description": "<p>We layer users by RFM, activity and purchase behavior; you get precise messages for every audience.</p>"
+            "description": "<p>We layer users by RFM, activity and purchase behavior; you get precise messages for every audience.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_erfekD": {
           "type": "card",
           "settings": {
             "heading": "A/B Testing & Optimization",
-            "description": "<p>We test subject lines, content, timing and layouts; you get proven winners and continuous improvement.</p>"
+            "description": "<p>We test subject lines, content, timing and layouts; you get proven winners and continuous improvement.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         },
         "card_86xVqA": {
           "type": "card",
           "settings": {
             "heading": "Reporting & Deliverability",
-            "description": "<p>We configure SPF/DKIM/DMARC and track open, click, conversion and revenue; you get 95%+ inbox placement and monthly reports.</p>"
+            "description": "<p>We configure SPF/DKIM/DMARC and track open, click, conversion and revenue; you get 95%+ inbox placement and monthly reports.</p>",
+            "link": "",
+            "link_label": "Learn more"
           }
         }
       },
@@ -744,11 +764,13 @@
       ],
       "name": "t:service_scope.name",
       "settings": {
+        "layout": "standard",
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
         "description": "<p>one complete email system, from strategy and setup to content, delivery and analysis.</p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
+        "card_heading_color": "#241c52",
         "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
         "background": "",
         "card_background": "#ffffff",
@@ -860,7 +882,7 @@
         "eyebrow": "FEATURED CLIENT STORY",
         "heading": "Furniture Brand Achieved 2× Email GMV Share with Lifecycle Marketing",
         "description": "<p>A furniture brand faced long buying cycles and low email revenue. ME built lifecycle flows and personalised nurturing, growing email GMV by 40%+ and doubling its GMV share to over 22% in three months.<br/></p>",
-        "image": "shopify://shop_images/b8f297d560a397b1d5b515362c3c2991.png",
+        "image": "shopify://shop_images/email-marketing-furniture-cover_31bb0f64-3d20-403b-97e4-8c7d8b585c50.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",
         "link": "",

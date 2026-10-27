@@ -10,6 +10,15 @@
     assign selected = true
   elsif current_tags contains tag
     assign selected = true
+  else
+    assign tag_handle = tag | handle
+    for current_tag in current_tags
+      assign current_tag_handle = current_tag | handle
+      if current_tag_handle == tag_handle
+        assign selected = true
+        break
+      endif
+    endfor
   endif
   assign label = tag
   if tag == blank

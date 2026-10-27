@@ -147,15 +147,15 @@
   .footer-diagnosis__eyebrow {
     margin: 0;
     font-weight: 500;
-    font-size: var(--fluid-body-24, 24px);
-    line-height: var(--fluid-leading-1-583333, 38px);
+    font-size: 20px;
+    line-height: 1.6;
     text-transform: uppercase;
   }
 
   .footer-diagnosis__heading {
-    font-weight: 700;
-    font-size: var(--fluid-heading-46-1, 46.1px);
-    line-height: var(--fluid-leading-1-171367, 54px);
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 54px;
   }
 
   .footer-diagnosis__heading > :first-child,
@@ -165,7 +165,7 @@
 
   .footer-diagnosis__description {
     font-weight: 500;
-    font-size: var(--fluid-body-24, 24px);
+    font-size: 24px;
     line-height: 1.333333;
     letter-spacing: normal;
   }
@@ -189,7 +189,7 @@
     gap: 14px;
     align-items: center;
     font-weight: 600;
-    font-size: var(--fluid-body-20, 20px);
+    font-size: 20px;
     line-height: 1.4;
   }
 
@@ -265,7 +265,6 @@
     color: #898989;
   }
 
-
   .footer-diagnosis__input--textarea {
     block-size: 132px;
     min-height: 132px;
@@ -318,17 +317,12 @@
       gap: 32px;
     }
 
-    .footer-diagnosis__heading {
-      font-size: var(--fluid-heading-46-1, 2rem);
-    }
-
   }
 
   @media screen and (max-width: 767px) {
-    .footer-diagnosis__input { font-size: 16px; line-height: 1.5; padding-block: 14px; }
+    .footer-diagnosis__input { padding-block: 14px; }
     .footer-diagnosis__submit{
-      font-size: 16px;
-      line-height: 1.5;
+
       min-height: 48px;
       padding: 12px 16px;
     }
@@ -338,14 +332,6 @@
 
     .footer-diagnosis__fields {
       grid-template-columns: minmax(0, 1fr);
-    }
-
-    .footer-diagnosis__heading {
-      font-size: var(--fluid-heading-46-1, 1.75rem);
-    }
-
-    .footer-diagnosis__description {
-      font-size: var(--fluid-body-24, 1.0625rem);
     }
 
   }

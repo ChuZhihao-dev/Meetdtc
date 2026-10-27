@@ -98,6 +98,7 @@
         "detail_LDAHFE": {
           "type": "detail",
           "settings": {
+            "icon": "shopify://shop_images/Icon_2_40649c48-f40e-4f69-9c43-8e6e80ded9ee.svg",
             "label": "Email",
             "value": "enquiry@meetdtc.com",
             "link": "mailto:enquiry@meetdtc.com"
@@ -106,6 +107,7 @@
         "detail_rrgwRz": {
           "type": "detail",
           "settings": {
+            "icon": "shopify://shop_images/Icon_1_37238887-0e6b-4843-af99-bacd3af208c2.svg",
             "label": "WhatsApp",
             "value": "+ 1555 - 452 - 0029",
             "link": "tel:+ 1555 - 452 - 0029"
@@ -114,8 +116,9 @@
         "detail_fAyRXH": {
           "type": "detail",
           "settings": {
-            "label": "Monday - Friday",
-            "value": "10:00 AM-7:00 PM (UTC+8)",
+            "icon": "shopify://shop_images/Icon_3ab0607a-fb64-425c-bb42-619ea22870c1.svg",
+            "label": "Hours",
+            "value": "Monday – Friday \n10:00AM - 7:00PM UTC+8",
             "link": ""
           }
         },
@@ -161,6 +164,7 @@
         "submit_label": "Get My Free Growth Diagnosis",
         "privacy": "Your details will be used to respond to your enquiry.",
         "offices_label": "Our Offices",
+        "offices_icon": "shopify://shop_images/Icon_3_173077e5-69b2-4b9b-b096-1ca2e5f45a8a.svg",
         "font": "montserrat_n4",
         "background": "linear-gradient(164.59deg, rgba(216, 224, 248, 1) 0.157%, rgba(247, 241, 237, 1) 99.843%)",
         "heading_gradient": "linear-gradient(134.978deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",

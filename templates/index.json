@@ -23,7 +23,7 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "flex-start",
-            "gap": 15,
+            "gap": 12,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -62,9 +62,9 @@
                 "alignment": "left",
                 "type_preset": "custom",
                 "font": "var(--font-heading--family)",
-                "font_size": "3.25rem",
+                "font_size": "3rem",
                 "weight": "600",
-                "line_height": "1.224",
+                "line_height": "1.2",
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
@@ -89,15 +89,15 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Meet Experience (ME) helps companies expand globally with integrated MarTech solutions — covering website &amp; e-commerce, data analytics, user operations, and technical infrastructure.</p>",
+                "text": "<p>Meet Experience (ME) helps companies expand globally with integrated MarTech solutions — covering website & e-commerce, data analytics, user operations, and technical infrastructure.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "custom",
                 "font": "var(--font-heading--family)",
-                "font_size": "1.375rem",
+                "font_size": "1.25rem",
                 "weight": "500",
-                "line_height": "1.636",
+                "line_height": "1.5",
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
@@ -145,7 +145,7 @@
             "button_custom_radius": true,
             "button_radius": 50,
             "button_font": "var(--font-heading--family)",
-            "button_font_size": "1.25rem",
+            "button_font_size": "1.125rem",
             "button_font_weight": "700",
             "button_letter_spacing": "",
             "button_case": "",
@@ -183,7 +183,7 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 48,
+        "gap": 32,
         "section_width": "page-width",
         "section_height": "full-screen",
         "section_height_custom": 50,
@@ -365,7 +365,7 @@
         "link_label": "Explore Our Work →",
         "link": "shopify://blogs/our-works",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "3rem",
         "gradient_text": true,
         "gradient_color_from": "#0b22b8",
         "gradient_color_to": "#9621c4",
@@ -386,11 +386,11 @@
       "name": "t:names.product_solutions_grid",
       "settings": {
         "collection": "solution",
-        "product_limit": 9,
+        "product_limit": 10,
         "heading": "<p>Solutions Built for&nbsp;<br/>Measurable Growth</p>",
         "read_more_label": "Read More →",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "3rem",
         "weight": "600",
         "line_height": "1",
         "wrap": "balance",
@@ -534,7 +534,7 @@
         "heading": "<p>One Partner. Connected Solutions. Measurable Growth</p>",
         "description": "<p>We connect strategy, technology, data and execution to help brands build stronger digital foundations, acquire customers and scale across global markets</p>",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "3rem",
         "weight": "600",
         "line_height": "1.2",
         "letter_spacing": "normal",
@@ -610,7 +610,7 @@
         "heading": "<p>Built to Convert. Measured to Prove.</p>",
         "description": "<p>What we changed, and what it was worth.</p>",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "3rem",
         "weight": "600",
         "line_height": "1",
         "wrap": "balance",
@@ -655,7 +655,7 @@
         "post_limit": 3,
         "link_label": "Read →",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "3rem",
         "weight": "700",
         "line_height": "1.3",
         "letter_spacing": "normal",
@@ -691,7 +691,7 @@
         "faq_row_gdQjXC": {
           "type": "_faq-row",
           "settings": {
-            "question": "What is MarTech, and how can it support global growth?",
+            "question": "Q1. What is MarTech, and how can it support global growth?",
             "answer": "<p>MarTech brings strategy, technology, data and execution together to help businesses attract, convert and retain customers. For businesses expanding across markets, it connects websites, marketing, customer operations and data into a more measurable growth system.</p>",
             "open_by_default": true
           },
@@ -700,7 +700,7 @@
         "faq_row_pkhNYV": {
           "type": "_faq-row",
           "settings": {
-            "question": "What MarTech solutions does ME provide?",
+            "question": "Q2. What MarTech solutions does ME provide?",
             "answer": "<p>Our MarTech service areas include Web Development, SEO, Conversion Rate Optimisation, Email Marketing, Affiliate Marketing, WhatsApp Marketing, Trustpilot & Reviews, Loyalty & Membership, and AI & Cloud. Services can be engaged individually or combined into one connected growth programme.<br/><br/></p>",
             "open_by_default": false
           },
@@ -709,7 +709,7 @@
         "faq_row_FWqTNx": {
           "type": "_faq-row",
           "settings": {
-            "question": "Can ME support both strategy and implementation?",
+            "question": "Q3. Can ME support both strategy and implementation?",
             "answer": "<p>Yes. We can support the full process, from growth diagnosis and priority setting to planning, implementation, campaign execution, tracking and ongoing optimisation.<br/><br/></p>",
             "open_by_default": false
           },
@@ -718,7 +718,7 @@
         "faq_row_bHFFxt": {
           "type": "_faq-row",
           "settings": {
-            "question": "Which markets and platforms does ME work across?",
+            "question": "Q4. Which markets and platforms does ME work across?",
             "answer": "<p>We help businesses expand into global markets, with a focus on clients based in Singapore, Hong Kong, Taiwan and mainland China. With offices in Singapore, Shanghai and Shenzhen, ME provides support in English and Chinese, connecting the commerce, marketing and analytics platforms that fit each client’s growth needs.<br/><br/></p>",
             "open_by_default": false
           },
@@ -727,7 +727,7 @@
         "faq_row_waLQFR": {
           "type": "_faq-row",
           "settings": {
-            "question": "How Can We Get Started with ME?",
+            "question": "Q5. How Can We Get Started with ME?",
             "answer": "<p>Tell us about your business, target market and current challenges. Request a free growth diagnosis below and our team will review your priorities, then come back with suitable next steps.<br/><br/></p>",
             "open_by_default": false
           },
@@ -747,7 +747,7 @@
         "heading": "<p>About Working With ME</p>",
         "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "3rem",
         "weight": "600",
         "line_height": "1.3",
         "wrap": "balance",

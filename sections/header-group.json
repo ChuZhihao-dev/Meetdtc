@@ -54,7 +54,6 @@
         "header-cta": {
           "type": "group",
           "name": "t:names.group",
-          "disabled": true,
           "static": true,
           "settings": {
             "content_direction": "row",
@@ -98,7 +97,7 @@
               "name": "t:names.button",
               "settings": {
                 "label": "Get a Free Audit >",
-                "link": "",
+                "link": "#",
                 "open_in_new_tab": false,
                 "style_class": "button-custom",
                 "custom_button_background": "#5d6eea",
@@ -137,7 +136,7 @@
         "menu_position": "center",
         "menu_row": "top",
         "customer_account_menu": "customer-account-main-menu",
-        "show_search": true,
+        "show_search": false,
         "search_position": "right",
         "search_row": "top",
         "show_country": true,
@@ -155,7 +154,7 @@
         "divider_color": "",
         "border_width": 0,
         "bottom_border_color": "",
-        "actions_display_style": "icon",
+        "actions_display_style": "none",
         "actions_font_size": "0.875rem",
         "actions_font": "body",
         "actions_text_case": "none",
@@ -166,24 +165,9 @@
         "bubble_style": "default",
         "bubble_background_color": "",
         "bubble_text_color": "",
-        "enable_transparent_header_home": true,
-        "home_inverse_logo": false,
-        "text_color_transparent_home": "",
-        "enable_transparent_header_product": true,
-        "product_inverse_logo": false,
-        "text_color_transparent_product": "",
-        "enable_transparent_header_collection": true,
-        "collection_inverse_logo": false,
-        "text_color_transparent_collection": "",
-        "enable_transparent_header_about": true,
-        "about_inverse_logo": false,
-        "text_color_transparent_about": "",
-        "enable_transparent_header_contact": true,
-        "contact_inverse_logo": false,
-        "text_color_transparent_contact": "",
-        "enable_transparent_header_blog": true,
-        "blog_inverse_logo": false,
-        "text_color_transparent_blog": ""
+        "enable_transparent_header": true,
+        "transparent_inverse_logo": false,
+        "text_color_transparent": ""
       }
     }
   },

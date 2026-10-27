@@ -1,5 +1,5 @@
 {% comment %}
-  Hero section. Owns responsive image/video media and merchant-managed content blocks.
+  Hero section. Composes independent background media and merchant-managed content layers.
   The growth layout uses the same media pickers and block IDs with a homepage composition.
   @example
   <!-- Select the Growth hero layout and configure image/video media and content blocks. -->
@@ -123,12 +123,10 @@
 
   assign image_loading = 'lazy'
   assign secondary_fetch_priority = 'auto'
-  assign hero_media_id = 'HeroMedia-' | append: section.id
   assign has_hero_video = false
   if media_1 == 'video' or media_2 == 'video' or media_1_mobile == 'video' or media_2_mobile == 'video'
     assign has_hero_video = true
   endif
-  assign hero_poster = section.settings.video_1.preview_image | default: section.settings.video_2.preview_image
   assign fetch_priority = 'auto'
 
   if section.index <= 2
@@ -370,7 +368,7 @@
 
   {% if media_count == 0 %}
     {% if section.settings.layout_style == 'growth' %}
-      <img src="{{ 'growth-hero-background.png' | asset_url }}" class="hero__media" width="1440" height="735" alt="" decoding="async" loading="{{ image_loading }}" fetchpriority="{{ fetch_priority }}">
+      <img src="{{ 'growth-hero-background.webp' | asset_url }}" class="hero__media" width="1440" height="735" alt="" decoding="async" loading="{{ image_loading }}" fetchpriority="{{ fetch_priority }}">
     {% else %}
       {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero__media' }}
     {% endif %}
@@ -476,58 +474,44 @@
     {% endif %}
   {% endif %}
 
-  {% comment %}
-    Hardcoded to section--full-width bc the media has to be full width in all cases.
-    hero__content-wrapper applies section_width.
-  {% endcomment %}
+  {% liquid
+    assign hero_poster_priority = 'auto'
+    if media_1 != 'image'
+      assign hero_poster_priority = fetch_priority
+    endif
+  %}
+  <div class="hero__stage">
+    {% render 'custom-hero-background', section: section, media: media, media_count: media_count, media_count_mobile: media_count_mobile, has_video: has_hero_video, image_loading: image_loading, poster_priority: hero_poster_priority %}
 
-  <div
-    class="hero__container spacing-style section section--full-width"
-    style="{% render 'spacing-style', settings: section.settings %}"
-  >
-    {%- if section.settings.link != blank -%}
-      <a
-        href="{{ section.settings.link }}"
-        class="hero__link"
-        {% if section.settings.open_in_new_tab %}
-          target="_blank" rel="noopener"
-        {% endif %}
-      ></a>
-    {%- endif -%}
-    {% if has_hero_video and hero_poster != blank %}
-      {% assign hero_poster_priority = 'auto' %}
-      {% if media_1 != 'image' %}{% assign hero_poster_priority = fetch_priority %}{% endif %}
-      {{ hero_poster | image_url: width: 1920 | image_tag: widths: '750,1100,1500,1920', sizes: '100vw', loading: image_loading, fetchpriority: hero_poster_priority, decoding: 'async', class: 'hero__video-poster', alt: '' }}
-    {% endif %}
     <div
-      id="{{ hero_media_id }}" ref="media"
-      class="hero__media-grid"
-      style="--hero-media-count: {{ media_count }};--hero-media-count-mobile: {{ media_count_mobile }};{%- if section.settings.image_1 != blank -%} --hero-media-aspect-ratio: {{ section.settings.image_1.aspect_ratio }};{% endif %}"
-      data-testid="hero-media-wrapper"
+      class="hero__container spacing-style section section--full-width"
+      style="{% render 'spacing-style', settings: section.settings %}"
     >
-      {% liquid
-        if section.settings.toggle_overlay
-          render 'overlay', settings: section.settings
-        endif
-      %}
-      {{ media }}
-    </div>
-    <div
-      class="
-        hero__content-wrapper
-        layout-panel-flex
-        layout-panel-flex--{{ section.settings.content_direction }}
-        {% if section.settings.vertical_on_mobile %}mobile-column{% endif %}
-        section-content-wrapper
-        {{section.settings.section_width}}
-        {% if request.design_mode %}hero__content-wrapper--design-mode{% endif %}
-      "
-      style="{% render 'layout-panel-style', settings: section.settings %}"
-    >
-      {{ hero_blocks }}
+      {%- if section.settings.link != blank -%}
+        <a
+          href="{{ section.settings.link }}"
+          class="hero__link"
+          {% if section.settings.open_in_new_tab %}
+            target="_blank" rel="noopener"
+          {% endif %}
+        ></a>
+      {%- endif -%}
+      <div
+        class="
+          hero__content-wrapper
+          layout-panel-flex
+          layout-panel-flex--{{ section.settings.content_direction }}
+          {% if section.settings.vertical_on_mobile %}mobile-column{% endif %}
+          section-content-wrapper
+          {{section.settings.section_width}}
+          {% if request.design_mode %}hero__content-wrapper--design-mode{% endif %}
+        "
+        style="{% render 'layout-panel-style', settings: section.settings %}"
+      >
+        {{ hero_blocks }}
+      </div>
     </div>
   </div>
-  {% if has_hero_video %}{% render 'custom-hero-video-controls' %}{% endif %}
 </growth-hero-component>
 
 {% endif %}
@@ -556,11 +540,17 @@
     min-height: 600px;
   }
 
-  .hero__container {
+  .hero__stage {
     position: relative;
     overflow: hidden;
     border: var(--hero-border-width) var(--hero-border-style) rgb(var(--color-border-rgb) / var(--hero-border-opacity));
     min-height: inherit;
+  }
+
+  .hero__container {
+    position: relative;
+    min-height: inherit;
+    pointer-events: none;
     align-items: var(--vertical-alignment-mobile);
     justify-content: var(--horizontal-alignment);
     z-index: var(--layer-base);
@@ -655,6 +645,7 @@
 
   .hero__link {
     position: absolute;
+    pointer-events: auto;
     inset: 0;
     grid-column: 1 / -1;
   }
@@ -690,7 +681,7 @@
     --blurred-reflection-padding-block-end: 60px;
   }
 
-  .hero[data-blur-shadow='true'] .hero__container::before {
+  .hero[data-blur-shadow='true'] .hero__stage::before {
     content: '';
     position: absolute;
     inset: 0;

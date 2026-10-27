@@ -33,7 +33,22 @@ class FooterDiagnosis extends Component {
     this.#website?.addEventListener('blur', this.#normalize, { signal });
     window.addEventListener('pageshow', this.#reset, { signal });
     this.#reset();
+    this.#setPackageContext();
     this.#restoreFeedback();
+  }
+
+  #setPackageContext() {
+    const input = this.#form.querySelector('[data-website-package]');
+    if (!(input instanceof HTMLInputElement)) return;
+    const packageName = new URL(location.href).searchParams.get('website_package')?.trim().slice(0, 160) ?? '';
+    input.value = packageName;
+    input.disabled = !packageName;
+    const summary = this.#form.querySelector('[data-website-package-summary]');
+    const name = this.#form.querySelector('[data-website-package-name]');
+    if (summary instanceof HTMLElement && name instanceof HTMLElement) {
+      name.textContent = packageName;
+      summary.hidden = !packageName;
+    }
   }
 
   #normalize = () => {

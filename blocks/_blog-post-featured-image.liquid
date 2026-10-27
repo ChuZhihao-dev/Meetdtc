@@ -7,6 +7,7 @@
 {% liquid
   assign block_settings = block.settings
   assign image = closest.article.image
+  assign image_alt = image.alt | default: closest.article.title
 %}
 
 {%- if image != blank -%}
@@ -40,7 +41,7 @@
         sizes: 'auto, (min-width: 750px) 100vw, 100vw',
         loading: 'eager',
         fetchpriority: 'high',
-        alt: image.alt
+        alt: image_alt
     }}
   </div>
 {%- endif -%}

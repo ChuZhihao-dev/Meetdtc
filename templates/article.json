@@ -29,9 +29,9 @@
           "settings": {
             "text": "<h1>{{ article.title }}</h1>",
             "width": "100%",
-            "max_width": "normal",
+            "max_width": "narrow",
             "alignment": "center",
-            "type_preset": "h2",
+            "type_preset": "h1",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
             "weight": "",
@@ -56,23 +56,6 @@
           },
           "blocks": {}
         },
-        "blog-post-details": {
-          "type": "_blog-post-info-text",
-          "name": "t:names.details",
-          "settings": {
-            "show_date": true,
-            "show_author": false,
-            "type_preset": "",
-            "alignment": "center",
-            "text_color": "",
-            "show_alignment": true,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
         "blog-post-content": {
           "type": "_blog-post-content",
           "settings": {
@@ -83,14 +66,13 @@
       },
       "block_order": [
         "blog-post-title",
-        "blog-post-details",
         "blog-post-content"
       ],
       "settings": {
         "content_direction": "column",
         "gap": 32,
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 40,
+        "padding-block-start": 100,
         "padding-block-end": 80
       }
     }
