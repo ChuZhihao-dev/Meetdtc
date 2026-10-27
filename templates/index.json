@@ -623,8 +623,6 @@
         "background_gradient_from": "#aac5ff",
         "background_gradient_to": "#cbd5fd",
         "background_gradient_angle": 104,
-        "card_width": 497,
-        "card_height": 653,
         "card_gap": 40,
         "card_radius": 16,
         "card_media_radius": 12,

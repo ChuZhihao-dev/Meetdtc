@@ -1,6 +1,6 @@
 {% comment %}
   Product hero for service pages. Header-free, centered copy with up to two
-  editable theme buttons and an optional service label list.
+  editable section-specific buttons and an optional service label list.
   @example Add Product hero, enter service labels one per line, and optionally add buttons.
 {% endcomment %}
 
@@ -67,19 +67,17 @@
     text-align: center;
   }
   .product-hero__eyebrow {
-    max-width: 1042px;
     margin: 0;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 600;
     line-height: 1.22;
     color: #000;
     overflow-wrap: anywhere;
   }
   .product-hero__heading {
-    max-width: 1042px;
     margin: 0;
     font-family: inherit;
-    font-size: 56px;
+    font-size: 48px;
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: 0;
@@ -88,11 +86,10 @@
   }
   .product-hero__description {
     width: 100%;
-    max-width: 1152px;
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
-    line-height: 1.22;
+    line-height: 1.2;
     color: var(--product-hero-description-color);
     overflow-wrap: anywhere;
   }
@@ -104,40 +101,19 @@
     width: 100%;
     max-width: 1096px;
   }
+  .product-hero__actions:has(> .product-hero-button ~ .product-hero-button) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+  .product-hero__actions:has(> .product-hero-button ~ .product-hero-button) > .product-hero-button {
+    width: 100%;
+    min-height: 62px;
+  }
   .product-hero__services {
     width: 100%;
     max-width: 1152px;
     min-width: 0;
-  }
-  .product-hero__actions > :is(.button, .button-secondary, .button-custom) {
-    flex: 0 1 528px;
-    width: 528px;
-    max-width: 100%;
-    min-width: 0;
-    min-height: 72px;
-    padding: 17px 28px;
-    line-height: 38px;
-    overflow-wrap: anywhere;
-    transition:
-      transform var(--animation-speed) var(--animation-easing),
-      opacity var(--animation-speed) var(--animation-easing);
-  }
-  /* Override the same variables that the theme changes on hover. Base values
-     come from each button's own renderer, including dynamically nested blocks. */
-  .product-hero .product-hero__actions .button-custom:hover {
-    --button-color: var(--button-rest-color);
-    --button-background-color: var(--button-rest-background);
-    --button-border-color: var(--button-rest-border);
-    color: var(--button-color);
-    -webkit-text-fill-color: currentColor;
-    background-color: var(--button-background-color);
-    opacity: 0.9;
-  }
-  .product-hero .product-hero__actions [data-button-gradient='true']:hover {
-    --button-color: #fff;
-    color: #fff;
-    -webkit-text-fill-color: #fff;
-    opacity: 1;
   }
   .product-hero.reveal-ready [data-reveal] {
     transition: none;
@@ -150,38 +126,18 @@
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  @media (hover: hover) and (pointer: fine) {
-    .product-hero__actions > :is(.button, .button-secondary, .button-custom):not([aria-disabled='true']):hover {
-      transform: translateY(-2px);
-      box-shadow:
-        inset 0 0 0 var(--button-border-width) var(--button-border-color),
-        0 6px 18px rgb(12 35 184 / 12%);
-    }
-    .product-hero__actions > :is(.button, .button-secondary, .button-custom):not([aria-disabled='true']):active {
-      transform: translateY(0);
-      box-shadow: inset 0 0 0 var(--button-border-width) var(--button-border-color);
-    }
-  }
   @media (prefers-reduced-motion: reduce) {
     .product-hero.reveal-ready [data-reveal][data-state='in'] {
       animation: none;
-    }
-    .product-hero__actions > :is(.button, .button-secondary, .button-custom),
-    .product-hero__actions > :is(.button, .button-secondary, .button-custom):not([aria-disabled='true']):is(:hover, :active) {
-      transition: none;
-      transform: none;
     }
   }
   @media screen and (max-width: 749px) {
     .product-hero__content { gap: 24px; }
     .product-hero__description br { display: none; }
     .product-hero__actions { flex-direction: column; align-items: center; gap: 16px; }
-    .product-hero__actions > :is(.button, .button-secondary, .button-custom) {
-      flex: none;
-      width: 100%;
-      min-height: 48px;
-      padding: 8px 10px;
-
+    .product-hero__actions:has(> .product-hero-button ~ .product-hero-button) {
+      grid-template-columns: minmax(0, 1fr);
+      grid-auto-rows: 1fr;
     }
   }
 {% endstylesheet %}
@@ -198,7 +154,7 @@
   "max_blocks": 2,
   "blocks": [
     {
-      "type": "button"
+      "type": "_product-hero-button"
     }
   ],
   "settings": [
@@ -358,7 +314,7 @@
       },
       "blocks": [
         {
-          "type": "button",
+          "type": "_product-hero-button",
           "settings": {
             "style_class": "button-custom",
             "custom_button_background": "#FFFFFF",
@@ -370,19 +326,12 @@
             "button_gradient_angle": 90,
             "button_gradient_start_position": 0,
             "button_gradient_end_position": 100,
-            "button_custom_radius": true,
-            "button_radius": 50,
-            "button_font": "var(--font-heading--family)",
-            "button_font_size": "1.5rem",
-            "button_font_weight": "600",
-            "width": "fit-content",
-            "width_mobile": "fit-content",
             "link": "shopify://pages/contact",
             "label": "Book a Free Growth Consultation \u2192"
           }
         },
         {
-          "type": "button",
+          "type": "_product-hero-button",
           "settings": {
             "style_class": "button-custom",
             "custom_button_background": "#FFFFFF",
@@ -394,13 +343,6 @@
             "button_gradient_angle": 90,
             "button_gradient_start_position": 0,
             "button_gradient_end_position": 100,
-            "button_custom_radius": true,
-            "button_radius": 50,
-            "button_font": "var(--font-heading--family)",
-            "button_font_size": "1.5rem",
-            "button_font_weight": "600",
-            "width": "fit-content",
-            "width_mobile": "fit-content",
             "link": "#pricing",
             "label": "See Pricing \u2192"
           }

@@ -39,9 +39,6 @@
     --work-heading-line-height: {{ section_settings.line_height | default: '1' }};
     --text-wrap: {{ section_settings.wrap | default: 'balance' }};
     --work-heading-gap: {{ section_settings.heading_gap }}px;
-    --work-card-width: {{ section_settings.card_width }}px;
-    --work-card-height: {{ section_settings.card_height }}px;
-    --work-card-aspect-ratio: {{ section_settings.card_width }} / {{ section_settings.card_height }};
     --work-card-gap: {{ section_settings.card_gap }}px;
     --work-card-radius: {{ section_settings.card_radius }}px;
     --work-card-media-radius: {{ section_settings.card_media_radius }}px;
@@ -117,7 +114,7 @@
   .our-work__intro {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
     width: 100%;
     max-width: var(--work-content-width, 1280px);
     margin-inline: auto;
@@ -126,7 +123,7 @@
   .our-work__eyebrow {
     margin: 0;
     font-family: var(--font-heading--family);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 1.4;
     color: var(--color-foreground);
@@ -143,7 +140,7 @@
 
   .our-work__description {
     font-family: var(--font-heading--family);
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 1;
     color: var(--color-foreground);
@@ -160,7 +157,7 @@
 
   .our-work__track {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, min(var(--work-card-width, 497px), 320px)), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
     gap: var(--work-card-gap, 40px);
     width: 100%;
     min-width: 0;
@@ -171,8 +168,6 @@
     width: 100%;
     min-width: 0;
     height: auto;
-    /* Preserve the configured proportions as grid columns resize; content may grow. */
-    /* aspect-ratio: var(--work-card-aspect-ratio, 497 / 653); */
     padding-block: calc(var(--work-card-padding-block-start, 46px) * 0.65) calc(var(--work-card-padding-block-end, 46px) * 0.65);
     padding-inline: calc(var(--work-card-padding-inline-start, 37px) * 0.65) calc(var(--work-card-padding-inline-end, 37px) * 0.65);
   }
@@ -187,8 +182,8 @@
 
   .our-work__track .result-card__description {
     margin-block-start: 16px;
-    font-size: 17px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.6;
   }
 
   .our-work__track .result-card__description > :first-child {
@@ -200,8 +195,8 @@
   }
 
   .our-work__track .result-card__metric-value {
-    font-size: 40px;
-    line-height: 1.1;
+    font-size: 24px;
+    line-height: 1.2;
   }
 
   .our-work__track .result-card__metrics {
@@ -215,10 +210,6 @@
   }
 
   @media screen and (max-width: 749px) {
-
-    .our-work__track > .result-card {
-      aspect-ratio: auto;
-    }
 
     .our-work__track {
       gap: 16px;
@@ -467,26 +458,6 @@
     },
     {
       "type": "range",
-      "id": "card_width",
-      "label": "t:settings.width",
-      "min": 297,
-      "max": 697,
-      "step": 4,
-      "unit": "px",
-      "default": 497
-    },
-    {
-      "type": "range",
-      "id": "card_height",
-      "label": "t:settings.height",
-      "min": 353,
-      "max": 753,
-      "step": 4,
-      "unit": "px",
-      "default": 653
-    },
-    {
-      "type": "range",
       "id": "card_gap",
       "label": "t:settings.gap",
       "min": 0,
@@ -654,8 +625,6 @@
         "background_gradient_from": "#AAC5FF",
         "background_gradient_to": "#CBD5FD",
         "background_gradient_angle": 104,
-        "card_width": 497,
-        "card_height": 653,
         "card_gap": 40,
         "card_radius": 16,
         "card_media_radius": 12,

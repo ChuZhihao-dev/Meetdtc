@@ -50,7 +50,7 @@
           {% if mobile_image != desktop_image %}
             <source media="(max-width: 749px)" srcset="{{ mobile_image | image_url: width: 375 }} 375w, {{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1100 }} 1100w" sizes="calc(100vw - 40px)" width="{{ mobile_image.width }}" height="{{ mobile_image.height }}">
           {% endif %}
-          {{ desktop_image | image_url: width: 2200 | image_tag: class: 'our-approach__image', widths: '375,550,750,1100,1500,1800,2200', sizes: '(min-width: 1440px) 684px, (min-width: 990px) 47.5vw, (min-width: 750px) calc(100vw - 64px), calc(100vw - 40px)', loading: image_loading, fetchpriority: image_priority, decoding: 'async', alt: image_alt }}
+          {{ desktop_image | image_url: width: 2200 | image_tag: class: 'our-approach__image', widths: '375,550,750,1100,1500,1800,2200', sizes: '(min-width: 1440px) 582px, (min-width: 990px) 40.4vw, (min-width: 750px) calc(100vw - 64px), calc(100vw - 40px)', loading: image_loading, fetchpriority: image_priority, decoding: 'async', alt: image_alt }}
         </picture>
       </div>
     {% endif %}
@@ -61,9 +61,9 @@
   .our-approach { overflow: clip; color: var(--our-approach-text, #000); font-family: var(--our-approach-font, var(--font-heading--family)); }
   .our-approach__inner { width: 100%; max-width: 1440px; margin-inline: auto; display: grid; grid-template-columns: minmax(0, 48fr) minmax(0, 52fr); padding-inline: min(4.30556vw, 62px); align-items: start; min-width: 0; }
   .our-approach__copy { min-width: 0; position: relative; z-index: 1; }
-  .our-approach__eyebrow { margin: 0 0 clamp(10px, 1.04167vw, 15px); font-size: 20px; font-weight: 500; line-height: 1.583333; }
-  .our-approach__heading { margin: 0; font-family: inherit; font-size: 48px; font-weight: 600; line-height: 1.2; letter-spacing: normal; color: var(--our-approach-text, #000); background: var(--our-approach-gradient); background-clip: text; -webkit-text-fill-color: transparent; overflow-wrap: anywhere; }
-  .our-approach__body { margin-block-start: clamp(36px, 4.16667vw, 60px); display: grid; gap: 20px; font-size: 24px; font-weight: 500; line-height: 1.583333; }
+  .our-approach__eyebrow { margin: 0 0 16px; font-size: 18px; font-weight: 500; line-height: 1.4; }
+  .our-approach__heading { margin: 0; font-family: inherit; font-size: 40px; font-weight: 600; line-height: 1.2; letter-spacing: normal; color: var(--our-approach-text, #000); background: var(--our-approach-gradient); background-clip: text; -webkit-text-fill-color: transparent; overflow-wrap: anywhere; }
+  .our-approach__body { margin-block-start: 48px; display: grid; gap: 20px; font-size: 20px; font-weight: 500; line-height: 1.583333; }
   .our-approach__paragraph { width: 100%; overflow-wrap: anywhere; }
   .our-approach__paragraph--primary { max-width: 77.7742%; }
   .our-approach__paragraph--secondary { max-width: 75.6929%; }
@@ -71,14 +71,21 @@
   .our-approach__paragraph > :last-child { margin-block-end: 0; }
   .our-approach__paragraph a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
   .our-approach__paragraph a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
-  .our-approach__media { min-width: 0; }
+  .our-approach__media { width: 85%; min-width: 0; margin-inline: auto; }
   .our-approach__picture { display: block; }
   .our-approach__image { display: block; width: 100%; height: auto; max-width: 100%; -webkit-user-drag: none; user-select: none; }
   .our-approach--text-only .our-approach__inner { grid-template-columns: minmax(0, 1fr); inset-inline-start: 0; padding-inline: min(4.30556vw, 62px); }
   .our-approach--text-only .our-approach__copy { max-width: 900px; }
   .our-approach--text-only .our-approach__paragraph { max-width: 729px; }
   .our-approach.reveal-ready [data-reveal][data-state='before'] { transform: translateY(24px); }
+  @media screen and (min-width: 990px) {
+    /* Remove intrinsic image height from the grid so the copy sets the row height. */
+    .our-approach__inner:has(.our-approach__copy > *) .our-approach__media { position: relative; align-self: stretch; }
+    .our-approach__inner:has(.our-approach__copy > *) .our-approach__picture { position: absolute; inset: 0; }
+    .our-approach__inner:has(.our-approach__copy > *) .our-approach__image { height: 100%; object-fit: contain; }
+  }
   @media screen and (max-width: 989px) {
+    .our-approach__media { width: 100%; }
     .our-approach__inner, .our-approach--text-only .our-approach__inner { grid-template-columns: minmax(0, 1fr); inset-inline-start: 0; padding-inline: 32px; gap: 40px; }
     .our-approach__heading br { display: none; }
     .our-approach__body { margin-block-start: 28px; }

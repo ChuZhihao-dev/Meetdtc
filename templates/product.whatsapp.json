@@ -357,7 +357,7 @@
       "type": "product-hero",
       "blocks": {
         "button_JayDDj": {
-          "type": "button",
+          "type": "_product-hero-button",
           "settings": {
             "label": "Book a Free Growth Consultation →",
             "link": "#growth-diagnosis",
@@ -373,18 +373,7 @@
             "button_gradient_angle": 90,
             "button_gradient_start_position": 0,
             "button_gradient_end_position": 100,
-            "button_custom_radius": true,
-            "button_radius": 50,
-            "button_font": "var(--font-heading--family)",
-            "button_font_size": "1.5rem",
-            "button_font_weight": "600",
-            "button_letter_spacing": "",
-            "button_case": "",
-            "button_icon_size": 16,
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
+            "button_icon_size": 16
           },
           "blocks": {}
         }

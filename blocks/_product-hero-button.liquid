@@ -1,0 +1,280 @@
+{% doc %}
+  Independent action for the Product hero section. Uses this block's saved appearance settings.
+  @example
+  <!-- Add a button inside Product hero and set its label and destination. -->
+{% enddoc %}
+{% liquid
+  assign s = block.settings
+  assign is_link = false
+  if s.style_class == 'button-unstyled'
+    assign is_link = true
+  endif
+  assign foreground = '#ffffff'
+  assign background = '#6b39d4'
+  assign border = 'transparent'
+  if s.style_class == 'button-secondary'
+    assign foreground = '#000000'
+    assign background = '#ffffff'
+  elsif s.style_class == 'button-custom'
+    assign foreground = s.custom_button_text | default: '#ffffff'
+    assign background = s.custom_button_background | default: '#6b39d4'
+    assign border = s.custom_button_border | default: 'transparent'
+  elsif is_link
+    assign foreground = s.link_text_color | default: '#0c23b8'
+    assign background = 'transparent'
+  endif
+%}
+{% if s.label != blank %}
+  <a
+    class="product-hero-button{% if is_link %} product-hero-button--link{% endif %}"
+    {% if s.link != blank %}href="{{ s.link | escape }}"{% else %}role="link" aria-disabled="true"{% endif %}
+    {% if s.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+    style="
+      --product-action-color: {{ foreground }};
+      --product-action-background: {{ background }};
+      --product-action-border: {{ border }};
+      {% unless is_link %}
+        {% if s.button_gradient %}
+          --product-action-image: linear-gradient({{ s.button_gradient_angle }}deg, {{ s.button_gradient_from }} {{ s.button_gradient_start_position }}%, {{ s.button_gradient_to }} {{ s.button_gradient_end_position }}%);
+        {% endif %}
+      {% endunless %}
+    "
+    {{ block.shopify_attributes }}
+  >
+    <span>{{ s.label | escape }}</span>
+    {% if s.button_icon != blank %}
+      <span class="product-hero-button__icon" aria-hidden="true" style="--product-action-icon: url('{{ s.button_icon | image_url }}'); --product-action-icon-size: {{ s.button_icon_size }}px;"></span>
+    {% endif %}
+  </a>
+{% endif %}
+
+{% stylesheet %}
+  .product-hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    flex: 0 1 auto;
+    width: fit-content;
+    max-width: 100%;
+    min-width: 0;
+    padding: 12px 24px;
+    border: 1px solid var(--product-action-border);
+    border-radius: 50px;
+    background-color: var(--product-action-background);
+    background-image: var(--product-action-image, none);
+    color: var(--product-action-color);
+    -webkit-text-fill-color: currentColor;
+    font-family: var(--font-heading--family);
+    font-size: 18px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-transform: none;
+    text-align: center;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+  .product-hero-button > span:first-child { min-width: 0; }
+  .product-hero-button--link { border: 0; border-radius: 0; text-decoration: underline; text-underline-offset: 4px; }
+  .product-hero-button[aria-disabled='true'] { opacity: 0.5; cursor: default; }
+  .product-hero-button:focus-visible { outline: 3px solid #0c23b8; outline-offset: 4px; }
+  .product-hero-button__icon {
+    flex: none;
+    width: var(--product-action-icon-size, 16px);
+    height: var(--product-action-icon-size, 16px);
+    background-color: currentColor;
+    mask: var(--product-action-icon) center / contain no-repeat;
+    -webkit-mask: var(--product-action-icon) center / contain no-repeat;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .product-hero-button:not([aria-disabled='true']):hover { color: var(--product-action-color); transform: translateY(-2px); opacity: 0.9; }
+    .product-hero-button:not([aria-disabled='true']):active { transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .product-hero-button { transition: none; }
+    .product-hero-button:not([aria-disabled='true']):is(:hover, :active) { transform: none; }
+  }
+  @media screen and (max-width: 749px) {
+    .product-hero-button { width: 100%; min-height: 48px; padding: 12px 20px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.button",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:settings.label",
+      "default": "t:text_defaults.button_label"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:settings.link"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_in_new_tab",
+      "label": "t:settings.open_new_tab",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "style_class",
+      "label": "t:settings.style",
+      "options": [
+        {
+          "value": "button",
+          "label": "t:options.primary"
+        },
+        {
+          "value": "button-secondary",
+          "label": "t:options.secondary"
+        },
+        {
+          "value": "button-unstyled",
+          "label": "t:options.link"
+        },
+        {
+          "value": "button-custom",
+          "label": "t:options.custom"
+        }
+      ],
+      "default": "button"
+    },
+    {
+      "type": "header",
+      "content": "t:content.button_colors",
+      "visible_if": "{{ block.settings.style_class == \"button-custom\" }}"
+    },
+    {
+      "type": "color",
+      "id": "custom_button_background",
+      "label": "t:settings.background",
+      "default": "#6B39D4",
+      "alpha": true,
+      "visible_if": "{{ block.settings.style_class == 'button-custom' }}"
+    },
+    {
+      "type": "color",
+      "id": "custom_button_text",
+      "label": "t:settings.text",
+      "default": "#FFFFFF",
+      "alpha": true,
+      "visible_if": "{{ block.settings.style_class == 'button-custom' }}"
+    },
+    {
+      "type": "color",
+      "id": "custom_button_border",
+      "label": "t:settings.borders",
+      "default": "#FFFFFF",
+      "alpha": true,
+      "visible_if": "{{ block.settings.style_class == 'button-custom' }}"
+    },
+    {
+      "type": "color",
+      "id": "link_text_color",
+      "label": "t:settings.link_text_color",
+      "placeholder": "t:settings.default",
+      "visible_if": "{{ block.settings.style_class == 'button-unstyled' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance",
+      "visible_if": "{{ block.settings.style_class != 'button-unstyled' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_gradient",
+      "label": "t:settings.gradient_background",
+      "default": false,
+      "visible_if": "{{ block.settings.style_class != 'button-unstyled' }}"
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#6B39D4",
+      "alpha": true,
+      "visible_if": "{{ block.settings.style_class != 'button-unstyled' and block.settings.button_gradient }}"
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#6B39D4",
+      "alpha": true,
+      "visible_if": "{{ block.settings.style_class != 'button-unstyled' and block.settings.button_gradient }}"
+    },
+    {
+      "type": "range",
+      "id": "button_gradient_angle",
+      "label": "t:settings.gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 5,
+      "unit": "deg",
+      "default": 90,
+      "visible_if": "{{ block.settings.style_class != 'button-unstyled' and block.settings.button_gradient }}"
+    },
+    {
+      "type": "range",
+      "id": "button_gradient_start_position",
+      "label": "t:settings.gradient_start_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 0,
+      "visible_if": "{{ block.settings.style_class != 'button-unstyled' and block.settings.button_gradient }}"
+    },
+    {
+      "type": "range",
+      "id": "button_gradient_end_position",
+      "label": "t:settings.gradient_end_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100,
+      "visible_if": "{{ block.settings.style_class != 'button-unstyled' and block.settings.button_gradient }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "button_icon",
+      "label": "t:settings.icon"
+    },
+    {
+      "type": "range",
+      "id": "button_icon_size",
+      "label": "t:settings.icon_size",
+      "min": 8,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 16,
+      "visible_if": "{{ block.settings.button_icon != blank }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.button",
+      "category": "t:categories.basic",
+      "settings": {
+        "link": "shopify://collections/all"
+      }
+    }
+  ]
+}
+{% endschema %}

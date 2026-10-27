@@ -1,5 +1,5 @@
 {% comment %}
-  AIDEA marketing growth model. Original Figma layers surround editable labels.
+  AIDEA marketing growth model. Page-width diagram with proportionally scaled layers and editable labels.
   @example Add "AIDEA model" in the theme editor and customize the model copy.
 {% endcomment %}
 
@@ -7,7 +7,7 @@
   <script src="{{ 'aidea-model.js' | asset_url }}" type="module" fetchpriority="low"></script>
 {% endunless %}
 <div class="section-background aidea-model__background" style="--aidea-bg-from:{{ section.settings.background_from }};--aidea-bg-to:{{ section.settings.background_to }};"></div>
-<aidea-model-component data-animate="{{ section.settings.enable_animation | default: true, allow_false: true }}" class="section section--full-width spacing-style aidea-model" style="{% render 'spacing-style', settings: section.settings %}">
+<aidea-model-component data-animate="{{ section.settings.enable_animation | default: true, allow_false: true }}" class="section section--page-width spacing-style aidea-model" style="{% render 'spacing-style', settings: section.settings %}">
   <div class="aidea-model__content">
     <div class="aidea-model__intro">
       {% if section.settings.heading != blank %}
@@ -17,6 +17,7 @@
         <p class="aidea-model__description">{{ section.settings.description | escape | newline_to_br }}</p>
       {% endif %}
     </div>
+    <div class="aidea-model__visual">
     <div class="aidea-model__diagram" ref="diagram">
       {% comment %}Paint backgrounds and connectors first so satellite discs cannot cover their icons.{% endcomment %}
       <img data-aidea-part="core" class="aidea-model__asset" src="{{ 'aidea-center.webp' | asset_url }}" alt="" width="980" height="980" decoding="async" loading="lazy" style="--aidea-delay:0s;left:15.9027778%;top:-8.3673469%;width:68.0555556%;height:100.0000000%;">
@@ -36,17 +37,17 @@
       <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-358.png' | asset_url }}" alt="" width="58" height="58" decoding="async" loading="lazy" style="--aidea-delay:1.35s;--aidea-from-x:0cqw;--aidea-from-y:4cqw;left:47.8472222%;top:8.6122449%;width:4.0277778%;height:5.9183673%;">
       <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-363.png' | asset_url }}" alt="" width="62" height="62" decoding="async" loading="lazy" style="--aidea-delay:1.5s;--aidea-from-x:-4cqw;--aidea-from-y:-2cqw;left:65.0000000%;top:48.9693878%;width:4.3055556%;height:6.3265306%;">
       <img data-aidea-part="node" class="aidea-model__asset" src="{{ 'aidea-367.png' | asset_url }}" alt="" width="66" height="66" decoding="async" loading="lazy" style="--aidea-delay:1.65s;--aidea-from-x:4cqw;--aidea-from-y:-2cqw;left:30.2777778%;top:48.2551020%;width:4.5833333%;height:6.7346939%;">
-      <div data-aidea-part="core" class="aidea-model__label" style="--aidea-delay:0.25s;left:49.9305556%;top:34.1734694%;width:24.3055556%;font-size:24px;line-height:1.5000000;">{{ section.settings.ai_label | escape | newline_to_br }}</div>
-      <div data-aidea-part="core" class="aidea-model__label" style="--aidea-delay:0.25s;left:49.9652778%;top:41.6224490%;width:12.5000000%;font-size:120px;line-height:0.4000000;">{{ section.settings.ai | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.75s;--aidea-from-x:6cqw;--aidea-from-y:3.5cqw;left:25.9722222%;top:15.9081633%;width:10.4166667%;font-size:106px;line-height:0.4528302;">{{ section.settings.data_letter | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.75s;--aidea-from-x:6cqw;--aidea-from-y:3.5cqw;left:26.0763889%;top:23.2551020%;width:12.1527778%;font-size:19px;line-height:1.2105263;">{{ section.settings.data_label | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.95s;--aidea-from-x:-6cqw;--aidea-from-y:3.5cqw;left:74.2708333%;top:15.9081633%;width:10.4166667%;font-size:106px;line-height:0.4528302;">{{ section.settings.experience_letter | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.95s;--aidea-from-x:-6cqw;--aidea-from-y:3.5cqw;left:74.2013889%;top:23.2551020%;width:11.8055556%;font-size:19px;line-height:1.2105263;">{{ section.settings.experience_label | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:1.15s;--aidea-from-x:0cqw;--aidea-from-y:-7cqw;left:49.9652778%;top:76.5204082%;width:10.4166667%;font-size:106px;line-height:0.4528302;">{{ section.settings.achievement_letter | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:1.15s;--aidea-from-x:0cqw;--aidea-from-y:-7cqw;left:49.8958333%;top:83.5612245%;width:12.1527778%;font-size:19px;line-height:1.2105263;">{{ section.settings.achievement_label | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--blue" style="--aidea-delay:1.35s;--aidea-from-x:0cqw;--aidea-from-y:4cqw;left:49.9652778%;top:14.6836735%;width:9.7222222%;font-size:15px;line-height:2.2400000;">{{ section.settings.optimization | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--blue" style="--aidea-delay:1.5s;--aidea-from-x:-4cqw;--aidea-from-y:-2cqw;left:67.2569444%;top:55.1938776%;width:9.7222222%;font-size:15px;line-height:1.2400000;">{{ section.settings.opportunities | escape | newline_to_br }}</div>
-      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--blue" style="--aidea-delay:1.65s;--aidea-from-x:4cqw;--aidea-from-y:-2cqw;left:32.5694444%;top:54.6836735%;width:9.7222222%;font-size:15px;line-height:1.2400000;">{{ section.settings.customer_growth | escape | newline_to_br }}</div>
+      <div data-aidea-part="core" class="aidea-model__label aidea-model__label--detail" style="--aidea-delay:0.25s;left:49.9305556%;top:34.1734694%;width:24.3055556%;font-size:1.6666667cqw;line-height:1.5000000;">{{ section.settings.ai_label | escape | newline_to_br }}</div>
+      <div data-aidea-part="core" class="aidea-model__label" style="--aidea-delay:0.25s;left:49.9652778%;top:41.6224490%;width:12.5000000%;font-size:8.3333333cqw;line-height:0.4000000;">{{ section.settings.ai | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.75s;--aidea-from-x:6cqw;--aidea-from-y:3.5cqw;left:25.9722222%;top:15.9081633%;width:10.4166667%;font-size:7.3611111cqw;line-height:0.4528302;">{{ section.settings.data_letter | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--detail" style="--aidea-delay:0.75s;--aidea-from-x:6cqw;--aidea-from-y:3.5cqw;left:26.0763889%;top:23.2551020%;width:12.1527778%;font-size:1.3194444cqw;line-height:1.2105263;">{{ section.settings.data_label | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:0.95s;--aidea-from-x:-6cqw;--aidea-from-y:3.5cqw;left:74.2708333%;top:15.9081633%;width:10.4166667%;font-size:7.3611111cqw;line-height:0.4528302;">{{ section.settings.experience_letter | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--detail" style="--aidea-delay:0.95s;--aidea-from-x:-6cqw;--aidea-from-y:3.5cqw;left:74.2013889%;top:23.2551020%;width:11.8055556%;font-size:1.3194444cqw;line-height:1.2105263;">{{ section.settings.experience_label | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label" style="--aidea-delay:1.15s;--aidea-from-x:0cqw;--aidea-from-y:-7cqw;left:49.9652778%;top:76.5204082%;width:10.4166667%;font-size:7.3611111cqw;line-height:0.4528302;">{{ section.settings.achievement_letter | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--detail" style="--aidea-delay:1.15s;--aidea-from-x:0cqw;--aidea-from-y:-7cqw;left:49.8958333%;top:83.5612245%;width:12.1527778%;font-size:1.3194444cqw;line-height:1.2105263;">{{ section.settings.achievement_label | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--detail aidea-model__label--blue" style="--aidea-delay:1.35s;--aidea-from-x:0cqw;--aidea-from-y:4cqw;left:49.9652778%;top:14.6836735%;width:9.7222222%;font-size:1.0416667cqw;line-height:2.2400000;">{{ section.settings.optimization | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--detail aidea-model__label--blue" style="--aidea-delay:1.5s;--aidea-from-x:-4cqw;--aidea-from-y:-2cqw;left:67.2569444%;top:55.1938776%;width:9.7222222%;font-size:1.0416667cqw;line-height:1.2400000;">{{ section.settings.opportunities | escape | newline_to_br }}</div>
+      <div data-aidea-part="node" class="aidea-model__label aidea-model__label--detail aidea-model__label--blue" style="--aidea-delay:1.65s;--aidea-from-x:4cqw;--aidea-from-y:-2cqw;left:32.5694444%;top:54.6836735%;width:9.7222222%;font-size:1.0416667cqw;line-height:1.2400000;">{{ section.settings.customer_growth | escape | newline_to_br }}</div>
     </div>
     <ul class="aidea-model__mobile-labels">
       {% assign label_keys = 'ai_label,data_label,experience_label,achievement_label,optimization,customer_growth,opportunities' | split: ',' %}
@@ -56,6 +57,7 @@
         {% endif %}
       {% endfor %}
     </ul>
+    </div>
   </div>
 </aidea-model-component>
 
@@ -63,25 +65,29 @@
   .aidea-model__background {
     background: linear-gradient(122deg, var(--aidea-bg-from), var(--aidea-bg-to));
   }
-  .aidea-model { display: block; overflow: clip; }
+  .aidea-model { overflow: clip; }
   .aidea-model__content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    align-items: center;
+    gap: 48px;
     position: relative;
     width: 100%;
-    max-width: 1440px;
+    max-width: var(--page-content-width, 1140px);
     margin-inline: auto;
     min-width: 0;
   }
   .aidea-model__intro {
+    min-width: 0;
     position: relative;
-    margin-inline: 5.833333%;
     font-family: var(--font-heading--family);
   }
   .aidea-model__heading {
     margin: 0;
     font-family: inherit;
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 600;
-    line-height: 1.22;
+    line-height: 1.2;
     overflow-wrap: anywhere;
     color: #0b22b8;
     background: linear-gradient(117deg, #0b22b8 11%, #9621c4 89%);
@@ -89,24 +95,26 @@
     -webkit-text-fill-color: transparent;
   }
   .aidea-model__description {
-    max-width: 857px;
-    margin-block: 24px 0;
-    font-size: 24px;
+    margin-block: 16px 0;
+    font-size: 20px;
     font-weight: 500;
-    line-height: 1.23;
+    line-height: 1.5;
     color: #000;
     overflow-wrap: anywhere;
   }
+  .aidea-model__visual { min-width: 0; }
+  /* Account for the artboard gutters while keeping the model compact and centred. */
   .aidea-model__diagram {
     position: relative;
     aspect-ratio: 1440 / 980;
-    width: 100%;
-    margin-inline: auto;
-    margin-block-start: 85px;
+    width: 112%;
+    margin-inline: -6%;
+    margin-block-start: 0;
     container-type: inline-size;
     direction: ltr;
   }
   .aidea-model__asset { position: absolute; max-width: none; pointer-events: none; }
+  /* Match label sizes to the original 1440px diagram coordinates. */
   .aidea-model__label {
     position: absolute;
     transform: translateX(-50%);
@@ -138,14 +146,21 @@
     .aidea-model[data-motion-ready] [data-aidea-part] { opacity: 1; translate: none; scale: none; clip-path: none; transition: none; }
   }
 
+  @media screen and (max-width: 989px) {
+    .aidea-model__content { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+    .aidea-model__diagram { width: 100%; margin-inline: auto; }
+  }
+
   @media screen and (max-width: 749px) {
-    .aidea-model__description { margin-block-start: 24px; }
-    .aidea-model__diagram { width: 116%; margin-inline: -8%; margin-block-start: 40px; }
+    .aidea-model__heading { font-size: 32px; }
+    .aidea-model__description { font-size: 18px; line-height: 1.5; }
+    .aidea-model__diagram { width: 85%; }
+    .aidea-model__label--detail { display: none; }
     .aidea-model__mobile-labels {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
-      margin: 24px 6% 0;
+      margin: 24px 0 0;
       padding: 0;
       list-style: none;
       font-family: var(--font-body--family);
