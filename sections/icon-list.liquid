@@ -53,13 +53,13 @@
   .icon-list__description { margin: 0; font-size: 16px; font-weight: 500; line-height: 24px; }
   /* Stage delays are independent of the shared observer's document-order index. */
   .icon-list.reveal-ready [data-reveal] { transition: none; }
-  .icon-list.reveal-ready [data-reveal][data-state='before'] { opacity: 0; transform: translateY(16px); }
+  .icon-list.reveal-ready [data-reveal][data-state='before'] { opacity: 0; transform: translateY(var(--text-reveal-distance, 32px)); }
   /* Keyframes also run when an already-visible section initializes before first paint. */
-  .icon-list.reveal-ready [data-reveal][data-state='in'] { animation: icon-list-enter 500ms var(--ease-out-cubic) both; }
-  .icon-list.reveal-ready .icon-list__heading-slot[data-state='in'] { animation-delay: 120ms; }
-  .icon-list.reveal-ready .icon-list__description-slot[data-state='in'] { animation-delay: 240ms; }
+  .icon-list.reveal-ready [data-reveal][data-state='in'] { animation: icon-list-enter var(--text-reveal-duration, 0.6s) var(--ease-out-cubic) both; }
+  .icon-list.reveal-ready .icon-list__heading-slot[data-state='in'] { animation-delay: 90ms; }
+  .icon-list.reveal-ready .icon-list__description-slot[data-state='in'] { animation-delay: 180ms; }
   @keyframes icon-list-enter {
-    from { opacity: 0; transform: translateY(16px); }
+    from { opacity: 0; transform: translateY(var(--text-reveal-distance, 32px)); }
     to { opacity: 1; transform: translateY(0); }
   }
   @media screen and (max-width: 989px) {

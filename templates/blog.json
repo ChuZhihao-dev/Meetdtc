@@ -9,6 +9,13 @@
  */
 {
   "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
+    },
     "main": {
       "type": "main-blog",
       "blocks": {
@@ -22,7 +29,7 @@
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
-            "font_size": "3.625rem",
+            "font_size": "2.5rem",
             "weight": "600",
             "line_height": "1.2",
             "letter_spacing": "normal",
@@ -54,7 +61,7 @@
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
-            "font_size": "1.5rem",
+            "font_size": "1.25rem",
             "weight": "500",
             "line_height": "1.6",
             "letter_spacing": "normal",
@@ -175,7 +182,7 @@
         "introduction"
       ],
       "settings": {
-        "blog": "blogs",
+        "blog": "blog",
         "background_color": "{{ settings.color_palette.background }}",
         "intro_background": "linear-gradient(166deg, rgba(217, 224, 249, 1), rgba(248, 241, 237, 1) 100%)",
         "list_background": "linear-gradient(148deg, rgba(230, 236, 255, 1) 2.5%, rgba(219, 225, 248, 1) 97.5%)",
@@ -193,6 +200,7 @@
     }
   },
   "order": [
+    "breadcrumbs",
     "main"
   ]
 }

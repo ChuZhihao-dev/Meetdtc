@@ -8,6 +8,10 @@
  * ------------------------------------------------------------
  */
 {
+  "global_breadcrumbs": {
+    "home": "首页",
+    "label": "面包屑导航"
+  },
   "website_packages": {
     "selected_package": "所选套餐：",
     "from": "起价",
@@ -15,6 +19,17 @@
     "select_product": "请选择服务产品，准备就绪后开启价格与购买。"
   },
   "me_picks": {
+    "copy": "复制",
+    "code_label": "优惠码：",
+    "no_code_needed": "无需优惠码",
+    "copy_and_shop": "复制优惠码并选购",
+    "copy_and_shop_for": "复制优惠码并前往 {{ brand }} 选购（在新标签页打开）",
+    "sample_description": "家用美容仪器",
+    "sample_link_brand": "品牌 B",
+    "sample_link_category": "科技与电子产品",
+    "sample_link_summary": "立享 85 折",
+    "sample_link_description": "手机壳与配件",
+    "sample_link_terms": "指定配件适用",
     "categories": "优惠分类",
     "get_offer": "领取优惠",
     "get_offer_for": "领取 {{ brand }} 的优惠（在新标签页打开）",
@@ -24,10 +39,10 @@
     "copy_manual": "请选择并手动复制折扣码。",
     "empty": "此产品系列暂无优惠。",
     "image_preview": "图片 / 预览",
-    "sample_brand": "[ 品牌 01 ]",
-    "sample_category": "电商",
-    "sample_summary": "首单享 85 折",
-    "sample_terms": "最低消费 S$60",
+    "sample_brand": "品牌 A",
+    "sample_category": "美容",
+    "sample_summary": "立享 9 折",
+    "sample_terms": "新客户 · 首次订单",
     "preview_notice": "布局预览：示例优惠仅显示在主题编辑器中。关闭示例卡片可查看当前产品系列的真实产品。"
   },
   "growth_potential": {

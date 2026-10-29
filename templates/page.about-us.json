@@ -9,6 +9,13 @@
  */
 {
   "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
+    },
     "page_background_phTEcT": {
       "type": "page-background",
       "name": "t:names.page_background",
@@ -291,51 +298,56 @@
             "logo_motion": "static"
           },
           "blocks": {
-            "brand_logo_eVKkr3": {
+            "brand_logo_CURQJT": {
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/shopify_platinum_partner_transparent_8f3a_529f6848-8d19-47f6-9148-96d85b95ed69.png",
+                "image": "shopify://shop_images/shopify_platinum_partner_transparent_8f3a_1.webp",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_YwdKLT": {
+            "brand_logo_bLxkk7": {
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/klaviyo_master_platinum_badge.png",
+                "image": "shopify://shop_images/klaviyo_transparent_9c1a_1.webp",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_dWjDcp": {
+            "brand_logo_JieBLr": {
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/omnisend_transparent_5d2e.png",
+                "image": "shopify://shop_images/omnisend_transparent_5d2e_1.webp",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_AcXgVw": {
+            "brand_logo_dMMgkR": {
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/trustpilot_transparent.png",
+                "image": "shopify://shop_images/trustpilot_transparent_b4a1_1_1.webp",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_TmHXQA": {
+            "brand_logo_xXnk8w": {
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/BytePlus_Platinum_Partner_d8a6a072-9801-497f-9c86-31bf63c54680.png",
+                "image": "shopify://shop_images/BytePlus_Platinum_Partner_1.webp",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
@@ -343,54 +355,59 @@
             }
           },
           "block_order": [
-            "brand_logo_eVKkr3",
-            "brand_logo_YwdKLT",
-            "brand_logo_dWjDcp",
-            "brand_logo_AcXgVw",
-            "brand_logo_TmHXQA"
+            "brand_logo_CURQJT",
+            "brand_logo_bLxkk7",
+            "brand_logo_JieBLr",
+            "brand_logo_dMMgkR",
+            "brand_logo_xXnk8w"
           ]
         },
-        "brand_row_XwTdAR": {
+        "brand_row_VPYwUU": {
           "type": "_brand-row",
+          "name": "t:names.row",
           "settings": {
             "logo_motion": "static"
           },
           "blocks": {
-            "brand_logo_7XGRdb": {
+            "brand_logo_FWUaRQ": {
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/google-cloud-premier-co-sell-partner_916b404a-aa8f-4ea1-9a6d-d49ca9885abe.png",
+                "image": "shopify://shop_images/google-cloud-premier-co-sell-partner_1.webp",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_LYpjnU": {
+            "brand_logo_QrtWAU": {
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/impact_transparent.png",
+                "image": "shopify://shop_images/impact_transparent_3f7d_1.webp",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_fQwP3y": {
+            "brand_logo_kizLi6": {
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/awin_transparent_8e2c.png",
+                "image": "shopify://shop_images/awin_transparent_8e2c_1.webp",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_Ghm8KV": {
+            "brand_logo_gPQM6i": {
               "type": "_brand-logo",
               "name": "t:names.logo",
               "settings": {
-                "image": "shopify://shop_images/rakuten_transparent_7a4f.png",
+                "image": "shopify://shop_images/rakuten_transparent_7a4f_1.webp",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
@@ -398,24 +415,24 @@
             }
           },
           "block_order": [
-            "brand_logo_7XGRdb",
-            "brand_logo_LYpjnU",
-            "brand_logo_fQwP3y",
-            "brand_logo_Ghm8KV"
+            "brand_logo_FWUaRQ",
+            "brand_logo_QrtWAU",
+            "brand_logo_kizLi6",
+            "brand_logo_gPQM6i"
           ]
         }
       },
       "block_order": [
         "brand_row_c6GBtP",
-        "brand_row_XwTdAR"
+        "brand_row_VPYwUU"
       ],
       "name": "t:names.partner_brands",
       "settings": {
         "heading": "<p>Certifications & Accreditations</p>",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "2.5rem",
         "weight": "600",
-        "line_height": "1.4",
+        "line_height": "1.2",
         "letter_spacing": "normal",
         "alignment": "center",
         "wrap": "pretty",
@@ -431,15 +448,15 @@
         "thickness": 0.5,
         "divider_color": "#707070",
         "width_percent": 100,
-        "logo_gap": 20,
-        "row_gap": 16,
-        "logo_height": 96,
-        "padding-block-start": 42,
-        "padding-block-end": 83
+        "logo_gap": 72,
+        "row_gap": 24,
+        "padding-block-start": 80,
+        "padding-block-end": 80
       }
     }
   },
   "order": [
+    "breadcrumbs",
     "page_background_phTEcT",
     "main",
     "product_hero_9Lty7G",

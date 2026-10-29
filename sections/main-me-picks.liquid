@@ -26,10 +26,11 @@
 {% render 'contrast-override', background_color: s.background_color, text_color: s.text_color, section_id: color_id %}
 {% render 'product-offer-card-styles' %}
 <script src="{{ 'product-offer-card.js' | asset_url }}" type="module" fetchpriority="low"></script>
-<div class="me-picks color-custom-{{ color_id }}" style="
+<div class="me-picks color-custom-{{ color_id }}" data-breadcrumb-surface style="
   --me-picks-background: {{ s.background_gradient }};
   --me-picks-heading-gradient: {{ s.heading_gradient }};
   --me-picks-accent: {{ s.accent_color }};
+  --me-picks-offer-color: {{ s.offer_heading_color | default: s.accent_color }};
   --me-picks-card-background: {{ s.card_background }};
   --me-picks-card-border: {{ s.card_border }};
   --me-picks-card-radius: {{ s.card_radius }}px;
@@ -77,7 +78,7 @@
     {% if preview %}
       <p class="me-picks__preview-note">{{ 'me_picks.preview_notice' | t }}</p>
       <ul class="me-picks__grid" role="list">
-        {% for index in (1..16) %}
+        {% for index in (1..12) %}
           <li>{% render 'product-offer-card', preview: true, section_id: section.id, index: index %}</li>
         {% endfor %}
       </ul>
@@ -102,18 +103,18 @@
 </div>
 {% stylesheet %}
   .me-picks { background: var(--me-picks-background, var(--color-background)); font-family: var(--font-heading--family); }
-  .me-picks__inner { inline-size: calc(100% - 32px); max-inline-size: 1290px; min-inline-size: 0; margin-inline: auto; }
-  .me-picks__intro { padding-block: calc(40px + var(--me-picks-top)) 36px; }
+  .me-picks__inner { inline-size: min(var(--page-content-width), calc(100% - var(--page-margin) * 2)); max-inline-size: var(--page-content-width); min-inline-size: 0; margin-inline: auto; }
+  .me-picks__intro { padding-block: calc(var(--me-picks-top) + var(--section-top-offset, 0px)) 36px; }
   .me-picks__heading { max-inline-size: 917px; margin: 0; color: var(--color-foreground); font-family: inherit; font-size: 58px; font-weight: 600; line-height: 1.22; letter-spacing: normal; overflow-wrap: anywhere; }
   @supports (background-clip: text) {
     .me-picks__heading { background: var(--me-picks-heading-gradient); background-clip: text; -webkit-text-fill-color: transparent; }
   }
-  .me-picks__description { max-inline-size: 917px; margin-block-start: 8px; font-size: 18px; font-weight: 500; line-height: 1.6; overflow-wrap: anywhere; }
+  .me-picks__description { max-inline-size: 917px; margin-block-start: 8px; font-size: 24px; font-weight: 500; line-height: 38px; overflow-wrap: anywhere; }
   .me-picks__description > :first-child { margin-block-start: 0; }
   .me-picks__description > :last-child { margin-block-end: 0; }
-  .me-picks__categories { border: 1px solid var(--me-picks-card-border); border-radius: var(--me-picks-card-radius); background: var(--me-picks-card-background); }
+  .me-picks__categories { border: 1px solid var(--me-picks-card-border); border-radius: var(--me-picks-card-radius); background: color-mix(in srgb, var(--me-picks-card-background) 30%, transparent); }
   .me-picks__category-list { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 9px; overflow-x: auto; }
-  .me-picks__category { display: flex; align-items: center; justify-content: center; flex-shrink: 0; min-block-size: 44px; padding-inline: 14px; color: var(--color-foreground-muted); font-size: 14px; font-weight: 800; line-height: 1.5; text-decoration: none; white-space: nowrap; }
+  .me-picks__category { display: flex; align-items: center; justify-content: center; flex-shrink: 0; min-block-size: 44px; padding-inline: 14px; color: var(--color-foreground-muted); font-size: 16px; font-weight: 800; line-height: 1.5; text-decoration: none; white-space: nowrap; }
   .me-picks__category[aria-current='page'] { border-radius: 6px; background: var(--palette-lightest); color: var(--me-picks-accent); box-shadow: 3px 3px 3px rgb(0 0 0 / 0.06); }
   .me-picks__category:focus-visible { outline: 2px solid var(--me-picks-accent); outline-offset: -2px; }
   .me-picks__results { padding-block: 32px var(--me-picks-bottom); }
@@ -121,12 +122,15 @@
   .me-picks__grid > li { min-inline-size: 0; }
   .me-picks__empty { margin: 0; padding-block: 64px; text-align: center; }
   .me-picks__preview-note { margin-block: 0 16px; font-size: 12px; color: var(--color-foreground-muted); }
+  @media screen and (max-width: 749px) {
+    .me-picks__heading { font-size: 40px; }
+    .me-picks__description { font-size: 18px; line-height: 1.6; }
+  }
   @media screen and (min-width: 750px) {
-    .me-picks__inner { inline-size: calc(100% - 64px); }
-    .me-picks__intro { padding-block: calc(64px + var(--me-picks-top)) 55px; }
+    .me-picks__intro { padding-block-end: 55px; }
     .me-picks__description { margin-block-start: 0; }
-    .me-picks__results { padding-block-start: 54px; }
-    .me-picks__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px; }
+    .me-picks__results { padding-block-start: 44px; }
+    .me-picks__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
   }
   @media screen and (min-width: 990px) {
     .me-picks__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -146,25 +150,26 @@
     { "type": "checkbox", "id": "auto_categories", "label": "t:me_picks.auto_categories", "info": "t:me_picks.auto_categories_info", "default": true },
     { "type": "collection", "id": "all_offers_collection", "label": "t:me_picks.all_collection" },
     { "type": "text", "id": "all_offers_label", "label": "t:me_picks.all_label", "default": "All Offers" },
-    { "type": "range", "id": "products_per_page", "label": "t:settings.products_per_page", "min": 8, "max": 32, "step": 4, "default": 16 },
+    { "type": "range", "id": "products_per_page", "label": "t:settings.products_per_page", "min": 8, "max": 32, "step": 4, "default": 12 },
     { "type": "checkbox", "id": "show_preview", "label": "t:me_picks.show_preview", "info": "t:me_picks.preview_info", "default": false },
     { "type": "paragraph", "content": "t:me_picks.product_info" },
     { "type": "header", "content": "t:content.appearance" },
     { "type": "color", "id": "background_color", "label": "t:settings.background_color", "default": "#e6eaf6" },
     { "type": "color_background", "id": "background_gradient", "label": "t:me_picks.background_gradient", "default": "linear-gradient(145deg, #d7e0f9 45%, #e6eaf6 98%)" },
-    { "type": "color", "id": "text_color", "label": "t:settings.text_color", "default": "#1f1f1f" },
+    { "type": "color", "id": "text_color", "label": "t:settings.text_color", "default": "#241c52" },
     { "type": "color_background", "id": "heading_gradient", "label": "t:settings.gradient_text", "default": "linear-gradient(135deg, #0b22b8 12%, #9621c4 88%)" },
     { "type": "color", "id": "accent_color", "label": "t:settings.color", "default": "#0022ff" },
-    { "type": "color", "id": "card_background", "label": "t:work_catalog.card_background", "default": "#ffffff4d" },
-    { "type": "color", "id": "card_border", "label": "t:work_catalog.card_border", "default": "#ffffff" },
+    { "type": "color", "id": "offer_heading_color", "label": "t:me_picks.offer_heading_color", "default": "#3431ce" },
+    { "type": "color", "id": "card_background", "label": "t:work_catalog.card_background", "default": "#f0f2fc" },
+    { "type": "color", "id": "card_border", "label": "t:work_catalog.card_border", "default": "#f0f2fc" },
     { "type": "color", "id": "media_background", "label": "t:work_catalog.media_background", "default": "#ebebeb" },
-    { "type": "range", "id": "card_radius", "label": "t:settings.border_radius", "min": 0, "max": 32, "step": 1, "unit": "px", "default": 16 },
-    { "type": "color", "id": "code_background", "label": "t:me_picks.code_background", "default": "#a4b3ea" },
-    { "type": "color", "id": "code_color", "label": "t:me_picks.code_color", "default": "#172363" },
-    { "type": "color_background", "id": "button_background", "label": "t:blog_filter.button_background", "default": "linear-gradient(101deg, #1f26fb 0%, #bb00ba 100%)" },
+    { "type": "range", "id": "card_radius", "label": "t:settings.border_radius", "min": 0, "max": 32, "step": 1, "unit": "px", "default": 14 },
+    { "type": "color", "id": "code_background", "label": "t:me_picks.code_background", "default": "#fafbff" },
+    { "type": "color", "id": "code_color", "label": "t:me_picks.code_color", "default": "#241c52" },
+    { "type": "color_background", "id": "button_background", "label": "t:blog_filter.button_background", "default": "linear-gradient(90deg, #0066ff 0%, #8729f5 100%)" },
     { "type": "color", "id": "button_color", "label": "t:blog_filter.button_text", "default": "#ffffff" },
     { "type": "header", "content": "t:content.padding" },
-    { "type": "range", "id": "padding-block-start", "label": "t:settings.top", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 100 },
+    { "type": "range", "id": "padding-block-start", "label": "t:settings.top", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 48 },
     { "type": "range", "id": "padding-block-end", "label": "t:settings.bottom", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 84 }
   ],
   "blocks": [

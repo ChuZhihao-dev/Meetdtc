@@ -79,8 +79,8 @@
         "goals_label": "Tell Us About Your Goals or Challenges",
         "goals_placeholder": "Tell us what your business does, the challenges you are facing, and what you would like to achieve.",
         "desktop_column_gap": 48,
-        "padding-block-start": 64,
-        "padding-block-end": 64
+        "padding-block-start": 80,
+        "padding-block-end": 80
       }
     },
     "brand_footer_YTnKD7": {
@@ -121,7 +121,8 @@
         "platform_mxmyae": {
           "type": "platform",
           "settings": {
-            "image": "shopify://shop_images/shopify_platinum_partner_transparent_8f3a.png",
+            "image": "shopify://shop_images/shopify_platinum_partner_transparent_8f3a_1.webp",
+            "image_scale": 15,
             "label": "Shopify",
             "link": ""
           }
@@ -129,7 +130,8 @@
         "platform_H8f7Te": {
           "type": "platform",
           "settings": {
-            "image": "shopify://shop_images/klaviyo_master_platinum_badge.png",
+            "image": "shopify://shop_images/klaviyo_transparent_9c1a_1.webp",
+            "image_scale": 15,
             "label": "Klaviyo",
             "link": ""
           }
@@ -137,7 +139,8 @@
         "platform_zi9KYT": {
           "type": "platform",
           "settings": {
-            "image": "shopify://shop_images/omnisend_transparent_5d2e.png",
+            "image": "shopify://shop_images/omnisend_transparent_5d2e_1.webp",
+            "image_scale": 15,
             "label": "Klaviyo",
             "link": ""
           }
@@ -145,7 +148,8 @@
         "platform_XJFP8Q": {
           "type": "platform",
           "settings": {
-            "image": "shopify://shop_images/trustpilot_transparent.png",
+            "image": "shopify://shop_images/trustpilot_transparent_b4a1_1_1.webp",
+            "image_scale": 15,
             "label": "Trustpilot",
             "link": ""
           }
@@ -153,7 +157,8 @@
         "platform_jkkXjw": {
           "type": "platform",
           "settings": {
-            "image": "shopify://shop_images/BytePlus_Platinum_Partner.png",
+            "image": "shopify://shop_images/BytePlus_Platinum_Partner_1.webp",
+            "image_scale": 15,
             "label": "Rakuten Advertising",
             "link": ""
           }
@@ -161,7 +166,8 @@
         "platform_4jRjUH": {
           "type": "platform",
           "settings": {
-            "image": "shopify://shop_images/google-cloud-premier-co-sell-partner_916b404a-aa8f-4ea1-9a6d-d49ca9885abe.png",
+            "image": "shopify://shop_images/google-cloud-premier-co-sell-partner_1.webp",
+            "image_scale": 15,
             "label": "Rakuten Advertising",
             "link": ""
           }
@@ -169,7 +175,8 @@
         "platform_NyL6h7": {
           "type": "platform",
           "settings": {
-            "image": "shopify://shop_images/impact_transparent.png",
+            "image": "shopify://shop_images/impact_transparent_3f7d_1.webp",
+            "image_scale": 15,
             "label": "impact",
             "link": ""
           }
@@ -177,16 +184,18 @@
         "platform_8qVMBx": {
           "type": "platform",
           "settings": {
-            "image": "shopify://shop_images/awin_transparent.png",
+            "image": "shopify://shop_images/awin_transparent_8e2c_1.webp",
+            "image_scale": 15,
             "label": "Awin",
             "link": ""
           }
         },
-        "platform_8NCgcX": {
+        "platform_q9jhJm": {
           "type": "platform",
           "settings": {
-            "image": "shopify://shop_images/rakuten_transparent.png",
-            "label": "Rakuten Advertising",
+            "image": "shopify://shop_images/rakuten_transparent_7a4f_1.webp",
+            "image_scale": 15,
+            "label": "",
             "link": ""
           }
         }
@@ -204,7 +213,7 @@
         "platform_4jRjUH",
         "platform_NyL6h7",
         "platform_8qVMBx",
-        "platform_8NCgcX"
+        "platform_q9jhJm"
       ],
       "name": "t:brand_footer.name",
       "settings": {
@@ -230,7 +239,7 @@
         "text_color": "#ffffff",
         "platform_background": "#f8f7ff",
         "platform_text": "#21164f",
-        "padding-block-start": 64,
+        "padding-block-start": 80,
         "padding-block-end": 24
       }
     }

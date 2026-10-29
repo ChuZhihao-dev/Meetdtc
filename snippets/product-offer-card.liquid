@@ -1,7 +1,7 @@
 {% doc %}
   A brand offer backed by its product title, image and assigned collection.
   Image/title never navigate to the product page.
-  Optional custom.offer_summary, offer_terms, offer_code and offer_url supply the offer.
+  Optional custom.brand_description, offer_summary, offer_terms, offer_code and offer_url supply the offer.
   @param {product} [product] - Product supplying the brand and offer.
   @param {collection} [current_collection] - Collection currently being browsed.
   @param {collection} [all_offers_collection] - Optional total collection, omitted from category labels.
@@ -27,6 +27,7 @@
   endif
   assign category = category | default: product.type
   assign summary = product.metafields.custom.offer_summary.value
+  assign brand_description = product.metafields.custom.brand_description.value
   assign terms = product.metafields.custom.offer_terms.value
   assign code = product.metafields.custom.offer_code.value | strip
   assign offer_url = product.metafields.custom.offer_url.value | strip
@@ -44,14 +45,26 @@
     assign brand = 'me_picks.sample_brand' | t
     assign category = 'me_picks.sample_category' | t
     assign summary = 'me_picks.sample_summary' | t
+    assign brand_description = 'me_picks.sample_description' | t
     assign terms = 'me_picks.sample_terms' | t
-    assign code = 'MEPICK15'
+    assign code = 'WELCOME10'
+    assign preview_variant = index | modulo: 2
+    if preview_variant == 0
+      assign brand = 'me_picks.sample_link_brand' | t
+      assign category = 'me_picks.sample_link_category' | t
+      assign summary = 'me_picks.sample_link_summary' | t
+      assign brand_description = 'me_picks.sample_link_description' | t
+      assign terms = 'me_picks.sample_link_terms' | t
+      assign code = ''
+    endif
   endif
 %}
 <article class="offer-card">
   <div class="offer-card__media">
-    {% if image != blank %}
-      {{ image | image_url: width: 1000 | image_tag: width: image.width, height: image.height, widths: '297, 450, 594, 750, 1000', sizes: '(min-width: 1354px) 297px, (min-width: 1200px) calc((100vw - 166px) / 4), (min-width: 990px) calc((100vw - 132px) / 3), (min-width: 750px) calc((100vw - 98px) / 2), calc(100vw - 32px)', loading: loading, decoding: 'async', alt: image_alt, class: 'offer-card__image' }}
+    {% if preview %}
+      <img class="offer-card__sample-image{% if preview_variant == 0 %} offer-card__sample-image--link{% endif %}" src="{{ 'me-picks-sample-brands.png' | asset_url }}" alt="" width="1122" height="1402" loading="lazy" decoding="async">
+    {% elsif image != blank %}
+      {{ image | image_url: width: 1000 | image_tag: width: image.width, height: image.height, widths: '266, 400, 532, 750, 1000', sizes: '(min-width: 1200px) calc((min(100vw - 80px, 1280px) - 72px) / 4 - 32px), (min-width: 990px) calc((100vw - 128px) / 3 - 32px), (min-width: 750px) calc((100vw - 104px) / 2 - 32px), calc(100vw - 64px)', loading: loading, decoding: 'async', alt: image_alt, class: 'offer-card__image' }}
     {% else %}
       <span class="offer-card__placeholder" aria-hidden="true">{{ 'me_picks.image_preview' | t }}</span>
     {% endif %}
@@ -59,28 +72,32 @@
   <div class="offer-card__body">
     {% if category != blank %}<p class="offer-card__category">{{ category | escape }}</p>{% endif %}
     <h2 class="offer-card__brand">{{ brand | escape }}</h2>
+    {% if brand_description != blank %}<p class="offer-card__description">{{ brand_description | escape }}</p>{% endif %}
     {% if summary != blank %}<p class="offer-card__summary">{{ summary | escape }}</p>{% endif %}
     {% if terms != blank %}<p class="offer-card__terms">{{ terms | escape | newline_to_br }}</p>{% endif %}
-    <div class="offer-card__actions">
+    <offer-code-component class="offer-card__actions" data-copy-label="{{ 'me_picks.copy' | t | escape }}" data-copied="{{ 'me_picks.copied' | t | escape }}" data-manual="{{ 'me_picks.copy_manual' | t | escape }}">
       {% if code != blank %}
         {% if preview %}
-          <span class="offer-card__code">{{ code | escape }}</span>
+          <div class="offer-card__code-row"><span class="offer-card__code-label">{{ 'me_picks.code_label' | t }}</span><span class="offer-card__code">{{ code | escape }}</span><span class="offer-card__copy">{{ 'me_picks.copy' | t }}</span></div>
         {% else %}
-          <offer-code-component data-copied="{{ 'me_picks.copied' | t | escape }}" data-manual="{{ 'me_picks.copy_manual' | t | escape }}">
+          <div class="offer-card__code-row">
+            <span class="offer-card__code-label">{{ 'me_picks.code_label' | t }}</span>
             <label class="visually-hidden" for="{{ code_id }}">{{ 'me_picks.code_for' | t: brand: brand | escape }}</label>
             <input class="offer-card__code" id="{{ code_id }}" ref="code" type="text" value="{{ code | escape }}" readonly>
-            <button class="offer-card__code" ref="copy" type="button" on:click="/copyCode" hidden aria-label="{{ 'me_picks.copy_code' | t: brand: brand | escape }}">
-              <span ref="copyText">{{ code | escape }}</span>
+            <button class="offer-card__copy" ref="copy" type="button" on:click="/copyCode" hidden aria-label="{{ 'me_picks.copy_code' | t: brand: brand | escape }}">
+              <span ref="copyText">{{ 'me_picks.copy' | t }}</span>
             </button>
-            <span class="visually-hidden" ref="status" role="status" aria-atomic="true"></span>
-          </offer-code-component>
+          </div>
         {% endif %}
+      {% elsif valid_url or preview %}
+        <div class="offer-card__code-row offer-card__code-row--empty">{{ 'me_picks.no_code_needed' | t }}</div>
       {% endif %}
       {% if preview %}
-        <span class="offer-card__button">{{ 'me_picks.get_offer' | t }}</span>
+        <span class="offer-card__button">{% if code != blank %}{{ 'me_picks.copy_and_shop' | t }}{% else %}{{ 'me_picks.get_offer' | t }}{% endif %}<span aria-hidden="true">↗</span></span>
       {% elsif valid_url %}
-        <a class="offer-card__button" href="{{ offer_url | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ 'me_picks.get_offer_for' | t: brand: brand | escape }}">{{ 'me_picks.get_offer' | t }}</a>
+        <a class="offer-card__button" href="{{ offer_url | escape }}" target="_blank" rel="noopener noreferrer" {% if code != blank %}on:click="/copyAndShop"{% endif %} aria-label="{% if code != blank %}{{ 'me_picks.copy_and_shop_for' | t: brand: brand | escape }}{% else %}{{ 'me_picks.get_offer_for' | t: brand: brand | escape }}{% endif %}">{% if code != blank %}{{ 'me_picks.copy_and_shop' | t }}{% else %}{{ 'me_picks.get_offer' | t }}{% endif %}<span aria-hidden="true">↗</span></a>
       {% endif %}
-    </div>
+      {% unless preview %}<span class="visually-hidden" ref="status" role="status" aria-atomic="true"></span>{% endunless %}
+    </offer-code-component>
   </div>
 </article>

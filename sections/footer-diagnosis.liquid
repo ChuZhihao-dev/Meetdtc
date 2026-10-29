@@ -4,7 +4,6 @@
   Page rules omit only the consultation region; the drawer remains rendered.
   @example Add to the footer group; edit introduction, feature blocks and form labels.
 {% endcomment %}
-
 <script
   src="{{ 'footer-diagnosis.js' | asset_url }}"
   type="module"
@@ -35,6 +34,10 @@
     endif
   endfor
 %}
+{% if show_diagnosis %}
+  {% render 'scroll-reveal-styles' %}
+  <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
+{% endif %}
 
 
 
@@ -56,18 +59,18 @@
   {{ section.shopify_attributes }}
 >
   {% if show_diagnosis %}
-  <div class="footer-diagnosis__top">
+  <scroll-reveal-component class="footer-diagnosis__top" data-reveal-scope>
     <div class="footer-diagnosis__intro">
       {% if section_settings.eyebrow != blank %}
-        <p class="footer-diagnosis__eyebrow">{{ section_settings.eyebrow }}</p>
+        <p class="footer-diagnosis__eyebrow" data-reveal>{{ section_settings.eyebrow }}</p>
       {% endif %}
 
       {% if section_settings.heading != blank %}
-        <div class="footer-diagnosis__heading rte">{{ section_settings.heading }}</div>
+        <div class="footer-diagnosis__heading rte" data-reveal>{{ section_settings.heading }}</div>
       {% endif %}
 
       {% if section_settings.description != blank %}
-        <div class="footer-diagnosis__description rte">{{ section_settings.description }}</div>
+        <div class="footer-diagnosis__description rte" data-reveal>{{ section_settings.description }}</div>
       {% endif %}
 
       {%- capture features -%}
@@ -107,12 +110,12 @@
       {%- endcapture -%}
 
       {% if features != blank %}
-        <ul class="footer-diagnosis__features">{{ features }}</ul>
+        <ul class="footer-diagnosis__features" data-reveal>{{ features }}</ul>
       {% endif %}
     </div>
 
-    {% render 'custom-footer-diagnosis-form', section_settings: section_settings, form_id: form_id, form_anchor_id: form_anchor_id %}
-  </div>
+    {% render 'custom-footer-diagnosis-form', section_settings: section_settings, form_id: form_id, form_anchor_id: form_anchor_id, animate: true %}
+  </scroll-reveal-component>
   {% endif %}
 
   {% render 'growth-diagnosis-drawer', section_settings: section_settings, section_id: section.id %}
@@ -135,6 +138,7 @@
     align-items: start;
     width: 100%;
   }
+  .footer-diagnosis scroll-reveal-component.footer-diagnosis__top { display: grid; }
 
   .footer-diagnosis__intro {
     display: flex;
@@ -213,10 +217,10 @@
   .footer-diagnosis__card {
     display: block;
     scroll-margin-block-start: calc(var(--header-group-height, 0px) + 24px);
-    padding: 46px 42px;
+    padding: 28px;
     color: #111111;
     background-color: var(--fd-card-bg, #FBFBFB);
-    border-radius: var(--fd-card-radius, 40px);
+    border-radius: var(--fd-card-radius, 28px);
   }
 
   .footer-diagnosis__form {
@@ -226,7 +230,7 @@
   .footer-diagnosis__fields {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 30px 19px;
+    gap: 24px;
   }
 
   .footer-diagnosis__field {
@@ -242,19 +246,18 @@
 
   .footer-diagnosis__label {
     font-weight: 600;
-    font-size: 17px;
-    line-height: 21px;
+    font-size: 16px;
+    line-height: 1.2;
     letter-spacing: normal;
     color: #000000;
   }
 
   .footer-diagnosis__input {
     width: 100%;
-    min-height: 55px;
-    padding: 9px 20px;
+    padding: 12px 16px;
     font-weight: 400;
-    font-size: 15px;
-    line-height: 36px;
+    font-size: 14px;
+    line-height:1.4;
     letter-spacing: normal;
     background-color: #ffffff;
     border: 0.5px solid #878787;
@@ -273,11 +276,10 @@
 
   .footer-diagnosis__submit {
     width: 100%;
-    min-height: 62px;
-    padding: 13px 20px;
+    padding: 8px 12px;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 36px;
+    font-size: 18px;
+    line-height: 1.4;
     letter-spacing: normal;
     color: #ffffff;
     cursor: pointer;

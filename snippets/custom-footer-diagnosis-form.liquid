@@ -3,11 +3,13 @@
   @param {object} section_settings - Merchant-authored labels and placeholders.
   @param {string} form_id - Unique contact-form ID.
   @param {string} form_anchor_id - Optional merchant-configured anchor.
+  @param {boolean} [animate] - Reveal the inline footer form with its section.
   @example {% render 'custom-footer-diagnosis-form', section_settings: section.settings, form_id: form_id, form_anchor_id: form_anchor_id %}
 {% enddoc %}
 {% render 'contact-form-focus-styles' %}
     <footer-diagnosis
       class="footer-diagnosis__card"
+      {% if animate %}data-reveal{% endif %}
       {% if form_anchor_id != blank and form_anchor_id != form_id %}id="{{ form_anchor_id | escape }}" tabindex="-1"{% endif %}
     >
       {%- form 'contact', id: form_id, class: 'footer-diagnosis__form contact-form-focus' -%}

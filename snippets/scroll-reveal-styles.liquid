@@ -5,6 +5,8 @@
   translate once from hidden below (`before`) to visible (`in`). Revealed
   elements stay visible. Hidden styles apply once the script adds `reveal-ready`, so content stays visible
   when JavaScript is unavailable.
+  `[data-text-fade-up]` animates Hero text and actions on first paint with the same distance,
+  duration and easing, without waiting for the scroll script.
 
   @example
   {% render 'scroll-reveal-styles' %}
@@ -13,12 +15,26 @@
 {% stylesheet %}
   scroll-reveal-component:not(.section) { display: block; }
 
+  @keyframes text-fade-up {
+    from { opacity: 0; translate: 0 var(--text-reveal-distance, 32px); }
+    to { opacity: 1; translate: 0 0; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-text-fade-up] .text-block,
+    [data-text-fade-up] :is(.hero__content-wrapper, .growth-hero__content) > :is(.button, .button-secondary, .button-custom, .button-unstyled) {
+      animation: text-fade-up var(--text-reveal-duration, 0.6s) var(--ease-out-cubic) both;
+    }
+    [data-text-fade-up] .text-block:has(p) { animation-delay: 90ms; }
+    [data-text-fade-up] :is(.hero__content-wrapper, .growth-hero__content) > :is(.button, .button-secondary, .button-custom, .button-unstyled) { animation-delay: 180ms; }
+  }
+
   .reveal-ready [data-reveal] {
     opacity: 0;
-    transform: translateY(32px);
+    transform: translateY(var(--text-reveal-distance, 32px));
     transition:
-      opacity 0.6s var(--ease-out-cubic),
-      transform 0.6s var(--ease-out-cubic);
+      opacity var(--text-reveal-duration, 0.6s) var(--ease-out-cubic),
+      transform var(--text-reveal-duration, 0.6s) var(--ease-out-cubic);
     transition-delay: min(calc(var(--reveal-index, 0) * 90ms), 540ms);
   }
 

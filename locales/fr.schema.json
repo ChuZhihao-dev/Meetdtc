@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "global_breadcrumbs": {
+    "name": "Fil d’Ariane"
+  },
   "website_packages": {
     "enable_purchase": "Enable pricing and purchase",
     "name": "Website packages",
@@ -47,6 +50,7 @@
     "bottom": "Bottom padding"
   },
   "me_picks": {
+    "offer_heading_color": "Offer headline color",
     "auto_categories": "Automatically load collection navigation",
     "auto_categories_info": "Lists the store's accessible collections using their current titles and links. Turn off to use category blocks. All Offers opens all store products unless an all-offers collection is selected.",
     "name": "ME PICKS collection",
@@ -56,8 +60,8 @@
     "category_label": "Category label",
     "category_info": "Leave blank to use the selected collection's title. A category without a collection is displayed as text.",
     "show_preview": "Show sample cards in the theme editor",
-    "preview_info": "Shows the design's 16 sample cards in the editor only. Turn off to preview real products. Storefront visitors always see the current collection's products.",
-    "product_info": "Cards use the product title, featured image and assigned collection (or product type). Optional product metafields: custom.offer_summary (single line text), custom.offer_terms (multi-line text), custom.offer_code (single line text) and custom.offer_url (URL). Only Get Offer opens that product's configured brand URL.",
+    "preview_info": "Shows the design's 12 sample cards in the editor only. Turn off to preview real products. Storefront visitors always see the current collection's products.",
+    "product_info": "Cards read the product title, image and category. Optional product metafields: custom.brand_description (short brand description), custom.offer_summary (offer headline, e.g. 10% OFF), custom.offer_terms (terms), custom.offer_code (discount code), custom.offer_url (brand URL). The copy button copies the code; the main button copies and opens the brand URL, or opens it directly when no code is required.",
     "background_gradient": "Page background gradient",
     "code_background": "Discount code background",
     "code_color": "Discount code text"

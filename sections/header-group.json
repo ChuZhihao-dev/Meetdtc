@@ -97,7 +97,7 @@
               "name": "t:names.button",
               "settings": {
                 "label": "Get a Free Audit >",
-                "link": "#",
+                "link": "shopify://pages/audit",
                 "open_in_new_tab": false,
                 "style_class": "button-custom",
                 "custom_button_background": "#5d6eea",

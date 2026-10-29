@@ -8,6 +8,10 @@
  * ------------------------------------------------------------
  */
 {
+  "global_breadcrumbs": {
+    "home": "Home",
+    "label": "Breadcrumb"
+  },
   "website_packages": {
     "selected_package": "Selected package:",
     "pricing_unavailable": "Pricing coming soon",
@@ -15,6 +19,17 @@
     "from": "From"
   },
   "me_picks": {
+    "copy": "Copy",
+    "code_label": "Code:",
+    "no_code_needed": "No code needed",
+    "copy_and_shop": "Copy Code & Shop",
+    "copy_and_shop_for": "Copy the code and shop at {{ brand }} (opens in a new tab)",
+    "sample_description": "At-home beauty devices",
+    "sample_link_brand": "BRAND B",
+    "sample_link_category": "Tech & Electronics",
+    "sample_link_summary": "15% OFF",
+    "sample_link_description": "Phone cases & accessories",
+    "sample_link_terms": "Selected accessories",
     "categories": "Offer categories",
     "get_offer": "Get Offer",
     "get_offer_for": "Get the offer from {{ brand }} (opens in a new tab)",
@@ -24,10 +39,10 @@
     "copy_manual": "Select and copy the discount code manually.",
     "empty": "No offers in this collection yet.",
     "image_preview": "IMAGE / PREVIEW",
-    "sample_brand": "[ Brand 01 ]",
-    "sample_category": "E-Commerce",
-    "sample_summary": "15% off your first order",
-    "sample_terms": "Min. spend S$60",
+    "sample_brand": "BRAND A",
+    "sample_category": "Beauty",
+    "sample_summary": "10% OFF",
+    "sample_terms": "New customers · First order",
     "preview_notice": "Layout preview — these sample offers appear only in the theme editor. Turn off sample cards to see the collection's products."
   },
   "contact_submit": { "submitting": "Submitting…" },

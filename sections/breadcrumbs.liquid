@@ -1,0 +1,87 @@
+{% comment %}
+  Template-level breadcrumb section. Templates place it first, below the shared header.
+  @example Place Breadcrumb navigation first in the template, before the page content.
+{% endcomment %}
+<script src="{{ 'breadcrumbs.js' | asset_url }}" type="module" fetchpriority="low"></script>
+<breadcrumbs-component
+  class="breadcrumb-section__content spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  {% render 'global-breadcrumbs' %}
+</breadcrumbs-component>
+
+{% stylesheet %}
+  .breadcrumb-section {
+    margin-block-start: var(--breadcrumb-header-offset, 0px);
+  }
+  /* Background-only sections have no visual height and must not suppress the header clearance. */
+  .content-for-layout > .breadcrumb-section:nth-child(1 of .shopify-section:not(.page-background)) {
+    --breadcrumb-header-offset: calc(var(--header-height, 0px) * var(--transparent-header-offset-boolean, 0));
+  }
+  #header-group:has(> .header-section > #header-component[transparent]) ~ .content-for-layout > .shopify-section.breadcrumb-section:first-child {
+    margin-top: var(--breadcrumb-header-offset, 0px);
+  }
+  .content-for-layout[data-breadcrumb-overlay] { position: relative; }
+  .content-for-layout[data-breadcrumb-overlay] > .breadcrumb-section {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    z-index: var(--layer-flat);
+    margin-block: 0;
+  }
+  #header-group:has(> .header-section > #header-component[transparent]) ~ .content-for-layout[data-breadcrumb-overlay] > .shopify-section.breadcrumb-section:first-child { margin-top: 0; }
+  .content-for-layout[data-breadcrumb-overlay] [data-breadcrumb-inset] {
+    --section-top-offset: var(--breadcrumb-overlay-height, 0px);
+  }
+  .content-for-layout[data-breadcrumb-overlay] [data-breadcrumb-inset] .spacing-style {
+    --section-top-offset: 0px;
+  }
+  .content-for-layout[data-breadcrumb-overlay] [data-breadcrumb-inset]:not(.section, [data-breadcrumb-surface]) {
+    padding-block-start: var(--breadcrumb-overlay-height, 0px);
+  }
+  .content-for-layout[data-breadcrumb-overlay] .breadcrumb-section__content {
+    padding-block-start: calc(var(--padding-block-start, 16px) + var(--breadcrumb-header-offset, 0px));
+  }
+  .breadcrumb-section__content {
+    display: block;
+    background: transparent;
+    padding-block: var(--padding-block-start, 16px) var(--padding-block-end, 16px);
+    color: var(--color-foreground);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:global_breadcrumbs.name",
+  "limit": 1,
+  "class": "breadcrumb-section",
+  "enabled_on": {
+    "templates": ["product", "collection", "list-collections", "page", "blog", "article", "cart", "search", "404"]
+  },
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {"name": "t:global_breadcrumbs.name", "category": "t:categories.layout"}
+  ]
+}
+{% endschema %}

@@ -11,6 +11,8 @@
 %}
 {% render 'contrast-override', background_color: s.background_gradient_from, text_color: s.text_color, section_id: color_id, preset: 'content' %}
 {% render 'text-block-styles' %}
+{% render 'scroll-reveal-styles' %}
+<script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
 <script src="{{ 'services-globe.js' | asset_url }}" type="module" fetchpriority="low"></script>
 
 <div
@@ -30,20 +32,22 @@
 >
   <div class="section section--page-width">
   <div class="services-globe__layout">
+    <scroll-reveal-component data-reveal-scope>
     <div class="services-globe__intro">
-      <div class="services-globe__title">
+      <div class="services-globe__title" data-reveal>
         {% if s.eyebrow != blank %}<p class="services-globe__eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
         {% if s.heading != blank %}
           <h2 class="services-globe__heading text-block{% if s.gradient_text %} text-block--gradient{% endif %}">{{ s.heading | escape | newline_to_br }}</h2>
         {% endif %}
       </div>
-      <div class="services-globe__copy">
+      <div class="services-globe__copy" data-reveal>
         {% if s.description != blank %}<div class="services-globe__description">{{ s.description }}</div>{% endif %}
         {% if s.link_label != blank and s.link != blank %}
           <a class="services-globe__link" href="{{ s.link | escape }}">{{ s.link_label | escape }}</a>
         {% endif %}
       </div>
     </div>
+    </scroll-reveal-component>
     <div class="services-globe__visual">
       <div class="services-globe__art" aria-hidden="true">
         <img class="services-globe__glow" src="{{ 'services-globe-glow.svg' | asset_url }}" width="1097" height="688" alt="" decoding="async" loading="lazy">

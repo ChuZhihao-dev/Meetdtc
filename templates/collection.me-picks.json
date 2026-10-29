@@ -9,6 +9,10 @@
  */
 {
   "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {"padding-block-start": 16, "padding-block-end": 16}
+    },
     "main": {
       "type": "main-me-picks",
       "blocks": {
@@ -77,27 +81,29 @@
         "auto_categories": false,
         "all_offers_collection": "all-offers",
         "all_offers_label": "All Offers",
-        "products_per_page": 16,
+        "products_per_page": 12,
         "show_preview": false,
         "background_color": "#e6eaf6",
         "background_gradient": "linear-gradient(145deg, rgba(215, 224, 249, 1) 45%, rgba(230, 234, 246, 1) 98%)",
-        "text_color": "#1f1f1f",
+        "text_color": "#241c52",
         "heading_gradient": "linear-gradient(135deg, rgba(11, 34, 184, 1) 12%, rgba(150, 33, 196, 1) 88%)",
         "accent_color": "#0022ff",
-        "card_background": "#ffffff4d",
-        "card_border": "#ffffff",
+        "offer_heading_color": "#3431ce",
+        "card_background": "#f0f2fc",
+        "card_border": "#f0f2fc",
         "media_background": "#ebebeb",
-        "card_radius": 16,
-        "code_background": "#a4b3ea",
-        "code_color": "#172363",
-        "button_background": "linear-gradient(101deg, rgba(31, 38, 251, 1), rgba(187, 0, 186, 1) 100%)",
+        "card_radius": 14,
+        "code_background": "#fafbff",
+        "code_color": "#241c52",
+        "button_background": "linear-gradient(90deg, #0066ff 0%, #8729f5 100%)",
         "button_color": "#ffffff",
-        "padding-block-start": 100,
+        "padding-block-start": 48,
         "padding-block-end": 84
       }
     }
   },
   "order": [
+    "breadcrumbs",
     "main"
   ]
 }

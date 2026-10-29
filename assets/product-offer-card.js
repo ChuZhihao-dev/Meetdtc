@@ -3,14 +3,13 @@ import { Component } from '@theme/component';
 /**
  * Enhances a selectable discount code with clipboard copying.
  * @typedef {object} Refs
- * @property {HTMLInputElement} code
- * @property {HTMLButtonElement} copy
- * @property {HTMLElement} copyText
- * @property {HTMLElement} status
+ * @property {HTMLInputElement} [code]
+ * @property {HTMLButtonElement} [copy]
+ * @property {HTMLElement} [copyText]
+ * @property {HTMLElement} [status]
  * @extends Component<Refs>
  */
 class OfferCode extends Component {
-  requiredRefs = ['code', 'copy', 'copyText', 'status'];
   #request = 0;
   /** @type {ReturnType<typeof setTimeout> | undefined} */
   #timer;
@@ -32,23 +31,34 @@ class OfferCode extends Component {
   }
 
   #enhance() {
+    if (!this.refs.copy) return;
     const canCopy = Boolean(navigator.clipboard?.writeText);
     this.refs.copy.hidden = !canCopy;
-    this.refs.code.hidden = canCopy;
   }
 
   #reset() {
     this.#request++;
     clearTimeout(this.#timer);
-    this.refs.copy.disabled = false;
-    this.refs.copyText.textContent = this.refs.code.value;
-    this.refs.status.textContent = '';
+    if (this.refs.copy) this.refs.copy.disabled = false;
+    if (this.refs.copyText) this.refs.copyText.textContent = this.dataset.copyLabel || '';
+    if (this.refs.status) this.refs.status.textContent = '';
   }
 
   /** Copy only this card's code; leave a selectable field on failure. @param {MouseEvent} event */
   async copyCode(event) {
     event.preventDefault();
+    await this.#writeCode(true);
+  }
+
+  /** Copy during the native link click; the configured href remains usable in every case. */
+  copyAndShop() {
+    void this.#writeCode(false);
+  }
+
+  /** @param {boolean} selectOnFailure */
+  async #writeCode(selectOnFailure) {
     const { code, copy, copyText, status } = this.refs;
+    if (!code || !copy || !copyText || !status) return;
     const request = ++this.#request;
     clearTimeout(this.#timer);
     copy.disabled = true;
@@ -62,8 +72,10 @@ class OfferCode extends Component {
       if (request !== this.#request || !this.isConnected) return;
       copy.hidden = true;
       code.hidden = false;
-      code.focus();
-      code.select();
+      if (selectOnFailure) {
+        code.focus();
+        code.select();
+      }
       status.textContent = this.dataset.manual || '';
     } finally {
       if (request === this.#request && this.isConnected) copy.disabled = false;

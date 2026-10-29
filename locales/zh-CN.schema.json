@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "global_breadcrumbs": {
+    "name": "面包屑导航"
+  },
   "website_packages": {
     "enable_purchase": "启用价格与购买",
     "name": "建站套餐",
@@ -47,6 +50,7 @@
     "bottom": "底部间距"
   },
   "me_picks": {
+    "offer_heading_color": "优惠标题颜色",
     "auto_categories": "自动读取产品系列导航",
     "auto_categories_info": "自动显示店铺可访问的产品系列，名称与链接随后台更新。关闭后使用分类区块。未选择全部优惠产品系列时，All Offers 返回店铺全部产品。",
     "name": "ME PICKS 优惠集合页",
@@ -56,8 +60,8 @@
     "category_label": "分类名称",
     "category_info": "留空则使用所选产品系列的名称。未选择产品系列时仅显示文字。",
     "show_preview": "在主题编辑器中显示示例卡片",
-    "preview_info": "仅在编辑器中显示设计稿的 16 张示例卡片。关闭可预览真实产品。访客始终看到当前产品系列的真实产品。",
-    "product_info": "卡片读取产品标题、主图与所属产品系列（无系列时使用产品类型）。可选产品元字段：custom.offer_summary（单行文本）、custom.offer_terms（多行文本）、custom.offer_code（单行文本）、custom.offer_url（URL）。仅 Get Offer 跳转到该产品配置的品牌链接。",
+    "preview_info": "仅在编辑器中显示设计稿的 12 张示例卡片。关闭可预览真实产品。访客始终看到当前产品系列的真实产品。",
+    "product_info": "卡片读取产品标题、主图与分类。可选元字段：custom.brand_description（品牌短介绍）、custom.offer_summary（优惠标题，如 10% OFF）、custom.offer_terms（使用条件）、custom.offer_code（优惠码）、custom.offer_url（品牌链接）。复制按钮仅复制优惠码，主按钮复制并打开品牌链接；无需优惠码时直接打开链接。",
     "background_gradient": "页面背景渐变",
     "code_background": "折扣码背景",
     "code_color": "折扣码文字"

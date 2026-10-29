@@ -14,27 +14,30 @@
   endif
 %}
 {% render 'custom-section-fonts', font: s.font %}
+{% render 'scroll-reveal-styles' %}
+<script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
 <div class="section-background" style="background: {{ s.background | default: 'transparent' }};"></div>
 <div class="section section--full-width spacing-style text-columns"
   style="{% render 'spacing-style', settings: s %} --text-columns-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }}; --text-columns-text: {{ s.text_color }}; --text-columns-gradient: {{ s.heading_gradient | default: s.text_color }}; --text-columns-accent: {{ s.accent_color }};">
-  <div class="text-columns__inner{% if s.eyebrow != blank %} text-columns__inner--eyebrow{% endif %}{% unless has_intro and has_copy %} text-columns__inner--single{% endunless %}">
+  <scroll-reveal-component class="text-columns__inner{% if s.eyebrow != blank %} text-columns__inner--eyebrow{% endif %}{% unless has_intro and has_copy %} text-columns__inner--single{% endunless %}" data-reveal-scope>
     {% if has_intro %}
-      <div class="text-columns__intro">
+      <div class="text-columns__intro" data-reveal>
         {% if s.eyebrow != blank %}<p class="text-columns__eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
         {% if s.heading != blank %}<h2 class="text-columns__heading">{{ s.heading | escape | newline_to_br }}</h2>{% endif %}
       </div>
     {% endif %}
     {% if has_copy %}
-      <div class="text-columns__copy">
+      <div class="text-columns__copy" data-reveal>
         {% if s.body != blank %}<div class="text-columns__body">{{ s.body }}</div>{% endif %}
         {% if s.footer != blank %}<p class="text-columns__footer">{{ s.footer | escape }}</p>{% endif %}
       </div>
     {% endif %}
-  </div>
+  </scroll-reveal-component>
 </div>
 {% stylesheet %}
   .text-columns { color: var(--text-columns-text); font-family: var(--text-columns-font, var(--font-heading--family)); }
   .text-columns__inner { display: grid; grid-template-columns: minmax(0, 498fr) minmax(0, 652fr); align-items: start; gap: 0 clamp(40px, 8.61111vw, 124px); width: 100%; max-width: 1440px; min-width: 0; margin-inline: auto; padding-inline: 80px; }
+  .text-columns scroll-reveal-component.text-columns__inner { display: grid; }
   .text-columns__intro, .text-columns__copy { min-width: 0; overflow-wrap: anywhere; }
   .text-columns__eyebrow { margin: 0 0 10px; font-size: 18px; font-weight: 500; line-height: 1.4; }
   .text-columns__heading { margin: 0; color: inherit; font-family: inherit; font-size: 40px; font-weight: 600; line-height: 1.2; letter-spacing: normal; background: var(--text-columns-gradient); background-clip: text; -webkit-text-fill-color: transparent; }

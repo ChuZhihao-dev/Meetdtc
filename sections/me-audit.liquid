@@ -1,0 +1,301 @@
+{% comment %}
+  ME Free Audit — 1:1 with meet-experience-preview free-audit layout & styles.
+  Requires assets: me-free-audit.css, me-free-audit.js
+{% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+{{ 'me-free-audit.css' | asset_url | stylesheet_tag }}
+
+<div class="audit-page" id="me-audit-{{ section.id }}" data-section-id="{{ section.id }}">
+  {% if section.settings.show_demo_strip %}
+    <div class="demo-strip">{{ section.settings.demo_strip_text }}</div>
+  {% endif %}
+
+  <section class="audit-hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="status-dot"></span> {{ section.settings.eyebrow }}</span>
+        <h1>{{ section.settings.heading_line1 }}<br><span>{{ section.settings.heading_line2 }}</span></h1>
+        <p>{{ section.settings.lead }}</p>
+        <div class="journey-line">
+          <span><b>01</b> {{ section.settings.step_1 }}</span><i>→</i>
+          <span><b>02</b> {{ section.settings.step_2 }}</span><i>→</i>
+          <span><b>03</b> {{ section.settings.step_3 }}</span>
+        </div>
+      </div>
+
+      <div class="scan-card">
+        <div class="scan-top">
+          <span class="small-chip">{{ section.settings.chip_auto }}</span>
+          <span class="preview-label">{{ section.settings.chip_live }}</span>
+        </div>
+        <h2 class="scan-title">{{ section.settings.panel_title }}</h2>
+        <form id="scan-form" class="audit-form">
+          <label for="scan-url">{{ section.settings.url_label }}</label>
+          <div class="scan-input-row">
+            <span class="url-symbol" aria-hidden="true">↗</span>
+            <input id="scan-url" name="website" type="text" autocomplete="url" inputmode="url" placeholder="{{ section.settings.url_placeholder }}" required aria-describedby="url-error">
+            <button class="audit-btn" type="submit">{{ section.settings.btn_check }} <span>→</span></button>
+          </div>
+          <p class="field-error" id="url-error" role="alert"></p>
+        </form>
+        <div class="scan-foot">
+          <p class="microcopy">{{ section.settings.hint_scores }}</p>
+        </div>
+        <div id="scan-progress" hidden role="status" aria-live="polite">
+          <div class="progress-track"><span id="scan-progress-fill"></span></div>
+          <p id="scan-progress-label">{{ section.settings.progress_text }}</p>
+        </div>
+        <div class="coverage-cards">
+          <div class="coverage-card">
+            <div class="coverage-heading">
+              <span class="coverage-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 16a9 9 0 1 1 16 0M12 12l5-5M5 19h14"/></svg></span>
+              <span class="coverage-number">01</span>
+            </div>
+            <h3>Website Performance</h3>
+            <p>{{ section.settings.dim_perf_sub }}</p>
+          </div>
+          <div class="coverage-card">
+            <div class="coverage-heading">
+              <span class="coverage-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M8 11h5M10.5 8.5v5"/></svg></span>
+              <span class="coverage-number">02</span>
+            </div>
+            <h3>SEO Health</h3>
+            <p>{{ section.settings.dim_seo_sub }}</p>
+          </div>
+          <div class="coverage-card">
+            <div class="coverage-heading">
+              <span class="coverage-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V9m8 10V4m8 15v-7M2 21h20"/></svg></span>
+              <span class="coverage-number">03</span>
+            </div>
+            <h3>Tracking Setup</h3>
+            <p>{{ section.settings.dim_track_sub }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" class="results-section wrap" hidden aria-labelledby="result-heading">
+    <div class="section-top">
+      <div>
+        <span class="eyebrow">{{ section.settings.snapshot_eyebrow }}</span>
+        <h2 id="result-heading" tabindex="-1">{{ section.settings.snapshot_title }}</h2>
+        <p><span id="result-domain"></span> <span class="preview-label" id="result-badge">{{ section.settings.live_badge }}</span></p>
+      </div>
+      <button type="button" id="restart" class="text-link">{{ section.settings.btn_another }}</button>
+    </div>
+    <div class="score-grid" id="score-grid"></div>
+    <p class="results-note" id="results-note">{{ section.settings.results_note }}</p>
+
+    <div class="unlock" id="unlock-panel" hidden>
+      <div>
+        <span class="eyebrow">{{ section.settings.unlock_eyebrow }}</span>
+        <h3>{{ section.settings.unlock_title }}</h3>
+        <p>{{ section.settings.unlock_lead }}</p>
+      </div>
+      <form class="audit-form" id="unlock-form" novalidate>
+        <label for="report-email">{{ section.settings.email_label }}</label>
+        <input type="email" id="report-email" name="email" autocomplete="email" inputmode="email" maxlength="254" spellcheck="false" autocapitalize="none" placeholder="{{ section.settings.email_placeholder }}" required aria-describedby="unlock-error">
+        <button class="audit-btn" type="submit">{{ section.settings.btn_unlock }}</button>
+        <p class="field-error" id="unlock-error" role="alert"></p>
+        <small>{{ section.settings.unlock_small }}</small>
+      </form>
+    </div>
+
+    <div id="full-report" hidden>
+      <div class="report-heading">
+        <span class="eyebrow">{{ section.settings.report_eyebrow }}</span>
+        <h3>{{ section.settings.report_title }}</h3>
+        <p>{{ section.settings.report_sub }}</p>
+      </div>
+      <div class="report-details" id="report-details"></div>
+    </div>
+  </section>
+
+  <section id="specialists" class="specialists-section" hidden>
+    <div class="wrap">
+      <div class="section-top">
+        <div>
+          <span class="eyebrow">02 · FREE EXPERT REVIEWS</span>
+          <h2>{{ section.settings.expert_title }}</h2>
+          <p>{{ section.settings.expert_lead }}</p>
+        </div>
+        <div class="expert-promise">
+          <strong>{{ section.settings.expert_promise_strong }}</strong>
+          <span>{{ section.settings.expert_promise_sub }}</span>
+        </div>
+      </div>
+      <div class="specialist-grid" id="review-cards"></div>
+      <p class="manual-note">{{ section.settings.expert_manual_note }}</p>
+    </div>
+  </section>
+
+  <dialog class="review-drawer" id="review-drawer" aria-labelledby="drawer-title">
+    <div class="drawer-top">
+      <span class="small-chip">FREE EXPERT REVIEW · MANUAL</span>
+      <button type="button" id="drawer-close" class="close-button" aria-label="Close review form">×</button>
+    </div>
+    <h2 id="drawer-title" tabindex="-1">{{ section.settings.drawer_title }}</h2>
+    <p class="drawer-description" id="drawer-description"></p>
+    <div class="drawer-deliverable">
+      <span>WHAT YOU'LL RECEIVE</span>
+      <p id="drawer-outcome"></p>
+      <strong id="drawer-turnaround"></strong>
+      <small>Once all required information has been received.</small>
+    </div>
+    <form id="request-form" class="audit-form">
+      <div class="selected-service">
+        <label>
+          <input type="checkbox" checked disabled>
+          <span><small>Selected service</small><strong id="selected-service-name"></strong></span>
+        </label>
+        <input type="hidden" id="selected-service-value" name="service">
+        <button class="text-link" type="button" id="change-service">Choose a different service</button>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label for="request-name">Full Name <span>*</span></label><input id="request-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="request-email">Work Email <span>*</span></label><input id="request-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field full"><label for="request-url">Website URL <span>*</span></label><input id="request-url" name="website" type="text" inputmode="url" autocomplete="url" required></div>
+        <div class="field full"><label for="request-company">Company Name</label><input id="request-company" name="company" autocomplete="organization"></div>
+      </div>
+      <div class="report-context" id="report-context" hidden>
+        <strong>Automated check context included</strong>
+        <p id="report-context-lines">Website Performance · SEO Health · Tracking Setup</p>
+        <input type="hidden" id="report-context-value" name="report_context" disabled>
+      </div>
+      <fieldset id="affiliate-fields" class="special-fields" hidden disabled>
+        <legend>Affiliate programme context</legend>
+        <div class="form-grid">
+          <div class="field"><label for="target-markets">Target Markets</label><input id="target-markets" name="markets"></div>
+          <div class="field"><label for="affiliate-stage">Current Affiliate Stage</label>
+            <select id="affiliate-stage" name="stage"><option value="">Select a stage</option><option>Not Started</option><option>Preparing to Launch</option><option>Already Running</option></select>
+          </div>
+          <div class="field full"><label for="affiliate-platform">Current Affiliate Platform, if applicable</label><input id="affiliate-platform" name="platform"></div>
+          <div class="field full"><label for="affiliate-goal">Primary Goal</label><input id="affiliate-goal" name="goal"></div>
+        </div>
+      </fieldset>
+      <fieldset id="whatsapp-fields" class="special-fields" hidden disabled>
+        <legend>WhatsApp Business context</legend>
+        <div class="field">
+          <label for="whatsapp-account">Business account name or business phone number</label>
+          <input id="whatsapp-account" name="whatsapp_account">
+          <small>Do not enter passwords, verification codes or API tokens.</small>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="request-message">What would you like help with?</label>
+        <textarea id="request-message" name="message" rows="3"></textarea>
+      </div>
+      <p id="request-context" class="request-context"></p>
+      <p id="request-error" class="field-error" role="alert"></p>
+      <button class="audit-btn full-button" type="submit">{{ section.settings.expert_btn_submit }}</button>
+      <p class="form-disclosure">{{ section.settings.drawer_disclosure }}</p>
+    </form>
+    <div id="request-success" hidden role="status">
+      <span class="success-symbol">✓</span>
+      <span class="eyebrow">REQUEST SUMMARY</span>
+      <h3>{{ section.settings.expert_summary_title }}</h3>
+      <p id="success-copy"></p>
+      <p>{{ section.settings.expert_summary_sub }}</p>
+      <button type="button" class="audit-btn outline" id="edit-request">Edit this request</button>
+      <button type="button" class="text-link" id="another-review">Choose another review →</button>
+    </div>
+  </dialog>
+</div>
+
+{% form 'customer', id: 'me-audit-customer-subscribe-form', data-shopify-captcha: 'true' %}
+  <div hidden aria-hidden="true">
+    <input type="hidden" name="contact[tags]" value="free-audit, newsletter" data-me-base-tags="free-audit, newsletter">
+    <input type="email" name="contact[email]" value="" autocomplete="email" required>
+    <button type="submit" tabindex="-1" hidden aria-hidden="true">Subscribe</button>
+  </div>
+{% endform %}
+
+{% if section.settings.submit_contact_form %}
+  {% form 'contact', id: 'me-expert-shopify-form', data-shopify-captcha: 'true' %}
+    <div hidden aria-hidden="true">
+      <input type="hidden" name="contact[tags]" value="free-expert-review">
+      <input type="text" name="contact[name]" value="">
+      <input type="email" name="contact[email]" value="" autocomplete="email" required>
+      <input type="hidden" name="contact[customer_email]" value="">
+      <input type="hidden" name="contact[audited_website]" value="">
+      <textarea name="contact[body]" required></textarea>
+      <button type="submit" tabindex="-1" hidden aria-hidden="true">Submit</button>
+    </div>
+  {% endform %}
+{% endif %}
+
+<script>
+  window.ME_AUDIT_CONFIG = {
+    apiBase: {{ section.settings.api_base_url | json }},
+    locale: {{ section.settings.locale | json }},
+    source: "shopify",
+    exposeFullReport: {{ section.settings.expose_full_report | json }},
+    submitContactForm: {{ section.settings.submit_contact_form | json }}
+  };
+</script>
+<script src="{{ 'me-free-audit.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "ME Free Audit",
+  "tag": "section",
+  "class": "section-me-free-audit",
+  "settings": [
+    { "type": "text", "id": "api_base_url", "label": "Audit API URL", "info": "Use custom domain (audit-api.meetdtc.com). Do not use onrender.com.", "default": "https://audit-api.meetdtc.com" },
+    { "type": "checkbox", "id": "expose_full_report", "label": "Show full report without email", "default": false },
+    { "type": "checkbox", "id": "submit_contact_form", "label": "Expert review: Shopify contact form", "info": "Unlock email uses customer subscribe form only (always). This toggles contact form for expert review requests.", "default": true },
+    { "type": "checkbox", "id": "show_demo_strip", "label": "Show demo strip", "default": false },
+    { "type": "text", "id": "demo_strip_text", "label": "Demo strip text", "default": "Live automated audit · Results from your API deployment." },
+    { "type": "select", "id": "locale", "label": "Locale", "default": "en", "options": [{ "value": "en", "label": "English" }, { "value": "zh", "label": "Chinese" }] },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FREE WEBSITE & GROWTH AUDIT" },
+    { "type": "text", "id": "heading_line1", "label": "Heading line 1", "default": "See what is holding" },
+    { "type": "text", "id": "heading_line2", "label": "Heading line 2", "default": "your website back." },
+    { "type": "textarea", "id": "lead", "label": "Lead paragraph", "default": "One website. Three essential checks. Find the issues, understand your scores and see where to focus next." },
+    { "type": "text", "id": "step_1", "label": "Journey step 1", "default": "Enter your website" },
+    { "type": "text", "id": "step_2", "label": "Journey step 2", "default": "See your scores" },
+    { "type": "text", "id": "step_3", "label": "Journey step 3", "default": "Unlock the details" },
+    { "type": "text", "id": "chip_auto", "label": "Chip: automated", "default": "AUTOMATED CHECK · FREE" },
+    { "type": "text", "id": "chip_live", "label": "Chip: live", "default": "LIVE SCAN" },
+    { "type": "text", "id": "panel_title", "label": "Panel title", "default": "Start with your website." },
+    { "type": "text", "id": "url_label", "label": "URL field label", "default": "Website URL" },
+    { "type": "text", "id": "url_placeholder", "label": "URL placeholder", "default": "yourcompany.com" },
+    { "type": "text", "id": "btn_check", "label": "Check button", "default": "Check My Website" },
+    { "type": "text", "id": "hint_scores", "label": "Hint under form", "default": "See your scores first. Enter your email for the full report." },
+    { "type": "text", "id": "progress_text", "label": "Progress message", "default": "Running performance, SEO sample and tracking scan..." },
+    { "type": "text", "id": "dim_perf_sub", "label": "Performance card subtitle", "default": "Loading speed and page experience" },
+    { "type": "text", "id": "dim_seo_sub", "label": "SEO card subtitle", "default": "Metadata and technical foundations" },
+    { "type": "text", "id": "dim_track_sub", "label": "Tracking card subtitle", "default": "Analytics signals and event coverage" },
+    { "type": "text", "id": "snapshot_eyebrow", "label": "Snapshot eyebrow", "default": "YOUR AUTOMATED SNAPSHOT" },
+    { "type": "text", "id": "snapshot_title", "label": "Snapshot title", "default": "Your website, at a glance." },
+    { "type": "text", "id": "live_badge", "label": "Live badge", "default": "LIVE RESULTS" },
+    { "type": "textarea", "id": "results_note", "label": "Results disclaimer", "default": "Automated diagnosis - not keyword rankings or guaranteed search visibility." },
+    { "type": "text", "id": "btn_another", "label": "Check another link", "default": "Check another website" },
+    { "type": "text", "id": "unlock_eyebrow", "label": "Unlock eyebrow", "default": "SEE THE DETAILS" },
+    { "type": "text", "id": "unlock_title", "label": "Unlock title", "default": "Your scores are just the beginning." },
+    { "type": "textarea", "id": "unlock_lead", "label": "Unlock lead", "default": "Unlock the findings behind each score, recommended next steps and access to our free expert-led audits." },
+    { "type": "text", "id": "email_label", "label": "Email field label", "default": "Work email" },
+    { "type": "text", "id": "email_placeholder", "label": "Email placeholder", "default": "you@company.com" },
+    { "type": "text", "id": "btn_unlock", "label": "Unlock button", "default": "View My Full Report" },
+    { "type": "text", "id": "unlock_small", "label": "Unlock footnote", "default": "Each unlock adds a customer tag: audit-yourdomain.com-YYYY.MM.DD.HH.mm" },
+    { "type": "text", "id": "report_eyebrow", "label": "Report eyebrow", "default": "FULL REPORT" },
+    { "type": "text", "id": "report_title", "label": "Report title", "default": "From findings to priorities." },
+    { "type": "textarea", "id": "report_sub", "label": "Report subtitle", "default": "Automated diagnosis based on your live scan." },
+    { "type": "text", "id": "expert_title", "label": "Expert section title", "default": "Free In-Depth Audits" },
+    { "type": "textarea", "id": "expert_lead", "label": "Expert section lead", "default": "Your report shows where to start. Our specialists help you understand what to do next. Choose one area for a free manual review." },
+    { "type": "text", "id": "expert_promise_strong", "label": "Expert promise (strong)", "default": "10 areas. Real expertise." },
+    { "type": "text", "id": "expert_promise_sub", "label": "Expert promise (sub)", "default": "Free manual review · One service per request" },
+    { "type": "textarea", "id": "expert_manual_note", "label": "Expert manual note", "default": "Turnaround starts once all required information has been received. Each request covers one service." },
+    { "type": "text", "id": "drawer_title", "label": "Drawer title", "default": "Request your free review." },
+    { "type": "text", "id": "expert_btn_submit", "label": "Expert submit button", "default": "Request My Free Review" },
+    { "type": "text", "id": "drawer_disclosure", "label": "Drawer disclosure", "default": "Submitting sends your request to our team via the store contact form." },
+    { "type": "text", "id": "expert_summary_title", "label": "Expert success title", "default": "Your request preview is ready." },
+    { "type": "textarea", "id": "expert_summary_sub", "label": "Expert success subtitle", "default": "Our team will confirm scope, required information and timing." }
+  ],
+  "presets": [{ "name": "ME Free Audit" }]
+}
+{% endschema %}

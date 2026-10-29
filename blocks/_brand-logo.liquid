@@ -11,6 +11,10 @@
     assign has_logo = true
   endif
   assign alt = block_settings.alt | default: block_settings.image.alt | default: shop.name
+  assign image_scale = block_settings.image_scale | default: 25
+  assign display_width = block_settings.image.width | times: image_scale | divided_by: 100.0
+  assign image_sizes = display_width | ceil | append: 'px'
+  assign image_source_width = block_settings.image.width | at_most: 5760
 %}
 
 {% if has_logo or request.design_mode %}
@@ -18,12 +22,11 @@
     {%- if has_logo -%}
       {{
         block_settings.image
-        | image_url: width: 600
+        | image_url: width: image_source_width
         | image_tag:
           width: block_settings.image.width,
           height: block_settings.image.height,
-          widths: '120, 180, 240, 360, 480, 600',
-          sizes: '(min-width: 750px) 180px, 120px',
+          sizes: image_sizes,
           loading: image_loading,
           decoding: 'async',
           class: 'brand-logo__image',
@@ -38,12 +41,13 @@
     <a
       href="{{ block_settings.link }}"
       class="brand-logo brand-logo--linked"
+      style="--brand-image-width: {{ display_width }}px;"
       {{ block.shopify_attributes }}
     >
       {{ logo_image }}
     </a>
   {% else %}
-    <div class="brand-logo" {{ block.shopify_attributes }}>
+    <div class="brand-logo" style="--brand-image-width: {{ display_width }}px;" {{ block.shopify_attributes }}>
       {{ logo_image }}
     </div>
   {% endif %}
@@ -54,8 +58,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: var(--brand-logo-height, 40px);
-    max-width: 100%;
+    flex-shrink: 0;
   }
 
   .brand-logo--linked {
@@ -64,9 +67,10 @@
 
   .brand-logo__image,
   .brand-logo__placeholder {
-    height: 100%;
-    width: auto;
-    max-width: 100%;
+    display: block;
+    height: auto;
+    width: var(--brand-image-width, auto);
+    max-width: none;
     object-fit: contain;
   }
 
@@ -86,6 +90,16 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:settings.image"
+    },
+    {
+      "type": "range",
+      "id": "image_scale",
+      "label": "t:options.scale",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 25
     },
     {
       "type": "url",

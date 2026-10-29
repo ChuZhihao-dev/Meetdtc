@@ -8,6 +8,10 @@
  * ------------------------------------------------------------
  */{
   "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {"padding-block-start": 16, "padding-block-end": 16}
+    },
     "main": {
       "type": "main-page",
       "blocks": {
@@ -55,6 +59,7 @@
     }
   },
   "order": [
+    "breadcrumbs",
     "main"
   ]
 }

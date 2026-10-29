@@ -9,6 +9,13 @@
  */
 {
   "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
+    },
     "main": {
       "type": "main-blog",
       "blocks": {
@@ -196,7 +203,7 @@
       "type": "main-our-work",
       "name": "t:work_catalog.name",
       "settings": {
-        "blog": "our-works",
+        "blog": "our-work",
         "heading": "Our Work",
         "description": "<p>See how we help businesses grow through MarTech, technology and marketing.</p>",
         "heading_gradient": "linear-gradient(132deg, rgba(11, 34, 184, 1) 2.6%, rgba(150, 33, 196, 1) 50%)",
@@ -222,6 +229,7 @@
     }
   },
   "order": [
+    "breadcrumbs",
     "main",
     "main_our_work_VcmPig"
   ]

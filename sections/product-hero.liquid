@@ -115,22 +115,6 @@
     max-width: 1152px;
     min-width: 0;
   }
-  .product-hero.reveal-ready [data-reveal] {
-    transition: none;
-  }
-  .product-hero.reveal-ready [data-reveal][data-state='in'] {
-    animation: product-hero-fade-up 700ms ease-in both;
-    animation-delay: calc(var(--reveal-index, 0) * 120ms);
-  }
-  @keyframes product-hero-fade-up {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .product-hero.reveal-ready [data-reveal][data-state='in'] {
-      animation: none;
-    }
-  }
   @media screen and (max-width: 749px) {
     .product-hero__content { gap: 24px; }
     .product-hero__description br { display: none; }

@@ -10,6 +10,10 @@
   assign section_settings = section.settings
   assign heading_text = section_settings.heading
 %}
+{% if heading_text != blank %}
+  {% render 'scroll-reveal-styles' %}
+  <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
+{% endif %}
 
 
 
@@ -27,12 +31,12 @@
   style="{% render 'spacing-style', settings: section_settings %}
     --brand-logo-gap: {{ section_settings.logo_gap }}px;
     --brand-logo-row-gap: {{ section_settings.row_gap }}px;
-    --brand-logo-height: {{ section_settings.logo_height }}px;
   "
   {{ section.shopify_attributes }}
 >
   {% if heading_text != blank %}
     {% render 'text-block-styles' %}
+    <scroll-reveal-component data-reveal-scope>
     <div
       class="
         partner-brands__heading
@@ -42,6 +46,7 @@
         custom-font-size
         {% if section_settings.gradient_text %}text-block--gradient{% endif %}
       "
+      data-reveal
       style="
         {% render 'typography-style', settings: section_settings, type: 'body', preset: 'custom' %}
         --text-align: {{ section_settings.alignment }};
@@ -56,6 +61,7 @@
     >
       {{ heading_text }}
     </div>
+    </scroll-reveal-component>
   {% endif %}
 
   {% if section_settings.thickness > 0 %}
@@ -112,7 +118,7 @@
     }
   }
   @media screen and (max-width: 749px) {
-    .partner-brands .brand-row { --brand-logo-gap: 24px; --brand-logo-height: 28px; }
+    .partner-brands .brand-row { --brand-logo-gap: 24px; }
   }
 {% endstylesheet %}
 
@@ -458,16 +464,6 @@
       "default": 16
     },
     {
-      "type": "range",
-      "id": "logo_height",
-      "label": "t:settings.height",
-      "min": 16,
-      "max": 96,
-      "step": 1,
-      "unit": "px",
-      "default": 40
-    },
-    {
       "type": "header",
       "content": "t:content.padding"
     },
@@ -518,7 +514,6 @@
         "width_percent": 100,
         "logo_gap": 78,
         "row_gap": 16,
-        "logo_height": 40,
         "padding-block-start": 42,
         "padding-block-end": 37
       },

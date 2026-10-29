@@ -9,6 +9,10 @@
  */
 {
   "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {"padding-block-start": 16, "padding-block-end": 16}
+    },
     "page_background_ptpaKc": {
       "type": "page-background",
       "name": "t:names.page_background",
@@ -86,6 +90,7 @@
     }
   },
   "order": [
+    "breadcrumbs",
     "page_background_ptpaKc",
     "cart-section"
   ]

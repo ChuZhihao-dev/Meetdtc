@@ -81,7 +81,7 @@
   @media (prefers-reduced-motion: reduce) {
     .business-challenge__more, .business-challenge__more::before { transition: none; }
   }
-  .business-challenge.reveal-ready [data-reveal] { transform: translateY(16px); transition-duration: 0.4s; transition-delay: calc(var(--reveal-index, 0) * 60ms); }
+  .business-challenge.reveal-ready [data-reveal] { transform: translateY(var(--text-reveal-distance, 32px)); transition-duration: var(--text-reveal-duration, 0.6s); transition-delay: min(calc(var(--reveal-index, 0) * 90ms), 540ms); }
   .business-challenge.reveal-ready .business-challenge__figure[data-reveal] { transform: translateY(16px) scale(0.97); }
   .business-challenge.reveal-ready [data-reveal][data-state='in'] { transform: none; }
   @media screen and (min-width: 750px) {

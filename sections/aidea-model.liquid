@@ -5,18 +5,20 @@
 
 {% unless section.settings.enable_animation == false %}
   <script src="{{ 'aidea-model.js' | asset_url }}" type="module" fetchpriority="low"></script>
+  {% render 'scroll-reveal-styles' %}
+  <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
 {% endunless %}
 <div class="section-background aidea-model__background" style="--aidea-bg-from:{{ section.settings.background_from }};--aidea-bg-to:{{ section.settings.background_to }};"></div>
 <aidea-model-component data-animate="{{ section.settings.enable_animation | default: true, allow_false: true }}" class="section section--page-width spacing-style aidea-model" style="{% render 'spacing-style', settings: section.settings %}">
   <div class="aidea-model__content">
-    <div class="aidea-model__intro">
+    <scroll-reveal-component class="aidea-model__intro" {% unless section.settings.enable_animation == false %}data-reveal-scope{% endunless %}>
       {% if section.settings.heading != blank %}
-        <h2 class="aidea-model__heading">{{ section.settings.heading | escape }}</h2>
+        <h2 class="aidea-model__heading" data-reveal>{{ section.settings.heading | escape }}</h2>
       {% endif %}
       {% if section.settings.description != blank %}
-        <p class="aidea-model__description">{{ section.settings.description | escape | newline_to_br }}</p>
+        <p class="aidea-model__description" data-reveal>{{ section.settings.description | escape | newline_to_br }}</p>
       {% endif %}
-    </div>
+    </scroll-reveal-component>
     <div class="aidea-model__visual">
     <div class="aidea-model__diagram" ref="diagram">
       {% comment %}Paint backgrounds and connectors first so satellite discs cannot cover their icons.{% endcomment %}
@@ -78,6 +80,7 @@
     min-width: 0;
   }
   .aidea-model__intro {
+    display: block;
     min-width: 0;
     position: relative;
     font-family: var(--font-heading--family);

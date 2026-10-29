@@ -11,6 +11,8 @@
   assign section_settings = section.settings
   assign heading_text = section_settings.heading
 %}
+{% render 'scroll-reveal-styles' %}
+<script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
 
 
 
@@ -33,9 +35,10 @@
   {{ section.shopify_attributes }}
 >
   {% if section_settings.eyebrow != blank or heading_text != blank or section_settings.description != blank %}
+    <scroll-reveal-component data-reveal-scope>
     <div class="why-choose-us__intro">
       {% if section_settings.eyebrow != blank %}
-        <p class="why-choose-us__eyebrow">{{ section_settings.eyebrow }}</p>
+        <p class="why-choose-us__eyebrow" data-reveal>{{ section_settings.eyebrow }}</p>
       {% endif %}
 
       {% if heading_text != blank %}
@@ -49,6 +52,7 @@
             custom-font-size
             {% if section_settings.gradient_text %}text-block--gradient{% endif %}
           "
+          data-reveal
           style="
             {% render 'typography-style', settings: section_settings, type: 'heading', preset: 'custom' %}
             --text-align: {{ section_settings.alignment }};
@@ -66,9 +70,10 @@
       {% endif %}
 
       {% if section_settings.description != blank %}
-        <div class="why-choose-us__description">{{ section_settings.description }}</div>
+        <div class="why-choose-us__description" data-reveal>{{ section_settings.description }}</div>
       {% endif %}
     </div>
+    </scroll-reveal-component>
   {% endif %}
 
   {%- capture value_props -%}

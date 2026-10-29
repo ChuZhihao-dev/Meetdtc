@@ -11,6 +11,8 @@
   assign section_settings = section.settings
   assign heading_text = section_settings.heading
 %}
+{% render 'scroll-reveal-styles' %}
+<script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
 
 
 
@@ -28,6 +30,7 @@
   style="{% render 'spacing-style', settings: section_settings %}"
   {{ section.shopify_attributes }}
 >
+  <scroll-reveal-component data-reveal-scope>
   <div
     class="cta-banner__panel spacing-style"
     style="
@@ -57,6 +60,7 @@
           custom-font-size
           {% if section_settings.gradient_text %}text-block--gradient{% endif %}
         "
+        data-reveal
         style="
           {% render 'typography-style', settings: section_settings, type: 'heading', preset: 'custom' %}
           {% if section_settings.gradient_text %}
@@ -72,7 +76,7 @@
       </div>
     {% endif %}
 
-    <div class="cta-banner__aside">
+    <div class="cta-banner__aside" data-reveal>
       {% if section_settings.description != blank %}
         <div class="cta-banner__description">{{ section_settings.description }}</div>
       {% endif %}
@@ -87,6 +91,7 @@
       {% endif %}
     </div>
   </div>
+  </scroll-reveal-component>
 </div>
 
 {% stylesheet %}

@@ -9,6 +9,13 @@
  */
 {
   "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
+    },
     "page_background_n8zJR6": {
       "type": "page-background",
       "name": "t:names.page_background",
@@ -386,7 +393,7 @@
         "eyebrow": "Generative Engine Optimization",
         "heading": "Help Your Brand Become Part of the AI Answer",
         "heading_tag": "h1",
-        "description": "ME help businesses improve how their brands appear in AI-generated answers. Through customer question research, clear brand information, useful content, and relevant third-party coverage, we build a measurable program around brand mentions, recommendations, and citations.",
+        "description": "ME help businesses improve how their brands appear in AI-generated answers. Through customer \nquestion research, clear brand information, useful content, and relevant third-party coverage, \nwe build a measurable program around brand mentions, recommendations, and citations.",
         "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
@@ -400,55 +407,60 @@
         "padding-block-end": 0
       }
     },
-    "partner_brands_z4GbiM": {
+    "partner_brands_dBqdBW": {
       "type": "partner-brands",
       "blocks": {
-        "brand_row_PrWVTn": {
+        "brand_row_YNQBtF": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "static"
           },
           "blocks": {
-            "brand_logo_b8nyYi": {
+            "brand_logo_Ej4XVW": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/Container.png",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_fWcXd8": {
+            "brand_logo_LyqN3V": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/Container_1.png",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_4qJCgJ": {
+            "brand_logo_wGfPt7": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/Container_2.png",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_mEGeYg": {
+            "brand_logo_biUixc": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/Container_4.png",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_mbdQht": {
+            "brand_logo_gTGErX": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/Container_3.png",
+                "image_scale": 20,
                 "link": "",
                 "alt": ""
               },
@@ -456,50 +468,54 @@
             }
           },
           "block_order": [
-            "brand_logo_b8nyYi",
-            "brand_logo_fWcXd8",
-            "brand_logo_4qJCgJ",
-            "brand_logo_mEGeYg",
-            "brand_logo_mbdQht"
+            "brand_logo_Ej4XVW",
+            "brand_logo_LyqN3V",
+            "brand_logo_wGfPt7",
+            "brand_logo_biUixc",
+            "brand_logo_gTGErX"
           ]
         },
-        "brand_row_4zdXEJ": {
+        "brand_row_JQ8bEL": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "static"
           },
           "blocks": {
-            "brand_logo_rT6BCw": {
+            "brand_logo_trbiq3": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/Container_6.png",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_hGjmae": {
+            "brand_logo_fhg7XD": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/Container_7.png",
+                "image_scale": 17,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_rU66cn": {
+            "brand_logo_WfxGVH": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/Container_9.png",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
               "blocks": {}
             },
-            "brand_logo_xBwQDq": {
+            "brand_logo_8t43Uh": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/Container_10.png",
+                "image_scale": 25,
                 "link": "",
                 "alt": ""
               },
@@ -507,16 +523,16 @@
             }
           },
           "block_order": [
-            "brand_logo_rT6BCw",
-            "brand_logo_hGjmae",
-            "brand_logo_rU66cn",
-            "brand_logo_xBwQDq"
+            "brand_logo_trbiq3",
+            "brand_logo_fhg7XD",
+            "brand_logo_WfxGVH",
+            "brand_logo_8t43Uh"
           ]
         }
       },
       "block_order": [
-        "brand_row_PrWVTn",
-        "brand_row_4zdXEJ"
+        "brand_row_YNQBtF",
+        "brand_row_JQ8bEL"
       ],
       "name": "t:names.partner_brands",
       "settings": {
@@ -542,9 +558,8 @@
         "width_percent": 100,
         "logo_gap": 78,
         "row_gap": 16,
-        "logo_height": 94,
-        "padding-block-start": 42,
-        "padding-block-end": 37
+        "padding-block-start": 40,
+        "padding-block-end": 24
       }
     },
     "business_challenge_iR7zkb": {
@@ -626,7 +641,7 @@
         "center_text": "GROWTH\nPOTENTIAL",
         "caption": "Existing potential is not being fully converted into business value.",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "2.5rem",
         "gradient_text": true,
         "gradient_color_from": "#0b22b8",
         "gradient_color_to": "#9621c4",
@@ -641,8 +656,8 @@
         "initial_visible_items": 4,
         "sticky_figure": true,
         "enable_animation": true,
-        "padding-block-start": 36,
-        "padding-block-end": 60
+        "padding-block-start": 80,
+        "padding-block-end": 80
       }
     },
     "our_approach_dJQKw8": {
@@ -659,8 +674,8 @@
         "text_color": "#000000",
         "heading_gradient": "linear-gradient(122.1396deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
         "background": "",
-        "padding-block-start": 60,
-        "padding-block-end": 60,
+        "padding-block-start": 80,
+        "padding-block-end": 80,
         "padding_mobile_top": 40,
         "padding_mobile_bottom": 40,
         "enable_reveal": true
@@ -747,10 +762,10 @@
         "card_opacity": 58,
         "card_border": "#ffffff",
         "card_radius": 13,
-        "column_gap": 33,
-        "row_gap": 29,
-        "padding-block-start": 60,
-        "padding-block-end": 60,
+        "column_gap": 24,
+        "row_gap": 24,
+        "padding-block-start": 80,
+        "padding-block-end": 80,
         "padding_mobile_top": 40,
         "padding_mobile_bottom": 40,
         "enable_reveal": true
@@ -817,8 +832,8 @@
         "text_color": "#000000",
         "accent_color": "#9621c4",
         "step_gap": 60,
-        "padding-block-start": 60,
-        "padding-block-end": 100
+        "padding-block-start": 80,
+        "padding-block-end": 80
       }
     },
     "featured_client_story_ChKJVj": {
@@ -882,8 +897,8 @@
         "button_background": "#6d28d9",
         "button_text_color": "#ffffff",
         "card_radius": 28,
-        "padding-block-start": 60,
-        "padding-block-end": 60,
+        "padding-block-start": 80,
+        "padding-block-end": 80,
         "enable_reveal": false
       }
     },
@@ -1019,7 +1034,7 @@
         "heading": "<p>About Working With ME</p>",
         "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "2.5rem",
         "weight": "600",
         "line_height": "1.3",
         "wrap": "balance",
@@ -1040,16 +1055,17 @@
         "icon_color": "#3f4eff",
         "heading_gap": 52,
         "list_max_width": 1140,
-        "padding-block-start": 92,
-        "padding-block-end": 96
+        "padding-block-start": 80,
+        "padding-block-end": 80
       }
     }
   },
   "order": [
+    "breadcrumbs",
     "page_background_n8zJR6",
     "main",
     "product_hero_jiNakp",
-    "partner_brands_z4GbiM",
+    "partner_brands_dBqdBW",
     "business_challenge_iR7zkb",
     "our_approach_dJQKw8",
     "service_scope_VaDYAw",

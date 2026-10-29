@@ -36,12 +36,14 @@
   endif
 %}
 {% render 'contrast-override', background_color: section.settings.background_color, section_id: color_id %}
+{% render 'scroll-reveal-styles' %}
 {% if has_video %}
   <script src="{{ 'growth-hero.js' | asset_url }}" type="module" fetchpriority="low"></script>
 {% endif %}
 
 <growth-hero-component
   data-play-once="{{ section.settings.video_play_once }}"
+  data-text-fade-up
   class="growth-hero color-custom-{{ color_id }}{% if section.settings.stack_media_on_mobile %} hero--stack-mobile{% endif %}"
   style="
     --growth-hero-gap: {{ section.settings.gap }}px;

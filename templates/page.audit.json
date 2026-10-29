@@ -1,0 +1,137 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "t:names.title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "weight": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "gradient_text": false,
+            "gradient_color_from": "#2f6df6",
+            "gradient_color_to": "#9333ea",
+            "gradient_angle": 90,
+            "gradient_start_position": 0,
+            "gradient_end_position": 100,
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {
+            "text_color": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "me_audit_bAB9pL": {
+      "type": "me-audit",
+      "name": "ME Free Audit",
+      "settings": {
+        "api_base_url": "https://meetdtc-audit.onrender.com/",
+        "expose_full_report": false,
+        "submit_contact_form": true,
+        "show_demo_strip": false,
+        "demo_strip_text": "Live automated audit · Results from your API deployment.",
+        "locale": "en",
+        "eyebrow": "FREE WEBSITE & GROWTH AUDIT",
+        "heading_line1": "See what is holding",
+        "heading_line2": "your website back.",
+        "lead": "One website. Three essential checks. Find the issues, understand your scores and see where to focus next.",
+        "step_1": "Enter your website",
+        "step_2": "See your scores",
+        "step_3": "Unlock the details",
+        "chip_auto": "AUTOMATED CHECK · FREE",
+        "chip_live": "LIVE SCAN",
+        "panel_title": "Start with your website.",
+        "url_label": "Website URL",
+        "url_placeholder": "yourcompany.com",
+        "btn_check": "Check My Website",
+        "hint_scores": "See your scores first. Enter your email for the full report.",
+        "progress_text": "Running performance, SEO sample and tracking scan...",
+        "dim_perf_sub": "Loading speed and page experience",
+        "dim_seo_sub": "Metadata and technical foundations",
+        "dim_track_sub": "Analytics signals and event coverage",
+        "snapshot_eyebrow": "YOUR AUTOMATED SNAPSHOT",
+        "snapshot_title": "Your website, at a glance.",
+        "live_badge": "LIVE RESULTS",
+        "results_note": "Automated diagnosis - not keyword rankings or guaranteed search visibility.",
+        "btn_another": "Check another website",
+        "unlock_eyebrow": "SEE THE DETAILS",
+        "unlock_title": "Your scores are just the beginning.",
+        "unlock_lead": "Unlock the findings behind each score, recommended next steps and access to our free expert-led audits.",
+        "email_label": "Work email",
+        "email_placeholder": "you@company.com",
+        "btn_unlock": "View My Full Report",
+        "unlock_small": "Your email and URL are saved to the store contact form.",
+        "report_eyebrow": "FULL REPORT",
+        "report_title": "From findings to priorities.",
+        "report_sub": "Automated diagnosis based on your live scan.",
+        "expert_title": "Free In-Depth Audits",
+        "expert_lead": "Your report shows where to start. Our specialists help you understand what to do next. Choose one area for a free manual review.",
+        "expert_promise_strong": "10 areas. Real expertise.",
+        "expert_promise_sub": "Free manual review · One service per request",
+        "expert_manual_note": "Turnaround starts once all required information has been received. Each request covers one service.",
+        "drawer_title": "Request your free review.",
+        "expert_btn_submit": "Request My Free Review",
+        "drawer_disclosure": "Submitting sends your request to our team via the store contact form.",
+        "expert_summary_title": "Your request preview is ready.",
+        "expert_summary_sub": "Our team will confirm scope, required information and timing."
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main",
+    "me_audit_bAB9pL"
+  ]
+}

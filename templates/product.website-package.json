@@ -9,6 +9,10 @@
  */
 {
   "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {"padding-block-start": 16, "padding-block-end": 16}
+    },
     "main": {
       "type": "product-information",
       "blocks": {
@@ -321,6 +325,7 @@
     }
   },
   "order": [
+    "breadcrumbs",
     "main"
   ]
 }

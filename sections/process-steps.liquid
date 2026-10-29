@@ -73,16 +73,14 @@
   .process-steps__points { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; font-size: 14px; font-weight: 400; line-height: 22px; }
   .process-steps__points li { position: relative; padding-inline-start: 14px; }
   .process-steps__points li::before { content: '•'; position: absolute; inset-inline-start: 0; color: var(--process-steps-accent); }
-  .process-steps.reveal-ready [data-reveal] { transition-delay: calc(var(--reveal-index, 0) * 120ms); }
-  .process-steps.reveal-ready [data-reveal][data-state='before'] { transform: translateY(24px); }
-  .process-steps.reveal-ready .process-steps__intro { transition-duration: 500ms; }
-  .process-steps.reveal-ready .process-steps__intro[data-state='before'] { transform: translateY(16px); }
+  .process-steps.reveal-ready [data-reveal] { transition-delay: min(calc(var(--reveal-index, 0) * 90ms), 540ms); }
+  .process-steps.reveal-ready [data-reveal][data-state='before'] { transform: translateY(var(--text-reveal-distance, 32px)); }
   /* Keep hover translation independent of the entrance transform and its stagger. */
   .process-steps .process-steps__card,
   .process-steps.reveal-ready .process-steps__card[data-reveal] {
     transition:
-      opacity 600ms var(--ease-out-cubic) calc(var(--reveal-index, 0) * 120ms),
-      transform 600ms var(--ease-out-cubic) calc(var(--reveal-index, 0) * 120ms),
+      opacity var(--text-reveal-duration, 0.6s) var(--ease-out-cubic) min(calc(var(--reveal-index, 0) * 90ms), 540ms),
+      transform var(--text-reveal-duration, 0.6s) var(--ease-out-cubic) min(calc(var(--reveal-index, 0) * 90ms), 540ms),
       translate var(--animation-speed-medium) var(--ease-out-cubic),
       box-shadow var(--animation-speed-medium) var(--ease-out-cubic);
   }

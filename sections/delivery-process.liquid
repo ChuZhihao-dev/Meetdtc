@@ -6,6 +6,7 @@
 {% liquid
   assign s = section.settings
 %}
+{% render 'scroll-reveal-styles' %}
 <div class="section-background delivery-process__background" style="--delivery-bg: {{ s.background }};"></div>
 <delivery-process class="section section--full-width spacing-style delivery-process" style="{% render 'spacing-style', settings: s %} --delivery-heading: {{ s.heading_gradient }}; --delivery-text: {{ s.text_color }}; --delivery-accent: {{ s.accent_color }}; --delivery-gap: {{ s.step_gap }}px;">
   <div class="delivery-process__inner{% if section.blocks.size > 3 %} delivery-process__inner--long{% endif %}">
@@ -72,8 +73,7 @@
   .delivery-process__copy { transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1); }
   .delivery-process__step-heading { transition: opacity 240ms ease; }
   .delivery-process__intro.is-revealed,
-  .delivery-process__step.is-revealed .delivery-process__copy { animation: delivery-process-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) both; }
-  @keyframes delivery-process-enter { from { opacity: 0.35; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
+  .delivery-process__step.is-revealed .delivery-process__copy { animation: text-fade-up var(--text-reveal-duration, 0.6s) var(--ease-out-cubic) both; }
   @media screen and (min-width: 990px) {
     /* Grid alignment sets the initial position; sticky follows within the timeline. */
     .delivery-process__intro { position: sticky; top: calc(var(--header-height, 0px) + 32px); }
