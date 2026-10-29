@@ -104,6 +104,13 @@
     "variant_button_radius": 14,
     "variant_button_width": "equal-width-buttons",
     "content_for_index": [],
+    "blocks": {
+      "4915582726668902442": {
+        "type": "shopify://apps/meet-bot/blocks/onsite_kits/dd67cd18-41cc-486c-9db5-c3347b090728",
+        "disabled": false,
+        "settings": {}
+      }
+    },
     "color_palette": {
       "background": "#ffffff",
       "foreground": "#000000",

@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "brand_footer": {
+    "social_media": "Social-Media-Links"
+  },
   "global_breadcrumbs": {
     "home": "Startseite",
     "label": "Brotkrümelnavigation"

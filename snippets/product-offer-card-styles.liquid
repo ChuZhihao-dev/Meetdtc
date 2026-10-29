@@ -12,9 +12,9 @@
   .offer-card__body { display: flex; flex: 1; flex-direction: column; min-inline-size: 0; padding-block-start: 14px; }
   .offer-card__category { margin: 0 0 3px; color: color-mix(in srgb, var(--me-picks-offer-color, var(--me-picks-accent)) 80%, var(--me-picks-card-background)); font-size: 10px; font-weight: 600; line-height: 18px; letter-spacing: 1.2px; text-transform: uppercase; overflow-wrap: anywhere; }
   .offer-card__brand { margin: 0; color: var(--color-foreground); font-family: inherit; font-size: 20px; font-weight: 800; line-height: 28px; overflow-wrap: anywhere; }
-  .offer-card__description { margin: 0; color: var(--color-foreground-muted); font-size: 13px; font-weight: 400; line-height: 24px; overflow-wrap: anywhere; }
-  .offer-card__summary { margin: 10px 0 0; color: var(--me-picks-offer-color, var(--me-picks-accent)); font-size: 32px; font-weight: 800; line-height: 46px; overflow-wrap: anywhere; }
-  .offer-card__terms { margin: 0; color: var(--color-foreground-muted); font-size: 12px; font-weight: 400; line-height: 22px; overflow-wrap: anywhere; }
+  .offer-card__description { margin: 0; color: var(--color-foreground-muted); font-size: 12px; font-weight: 400; line-height: 1.2; overflow-wrap: anywhere; }
+  .offer-card__summary { margin: 24px 0 0; color: var(--me-picks-offer-color, var(--me-picks-accent)); font-size: 32px; font-weight: 800; line-height: 46px; overflow-wrap: anywhere; }
+  .offer-card__terms { margin: 0; color: var(--color-foreground-muted); font-size: 12px; font-weight: 400; line-height: 1.2; overflow-wrap: anywhere; }
   .offer-card__actions { display: grid; gap: 12px; inline-size: 100%; min-inline-size: 0; margin-block-start: auto; padding-block-start: 12px; }
   .offer-card__code-row { display: flex; align-items: center; gap: 6px; min-inline-size: 0; min-block-size: 44px; padding: 6px 10px; border: 1px solid color-mix(in srgb, var(--me-picks-code-color) 16%, var(--me-picks-code-background)); border-radius: 10px; background: var(--me-picks-code-background); color: var(--color-foreground-muted); }
   .offer-card__code-row--empty { justify-content: center; font-size: 12px; line-height: 22px; }
@@ -22,10 +22,10 @@
   .offer-card__code { display: block; flex: 1; inline-size: 0; min-inline-size: 0; margin: 0; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: transparent; color: var(--me-picks-code-color); font: inherit; font-size: 13px; font-weight: 800; line-height: 30px; text-align: center; text-overflow: ellipsis; }
   input.offer-card__code { cursor: text; }
   .offer-card__copy { display: inline-flex; flex: none; align-items: center; justify-content: center; min-inline-size: 70px; min-block-size: 30px; padding: 4px 8px; border: 0; border-radius: 8px; background: color-mix(in srgb, var(--me-picks-accent) 9%, var(--me-picks-code-background)); color: var(--me-picks-accent); font: inherit; font-size: 12px; font-weight: 600; line-height: 22px; cursor: copy; }
-  .offer-card__button { display: flex; align-items: center; justify-content: center; gap: 6px; inline-size: 100%; min-inline-size: 0; min-block-size: 40px; padding: 8px 12px; border: 0; border-radius: 5px; background: var(--me-picks-button-background); color: var(--me-picks-button-color); font: inherit; font-size: 13px; font-weight: 700; line-height: 24px; text-align: center; text-decoration: none; overflow-wrap: anywhere; }
+  .offer-card__button { display: flex; align-items: center; justify-content: center; gap: 6px; inline-size: 100%; min-inline-size: 0; min-block-size: 40px; padding: 8px 12px; border: 0; border-radius: 10px; background: var(--me-picks-button-background); color: var(--me-picks-button-color); font: inherit; font-size: 13px; font-weight: 700; line-height: 24px; text-align: center; text-decoration: none; overflow-wrap: anywhere; }
   .offer-card__button:hover { color: var(--me-picks-button-color); }
   .offer-card__copy[hidden] { display: none; }
-  .offer-card__code:focus-visible, .offer-card__copy:focus-visible, .offer-card__button:focus-visible { outline: 2px solid var(--me-picks-accent); outline-offset: 3px; }
+  .offer-card__code:focus-visible, .offer-card__copy:focus-visible, .offer-card__button:focus-visible { outline: none }
   @media screen and (max-width: 749px) {
     .offer-card__copy, .offer-card__button { min-block-size: 44px; }
   }

@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "brand_footer": {
+    "social_media": "ลิงก์โซเชียลมีเดีย"
+  },
   "global_breadcrumbs": {
     "home": "Home",
     "label": "Breadcrumb"

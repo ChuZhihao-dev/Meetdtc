@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "brand_footer": {
+    "social_media": "Sosiaalisen median linkit"
+  },
   "global_breadcrumbs": {
     "home": "Home",
     "label": "Breadcrumb"

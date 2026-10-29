@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "brand_footer": {
+    "social_media": "Liens de réseaux sociaux"
+  },
   "global_breadcrumbs": {
     "home": "Accueil",
     "label": "Fil d’Ariane"

@@ -44,6 +44,33 @@
           {% else %}{{ shop.name | escape }}{% endif %}
         </a>
         {% if s.description != blank %}<p class="brand-footer__description">{{ s.description | escape | newline_to_br }}</p>{% endif %}
+        {% liquid
+          assign social_keys = 'facebook_url,instagram_url,youtube_url,tiktok_url,twitter_url,threads_url,linkedin_url,bluesky_url,pinterest_url' | split: ','
+          assign social_labels = 'Facebook,Instagram,YouTube,TikTok,X,Threads,LinkedIn,Bluesky,Pinterest' | split: ','
+          assign social_icons = 'facebook,instagram,youtube,tiktok,twitter,threads,linkedin,bluesky,pinterest' | split: ','
+          assign has_social_links = false
+          for social_key in social_keys
+            if s[social_key] != blank
+              assign has_social_links = true
+              break
+            endif
+          endfor
+        %}
+        {% if has_social_links %}
+          <nav class="brand-footer__social" aria-label="{{ 'brand_footer.social_media' | t | escape }}">
+            {% for social_key in social_keys %}
+              {% assign social_url = s[social_key] %}
+              {% if social_url != blank %}
+                {% assign social_index = forloop.index0 %}
+                <a class="brand-footer__social-link" href="{{ social_url | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ social_labels[social_index] | escape }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                    {% render 'icon', icon: social_icons[social_index] %}
+                  </svg>
+                </a>
+              {% endif %}
+            {% endfor %}
+          </nav>
+        {% endif %}
       </div>
       {% assign columns = 'services,company' | split: ',' %}
       {% for column in columns %}
@@ -135,6 +162,9 @@
   .brand-footer__logo--surface { padding: 14px 16px; border-radius: 12px; background: #fff; }
   .brand-footer__logo img { display: block; width: 100%; height: auto; }
   .brand-footer__description { max-width: 357px; margin: 20px 0 0; color: inherit; font-family: var(--font-body--family); font-size: 16px; font-weight: 400; line-height: 1.3; }
+  .brand-footer__social { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 20px; }
+  .brand-footer__social-link { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; }
+  .brand-footer__social-link svg { display: block; width: 20px; height: 20px; fill: currentColor; }
   .brand-footer__heading { margin: 0 0 20px; color: inherit; font-family: inherit; font-size: 21px; font-weight: 600; line-height: 1.2; letter-spacing: 1px; text-transform: uppercase; overflow-wrap: anywhere; }
   .brand-footer__links, .brand-footer__subnav { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: 14px; font-weight: 600; line-height: 1.7; letter-spacing: -0.15px; }
   .brand-footer__subnav { margin-block-start: 8px; padding-inline-start: 12px; }
@@ -195,6 +225,16 @@
       "label": "t:brand_footer.description",
       "default": "Integrated MarTech for global growth — website and e-commerce, customer acquisition, lifecycle marketing and data intelligence."
     },
+    { "type": "header", "content": "t:names.social_media_links" },
+    { "type": "url", "id": "facebook_url", "label": "t:options.facebook" },
+    { "type": "url", "id": "instagram_url", "label": "t:options.instagram" },
+    { "type": "url", "id": "youtube_url", "label": "t:options.youtube" },
+    { "type": "url", "id": "tiktok_url", "label": "t:options.tiktok" },
+    { "type": "url", "id": "twitter_url", "label": "t:options.twitter" },
+    { "type": "url", "id": "threads_url", "label": "t:options.threads" },
+    { "type": "url", "id": "linkedin_url", "label": "t:options.linkedin" },
+    { "type": "url", "id": "bluesky_url", "label": "t:options.bluesky" },
+    { "type": "url", "id": "pinterest_url", "label": "t:options.pinterest" },
     {
       "type": "link_list",
       "id": "services_menu",

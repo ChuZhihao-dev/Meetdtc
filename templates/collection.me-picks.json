@@ -11,7 +11,10 @@
   "sections": {
     "breadcrumbs": {
       "type": "breadcrumbs",
-      "settings": {"padding-block-start": 16, "padding-block-end": 16}
+      "settings": {
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
     },
     "main": {
       "type": "main-me-picks",
@@ -86,7 +89,7 @@
         "background_color": "#e6eaf6",
         "background_gradient": "linear-gradient(145deg, rgba(215, 224, 249, 1) 45%, rgba(230, 234, 246, 1) 98%)",
         "text_color": "#241c52",
-        "heading_gradient": "linear-gradient(135deg, rgba(11, 34, 184, 1) 12%, rgba(150, 33, 196, 1) 88%)",
+        "heading_gradient": "linear-gradient(155deg, rgba(150, 33, 196, 1) 1%, rgba(11, 34, 187, 1) 68%)",
         "accent_color": "#0022ff",
         "offer_heading_color": "#3431ce",
         "card_background": "#f0f2fc",
@@ -95,7 +98,7 @@
         "card_radius": 14,
         "code_background": "#fafbff",
         "code_color": "#241c52",
-        "button_background": "linear-gradient(90deg, #0066ff 0%, #8729f5 100%)",
+        "button_background": "linear-gradient(90deg, rgba(0, 102, 255, 1), rgba(135, 41, 245, 1) 100%)",
         "button_color": "#ffffff",
         "padding-block-start": 48,
         "padding-block-end": 84
