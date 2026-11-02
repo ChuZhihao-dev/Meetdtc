@@ -447,6 +447,7 @@
     "partner_brands": "Partner brands"
   },
   "settings": {
+    "mobile_corner_radius": "行動版圓角",
     "header_menu_active_color": "選單懸停和啟用顏色",
     "video_play_once": "影片只播放一次",
     "challenge_caption_text": "Diagram caption",

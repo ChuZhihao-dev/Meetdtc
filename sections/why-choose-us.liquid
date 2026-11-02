@@ -157,6 +157,17 @@
       --wcu-row-gap: 32px;
     }
   }
+
+  @media screen and (max-width: 749px) {
+    .why-choose-us__heading.custom-font-size { font-size: 1.75rem; line-height: 1.25; }
+    .why-choose-us__heading > * { font-size: inherit; line-height: inherit; }
+    .why-choose-us__description { font-size: 16px; line-height: 1.5; }
+    .why-choose-us__description br { display: none; }
+    .why-choose-us__intro { gap: 16px; }
+    .why-choose-us__grid { margin-block-start: 32px; gap: 24px; }
+    .why-choose-us .value-prop__badge { width: 64px; height: 64px; margin-block-end: 16px; }
+    .why-choose-us .value-prop__title { min-height: 0; margin-block-end: 8px; }
+  }
 {% endstylesheet %}
 
 {% schema %}

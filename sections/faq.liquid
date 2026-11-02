@@ -41,6 +41,7 @@
   {% endif %}
   class="section section--page-width faq spacing-style"
   style="{% render 'spacing-style', settings: section_settings %}
+    --faq-mobile-radius: {{ section_settings.row_radius_mobile }}px;
     --faq-heading-gap: {{ section_settings.heading_gap }}px;
     --faq-row-gap: {{ section_settings.row_gap }}px;
     --faq-row-background: {{ section_settings.row_background }};
@@ -175,6 +176,18 @@
       --faq-heading-gap: 24px;
     }
   }
+
+  @media screen and (max-width: 749px) {
+    .faq__heading { font-size: 1.75rem; line-height: 1.25; }
+    .faq__description { font-size: 16px; line-height: 1.5; }
+    .faq__list .faq-row__summary { min-height: 44px; align-items: flex-start; font-size: 16px; line-height: 1.5; }
+    .faq__list .faq-row__question { overflow-wrap: anywhere; }
+    .faq__list .faq-row__answer { padding-inline-start: 0; padding-block-end: 0; line-height: 1.6; }
+  }
+  @media screen and (max-width: 749px) {
+    .faq__list { gap: 12px; }
+    .faq__list .faq-row { padding: 16px; border-radius: var(--faq-mobile-radius, 12px); }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -182,7 +195,10 @@
   "max_blocks": 20,
   "name": "t:names.faq_section",
   "disabled_on": {
-    "groups": ["header", "footer"]
+    "groups": [
+      "header",
+      "footer"
+    ]
   },
   "blocks": [
     {
@@ -514,6 +530,16 @@
       "step": 4,
       "unit": "px",
       "default": 64
+    },
+    {
+      "type": "range",
+      "id": "row_radius_mobile",
+      "label": "t:settings.mobile_corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 12
     }
   ],
   "presets": [
@@ -587,7 +613,13 @@
           }
         }
       },
-      "block_order": ["row_1", "row_2", "row_3", "row_4", "row_5"]
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5"
+      ]
     }
   ]
 }

@@ -1186,6 +1186,7 @@
     "below_media": "Below media"
   },
   "settings": {
+    "mobile_corner_radius": "Mobile corner radius",
     "header_menu_active_color": "Menu hover and active color",
     "video_play_once": "Play video only once",
     "challenge_caption_text": "Diagram caption",

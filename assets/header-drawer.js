@@ -76,6 +76,10 @@ class HeaderDrawer extends Component {
 
     this.preventInitialAccordionAnimations(details);
     requestAnimationFrame(() => {
+      const drawer = details.querySelector('.menu-drawer, .menu-drawer__submenu');
+      // Establish the newly opened details panel's offscreen layout before moving it in.
+      // Otherwise both states can land in the same style update and skip the transition.
+      if (target) drawer?.getBoundingClientRect();
       details.classList.add('menu-open');
 
       if (target) {
@@ -83,7 +87,6 @@ class HeaderDrawer extends Component {
       }
 
       // Wait for the drawer animation to complete before trapping focus
-      const drawer = details.querySelector('.menu-drawer, .menu-drawer__submenu');
       onAnimationEnd(drawer || details, () => trapFocus(details), { subtree: false });
     });
   }

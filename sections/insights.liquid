@@ -40,6 +40,7 @@
 <scroll-reveal-component
   class="section section--page-width insights spacing-style"
   style="{% render 'spacing-style', settings: section_settings %}
+    --insights-mobile-radius: {{ section_settings.card_radius_mobile }}px;
     --insights-heading-gap: {{ section_settings.heading_gap }}px;
     --insights-list-gap: {{ section_settings.list_gap }}px;
     --insights-media-width: {{ section_settings.media_width }}px;
@@ -420,13 +421,34 @@
       padding-inline-end: 0;
     }
   }
+
+  @media screen and (max-width: 749px) {
+    .insights__heading.custom-font-size { font-size: 1.75rem; line-height: 1.25; }
+    .insights__heading > * { font-size: inherit; line-height: inherit; }
+    .insights__description { font-size: 16px; line-height: 1.5; }
+    .insights__list { padding: 12px; margin-block-start: 24px; }
+    .insight-row { gap: 20px; padding: 16px; min-width: 0; }
+    .insight-row__header { flex-direction: column; gap: 8px; }
+    .insight-row__title { font-size: 16px; line-height: 1.35; }
+    .insight-row__read { min-height: 44px; }
+    .insight-row__answer { margin-block-start: 12px; }
+  }
+  @media screen and (max-width: 749px) {
+    .insights__list { gap: 16px; border-radius: var(--insights-mobile-radius, 16px); }
+    .insight-row { gap: 16px; border-radius: var(--insights-mobile-radius, 16px); }
+    .insight-row__media { border-radius: max(0px, calc(var(--insights-mobile-radius, 16px) - 4px)); }
+    .insights__view-all { min-height: 48px; align-items: center; margin-block-start: 16px; }
+  }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:names.insights",
   "disabled_on": {
-    "groups": ["header", "footer"]
+    "groups": [
+      "header",
+      "footer"
+    ]
   },
   "settings": [
     {
@@ -848,6 +870,16 @@
       "step": 4,
       "unit": "px",
       "default": 72
+    },
+    {
+      "type": "range",
+      "id": "card_radius_mobile",
+      "label": "t:settings.mobile_corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
     }
   ],
   "presets": [

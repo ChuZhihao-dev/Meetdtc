@@ -3,6 +3,7 @@
   Renders a header menu block.
 
   @param {string} [variant] - What version of the menu to render. Defaults to header menu.
+  @param {string} [drawer_cta] - Captured header CTA displayed inside the mobile menu.
   @param {string} [transparent] - Show a transparent menu
 {%- enddoc -%}
 
@@ -21,6 +22,7 @@
       {{ block.shopify_attributes }}
     >
       {% render 'header-drawer',
+        drawer_cta: drawer_cta,
         linklist: block_settings.menu,
         data_header_drawer_type: 'mobile-drawer',
         block: block,
