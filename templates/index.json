@@ -72,9 +72,9 @@
                 "gradient_text": true,
                 "gradient_color_from": "#0c23b8",
                 "gradient_color_to": "#7c21c2",
-                "gradient_angle": 95,
-                "gradient_start_position": 12,
-                "gradient_end_position": 88,
+                "gradient_angle": 25,
+                "gradient_start_position": 0,
+                "gradient_end_position": 72,
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -516,7 +516,7 @@
       "settings": {
         "heading": "<p>Trusted by Leading Brands Across Global Markets</p>",
         "font": "var(--font-heading--family)",
-        "font_size": "1.3125rem",
+        "font_size": "1.25rem",
         "weight": "600",
         "line_height": "1.4",
         "letter_spacing": "normal",
@@ -596,7 +596,8 @@
         "card_padding_inline_start": 16,
         "card_padding_inline_end": 16,
         "view_all_label": "",
-        "view_all_link": ""
+        "view_all_link": "",
+        "card_radius_mobile": 12
       }
     },
     "cta_banner_8UDPGz": {
@@ -635,7 +636,8 @@
         "panel_padding_block_start": 40,
         "panel_padding_inline_end": 48,
         "panel_padding_block_end": 40,
-        "panel_padding_inline_start": 48
+        "panel_padding_inline_start": 48,
+        "panel_radius_mobile": 16
       }
     },
     "aidea_model_GRiAan": {
@@ -823,7 +825,8 @@
         "card_padding_block_start": 46,
         "card_padding_block_end": 46,
         "card_padding_inline_start": 37,
-        "card_padding_inline_end": 37
+        "card_padding_inline_end": 37,
+        "card_radius_mobile": 16
       }
     },
     "insights_a3A3Dn": {
@@ -864,7 +867,8 @@
         "view_all_link": "shopify://blogs/our-work",
         "link_color": "#106efa",
         "padding-block-start": 80,
-        "padding-block-end": 80
+        "padding-block-end": 80,
+        "card_radius_mobile": 16
       }
     },
     "faq_XQDqJm": {
@@ -938,7 +942,7 @@
         "gradient_color_to": "#9621c4",
         "gradient_angle": 92,
         "gradient_start_position": 0,
-        "gradient_end_position": 15,
+        "gradient_end_position": 72,
         "background_gradient_from": "rgba(0,0,0,0)",
         "background_gradient_to": "rgba(0,0,0,0)",
         "background_gradient_angle": 104,
@@ -951,7 +955,8 @@
         "heading_gap": 52,
         "list_max_width": 1140,
         "padding-block-start": 80,
-        "padding-block-end": 80
+        "padding-block-end": 80,
+        "row_radius_mobile": 12
       }
     }
   },
