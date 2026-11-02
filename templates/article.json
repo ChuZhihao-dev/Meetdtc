@@ -50,13 +50,13 @@
           "settings": {
             "text": "<h1>{{ article.title }}</h1>",
             "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "h1",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "custom",
             "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "weight": "",
-            "line_height": "normal",
+            "font_size": "2.5rem",
+            "weight": "600",
+            "line_height": "1.2",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
@@ -72,7 +72,7 @@
             "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 0,
+            "padding-inline-start": 35,
             "padding-inline-end": 0
           },
           "blocks": {}

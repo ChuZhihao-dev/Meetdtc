@@ -4,6 +4,13 @@
   const cfg = window.ME_AUDIT_CONFIG || {};
   const API = (cfg.apiBase || "").replace(/\/$/, "");
   const exposeFull = cfg.exposeFullReport === true;
+  const reportLocale =
+    cfg.source === "shopify"
+      ? "en"
+      : /^en/i.test(String(cfg.locale || ""))
+        ? "en"
+        : "zh";
+  const rp = (zh, en) => (reportLocale === "en" ? en : zh);
 
   const $ = (s) => document.querySelector(s);
   const dialog = $("#review-drawer");
@@ -174,16 +181,9 @@
     return { ok: true, email, message: "" };
   }
 
-  function getCustomerSubscribeForm() {
-    return document.getElementById("unlock-form");
-  }
-
-  /**
-   * data-shopify-captcha on #unlock-form wires on load; boot retries until Shopify.captcha is ready.
-   * Also call on scan start / when results show so the widget is warm before unlock (no extra user wait).
-   */
-  function bootShopifyCustomerCaptcha() {
-    const form = getCustomerSubscribeForm();
+  /** Expert review contact form only — unlock email uses Render Admin API (no storefront captcha). */
+  function bootShopifyExpertCaptcha() {
+    const form = document.getElementById("me-expert-shopify-form");
     if (!form) return;
     let attempts = 0;
     const tick = () => {
@@ -217,9 +217,9 @@
 
   const SCAN_DIM_KEYS = ["performance", "seo", "tracking"];
   const SCAN_STEP_LABELS = [
-    "Website Performance (PageSpeed mobile & desktop)",
-    "SEO health sample",
-    "Tracking & tags scan",
+    rp("网站性能（通常需 1–3 分钟，请稍候）", "Website performance (often 1–3 min — please wait)"),
+    rp("SEO 健康度抽样", "SEO health sample"),
+    rp("Tracking 配置扫描", "Tracking & tags scan"),
   ];
   const SCAN_DIM_LABEL_SHORT = {
     performance: "Performance",
@@ -293,7 +293,7 @@
       const display = d.score != null ? d.score : "—";
       grid.insertAdjacentHTML(
         "beforeend",
-        `<article class="score-card ${meta.cls}"><div class="score-card-top"><h3>${esc(d.title)}</h3><span class="score-icon">${meta.icon}</span></div><div class="score-visual"><div class="score-ring" style="--score:${score}"><strong class="score">${display}<small>/ 100</small></strong></div><span class="score-caption">LIVE SCORE</span></div><span class="score-status">${statusLabel(d.score)}</span><div class="meter"><span style="width:${score}%"></span></div><p class="finding"><span>KEY FINDING</span> ${esc(d.finding || "")}</p><span class="score-scope">${esc(d.subtitle || meta.scope)}</span></article>`
+        `<article class="score-card ${meta.cls}"><div class="score-card-top"><h3>${esc(d.title)}</h3><span class="score-icon">${meta.icon}</span></div><div class="score-visual"><div class="score-ring" style="--score:${score}"><strong class="score">${display}<small>/ 100</small></strong></div><span class="score-caption">LIVE SCORE</span></div><span class="score-status">${esc(d.label || statusLabel(d.score))}</span><div class="meter"><span style="width:${score}%"></span></div><p class="finding"><span>KEY FINDING</span> ${esc(d.finding || "")}</p><span class="score-scope">${esc(d.subtitle || meta.scope)}</span></article>`
       );
     });
   }
@@ -305,7 +305,7 @@
     return `${Math.round(n)}ms`;
   }
 
-  const SEO_CHECK_LABELS = {
+  const SEO_CHECK_LABELS_ZH = {
     home_access: "首页可访问",
     https: "HTTPS",
     robots: "robots.txt",
@@ -336,24 +336,60 @@
     json_ld_parse: "JSON-LD 解析",
   };
 
-  const PAGE_TYPE_LABEL = { home: "首页", product: "产品页", collection: "分类页" };
+  const SEO_CHECK_LABELS_EN = {
+    home_access: "Homepage reachable",
+    https: "HTTPS",
+    robots: "robots.txt",
+    sitemap: "Sitemap parseable",
+    sitemap_access: "Sitemap reachable",
+    sitemap_format: "Sitemap format",
+    sitemap_url_inventory: "Sitemap URL inventory",
+    sitemap_demo_urls: "Sitemap demo URLs",
+    sitemap_sample: "Sitemap URL sample",
+    status_200: "HTTP 200",
+    index_directive: "Indexing directive (robots meta)",
+    canonical: "Canonical",
+    sitemap_conflict: "Sitemap vs noindex",
+    title: "Title tag",
+    meta_description: "Meta description",
+    h1: "H1",
+    main_content: "Main content",
+    img_alt: "Image alt text",
+    viewport: "Viewport",
+    internal_links: "Internal links",
+    html_lang: "html lang",
+    mobile_performance: "Mobile performance (Lighthouse)",
+    schema_website: "Schema · WebSite",
+    schema_organization: "Schema · Organization",
+    schema_product: "Schema · Product",
+    schema_breadcrumb: "Schema · BreadcrumbList",
+    schema_collection: "Schema · CollectionPage",
+    json_ld_parse: "JSON-LD parse",
+  };
+
+  const PAGE_TYPE_LABEL = {
+    home: rp("首页", "Home"),
+    product: rp("产品页", "Product page"),
+    collection: rp("分类页", "Collection page"),
+  };
 
   function seoCheckLabel(id) {
-    return SEO_CHECK_LABELS[id] || id;
+    const map = reportLocale === "en" ? SEO_CHECK_LABELS_EN : SEO_CHECK_LABELS_ZH;
+    return map[id] || id;
   }
 
   function checkStatusIcon(status) {
     const s = (status || "").toLowerCase();
-    if (s === "pass") return `<span class="me-check-icon pass" aria-label="通过">✓</span>`;
-    if (s === "partial" || s === "manual") return `<span class="me-check-icon partial" aria-label="有问题">!</span>`;
-    if (s === "fail") return `<span class="me-check-icon fail" aria-label="不通过">✕</span>`;
-    return `<span class="me-check-icon na" aria-label="未审计">✕</span>`;
+    if (s === "pass") return `<span class="me-check-icon pass" aria-label="${rp("通过", "Pass")}">✓</span>`;
+    if (s === "partial" || s === "manual") return `<span class="me-check-icon partial" aria-label="${rp("有问题", "Issue")}">!</span>`;
+    if (s === "fail") return `<span class="me-check-icon fail" aria-label="${rp("不通过", "Fail")}">✕</span>`;
+    return `<span class="me-check-icon na" aria-label="${rp("未审计", "Not audited")}">✕</span>`;
   }
 
   function renderCheckEvidence(text) {
     if (!text) return "";
     const t = String(text);
-    return `<span class="me-check-evidence-wrap"><span class="me-check-evidence me-check-evidence-clamp">${esc(t)}</span><button type="button" class="me-check-evidence-more" hidden aria-expanded="false" aria-label="查看完整说明">?</button><div class="me-check-evidence-popover" hidden role="tooltip">${esc(t)}</div></span>`;
+    return `<span class="me-check-evidence-wrap"><span class="me-check-evidence me-check-evidence-clamp">${esc(t)}</span><button type="button" class="me-check-evidence-more" hidden aria-expanded="false" aria-label="${rp("查看完整说明", "View full details")}">?</button><div class="me-check-evidence-popover" hidden role="tooltip">${esc(t)}</div></span>`;
   }
 
   function renderCheckRow(check) {
@@ -482,7 +518,7 @@
               .map(([k, v]) => `${k}: ${typeof v === "object" ? JSON.stringify(v) : v}`)
               .join(" · ")
           : "";
-      rows.push({ id, status, evidence: ev || `得分 ${score}/${max}` });
+      rows.push({ id, status, evidence: ev || rp(`得分 ${score}/${max}`, `Score ${score}/${max}`) });
     };
     add("schema_website", detail.website);
     add("schema_organization", detail.organization);
@@ -494,7 +530,7 @@
       rows.push({
         id: `schema_cond_${c.type || i}`,
         status: ratio >= 1 ? "pass" : ratio > 0 ? "partial" : c.applicable ? "fail" : "na",
-        evidence: c.type ? `${c.type}${c.applicable ? "" : " (不适用)"}` : "",
+        evidence: c.type ? `${c.type}${c.applicable ? "" : rp(" (不适用)", " (N/A)")}` : "",
       });
     });
     return rows;
@@ -517,7 +553,7 @@
   function renderSeoPageBlock(pageKey, pageData) {
     const label = PAGE_TYPE_LABEL[pageKey] || pageKey;
     if (!pageData?.audit) {
-      return `<div class="me-seo-page-block"><h4>${esc(label)}</h4><p class="me-page-url">${esc(pageData?.note || "未审计")}${pageData?.tried ? ` · 尝试 ${pageData.tried} 个候选` : ""}</p><div class="me-check-list"><div class="me-check-row">${checkStatusIcon("na")}<div class="me-check-body"><span class="me-check-id">页面未纳入本次审计</span></div></div></div></div>`;
+      return `<div class="me-seo-page-block"><h4>${esc(label)}</h4><p class="me-page-url">${esc(pageData?.note || rp("未审计", "Not audited"))}${pageData?.tried ? rp(` · 尝试 ${pageData.tried} 个候选`, ` · Tried ${pageData.tried} candidates`) : ""}</p><div class="me-check-list"><div class="me-check-row">${checkStatusIcon("na")}<div class="me-check-body"><span class="me-check-id">${rp("页面未纳入本次审计", "Page not included in this audit")}</span></div></div></div></div>`;
     }
     const a = pageData.audit;
     const dims = a.dimensions || {};
@@ -535,15 +571,22 @@
   }
 
   function renderPerfAuditList(audits) {
-    if (!audits?.length) return `<p class="detail-note">未发现可优化的 Lighthouse 审计项。</p>`;
+    if (!audits?.length) return `<p class="detail-note">${rp("未发现可优化的 Lighthouse 审计项。", "No Lighthouse optimisation opportunities found.")}</p>`;
     return `<div class="me-audit-list me-audit-list-cols">${audits
       .map((a) => {
         const savings = [];
-        if (a.tbt_saving) savings.push(`预期节省 TBT: ${a.tbt_saving} ms`);
-        if (a.lcp_saving) savings.push(`预期节省 LCP: ${a.lcp_saving} ms`);
-        if (a.fcp_saving) savings.push(`预期节省 FCP: ${a.fcp_saving} ms`);
-        if (a.cls_saving) savings.push(`预期节省 CLS: ${a.cls_saving}`);
-        if (a.actionable_js_count != null) savings.push(`可处理 JS: ${a.actionable_js_count} 个 / ${a.actionable_js_ms || 0} ms`);
+        if (a.tbt_saving) savings.push(rp(`预期节省 TBT: ${a.tbt_saving} ms`, `Est. TBT savings: ${a.tbt_saving} ms`));
+        if (a.lcp_saving) savings.push(rp(`预期节省 LCP: ${a.lcp_saving} ms`, `Est. LCP savings: ${a.lcp_saving} ms`));
+        if (a.fcp_saving) savings.push(rp(`预期节省 FCP: ${a.fcp_saving} ms`, `Est. FCP savings: ${a.fcp_saving} ms`));
+        if (a.cls_saving) savings.push(rp(`预期节省 CLS: ${a.cls_saving}`, `Est. CLS savings: ${a.cls_saving}`));
+        if (a.actionable_js_count != null) {
+          savings.push(
+            rp(
+              `可处理 JS: ${a.actionable_js_count} 个 / ${a.actionable_js_ms || 0} ms`,
+              `Actionable JS: ${a.actionable_js_count} file(s) / ${a.actionable_js_ms || 0} ms`
+            )
+          );
+        }
         return `<div class="me-audit-item"><div class="name">${esc(a.audit_id || a.id || "audit")}</div><div class="note">${esc(a.note || a.description || "")}</div>${savings.map((s) => `<div class="saving">${esc(s)}</div>`).join("")}</div>`;
       })
       .join("")}</div>`;
@@ -554,7 +597,7 @@
     const scoreDisplay = data.score != null ? data.score : "—";
     const warn = data.warning ? `<p class="detail-note">⚠ ${esc(data.warning)}</p>` : "";
     const err = data.error ? `<p class="detail-note">${esc(data.error)}</p>` : "";
-    return `<div class="me-report-block me-report-col-panel"><div class="me-subheading">${esc(label)}</div><div class="me-perf-score-row me-perf-score-row-compact"><div class="me-perf-score-pill"><div class="label">当前分数</div><div class="value${data.score == null ? " muted" : ""}">${esc(scoreDisplay)}</div></div></div>${warn}${err}${renderPerfAuditList(data.audit_details || [])}</div>`;
+    return `<div class="me-report-block me-report-col-panel"><div class="me-subheading">${esc(label)}</div><div class="me-perf-score-row me-perf-score-row-compact"><div class="me-perf-score-pill"><div class="label">${rp("当前分数", "Current score")}</div><div class="value${data.score == null ? " muted" : ""}">${esc(scoreDisplay)}</div></div></div>${warn}${err}${renderPerfAuditList(data.audit_details || [])}</div>`;
   }
 
   function trackingStatusIcon(status) {
@@ -574,9 +617,9 @@
         : "";
     const healthy =
       !locked && st === "healthy"
-        ? `<div class="expert" style="font-style:normal;color:#15803d">${esc(issue.expertComment || "符合行业标准")}</div>`
+        ? `<div class="expert" style="font-style:normal;color:#15803d">${esc(issue.expertComment || rp("符合行业标准", "Meets common industry practice"))}</div>`
         : "";
-    const lockedHint = locked ? `<div class="locked-hint">需要 GA4 授权解锁</div>` : "";
+    const lockedHint = locked ? `<div class="locked-hint">${rp("需要 GA4 授权解锁", "Requires GA4 authorisation to unlock")}</div>` : "";
     const badge = st === "critical" ? `<span class="detail-note" style="display:inline;margin:0">CRITICAL</span>` : "";
     return `<article class="me-issue-card ${esc(st)}"><div class="me-issue-card-head"><h4>${esc(issue.title)} ${badge}</h4>${trackingStatusIcon(st)}</div><p class="desc">${esc(issue.description || "")}</p>${expert}${healthy}${lockedHint}</article>`;
   }
@@ -600,13 +643,13 @@
       const desktopScore = desktop?.score ?? (legacySingle?.strategy === "desktop" ? legacySingle.score : null);
       let perfBody = "";
       if (mobile || (legacySingle && legacySingle.strategy !== "desktop")) {
-        perfBody += renderPerfStrategyBlock(mobile || legacySingle, "Mobile · 优化建议");
+        perfBody += renderPerfStrategyBlock(mobile || legacySingle, rp("Mobile · 优化建议", "Mobile · recommendations"));
       }
       if (desktop || p.desktop) {
-        perfBody += renderPerfStrategyBlock(desktop || p.desktop, "Desktop · 优化建议");
+        perfBody += renderPerfStrategyBlock(desktop || p.desktop, rp("Desktop · 优化建议", "Desktop · recommendations"));
       }
       blocks.push(
-        `<article><span class="detail-number">01</span><div class="me-report-article-body"><div class="me-report-lede"><h3>Performance priorities</h3><p>${esc(p.summary_finding)}</p><div class="me-perf-score-row"><div class="me-perf-score-pill"><div class="label">Mobile</div><div class="value${mobileScore == null ? " muted" : ""}">${mobileScore != null ? esc(mobileScore) : "—"}</div></div><div class="me-perf-score-pill"><div class="label">Desktop</div><div class="value${desktopScore == null ? " muted" : ""}">${desktopScore != null ? esc(desktopScore) : "—"}</div></div></div></div><div class="me-report-cols-2">${perfBody}</div><span class="detail-note">Inspect loading conditions and validate again after changes.</span></div></article>`
+        `<article><span class="detail-number">01</span><div class="me-report-article-body"><div class="me-report-lede"><h3>${rp("性能优化重点", "Performance priorities")}</h3><p>${esc(p.summary_finding)}</p><div class="me-perf-score-row"><div class="me-perf-score-pill"><div class="label">Mobile</div><div class="value${mobileScore == null ? " muted" : ""}">${mobileScore != null ? esc(mobileScore) : "—"}</div></div><div class="me-perf-score-pill"><div class="label">Desktop</div><div class="value${desktopScore == null ? " muted" : ""}">${desktopScore != null ? esc(desktopScore) : "—"}</div></div></div></div><div class="me-report-cols-2">${perfBody}</div><span class="detail-note">${rp("请在相同加载条件下复测以验证改动效果。", "Inspect loading conditions and validate again after changes.")}</span></div></article>`
       );
     }
     if (report.seo) {
@@ -616,7 +659,7 @@
         extra += `<div class="me-subheading">Site crawl &amp; discovery</div><div class="me-check-list me-check-list-cols me-check-list-crawl">${s.crawl.checks.map(renderCheckRow).join("")}</div>`;
       }
       if (s.audited_urls) {
-        extra += `<div class="me-report-url-strip detail-note"><strong>本次实际审计 URL</strong>${renderAuditedUrlChip("首页", s.audited_urls.home)}${renderAuditedUrlChip("产品", s.audited_urls.product)}${renderAuditedUrlChip("分类", s.audited_urls.collection)}</div>`;
+        extra += `<div class="me-report-url-strip detail-note"><strong>${rp("本次实际审计 URL", "URLs audited in this run")}</strong>${renderAuditedUrlChip(rp("首页", "Home"), s.audited_urls.home)}${renderAuditedUrlChip(rp("产品", "Product"), s.audited_urls.product)}${renderAuditedUrlChip(rp("分类", "Collection"), s.audited_urls.collection)}</div>`;
       }
       extra += `<div class="me-seo-pages-grid">`;
       const order = ["home", "product", "collection"];
@@ -629,7 +672,7 @@
       extra += `</div></div>`;
       let miss = "";
       if (s.scoring?.missing_page_audits?.length) {
-        miss = `<p class="detail-note" style="color:#b45309">未审计页面（不计分）: ${esc(s.scoring.missing_page_audits.join(" · "))}</p>`;
+        miss = `<p class="detail-note" style="color:#b45309">${rp("未审计页面（不计分）", "Pages not audited (excluded from score)")}: ${esc(s.scoring.missing_page_audits.join(" · "))}</p>`;
       }
       blocks.push(
         `<article><span class="detail-number">02</span><div class="me-report-article-body"><div class="me-report-lede"><h3>SEO foundations</h3><p>${esc(s.summary_finding)} ${esc(s.scoring?.coverage_note || "")}</p>${miss}</div>${extra}<span class="detail-note">Suggested deeper review · SEO Performance</span></div></article>`
@@ -640,7 +683,7 @@
       const issues = tr.issues || [];
       const byCat = (cat) => issues.filter((i) => (i.category || "infrastructure") === cat);
       blocks.push(
-        `<article><span class="detail-number">03</span><div class="me-report-article-body"><div class="me-report-lede"><h3>Tracking and event coverage</h3><p>${esc(tr.summary_finding)}</p></div>${renderTrackingSection("1. 基础设施与追踪代码", "无需授权 · 检测页面 HTML 中的部署信号", byCat("infrastructure"))}<span class="detail-note">Accurate collection may require event testing and authorised access to analytics tools.</span></div></article>`
+        `<article><span class="detail-number">03</span><div class="me-report-article-body"><div class="me-report-lede"><h3>Tracking and event coverage</h3><p>${esc(tr.summary_finding)}</p></div>${renderTrackingSection(rp("1. 基础设施与追踪代码", "1. Infrastructure & tracking tags"), rp("无需授权 · 检测页面 HTML 中的部署信号", "No authorisation · signals detected in page HTML"), byCat("infrastructure"))}<span class="detail-note">Accurate collection may require event testing and authorised access to analytics tools.</span></div></article>`
       );
     }
     box.innerHTML = blocks.join("");
@@ -665,6 +708,36 @@
 
   function coverageCards() {
     return Array.from(document.querySelectorAll(".scan-card .coverage-card"));
+  }
+
+  const PERF_SCAN_TIP_TEXT = rp(
+    "PageSpeed 检测通常需 1–3 分钟，请稍候，无需刷新页面。",
+    "PageSpeed often takes 1–3 minutes — please wait and do not refresh."
+  );
+
+  function ensurePerformanceScanTip(card) {
+    if (!card) return null;
+    let tip = card.querySelector(".me-perf-scan-tip");
+    if (!tip) {
+      tip = document.createElement("p");
+      tip.className = "me-perf-scan-tip";
+      tip.setAttribute("role", "note");
+      tip.hidden = true;
+      tip.textContent = PERF_SCAN_TIP_TEXT;
+      card.appendChild(tip);
+    } else {
+      tip.textContent = PERF_SCAN_TIP_TEXT;
+    }
+    return tip;
+  }
+
+  function updatePerformanceScanTip(perfState) {
+    const card = coverageCards()[0];
+    const tip = ensurePerformanceScanTip(card);
+    if (!tip) return;
+    const show = perfState === "running";
+    tip.hidden = !show;
+    card?.classList.toggle("has-perf-tip", show);
   }
 
   function ensureScanStepList() {
@@ -694,7 +767,11 @@
       seo: "pending",
       tracking: "pending",
     }, "queued");
-    coverageCards().forEach((c) => c.classList.remove("is-scanning", "is-done"));
+    coverageCards().forEach((c) => {
+      c.classList.remove("is-scanning", "is-done", "has-perf-tip");
+      const tip = c.querySelector(".me-perf-scan-tip");
+      if (tip) tip.hidden = true;
+    });
   }
 
   function updateScanProgress(progress, stage) {
@@ -721,6 +798,7 @@
       if (st === "done") doneCount += 1;
       else if (st === "running") running.push(SCAN_DIM_LABEL_SHORT[key]);
     });
+    updatePerformanceScanTip(prog.performance);
     let pct;
     if (stage === "completed") pct = 100;
     else if (stage === "finalizing") pct = 92;
@@ -752,7 +830,11 @@
 
   function hideScanProgress() {
     $("#scan-progress").hidden = true;
-    coverageCards().forEach((c) => c.classList.remove("is-scanning", "is-done"));
+    coverageCards().forEach((c) => {
+      c.classList.remove("is-scanning", "is-done", "has-perf-tip");
+      const tip = c.querySelector(".me-perf-scan-tip");
+      if (tip) tip.hidden = true;
+    });
   }
 
   function showResults(summary, hostname) {
@@ -767,7 +849,6 @@
     );
     setTimeout(hideScanProgress, 400);
     $("#scan-form button").disabled = false;
-    if (!exposeFull) bootShopifyCustomerCaptcha();
   }
 
   function showPostReport(report) {
@@ -807,7 +888,7 @@
     const res = await fetch(`${API}/api/audit/start`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url: url.href }),
+      body: JSON.stringify({ url: url.href, locale: reportLocale }),
     });
     if (!res.ok) throw new Error("Could not start audit");
     const { job_id } = await res.json();
@@ -825,7 +906,7 @@
   }
 
   /** hCaptcha token is only injected after interaction with fields in the same Shopify customer form. */
-  function waitForHcaptchaToken(form, timeoutMs = 12000) {
+  function waitForHcaptchaToken(form, timeoutMs = 20000) {
     return new Promise((resolve, reject) => {
       const started = Date.now();
       const poll = () => {
@@ -863,14 +944,74 @@
     });
   }
 
-  function acquireHcaptchaForForm(form) {
+  function ensureShopifySubscribeIframe() {
+    const id = "me-audit-customer-subscribe-target";
+    let iframe = document.getElementById(id);
+    if (!iframe) {
+      iframe = document.createElement("iframe");
+      iframe.id = id;
+      iframe.name = id;
+      iframe.title = "Shopify customer subscribe";
+      iframe.hidden = true;
+      iframe.setAttribute("aria-hidden", "true");
+      iframe.tabIndex = -1;
+      iframe.style.cssText = "position:absolute;width:0;height:0;border:0;visibility:hidden";
+      document.body.appendChild(iframe);
+    }
+    return iframe;
+  }
+
+  /** Native form POST — fallback when fetch POST fails (Shopify captcha docs). */
+  function shopifyFormPostIframe(form) {
+    return new Promise((resolve, reject) => {
+      const iframe = ensureShopifySubscribeIframe();
+      let settled = false;
+      const finish = (ok, err) => {
+        if (settled) return;
+        settled = true;
+        iframe.removeEventListener("load", onLoad);
+        form.removeAttribute("target");
+        if (ok) resolve(true);
+        else reject(err || new Error("Subscribe failed"));
+      };
+      const onLoad = () => {
+        try {
+          const text = (iframe.contentDocument?.body?.innerText || "").toLowerCase();
+          if (text.includes("missing captcha") || text.includes("captcha token")) {
+            finish(false, new Error("CAPTCHA"));
+            return;
+          }
+        } catch {
+          /* empty or unreadable response often means success for /contact */
+        }
+        finish(true);
+      };
+      iframe.addEventListener("load", onLoad);
+      setTimeout(() => finish(false, new Error("Subscribe timeout")), 22000);
+      form.setAttribute("target", iframe.name);
+      form.submit();
+    });
+  }
+
+  /** protect → wait for token → POST in one chain (token must not be fetched before unlock finishes). */
+  function postShopifyCustomerSubscribeForm(form) {
     return new Promise((resolve, reject) => {
       if (!form) {
         reject(new Error("Subscribe form missing"));
         return;
       }
-      const run = () => {
-        waitForHcaptchaToken(form).then(resolve).catch(reject);
+      const run = async () => {
+        try {
+          await waitForHcaptchaToken(form);
+          try {
+            await shopifyFormPostFetch(form);
+          } catch (fetchErr) {
+            await shopifyFormPostIframe(form);
+          }
+          resolve(true);
+        } catch (err) {
+          reject(err);
+        }
       };
       const protect = window.Shopify?.captcha?.protect;
       if (typeof protect === "function") protect(form, run);
@@ -879,81 +1020,7 @@
   }
 
   async function postShopifyFormWithCaptcha(form) {
-    await acquireHcaptchaForForm(form);
-    await shopifyFormPostFetch(form);
-  }
-
-  /** One tag per unlock: audit-{hostname}-{YYYY.MM.DD.HH.mm} e.g. audit-aff.meetdtc.com-2026.10.28.06.18 */
-  function buildAuditUnlockTag(websiteUrl) {
-    const auditedUrl = (websiteUrl || "").trim();
-    let host = "unknown";
-    try {
-      const href = /^https?:\/\//i.test(auditedUrl) ? auditedUrl : `https://${auditedUrl}`;
-      host = new URL(href).hostname.toLowerCase();
-    } catch {
-      /* ignore */
-    }
-    const d = new Date();
-    const pad = (n) => String(n).padStart(2, "0");
-    const timePart = [
-      d.getFullYear(),
-      pad(d.getMonth() + 1),
-      pad(d.getDate()),
-      pad(d.getHours()),
-      pad(d.getMinutes()),
-    ].join(".");
-    const tag = `audit-${host}-${timePart}`;
-    return tag.replace(/[^a-zA-Z0-9._-]/g, "-").slice(0, 255);
-  }
-
-  /** One new audit-* tag per unlock POST (Shopify merges tags on existing customers). */
-  function applyAuditCustomerTags(tagsInput, websiteUrl) {
-    if (!tagsInput) return;
-    const baseRaw = tagsInput.getAttribute("data-me-base-tags") || "free-audit, newsletter";
-    const base = baseRaw
-      .split(",")
-      .map((t) => t.trim())
-      .filter(Boolean);
-    const unlockTag = buildAuditUnlockTag(websiteUrl);
-    if (!state.auditTags.includes(unlockTag)) state.auditTags.push(unlockTag);
-    tagsInput.value = [...base, unlockTag].join(", ");
-  }
-
-  function prepareUnlockCustomerForm(form, customerEmail, websiteUrl) {
-    if (!form) throw new Error("Subscribe form missing");
-    const check = validateShopifyEmail(customerEmail);
-    if (!check.ok) throw new Error(check.message);
-    const ef = form.querySelector('[name="contact[email]"]');
-    const tf = form.querySelector('[name="contact[tags]"]');
-    if (ef) ef.value = check.email;
-    applyAuditCustomerTags(tf, websiteUrl);
-    return check.email;
-  }
-
-  async function submitUnlockCustomerSubscribe(customerEmail, websiteUrl, captchaPromise) {
-    const form = getCustomerSubscribeForm();
-    prepareUnlockCustomerForm(form, customerEmail, websiteUrl);
-    await (captchaPromise || acquireHcaptchaForForm(form));
-    await shopifyFormPostFetch(form);
-  }
-
-  /** Retries help when hCaptcha or network flakes — each visitor/device is independent. */
-  async function submitUnlockCustomerSubscribeWithRetry(customerEmail, websiteUrl, initialCaptchaPromise) {
-    let lastError;
-    for (let attempt = 0; attempt < 3; attempt += 1) {
-      if (attempt > 0) {
-        bootShopifyCustomerCaptcha();
-        await new Promise((resolve) => setTimeout(resolve, 700 + attempt * 500));
-      }
-      try {
-        const cap = attempt === 0 ? initialCaptchaPromise : null;
-        await submitUnlockCustomerSubscribe(customerEmail, websiteUrl, cap);
-        return;
-      } catch (err) {
-        lastError = err;
-      }
-    }
-    throw lastError || new Error("Subscribe failed");
+    await postShopifyCustomerSubscribeForm(form);
   }
 
   async function submitShopifyContact(formId, { email, websiteUrl, bodyLines, displayName }) {
@@ -1045,9 +1112,7 @@
   bindCheckEvidenceUi();
   restoreSession();
   restoreUnlockedViewIfNeeded();
-  bootShopifyCustomerCaptcha();
-  $("#report-email")?.addEventListener("focus", bootShopifyCustomerCaptcha);
-  $("#report-email")?.addEventListener("input", bootShopifyCustomerCaptcha);
+  bootShopifyExpertCaptcha();
   $("#report-email")?.addEventListener("blur", () => {
     const input = $("#report-email");
     if (!input?.value.trim()) {
@@ -1086,14 +1151,11 @@
     $("#scan-progress").hidden = false;
     resetScanProgress();
     $("#scan-form button").disabled = true;
-    bootShopifyCustomerCaptcha();
     startScan(u).catch(onScanError);
   });
 
-  $("#unlock-form")?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const btn = form.querySelector('button[type="submit"]');
+  async function handleUnlockSubmit() {
+    const btn = $("#unlock-submit-btn");
     setUnlockError("");
     if (!state.jobId) {
       setUnlockError("Scan session expired. Please run the audit again from the top of the page.");
@@ -1113,19 +1175,6 @@
       btn.disabled = true;
       btn.setAttribute("aria-busy", "true");
     }
-    const websiteUrlForTags = (state.url || "").trim();
-    let captchaPromise;
-    try {
-      prepareUnlockCustomerForm(form, state.email, websiteUrlForTags);
-      captchaPromise = acquireHcaptchaForForm(form);
-    } catch (prepErr) {
-      setUnlockError(prepErr.message || String(prepErr));
-      if (btn) {
-        btn.disabled = false;
-        btn.removeAttribute("aria-busy");
-      }
-      return;
-    }
     try {
       const res = await fetch(`${API}/api/audit/${state.jobId}/unlock`, {
         method: "POST",
@@ -1134,6 +1183,11 @@
       });
       if (!res.ok) throw new Error(await apiErrorMessage(res, "Could not unlock report"));
       const data = await res.json();
+      if (cfg.source === "shopify" && !data.customer_synced) {
+        throw new Error(
+          "Your email could not be saved to our customer list. Please try again or contact support."
+        );
+      }
       if (!data.full_report) {
         throw new Error("Full report is unavailable. Run a new scan and try again.");
       }
@@ -1144,16 +1198,7 @@
       $("#specialists").hidden = false;
       const websiteUrl = (data.website_url || state.url || "").trim();
       if (websiteUrl) state.url = websiteUrl;
-      if (websiteUrl && websiteUrl !== websiteUrlForTags) {
-        prepareUnlockCustomerForm(form, state.email, websiteUrl);
-      }
-      submitUnlockCustomerSubscribeWithRetry(state.email, websiteUrl, captchaPromise)
-        .then(() => showSubscribeNotice(""))
-        .catch(() => {
-          showSubscribeNotice(
-            "Report unlocked. Mailing list signup did not complete — please press View My Full Report once more."
-          );
-        });
+      showSubscribeNotice("");
       $("#full-report").scrollIntoView({ behavior: "smooth", block: "start" });
     } catch (err) {
       $("#unlock-panel").hidden = false;
@@ -1164,6 +1209,14 @@
         btn.removeAttribute("aria-busy");
       }
     }
+  }
+
+  $("#unlock-submit-btn")?.addEventListener("click", () => {
+    handleUnlockSubmit();
+  });
+  $("#unlock-form")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    handleUnlockSubmit();
   });
 
   $("#request-form")?.addEventListener("submit", async (e) => {

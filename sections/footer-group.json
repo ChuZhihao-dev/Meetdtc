@@ -94,14 +94,6 @@
             "link": ""
           }
         },
-        "office_t7XXar": {
-          "type": "office",
-          "settings": {
-            "city": "Singapore",
-            "address": "112 Robinson Road, #06-03, Singapore 068902",
-            "link": ""
-          }
-        },
         "office_JFXiee": {
           "type": "office",
           "settings": {
@@ -110,11 +102,19 @@
             "link": ""
           }
         },
+        "office_t7XXar": {
+          "type": "office",
+          "settings": {
+            "city": "Singapore",
+            "address": "112 Robinson Road, #06-03, Singapore 068902",
+            "link": ""
+          }
+        },
         "office_jDkBqF": {
           "type": "office",
           "settings": {
-            "city": "Shenzhen",
-            "address": "25th Floor, Hanking Center, Futian District, Shenzhen, China",
+            "city": "Hong Kong",
+            "address": "Room 1002, 10/F, Po Fat Commercial Building, 20 Austin Road, Tsim Sha Tsui, Kowloon",
             "link": ""
           }
         },
@@ -202,8 +202,8 @@
       },
       "block_order": [
         "office_xVVfcE",
-        "office_t7XXar",
         "office_JFXiee",
+        "office_t7XXar",
         "office_jDkBqF",
         "platform_mxmyae",
         "platform_H8f7Te",
@@ -219,11 +219,20 @@
       "settings": {
         "logo": "shopify://shop_images/Group_1597884435.png",
         "description": "Integrated MarTech for global growth — website and e-commerce, customer acquisition, lifecycle marketing and data intelligence.",
+        "facebook_url": "https://www.facebook.com/people/Meet-Experience/61596231651435/",
+        "instagram_url": "https://www.instagram.com/meetdtc/",
+        "youtube_url": "",
+        "tiktok_url": "",
+        "twitter_url": "",
+        "threads_url": "",
+        "linkedin_url": "https://www.linkedin.com/in/%E7%A7%91%E6%8A%80-%E8%A7%85%E8%B7%83-99b954447/",
+        "bluesky_url": "",
+        "pinterest_url": "",
         "services_menu": "services",
         "company_menu": "company",
         "contact_heading": "Get in touch",
         "email": "enquiry@meetdtc.com",
-        "whatsapp": "WhatsApp: + 1555 - 452 - 0029",
+        "whatsapp": "",
         "hours": "",
         "platforms_heading": "Platforms &Ecosystem",
         "copyright_name": "Meet Experience",

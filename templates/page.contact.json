@@ -11,7 +11,10 @@
   "sections": {
     "breadcrumbs": {
       "type": "breadcrumbs",
-      "settings": {"padding-block-start": 16, "padding-block-end": 16}
+      "settings": {
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
     },
     "main": {
       "type": "main-page",
@@ -108,29 +111,12 @@
             "link": "mailto:enquiry@meetdtc.com"
           }
         },
-        "detail_rrgwRz": {
-          "type": "detail",
-          "settings": {
-            "icon": "shopify://shop_images/Icon_1_37238887-0e6b-4843-af99-bacd3af208c2.svg",
-            "label": "WhatsApp",
-            "value": "+ 1555 - 452 - 0029",
-            "link": "tel:+ 1555 - 452 - 0029"
-          }
-        },
         "detail_fAyRXH": {
           "type": "detail",
           "settings": {
             "icon": "shopify://shop_images/Icon_3ab0607a-fb64-425c-bb42-619ea22870c1.svg",
             "label": "Hours",
             "value": "Monday – Friday \n10:00AM - 7:00PM UTC+8",
-            "link": ""
-          }
-        },
-        "office_4zgJPU": {
-          "type": "office",
-          "settings": {
-            "label": "Singapore",
-            "value": "112 Robinson Road, #06-03, Singapore 068902",
             "link": ""
           }
         },
@@ -142,21 +128,28 @@
             "link": ""
           }
         },
+        "office_4zgJPU": {
+          "type": "office",
+          "settings": {
+            "label": "Singapore",
+            "value": "112 Robinson Road, #06-03, Singapore 068902",
+            "link": ""
+          }
+        },
         "office_ApQMQm": {
           "type": "office",
           "settings": {
-            "label": "Shenzhen",
-            "value": "25th Floor, Hanking Center, Futian District, Shenzhen, China",
+            "label": "Hong Kong",
+            "value": "Room 1002, 10/F, Po Fat Commercial Building, 20 Austin Road, Tsim Sha Tsui, Kowloon",
             "link": ""
           }
         }
       },
       "block_order": [
         "detail_LDAHFE",
-        "detail_rrgwRz",
         "detail_fAyRXH",
-        "office_4zgJPU",
         "office_xbYei7",
+        "office_4zgJPU",
         "office_ApQMQm"
       ],
       "name": "t:contact_section.name",

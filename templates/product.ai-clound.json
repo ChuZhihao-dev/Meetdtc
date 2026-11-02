@@ -383,6 +383,12 @@
             "button_icon_size": 16
           },
           "blocks": {}
+        },
+        "certifications": {
+          "type": "_product-hero-certifications",
+          "static": true,
+          "settings": {},
+          "blocks": {}
         }
       },
       "block_order": [
@@ -390,6 +396,8 @@
       ],
       "name": "t:product_hero.name",
       "settings": {
+        "show_certifications": true,
+        "certification_color": "#102653",
         "eyebrow": "CLOUD & ENTERPRISE AI",
         "heading": "Cloud and AI Architectures Built for Production and Growth",
         "heading_tag": "h1",
@@ -401,7 +409,7 @@
         "heading_to": "#7c21c2",
         "description_color": "#6b6a6a",
         "service_labels_color": "#3e4c81",
-        "section_height": "full-screen",
+        "section_height": "large",
         "content_position": "center",
         "padding-block-start": 0,
         "padding-block-end": 0
@@ -875,7 +883,7 @@
         "image": "shopify://shop_images/AI_Cloud.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",
-        "link": "https://meetdtc-40icat5f.myshopify.com/blogs/our-works/meetsocial-vertex-ai-multimodal-inference",
+        "link": "https://meetdtc-40icat5f.myshopify.com/blogs/our-work/meetsocial-vertex-ai-multimodal-inference",
         "font": "montserrat_n5",
         "text_color": "#000000",
         "heading_gradient": "linear-gradient(108.133deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",

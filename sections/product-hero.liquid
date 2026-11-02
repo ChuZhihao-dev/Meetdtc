@@ -1,5 +1,5 @@
 {% comment %}
-  Product hero for service pages. Header-free, centered copy with up to two
+  Product hero for service pages. Header-free, start-aligned copy with up to two
   editable section-specific buttons and an optional service label list.
   @example Add Product hero, enter service labels one per line, and optionally add buttons.
 {% endcomment %}
@@ -9,7 +9,7 @@
 <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
 
 <div class="section-background product-hero__background" style="--product-hero-bg-from:{{ section.settings.background_from }};--product-hero-bg-to:{{ section.settings.background_to }};"></div>
-<scroll-reveal-component class="section section--full-width section--height-{{ section.settings.section_height | default: 'large' }} spacing-style product-hero" data-reveal-scope data-reveal-timeline style="{% render 'spacing-style', settings: section.settings %}--product-hero-description-color:{{ section.settings.description_color }};--product-hero-content-position:{{ section.settings.content_position | default: 'center' }};">
+<scroll-reveal-component class="section section--page-width section--height-{{ section.settings.section_height | default: 'large' }} spacing-style product-hero" data-reveal-scope data-reveal-timeline style="{% render 'spacing-style', settings: section.settings %}--product-hero-certification-color:{{ section.settings.certification_color }};--product-hero-description-color:{{ section.settings.description_color }};--product-hero-content-position:{{ section.settings.content_position | default: 'center' }};">
   <div class="product-hero__content">
     {% if section.settings.eyebrow != blank %}
       <p class="product-hero__eyebrow" data-reveal>{{ section.settings.eyebrow | escape }}</p>
@@ -35,46 +35,52 @@
     {% if actions != blank %}
       <div class="product-hero__actions" data-reveal>{{ actions }}</div>
     {% endif %}
+    {% content_for 'block', type: '_product-hero-certifications', id: 'certifications' %}
   </div>
 </scroll-reveal-component>
 
-{% stylesheet %}
-  .product-hero {
+{% comment %}
+  Output scoped CSS with the section HTML: the live compiled stylesheet has served
+  stale rules after uploads. This keeps initial and section-rendered markup in sync.
+{% endcomment %}
+{% style %}
+  #shopify-section-{{ section.id }} .product-hero {
+    display: grid;
     /* The selected height is the outer border box; padding belongs to the inner content. */
-    display: block;
     height: var(--section-min-height);
     min-height: 0;
     padding-block: 0;
     overflow: auto;
   }
-  .product-hero__background {
+  #shopify-section-{{ section.id }} .product-hero__background {
     background-image: linear-gradient(92.19deg, var(--product-hero-bg-from) 1.07%, var(--product-hero-bg-to) 98.93%);
   }
-  .product-hero__content {
+  #shopify-section-{{ section.id }} .product-hero__content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: safe var(--product-hero-content-position, center);
     min-height: 100%;
     padding-block: calc(var(--padding-block-start, 0px) + var(--section-top-offset, 0px)) var(--padding-block-end, 0px);
-    gap: 28px;
+    gap: 20px;
     width: 100%;
-    max-width: 1440px;
+    max-width: none;
+    margin-inline: 0;
+    padding-inline: 0;
     min-width: 0;
-    margin-inline: auto;
-    padding-inline: max(var(--page-margin), 24px);
     font-family: var(--font-heading--family);
-    text-align: center;
+    text-align: start;
   }
-  .product-hero__eyebrow {
+  #shopify-section-{{ section.id }} .product-hero__eyebrow {
     margin: 0;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
-    line-height: 1.22;
+    line-height: 1.2;
+    text-transform:uppercase;
     color: #000;
     overflow-wrap: anywhere;
   }
-  .product-hero__heading {
+  #shopify-section-{{ section.id }} .product-hero__heading {
     margin: 0;
     font-family: inherit;
     font-size: 48px;
@@ -84,7 +90,7 @@
     overflow-wrap: anywhere;
     text-wrap: balance;
   }
-  .product-hero__description {
+  #shopify-section-{{ section.id }} .product-hero__description {
     width: 100%;
     margin: 0;
     font-size: 18px;
@@ -93,38 +99,67 @@
     color: var(--product-hero-description-color);
     overflow-wrap: anywhere;
   }
-  .product-hero__actions {
+  #shopify-section-{{ section.id }} .product-hero__actions {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
     width: 100%;
-    max-width: 1096px;
+    max-width: none;
   }
-  .product-hero__actions:has(> .product-hero-button ~ .product-hero-button) {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: stretch;
+  #shopify-section-{{ section.id }} .product-hero__actions:has(> .product-hero-button ~ .product-hero-button) {
+    display: flex;
+    align-items: center;
   }
-  .product-hero__actions:has(> .product-hero-button ~ .product-hero-button) > .product-hero-button {
-    width: 100%;
-    min-height: 62px;
+  #shopify-section-{{ section.id }} .product-hero__actions > .product-hero-button {
+    width: fit-content;
+    min-height: 0;
   }
-  .product-hero__services {
+  #shopify-section-{{ section.id }} .product-hero__services {
     width: 100%;
     max-width: 1152px;
     min-width: 0;
   }
-  @media screen and (max-width: 749px) {
-    .product-hero__content { gap: 24px; }
-    .product-hero__description br { display: none; }
-    .product-hero__actions { flex-direction: column; align-items: center; gap: 16px; }
-    .product-hero__actions:has(> .product-hero-button ~ .product-hero-button) {
-      grid-template-columns: minmax(0, 1fr);
-      grid-auto-rows: 1fr;
-    }
+  #shopify-section-{{ section.id }} .product-hero__services .service-labels {
+    justify-content: flex-start;
   }
-{% endstylesheet %}
+  #shopify-section-{{ section.id }} .product-hero__certifications {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 64px;
+    margin: 12px 0 0;
+    padding: 0;
+    max-width: 100%;
+    list-style: none;
+    color: var(--product-hero-certification-color, #102653);
+  }
+  #shopify-section-{{ section.id }} .product-hero__certification {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-width: 0;
+    max-width: 100%;
+  }
+  #shopify-section-{{ section.id }} .product-hero__certification-icon {
+    display: block;
+    flex: none;
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+  }
+  #shopify-section-{{ section.id }} .product-hero__certification-copy { min-width: 0; overflow-wrap: anywhere; }
+  #shopify-section-{{ section.id }} .product-hero__certification-title { margin: 0; font-size: 20px; font-weight: 600; line-height: 1.3; }
+  #shopify-section-{{ section.id }} .product-hero__certification-description { margin: 4px 0 0; font-size: 16px; line-height: 1.4; color: var(--product-hero-description-color); }
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .product-hero__certifications { gap: 20px 32px; }
+    #shopify-section-{{ section.id }} .product-hero__certification { gap: 12px; }
+    #shopify-section-{{ section.id }} .product-hero__certification-icon { width: 48px; height: 48px; }
+    #shopify-section-{{ section.id }} .product-hero__actions { flex-direction: row; align-items: center; }
+    #shopify-section-{{ section.id }} .product-hero__content { gap: 24px; }
+    #shopify-section-{{ section.id }} .product-hero__description br { display: none; }
+  }
+{% endstyle %}
 
 {% schema %}
 {
@@ -142,6 +177,22 @@
     }
   ],
   "settings": [
+    {
+      "type": "header",
+      "content": "t:product_hero.certifications"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_certifications",
+      "label": "t:product_hero.show_certifications",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "certification_color",
+      "label": "t:product_hero.certification_color",
+      "default": "#102653"
+    },
     {
       "type": "text",
       "id": "eyebrow",
@@ -256,9 +307,18 @@
       "id": "content_position",
       "label": "t:product_hero.content_position",
       "options": [
-        { "value": "flex-start", "label": "t:product_hero.position_top" },
-        { "value": "center", "label": "t:product_hero.position_center" },
-        { "value": "flex-end", "label": "t:product_hero.position_bottom" }
+        {
+          "value": "flex-start",
+          "label": "t:product_hero.position_top"
+        },
+        {
+          "value": "center",
+          "label": "t:product_hero.position_center"
+        },
+        {
+          "value": "flex-end",
+          "label": "t:product_hero.position_bottom"
+        }
       ],
       "default": "center"
     },
@@ -296,8 +356,8 @@
         "heading": "Websites Built to Sell.\nNot Just to Look Good",
         "description": "We design and build sites that turn visitors into enquiries - scoped by page\ncount, timeline and budget, so you know what you are buying before we start."
       },
-      "blocks": [
-        {
+      "blocks": {
+        "button_1": {
           "type": "_product-hero-button",
           "settings": {
             "style_class": "button-custom",
@@ -311,10 +371,10 @@
             "button_gradient_start_position": 0,
             "button_gradient_end_position": 100,
             "link": "shopify://pages/contact",
-            "label": "Book a Free Growth Consultation \u2192"
+            "label": "Book a Free Growth Consultation →"
           }
         },
-        {
+        "button_2": {
           "type": "_product-hero-button",
           "settings": {
             "style_class": "button-custom",
@@ -328,9 +388,17 @@
             "button_gradient_start_position": 0,
             "button_gradient_end_position": 100,
             "link": "#pricing",
-            "label": "See Pricing \u2192"
+            "label": "See Pricing →"
           }
+        },
+        "certifications": {
+          "type": "_product-hero-certifications",
+          "static": true
         }
+      },
+      "block_order": [
+        "button_1",
+        "button_2"
       ]
     }
   ]

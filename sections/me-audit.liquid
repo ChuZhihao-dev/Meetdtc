@@ -100,7 +100,7 @@
       <form class="audit-form" id="unlock-form" novalidate>
         <label for="report-email">{{ section.settings.email_label }}</label>
         <input type="email" id="report-email" name="email" autocomplete="email" inputmode="email" maxlength="254" spellcheck="false" autocapitalize="none" placeholder="{{ section.settings.email_placeholder }}" required aria-describedby="unlock-error">
-        <button class="audit-btn" type="submit">{{ section.settings.btn_unlock }}</button>
+        <button class="audit-btn" type="button" id="unlock-submit-btn">{{ section.settings.btn_unlock }}</button>
         <p class="field-error" id="unlock-error" role="alert"></p>
         <small>{{ section.settings.unlock_small }}</small>
       </form>
@@ -206,14 +206,6 @@
     </div>
   </dialog>
 </div>
-
-{% form 'customer', id: 'me-audit-customer-subscribe-form', data-shopify-captcha: 'true' %}
-  <div hidden aria-hidden="true">
-    <input type="hidden" name="contact[tags]" value="free-audit, newsletter" data-me-base-tags="free-audit, newsletter">
-    <input type="email" name="contact[email]" value="" autocomplete="email" required>
-    <button type="submit" tabindex="-1" hidden aria-hidden="true">Subscribe</button>
-  </div>
-{% endform %}
 
 {% if section.settings.submit_contact_form %}
   {% form 'contact', id: 'me-expert-shopify-form', data-shopify-captcha: 'true' %}

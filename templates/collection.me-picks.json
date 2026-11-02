@@ -19,41 +19,6 @@
     "main": {
       "type": "main-me-picks",
       "blocks": {
-        "ecommerce": {
-          "type": "category",
-          "settings": {
-            "collection": "e-commerce",
-            "label": "E-Commerce"
-          }
-        },
-        "beauty": {
-          "type": "category",
-          "settings": {
-            "collection": "beauty",
-            "label": "Beauty"
-          }
-        },
-        "fashion": {
-          "type": "category",
-          "settings": {
-            "collection": "fashion",
-            "label": "Fashion"
-          }
-        },
-        "travel": {
-          "type": "category",
-          "settings": {
-            "collection": "travel",
-            "label": "Travel"
-          }
-        },
-        "food": {
-          "type": "category",
-          "settings": {
-            "collection": "food-beverage",
-            "label": "Food & Beverage"
-          }
-        },
         "tech": {
           "type": "category",
           "settings": {
@@ -67,16 +32,27 @@
             "collection": "home-living",
             "label": "Home & Living"
           }
+        },
+        "category_hbMHht": {
+          "type": "category",
+          "settings": {
+            "collection": "home-living-copy",
+            "label": ""
+          }
+        },
+        "category_MrrGek": {
+          "type": "category",
+          "settings": {
+            "collection": "e-commerce",
+            "label": ""
+          }
         }
       },
       "block_order": [
-        "ecommerce",
-        "beauty",
-        "fashion",
-        "travel",
-        "food",
         "tech",
-        "home"
+        "home",
+        "category_hbMHht",
+        "category_MrrGek"
       ],
       "settings": {
         "heading": "ME PICKS",

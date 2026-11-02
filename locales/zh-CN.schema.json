@@ -234,6 +234,13 @@
     "enable_reveal": "启用入场动画"
   },
   "product_hero": {
+    "certification": "品牌认证",
+    "certifications": "品牌认证",
+    "show_certifications": "显示品牌认证",
+    "certification_color": "认证标题与图标颜色",
+    "certification_1": "品牌认证 A",
+    "certification_2": "品牌认证 B",
+
     "service_labels": "服务标签",
     "service_labels_info": "每行一个标签，调整行顺序即可排序；留空则隐藏。",
     "service_labels_color": "服务标签颜色",

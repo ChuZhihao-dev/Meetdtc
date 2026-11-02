@@ -145,7 +145,7 @@
         "stat_JxPfCa": {
           "type": "stat",
           "settings": {
-            "value": "1,000",
+            "value": "1,500",
             "suffix": "+",
             "description": "Clients served"
           }

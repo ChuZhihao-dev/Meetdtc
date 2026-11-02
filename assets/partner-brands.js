@@ -6,7 +6,6 @@ class PartnerBrands extends Component {
   #resize;
   #frame = 0;
   #animations = [];
-  #hovered = false;
   #focused = false;
   #selected = false;
   #motion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -32,8 +31,6 @@ class PartnerBrands extends Component {
     const { signal } = this.#controller;
     this.#motion.addEventListener('change', this.#restart, { signal });
     if (this.#motion.matches) return;
-    this.addEventListener('pointerenter', this.#enter, { signal });
-    this.addEventListener('pointerleave', this.#leave, { signal });
     this.addEventListener('focusin', this.#focus, { signal });
     this.addEventListener('focusout', this.#blur, { signal });
     this.addEventListener('load', this.#schedule, { capture: true, signal });
@@ -100,8 +97,6 @@ class PartnerBrands extends Component {
     this.#sync();
   };
 
-  #enter = () => { this.#hovered = true; this.#sync(); };
-  #leave = () => { this.#hovered = false; this.#sync(); };
   #focus = (event) => {
     this.#focused = true;
     // Restore wrapped originals while navigating links, so none stay clipped offscreen.
@@ -117,7 +112,7 @@ class PartnerBrands extends Component {
   #deselect = () => { this.#selected = false; this.#schedule(); };
 
   #sync() {
-    const paused = this.#hovered || this.#focused;
+    const paused = this.#focused;
     for (const animation of this.#animations) paused ? animation.pause() : animation.play();
   }
 
@@ -126,7 +121,6 @@ class PartnerBrands extends Component {
     this.#resize?.disconnect();
     cancelAnimationFrame(this.#frame);
     this.#resetRows();
-    this.#hovered = false;
     this.#focused = false;
     this.#selected = false;
   }

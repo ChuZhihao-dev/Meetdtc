@@ -1,0 +1,44 @@
+{% doc %}
+  One editable brand certification in the Product hero certification area.
+  Empty items render only in the editor so they remain selectable.
+  @example
+  <!-- Add Brand certification inside the Hero's Brand certifications area. -->
+{% enddoc %}
+{% liquid
+  assign image = block.settings.image
+  assign title = block.settings.title
+  assign description = block.settings.description
+%}
+{% if image != blank or title != blank or description != blank or request.design_mode %}
+  <li class="product-hero__certification" {{ block.shopify_attributes }}>
+    {% if image != blank %}
+      {{ image | image_url: width: 144 | image_tag: widths: '48, 64, 96, 128, 144', sizes: '(max-width: 749px) 48px, 64px', class: 'product-hero__certification-icon', alt: image.alt, loading: 'lazy' }}
+    {% endif %}
+    {% if title != blank or description != blank %}
+      <div class="product-hero__certification-copy">
+        {% if title != blank %}<p class="product-hero__certification-title">{{ title | escape }}</p>{% endif %}
+        {% if description != blank %}<p class="product-hero__certification-description">{{ description | escape }}</p>{% endif %}
+      </div>
+    {% endif %}
+  </li>
+{% endif %}
+
+{% stylesheet %}
+  .product-hero__certification:empty {
+    min-inline-size: 64px;
+    min-block-size: 48px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:product_hero.certification",
+  "tag": null,
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "t:settings.image" },
+    { "type": "text", "id": "title", "label": "t:settings.heading" },
+    { "type": "text", "id": "description", "label": "t:settings.description" }
+  ],
+  "presets": [{ "name": "t:product_hero.certification", "category": "t:categories.basic" }]
+}
+{% endschema %}

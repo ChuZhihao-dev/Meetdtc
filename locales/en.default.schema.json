@@ -367,6 +367,13 @@
     "enable_reveal": "Enable entrance animation"
   },
   "product_hero": {
+    "certification": "Brand certification",
+    "certifications": "Brand certifications",
+    "show_certifications": "Show certifications",
+    "certification_color": "Certification title and icon color",
+    "certification_1": "Certification A",
+    "certification_2": "Certification B",
+
     "service_labels": "Service labels",
     "service_labels_info": "One label per line. Reorder the lines to change their order; leave empty to hide.",
     "service_labels_color": "Service label color",

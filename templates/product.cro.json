@@ -383,6 +383,26 @@
             "button_icon_size": 16
           },
           "blocks": {}
+        },
+        "certifications": {
+          "type": "_product-hero-certifications",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "product_hero_certification_Rh6YHU": {
+              "type": "_product-hero-certification",
+              "name": "t:product_hero.certification",
+              "settings": {
+                "image": "shopify://shop_images/shopify.png",
+                "title": "",
+                "description": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_hero_certification_Rh6YHU"
+          ]
         }
       },
       "block_order": [
@@ -390,6 +410,8 @@
       ],
       "name": "t:product_hero.name",
       "settings": {
+        "show_certifications": true,
+        "certification_color": "#102653",
         "eyebrow": "Conversion Rate Optimization",
         "heading": "Turn more of your existing\n traffic into revenue.",
         "heading_tag": "h1",
@@ -914,7 +936,7 @@
         "image": "shopify://shop_images/CRO.png",
         "image_alt": "",
         "link_label": "Vlaw Case Study",
-        "link": "",
+        "link": "https://meetdtc-40icat5f.myshopify.com/blogs/our-work/laser-equipment-package-selection-cro",
         "font": "montserrat_n5",
         "text_color": "#000000",
         "heading_gradient": "linear-gradient(108.133deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",

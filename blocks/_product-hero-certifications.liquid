@@ -1,0 +1,21 @@
+{% doc %}
+  Fixed certification area below Product hero actions. Its children are merchant-managed
+  certification blocks; an empty area produces no storefront markup.
+  @example
+  {% content_for 'block', type: '_product-hero-certifications', id: 'certifications' %}
+{% enddoc %}
+{% capture certifications %}{% content_for 'blocks' %}{% endcapture %}
+{% assign certifications = certifications | strip %}
+{% if section.settings.show_certifications %}
+{% if certifications != blank or request.design_mode %}
+  <ul class="product-hero__certifications" role="list" data-reveal {{ block.shopify_attributes }}>{{ certifications }}</ul>
+{% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:product_hero.certifications",
+  "tag": null,
+  "blocks": [{ "type": "_product-hero-certification" }]
+}
+{% endschema %}
