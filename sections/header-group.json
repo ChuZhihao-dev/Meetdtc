@@ -30,7 +30,7 @@
           "settings": {
             "menu": "main-menu",
             "background_color": "{{ settings.color_palette.background }}",
-            "text_color": "#2f2f2f",
+            "text_color": "",
             "active_color": "#0032f5",
             "type_font_primary_size": "1rem",
             "type_font_primary_weight": "700",

@@ -27,7 +27,7 @@
 ></div>
 
 <partner-brands-component
-  class="section section--full-width partner-brands spacing-style"
+  class="section section--full-width partner-brands spacing-style{% if template.suffix == 'about-us' %} partner-brands--about{% endif %}"
   style="{% render 'spacing-style', settings: section_settings %}
     --brand-logo-gap: {{ section_settings.logo_gap }}px;
     --brand-logo-row-gap: {{ section_settings.row_gap }}px;
@@ -113,6 +113,16 @@
   }
 
   @media screen and (max-width: 749px) {
+    .partner-brands--about { --spacing-scale: 0.5; }
+    .partner-brands--about .partner-brands__heading { font-size: 28px; line-height: 1.2; margin-block-end: 24px; padding-inline: 20px; overflow-wrap: anywhere; }
+    .partner-brands--about .partner-brands__heading > * { font-size: inherit; line-height: inherit; }
+    .partner-brands--about .partner-brands__logos { padding-inline: 20px; }
+    .partner-brands--about .brand-row:not(.brand-row--scrolling) { overflow-x: auto; }
+    .partner-brands--about .brand-row { scrollbar-width: none; }
+    .partner-brands--about .brand-row::-webkit-scrollbar { display: none; }
+    .partner-brands--about .brand-row:not(.brand-row--scrolling) .brand-row__items { flex-wrap: nowrap; justify-content: flex-start; width: max-content; min-width: 100%; }
+    .partner-brands--about .brand-logo { max-width: 100%; min-width: 0; }
+    .partner-brands--about .brand-logo__image { width: auto; max-width: min(var(--brand-image-width), 120px); max-height: 40px; }
     .partner-brands__divider {
       margin-block-end: 24px;
     }

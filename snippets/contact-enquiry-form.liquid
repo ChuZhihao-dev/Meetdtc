@@ -64,6 +64,13 @@
   .contact-enquiry__form:target .contact-enquiry__feedback + .contact-enquiry__submit { margin-block-start: 16px; }
   .contact-enquiry__feedback:focus { outline: none; }
   @media screen and (max-width: 749px) {
-    .contact-enquiry__fields { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .contact-enquiry__fields { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    .contact-enquiry__field { gap: 8px; }
+    .contact-enquiry__field label { line-height: 1.5; }
+    .contact-enquiry__field input, .contact-enquiry__field textarea { min-height: 44px; padding: 10px 12px; border-radius: 8px; font-size: 14px; line-height: 1.5; }
+    .contact-enquiry__field textarea { min-height: 132px; }
+    .contact-enquiry__submit { min-height: 44px; margin-block-start: 24px; padding: 10px 16px; border-radius: 24px; font-size: 14px; line-height: 1.5; }
+    .contact-enquiry__privacy { margin-block-start: 12px; font-size: 14px; }
+    .contact-enquiry__feedback { font-size: 14px; line-height: 1.5; }
   }
 {% endstylesheet %}

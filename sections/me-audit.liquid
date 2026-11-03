@@ -137,7 +137,7 @@
   <dialog class="review-drawer" id="review-drawer" aria-labelledby="drawer-title">
     <div class="drawer-top">
       <span class="small-chip">FREE EXPERT REVIEW · MANUAL</span>
-      <button type="button" id="drawer-close" class="close-button" aria-label="Close review form">×</button>
+      <button type="button" id="drawer-close" class="close-button" aria-label="Close review form"><span class="close-button-icon" aria-hidden="true"></span></button>
     </div>
     <h2 id="drawer-title" tabindex="-1">{{ section.settings.drawer_title }}</h2>
     <p class="drawer-description" id="drawer-description"></p>
@@ -147,79 +147,119 @@
       <strong id="drawer-turnaround"></strong>
       <small>Once all required information has been received.</small>
     </div>
-    <form id="request-form" class="audit-form">
-      <div class="selected-service">
-        <label>
-          <input type="checkbox" checked disabled>
-          <span><small>Selected service</small><strong id="selected-service-name"></strong></span>
-        </label>
-        <input type="hidden" id="selected-service-value" name="service">
-        <button class="text-link" type="button" id="change-service">Choose a different service</button>
-      </div>
-      <div class="form-grid">
-        <div class="field"><label for="request-name">Full Name <span>*</span></label><input id="request-name" name="name" autocomplete="name" required></div>
-        <div class="field"><label for="request-email">Work Email <span>*</span></label><input id="request-email" name="email" type="email" autocomplete="email" required></div>
-        <div class="field full"><label for="request-url">Website URL <span>*</span></label><input id="request-url" name="website" type="text" inputmode="url" autocomplete="url" required></div>
-        <div class="field full"><label for="request-company">Company Name</label><input id="request-company" name="company" autocomplete="organization"></div>
-      </div>
-      <div class="report-context" id="report-context" hidden>
-        <strong>Automated check context included</strong>
-        <p id="report-context-lines">Website Performance · SEO Health · Tracking Setup</p>
-        <input type="hidden" id="report-context-value" name="report_context" disabled>
-      </div>
-      <fieldset id="affiliate-fields" class="special-fields" hidden disabled>
-        <legend>Affiliate programme context</legend>
+    {% if section.settings.submit_contact_form %}
+      {% form 'contact', id: 'request-form', class: 'audit-form', data-shopify-captcha: 'true' %}
+        <input type="hidden" name="contact[tags]" value="free-expert-review">
+        <div class="selected-service">
+          <label>
+            <input type="checkbox" checked disabled>
+            <span><small>Selected service</small><strong id="selected-service-name"></strong></span>
+          </label>
+          <input type="hidden" id="selected-service-value" name="service">
+          <button class="text-link" type="button" id="change-service">Choose a different service</button>
+        </div>
         <div class="form-grid">
-          <div class="field"><label for="target-markets">Target Markets</label><input id="target-markets" name="markets"></div>
-          <div class="field"><label for="affiliate-stage">Current Affiliate Stage</label>
-            <select id="affiliate-stage" name="stage"><option value="">Select a stage</option><option>Not Started</option><option>Preparing to Launch</option><option>Already Running</option></select>
+          <div class="field"><label for="request-name">Full Name <span>*</span></label><input id="request-name" name="contact[name]" autocomplete="name" required></div>
+          <div class="field"><label for="request-email">Work Email <span>*</span></label><input id="request-email" name="contact[email]" type="email" autocomplete="email" required></div>
+          <div class="field full"><label for="request-url">Website URL <span>*</span></label><input id="request-url" name="website" type="text" inputmode="url" autocomplete="url" required></div>
+          <div class="field full"><label for="request-company">Company Name</label><input id="request-company" name="company" autocomplete="organization"></div>
+        </div>
+        <div class="report-context" id="report-context" hidden>
+          <strong>Automated check context included</strong>
+          <p id="report-context-lines">Website Performance · SEO Health · Tracking Setup</p>
+          <input type="hidden" id="report-context-value" name="report_context" disabled>
+        </div>
+        <fieldset id="affiliate-fields" class="special-fields" hidden disabled>
+          <legend>Affiliate programme context</legend>
+          <div class="form-grid">
+            <div class="field"><label for="target-markets">Target Markets</label><input id="target-markets" name="markets"></div>
+            <div class="field"><label for="affiliate-stage">Current Affiliate Stage</label>
+              <select id="affiliate-stage" name="stage"><option value="">Select a stage</option><option>Not Started</option><option>Preparing to Launch</option><option>Already Running</option></select>
+            </div>
+            <div class="field full"><label for="affiliate-platform">Current Affiliate Platform, if applicable</label><input id="affiliate-platform" name="platform"></div>
+            <div class="field full"><label for="affiliate-goal">Primary Goal</label><input id="affiliate-goal" name="goal"></div>
           </div>
-          <div class="field full"><label for="affiliate-platform">Current Affiliate Platform, if applicable</label><input id="affiliate-platform" name="platform"></div>
-          <div class="field full"><label for="affiliate-goal">Primary Goal</label><input id="affiliate-goal" name="goal"></div>
-        </div>
-      </fieldset>
-      <fieldset id="whatsapp-fields" class="special-fields" hidden disabled>
-        <legend>WhatsApp Business context</legend>
+        </fieldset>
+        <fieldset id="whatsapp-fields" class="special-fields" hidden disabled>
+          <legend>WhatsApp Business context</legend>
+          <div class="field">
+            <label for="whatsapp-account">Business account name or business phone number</label>
+            <input id="whatsapp-account" name="whatsapp_account">
+            <small>Do not enter passwords, verification codes or API tokens.</small>
+          </div>
+        </fieldset>
         <div class="field">
-          <label for="whatsapp-account">Business account name or business phone number</label>
-          <input id="whatsapp-account" name="whatsapp_account">
-          <small>Do not enter passwords, verification codes or API tokens.</small>
+          <label for="request-message">What would you like help with?</label>
+          <textarea id="request-message" name="message" rows="3"></textarea>
         </div>
-      </fieldset>
-      <div class="field">
-        <label for="request-message">What would you like help with?</label>
-        <textarea id="request-message" name="message" rows="3"></textarea>
-      </div>
-      <p id="request-context" class="request-context"></p>
-      <p id="request-error" class="field-error" role="alert"></p>
-      <button class="audit-btn full-button" type="submit">{{ section.settings.expert_btn_submit }}</button>
-      <p class="form-disclosure">{{ section.settings.drawer_disclosure }}</p>
-    </form>
+        <textarea id="request-contact-body" name="contact[body]" hidden aria-hidden="true" tabindex="-1"></textarea>
+        <p id="request-context" class="request-context"></p>
+        <p id="request-error" class="field-error" role="alert"></p>
+        <button class="audit-btn full-button" type="button" id="request-submit-btn">{{ section.settings.expert_btn_submit }}</button>
+        <p class="form-disclosure">{{ section.settings.drawer_disclosure }}</p>
+      {% endform %}
+    {% else %}
+      <form id="request-form" class="audit-form">
+        <div class="selected-service">
+          <label>
+            <input type="checkbox" checked disabled>
+            <span><small>Selected service</small><strong id="selected-service-name"></strong></span>
+          </label>
+          <input type="hidden" id="selected-service-value" name="service">
+          <button class="text-link" type="button" id="change-service">Choose a different service</button>
+        </div>
+        <div class="form-grid">
+          <div class="field"><label for="request-name">Full Name <span>*</span></label><input id="request-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="request-email">Work Email <span>*</span></label><input id="request-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field full"><label for="request-url">Website URL <span>*</span></label><input id="request-url" name="website" type="text" inputmode="url" autocomplete="url" required></div>
+          <div class="field full"><label for="request-company">Company Name</label><input id="request-company" name="company" autocomplete="organization"></div>
+        </div>
+        <div class="report-context" id="report-context" hidden>
+          <strong>Automated check context included</strong>
+          <p id="report-context-lines">Website Performance · SEO Health · Tracking Setup</p>
+          <input type="hidden" id="report-context-value" name="report_context" disabled>
+        </div>
+        <fieldset id="affiliate-fields" class="special-fields" hidden disabled>
+          <legend>Affiliate programme context</legend>
+          <div class="form-grid">
+            <div class="field"><label for="target-markets">Target Markets</label><input id="target-markets" name="markets"></div>
+            <div class="field"><label for="affiliate-stage">Current Affiliate Stage</label>
+              <select id="affiliate-stage" name="stage"><option value="">Select a stage</option><option>Not Started</option><option>Preparing to Launch</option><option>Already Running</option></select>
+            </div>
+            <div class="field full"><label for="affiliate-platform">Current Affiliate Platform, if applicable</label><input id="affiliate-platform" name="platform"></div>
+            <div class="field full"><label for="affiliate-goal">Primary Goal</label><input id="affiliate-goal" name="goal"></div>
+          </div>
+        </fieldset>
+        <fieldset id="whatsapp-fields" class="special-fields" hidden disabled>
+          <legend>WhatsApp Business context</legend>
+          <div class="field">
+            <label for="whatsapp-account">Business account name or business phone number</label>
+            <input id="whatsapp-account" name="whatsapp_account">
+            <small>Do not enter passwords, verification codes or API tokens.</small>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="request-message">What would you like help with?</label>
+          <textarea id="request-message" name="message" rows="3"></textarea>
+        </div>
+        <p id="request-context" class="request-context"></p>
+        <p id="request-error" class="field-error" role="alert"></p>
+        <button class="audit-btn full-button" type="button" id="request-submit-btn">{{ section.settings.expert_btn_submit }}</button>
+        <p class="form-disclosure">{{ section.settings.drawer_disclosure }}</p>
+      </form>
+    {% endif %}
     <div id="request-success" hidden role="status">
       <span class="success-symbol">✓</span>
       <span class="eyebrow">REQUEST SUMMARY</span>
       <h3>{{ section.settings.expert_summary_title }}</h3>
       <p id="success-copy"></p>
+      <p id="request-success-warn" class="field-error" role="status"></p>
       <p>{{ section.settings.expert_summary_sub }}</p>
       <button type="button" class="audit-btn outline" id="edit-request">Edit this request</button>
       <button type="button" class="text-link" id="another-review">Choose another review →</button>
     </div>
   </dialog>
 </div>
-
-{% if section.settings.submit_contact_form %}
-  {% form 'contact', id: 'me-expert-shopify-form', data-shopify-captcha: 'true' %}
-    <div hidden aria-hidden="true">
-      <input type="hidden" name="contact[tags]" value="free-expert-review">
-      <input type="text" name="contact[name]" value="">
-      <input type="email" name="contact[email]" value="" autocomplete="email" required>
-      <input type="hidden" name="contact[customer_email]" value="">
-      <input type="hidden" name="contact[audited_website]" value="">
-      <textarea name="contact[body]" required></textarea>
-      <button type="submit" tabindex="-1" hidden aria-hidden="true">Submit</button>
-    </div>
-  {% endform %}
-{% endif %}
 
 <script>
   window.ME_AUDIT_CONFIG = {

@@ -67,7 +67,8 @@ class PartnerBrands extends Component {
     if (this.#selected || this.#focused) return;
     this.#resetRows();
     for (const row of this.refs.rows ?? []) {
-      if (!['left', 'right'].includes(row.dataset.motion)) continue;
+      const direction = row.dataset.motion;
+      if (!['left', 'right'].includes(direction)) continue;
       const group = row.querySelector('.brand-row__items');
       const track = row.querySelector('.brand-row__track');
       if (!group || !track || !group.querySelector('.brand-logo')) continue;
@@ -91,7 +92,7 @@ class PartnerBrands extends Component {
         track.append(clone);
       }
       const frames = [{ transform: 'translateX(0)' }, { transform: `translateX(-${distance}px)` }];
-      if (row.dataset.motion === 'right') frames.reverse();
+      if (direction === 'right') frames.reverse();
       this.#animations.push(track.animate(frames, { duration: distance / 30 * 1000, iterations: Infinity, easing: 'linear' }));
     }
     this.#sync();

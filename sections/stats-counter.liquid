@@ -7,7 +7,7 @@
 {% render 'custom-section-fonts', font: s.font %}
 {% if s.enable_animation %}<script src="{{ 'stats-counter.js' | asset_url }}" type="module" fetchpriority="low"></script>{% endif %}
 <div class="section-background" style="background: {{ s.background | default: 'transparent' }};"></div>
-<stats-counter-component class="section section--full-width spacing-style stats-counter"
+<stats-counter-component class="section section--full-width spacing-style stats-counter{% if template.suffix == 'about-us' %} stats-counter--about{% endif %}"
   style="{% render 'spacing-style', settings: s %} --stats-counter-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }}; --stats-counter-text: {{ s.text_color }}; --stats-counter-accent: {{ s.accent_color }};"
   {% if s.enable_animation %}data-animate{% endif %}>
   <ul class="stats-counter__items" role="list">
@@ -42,6 +42,12 @@
   }
   @media screen and (max-width: 749px) {
     .stats-counter__items { padding-inline: 20px; column-gap: 20px; }
+    .stats-counter--about { --spacing-scale: 0.5; }
+    .stats-counter--about .stats-counter__items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
+    .stats-counter--about .stats-counter__item { width: auto; }
+    .stats-counter--about .stats-counter__amount { font-size: 28px; line-height: 1.2; }
+    .stats-counter--about .stats-counter__suffix { font-size: 16px; }
+    .stats-counter--about .stats-counter__description { margin-block-start: 8px; font-size: 14px; line-height: 1.5; }
   }
 {% endstylesheet %}
 

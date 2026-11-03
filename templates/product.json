@@ -414,7 +414,7 @@
               "type": "_product-hero-certification",
               "name": "t:product_hero.certification",
               "settings": {
-                "image": "shopify://shop_images/shopify_platinum_partner_transparent_8f3a_1.webp",
+                "image": "shopify://shop_images/shopify_platinum_partner.svg",
                 "title": "",
                 "description": ""
               },
@@ -1101,7 +1101,8 @@
         "panel_padding_block_start": 40,
         "panel_padding_inline_end": 48,
         "panel_padding_block_end": 40,
-        "panel_padding_inline_start": 48
+        "panel_padding_inline_start": 48,
+        "panel_radius_mobile": 16
       }
     },
     "featured_client_story_ChKJVj": {
@@ -1265,7 +1266,8 @@
         "heading_gap": 52,
         "list_max_width": 1140,
         "padding-block-start": 80,
-        "padding-block-end": 80
+        "padding-block-end": 80,
+        "row_radius_mobile": 12
       }
     }
   },

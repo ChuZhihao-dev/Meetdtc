@@ -92,11 +92,7 @@
       const res = await fetch(`${API}/api/audit/${state.jobId}/unlock`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: state.email,
-          website_url: state.url,
-          source: cfg.source || "shopify",
-        }),
+        body: JSON.stringify(unlockRequestBody(state.email, state.url)),
       });
       if (!res.ok) return;
       const data = await res.json();
@@ -122,6 +118,51 @@
   function setUnlockError(message) {
     const el = $("#unlock-error");
     if (el) el.textContent = message || "";
+  }
+
+  /** Sent with unlock → Shopify Customer note, tags (location-xx), locale, default country. */
+  function collectUnlockLocation() {
+    const shop = typeof window !== "undefined" ? window.Shopify || {} : {};
+    let countryCode = (shop.country || "").trim().toUpperCase();
+    if (countryCode.length > 2) countryCode = countryCode.slice(0, 2);
+    if (!/^[A-Z]{2}$/.test(countryCode)) countryCode = "";
+
+    let locale = (shop.locale || cfg.locale || "").trim();
+    if (!locale) {
+      try {
+        locale = Intl.DateTimeFormat().resolvedOptions().locale || "";
+      } catch {
+        locale = "";
+      }
+    }
+    if (!countryCode && locale.includes("-")) {
+      const maybe = locale.split("-").pop().toUpperCase();
+      if (/^[A-Z]{2}$/.test(maybe)) countryCode = maybe;
+    }
+
+    let timezone = "";
+    try {
+      timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+    } catch {
+      /* ignore */
+    }
+
+    const payload = {
+      source: cfg.source === "shopify" ? "shopify-storefront" : "browser",
+    };
+    if (countryCode) payload.country_code = countryCode;
+    if (locale) payload.locale = locale.slice(0, 16);
+    if (timezone) payload.timezone = timezone.slice(0, 64);
+    return payload;
+  }
+
+  function unlockRequestBody(email, websiteUrl) {
+    return {
+      email,
+      website_url: websiteUrl,
+      source: cfg.source || "shopify",
+      location: collectUnlockLocation(),
+    };
   }
 
   function showSubscribeNotice(message) {
@@ -183,8 +224,9 @@
 
   /** Expert review contact form only — unlock email uses Render Admin API (no storefront captcha). */
   function bootShopifyExpertCaptcha() {
-    const form = document.getElementById("me-expert-shopify-form");
-    if (!form) return;
+    if (cfg.submitContactForm === false) return;
+    const form = document.getElementById("request-form");
+    if (!form || !form.querySelector('[name="contact[body]"]')) return;
     let attempts = 0;
     const tick = () => {
       const protect = window.Shopify?.captcha?.protect;
@@ -195,6 +237,22 @@
       if (attempts++ < 50) setTimeout(tick, 200);
     };
     tick();
+  }
+
+  function prepareExpertContactCaptcha() {
+    bootShopifyExpertCaptcha();
+    wireExpertFormCaptchaWarmup();
+  }
+
+  function wireExpertFormCaptchaWarmup() {
+    const form = document.getElementById("request-form");
+    if (!form || form.dataset.meCaptchaWarm === "1") return;
+    form.dataset.meCaptchaWarm = "1";
+    const warm = () => bootShopifyExpertCaptcha();
+    form.querySelectorAll("input, textarea, select").forEach((el) => {
+      el.addEventListener("focus", warm, { once: true });
+      el.addEventListener("pointerdown", warm, { once: true });
+    });
   }
 
   async function apiErrorMessage(res, fallback) {
@@ -710,36 +768,6 @@
     return Array.from(document.querySelectorAll(".scan-card .coverage-card"));
   }
 
-  const PERF_SCAN_TIP_TEXT = rp(
-    "PageSpeed 检测通常需 1–3 分钟，请稍候，无需刷新页面。",
-    "PageSpeed often takes 1–3 minutes — please wait and do not refresh."
-  );
-
-  function ensurePerformanceScanTip(card) {
-    if (!card) return null;
-    let tip = card.querySelector(".me-perf-scan-tip");
-    if (!tip) {
-      tip = document.createElement("p");
-      tip.className = "me-perf-scan-tip";
-      tip.setAttribute("role", "note");
-      tip.hidden = true;
-      tip.textContent = PERF_SCAN_TIP_TEXT;
-      card.appendChild(tip);
-    } else {
-      tip.textContent = PERF_SCAN_TIP_TEXT;
-    }
-    return tip;
-  }
-
-  function updatePerformanceScanTip(perfState) {
-    const card = coverageCards()[0];
-    const tip = ensurePerformanceScanTip(card);
-    if (!tip) return;
-    const show = perfState === "running";
-    tip.hidden = !show;
-    card?.classList.toggle("has-perf-tip", show);
-  }
-
   function ensureScanStepList() {
     let list = $("#scan-step-list");
     if (list) return list;
@@ -767,11 +795,7 @@
       seo: "pending",
       tracking: "pending",
     }, "queued");
-    coverageCards().forEach((c) => {
-      c.classList.remove("is-scanning", "is-done", "has-perf-tip");
-      const tip = c.querySelector(".me-perf-scan-tip");
-      if (tip) tip.hidden = true;
-    });
+    coverageCards().forEach((c) => c.classList.remove("is-scanning", "is-done"));
   }
 
   function updateScanProgress(progress, stage) {
@@ -798,7 +822,6 @@
       if (st === "done") doneCount += 1;
       else if (st === "running") running.push(SCAN_DIM_LABEL_SHORT[key]);
     });
-    updatePerformanceScanTip(prog.performance);
     let pct;
     if (stage === "completed") pct = 100;
     else if (stage === "finalizing") pct = 92;
@@ -830,11 +853,7 @@
 
   function hideScanProgress() {
     $("#scan-progress").hidden = true;
-    coverageCards().forEach((c) => {
-      c.classList.remove("is-scanning", "is-done", "has-perf-tip");
-      const tip = c.querySelector(".me-perf-scan-tip");
-      if (tip) tip.hidden = true;
-    });
+    coverageCards().forEach((c) => c.classList.remove("is-scanning", "is-done"));
   }
 
   function showResults(summary, hostname) {
@@ -905,15 +924,29 @@
     $("#url-error").textContent = err.message || String(err);
   }
 
-  /** hCaptcha token is only injected after interaction with fields in the same Shopify customer form. */
+  function captchaTokenFromForm(form) {
+    if (!form) return "";
+    const selectors = [
+      'textarea[name="h-captcha-response"]',
+      'input[name="h-captcha-response"]',
+      'textarea[name="g-recaptcha-response"]',
+      'input[name="g-recaptcha-response"]',
+      "[name*='captcha-response']",
+    ];
+    for (const sel of selectors) {
+      const field = form.querySelector(sel);
+      const token = (field && field.value) || "";
+      if (token.length > 30) return token;
+    }
+    return "";
+  }
+
+  /** Token appears after Shopify.captcha.protect runs on the same contact form the user edited. */
   function waitForHcaptchaToken(form, timeoutMs = 20000) {
     return new Promise((resolve, reject) => {
       const started = Date.now();
       const poll = () => {
-        const field = form.querySelector(
-          'textarea[name="h-captcha-response"], input[name="h-captcha-response"]'
-        );
-        const token = (field && field.value) || "";
+        const token = captchaTokenFromForm(form);
         if (token.length > 30) {
           resolve(token);
           return;
@@ -934,11 +967,18 @@
     return fetch(action, { method: "POST", body, credentials: "same-origin" }).then(async (res) => {
       const text = await res.text();
       const lower = text.toLowerCase();
-      if (lower.includes("missing captcha") || lower.includes("captcha token")) {
+      if (
+        lower.includes("missing captcha") ||
+        lower.includes("captcha token") ||
+        lower.includes("invalid captcha")
+      ) {
         throw new Error("CAPTCHA");
       }
       if (res.status >= 400) {
-        throw new Error(`Subscribe HTTP ${res.status}`);
+        if (lower.includes("captcha")) {
+          throw new Error("CAPTCHA");
+        }
+        throw new Error(`Contact form rejected (${res.status})`);
       }
       return true;
     });
@@ -993,83 +1033,46 @@
     });
   }
 
-  /** protect → wait for token → POST in one chain (token must not be fetched before unlock finishes). */
-  function postShopifyCustomerSubscribeForm(form) {
+  /**
+   * Shopify docs: captcha.protect(form, cb) runs cb when CAPTCHA is ready — then submit or fetch.
+   * Do not poll for h-captcha-response; invisible hCaptcha may not expose a token in the DOM.
+   */
+  function postShopifyContactAfterProtect(form) {
     return new Promise((resolve, reject) => {
-      if (!form) {
-        reject(new Error("Subscribe form missing"));
-        return;
-      }
-      const run = async () => {
-        try {
-          await waitForHcaptchaToken(form);
-          try {
-            await shopifyFormPostFetch(form);
-          } catch (fetchErr) {
-            await shopifyFormPostIframe(form);
-          }
-          resolve(true);
-        } catch (err) {
-          reject(err);
-        }
+      const deliver = () => {
+        shopifyFormPostFetch(form)
+          .then(resolve)
+          .catch((fetchErr) => {
+            shopifyFormPostIframe(form).then(resolve).catch(() => reject(fetchErr));
+          });
       };
       const protect = window.Shopify?.captcha?.protect;
-      if (typeof protect === "function") protect(form, run);
-      else run();
+      if (typeof protect === "function") {
+        protect(form, deliver);
+      } else {
+        deliver();
+      }
     });
   }
 
-  async function postShopifyFormWithCaptcha(form) {
-    await postShopifyCustomerSubscribeForm(form);
-  }
-
-  async function submitShopifyContact(formId, { email, websiteUrl, bodyLines, displayName }) {
+  async function submitDrawerShopifyContact(formEl, bodyLines) {
     if (cfg.submitContactForm === false) return false;
-    const form = document.getElementById(formId);
-    if (!form) return false;
-
-    const customerEmail = (email || "").trim();
-    const auditedUrl = (websiteUrl || "").trim();
-    if (!customerEmail) return false;
-
-    const nf = form.querySelector('[name="contact[name]"]');
-    const ef = form.querySelector('[name="contact[email]"]');
-    const bf = form.querySelector('[name="contact[body]"]');
-    const cf = form.querySelector('[name="contact[customer_email]"]');
-    const wf = form.querySelector('[name="contact[audited_website]"]');
-
-    if (ef) ef.value = customerEmail;
-    if (cf) cf.value = customerEmail;
-    if (wf) wf.value = auditedUrl;
-
-    const body =
-      bodyLines && bodyLines.length
-        ? bodyLines.join("\n")
-        : [
-            "ME Audit contact",
-            "",
-            `Customer email: ${customerEmail}`,
-            auditedUrl ? `Website audited: ${auditedUrl}` : "",
-          ]
-            .filter((line) => line !== "")
-            .join("\n");
-    if (bf) bf.value = body;
-
-    if (nf) {
-      let name = (displayName || "").trim();
-      if (!name && auditedUrl) {
-        try {
-          name = `Audit · ${new URL(auditedUrl).hostname}`;
-        } catch {
-          /* ignore */
-        }
-      }
-      if (!name) name = customerEmail.split("@")[0] || "ME Audit";
-      nf.value = name;
+    if (!formEl) {
+      throw new Error(
+        "Store contact form is not on this page. Enable “Expert review: Shopify contact form” in the theme section."
+      );
     }
-
-    await postShopifyFormWithCaptcha(form);
-    return true;
+    const bf =
+      formEl.querySelector('[name="contact[body]"]') || document.getElementById("request-contact-body");
+    if (!bf) {
+      throw new Error("Contact form is misconfigured. Re-upload the latest me-free-audit section.");
+    }
+    bf.value = (bodyLines || []).join("\n");
+    const emailField = formEl.querySelector('[name="contact[email]"]');
+    if (!emailField?.value?.trim()) {
+      throw new Error("Work email is required.");
+    }
+    return postShopifyContactAfterProtect(formEl);
   }
 
   function closeDrawer() {
@@ -1106,6 +1109,7 @@
     $("#request-success").hidden = true;
     document.body.classList.add("drawer-open");
     dialog.showModal();
+    prepareExpertContactCaptcha();
   }
 
   buildReviewCards();
@@ -1113,6 +1117,7 @@
   restoreSession();
   restoreUnlockedViewIfNeeded();
   bootShopifyExpertCaptcha();
+  wireExpertFormCaptchaWarmup();
   $("#report-email")?.addEventListener("blur", () => {
     const input = $("#report-email");
     if (!input?.value.trim()) {
@@ -1179,7 +1184,7 @@
       const res = await fetch(`${API}/api/audit/${state.jobId}/unlock`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: state.email, website_url: state.url, source: cfg.source || "shopify" }),
+        body: JSON.stringify(unlockRequestBody(state.email, state.url)),
       });
       if (!res.ok) throw new Error(await apiErrorMessage(res, "Could not unlock report"));
       const data = await res.json();
@@ -1219,14 +1224,23 @@
     handleUnlockSubmit();
   });
 
-  $("#request-form")?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (!e.currentTarget.reportValidity()) return;
+  async function handleExpertReviewSubmit(formEl) {
+    const submitBtn = document.getElementById("request-submit-btn");
+    const setBusy = (busy) => {
+      if (!submitBtn) return;
+      submitBtn.disabled = busy;
+      if (busy) submitBtn.setAttribute("aria-busy", "true");
+      else submitBtn.removeAttribute("aria-busy");
+    };
+
+    $("#request-error").textContent = "";
+    const warnEl = document.getElementById("request-success-warn");
+    if (warnEl) warnEl.textContent = "";
     const u = normalise($("#request-url").value);
     if (!u) {
       $("#request-error").textContent = "Enter a valid website URL.";
-        return;
-      }
+      return;
+    }
     const emailCheck = validateShopifyEmail($("#request-email").value);
     if (!emailCheck.ok) {
       $("#request-error").textContent = emailCheck.message;
@@ -1248,35 +1262,96 @@
       whatsapp_context: $("#whatsapp-account")?.value || null,
       help_message: $("#request-message")?.value || null,
     };
+    const contactBodyLines = [
+      "ME Expert Review request",
+      "",
+      `Customer email: ${payload.email}`,
+      `Website audited: ${payload.website_url}`,
+      `Service: ${payload.service}`,
+      `Name: ${payload.full_name}`,
+      payload.company_name ? `Company: ${payload.company_name}` : "",
+      payload.audit_job_id ? `Audit job ID: ${payload.audit_job_id}` : "",
+      payload.affiliate_stage ? `Affiliate stage: ${payload.affiliate_stage}` : "",
+      payload.affiliate_platform ? `Affiliate platform: ${payload.affiliate_platform}` : "",
+      payload.affiliate_markets ? `Target markets: ${payload.affiliate_markets}` : "",
+      payload.affiliate_goal ? `Affiliate goal: ${payload.affiliate_goal}` : "",
+      payload.whatsapp_context ? `WhatsApp context: ${payload.whatsapp_context}` : "",
+      payload.help_message ? `Message: ${payload.help_message}` : "",
+    ].filter(Boolean);
+
+    const defaultBtnLabel = submitBtn?.textContent || "";
+    setBusy(true);
+    if (submitBtn) submitBtn.textContent = "Submitting…";
     try {
-      await fetch(`${API}/api/expert-review`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+      const res = await fetch(`${API}/api/expert-review`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      await submitShopifyContact("me-expert-shopify-form", {
-        email: payload.email,
-        websiteUrl: payload.website_url,
-        displayName: payload.full_name,
-        bodyLines: [
-          "ME Expert Review request",
-          "",
-          `Customer email: ${payload.email}`,
-          `Website audited: ${payload.website_url}`,
-          `Service: ${payload.service}`,
-          `Name: ${payload.full_name}`,
-          payload.company_name ? `Company: ${payload.company_name}` : "",
-          payload.audit_job_id ? `Audit job ID: ${payload.audit_job_id}` : "",
-          payload.help_message ? `Message: ${payload.help_message}` : "",
-        ].filter(Boolean),
-      });
+      if (!res.ok) {
+        throw new Error(await apiErrorMessage(res, "Could not save your request."));
+      }
+
       $("#success-copy").textContent = `${payload.service} · ${u.hostname} · ${payload.email}`;
+      const warn = document.getElementById("request-success-warn");
+      if (warn) warn.textContent = "";
       $("#request-form").hidden = true;
       $("#request-success").hidden = false;
-    } catch {
-      $("#request-error").textContent = "Could not submit request.";
+
+      if (cfg.submitContactForm !== false) {
+        void submitDrawerShopifyContact(formEl, contactBodyLines)
+          .then(() => {
+            if (warn) warn.textContent = "";
+          })
+          .catch((contactErr) => {
+            const contactWarning =
+              contactErr?.message && /captcha/i.test(contactErr.message)
+                ? "Your request was saved. Store email notification failed (security check). Our team can still follow up from the saved request."
+                : "Your request was saved. Store email notification could not be sent; our team still has your details.";
+            if (warn) warn.textContent = contactWarning;
+            console.warn("Expert review Shopify contact failed:", contactErr);
+          });
+      }
+    } catch (err) {
+      let msg = err?.message || "Could not submit request.";
+      if (/captcha/i.test(msg)) {
+        msg =
+          "Security check (CAPTCHA) did not complete. Close the drawer, open it again, and submit once more.";
+      }
+      $("#request-error").textContent = msg;
+    } finally {
+      setBusy(false);
+      if (submitBtn) submitBtn.textContent = defaultBtnLabel;
     }
-  });
+  }
+
+  function bindExpertReviewForm() {
+    const formEl = document.getElementById("request-form");
+    if (!formEl) return;
+
+    formEl.addEventListener(
+      "submit",
+      (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      },
+      true
+    );
+
+    formEl.addEventListener("submit", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!formEl.reportValidity()) return;
+      void handleExpertReviewSubmit(formEl);
+    });
+
+    document.getElementById("request-submit-btn")?.addEventListener("click", () => {
+      if (!formEl.reportValidity()) return;
+      void handleExpertReviewSubmit(formEl);
+    });
+  }
+
+  bindExpertReviewForm();
 
   $("#drawer-close")?.addEventListener("click", closeDrawer);
   dialog?.addEventListener("close", () => document.body.classList.remove("drawer-open"));
@@ -1291,6 +1366,8 @@
   $("#edit-request")?.addEventListener("click", () => {
     $("#request-form").hidden = false;
     $("#request-success").hidden = true;
+    const warn = document.getElementById("request-success-warn");
+    if (warn) warn.textContent = "";
   });
   $("#restart")?.addEventListener("click", () => {
     $("#scan-url").focus();

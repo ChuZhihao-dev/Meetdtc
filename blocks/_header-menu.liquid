@@ -194,8 +194,6 @@
           style="
             {% render 'menu-font-styles', settings: block_settings, menu_type: 'mega_menu' %}
             --header-menu-active-color: {{ block_settings.active_color }};
-            --menu-top-level-font-weight: {{ block_settings.type_font_primary_weight | default: '700' }};
-            --header-menu-link-gap: {{ block_settings.top_level_gap | default: 80 }}px;
           "
         >
           {% assign class = 'overflow-menu' | append: background_color_classes %}
@@ -343,9 +341,7 @@
     }
   }
 
-  /* Wraps a top-level link and its disclosure button. Positioned so the
-     absolutely-positioned button can sit in the gap after the link without
-     affecting the top-bar layout. */
+  /* Groups the destination link and its separate submenu control. */
   .menu-list__trigger {
     position: relative;
     display: flex;
@@ -391,13 +387,8 @@
   }
 
   .menu-list__link-title {
-    padding-inline: var(--gap-sm);
-  }
-
-  .header-menu .menu-list__list-item:not([slot='overflow']) > .menu-list__link > .menu-list__link-title,
-  .header-menu .menu-list__list-item:not([slot='overflow']) > .menu-list__trigger > .menu-list__link > .menu-list__link-title {
     position: relative;
-    padding-inline: calc(var(--header-menu-link-gap, 80px) / 2);
+    padding-inline: 20px;
   }
 
   .menu-list__separator {
@@ -413,6 +404,7 @@
   [slot='overflow'] .menu-list__separator {
     display: none;
   }
+
   [slot='overflow'] .menu-list__link-title {
     padding-inline: 0;
   }
@@ -447,12 +439,12 @@
   .menu-list .menu-list__link--active,
   .menu-list .menu-list__list-item:where(:hover, :focus-within) .menu-list__link,
   .menu-list .menu-list__list-item:is([slot='more'], [slot='overflow']):has([aria-expanded='true']) .menu-list__link {
-    color: var(--header-menu-active-color, #0032F5);
+    color: var(--header-menu-active-color, var(--menu-top-level-font-color));
   }
 
   .menu-list--mobile a:is(:hover, :focus-visible, [aria-current='page']),
   .header__drawer .menu-drawer__menu-item:is(:hover, :focus-visible, [aria-current='page'], .menu-drawer__menu-item--active) {
-    color: var(--header-menu-active-color, #0032F5);
+    color: var(--header-menu-active-color, var(--color-foreground));
   }
 
   .overflow-menu::part(list) {
@@ -460,16 +452,7 @@
     --focus-outline-size: calc(var(--focus-outline-offset) + var(--focus-outline-width));
 
     gap: 0;
-    margin-inline: calc(-1 * var(--header-menu-link-gap, var(--menu-horizontal-gap)) / 2);
-  }
-
-  /* Keep a zero-width measurement sentinel; any overflow switches to the drawer. */
-  .header-menu .menu-list__list-item[slot='more'] {
-    width: 0;
-    min-width: 0;
-    overflow: hidden;
-    visibility: hidden;
-    pointer-events: none;
+    margin-inline: calc(-1 * var(--menu-horizontal-gap) / 2);
   }
 
   .overflow-menu {
@@ -663,7 +646,7 @@
     padding: var(--padding-2xs) 0;
 
     &:hover {
-      color: var(--header-menu-active-color, #0032F5);
+      color: var(--menu-child-active-font-color);
     }
   }
 
@@ -677,7 +660,7 @@
     color: var(--menu-parent-font-color);
 
     &:hover {
-      color: var(--header-menu-active-color, #0032F5);
+      color: var(--menu-parent-active-font-color);
     }
   }
 
@@ -894,9 +877,17 @@
 
     .header-menu--floating .menu-list__list-item:not([slot='overflow']) > .menu-list__submenu .mega-menu__link:is(:hover, :focus-visible) { color: var(--header-menu-active-color); }
     .header-menu--floating .menu-list__list-item:not([slot='overflow']) > .menu-list__trigger > .menu-list__disclosure {
-      inset-inline-start: calc(100% - var(--header-menu-link-gap, 80px) / 2 + 6px);
+      position: static;
+      flex-shrink: 0;
+      align-self: stretch;
+      padding-inline: 0 1rem;
       opacity: 1;
+      transform: none;
       pointer-events: auto;
+    }
+
+    .header-menu--floating .menu-list__list-item:not([slot='overflow']) > .menu-list__trigger .menu-list__link-title {
+      padding-inline-end: var(--gap-xs);
     }
 
     .header-menu--floating .menu-list__list-item:not([slot='overflow']):not([slot='more']) .menu-list__link[data-safety-box='true']::after { display: none; }

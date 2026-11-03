@@ -881,13 +881,42 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-block-size: 44px;
-    padding-block: 7px;
-    padding-inline: 30px;
+    padding-block: 8px;
+    padding-inline: 24px;
     line-height: 1.2;
     text-align: center;
     overflow-wrap: anywhere;
   }
+
+  :is(.header-cta, .menu-drawer__cta) a.size-style[href] {
+    transition: transform var(--animation-speed) var(--animation-easing),
+      filter var(--animation-speed) var(--animation-easing);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    :is(.header-cta, .menu-drawer__cta) a.size-style[href]:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+  }
+
+  :is(.header-cta, .menu-drawer__cta) a.size-style[href]:focus-visible {
+    filter: brightness(1.08);
+  }
+
+  :is(.header-cta, .menu-drawer__cta) a.size-style[href]:active {
+    transform: translateY(0);
+    filter: brightness(0.96);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :is(.header-cta, .menu-drawer__cta) a.size-style[href],
+    :is(.header-cta, .menu-drawer__cta) a.size-style[href]:is(:hover, :active) {
+      transition: none;
+      transform: none;
+    }
+  }
+
   @media screen and (min-width: 750px) {
     #header-component[data-menu-style='menu'] .header__columns:has(.header-cta a[href]):not(:has(header-actions, .search-action)) {
       grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);

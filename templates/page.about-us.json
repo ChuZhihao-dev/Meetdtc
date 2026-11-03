@@ -107,6 +107,12 @@
             "button_icon_size": 16
           },
           "blocks": {}
+        },
+        "certifications": {
+          "type": "_product-hero-certifications",
+          "static": true,
+          "settings": {},
+          "blocks": {}
         }
       },
       "block_order": [
@@ -114,6 +120,8 @@
       ],
       "name": "t:product_hero.name",
       "settings": {
+        "show_certifications": true,
+        "certification_color": "#102653",
         "eyebrow": "",
         "heading": "Meet Experience",
         "heading_tag": "h1",
@@ -191,7 +199,7 @@
         "eyebrow": "Who We Are",
         "heading": "Rooted in Global Marketing Experience",
         "body": "<p>Meet Experience helps businesses grow globally through AI and MarTech. We bring together digital consulting, technical implementation and ongoing operations across websites and e-commerce, customer engagement, data analytics and cloud infrastructure.</p><p>Backed by Meetsocial Group’s global marketing experience and technology partner network, we connect business needs with practical digital solutions.</p>",
-        "footer": "Singapore · Shanghai · Shenzhen",
+        "footer": "Shanghai · Singapore  · Hong Kong",
         "font": "montserrat_n4",
         "background": "",
         "text_color": "#000000",
@@ -295,7 +303,7 @@
         "brand_row_c6GBtP": {
           "type": "_brand-row",
           "settings": {
-            "logo_motion": "static"
+            "logo_motion": "left"
           },
           "blocks": {
             "brand_logo_CURQJT": {
@@ -366,7 +374,7 @@
           "type": "_brand-row",
           "name": "t:names.row",
           "settings": {
-            "logo_motion": "static"
+            "logo_motion": "right"
           },
           "blocks": {
             "brand_logo_FWUaRQ": {
