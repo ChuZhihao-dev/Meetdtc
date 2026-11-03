@@ -751,6 +751,7 @@
     "gradient_background": "渐变背景",
     "custom_radius": "自定义圆角",
     "icon_size": "图标大小",
+    "gradient_color_mid": "渐变中间色",
     "gradient_color_from": "渐变起始颜色",
     "gradient_color_to": "渐变结束颜色",
     "gradient_direction": "渐变方向",

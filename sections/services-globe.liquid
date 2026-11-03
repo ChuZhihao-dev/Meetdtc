@@ -24,10 +24,11 @@
     --services-heading-size: {{ s.font_size }};
     --services-link-color: {{ s.link_color }};
     --gradient-from: {{ s.gradient_color_from }};
+    --gradient-mid: {{ s.gradient_color_mid | default: '#8B45F0' }};
     --gradient-to: {{ s.gradient_color_to }};
-    --gradient-angle: 110.486deg;
-    --gradient-start: 11.742%;
-    --gradient-end: 88.258%;
+    --gradient-angle: 100deg;
+    --gradient-start: 0%;
+    --gradient-end: 100%;
   "
 >
   <div class="section section--page-width">
@@ -245,14 +246,21 @@
       "type": "color",
       "id": "gradient_color_from",
       "label": "t:settings.gradient_color_from",
-      "default": "#0B22B8",
+      "default": "#5B34C6",
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {
       "type": "color",
       "id": "gradient_color_to",
       "label": "t:settings.gradient_color_to",
-      "default": "#9621C4",
+      "default": "#2D6BFF",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_mid",
+      "label": "t:settings.gradient_color_mid",
+      "default": "#8B45F0",
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {

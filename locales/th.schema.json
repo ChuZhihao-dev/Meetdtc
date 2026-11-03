@@ -739,6 +739,7 @@
     "gradient_background": "พื้นหลังไล่ระดับสี",
     "custom_radius": "รัศมีมุมที่กำหนดเอง",
     "icon_size": "ขนาดไอคอน",
+    "gradient_color_mid": "สีตรงกลางของการไล่ระดับสี",
     "gradient_color_from": "สีเริ่มต้นการไล่ระดับ",
     "gradient_color_to": "สีสิ้นสุดการไล่ระดับ",
     "gradient_direction": "ทิศทางของสีที่ไล่ระดับ",

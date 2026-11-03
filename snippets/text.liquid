@@ -69,9 +69,10 @@
       --color-rgb: {{ block_settings.text_color.rgb }};
     {% endif %}
     {% if block_settings.gradient_text %}
-      --gradient-from: {{ block_settings.gradient_color_from | default: '#2F6DF6' }};
-      --gradient-to: {{ block_settings.gradient_color_to | default: '#9333EA' }};
-      --gradient-angle: {{ block_settings.gradient_angle | default: 90 }}deg;
+      --gradient-from: {{ block_settings.gradient_color_from | default: '#5B34C6' }};
+      --gradient-mid: {{ block_settings.gradient_color_mid | default: '#8B45F0' }};
+      --gradient-to: {{ block_settings.gradient_color_to | default: '#2D6BFF' }};
+      --gradient-angle: {{ block_settings.gradient_angle | default: 100 }}deg;
       --gradient-start: {{ block_settings.gradient_start_position | default: 0 }}%;
       --gradient-end: {{ block_settings.gradient_end_position | default: 100 }}%;
     {% endif %}

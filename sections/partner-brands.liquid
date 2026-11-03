@@ -27,7 +27,7 @@
 ></div>
 
 <partner-brands-component
-  class="section section--full-width partner-brands spacing-style{% if template.suffix == 'about-us' %} partner-brands--about{% endif %}"
+  class="section section--page-width partner-brands spacing-style"
   style="{% render 'spacing-style', settings: section_settings %}
     --brand-logo-gap: {{ section_settings.logo_gap }}px;
     --brand-logo-row-gap: {{ section_settings.row_gap }}px;
@@ -52,6 +52,7 @@
         --text-align: {{ section_settings.alignment }};
         {% if section_settings.gradient_text %}
           --gradient-from: {{ section_settings.gradient_color_from }};
+    --gradient-mid: {{ section_settings.gradient_color_mid | default: '#8B45F0' }};
           --gradient-to: {{ section_settings.gradient_color_to }};
           --gradient-angle: {{ section_settings.gradient_angle }}deg;
           --gradient-start: {{ section_settings.gradient_start_position }}%;
@@ -113,16 +114,6 @@
   }
 
   @media screen and (max-width: 749px) {
-    .partner-brands--about { --spacing-scale: 0.5; }
-    .partner-brands--about .partner-brands__heading { font-size: 28px; line-height: 1.2; margin-block-end: 24px; padding-inline: 20px; overflow-wrap: anywhere; }
-    .partner-brands--about .partner-brands__heading > * { font-size: inherit; line-height: inherit; }
-    .partner-brands--about .partner-brands__logos { padding-inline: 20px; }
-    .partner-brands--about .brand-row:not(.brand-row--scrolling) { overflow-x: auto; }
-    .partner-brands--about .brand-row { scrollbar-width: none; }
-    .partner-brands--about .brand-row::-webkit-scrollbar { display: none; }
-    .partner-brands--about .brand-row:not(.brand-row--scrolling) .brand-row__items { flex-wrap: nowrap; justify-content: flex-start; width: max-content; min-width: 100%; }
-    .partner-brands--about .brand-logo { max-width: 100%; min-width: 0; }
-    .partner-brands--about .brand-logo__image { width: auto; max-width: min(var(--brand-image-width), 120px); max-height: 40px; }
     .partner-brands__divider {
       margin-block-end: 24px;
     }
@@ -348,14 +339,21 @@
       "type": "color",
       "id": "gradient_color_from",
       "label": "t:settings.gradient_color_from",
-      "default": "#0C23B8",
+      "default": "#5B34C6",
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {
       "type": "color",
       "id": "gradient_color_to",
       "label": "t:settings.gradient_color_to",
-      "default": "#7C21C2",
+      "default": "#2D6BFF",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_mid",
+      "label": "t:settings.gradient_color_mid",
+      "default": "#8B45F0",
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {
@@ -366,7 +364,7 @@
       "max": 360,
       "step": 5,
       "unit": "deg",
-      "default": 90,
+      "default": 100,
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {
@@ -377,7 +375,7 @@
       "max": 100,
       "step": 1,
       "unit": "%",
-      "default": 27,
+      "default": 0,
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {
@@ -388,7 +386,7 @@
       "max": 100,
       "step": 1,
       "unit": "%",
-      "default": 72,
+      "default": 100,
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {

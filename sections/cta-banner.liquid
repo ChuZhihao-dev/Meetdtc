@@ -96,6 +96,15 @@
 </div>
 
 {% stylesheet %}
+  /* Callout keeps its light two-color gradient against the colored panel. */
+  .cta-banner__heading.text-block.text-block--gradient {
+    background-image: linear-gradient(
+      var(--gradient-angle, 96deg),
+      var(--gradient-from, #FFFFFF) var(--gradient-start, 12%),
+      var(--gradient-to, #F8E5FF) var(--gradient-end, 88%)
+    );
+  }
+
   .cta-banner__background {
     background-image: linear-gradient(
       var(--cta-bg-angle, 104deg),

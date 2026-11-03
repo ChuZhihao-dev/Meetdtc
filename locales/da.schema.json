@@ -726,6 +726,7 @@
     "gradient_background": "Gradientbaggrund",
     "custom_radius": "Brugerdefineret hjørneradius",
     "icon_size": "Ikonstørrelse",
+    "gradient_color_mid": "Midterste gradientfarve",
     "gradient_color_from": "Startfarve for gradient",
     "gradient_color_to": "Slutfarve for gradient",
     "gradient_direction": "Retning for toning",

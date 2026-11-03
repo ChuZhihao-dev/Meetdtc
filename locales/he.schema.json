@@ -1152,6 +1152,7 @@
     "gradient_background": "רקע גרדיאנט",
     "custom_radius": "רדיוס פינה מותאם אישית",
     "icon_size": "גודל סמל",
+    "gradient_color_mid": "צבע אמצעי במעבר הצבעים",
     "gradient_color_from": "צבע התחלה של הגרדיאנט",
     "gradient_color_to": "צבע סיום של הגרדיאנט",
     "gradient_direction": "כיוון מעבר צבעים",

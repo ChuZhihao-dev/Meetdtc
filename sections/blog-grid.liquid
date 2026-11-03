@@ -64,10 +64,11 @@
       style="
         {% if section_settings.gradient_text %}
           --gradient-from: {{ section_settings.gradient_color_from }};
+    --gradient-mid: {{ section_settings.gradient_color_mid | default: '#8B45F0' }};
           --gradient-to: {{ section_settings.gradient_color_to }};
-          --gradient-angle: 92.97deg;
-          --gradient-start: 10.56%;
-          --gradient-end: 89.44%;
+          --gradient-angle: 100deg;
+          --gradient-start: 0%;
+          --gradient-end: 100%;
         {% endif %}
       "
       data-reveal
@@ -461,14 +462,21 @@
       "type": "color",
       "id": "gradient_color_from",
       "label": "t:settings.gradient_color_from",
-      "default": "#0B22B8",
+      "default": "#5B34C6",
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {
       "type": "color",
       "id": "gradient_color_to",
       "label": "t:settings.gradient_color_to",
-      "default": "#9621C4",
+      "default": "#2D6BFF",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_mid",
+      "label": "t:settings.gradient_color_mid",
+      "default": "#8B45F0",
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {

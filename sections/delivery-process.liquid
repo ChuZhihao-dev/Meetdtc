@@ -40,7 +40,7 @@
 {% stylesheet %}
   .delivery-process__background { background: var(--delivery-bg); }
   .delivery-process { display: grid; color: var(--delivery-text); font-family: var(--font-heading--family); }
-  .delivery-process__inner { display: grid; grid-template-columns: minmax(0, 666fr) minmax(0, 555fr); gap: 31.5px; width: calc(100% - 124px); max-width: 1316px; margin-inline: auto; align-items: center; }
+  .delivery-process__inner { inline-size: min(var(--narrow-page-width), calc(100% - var(--page-margin) * 2)); max-inline-size: var(--narrow-page-width); padding-inline: 0; display: grid; grid-template-columns: minmax(0, 666fr) minmax(0, 555fr); gap: 31.5px; margin-inline: auto; align-items: center; }
   .delivery-process__inner--long { align-items: start; }
   .delivery-process__intro { min-width: 0; }
   .delivery-process__eyebrow { margin: 0 0 16px; font-size: 18px; font-weight: 500; line-height: 1.4; }
@@ -60,11 +60,11 @@
   .delivery-process__description > :first-child, .delivery-process__step-description > :first-child { margin-block-start: 0; }
   .delivery-process__description > :last-child, .delivery-process__step-description > :last-child { margin-block-end: 0; }
   @media screen and (max-width: 989px) {
-    .delivery-process__inner { width: calc(100% - 64px); gap: 28px; }
+    .delivery-process__inner { gap: 28px; }
     .delivery-process__step { column-gap: 20px; }
   }
   @media screen and (max-width: 749px) {
-    .delivery-process__inner { width: calc(100% - 40px); grid-template-columns: minmax(0, 1fr); gap: 40px; }
+    .delivery-process__inner { grid-template-columns: minmax(0, 1fr); gap: 40px; }
     .delivery-process__eyebrow { margin-block-end: 12px; }
     .delivery-process__description { margin-block-start: 16px; }
     .delivery-process__step { column-gap: 20px; }
@@ -131,7 +131,7 @@
       "type": "color_background",
       "id": "heading_gradient",
       "label": "t:delivery_process.heading_gradient",
-      "default": "linear-gradient(107.919deg, #0B22B8 11.742%, #9621C4 88.258%)"
+      "default": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)"
     },
     {
       "type": "color",

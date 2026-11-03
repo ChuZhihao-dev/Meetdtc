@@ -726,6 +726,7 @@
     "gradient_background": "그라데이션 배경",
     "custom_radius": "사용자 지정 모서리 반경",
     "icon_size": "아이콘 크기",
+    "gradient_color_mid": "그라데이션 중간 색상",
     "gradient_color_from": "그라데이션 시작 색상",
     "gradient_color_to": "그라데이션 종료 색상",
     "gradient_direction": "그라데이션 방향",

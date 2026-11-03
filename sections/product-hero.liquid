@@ -18,7 +18,7 @@
       <{{ section.settings.heading_tag }}
         class="product-hero__heading text-block text-block--gradient"
         data-reveal
-        style="--gradient-from:{{ section.settings.heading_from }};--gradient-to:{{ section.settings.heading_to }};--gradient-angle:96.71deg;--gradient-start:11.696%;--gradient-end:88.304%;"
+        style="--gradient-from:{{ section.settings.heading_from }};--gradient-mid:{{ section.settings.heading_mid | default: '#8B45F0' }};--gradient-to:{{ section.settings.heading_to }};--gradient-angle:100deg;--gradient-start:0%;--gradient-end:100%;"
       >{{ section.settings.heading | escape | newline_to_br }}</{{ section.settings.heading_tag }}>
     {% endif %}
     {% if section.settings.description != blank %}
@@ -144,6 +144,7 @@
   #shopify-section-{{ section.id }} .product-hero__certification-icon {
     display: block;
     flex: none;
+    width: auto;
     height: 64px;
     object-fit: contain;
   }
@@ -153,7 +154,7 @@
   @media screen and (max-width: 749px) {
     #shopify-section-{{ section.id }} .product-hero__certifications { gap: 20px 32px; }
     #shopify-section-{{ section.id }} .product-hero__certification { gap: 12px; }
-    #shopify-section-{{ section.id }} .product-hero__certification-icon { width: 48px; height: 48px; }
+    #shopify-section-{{ section.id }} .product-hero__certification-icon { height: 48px; }
     #shopify-section-{{ section.id }} .product-hero__actions { flex-direction: row; align-items: center; }
     #shopify-section-{{ section.id }} .product-hero__content { gap: 24px; }
     #shopify-section-{{ section.id }} .product-hero__description br { display: none; }
@@ -259,13 +260,19 @@
       "type": "color",
       "id": "heading_from",
       "label": "t:settings.gradient_color_from",
-      "default": "#0C23B8"
+      "default": "#5B34C6"
     },
     {
       "type": "color",
       "id": "heading_to",
       "label": "t:settings.gradient_color_to",
-      "default": "#7C21C2"
+      "default": "#2D6BFF"
+    },
+    {
+      "type": "color",
+      "id": "heading_mid",
+      "label": "t:settings.gradient_color_mid",
+      "default": "#8B45F0"
     },
     {
       "type": "color",

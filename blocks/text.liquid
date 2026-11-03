@@ -406,14 +406,21 @@
       "type": "color",
       "id": "gradient_color_from",
       "label": "t:settings.gradient_color_from",
-      "default": "#2F6DF6",
+      "default": "#5B34C6",
       "visible_if": "{{ block.settings.gradient_text }}"
     },
     {
       "type": "color",
       "id": "gradient_color_to",
       "label": "t:settings.gradient_color_to",
-      "default": "#9333EA",
+      "default": "#2D6BFF",
+      "visible_if": "{{ block.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_mid",
+      "label": "t:settings.gradient_color_mid",
+      "default": "#8B45F0",
       "visible_if": "{{ block.settings.gradient_text }}"
     },
     {
@@ -424,7 +431,7 @@
       "max": 360,
       "step": 5,
       "unit": "deg",
-      "default": 90,
+      "default": 100,
       "visible_if": "{{ block.settings.gradient_text }}"
     },
     {

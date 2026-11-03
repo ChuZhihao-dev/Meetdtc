@@ -1371,6 +1371,7 @@
     "gradient_background": "Gradient background",
     "custom_radius": "Custom corner radius",
     "icon_size": "Icon size",
+    "gradient_color_mid": "Middle gradient color",
     "gradient_color_from": "Gradient start color",
     "gradient_color_to": "Gradient end color",
     "gradient_direction": "Gradient direction",

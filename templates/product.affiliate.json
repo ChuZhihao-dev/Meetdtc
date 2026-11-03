@@ -163,9 +163,10 @@
                     "wrap": "pretty",
                     "text_color": "",
                     "gradient_text": false,
-                    "gradient_color_from": "#2f6df6",
-                    "gradient_color_to": "#9333ea",
-                    "gradient_angle": 90,
+                    "gradient_color_from": "#5b34c6",
+                    "gradient_color_to": "#2d6bff",
+                    "gradient_color_mid": "#8b45f0",
+                    "gradient_angle": 100,
                     "gradient_start_position": 0,
                     "gradient_end_position": 100,
                     "background": false,
@@ -319,9 +320,10 @@
                 "wrap": "pretty",
                 "text_color": "",
                 "gradient_text": false,
-                "gradient_color_from": "#2f6df6",
-                "gradient_color_to": "#9333ea",
-                "gradient_angle": 90,
+                "gradient_color_from": "#5b34c6",
+                "gradient_color_to": "#2d6bff",
+                "gradient_color_mid": "#8b45f0",
+                "gradient_angle": 100,
                 "gradient_start_position": 0,
                 "gradient_end_position": 100,
                 "background": false,
@@ -393,7 +395,7 @@
               "type": "_product-hero-certification",
               "name": "t:product_hero.certification",
               "settings": {
-                "image": "shopify://shop_images/impact_transparent_3f7d_1.webp",
+                "image": "shopify://shop_images/impact_transparent_3f7d.png",
                 "title": "",
                 "description": ""
               },
@@ -437,12 +439,13 @@
         "eyebrow": "Affiliate Marketing",
         "heading": "Turn the Right Partnerships into Your Next Growth Channel",
         "heading_tag": "h1",
-        "description": "ME helps brands build and grow affiliate programs through targeted partner recruitment, \nhands-on management, and performance optimization. Connect with partners who reach your customers,\n turn recommendations into sales, and build lasting value from every partnership.",
+        "description": "ME helps brands build and grow affiliate programs through targeted partner recruitment, hands-on management, and performance optimization. Our affiliate marketing approach connects you with publishers, creators, and partners who reach your customers in your target markets.",
         "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
-        "heading_from": "#0c23b8",
-        "heading_to": "#7c21c2",
+        "heading_from": "#5b34c6",
+        "heading_to": "#2d6bff",
+        "heading_mid": "#8b45f0",
         "description_color": "#6b6a6a",
         "service_labels_color": "#3e4c81",
         "section_height": "large",
@@ -765,11 +768,12 @@
         "alignment": "center",
         "wrap": "pretty",
         "gradient_text": true,
-        "gradient_color_from": "#0c23b8",
-        "gradient_color_to": "#7c21c2",
-        "gradient_angle": 90,
-        "gradient_start_position": 27,
-        "gradient_end_position": 72,
+        "gradient_color_from": "#5b34c6",
+        "gradient_color_to": "#2d6bff",
+        "gradient_color_mid": "#8b45f0",
+        "gradient_angle": 100,
+        "gradient_start_position": 0,
+        "gradient_end_position": 100,
         "background_gradient_from": "#efe6f3",
         "background_gradient_to": "#e2cdf4",
         "background_gradient_angle": 100,
@@ -863,8 +867,9 @@
         "font": "var(--font-heading--family)",
         "font_size": "2.5rem",
         "gradient_text": true,
-        "gradient_color_from": "#0b22b8",
-        "gradient_color_to": "#9621c4",
+        "gradient_color_from": "#5b34c6",
+        "gradient_color_to": "#2d6bff",
+        "gradient_color_mid": "#8b45f0",
         "background_color": "rgba(0,0,0,0)",
         "text_color": "#000000",
         "accent_color": "#7222c1",
@@ -886,13 +891,13 @@
       "settings": {
         "eyebrow": "OUR APPROACH",
         "heading": "Build Around Your Customers. Grow Through the Right Partners.",
-        "body_primary": "<p>We start with your products, customers, target markets, and commercial goals. From there, we shape your affiliate strategy, recruit relevant partners, and give them the offers, content, and support they need to promote your brand.</p>",
+        "body_primary": "<p>We start with your products, customers, target markets, and commercial goals. From there, we shape your affiliate marketing strategy, recruit relevant partners, and give them the offers, content, and support they need to promote your brand.</p>",
         "body_secondary": "<p>As the program develops, we assess partner activity, sales quality, and costs together. This helps you make informed decisions about where to invest, which relationships to develop, and how to grow without relying too heavily on a small group of partners.</p>",
         "image": "shopify://shop_images/affiliate-marketing_our-approach.png",
         "image_alt": "",
         "font": "montserrat_n5",
         "text_color": "#000000",
-        "heading_gradient": "linear-gradient(122.1396deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "background": "",
         "padding-block-start": 80,
         "padding-block-end": 80,
@@ -917,7 +922,7 @@
           "type": "card",
           "settings": {
             "heading": "Platform Selection & Program Setup",
-            "description": "<p>We evaluate platform requirements and support program configuration, application criteria, and partner terms. You receive a setup plan and launch checklist tailored to your business.</p>",
+            "description": "<p>We evaluate affiliate marketing network and platform requirements against your target markets, partner needs, and technical setup. We support program configuration, application criteria, and partner terms. You receive a setup plan and launch checklist tailored to your business.</p>",
             "link": "",
             "link_label": "Learn more"
           }
@@ -926,7 +931,7 @@
           "type": "card",
           "settings": {
             "heading": "Tracking & Measurement Coordination",
-            "description": "<p>We work with your platform and technical teams to define tracking requirements and validate key conversion events. You receive a measurement plan and documented validation findings.</p>",
+            "description": "<p>We work with your platform and technical teams to define how affiliate marketing sales and conversions will be tracked, then validate key conversion events. You receive a measurement plan and documented validation findings.</p>",
             "link": "",
             "link_label": "Learn more"
           }
@@ -1002,11 +1007,11 @@
         "layout": "standard",
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
-        "description": "<p>End-to-end affiliate program support, from strategy and setup to partner development and ongoing optimization.<br/><br/></p>",
+        "description": "<p>End-to-end affiliate marketing support, from program strategy and setup to partner development and ongoing optimization.</p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "card_heading_color": "#241c52",
-        "heading_gradient": "linear-gradient(152.27deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "background": "",
         "card_background": "#ffffff",
         "card_opacity": 58,
@@ -1078,7 +1083,7 @@
         "heading": "A Clear Path from Program Planning to Ongoing Growth",
         "description": "<p>Each stage defines what needs to happen, what your team needs to provide, and how progress will be assessed.</p>",
         "background": "linear-gradient(135.439deg, rgba(211, 216, 246, 1) 2.204%, rgba(253, 243, 255, 1) 97.796%)",
-        "heading_gradient": "linear-gradient(107.919deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
         "text_color": "#000000",
         "accent_color": "#9621c4",
         "step_gap": 60,
@@ -1130,7 +1135,7 @@
         "link": "https://meetdtc-40icat5f.myshopify.com/blogs/our-work/loyalty-programs",
         "font": "montserrat_n5",
         "text_color": "#000000",
-        "heading_gradient": "linear-gradient(108.133deg, rgba(11, 34, 184, 1) 11.742%, rgba(150, 33, 196, 1) 88.258%)",
+        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
         "background": "",
         "panel_background": "linear-gradient(105.9376deg, rgba(19, 98, 250, 0.05) 3.724%, rgba(109, 40, 217, 0.05) 96.276%)",
         "accent_color": "#6d28d9",
@@ -1149,8 +1154,8 @@
         "faq_row_XdLKBG": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q1. What is affiliate marketing?",
-            "answer": "<p>Affiliate marketing is a partnership model in which publishers, creators, or other partners promote your products and earn a commission for qualifying actions, such as completed sales. Tracking links or codes connect those actions to the referring partner.</p>",
+            "question": "Q1. What is affiliate marketing, and how does it work for brands?",
+            "answer": "<p>Affiliate marketing is a partnership model in which publishers, creators, or other partners promote your products and earn a commission for qualifying actions, such as completed sales. For brands, it involves setting program terms, recruiting suitable partners, and using tracking links or codes to connect qualifying actions to the referring partner.</p>",
             "open_by_default": true
           },
           "blocks": {}
@@ -1158,7 +1163,7 @@
         "faq_row_ckALeW": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q2. Can ME help us launch a new affiliate program?",
+            "question": "Q2. How do we choose an affiliate marketing network or platform for our brand?",
             "answer": "<p>Yes. Our proposed launch scope covers strategy, platform and setup coordination, tracking validation, partner materials, and recruitment. We first assess your website, product offering, and margins to define a practical starting point.</p>",
             "open_by_default": false
           },
@@ -1167,7 +1172,7 @@
         "faq_row_8DWdMn": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q3. Can you improve an existing affiliate program?",
+            "question": "Q3. Can ME improve an existing affiliate marketing program?",
             "answer": "<p>Yes. We review your partner mix, activity levels, commission structure, and measurement setup. The findings help determine whether the priority is recruitment, partner activation, cost efficiency, or broader program changes.</p>",
             "open_by_default": false
           },
@@ -1176,7 +1181,7 @@
         "faq_row_6Vcq7e": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q4. What types of partners can we work with?",
+            "question": "Q4. What types of affiliate marketing partners can we work with?",
             "answer": "<p>Potential partners include content publishers, creators, review and comparison sites, and loyalty or rewards platforms. The right mix depends on your customers, markets, product category, and commercial objectives.<br/></p>",
             "open_by_default": false
           },
@@ -1203,7 +1208,7 @@
         "faq_row_TfzdMb": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q7. How do you measure performance?",
+            "question": "Q7. How do we track affiliate marketing sales and conversions effectively?",
             "answer": "<p>We agree on a measurement framework before launch or optimization. Depending on the data available, this can include active partners, conversions, affiliate revenue, new customer orders, and acquisition costs. Attributed sales alone do not establish incremental growth.</p>",
             "open_by_default": false
           },
@@ -1230,7 +1235,7 @@
         "faq_row_ABzErp": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q10. Does affiliate marketing replace our other marketing channels?",
+            "question": "Q10.  Does affiliate marketing replace our other marketing channels?",
             "answer": "<p>Affiliate marketing can complement paid media, SEO, email, and other channels. Coordinating promotions and measurement across channels helps create a consistent customer experience and makes overlapping contributions easier to assess.</p>",
             "open_by_default": false
           },
@@ -1260,11 +1265,12 @@
         "line_height": "1.2",
         "wrap": "balance",
         "gradient_text": true,
-        "gradient_color_from": "#0b22b8",
-        "gradient_color_to": "#9621c4",
-        "gradient_angle": 92,
+        "gradient_color_from": "#5b34c6",
+        "gradient_color_to": "#2d6bff",
+        "gradient_color_mid": "#8b45f0",
+        "gradient_angle": 100,
         "gradient_start_position": 0,
-        "gradient_end_position": 15,
+        "gradient_end_position": 100,
         "background_gradient_from": "rgba(0,0,0,0)",
         "background_gradient_to": "rgba(0,0,0,0)",
         "background_gradient_angle": 104,
@@ -1277,7 +1283,8 @@
         "heading_gap": 52,
         "list_max_width": 1140,
         "padding-block-start": 80,
-        "padding-block-end": 80
+        "padding-block-end": 80,
+        "row_radius_mobile": 12
       }
     }
   },

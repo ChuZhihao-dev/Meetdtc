@@ -78,6 +78,7 @@
             --text-align: {{ section_settings.alignment }};
             {% if section_settings.gradient_text %}
               --gradient-from: {{ section_settings.gradient_color_from }};
+    --gradient-mid: {{ section_settings.gradient_color_mid | default: '#8B45F0' }};
               --gradient-to: {{ section_settings.gradient_color_to }};
               --gradient-angle: {{ section_settings.gradient_angle }}deg;
               --gradient-start: {{ section_settings.gradient_start_position }}%;
@@ -681,14 +682,21 @@
       "type": "color",
       "id": "gradient_color_from",
       "label": "t:settings.gradient_color_from",
-      "default": "#0B22B8",
+      "default": "#5B34C6",
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {
       "type": "color",
       "id": "gradient_color_to",
       "label": "t:settings.gradient_color_to",
-      "default": "#9621C4",
+      "default": "#2D6BFF",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_mid",
+      "label": "t:settings.gradient_color_mid",
+      "default": "#8B45F0",
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {
@@ -699,7 +707,7 @@
       "max": 360,
       "step": 5,
       "unit": "deg",
-      "default": 110,
+      "default": 100,
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {
@@ -710,7 +718,7 @@
       "max": 100,
       "step": 1,
       "unit": "%",
-      "default": 11,
+      "default": 0,
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {
@@ -721,7 +729,7 @@
       "max": 100,
       "step": 1,
       "unit": "%",
-      "default": 89,
+      "default": 100,
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {

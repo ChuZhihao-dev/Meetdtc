@@ -736,6 +736,7 @@
     "gradient_background": "Liukuvärin tausta",
     "custom_radius": "Mukautettu kulman säde",
     "icon_size": "Kuvakkeen koko",
+    "gradient_color_mid": "Liukuvärin keskiväri",
     "gradient_color_from": "Liukuvärin aloitusväri",
     "gradient_color_to": "Liukuvärin lopetusväri",
     "gradient_direction": "Liukuvärin suunta",

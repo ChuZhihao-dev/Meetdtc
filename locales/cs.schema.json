@@ -726,6 +726,7 @@
     "gradient_background": "Přechodové pozadí",
     "custom_radius": "Vlastní poloměr rohu",
     "icon_size": "Velikost ikony",
+    "gradient_color_mid": "Prostřední barva přechodu",
     "gradient_color_from": "Počáteční barva přechodu",
     "gradient_color_to": "Koncová barva přechodu",
     "gradient_direction": "Směr přechodu",

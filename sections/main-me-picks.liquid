@@ -145,7 +145,7 @@
 </div>
 {% stylesheet %}
   .me-picks { background: var(--me-picks-background, var(--color-background)); font-family: var(--font-heading--family); }
-  .me-picks__inner { inline-size: min(var(--page-content-width), calc(100% - var(--page-margin) * 2)); max-inline-size: var(--page-content-width); min-inline-size: 0; margin-inline: auto; }
+  .me-picks__inner { inline-size: min(var(--narrow-page-width), calc(100% - var(--page-margin) * 2)); max-inline-size: var(--narrow-page-width); min-inline-size: 0; margin-inline: auto; }
   .me-picks__intro { padding-block: calc(var(--me-picks-top) + var(--section-top-offset, 0px)) 36px; }
   .me-picks__heading { margin: 0; color: var(--color-foreground); font-family: inherit; font-size: 40px; font-weight: 600; line-height: 1.2; letter-spacing: normal; overflow-wrap: anywhere; }
   @supports (background-clip: text) {
@@ -233,7 +233,7 @@
       "type": "color_background",
       "id": "heading_gradient",
       "label": "t:settings.gradient_text",
-      "default": "linear-gradient(135deg, #0b22b8 12%, #9621c4 88%)"
+      "default": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)"
     },
     { "type": "color", "id": "accent_color", "label": "t:settings.color", "default": "#0022ff" },
     { "type": "color", "id": "offer_heading_color", "label": "t:me_picks.offer_heading_color", "default": "#3431ce" },

@@ -736,6 +736,7 @@
     "gradient_background": "Tło gradientowe",
     "custom_radius": "Niestandardowy promień narożnika",
     "icon_size": "Rozmiar ikony",
+    "gradient_color_mid": "Środkowy kolor gradientu",
     "gradient_color_from": "Kolor początkowy gradientu",
     "gradient_color_to": "Kolor końcowy gradientu",
     "gradient_direction": "Kierunek gradientu",

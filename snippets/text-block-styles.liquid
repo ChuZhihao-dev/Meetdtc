@@ -47,9 +47,10 @@
      the gradient stays visible through strong, em, and link children. */
   .text-block.text-block--gradient {
     background-image: linear-gradient(
-      var(--gradient-angle, 90deg),
-      var(--gradient-from) var(--gradient-start, 0%),
-      var(--gradient-to) var(--gradient-end, 100%)
+      var(--gradient-angle, 100deg),
+      var(--gradient-from, #5B34C6) var(--gradient-start, 0%),
+      var(--gradient-mid, #8B45F0) 55%,
+      var(--gradient-to, #2D6BFF) var(--gradient-end, 100%)
     );
     -webkit-background-clip: text;
     background-clip: text;

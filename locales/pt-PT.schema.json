@@ -736,6 +736,7 @@
     "gradient_background": "Fundo em gradiente",
     "custom_radius": "Raio da borda personalizado",
     "icon_size": "Tamanho do ícone",
+    "gradient_color_mid": "Cor intermédia do gradiente",
     "gradient_color_from": "Cor inicial do gradiente",
     "gradient_color_to": "Cor final do gradiente",
     "gradient_direction": "Direção do gradiente",

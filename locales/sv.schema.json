@@ -739,6 +739,7 @@
     "gradient_background": "Toningbakgrund",
     "custom_radius": "Anpassad hörnradie",
     "icon_size": "Ikonstorlek",
+    "gradient_color_mid": "Mellersta övertoningsfärg",
     "gradient_color_from": "Startfärg för toning",
     "gradient_color_to": "Slutfärg för toning",
     "gradient_direction": "Toningsriktning",

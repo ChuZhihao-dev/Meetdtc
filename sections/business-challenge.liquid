@@ -28,10 +28,11 @@
     --challenge-center-color: {{ s.center_text_color }};
     --challenge-divider: {{ s.divider_color }};
     --gradient-from: {{ s.gradient_color_from }};
+    --gradient-mid: {{ s.gradient_color_mid | default: '#8B45F0' }};
     --gradient-to: {{ s.gradient_color_to }};
-    --gradient-angle: 112.81deg;
-    --gradient-start: 11.742%;
-    --gradient-end: 88.258%;
+    --gradient-angle: 100deg;
+    --gradient-start: 0%;
+    --gradient-end: 100%;
   "
 >
   <div class="business-challenge__layout">
@@ -62,7 +63,7 @@
 
 {% stylesheet %}
   .business-challenge { display: block; container-type: inline-size; font-family: var(--challenge-font, var(--font-heading--family)); color: var(--color-foreground); }
-  .business-challenge__layout { display: grid; grid-template-columns: minmax(0, 484px) minmax(0, 1fr); grid-template-areas: 'figure intro' 'figure list'; grid-template-rows: auto auto; gap: 60px 90px; inline-size: calc(100% - 48px); max-inline-size: 1316px; margin-inline: auto; align-items: start; }
+  .business-challenge__layout { inline-size: min(var(--narrow-page-width), calc(100% - var(--page-margin) * 2)); max-inline-size: var(--narrow-page-width); padding-inline: 0; display: grid; grid-template-columns: minmax(0, 484px) minmax(0, 1fr); grid-template-areas: 'figure intro' 'figure list'; grid-template-rows: auto auto; gap: 60px 90px; margin-inline: auto; align-items: start; }
   .business-challenge__intro { grid-area: intro; min-inline-size: 0; max-inline-size: 732px; }
   .business-challenge__eyebrow { margin: 0 0 16px; font-size: 18px; font-weight: 500; line-height: 1.4; overflow-wrap: anywhere; }
   .business-challenge__heading { margin: 0; font-family: inherit; font-size: var(--challenge-heading-size); font-weight: 600; line-height: 1.2; letter-spacing: normal; overflow-wrap: anywhere; text-wrap: pretty; color: var(--color-foreground); }
@@ -246,14 +247,21 @@
       "type": "color",
       "id": "gradient_color_from",
       "label": "t:settings.gradient_color_from",
-      "default": "#0B22B8",
+      "default": "#5B34C6",
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {
       "type": "color",
       "id": "gradient_color_to",
       "label": "t:settings.gradient_color_to",
-      "default": "#9621C4",
+      "default": "#2D6BFF",
+      "visible_if": "{{ section.settings.gradient_text }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_mid",
+      "label": "t:settings.gradient_color_mid",
+      "default": "#8B45F0",
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {

@@ -737,6 +737,7 @@
     "gradient_background": "Sfondo sfumato",
     "custom_radius": "Raggio dell'angolo personalizzato",
     "icon_size": "Dimensione icona",
+    "gradient_color_mid": "Colore intermedio della sfumatura",
     "gradient_color_from": "Colore iniziale sfumatura",
     "gradient_color_to": "Colore finale sfumatura",
     "gradient_direction": "Direzione sfumatura",

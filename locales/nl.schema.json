@@ -739,6 +739,7 @@
     "gradient_background": "Verloopachtergrond",
     "custom_radius": "Aangepaste hoekradius",
     "icon_size": "Pictogramgrootte",
+    "gradient_color_mid": "Middelste verloopkleur",
     "gradient_color_from": "Startkleur verloop",
     "gradient_color_to": "Eindkleur verloop",
     "gradient_direction": "Richting verloop",

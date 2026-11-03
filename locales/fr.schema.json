@@ -729,6 +729,7 @@
     "gradient_background": "Arrière-plan dégradé",
     "custom_radius": "Rayon d'angle personnalisé",
     "icon_size": "Taille de l'icône",
+    "gradient_color_mid": "Couleur intermédiaire du dégradé",
     "gradient_color_from": "Couleur de début du dégradé",
     "gradient_color_to": "Couleur de fin du dégradé",
     "gradient_direction": "Direction du dégradé",

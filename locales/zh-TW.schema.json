@@ -744,6 +744,7 @@
     "gradient_background": "漸層背景",
     "custom_radius": "自訂圓角",
     "icon_size": "圖示大小",
+    "gradient_color_mid": "漸層中間色",
     "gradient_color_from": "漸層起始顏色",
     "gradient_color_to": "漸層結束顏色",
     "gradient_direction": "漸層方向",

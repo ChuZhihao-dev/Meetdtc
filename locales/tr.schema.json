@@ -738,6 +738,7 @@
     "gradient_background": "Gradyan arka plan",
     "custom_radius": "Özel köşe yarıçapı",
     "icon_size": "Simge boyutu",
+    "gradient_color_mid": "Ara gradyan rengi",
     "gradient_color_from": "Gradyan başlangıç rengi",
     "gradient_color_to": "Gradyan bitiş rengi",
     "gradient_direction": "Gradyan yönü",

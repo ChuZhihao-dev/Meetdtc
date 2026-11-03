@@ -735,6 +735,7 @@
     "gradient_background": "グラデーション背景",
     "custom_radius": "カスタム角丸",
     "icon_size": "アイコンサイズ",
+    "gradient_color_mid": "グラデーションの中間色",
     "gradient_color_from": "グラデーション開始色",
     "gradient_color_to": "グラデーション終了色",
     "gradient_direction": "グラデーションの方向",

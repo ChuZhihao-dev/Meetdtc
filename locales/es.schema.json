@@ -736,6 +736,7 @@
     "gradient_background": "Fondo degradado",
     "custom_radius": "Radio de esquina personalizado",
     "icon_size": "Tamaño del ícono",
+    "gradient_color_mid": "Color intermedio del degradado",
     "gradient_color_from": "Color inicial del degradado",
     "gradient_color_to": "Color final del degradado",
     "gradient_direction": "Dirección del degradado",

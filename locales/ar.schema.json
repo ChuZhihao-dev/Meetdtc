@@ -1152,6 +1152,7 @@
     "gradient_background": "خلفية متدرجة",
     "custom_radius": "نصف قطر مخصص",
     "icon_size": "حجم الأيقونة",
+    "gradient_color_mid": "لون التدرج الأوسط",
     "gradient_color_from": "لون بداية التدرج",
     "gradient_color_to": "لون نهاية التدرج",
     "gradient_direction": "اتجاه التدرج",

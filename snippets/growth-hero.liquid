@@ -103,15 +103,15 @@
   .growth-hero__layout {
     position: relative;
     z-index: 2;
-    inline-size: 100%;
-    max-inline-size: 1440px;
+    inline-size: min(var(--narrow-page-width), calc(100% - var(--page-margin) * 2));
+    max-inline-size: var(--narrow-page-width);
     min-block-size: var(--growth-hero-height);
     margin-inline: auto;
   }
   .growth-hero__content {
     min-inline-size: 0;
     padding-block: calc(min(11.25cqw, 162px) + var(--padding-block-start, 0px)) calc(min(7.847cqw, 113px) + var(--padding-block-end, 0px));
-    padding-inline: 4.931%;
+    padding-inline: 0;
     gap: var(--growth-hero-gap);
   }
   .growth-hero__content > .group-block { max-inline-size: min(48.056cqw, 692px); }
@@ -139,7 +139,7 @@
     .growth-hero__layout { min-block-size: 660px; }
     .growth-hero__media .hero__media { object-position: 65% center; }
     .growth-hero__content {
-      padding: 56px 24px 250px;
+      padding: 56px 0 250px;
       gap: min(var(--growth-hero-gap), 32px);
       background: linear-gradient(to bottom, rgb(var(--color-background-rgb) / 0.94) 0%, rgb(var(--color-background-rgb) / 0.88) 62%, rgb(var(--color-background-rgb) / 0) 100%);
     }

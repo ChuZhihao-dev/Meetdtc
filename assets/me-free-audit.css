@@ -105,8 +105,8 @@
 }
 
 .audit-page .wrap {
-  width: calc(100% - 64px);
-  max-width: 1200px;
+  width: min(var(--narrow-page-width), calc(100% - var(--page-margin) * 2));
+  max-width: var(--narrow-page-width);
   margin-inline: auto
 }
 
@@ -127,7 +127,7 @@
 
 .audit-page h1 span,
 .audit-page h2 {
-  background: linear-gradient(105deg, #3926ba, #853bdf);
+  background: linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%);
   background-clip: text;
   color: transparent
 }
@@ -1027,7 +1027,7 @@
 
   .audit-page .wrap,
   .audit-page .site-foot .wrap {
-    width: calc(100% - 36px)
+    width: min(var(--narrow-page-width), calc(100% - var(--page-margin) * 2))
   }
 
   .hero-layout {
@@ -1206,7 +1206,7 @@
 /* === me-audit-preview.refinement.css === */
 
 .audit-page .wrap {
-  max-width: 1280px
+  max-width: var(--narrow-page-width)
 }
 
 .audit-page .audit-hero {

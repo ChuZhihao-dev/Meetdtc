@@ -36,7 +36,7 @@
 </div>
 {% stylesheet %}
   .text-columns { color: var(--text-columns-text); font-family: var(--text-columns-font, var(--font-heading--family)); }
-  .text-columns__inner { display: grid; grid-template-columns: minmax(0, 498fr) minmax(0, 652fr); align-items: start; gap: 0 clamp(40px, 8.61111vw, 124px); width: 100%; max-width: 1440px; min-width: 0; margin-inline: auto; padding-inline: 80px; }
+  .text-columns__inner { inline-size: min(var(--narrow-page-width), calc(100% - var(--page-margin) * 2)); max-inline-size: var(--narrow-page-width); padding-inline: 0; display: grid; grid-template-columns: minmax(0, 498fr) minmax(0, 652fr); align-items: start; gap: 0 clamp(40px, 8.61111vw, 124px); min-width: 0; margin-inline: auto; }
   .text-columns scroll-reveal-component.text-columns__inner { display: grid; }
   .text-columns__intro, .text-columns__copy { min-width: 0; overflow-wrap: anywhere; }
   .text-columns__eyebrow { margin: 0 0 10px; font-size: 18px; font-weight: 500; line-height: 1.4; }
@@ -52,7 +52,7 @@
   .text-columns__inner--single { grid-template-columns: minmax(0, 1fr); }
   .text-columns__inner--single .text-columns__copy { padding-block-start: 0; }
   @media screen and (max-width: 989px) {
-    .text-columns__inner { padding-inline: 32px; column-gap: 40px; }
+    .text-columns__inner { column-gap: 40px; }
     .text-columns__body, .text-columns__footer { line-height: 1.6; }
     .text-columns__body > * + * { margin-block-start: 32px; }
   }
@@ -64,7 +64,7 @@
     .text-columns--about .text-columns__body { font-size: 16px; }
     .text-columns--about .text-columns__body > * + * { margin-block-start: 20px; }
     .text-columns--about .text-columns__footer { margin-block-start: 20px; font-size: 14px; }
-    .text-columns__inner { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-inline: 20px; }
+    .text-columns__inner { grid-template-columns: minmax(0, 1fr); gap: 28px; }
     .text-columns__inner--eyebrow .text-columns__copy { padding-block-start: 0; }
     .text-columns__body, .text-columns__footer { line-height: 1.6; }
     .text-columns__body > * + * { margin-block-start: 24px; }
@@ -131,7 +131,7 @@
       "type": "color_background",
       "id": "heading_gradient",
       "label": "t:text_columns.heading_gradient",
-      "default": "linear-gradient(103.593deg, #0B22B8 11.742%, #9621C4 88.258%)"
+      "default": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)"
     },
     {
       "type": "color",

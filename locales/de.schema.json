@@ -740,6 +740,7 @@
     "gradient_background": "Verlaufs-Hintergrund",
     "custom_radius": "Benutzerdefinierter Eckenradius",
     "icon_size": "Symbolgröße",
+    "gradient_color_mid": "Mittlere Verlaufsfarbe",
     "gradient_color_from": "Startfarbe des Verlaufs",
     "gradient_color_to": "Endfarbe des Verlaufs",
     "gradient_direction": "Verlaufsrichtung",
