@@ -118,7 +118,7 @@ class ServicesGlobe extends Component {
 
   /** @param {number} time */
   #animate = (time) => {
-    if (this.#lastTime) this.#phi += Math.min(time - this.#lastTime, 100) * 0.00006;
+    if (this.#lastTime) this.#phi += Math.min(time - this.#lastTime, 100) * 0.00012;
     this.#lastTime = time;
     this.#globe?.update({ phi: this.#phi });
     this.#frame = requestAnimationFrame(this.#animate);

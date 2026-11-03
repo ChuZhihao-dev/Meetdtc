@@ -454,16 +454,16 @@
         "padding-block-end": 0
       }
     },
-    "partner_brands_af44J3": {
+    "partner_brands_z4renC": {
       "type": "partner-brands",
       "blocks": {
-        "brand_row_WiRgQP": {
+        "brand_row_EWCndC": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "left"
           },
           "blocks": {
-            "brand_logo_3aPGAV": {
+            "brand_logo_t9c4RH": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/beatbot.png",
@@ -473,7 +473,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_qRLihd": {
+            "brand_logo_GC4JmC": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/rokid.png",
@@ -483,7 +483,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_RnfDFq": {
+            "brand_logo_8Mabq8": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/shangri-la.png",
@@ -493,7 +493,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_KKcrcX": {
+            "brand_logo_wQT3XR": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/nongfu-spring.png",
@@ -503,7 +503,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_MkwpYk": {
+            "brand_logo_WknnTg": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/molly-tea.png",
@@ -513,7 +513,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_hAMkcF": {
+            "brand_logo_VtAeLJ": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/dreame.png",
@@ -523,7 +523,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_QAa9Az": {
+            "brand_logo_Nt77LH": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/firefly.png",
@@ -533,7 +533,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_mJtN4E": {
+            "brand_logo_pGrKPP": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/roborock.png",
@@ -545,23 +545,23 @@
             }
           },
           "block_order": [
-            "brand_logo_3aPGAV",
-            "brand_logo_qRLihd",
-            "brand_logo_RnfDFq",
-            "brand_logo_KKcrcX",
-            "brand_logo_MkwpYk",
-            "brand_logo_hAMkcF",
-            "brand_logo_QAa9Az",
-            "brand_logo_mJtN4E"
+            "brand_logo_t9c4RH",
+            "brand_logo_GC4JmC",
+            "brand_logo_8Mabq8",
+            "brand_logo_wQT3XR",
+            "brand_logo_WknnTg",
+            "brand_logo_VtAeLJ",
+            "brand_logo_Nt77LH",
+            "brand_logo_pGrKPP"
           ]
         },
-        "brand_row_QTBckU": {
+        "brand_row_tVCWLE": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "right"
           },
           "blocks": {
-            "brand_logo_Ba9HLf": {
+            "brand_logo_rVwLFa": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/winona.png",
@@ -571,7 +571,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_4wiVT8": {
+            "brand_logo_xjMd68": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/onwave.png",
@@ -581,7 +581,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_DtL4fz": {
+            "brand_logo_3Nt8bm": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/segway.png",
@@ -591,7 +591,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_kXnneP": {
+            "brand_logo_RKWtND": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tiktok.png",
@@ -601,7 +601,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_Tfmwgt": {
+            "brand_logo_6JpVrE": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tencent.png",
@@ -611,7 +611,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_zcBCJB": {
+            "brand_logo_QdzeGb": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/haier.png",
@@ -621,7 +621,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_pnW3VC": {
+            "brand_logo_zqTxDY": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/midea.png",
@@ -631,7 +631,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_GERA3P": {
+            "brand_logo_mXgwpq": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/creality.png",
@@ -643,23 +643,23 @@
             }
           },
           "block_order": [
-            "brand_logo_Ba9HLf",
-            "brand_logo_4wiVT8",
-            "brand_logo_DtL4fz",
-            "brand_logo_kXnneP",
-            "brand_logo_Tfmwgt",
-            "brand_logo_zcBCJB",
-            "brand_logo_pnW3VC",
-            "brand_logo_GERA3P"
+            "brand_logo_rVwLFa",
+            "brand_logo_xjMd68",
+            "brand_logo_3Nt8bm",
+            "brand_logo_RKWtND",
+            "brand_logo_6JpVrE",
+            "brand_logo_QdzeGb",
+            "brand_logo_zqTxDY",
+            "brand_logo_mXgwpq"
           ]
         },
-        "brand_row_KweQtd": {
+        "brand_row_mJjjp6": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "left"
           },
           "blocks": {
-            "brand_logo_R6MtGD": {
+            "brand_logo_F7pWzW": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ireader.png",
@@ -669,7 +669,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_LaWVGT": {
+            "brand_logo_jwPnhP": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/game-bear.png",
@@ -679,7 +679,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_tziGN4": {
+            "brand_logo_TzQ6bd": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/urban-revivo.png",
@@ -689,7 +689,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_7eC7FG": {
+            "brand_logo_FMpnwT": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/beneunder.png",
@@ -699,7 +699,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_bciWHA": {
+            "brand_logo_dEDNfC": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tapo.png",
@@ -709,7 +709,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_tETDz4": {
+            "brand_logo_crp9E3": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/iflytek.png",
@@ -719,7 +719,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_PR9gUX": {
+            "brand_logo_akzqEd": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ottocast.png",
@@ -729,7 +729,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_7qQ3z9": {
+            "brand_logo_hyKBEU": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ulanzi.png",
@@ -741,27 +741,27 @@
             }
           },
           "block_order": [
-            "brand_logo_R6MtGD",
-            "brand_logo_LaWVGT",
-            "brand_logo_tziGN4",
-            "brand_logo_7eC7FG",
-            "brand_logo_bciWHA",
-            "brand_logo_tETDz4",
-            "brand_logo_PR9gUX",
-            "brand_logo_7qQ3z9"
+            "brand_logo_F7pWzW",
+            "brand_logo_jwPnhP",
+            "brand_logo_TzQ6bd",
+            "brand_logo_FMpnwT",
+            "brand_logo_dEDNfC",
+            "brand_logo_crp9E3",
+            "brand_logo_akzqEd",
+            "brand_logo_hyKBEU"
           ]
         }
       },
       "block_order": [
-        "brand_row_WiRgQP",
-        "brand_row_QTBckU",
-        "brand_row_KweQtd"
+        "brand_row_EWCndC",
+        "brand_row_tVCWLE",
+        "brand_row_mJjjp6"
       ],
       "name": "t:names.partner_brands",
       "settings": {
         "heading": "<p>Trusted by Leading Brands Across Global Markets</p>",
         "font": "var(--font-heading--family)",
-        "font_size": "1.3125rem",
+        "font_size": "1.5rem",
         "weight": "600",
         "line_height": "1.4",
         "letter_spacing": "normal",
@@ -774,16 +774,16 @@
         "gradient_angle": 100,
         "gradient_start_position": 0,
         "gradient_end_position": 100,
-        "background_gradient_from": "#efe6f3",
-        "background_gradient_to": "#e2cdf4",
-        "background_gradient_angle": 100,
+        "background_gradient_from": "{{ settings.color_palette.background }}",
+        "background_gradient_to": "#EFE6F3",
+        "background_gradient_angle": 160,
         "thickness": 0.5,
         "divider_color": "#707070",
         "width_percent": 100,
         "logo_gap": 78,
-        "row_gap": 16,
+        "row_gap": 40,
         "padding-block-start": 40,
-        "padding-block-end": 24
+        "padding-block-end": 40
       }
     },
     "business_challenge_iR7zkb": {
@@ -1274,10 +1274,11 @@
         "background_gradient_from": "rgba(0,0,0,0)",
         "background_gradient_to": "rgba(0,0,0,0)",
         "background_gradient_angle": 104,
-        "row_background": "#e5e6ff",
+        "row_background": "{{ settings.color_palette.background }}",
+        "row_background_opacity": 60,
         "row_radius": 16,
         "row_gap": 8,
-        "question_color": "#3f4eff",
+        "question_color": "#8b45f0",
         "answer_color": "#595959",
         "icon_color": "#3f4eff",
         "heading_gap": 52,
@@ -1293,7 +1294,7 @@
     "page_background_n8zJR6",
     "main",
     "product_hero_jiNakp",
-    "partner_brands_af44J3",
+    "partner_brands_z4renC",
     "business_challenge_iR7zkb",
     "our_approach_dJQKw8",
     "service_scope_VaDYAw",

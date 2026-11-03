@@ -516,9 +516,9 @@
       ],
       "name": "t:names.partner_brands",
       "settings": {
-        "heading": "<p>Trusted by Leading Brands Across Global Markets</p>",
+        "heading": "<p>Trusted by Leading Brands&nbsp;<br/>Across Global Markets</p>",
         "font": "var(--font-heading--family)",
-        "font_size": "1.25rem",
+        "font_size": "2rem",
         "weight": "600",
         "line_height": "1.4",
         "letter_spacing": "normal",
@@ -540,7 +540,7 @@
         "logo_gap": 78,
         "row_gap": 40,
         "padding-block-start": 40,
-        "padding-block-end": 24
+        "padding-block-end": 40
       }
     },
     "services_globe": {
@@ -574,9 +574,18 @@
       "name": "t:names.product_solutions_grid",
       "settings": {
         "collection": "solution",
-        "product_limit": 10,
+        "product_limit": 6,
         "heading": "<p>Solutions Built for&nbsp;<br/>Measurable Growth</p>",
         "read_more_label": "Read More →",
+        "eyebrow": "SERVICES",
+        "show_icons": true,
+        "card_text_color": "#241c52",
+        "card_description_color": "#5e5a8a",
+        "card_link_color": "#5b34c6",
+        "panel_background": "#ffffff66",
+        "panel_border": "#ffffffcc",
+        "panel_radius": 28,
+        "panel_padding": 52,
         "font": "var(--font-heading--family)",
         "font_size": "2.5rem",
         "weight": "600",
@@ -959,7 +968,7 @@
         "row_background_opacity": 30,
         "row_radius": 16,
         "row_gap": 8,
-        "question_color": "#8B45F0",
+        "question_color": "#8b45f0",
         "answer_color": "#595959",
         "icon_color": "#3f4eff",
         "heading_gap": 52,
