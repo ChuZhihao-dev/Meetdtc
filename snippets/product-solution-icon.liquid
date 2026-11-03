@@ -1,0 +1,68 @@
+{% doc %}
+  Decorative service icon selected from the product handle, with a code icon fallback.
+  Each service category has a distinct icon color and matching pale background.
+  @param {product} product - Product represented by the solution card.
+  @example {% render 'product-solution-icon', product: product %}
+{% enddoc %}
+{%- capture icon_markup -%}
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+    {% liquid
+      assign service_handle = product.handle
+    %}
+    {% if service_handle contains 'search-engine' or service_handle contains 'seo' %}
+      {% assign icon_tone = 'green' %}
+      <circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>
+    {% elsif service_handle contains 'generative-engine' or service_handle contains 'geo' %}
+      {% assign icon_tone = 'indigo' %}
+      <circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>
+    {% elsif service_handle contains 'conversion' or service_handle contains 'cro' %}
+      {% assign icon_tone = 'pink' %}
+      <path d="M5 20v-7M12 20V5M19 20v-11"/>
+    {% elsif service_handle contains 'email' or service_handle contains 'edm' %}
+      {% assign icon_tone = 'orange' %}
+      <rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>
+    {% elsif service_handle contains 'affiliate' %}
+      {% assign icon_tone = 'violet' %}
+      <circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 4v2"/>
+    {% elsif service_handle contains 'whatsapp' %}
+      {% assign icon_tone = 'green' %}
+      <path d="m4 20 1.5-5A8 8 0 1 1 9 19Z"/>
+    {% elsif service_handle contains 'reputation' or service_handle contains 'trustpilot' or service_handle contains 'review' %}
+      {% assign icon_tone = 'gold' %}
+      <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/>
+    {% elsif service_handle contains 'membership' or service_handle contains 'loyalty' %}
+      {% assign icon_tone = 'blue' %}
+      <circle cx="12" cy="9" r="5"/><path d="m8 13-1 8 5-3 5 3-1-8"/>
+    {% elsif service_handle contains 'cloud' or service_handle contains 'clound' or service_handle contains 'ai-' %}
+      {% assign icon_tone = 'teal' %}
+      <rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/>
+    {% else %}
+      {% assign icon_tone = 'purple' %}
+      <path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/>
+    {% endif %}
+  </svg>
+{%- endcapture -%}
+<span class="product-solution-card__icon product-solution-card__icon--{{ icon_tone }}" aria-hidden="true">{{ icon_markup }}</span>
+{% stylesheet %}
+  .product-solution-card__icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    inline-size: 46px;
+    block-size: 46px;
+    margin-block-end: 20px;
+    border-radius: 13px;
+    color: var(--solution-icon-color, var(--solutions-card-accent, var(--color-foreground)));
+    background: var(--solution-icon-background, color-mix(in srgb, var(--solution-icon-color, var(--color-foreground)) 12%, transparent));
+  }
+  .product-solution-card__icon--purple { --solution-icon-color: #5B34C6; --solution-icon-background: #E4E6FF; }
+  .product-solution-card__icon--green { --solution-icon-color: #0FA36A; --solution-icon-background: #DCF3E8; }
+  .product-solution-card__icon--indigo { --solution-icon-color: #6554C0; --solution-icon-background: #E9E5FF; }
+  .product-solution-card__icon--pink { --solution-icon-color: #E0348B; --solution-icon-background: #FFE0EF; }
+  .product-solution-card__icon--orange { --solution-icon-color: #F07B1D; --solution-icon-background: #FFE7D4; }
+  .product-solution-card__icon--violet { --solution-icon-color: #8B45F0; --solution-icon-background: #EDE0FF; }
+  .product-solution-card__icon--gold { --solution-icon-color: #D99400; --solution-icon-background: #FFF0D6; }
+  .product-solution-card__icon--blue { --solution-icon-color: #2D6BFF; --solution-icon-background: #DEECFF; }
+  .product-solution-card__icon--teal { --solution-icon-color: #0E9E96; --solution-icon-background: #DDF5F2; }
+  .product-solution-card__icon svg { inline-size: 24px; block-size: 24px; }
+{% endstylesheet %}

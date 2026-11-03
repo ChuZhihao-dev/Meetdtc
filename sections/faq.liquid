@@ -17,6 +17,7 @@
 {% liquid
   assign section_settings = section.settings
   assign heading_text = section_settings.heading
+  assign row_background_opacity = section_settings.row_background_opacity | default: 100 | divided_by: 100.0
 %}
 
 {%- capture faq_rows -%}
@@ -44,7 +45,7 @@
     --faq-mobile-radius: {{ section_settings.row_radius_mobile }}px;
     --faq-heading-gap: {{ section_settings.heading_gap }}px;
     --faq-row-gap: {{ section_settings.row_gap }}px;
-    --faq-row-background: {{ section_settings.row_background }};
+    --faq-row-background: {{ section_settings.row_background | color_modify: 'alpha', row_background_opacity }};
     --faq-row-radius: {{ section_settings.row_radius }}px;
     --faq-question-color: {{ section_settings.question_color }};
     --faq-answer-color: {{ section_settings.answer_color }};
@@ -456,6 +457,16 @@
       "id": "row_background",
       "label": "t:settings.background_color",
       "default": "#E5E6FF"
+    },
+    {
+      "type": "range",
+      "id": "row_background_opacity",
+      "label": "t:settings.opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100
     },
     {
       "type": "range",
