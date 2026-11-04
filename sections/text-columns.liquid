@@ -17,7 +17,7 @@
 {% render 'scroll-reveal-styles' %}
 <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
 <div class="section-background" style="background: {{ s.background | default: 'transparent' }};"></div>
-<div class="section section--full-width spacing-style text-columns{% if template.suffix == 'about-us' %} text-columns--about{% endif %}"
+<div class="section section--full-width spacing-style text-columns"
   style="{% render 'spacing-style', settings: s %} --text-columns-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }}; --text-columns-text: {{ s.text_color }}; --text-columns-gradient: {{ s.heading_gradient | default: s.text_color }}; --text-columns-accent: {{ s.accent_color }};">
   <scroll-reveal-component class="text-columns__inner{% if s.eyebrow != blank %} text-columns__inner--eyebrow{% endif %}{% unless has_intro and has_copy %} text-columns__inner--single{% endunless %}" data-reveal-scope>
     {% if has_intro %}
@@ -57,18 +57,15 @@
     .text-columns__body > * + * { margin-block-start: 32px; }
   }
   @media screen and (max-width: 749px) {
-    .text-columns--about { --spacing-scale: 0.5; }
-    .text-columns--about .text-columns__inner { gap: 20px; }
-    .text-columns--about .text-columns__eyebrow { font-size: 14px; }
-    .text-columns--about .text-columns__heading { font-size: 28px; }
-    .text-columns--about .text-columns__body { font-size: 16px; }
-    .text-columns--about .text-columns__body > * + * { margin-block-start: 20px; }
-    .text-columns--about .text-columns__footer { margin-block-start: 20px; font-size: 14px; }
-    .text-columns__inner { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-    .text-columns__inner--eyebrow .text-columns__copy { padding-block-start: 0; }
-    .text-columns__body, .text-columns__footer { line-height: 1.6; }
-    .text-columns__body > * + * { margin-block-start: 24px; }
-    .text-columns__footer { margin-block-start: 28px; }
+    .text-columns { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
+    .text-columns .text-columns__inner { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .text-columns .text-columns__eyebrow { font-size: 12px; }
+    .text-columns .text-columns__heading { font-size: 24px; }
+    .text-columns .text-columns__copy { padding-block-start: 0; }
+    .text-columns .text-columns__body { font-size: 13px; line-height: 1.6; }
+    .text-columns .text-columns__body > * + * { margin-block-start: 16px; }
+    .text-columns .text-columns__footer { margin-block-start: 16px; font-size: 14px; line-height: 1.6; }
+    .text-columns .text-columns__footer:first-child { margin-block-start: 0; }
   }
   @media (forced-colors: active) {
     .text-columns__heading { color: CanvasText; background: none; -webkit-text-fill-color: currentColor; }

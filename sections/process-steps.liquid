@@ -11,7 +11,7 @@
   <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
 {% endif %}
 <div class="section-background" style="background: {{ s.background | default: 'transparent' }};"></div>
-<scroll-reveal-component class="section section--full-width spacing-style process-steps{% if template.suffix == 'about-us' %} process-steps--about{% endif %}"
+<scroll-reveal-component class="section section--full-width spacing-style process-steps"
   style="{% render 'spacing-style', settings: s %} --process-steps-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }}; --process-steps-text: {{ s.text_color }}; --process-steps-gradient: {{ s.heading_gradient | default: s.text_color }}; --process-steps-card: {{ s.card_background }}; --process-steps-accent: {{ s.accent_color }};"
   {% if s.enable_reveal %}data-reveal-scope{% endif %}>
   <div class="process-steps__inner">
@@ -94,23 +94,22 @@
     .process-steps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media screen and (max-width: 749px) {
-    .process-steps--about { --spacing-scale: 0.5; }
-    .process-steps--about .process-steps__eyebrow { font-size: 14px; }
-    .process-steps--about .process-steps__heading { font-size: 28px; }
-    .process-steps--about .process-steps__description { margin-block-start: 12px; font-size: 16px; line-height: 1.5; }
-    .process-steps--about .process-steps__intro { margin-block-end: 24px; }
-    .process-steps--about .process-steps__card { padding: 20px; border-radius: 20px; }
-    .process-steps--about .process-steps__top { min-height: 36px; }
-    .process-steps--about .process-steps__icon { width: 32px; height: 32px; }
-    .process-steps--about .process-steps__number { font-size: 28px; line-height: 1.2; }
-    .process-steps--about .process-steps__title-slot { padding-block-start: 16px; }
-    .process-steps--about .process-steps__card-heading { font-size: 16px; line-height: 1.5; }
-    .process-steps--about .process-steps__description-slot { padding-block-start: 12px; line-height: 1.5; }
-    .process-steps--about .process-steps__points-slot { padding-block-start: 16px; }
-    .process-steps--about .process-steps__points { gap: 8px; line-height: 1.5; }
-    .process-steps__grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
-    .process-steps__intro { margin-block-end: 32px; }
-    .process-steps__card { min-height: 0; padding: 24px; }
+    .process-steps { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
+    .process-steps .process-steps__eyebrow { font-size: 12px; }
+    .process-steps .process-steps__heading { font-size: 24px; }
+    .process-steps .process-steps__description { margin-block-start: 12px; font-size: 13px; line-height: 1.6; }
+    .process-steps .process-steps__intro { margin-block-end: 24px; }
+    .process-steps .process-steps__card { padding: 16px; border-radius: 20px; }
+    .process-steps .process-steps__top { min-height: 36px; }
+    .process-steps .process-steps__icon { width: 32px; height: 32px; }
+    .process-steps .process-steps__number { font-size: 24px; line-height: 1.2; }
+    .process-steps .process-steps__title-slot { padding-block-start: 12px; }
+    .process-steps .process-steps__card-heading { font-size: 14px; line-height: 1.5; }
+    .process-steps .process-steps__description-slot { padding-block-start: 12px; font-size: 13px; line-height: 1.6; }
+    .process-steps .process-steps__points-slot { padding-block-start: 12px; }
+    .process-steps .process-steps__points { gap: 8px; line-height: 1.5; }
+    .process-steps__grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .process-steps__card { min-height: 0; }
     .process-steps__description-slot p { min-height: 0; }
     .process-steps.reveal-ready [data-reveal] { transition-delay: 0ms; }
     .process-steps.reveal-ready .process-steps__card[data-reveal] { transition-delay: 0ms; }

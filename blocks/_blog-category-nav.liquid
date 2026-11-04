@@ -5,6 +5,7 @@
   Links navigate directly to Shopify's native blog tag routes.
   @example Used as the static-blog-categories block on the main blog section.
 {% enddoc %}
+{% render 'category-sticky-styles' %}
 {% liquid
   assign navigation_blog = closest.blog | default: blog
   assign active_tags = null
@@ -12,7 +13,8 @@
     assign active_tags = current_tags
   endif
 %}
-<nav class="blog-categories" aria-label="{{ 'blog_filter.categories' | t }}" {{ block.shopify_attributes }}>
+<nav class="blog-categories" on:click="blog-posts-list/navigate" aria-label="{{ 'blog_filter.categories' | t }}" {{ block.shopify_attributes }}>
+  {% capture category_links %}
   <a href="{{ navigation_blog.url | escape }}" {% if active_tags == blank %}aria-current="page"{% endif %}>{{ 'blog_filter.all_categories' | t }}</a>
   {% for tag in navigation_blog.all_tags %}
     {% if tag != blank %}
@@ -21,13 +23,39 @@
       </span>
     {% endif %}
   {% endfor %}
+  {% endcapture %}
+  <div class="blog-categories__desktop">{{ category_links }}</div>
+  <details class="blog-categories__picker" data-category-picker on:keydown="blog-posts-list/closeFilter">
+    <summary class="blog-categories__toggle">
+      <span class="blog-categories__label">{{ 'blog_filter.categories' | t }}</span>
+      <span class="blog-categories__selected" data-category-label>{% if active_tags != blank %}{{ active_tags | join: ', ' | escape }}{% else %}{{ 'blog_filter.all_categories' | t }}{% endif %}</span>
+      <span class="blog-categories__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+    </summary>
+    <div class="blog-categories__options">{{ category_links }}</div>
+  </details>
 </nav>
 {% stylesheet %}
   .blog-categories { display: flex; flex-wrap: wrap; gap: 10px 30px; margin-block-end: 30px; min-inline-size: 0; }
   .blog-categories a { display: inline-flex; align-items: center; min-block-size: 44px; color: var(--color-foreground-muted, var(--color-foreground)); font-family: var(--font-heading--family); font-size: 20px; font-weight: 600; line-height: 1.5; text-decoration: none; overflow-wrap: anywhere; }
   .blog-categories a[aria-current='page'] { color: var(--blog-filter-accent, #0C23B8); }
   .blog-categories a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
-  @media screen and (max-width: 749px) { .blog-categories { gap: 8px 18px; } }
+  .blog-categories__desktop { display: contents; }
+  .blog-categories__picker { display: none; }
+  @media screen and (max-width: 989px) {
+    .blog-categories { display: block; position: sticky; inset-block-start: var(--category-sticky-top, 8px); align-self: start; background: var(--color-input-background, var(--color-background)); border-radius: 12px; z-index: 2; }
+    .blog-categories__desktop { display: none; }
+    .blog-categories__picker { display: block; }
+    .blog-categories__toggle { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 12px 16px; border: 1px solid color-mix(in srgb, var(--color-input-text) 12%, transparent); border-radius: 12px; background: var(--color-input-background, var(--color-background)); font-size: 14px; line-height: 1.5; cursor: pointer; }
+    .blog-categories__label { color: var(--color-foreground-muted); font-size: 12px; }
+    .blog-categories__selected { flex: 1; min-width: 0; font-weight: 600; overflow-wrap: anywhere; }
+    .blog-categories__caret { display: flex; flex: 0 0 14px; }
+    .blog-categories__caret svg { width: 14px; height: 14px; }
+    .blog-categories__picker[open] .blog-categories__caret { transform: rotate(180deg); }
+    .blog-categories__options { position: absolute; inset-inline: 0; inset-block-start: calc(100% + 8px); display: grid; max-height: 50svh; overflow-y: auto; padding: 8px; border: 1px solid color-mix(in srgb, var(--color-input-text) 12%, transparent); border-radius: 12px; background: var(--color-input-background, var(--color-background)); }
+    .blog-categories__options a { display: flex; min-height: 44px; padding: 10px 12px; border-radius: 8px; font-size: 14px; font-weight: 500; line-height: 1.5; }
+    .blog-categories__options a[aria-current='page'] { background: color-mix(in srgb, var(--blog-filter-accent) 8%, var(--color-input-background)); }
+    .blog-categories__toggle:focus-visible, .blog-categories__options a:focus-visible { outline: 2px solid var(--blog-filter-accent, var(--color-foreground)); outline-offset: -3px; }
+  }
 {% endstylesheet %}
 {% schema %}
 {

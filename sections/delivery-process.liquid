@@ -90,6 +90,23 @@
     .delivery-process__step:hover .delivery-process__copy { transform: none; }
     .delivery-process__intro { position: static; }
   }
+  /* Shared compact mobile layout for every service template. */
+  @media screen and (max-width: 749px) {
+    .delivery-process { padding-block: calc(min(var(--padding-block-start), 32px) + var(--section-top-offset, 0px)) min(var(--padding-block-end), 32px); }
+    .delivery-process__inner { gap: 24px; }
+    .delivery-process__eyebrow { font-size: 12px; margin-block-end: 12px; }
+    .delivery-process__heading { font-size: 24px; line-height: 1.25; }
+    .delivery-process__description { margin-block-start: 12px; font-size: 13px; line-height: 1.6; }
+    .delivery-process__step { grid-template-columns: 40px minmax(0, 1fr); column-gap: 16px; min-height: 0; }
+    .delivery-process__step:last-child { min-height: 0; }
+    .delivery-process__marker { padding-block-start: 0; }
+    .delivery-process__number { top: 0; height: 40px; font-size: 14px; border-width: 1px; }
+    .delivery-process__connector { top: 40px; bottom: 0; inset-inline-start: 19.5px; }
+    .delivery-process__copy { padding-block-end: min(var(--delivery-gap), 24px); }
+    .delivery-process__step-heading { font-size: 14px; line-height: 1.5; }
+    .delivery-process__step-description { margin-block-start: 8px; font-size: 13px; line-height: 1.6; }
+    .delivery-process__deliverable { margin-block-start: 8px; font-size: 13px; line-height: 1.6; }
+  }
 {% endstylesheet %}
 
 {% schema %}

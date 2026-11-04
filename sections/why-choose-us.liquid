@@ -166,8 +166,22 @@
     .why-choose-us__description br { display: none; }
     .why-choose-us__intro { gap: 16px; }
     .why-choose-us__grid { margin-block-start: 32px; gap: 24px; }
-    .why-choose-us .value-prop__badge { width: 64px; height: 64px; margin-block-end: 16px; }
+    .why-choose-us .value-prop__badge { width: 48px; height: 48px; margin-block-end: 16px; }
+    .why-choose-us :is(.value-prop__icon, .value-prop__icon svg, .value-prop__image) { max-width: 24px; max-height: 24px; }
     .why-choose-us .value-prop__title { min-height: 0; margin-block-end: 8px; }
+  }
+  /* Shared mobile scale for every instance of this component. */
+  @media screen and (max-width: 749px) {
+    .why-choose-us { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
+
+    .why-choose-us .why-choose-us__eyebrow { font-size: 12px; }
+    .why-choose-us .why-choose-us__heading.custom-font-size { font-size: 24px; line-height: 1.25; }
+    .why-choose-us .why-choose-us__description { font-size: 13px; line-height: 1.6; }
+    .why-choose-us .why-choose-us__intro { gap: 12px; }
+    .why-choose-us .why-choose-us__grid { margin-block-start: 24px; }
+    .why-choose-us .value-prop__badge { margin-block-end: 12px; }
+    .why-choose-us .value-prop__title { font-size: 14px; }
+    .why-choose-us .value-prop__description { font-size: 13px; line-height: 1.6; }
   }
 {% endstylesheet %}
 

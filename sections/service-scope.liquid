@@ -228,6 +228,23 @@
     .service-scope--included.reveal-ready [data-reveal][data-state='before'] { opacity: 1; transform: none; transition: none; }
     .service-scope--included.reveal-ready .service-scope__card[data-reveal] { transition: none; }
   }
+  /* Shared compact mobile layout for every service template. */
+  @media screen and (max-width: 749px) {
+    .service-scope { padding-block: calc(min(var(--service-scope-mobile-top, 32px), 32px) + var(--section-top-offset, 0px)) min(var(--service-scope-mobile-bottom, 32px), 32px); }
+    .service-scope .service-scope__eyebrow { font-size: 12px; }
+    .service-scope .service-scope__heading { font-size: 24px; line-height: 1.25; }
+    .service-scope .service-scope__description { font-size: 13px; line-height: 1.6; }
+    .service-scope .service-scope__intro { gap: 12px; }
+    .service-scope .service-scope__intro + .service-scope__grid { margin-block-start: 24px; }
+    .service-scope .service-scope__grid { grid-auto-rows: auto; gap: 16px; }
+    .service-scope .service-scope__card { min-block-size: 0; padding: 16px; gap: 12px; }
+    .service-scope .service-scope__card-heading { font-size: 14px; line-height: 1.5; }
+    .service-scope .service-scope__card-description { font-size: 13px; line-height: 1.6; }
+    .service-scope__card-description > :first-child { margin-block-start: 0; }
+    .service-scope__card-description > :last-child { margin-block-end: 0; }
+    .service-scope .service-scope__card-heading + .service-scope__card-description { margin-block-start: 12px; }
+    .service-scope--included .service-scope__card-heading + .service-scope__card-description { margin-block-start: 0; }
+  }
 {% endstylesheet %}
 
 {% schema %}

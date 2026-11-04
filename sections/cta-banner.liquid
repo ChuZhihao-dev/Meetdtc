@@ -241,6 +241,25 @@
     .cta-banner__panel { border-radius: var(--cta-mobile-radius, 16px); }
     .cta-banner__button { width: 100%; min-height: 48px; padding: 12px 20px; border-radius: 24px; }
   }
+  /* Shared mobile scale for every instance of this component. */
+  @media screen and (max-width: 749px) {
+    .cta-banner { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
+
+    .cta-banner .cta-banner__panel { gap: 16px; padding-block: min(var(--padding-block-start), 24px) min(var(--padding-block-end), 24px); padding-inline: min(var(--padding-inline-start), 20px) min(var(--padding-inline-end), 20px); }
+    .cta-banner .cta-banner__heading.custom-font-size { font-size: 24px; line-height: 1.25; }
+    .cta-banner .cta-banner__aside { gap: 16px; }
+    .cta-banner .cta-banner__description { font-size: 13px; line-height: 1.6; }
+    .cta-banner .cta-banner__button { font-size: 14px; }
+  }
+  @media screen and (max-width: 749px) {
+    .cta-banner .cta-banner__button {
+      min-block-size: 44px;
+      min-height: 44px;
+      padding: 10px 12px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}

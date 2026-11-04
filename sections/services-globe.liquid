@@ -167,10 +167,20 @@
     .services-globe__layout { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 40px 0; }
     .services-globe__intro { gap: 24px; }
     .services-globe__heading { font-size: 1.75rem; }
-    .services-globe__link { min-block-size: 44px; font-size: 16px; }
+    .services-globe__link { min-block-size: 0; font-size: 16px; }
     .services-globe__services { gap: 12px 16px; }
     .services-globe__visual { block-size: 85cqw; }
     .services-globe__renderer { inset-inline-start: -5%; inline-size: 110%; }
+  }
+  /* Shared mobile scale for every instance of this component. */
+  @media screen and (max-width: 749px) {
+    .services-globe .services-globe__layout { padding-block-start: 32px; gap: 24px; }
+    .services-globe .services-globe__intro { gap: 16px; }
+    .services-globe .services-globe__eyebrow { font-size: 12px; margin-block-end: 8px; }
+    .services-globe .services-globe__heading { font-size: 24px; line-height: 1.25; }
+    .services-globe .services-globe__description { font-size: 13px; line-height: 1.6; }
+    .services-globe .services-globe__services { gap: 10px 16px; }
+    .services-globe :is(.services-globe__service, .services-globe__link) { font-size: 14px; }
   }
 {% endstylesheet %}
 

@@ -333,6 +333,27 @@
     .product-solution-card { padding: 20px; border-radius: var(--solutions-mobile-radius, 12px); }
     .product-solutions-grid__view-all { min-height: 48px; padding: 12px 24px; font-size: 16px; line-height: 1.5; border-radius: var(--solutions-mobile-radius, 12px); }
   }
+  /* Shared mobile scale for every instance of this component. */
+  @media screen and (max-width: 749px) {
+    .product-solutions-grid { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
+
+    .product-solutions-grid .product-solutions-grid__eyebrow { font-size: 12px; margin-block-end: 12px; }
+    .product-solutions-grid .product-solutions-grid__heading { font-size: 24px; line-height: 1.25; }
+    .product-solutions-grid .product-solution-card { padding: 16px; }
+    .product-solutions-grid .product-solution-card__title { font-size: 14px; line-height: 1.4; }
+    .product-solutions-grid .product-solution-card__excerpt { font-size: 13px; line-height: 1.6; margin-block-start: 12px; }
+    .product-solutions-grid .product-solution-card__more { padding-block-start: 12px; font-size: 14px; }
+    .product-solutions-grid .product-solutions-grid__view-all { font-size: 14px; }
+  }
+  @media screen and (max-width: 749px) {
+    .product-solutions-grid .product-solutions-grid__view-all {
+      min-block-size: 44px;
+      min-height: 44px;
+      padding: 10px 12px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}

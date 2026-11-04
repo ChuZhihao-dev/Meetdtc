@@ -57,6 +57,9 @@
   .diagnosis-drawer .footer-diagnosis__input { min-width: 0; line-height: 1.5; min-height: 50px; }
   .diagnosis-drawer .footer-diagnosis__input--textarea { min-height: 132px; }
   .diagnosis-drawer .footer-diagnosis__submit { font-size: 17px; line-height: 1.5; min-height: 54px; }
+  @media screen and (max-width: 749px) {
+    .diagnosis-drawer .footer-diagnosis__submit { min-height: 44px; min-block-size: 44px; padding: 10px 12px; font-size: 14px; line-height: 1.4; }
+  }
   @media screen and (max-width: 479px) { .diagnosis-drawer { padding-inline: max(20px, var(--safe-area-inset-left)) max(20px, var(--safe-area-inset-right)); } }
   @media (prefers-reduced-motion: reduce) { .diagnosis-drawer[open], .diagnosis-drawer[open].dialog-closing { animation: none; } }
 {% endstylesheet %}

@@ -1,7 +1,7 @@
 {% comment %}
   Insights.
   Renders an eyebrow, a gradient headline, and supporting copy above a list of
-  merchant-managed question blocks, plus an optional "view all" link, all on a
+  blog article cards with a mobile bleed carousel, plus an optional "view all" link on a
   full-bleed gradient background.
   @example
   <!-- Add the "Insights" section, then edit each question block -->
@@ -102,7 +102,7 @@
   -%}
 
   {% if blog != blank and blog.articles_count > 0 %}
-    <div class="insights__list">
+    <div class="insights__list" tabindex="0"{% if heading_text != blank %} role="region" aria-label="{{ heading_text | strip_html | escape }}"{% endif %}>
       {%- for article in blog.articles limit: post_limit -%}
         {%- liquid
           assign image_alt = article.image.alt | default: article.title
@@ -120,7 +120,7 @@
                   | image_url: width: 800
                   | image_tag:
                     widths: '260, 400, 600, 800',
-                    sizes: '(min-width: 750px) 260px, 100vw',
+                    sizes: '(min-width: 750px) 260px, 85vw',
                     loading: image_loading,
           decoding: 'async',
                     class: 'insight-row__image',
@@ -144,7 +144,7 @@
       {%- endfor -%}
     </div>
   {% elsif request.design_mode %}
-    <div class="insights__list">
+    <div class="insights__list" tabindex="0"{% if heading_text != blank %} role="region" aria-label="{{ heading_text | strip_html | escape }}"{% endif %}>
       {%- for i in (1..post_limit) -%}
         <div class="insight-reveal" data-reveal>
           <div class="insight-row">
@@ -438,7 +438,60 @@
     .insights__list { gap: 16px; border-radius: var(--insights-mobile-radius, 16px); }
     .insight-row { gap: 16px; border-radius: var(--insights-mobile-radius, 16px); }
     .insight-row__media { border-radius: max(0px, calc(var(--insights-mobile-radius, 16px) - 4px)); }
-    .insights__view-all { min-height: 48px; align-items: center; margin-block-start: 16px; }
+    .insights__view-all { min-height: 44px; align-items: center; margin-block-start: 16px; }
+  }
+  /* Shared mobile scale for every instance of this component. */
+  @media screen and (max-width: 749px) {
+    .insights { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
+
+    .insights .insights__intro { gap: 12px; }
+    .insights .insights__eyebrow { font-size: 12px; }
+    .insights .insights__heading.custom-font-size { font-size: 24px; line-height: 1.25; }
+    .insights .insights__description { font-size: 13px; line-height: 1.6; }
+    .insights .insight-row__title { font-size: 14px; line-height: 1.4; }
+    .insights :is(.insight-row__read, .insights__view-all) { font-size: 14px; }
+    .insights .insight-row__answer { font-size: 13px; line-height: 1.6; }
+  }
+  .insights__list:focus-visible {
+    outline: var(--focus-outline-width) solid var(--color-foreground);
+    outline-offset: calc(var(--focus-outline-width) * -1);
+  }
+
+  @media screen and (max-width: 749px) {
+    /* Keep the heading aligned while cards bleed to the viewport edges. */
+    .insights > .insights__list {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: 85%;
+      gap: 16px;
+      padding-block: 0 8px;
+      padding-inline: var(--page-margin);
+      overflow-x: auto;
+      overflow-y: hidden;
+      overscroll-behavior-inline: contain;
+      scrollbar-width: none;
+      scroll-snap-type: inline mandatory;
+      scroll-padding-inline: var(--page-margin);
+      background: transparent;
+      border-radius: 0;
+    }
+
+    .insights .insight-row__read { display: none; }
+    .insights__list::-webkit-scrollbar { display: none; }
+    .insights__list > .insight-reveal { min-inline-size: 0; scroll-snap-align: start; }
+    .insights__list .insight-row { block-size: 100%; }
+    .insights > .insights__list:has(> .insight-reveal:only-child) { grid-auto-columns: 100%; }
+  }
+  @media screen and (max-width: 749px) {
+    /* Vertical reveal/hover motion creates a second scroll axis inside the carousel. */
+    .insights .insights__list > .insight-reveal[data-reveal] {
+      transform: none;
+      translate: none;
+      transition-property: opacity;
+    }
+    .insights .insights__list .insight-row:hover { transform: none; translate: none; }
   }
 {% endstylesheet %}
 

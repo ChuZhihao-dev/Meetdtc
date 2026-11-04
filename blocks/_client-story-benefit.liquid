@@ -15,6 +15,10 @@
   .client-story-benefit__heading { margin: 0; font-family: inherit; font-size: 20px; font-weight: 600; line-height: 1.2; background: var(--client-story-gradient); background-clip: text; -webkit-text-fill-color: transparent; overflow-wrap: anywhere; }
   .client-story-benefit__description { margin: 0; color: inherit; font-size: 16px; font-weight: 500; line-height: 1.125; overflow-wrap: anywhere; }
   .client-story-benefit__heading + .client-story-benefit__description { margin-block-start: 5px; }
+  @media screen and (max-width: 749px) {
+    .client-story-benefit__heading { font-size: 14px; line-height: 1.5; }
+    .client-story-benefit__description { font-size: 13px; line-height: 1.6; }
+  }
 {% endstylesheet %}
 
 {% schema %}

@@ -45,14 +45,14 @@
       <button class="blog-filter-retry" type="button" on:click="/retry">{{ 'blog_filter.retry' | t }}</button>
     </div>
     {% paginate listing_blog.articles by section.settings.posts_per_page %}
-      <div class="blog-posts-results" tabindex="-1"
+      <div class="blog-posts-results" tabindex="-1" on:click="/navigate"
         data-hydration-key="blog-list-{{ section.id }}"
         data-current-path="{{ listing_path | escape }}"
         data-loaded-text="{{ 'blog_filter.loaded' | t: count: paginate.items | escape }}">
         <div ref="grid" class="blog-posts-container">
           {% liquid
             # Sizes mirror the desktop card columns and mobile card inset.
-            assign image_sizes = '(min-width: 1440px) 390px, (min-width: 750px) calc(30.97vw - 83px), calc(100vw - 76px)'
+            assign image_sizes = '(min-width: 1440px) 390px, (min-width: 750px) calc(30.97vw - 83px), calc(100vw - 32px)'
           %}
           {% for article in listing_blog.articles %}
             {% liquid
@@ -185,7 +185,13 @@
   .blog-filter-retry { display: none; margin-block-start: 8px; min-block-size: 44px; color: inherit; cursor: pointer; }
   blog-posts-list[data-error] .blog-filter-retry { display: inline-block; }
   @media screen and (max-width: 749px) {
-    .blog-list__intro { padding-block-start: calc(40px + var(--padding-block-start, 0px)); padding-block-end: 32px; }
+    .blog-list__intro { padding-block-start: max(calc(24px + min(var(--padding-block-start, 0px), 32px)), calc(var(--section-top-offset, 0px) + 24px)); padding-block-end: 32px; }
+    .blog-list__intro-content { gap: 12px; }
+    .blog-list__intro-content .text-block:has(h1), .blog-list__intro-content h1 { font-size: 24px; line-height: 1.25; }
+    .blog-list__intro-content .text-block:has(p), .blog-list__intro-content .text-block p { font-size: 13px; line-height: 1.6; }
+    .blog-list__body { padding-block-end: min(var(--padding-block-end, 0px), 32px); }
+    .blog-list .pagination__link, .blog-filter-retry { font-size: 14px; }
+    .blog-filter-empty { font-size: 13px; line-height: 1.6; }
     .blog-list__body { padding-block-start: 24px; }
     .blog-posts-container { gap: 16px; }
     .blog-list .pagination__list { gap: 0; }

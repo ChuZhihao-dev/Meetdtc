@@ -120,6 +120,16 @@
   @media (prefers-reduced-motion: reduce) {
 .client-story.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; }
   }
+  /* Shared compact mobile layout for every service template. */
+  @media screen and (max-width: 749px) {
+    .client-story { padding-block: calc(min(var(--padding-block-start), 32px) + var(--section-top-offset, 0px)) min(var(--padding-block-end), 32px); }
+    .client-story__copy { padding: 20px; padding-inline-start: 28px; }
+    .client-story__eyebrow { font-size: 12px; line-height: 1.5; margin-block-end: 12px; }
+    .client-story__heading { font-size: 24px; line-height: 1.25; }
+    .client-story__description { margin-block-start: 12px; font-size: 13px; line-height: 1.6; }
+    .client-story__metrics, .client-story__metrics:has(.client-story-benefit) { margin-block-start: 20px; gap: 16px 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .client-story__button { margin-block-start: 20px; min-block-size: 44px; padding: 10px 12px; font-size: 14px; line-height: 1.4; }
+  }
 {% endstylesheet %}
 
 {% schema %}

@@ -4,6 +4,7 @@
   Previews are editor-only.
   @example Add this section to a blog template when the page is ready to connect.
 {% endcomment %}
+{% render 'category-sticky-styles' %}
 {% liquid
   assign s = section.settings
   assign color_id = 'work-catalog-' | append: section.id
@@ -57,11 +58,24 @@
   <div class="work-catalog__body spacing-style" style="--padding-block-end: {{ s.padding-block-end }}px;">
     <div class="work-catalog__layout">
       <nav class="work-catalog__filters" on:click="work-catalog-component/navigate" aria-label="{{ 'work_catalog.filter' | t }}">
-        <p class="work-catalog__filter-heading">{{ 'work_catalog.filter' | t }}</p>
-        {% render 'work-tag-link', tag: '', blog: work_blog %}
-        {% for tag in navigation_tags %}
-          {% if tag != blank %}{% render 'work-tag-link', tag: tag, blog: work_blog %}{% endif %}
-        {% endfor %}
+        {% capture filter_links %}
+          {% render 'work-tag-link', tag: '', blog: work_blog %}
+          {% for tag in navigation_tags %}
+            {% if tag != blank %}{% render 'work-tag-link', tag: tag, blog: work_blog %}{% endif %}
+          {% endfor %}
+        {% endcapture %}
+        <div class="work-catalog__desktop-filters">
+          <p class="work-catalog__filter-heading">{{ 'work_catalog.filter' | t }}</p>
+          {{ filter_links }}
+        </div>
+        <details class="work-catalog__mobile-filter" data-category-picker on:keydown="/closeFilter">
+          <summary class="work-catalog__filter-toggle">
+            <span class="work-catalog__filter-label">{{ 'work_catalog.filter' | t }}</span>
+            <span class="work-catalog__selected-tag" data-category-label>{% if current_tags != blank %}{{ current_tags | join: ', ' | escape }}{% else %}{{ 'work_catalog.all' | t }}{% endif %}</span>
+            <span class="work-catalog__filter-caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+          </summary>
+          <div class="work-catalog__filter-options">{{ filter_links }}</div>
+        </details>
       </nav>
       <div class="work-catalog__content">
         <p ref="status" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
@@ -78,6 +92,8 @@
   </div>
 </work-catalog-component>
 {% stylesheet %}
+  .work-catalog__desktop-filters { display: contents; }
+  .work-catalog__mobile-filter { display: none; }
   .work-catalog { display: block; font-family: var(--font-heading--family); }
   .work-catalog__hero { padding-block-start: max(calc(64px + var(--padding-block-start, 0px)), calc(var(--section-top-offset, 0px) + 24px)); background: var(--work-intro-background); }
   .work-catalog__intro { inline-size: min(var(--narrow-page-width), calc(100% - var(--page-margin) * 2)); max-inline-size: var(--narrow-page-width); padding-inline: 0; min-inline-size: 0; margin-inline: auto; padding-block: 0 68px; }
@@ -114,13 +130,33 @@
     .work-catalog__indicator { margin-block-start: 0; }
     .work-catalog__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
+  @media screen and (max-width: 989px) {
+    .work-catalog__filters { display: block; position: sticky; inset-block-start: var(--category-sticky-top, 8px); align-self: start; padding: 0; border-radius: 12px; background: var(--color-input-background, var(--color-background)); z-index: 2; }
+    .work-catalog__desktop-filters { display: none; }
+    .work-catalog__mobile-filter { display: block; }
+    .work-catalog__filter-toggle { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 12px 16px; border-radius: 12px; background: var(--color-input-background, var(--color-background)); border: 1px solid color-mix(in srgb, var(--color-input-text) 12%, transparent); font-size: 14px; line-height: 1.5; cursor: pointer; }
+    .work-catalog__filter-label { color: var(--work-filter-color); font-size: 12px; font-weight: 500; }
+    .work-catalog__selected-tag { flex: 1; min-width: 0; color: var(--color-foreground); font-weight: 600; overflow-wrap: anywhere; }
+    .work-catalog__filter-caret { display: flex; flex: 0 0 14px; }
+    .work-catalog__filter-caret svg { width: 14px; height: 14px; }
+    .work-catalog__mobile-filter[open] .work-catalog__filter-caret { transform: rotate(180deg); }
+    .work-catalog__filter-options { position: absolute; inset-inline: 0; inset-block-start: calc(100% + 8px); display: grid; max-height: 50svh; overflow-y: auto; padding: 8px; border: 1px solid color-mix(in srgb, var(--color-input-text) 12%, transparent); border-radius: 12px; background: var(--color-input-background, var(--color-background)); }
+    .work-catalog__filter-options .work-catalog__tag { min-block-size: 44px; padding: 10px 12px; gap: 8px; font-size: 14px; font-weight: 500; line-height: 1.5; border-radius: 8px; }
+    .work-catalog__filter-options .work-catalog__tag[aria-current='page'] { color: var(--work-accent); background: color-mix(in srgb, var(--work-accent) 8%, var(--color-input-background)); }
+    .work-catalog__filter-toggle:focus-visible, .work-catalog__tag:focus-visible { outline: 2px solid var(--work-accent); outline-offset: -3px; }
+  }
   @media screen and (max-width: 749px) {
-    .work-catalog__hero { padding-block-start: max(calc(40px + var(--padding-block-start, 0px)), calc(var(--section-top-offset, 0px) + 24px)); }
-    .work-catalog__intro { padding-block: 0 36px; }
-    .work-catalog__description { margin-inline-start: 0; margin-block-start: 10px; }
-    .work-catalog__layout { gap: 24px; }
-    .work-catalog__grid { grid-template-columns: minmax(0, 1fr); }
-    .work-catalog__filters { padding: 20px; }
+    .work-catalog__hero { padding-block-start: max(calc(24px + min(var(--padding-block-start, 0px), 32px)), calc(var(--section-top-offset, 0px) + 24px)); }
+    .work-catalog__intro { padding-block: 0 32px; }
+    .work-catalog__heading { font-size: 24px; line-height: 1.25; }
+    .work-catalog__description { margin-inline-start: 0; margin-block-start: 12px; font-size: 13px; line-height: 1.6; }
+    .work-catalog__body { padding-block: 32px min(var(--padding-block-end, 0px), 32px); }
+    .work-catalog__layout { gap: 16px; }
+    .work-catalog__grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .work-catalog__pagination { margin-block-start: 24px; flex-wrap: wrap; }
+    .work-catalog__page { font-size: 14px; min-inline-size: 44px; }
+    .work-catalog__retry { font-size: 14px; padding: 10px 12px; line-height: 1.4; }
+    .work-catalog__empty { font-size: 13px; line-height: 1.6; }
   }
 {% endstylesheet %}
 {% schema %}

@@ -51,14 +51,6 @@
       <div data-aidea-part="node" class="aidea-model__label aidea-model__label--detail aidea-model__label--blue" style="--aidea-delay:1.5s;--aidea-from-x:-4cqw;--aidea-from-y:-2cqw;left:67.2569444%;top:55.1938776%;width:9.7222222%;font-size:1.0416667cqw;line-height:1.2400000;">{{ section.settings.opportunities | escape | newline_to_br }}</div>
       <div data-aidea-part="node" class="aidea-model__label aidea-model__label--detail aidea-model__label--blue" style="--aidea-delay:1.65s;--aidea-from-x:4cqw;--aidea-from-y:-2cqw;left:32.5694444%;top:54.6836735%;width:9.7222222%;font-size:1.0416667cqw;line-height:1.2400000;">{{ section.settings.customer_growth | escape | newline_to_br }}</div>
     </div>
-    <ul class="aidea-model__mobile-labels">
-      {% assign label_keys = 'ai_label,data_label,experience_label,achievement_label,optimization,customer_growth,opportunities' | split: ',' %}
-      {% for key in label_keys limit: 7 %}
-        {% if section.settings[key] != blank %}
-          <li>{{ section.settings[key] | escape | newline_to_br }}</li>
-        {% endif %}
-      {% endfor %}
-    </ul>
     </div>
   </div>
 </aidea-model-component>
@@ -128,7 +120,6 @@
     overflow-wrap: anywhere;
   }
   .aidea-model__label--blue { color: #1362fa; }
-  .aidea-model__mobile-labels { display: none; }
 
   /* Build outward from the centre; separate translate/scale preserve asset rotations and label centring. */
   .aidea-model[data-motion-ready] [data-aidea-part] {
@@ -157,25 +148,22 @@
   @media screen and (max-width: 749px) {
     .aidea-model__heading { font-size: 1.75rem; }
     .aidea-model__description { font-size: 16px; line-height: 1.5; }
-    .aidea-model__diagram { width: 85%; }
-    .aidea-model__label--detail { display: none; }
-    .aidea-model__mobile-labels {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin: 24px 0 0;
-      padding: 0;
-      list-style: none;
-      font-family: var(--font-body--family);
-
-      line-height: 1.4;
-      color: #0b22b8;
+    /* The artwork has wide built-in gutters; expand its canvas so the circles fill the phone. */
+    .aidea-model__diagram {
+      width: 150%;
+      margin-inline: -25%;
+      margin-block: 16px 8px;
     }
-    .aidea-model__mobile-labels li { padding: 12px; border-radius: 12px; background: #ffffffb3; }
-    .aidea-model__mobile-labels li:first-child { grid-column: 1 / -1; }
   }
 
-  .aidea-model__mobile-labels { font-size: 14px; }
+  /* Shared mobile scale for every instance of this component. */
+  @media screen and (max-width: 749px) {
+    .aidea-model { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
+
+    .aidea-model .aidea-model__content { gap: 24px; }
+    .aidea-model .aidea-model__heading { font-size: 24px; line-height: 1.25; }
+    .aidea-model .aidea-model__description { font-size: 13px; line-height: 1.6; margin-block-start: 12px; }
+  }
 {% endstylesheet %}
 
 {% schema %}

@@ -338,6 +338,35 @@
 
   }
 
+  /* Shared mobile scale for every instance of this component. */
+  @media screen and (max-width: 749px) {
+    .footer-diagnosis:not(.footer-diagnosis--drawer-only) { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
+
+    .footer-diagnosis .footer-diagnosis__top { gap: 24px; }
+    .footer-diagnosis .footer-diagnosis__intro { gap: 12px; }
+    .footer-diagnosis .footer-diagnosis__eyebrow { font-size: 12px; }
+    .footer-diagnosis .footer-diagnosis__heading { font-size: 24px; line-height: 1.25; }
+    .footer-diagnosis .footer-diagnosis__description { font-size: 13px; line-height: 1.6; }
+    .footer-diagnosis .footer-diagnosis__features { margin-block: 16px 0; gap: 12px; }
+    .footer-diagnosis .footer-diagnosis__feature { font-size: 14px; gap: 12px; }
+    .footer-diagnosis .footer-diagnosis__feature-icon { width: 36px; height: 36px; }
+    .footer-diagnosis .footer-diagnosis__card { padding: 16px;border-radius:16px; }
+    .footer-diagnosis .footer-diagnosis__fields { gap: 16px; }
+    .footer-diagnosis .footer-diagnosis__field { gap: 8px; }
+    .footer-diagnosis .footer-diagnosis__label { font-size: 14px; }
+    /* Keep editable controls at 16px to avoid focus zoom on iOS. */
+    .footer-diagnosis .footer-diagnosis__input { font-size: 13px; padding: 12px; }
+    .footer-diagnosis .footer-diagnosis__submit { font-size: 14px; }
+  }
+  @media screen and (max-width: 749px) {
+    .footer-diagnosis .footer-diagnosis__submit {
+      min-block-size: 44px;
+      min-height: 44px;
+      padding: 10px 12px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}

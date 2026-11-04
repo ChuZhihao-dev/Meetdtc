@@ -10,7 +10,7 @@
   <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
 {% endif %}
 <div class="section-background" style="background: {{ s.background | default: 'transparent' }};"></div>
-<scroll-reveal-component class="section section--full-width spacing-style icon-list{% if template.suffix == 'about-us' %} icon-list--about{% endif %}"
+<scroll-reveal-component class="section section--full-width spacing-style icon-list"
   style="{% render 'spacing-style', settings: s %} --icon-list-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }}; --icon-list-text: {{ s.text_color }};"
   {% if s.enable_reveal %}data-reveal-scope data-reveal-timeline data-reveal-in-editor{% endif %}>
   <ul class="icon-list__items" role="list">
@@ -66,14 +66,17 @@
     .icon-list__items { column-gap: 40px; }
   }
   @media screen and (max-width: 749px) {
-    .icon-list--about { --spacing-scale: 0.5; }
-    .icon-list--about .icon-list__items { row-gap: 32px; }
-    .icon-list--about .icon-list__icon-slot { min-height: 40px; }
-    .icon-list--about .icon-list__image { width: min(var(--icon-list-icon-width), 40px); max-height: 40px; }
-    .icon-list--about .icon-list__heading-slot { padding-block-start: 8px; }
-    .icon-list--about .icon-list__heading { font-size: 28px; }
+    .icon-list { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
+    .icon-list .icon-list__items { row-gap: 24px; }
+    .icon-list .icon-list__icon-slot { min-height: 40px; }
+    .icon-list .icon-list__image { width: min(var(--icon-list-icon-width), 40px); max-height: 40px; }
+    .icon-list .icon-list__heading-slot { padding-block-start: 8px; }
+    .icon-list .icon-list__heading { font-size: 24px; }
     .icon-list__items { grid-template-columns: minmax(0, 1fr); }
     .icon-list__description { max-width: 403px; margin-inline: auto; }
+  }
+  @media screen and (max-width: 749px) {
+    .icon-list .icon-list__description { font-size: 13px; line-height: 1.6; }
   }
   @media (prefers-reduced-motion: reduce) {
     .icon-list.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; }

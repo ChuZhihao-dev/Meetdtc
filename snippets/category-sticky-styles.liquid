@@ -1,0 +1,14 @@
+{% doc %}
+  Shares the mobile/tablet category filter offset with the active sticky header.
+  Consumers position their filter using --category-sticky-top; no header leaves an 8px gutter.
+  @example {% render 'category-sticky-styles' %}
+{% enddoc %}
+{% stylesheet %}
+  @media screen and (max-width: 989px) {
+    #MainContent { --category-sticky-top: 8px; }
+    #header-group:has(#header-component[sticky='always']) ~ #MainContent,
+    #header-group:has(#header-component[sticky='scroll-up'][data-sticky-state='active']) ~ #MainContent {
+      --category-sticky-top: calc(var(--header-height, 0px) + 8px);
+    }
+  }
+{% endstylesheet %}

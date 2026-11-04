@@ -105,18 +105,21 @@
     .contact-enquiry__columns { grid-template-columns: minmax(0, 1fr); }
   }
   @media screen and (max-width: 749px) {
-    .contact-enquiry { --spacing-scale: 0.5; }
+    .contact-enquiry { padding-block: calc(min(var(--padding-block-start), 32px) + var(--section-top-offset, 0px)) min(var(--padding-block-end), 32px); }
     .contact-enquiry__intro { margin-block-end: 24px; }
-    .contact-enquiry__heading, .contact-enquiry__info-heading { font-size: 28px; }
-    .contact-enquiry__description { margin-block-start: 12px; font-size: 16px; line-height: 1.5; }
+    .contact-enquiry__heading, .contact-enquiry__info-heading { font-size: 24px; line-height: 1.25; }
+    .contact-enquiry__description { margin-block-start: 12px; font-size: 13px; line-height: 1.6; }
     .contact-enquiry__columns { gap: 24px; }
-    .contact-enquiry__panel { padding: 20px; border-radius: 20px; }
-    .contact-enquiry__info-description { margin-block-start: 12px; font-size: 16px; line-height: 1.5; }
+    .contact-enquiry__panel { padding: 16px; border-radius: 16px; }
+    .contact-enquiry__info-description { margin-block-start: 12px; font-size: 13px; line-height: 1.6; }
     .contact-enquiry__details { gap: 24px; margin-block-start: 24px; }
-    .contact-enquiry__detail { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-    .contact-enquiry__detail-label { grid-template-columns: 24px minmax(0, 1fr); }
-    .contact-enquiry__detail-value { line-height: 1.5; }
-    .contact-enquiry__office-list { gap: 24px; }
+    .contact-enquiry__detail { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .contact-enquiry__detail-label { grid-template-columns: 20px minmax(0, 1fr); gap: 8px; font-size: 14px; }
+    .contact-enquiry__icon { width: 20px; height: 20px; }
+    .contact-enquiry__detail-value { font-size: 14px; line-height: 1.6; }
+    .contact-enquiry__office-list { gap: 16px; }
+    .contact-enquiry__office h4 { margin-block-end: 4px; font-size: 14px; line-height: 1.5; }
+    .contact-enquiry__office address { font-size: 13px; line-height: 1.6; }
   }
   @media (forced-colors: active) {
     .contact-enquiry__heading, .contact-enquiry__info-heading { color: CanvasText; background: none; -webkit-text-fill-color: currentColor; }

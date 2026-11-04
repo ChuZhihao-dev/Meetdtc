@@ -190,6 +190,18 @@
     .faq__list { gap: 12px; }
     .faq__list .faq-row { padding: 16px; border-radius: var(--faq-mobile-radius, 12px); }
   }
+  /* Shared mobile scale for every instance of this component. */
+  @media screen and (max-width: 749px) {
+    .faq { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
+
+    .faq .faq__intro { gap: 12px; }
+    .faq .faq__eyebrow { font-size: 12px; }
+    .faq .faq__heading { font-size: 24px; line-height: 1.25; }
+    .faq .faq__description { font-size: 13px; line-height: 1.6; }
+    .faq .faq__list { gap: 8px; }
+    .faq .faq-row__summary { font-size: 14px; }
+    .faq .faq-row__answer { font-size: 13px; line-height: 1.6; }
+  }
 {% endstylesheet %}
 
 {% schema %}

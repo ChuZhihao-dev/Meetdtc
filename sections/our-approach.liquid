@@ -100,6 +100,14 @@
   @media (prefers-reduced-motion: reduce) {
     .our-approach.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; }
   }
+  /* Shared compact mobile layout for every service template. */
+  @media screen and (max-width: 749px) {
+    .our-approach { padding-block: calc(min(var(--our-approach-mobile-top, 32px), 32px) + var(--section-top-offset, 0px)) min(var(--our-approach-mobile-bottom, 32px), 32px); }
+    .our-approach__inner, .our-approach--text-only .our-approach__inner { gap: 24px; }
+    .our-approach__eyebrow { font-size: 12px; margin-block-end: 12px; }
+    .our-approach__heading { font-size: 24px; line-height: 1.25; }
+    .our-approach__body { margin-block-start: 16px; gap: 16px; font-size: 13px; line-height: 1.6; }
+  }
 {% endstylesheet %}
 
 {% schema %}

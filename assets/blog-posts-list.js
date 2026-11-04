@@ -78,10 +78,26 @@ export default class BlogPostsList extends Component {
     const url = new URL(link.href);
     if (url.origin !== location.origin) return;
     event.preventDefault();
+    const picker = link.closest('[data-category-picker]');
+    if (picker instanceof HTMLDetailsElement) {
+      picker.open = false;
+      picker.querySelector('summary')?.focus({ preventScroll: true });
+    }
     if (url.href === this.#pendingUrl?.href && !this.hasAttribute('data-error')) return;
     if (url.href === this.#activeUrl.href && !this.#pendingUrl && !this.hasAttribute('data-error')) return;
     const moveFocus = Boolean(link.closest(this.resultsSelector));
     void this.#render(url, moveFocus);
+  }
+
+  /** Close the shared mobile/tablet category picker. @param {KeyboardEvent} event */
+  closeFilter(event) {
+    if (event.key !== 'Escape') return;
+    const picker = event.target instanceof Element ? event.target.closest('[data-category-picker]') : null;
+    if (!(picker instanceof HTMLDetailsElement) || !picker.open) return;
+    event.preventDefault();
+    event.stopPropagation();
+    picker.open = false;
+    picker.querySelector('summary')?.focus({ preventScroll: true });
   }
 
   /** Retry the latest failed request without submitting any form. */
@@ -172,6 +188,11 @@ export default class BlogPostsList extends Component {
       const linkPath = decodeURI(new URL(link.href).pathname).replace(/\/$/, '');
       if (linkPath === path) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
+    }
+    for (const picker of this.querySelectorAll('[data-category-picker]')) {
+      const selected = picker.querySelector('a[aria-current="page"]');
+      const label = picker.querySelector('[data-category-label]');
+      if (selected && label) label.textContent = selected.textContent?.trim() || '';
     }
   }
 

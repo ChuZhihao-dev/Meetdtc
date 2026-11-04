@@ -97,6 +97,15 @@
     .business-challenge__caption { margin-block-start: 24px; }
   }
   @media (prefers-reduced-motion: reduce) { .business-challenge.reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; } .business-challenge.reveal-ready .business-challenge__figure[data-reveal] { transform: none; } }
+  /* Shared compact mobile layout for every service template. */
+  @media screen and (max-width: 749px) {
+    .business-challenge { padding-block: calc(min(var(--padding-block-start), 32px) + var(--section-top-offset, 0px)) min(var(--padding-block-end), 32px); }
+    .business-challenge__layout { gap: 24px; }
+    .business-challenge__eyebrow { font-size: 12px; margin-block-end: 12px; }
+    .business-challenge__heading { font-size: 24px; line-height: 1.25; }
+    .business-challenge__caption { margin-block-start: 16px; font-size: 13px; line-height: 1.6; }
+    .business-challenge__more { margin-block-start: 16px; font-size: 14px; padding: 10px 12px; line-height: 1.4; }
+  }
 {% endstylesheet %}
 
 {% schema %}

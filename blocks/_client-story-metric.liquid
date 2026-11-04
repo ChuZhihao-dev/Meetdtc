@@ -12,6 +12,10 @@
   .client-story-metric { min-inline-size: 0; text-align: var(--client-story-metric-align, center); }
   .client-story-metric__value { margin: 0; font-size: 24px; font-weight: 600; line-height: 1.4; background: var(--client-story-gradient); background-clip: text; -webkit-text-fill-color: transparent; overflow-wrap: anywhere; }
   .client-story-metric__label { margin: 0; margin-block-start: 10px; font-size: 16px; font-weight: 500; line-height: 1.2; overflow-wrap: anywhere; }
+  @media screen and (max-width: 749px) {
+    .client-story-metric__value { font-size: 24px; line-height: 1.25; }
+    .client-story-metric__label { margin-block-start: 6px; font-size: 13px; line-height: 1.6; }
+  }
 {% endstylesheet %}
 
 {% schema %}
