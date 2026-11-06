@@ -161,7 +161,7 @@
   .me-picks__intro { padding-block: calc(var(--me-picks-top) + var(--section-top-offset, 0px)) 36px; }
   .me-picks__heading { margin: 0; color: var(--color-foreground); font-family: inherit; font-size: 40px; font-weight: 600; line-height: 1.2; letter-spacing: normal; overflow-wrap: anywhere; }
   @supports (background-clip: text) {
-    .me-picks__heading { background: var(--me-picks-heading-gradient); background-clip: text; -webkit-text-fill-color: transparent; }
+    .me-picks__heading { inline-size: fit-content; max-inline-size: 100%; background: var(--heading-gradient); background-clip: text; -webkit-text-fill-color: transparent; }
   }
   .me-picks__description { max-inline-size: 917px; margin-block-start: 8px; font-size: 20px; font-weight: 500; line-height: 1.4; overflow-wrap: anywhere; }
   .me-picks__description > :first-child { margin-block-start: 0; }

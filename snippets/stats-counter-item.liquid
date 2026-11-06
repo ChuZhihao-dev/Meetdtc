@@ -1,0 +1,17 @@
+{% doc %}
+  Renders one statistic and includes its shared CSS owner.
+  @param {object} block - Statistic block with value, suffix and description settings.
+  @example {% render 'stats-counter-item', block: block %}
+{% enddoc %}
+{% render 'stats-counter-styles' %}
+      {% if block.settings.value != blank or block.settings.description != blank or request.design_mode %}
+        <li class="stats-counter__item" {{ block.shopify_attributes }}>
+          {% if block.settings.value != blank %}
+            <div class="stats-counter__amount" dir="ltr">
+              <span class="visually-hidden">{{ block.settings.value | escape }}{{ block.settings.suffix | escape }}</span>
+              <span class="stats-counter__value" data-final="{{ block.settings.value | escape }}" aria-hidden="true"><span ref="values[]" data-value="{{ block.settings.value | escape }}">{{ block.settings.value | escape }}</span></span>{% if block.settings.suffix != blank %}<span class="stats-counter__suffix" aria-hidden="true">{{ block.settings.suffix | escape }}</span>{% endif %}
+            </div>
+          {% endif %}
+          {% if block.settings.description != blank %}<p class="stats-counter__description">{{ block.settings.description | escape | newline_to_br }}</p>{% endif %}
+        </li>
+      {% endif %}

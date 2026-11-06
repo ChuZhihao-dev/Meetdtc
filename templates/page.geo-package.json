@@ -82,6 +82,17 @@
           "static": true,
           "settings": {},
           "blocks": {}
+        },
+        "stats": {
+          "type": "_product-hero-stats",
+          "static": true,
+          "settings": {
+            "font": "montserrat_n4",
+            "text_color": "#000000",
+            "accent_color": "#772cc8",
+            "enable_animation": true
+          },
+          "blocks": {}
         }
       },
       "name": "t:product_hero.name",
@@ -133,6 +144,7 @@
             "audience": "For a straightforward online store launch.",
             "features": "Official Shopify theme implementation\n8 core e-commerce pages\n30 product uploads · 1 blog article upload\nHomepage SEO setup\nUp to 3 machine-translated languages\nApprox. 2-week delivery*\n2 months of post-launch support",
             "highlight": false,
+            "button_note": "6-month minimum engagement",
             "purchase_label": "Purchase Now →",
             "quote_price": "Request a Quote",
             "quote_label": "Discuss Your Project →",
@@ -153,6 +165,7 @@
             "audience": "For businesses needing more pages and tailored page builds.",
             "features": "8 core e-commerce pages + up to 6 custom-built pages\nUp to 3 operational pages\n50 product uploads · 10 blog article uploads\nEnhanced on-page SEO & sitemap planning\nProduct recommendations · Up to 10 standard GA4 events\nUp to 3 machine-translated languages\nApprox. 4-week delivery*\n3 months of post-launch support",
             "highlight": true,
+            "button_note": "6-month minimum engagement",
             "purchase_label": "Purchase Now →",
             "quote_price": "Request a Quote",
             "quote_label": "Discuss Your Project →",

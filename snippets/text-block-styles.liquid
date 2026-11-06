@@ -58,6 +58,23 @@
     -webkit-text-fill-color: transparent;
   }
 
+  /* Callout owns its light gradient independently of the shared brand headings. */
+  .text-block.text-block--gradient:where(:not(.cta-banner__heading)):is(h1, h2, h3, h4, h5, h6),
+  .text-block.text-block--gradient:where(:not(.cta-banner__heading)):has(:is(h1, h2, h3, h4, h5, h6)) {
+    inline-size: fit-content;
+    max-inline-size: 100%;
+    background-image: var(--heading-gradient);
+  }
+
+  /* Shrink the paint area while retaining the merchant's heading alignment. */
+  .text-block.text-block--gradient:where(:not(.cta-banner__heading))[style*='--text-align: center'] {
+    margin-inline: auto;
+  }
+
+  .text-block.text-block--gradient:where(:not(.cta-banner__heading)):is([style*='--text-align: right'], [style*='--text-align: end']) {
+    margin-inline-start: auto;
+  }
+
   /* Keep an optional background box unclipped when gradient text sits on it. */
   .text-block.text-block--gradient.text-block--background {
     background-clip: text, border-box;

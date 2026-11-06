@@ -1,6 +1,11 @@
+{% doc %}
+  Renders a result card with optional merchant-selected destination and link label.
+  @example Add a result card to Our work and configure its link in the theme editor.
+{% enddoc %}
 {% liquid
   assign block_settings = block.settings
   assign image_alt = block_settings.image.alt | default: block_settings.tag | default: ''
+  assign default_link_label = 'growth_potential.read_more' | t
   assign image_loading = 'lazy'
   if section.index <= 2
     assign image_loading = 'eager'
@@ -8,6 +13,11 @@
 %}
 
 <article class="result-card" data-reveal {{ block.shopify_attributes }}>
+  {% if block_settings.link != blank %}
+    <a class="result-card__link" href="{{ block_settings.link | escape }}">
+      <span class="visually-hidden">{{ block_settings.link_label | default: block_settings.tag | default: image_alt | default: default_link_label | escape }}</span>
+    </a>
+  {% endif %}
   <div class="result-card__media">
     {%- if block_settings.image != blank -%}
       {{
@@ -48,6 +58,7 @@
 
 {% stylesheet %}
   .result-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     flex: 0 0 auto;
@@ -59,6 +70,10 @@
     background-color: var(--work-card-background, #ffffff);
     border-radius: var(--work-card-radius, 16px);
   }
+
+  .result-card__link { position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+  .result-card__link:focus-visible { outline: 2px solid var(--work-metric-color, var(--color-foreground)); outline-offset: -4px; }
+  .result-card__description a { position: relative; z-index: 2; }
 
   .result-card__media {
     flex: 0 0 auto;
@@ -162,6 +177,16 @@
   "name": "t:names.result_card",
   "tag": null,
   "settings": [
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:settings.link"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:settings.link_label"
+    },
     {
       "type": "image_picker",
       "id": "image",

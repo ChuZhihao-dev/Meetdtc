@@ -1,6 +1,7 @@
 {% doc %}
   Breadcrumb navigation and matching structured data for the breadcrumb section.
   Reads the current resource and locale-aware routes from Shopify globals.
+
   @example
   {% render 'global-breadcrumbs' %}
 {% enddoc %}
@@ -48,7 +49,9 @@
 {% if show_breadcrumbs and current_title != blank %}
   <nav class="global-breadcrumbs" aria-label="{{ 'global_breadcrumbs.label' | t | escape }}">
     <ol class="global-breadcrumbs__list" role="list">
-      <li class="global-breadcrumbs__item"><a href="{{ routes.root_url }}">{{ home_title | escape }}</a></li>
+      <li class="global-breadcrumbs__item">
+        <a href="{{ routes.root_url }}">{{ home_title | escape }}</a>
+      </li>
       {% if parent_title != blank and parent_url != blank %}
         <li class="global-breadcrumbs__item">
           <span class="global-breadcrumbs__separator" aria-hidden="true">/</span>
@@ -81,7 +84,10 @@
 {% stylesheet %}
   .global-breadcrumbs {
     display: grid;
-    grid-template-columns: minmax(var(--page-margin), 1fr) min(var(--page-content-width), calc(100% - var(--page-margin) * 2)) minmax(var(--page-margin), 1fr);
+    grid-template-columns: minmax(var(--page-margin), 1fr) min(
+        var(--page-content-width),
+        calc(100% - var(--page-margin) * 2)
+      ) minmax(var(--page-margin), 1fr);
     color: var(--color-foreground);
   }
   .global-breadcrumbs__list {
@@ -98,9 +104,45 @@
     font-size: 14px;
     line-height: 1.5;
   }
-  .global-breadcrumbs__item { display: flex; align-items: baseline; gap: 12px; min-inline-size: 0; }
-  .global-breadcrumbs__item a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
-  .global-breadcrumbs__item a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
-  .global-breadcrumbs__item :is(a, [aria-current]) { min-inline-size: 0; overflow-wrap: anywhere; }
-  .global-breadcrumbs__separator { flex: none; opacity: var(--opacity-70); }
+  .global-breadcrumbs__item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    min-inline-size: 0;
+  }
+  .global-breadcrumbs__item a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .global-breadcrumbs__item a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+  .global-breadcrumbs__item :is(a, [aria-current]) {
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+  .global-breadcrumbs__separator {
+    flex: none;
+    opacity: var(--opacity-70);
+  }
+  @media(max-width:749px) {
+    .global-breadcrumbs__list {
+      flex-wrap: nowrap;
+      font-size: 12px;
+    }
+    .global-breadcrumbs__item {
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+    .global-breadcrumbs__item:last-child {
+      flex: 0 1 auto;
+    }
+    .global-breadcrumbs__item [aria-current] {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
 {% endstylesheet %}

@@ -90,7 +90,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Meet Experience (ME) helps companies expand globally with integrated MarTech solutions — covering website & e-commerce, data analytics, user operations, and technical infrastructure.</p>",
+                "text": "<p>Meet Experience (ME) is a digital marketing agency helping DTC brands expand globally through website development, SEO, AI SEO and e-commerce solutions, supported by AI and MarTech consulting, implementation and ongoing operations</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -546,8 +546,8 @@
     "services_globe": {
       "type": "services-globe",
       "settings": {
-        "eyebrow": "SERVICES",
-        "heading": "Build Smarter,\nScale Faster",
+        "eyebrow": "Capabilities",
+        "heading": "Build Smarter,\nScale Globally",
         "description": "<p>From strategy and technology to data and execution, we help global brands connect every stage of the customer journey through integrated Martech solutions that drive measurable growth.</p>",
         "link_label": "Explore Our Work →",
         "link": "shopify://blogs/our-work",
@@ -686,8 +686,8 @@
           "settings": {
             "icon": "team",
             "circle_color": "#4183ff",
-            "title": "Integrated, End-to-End Expertise",
-            "description": "<p>From web design and development to SEO, CRO, lifecycle and affiliate marketing, our connected team supports every stage of the customer journey.</p>"
+            "title": "Integrated Expertise",
+            "description": "<p>From website development, SEO and AI SEO to CRO, email marketing and affiliate marketing, we bring connected digital services together under one partner.</p>"
           },
           "blocks": {}
         },
@@ -696,8 +696,8 @@
           "settings": {
             "icon": "global",
             "circle_color": "#7a4dff",
-            "title": "Global DTC Experience",
-            "description": "<p>We bring global DTC experience to help brands build digital experiences, reach customers and grow across international markets.</p>"
+            "title": "Global Marketing Experience",
+            "description": "<p>Backed by Meetsocial Group's global marketing experience and partner network, we support businesses across Singapore, Southeast Asia and international markets.</p>"
           },
           "blocks": {}
         },
@@ -706,8 +706,8 @@
           "settings": {
             "icon": "layers",
             "circle_color": "#53bebe",
-            "title": "Platform-Connected Execution",
-            "description": "<p>We work across leading commerce, marketing, analytics and partner platforms to build solutions that fit your technology ecosystem.</p>"
+            "title": "AI & MarTech Capabilities",
+            "description": "<p>We combine AI, MarTech and data-driven solutions to improve digital operations, customer engagement and marketing performance.</p>"
           },
           "blocks": {}
         },
@@ -716,8 +716,8 @@
           "settings": {
             "icon": "bars",
             "circle_color": "#9621c4",
-            "title": "Measurable Growth Focus",
-            "description": "<p>Every engagement is connected to clear business goals, transparent performance and continuous optimisation.</p>"
+            "title": "Cost-Effective Solutions",
+            "description": "<p>Flexible service packages, transparent scopes and practical solutions tailored to different business needs and budgets.</p>"
           },
           "blocks": {}
         }
@@ -763,6 +763,8 @@
         "result_card_pb89L6": {
           "type": "_result-card",
           "settings": {
+            "link": "",
+            "link_label": "",
             "image": "shopify://shop_images/ebike-cover.png",
             "tag": "E-Bike Brand",
             "description": "<p>Partnering with ME to scale high-ticket sales across North America and Europe, the brand used tiered management and targeted cycling media recruitment to build a network of over 1,000 quality affiliates.<br/><br/></p>",
@@ -776,6 +778,8 @@
         "result_card_6aemjH": {
           "type": "_result-card",
           "settings": {
+            "link": "",
+            "link_label": "",
             "image": "shopify://shop_images/wearable-cooling-cover.png",
             "tag": "Cooling Wearables",
             "description": "<p>To capture seasonal demand across North America and Europe, the brand aligned affiliate campaigns with key summer sales, achieving an impressive 8.3× peak-season ROI with ME’s coordinated resource allocation.</p>",
@@ -789,6 +793,8 @@
         "result_card_8yBrPr": {
           "type": "_result-card",
           "settings": {
+            "link": "",
+            "link_label": "",
             "image": "shopify://shop_images/projector-cover.png",
             "tag": "Smart Projector",
             "description": "<p>Starting from zero, the projector brand partnered with ME to launch across the United States, Germany, and France. Structured publisher recruitment drove a rapid 17.3× surge in monthly revenue.</p>",

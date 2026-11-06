@@ -9,7 +9,7 @@
 
 {{ 'me-free-audit.css' | asset_url | stylesheet_tag }}
 
-<div class="audit-page" id="me-audit-{{ section.id }}" data-section-id="{{ section.id }}">
+<div class="audit-page" data-breadcrumb-surface id="me-audit-{{ section.id }}" data-section-id="{{ section.id }}">
   {% if section.settings.show_demo_strip %}
     <div class="demo-strip">{{ section.settings.demo_strip_text }}</div>
   {% endif %}

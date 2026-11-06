@@ -1,0 +1,53 @@
+{% doc %}
+  Optional configurable counter group inside Product hero. Empty groups render no content.
+  @example Add Statistic children to Product hero's Stats counter group.
+{% enddoc %}
+{% capture items %}{% content_for 'blocks' %}{% endcapture %}
+{% assign items = items | strip %}
+{% if items != blank %}
+  <div class="product-hero__stats" {{ block.shopify_attributes }}>
+    {% render 'stats-counter', settings: block.settings, items: items %}
+  </div>
+{% endif %}
+{% schema %}
+{
+  "name": "t:stats_counter.name",
+  "tag": null,
+  "settings": [
+    {
+      "type": "font_picker",
+      "id": "font",
+      "label": "t:stats_counter.font",
+      "default": "montserrat_n4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:stats_counter.text_color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "t:stats_counter.accent_color",
+      "default": "#772CC8"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "t:stats_counter.enable_animation",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_hero-stat"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:stats_counter.name"
+    }
+  ]
+}
+{% endschema %}

@@ -427,6 +427,17 @@
             "product_hero_certification_fCDayV",
             "product_hero_certification_WCcDqW"
           ]
+        },
+        "stats": {
+          "type": "_product-hero-stats",
+          "static": true,
+          "settings": {
+            "font": "montserrat_n4",
+            "text_color": "#000000",
+            "accent_color": "#772cc8",
+            "enable_animation": true
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -439,7 +450,7 @@
         "eyebrow": "Affiliate Marketing",
         "heading": "Turn the Right Partnerships into Your Next Growth Channel",
         "heading_tag": "h1",
-        "description": "ME helps brands build and grow affiliate programs through targeted partner recruitment, hands-on management, and performance optimization. Our affiliate marketing approach connects you with publishers, creators, and partners who reach your customers in your target markets.",
+        "description": "We helps brands build and grow affiliate programs through targeted partner recruitment, \nhands-on management, and performance optimization. Our affiliate marketing approach connects \nyou with publishers, creators, and partners who reach your customers in your target markets.",
         "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
@@ -775,7 +786,7 @@
         "gradient_start_position": 0,
         "gradient_end_position": 100,
         "background_gradient_from": "{{ settings.color_palette.background }}",
-        "background_gradient_to": "#EFE6F3",
+        "background_gradient_to": "#efe6f3",
         "background_gradient_angle": 160,
         "thickness": 0.5,
         "divider_color": "#707070",

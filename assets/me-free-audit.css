@@ -127,7 +127,7 @@
 
 .audit-page h1 span,
 .audit-page h2 {
-  background: linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%);
+  background: var(--heading-gradient);
   background-clip: text;
   color: transparent
 }
@@ -2802,4 +2802,458 @@
   .audit-page .me-issue-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Shared compact mobile presentation for the audit component, including deferred states. */
+@media (max-width: 749px) {
+  .section-me-free-audit .audit-page {
+    font-size: 13px;
+  }
+
+  .section-me-free-audit .audit-page .audit-hero {
+    padding-block: calc(32px + var(--section-top-offset, 0px)) 32px;
+  }
+
+  .section-me-free-audit .audit-page h1,
+  .section-me-free-audit .audit-page h2,
+  .section-me-free-audit .audit-page .scan-title,
+  .section-me-free-audit .audit-page .report-heading h3 {
+    font-size: 24px;
+    line-height: 1.25;
+    letter-spacing: normal;
+  }
+
+  .section-me-free-audit .audit-page h1 {
+    margin-block: 16px 12px;
+  }
+
+  .section-me-free-audit .audit-page p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* The legacy hero paragraph is important; retain that contract at the mobile size. */
+  .section-me-free-audit .audit-page .hero-copy>p {
+    font-size: 13px !important;
+  }
+
+  .section-me-free-audit .audit-page h3,
+  .section-me-free-audit .audit-page .me-issue-card-head h4 {
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+
+  .section-me-free-audit .audit-page .eyebrow {
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+
+  .section-me-free-audit .audit-page .journey-line {
+    gap: 8px 12px;
+    margin: 16px 0 24px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .section-me-free-audit .audit-page .journey-line b {
+    font-size: 12px;
+  }
+
+  .section-me-free-audit .audit-page .scan-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .section-me-free-audit .audit-page .scan-top {
+    margin-block-end: 16px;
+    flex-wrap: wrap;
+  }
+
+  .section-me-free-audit .audit-page :is(.small-chip, .preview-label, .review-type) {
+    font-size: 12px;
+    letter-spacing: normal;
+    line-height: 1.5;
+  }
+
+  .section-me-free-audit .audit-page .audit-form label {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-block-end: 8px;
+  }
+
+  .section-me-free-audit .audit-page .audit-form :is(input, textarea, select) {
+    font-size: 16px;
+    min-height: 44px;
+    padding: 10px 12px;
+    line-height: 1.5;
+  }
+
+  .section-me-free-audit .audit-page .audit-form input[type='radio'],
+  .section-me-free-audit .audit-page .audit-form input[type='checkbox'] {
+    width: 18px;
+    min-height: 18px;
+    padding: 0;
+    flex: none;
+  }
+
+  .section-me-free-audit .audit-page .scan-input-row {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .section-me-free-audit .audit-page .scan-input-row input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .section-me-free-audit .audit-page .scan-card .scan-input-row .audit-btn {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin: 0;
+  }
+
+  .section-me-free-audit .audit-page .audit-btn,
+  .section-me-free-audit .audit-page button.audit-btn {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .section-me-free-audit .audit-page .text-link {
+    min-height: 44px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .section-me-free-audit .audit-page .specialist-card button {
+    font-size: 14px !important;
+  }
+
+  .section-me-free-audit .audit-page .scan-foot {
+    margin-block: 12px 0;
+  }
+
+  .section-me-free-audit .audit-page .scan-card .microcopy {
+    font-size: 13px !important;
+    margin: 0;
+  }
+
+  .section-me-free-audit .audit-page .coverage-cards {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    margin: 20px 0 0;
+    padding: 0;
+    gap: 0;
+  }
+
+  .section-me-free-audit .audit-page .coverage-card {
+    padding: 16px 0;
+    min-width: 0;
+  }
+
+  .section-me-free-audit .audit-page .coverage-card+.coverage-card {
+    border-inline-start: 0;
+    border-block-start: 1px solid #e8e1f2;
+  }
+
+  .section-me-free-audit .audit-page .coverage-heading {
+    margin-block-end: 8px;
+  }
+
+  .section-me-free-audit .audit-page .coverage-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .section-me-free-audit .audit-page .coverage-card h3 {
+    font-size: 12px;
+  }
+
+  .section-me-free-audit .audit-page .coverage-card p {
+    font-size: 10px;
+  }
+
+  .section-me-free-audit .audit-page :is(.results-section, .specialists-section) {
+    padding-block: 32px;
+  }
+
+  .section-me-free-audit .audit-page .section-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    margin-block-end: 24px;
+  }
+
+  .section-me-free-audit .audit-page :is(.score-grid, .specialist-grid, .form-grid, .unlock) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .section-me-free-audit .audit-page :is(.score-card, .specialist-card, .unlock) {
+    padding: 16px;
+    border-radius: 16px;
+    min-height: 0;
+  }
+
+  .section-me-free-audit .audit-page .score-visual {
+    gap: 16px;
+    margin-block: 16px;
+  }
+
+  .section-me-free-audit .audit-page .score-ring {
+    width: 104px;
+    height: 104px;
+  }
+
+  .section-me-free-audit .audit-page .score {
+    font-size: 32px;
+  }
+
+  .section-me-free-audit .audit-page .score-card p {
+    min-height: 0;
+  }
+
+  .section-me-free-audit .audit-page .specialist-card p {
+    margin-block: 12px 16px;
+    font-size: 13px;
+  }
+
+  .section-me-free-audit .audit-page .card-top {
+    margin-block-end: 12px;
+  }
+
+  .section-me-free-audit .audit-page .report-details article {
+    padding-block: 16px;
+    gap: 12px;
+  }
+
+  .section-me-free-audit .audit-page :is(.me-report-cols-2, .me-seo-pages-grid, .me-check-list.me-check-list-crawl, .me-audit-list-cols, .me-issue-grid) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .section-me-free-audit .audit-page :is(.me-check-row, .me-audit-item, .me-issue-card) {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .section-me-free-audit .audit-page .review-drawer {
+    width: 100%;
+    max-width: 100%;
+    padding: max(20px, var(--safe-area-inset-top)) max(16px, var(--safe-area-inset-right)) max(20px, var(--safe-area-inset-bottom)) max(16px, var(--safe-area-inset-left));
+    border-radius: 0;
+  }
+
+  .section-me-free-audit .audit-page .drawer-top {
+    margin-block-end: 16px;
+  }
+
+  .section-me-free-audit .audit-page .close-button {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .section-me-free-audit .audit-page .selected-service {
+    padding: 12px;
+    margin-block-end: 16px;
+  }
+
+  .section-me-free-audit .audit-page .selected-service button {
+    font-size: 14px !important;
+    margin-inline-start: 0 !important;
+  }
+
+  .section-me-free-audit .audit-page .field {
+    margin-block-end: 16px;
+    min-width: 0;
+  }
+
+  .section-me-free-audit .audit-page .form-grid {
+    gap: 0;
+  }
+
+  .section-me-free-audit .audit-page :is(.manual-note, .results-note, .form-disclosure, .request-context) {
+    font-size: 13px !important;
+    line-height: 1.6;
+  }
+
+  .section-me-free-audit .audit-page :is(.score-scope, .score-status, .review-time small, .field small, .detail-note) {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 749px) {
+  .section-me-free-audit .audit-page .field {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .section-me-free-audit .audit-page .field label {
+    margin: 0;
+  }
+
+  .section-me-free-audit .audit-page .specialist-card h3,
+  .section-me-free-audit .audit-page .specialist-card .review-scope {
+    min-height: 0;
+  }
+
+  .section-me-free-audit .audit-page .specialist-card .review-scope {
+    flex: none;
+    margin-block: 12px 16px;
+  }
+
+  .section-me-free-audit .audit-page .specialist-card .review-deliverable p {
+    flex: none;
+    margin: 0;
+  }
+
+  .section-me-free-audit .audit-page :is(.review-deliverable > span, .drawer-deliverable > span, .selected-service small, .review-time strong) {
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+
+  .section-me-free-audit .audit-page .review-bottom {
+    padding-block-start: 16px;
+  }
+
+  .section-me-free-audit .audit-page .review-time {
+    margin-block-end: 8px;
+  }
+
+  .section-me-free-audit .audit-page .close-button {
+    position: relative;
+  }
+
+  .section-me-free-audit .audit-page .close-button-icon::before,
+  .section-me-free-audit .audit-page .close-button-icon::after {
+    content: '';
+    position: absolute;
+    inset-block-start: calc(50% - 1px);
+    inset-inline-start: calc(50% - 8px);
+    width: 16px;
+    height: 2px;
+    background: currentColor;
+    transform: rotate(45deg);
+  }
+
+  .section-me-free-audit .audit-page .close-button-icon::after {
+    transform: rotate(-45deg);
+  }
+}
+
+
+/* Compact step indicator and scan coverage summary. */
+@media (max-width: 749px) {
+  .section-me-free-audit .audit-page .journey-line {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: 12px;
+    margin-block: 20px 24px;
+  }
+
+  .section-me-free-audit .audit-page .journey-line>span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .section-me-free-audit .audit-page .journey-line b {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    margin: 0;
+    border: 1px solid #d9ccef;
+    border-radius: 50%;
+    background: #fff;
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  .section-me-free-audit .audit-page .journey-line>i {
+    display: none;
+  }
+
+  .section-me-free-audit .audit-page .coverage-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 16px -16px -16px;
+    padding: 0;
+    background: linear-gradient(110deg, #faf7ff, #f6f8ff);
+    border-radius: 0 0 16px 16px;
+    overflow: hidden;
+  }
+
+  .section-me-free-audit .audit-page .coverage-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    padding: 14px 10px;
+  }
+
+  .section-me-free-audit .audit-page .coverage-card+.coverage-card {
+    border-block-start: 0;
+    border-inline-start: 1px solid #e8e1f2;
+  }
+
+  .section-me-free-audit .audit-page .coverage-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    margin: 0 0 10px;
+  }
+
+  .section-me-free-audit .audit-page .coverage-icon {
+    display: flex;
+    flex: none;
+    width: 24px;
+    height: 24px;
+  }
+
+  .section-me-free-audit .audit-page .coverage-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .section-me-free-audit .audit-page .coverage-number {
+    display: inline;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  .section-me-free-audit .audit-page .coverage-card h3 {
+    min-height: 0;
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  .section-me-free-audit .audit-page .coverage-card p {
+    margin: 8px 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+}
+@media (max-width: 360px) {
+  .section-me-free-audit .audit-page .coverage-card { padding-inline: 8px; }
+  .section-me-free-audit .audit-page .coverage-card h3 { font-size: 12px; }
 }

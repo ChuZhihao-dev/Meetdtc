@@ -85,6 +85,99 @@
         "padding-block-end": 80
       }
     },
+    "about_counter_hero": {
+      "type": "about-counter-hero",
+      "blocks": {
+        "stat_U7MJkh": {
+          "type": "_hero-stat",
+          "settings": {
+            "value": "10",
+            "suffix": "+",
+            "description": "Years of technical service experience"
+          },
+          "blocks": {}
+        },
+        "stat_JxPfCa": {
+          "type": "_hero-stat",
+          "settings": {
+            "value": "1,500",
+            "suffix": "+",
+            "description": "Clients served"
+          },
+          "blocks": {}
+        },
+        "stat_MV4MQc": {
+          "type": "_hero-stat",
+          "settings": {
+            "value": "50",
+            "suffix": "+",
+            "description": "Countries and regions covered"
+          },
+          "blocks": {}
+        },
+        "stat_KPHFTW": {
+          "type": "_hero-stat",
+          "settings": {
+            "value": "3",
+            "suffix": "",
+            "description": "Industries served\nE-commerce · Apps · Gaming"
+          },
+          "blocks": {}
+        },
+        "video_8VydCB": {
+          "type": "video",
+          "name": "t:names.video",
+          "static": true,
+          "settings": {
+            "source": "uploaded",
+            "video": "shopify://files/videos/8c638dc57fce170765aaffc09f1fa6c4.mov",
+            "video_url": "",
+            "video_autoplay": false,
+            "video_loop": true,
+            "cover_image": "shopify://shop_images/Meet_Experience.png",
+            "alt": "",
+            "custom_width": 100,
+            "custom_width_mobile": 100,
+            "aspect_ratio": "16/9",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 24,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "stat_U7MJkh",
+        "stat_JxPfCa",
+        "stat_MV4MQc",
+        "stat_KPHFTW"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Meet Experience",
+        "heading_tag": "h1",
+        "description": "AI & MarTech Consulting, Implementation and Operations",
+        "background_from": "#f7e9f5",
+        "background_to": "#c7e2f4",
+        "heading_from": "#5b34c6",
+        "heading_to": "#2d6bff",
+        "heading_mid": "#8b45f0",
+        "description_color": "#6b6a6a",
+        "font": "montserrat_n4",
+        "text_color": "#000000",
+        "accent_color": "#772cc8",
+        "enable_animation": true,
+        "show_video": true,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
     "product_hero_9Lty7G": {
       "type": "product-hero",
       "blocks": {
@@ -93,8 +186,63 @@
           "static": true,
           "settings": {},
           "blocks": {}
+        },
+        "stats": {
+          "type": "_product-hero-stats",
+          "static": true,
+          "settings": {
+            "font": "montserrat_n4",
+            "text_color": "#000000",
+            "accent_color": "#772cc8",
+            "enable_animation": true
+          },
+          "blocks": {
+            "stat_U7MJkh": {
+              "type": "_hero-stat",
+              "settings": {
+                "value": "10",
+                "suffix": "+",
+                "description": "Years of technical service experience"
+              },
+              "blocks": {}
+            },
+            "stat_JxPfCa": {
+              "type": "_hero-stat",
+              "settings": {
+                "value": "1,500",
+                "suffix": "+",
+                "description": "Clients served"
+              },
+              "blocks": {}
+            },
+            "stat_MV4MQc": {
+              "type": "_hero-stat",
+              "settings": {
+                "value": "50",
+                "suffix": "+",
+                "description": "Countries and regions covered"
+              },
+              "blocks": {}
+            },
+            "stat_KPHFTW": {
+              "type": "_hero-stat",
+              "settings": {
+                "value": "3",
+                "suffix": "",
+                "description": "Industries served\nE-commerce · Apps · Gaming"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "stat_U7MJkh",
+            "stat_JxPfCa",
+            "stat_MV4MQc",
+            "stat_KPHFTW"
+          ]
         }
       },
+      "disabled": true,
       "name": "t:product_hero.name",
       "settings": {
         "show_certifications": true,
@@ -159,6 +307,7 @@
         "stat_MV4MQc",
         "stat_KPHFTW"
       ],
+      "disabled": true,
       "name": "t:stats_counter.name",
       "settings": {
         "font": "montserrat_n4",
@@ -180,8 +329,9 @@
             "source": "uploaded",
             "video": "shopify://files/videos/8c638dc57fce170765aaffc09f1fa6c4.mov",
             "video_url": "",
-            "video_autoplay": true,
+            "video_autoplay": false,
             "video_loop": true,
+            "cover_image": "shopify://shop_images/Meet_Experience.png",
             "alt": "",
             "custom_width": 100,
             "custom_width_mobile": 100,
@@ -202,6 +352,7 @@
       "block_order": [
         "video_8VydCB"
       ],
+      "disabled": true,
       "name": "t:names.video_section",
       "settings": {
         "content_direction": "column",
@@ -236,14 +387,14 @@
       "type": "text-columns",
       "name": "t:text_columns.name",
       "settings": {
-        "eyebrow": "Who We Are",
-        "heading": "Rooted in Global Marketing Experience",
-        "body": "<p>Meet Experience helps businesses grow globally through AI and MarTech. We bring together digital consulting, technical implementation and ongoing operations across websites and e-commerce, customer engagement, data analytics and cloud infrastructure.</p><p>Backed by Meetsocial Group’s global marketing experience and technology partner network, we connect business needs with practical digital solutions.</p>",
-        "footer": "Shanghai · Singapore  · Hong Kong",
+        "eyebrow": "",
+        "heading": "Who We Are",
+        "body": "<p>Meet Experience (ME) is a digital marketing and technology solutions agency under Meetsocial Group. We help businesses establish and grow their digital presence through website development, search engine optimization (SEO), AI SEO and integrated digital marketing solutions.</p><p>Headquartered in Shanghai, China, ME serves businesses across Singapore, Southeast Asia and global markets. Combining global marketing experience, AI and MarTech capabilities, we connect digital strategy, technical implementation and ongoing operations to support businesses at every stage of digital growth.</p><p>Our services cover the complete digital growth journey — from building websites and improving search visibility to customer engagement, marketing automation, data analytics and cloud solutions.</p>",
+        "footer": "Office location：Shanghai | Singapore  | Hong Kong",
         "font": "montserrat_n4",
         "background": "",
         "text_color": "#000000",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "accent_color": "#0b22b7",
         "padding-block-start": 80,
         "padding-block-end": 80
@@ -323,12 +474,12 @@
       ],
       "name": "t:process_steps.name",
       "settings": {
-        "eyebrow": "Our Approach",
+        "eyebrow": "",
         "heading": "How We Work",
         "description": "<p>Understand the business. Put the plan into practice. Keep improving.</p>",
         "font": "montserrat_n4",
         "background": "linear-gradient(126.153deg, rgba(227, 230, 244, 1) 12.189%, rgba(231, 232, 242, 1) 87.811%)",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "text_color": "#000000",
         "card_background": "#ffffff",
         "accent_color": "#0032f5",
@@ -508,6 +659,7 @@
     "breadcrumbs",
     "page_background_phTEcT",
     "main",
+    "about_counter_hero",
     "product_hero_9Lty7G",
     "stats_counter_4jcwP3",
     "section_MNUiw3",

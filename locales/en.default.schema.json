@@ -28,6 +28,7 @@
     "features": "Deliverables",
     "features_info": "One deliverable per line. Blank lines are ignored.",
     "highlight": "Highlight this package",
+    "button_note": "Text above button",
     "purchase_label": "Purchase button label",
     "quote_price": "Quotation heading",
     "quote_label": "Enquiry button label",
@@ -365,6 +366,10 @@
     "padding_mobile_top": "Mobile top padding",
     "padding_mobile_bottom": "Mobile bottom padding",
     "enable_reveal": "Enable entrance animation"
+  },
+  "about_counter_hero": {
+    "name": "About counter hero",
+    "show_video": "Show video"
   },
   "product_hero": {
     "certification": "Brand certification",

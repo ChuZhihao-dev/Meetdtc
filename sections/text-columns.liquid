@@ -1,9 +1,17 @@
 {% comment %}
-  Text columns: introduction and gradient heading beside editable body and supporting copy.
+  Text columns: editorial introduction, balanced reading columns and supporting copy.
   @example Add Text columns for a company introduction; all copy is section-owned.
 {% endcomment %}
 {% liquid
   assign s = section.settings
+  # The opening paragraph anchors the left column; remaining copy fills the right.
+  assign body_html = s.body | strip
+  assign opening_tag = body_html | slice: 0, 3
+  assign remaining_body = ''
+  if opening_tag == '<p>' and body_html contains '</p>'
+    assign first_paragraph = body_html | split: '</p>' | first | append: '</p>'
+    assign remaining_body = body_html | remove_first: first_paragraph | strip
+  endif
   assign has_intro = false
   assign has_copy = false
   if s.heading != blank or s.eyebrow != blank
@@ -28,24 +36,36 @@
     {% endif %}
     {% if has_copy %}
       <div class="text-columns__copy" data-reveal>
-        {% if s.body != blank %}<div class="text-columns__body">{{ s.body }}</div>{% endif %}
-        {% if s.footer != blank %}<p class="text-columns__footer">{{ s.footer | escape }}</p>{% endif %}
+        <div class="text-columns__body{% if remaining_body != blank %} text-columns__body--split{% endif %}">
+          {% if remaining_body != blank %}
+            <div class="text-columns__prose text-columns__prose--first">{{ first_paragraph }}</div>
+            <div class="text-columns__prose text-columns__prose--remaining">{{ remaining_body }}</div>
+          {% elsif s.body != blank %}
+            <div class="text-columns__prose">{{ s.body }}</div>
+          {% endif %}
+          {% if s.footer != blank %}<p class="text-columns__footer">{{ s.footer | escape }}</p>{% endif %}
+        </div>
       </div>
     {% endif %}
   </scroll-reveal-component>
 </div>
 {% stylesheet %}
   .text-columns { color: var(--text-columns-text); font-family: var(--text-columns-font, var(--font-heading--family)); }
-  .text-columns__inner { inline-size: min(var(--narrow-page-width), calc(100% - var(--page-margin) * 2)); max-inline-size: var(--narrow-page-width); padding-inline: 0; display: grid; grid-template-columns: minmax(0, 498fr) minmax(0, 652fr); align-items: start; gap: 0 clamp(40px, 8.61111vw, 124px); min-width: 0; margin-inline: auto; }
+  .text-columns__inner { inline-size: min(var(--narrow-page-width), calc(100% - var(--page-margin) * 2)); max-inline-size: var(--narrow-page-width); padding-inline: 0; display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; gap: 28px; min-width: 0; margin-inline: auto; }
   .text-columns scroll-reveal-component.text-columns__inner { display: grid; }
   .text-columns__intro, .text-columns__copy { min-width: 0; overflow-wrap: anywhere; }
-  .text-columns__eyebrow { margin: 0 0 10px; font-size: 18px; font-weight: 500; line-height: 1.4; }
-  .text-columns__heading { margin: 0; color: inherit; font-family: inherit; font-size: 40px; font-weight: 600; line-height: 1.2; letter-spacing: normal; background: var(--text-columns-gradient); background-clip: text; -webkit-text-fill-color: transparent; }
-  .text-columns__inner--eyebrow .text-columns__copy { padding-block-start: 48px; }
-  .text-columns__body { font-size: 20px; font-weight: 500; line-height: 1.6; }
-  .text-columns__body > * { margin-block: 0; }
-  .text-columns__body > * + * { margin-block-start: 38px; }
-  .text-columns__footer { margin: 40px 0 0; color: var(--text-columns-accent); font-size: 24px; font-weight: 500; line-height: 38px; }
+  .text-columns__body { display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
+  .text-columns__eyebrow { margin: 0 0 10px; font-size: 14px; font-weight: 500; line-height: 1.4; }
+  .text-columns__heading { max-inline-size: 28ch; margin: 0; color: inherit; font-family: inherit; font-size: 40px; font-weight: 600; line-height: 1.2; letter-spacing: normal; inline-size: fit-content; background: var(--heading-gradient); background-clip: text; -webkit-text-fill-color: transparent; }
+  .text-columns__inner--eyebrow .text-columns__copy { padding-block-start: 0; }
+  .text-columns__body--split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto 1fr; column-gap: clamp(32px, 5vw, 72px); }
+  .text-columns__prose--first { grid-column: 1; grid-row: 1; }
+  .text-columns__prose--remaining { grid-column: 2; grid-row: 1 / span 2; }
+  .text-columns__body--split > .text-columns__footer { grid-column: 1; grid-row: 2; align-self: end; }
+  .text-columns__prose { min-inline-size: 0; font-size: 16px; font-weight: 400; line-height: 1.75; }
+  .text-columns__prose > * { margin-block: 0; break-inside: avoid; }
+  .text-columns__prose > * + * { margin-block-start: 20px; }
+  .text-columns__footer { margin: 0; color: var(--text-columns-accent); font-size: 14px; font-weight: 500; line-height: 1.6; }
   .text-columns__footer:first-child { margin-block-start: 0; }
   .text-columns__body a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
   .text-columns__body a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
@@ -54,7 +74,7 @@
   @media screen and (max-width: 989px) {
     .text-columns__inner { column-gap: 40px; }
     .text-columns__body, .text-columns__footer { line-height: 1.6; }
-    .text-columns__body > * + * { margin-block-start: 32px; }
+    .text-columns__prose > * + * { margin-block-start: 20px; }
   }
   @media screen and (max-width: 749px) {
     .text-columns { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
@@ -62,9 +82,10 @@
     .text-columns .text-columns__eyebrow { font-size: 12px; }
     .text-columns .text-columns__heading { font-size: 24px; }
     .text-columns .text-columns__copy { padding-block-start: 0; }
-    .text-columns .text-columns__body { font-size: 13px; line-height: 1.6; }
-    .text-columns .text-columns__body > * + * { margin-block-start: 16px; }
-    .text-columns .text-columns__footer { margin-block-start: 16px; font-size: 14px; line-height: 1.6; }
+    .text-columns .text-columns__body { display: flex; flex-direction: column; gap: 16px; }
+    .text-columns .text-columns__prose { font-size: 13px; line-height: 1.6; }
+    .text-columns .text-columns__prose > * + * { margin-block-start: 16px; }
+    .text-columns .text-columns__footer { align-self: stretch; font-size: 14px; line-height: 1.6; }
     .text-columns .text-columns__footer:first-child { margin-block-start: 0; }
   }
   @media (forced-colors: active) {

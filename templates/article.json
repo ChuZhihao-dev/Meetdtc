@@ -30,20 +30,6 @@
     "section": {
       "type": "main-blog-post",
       "blocks": {
-        "spacer_DKzKfJ": {
-          "type": "spacer",
-          "name": "t:names.spacer",
-          "settings": {
-            "size": "pixel",
-            "percent_size": 100,
-            "pixel_size": 40,
-            "custom_mobile_size": false,
-            "size_mobile": "percent",
-            "percent_size_mobile": 100,
-            "pixel_size_mobile": 120
-          },
-          "blocks": {}
-        },
         "blog-post-title": {
           "type": "text",
           "name": "t:names.title",
@@ -62,8 +48,9 @@
             "wrap": "pretty",
             "text_color": "",
             "gradient_text": false,
-            "gradient_color_from": "#5B34C6",
-            "gradient_color_to": "#2D6BFF",
+            "gradient_color_from": "#5b34c6",
+            "gradient_color_to": "#2d6bff",
+            "gradient_color_mid": "#8b45f0",
             "gradient_angle": 100,
             "gradient_start_position": 0,
             "gradient_end_position": 100,
@@ -72,7 +59,7 @@
             "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 35,
+            "padding-inline-start": 20,
             "padding-inline-end": 0
           },
           "blocks": {}
@@ -86,7 +73,6 @@
         }
       },
       "block_order": [
-        "spacer_DKzKfJ",
         "blog-post-title",
         "blog-post-content"
       ],
@@ -94,7 +80,7 @@
         "content_direction": "column",
         "gap": 32,
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 100,
+        "padding-block-start": 40,
         "padding-block-end": 80
       }
     }

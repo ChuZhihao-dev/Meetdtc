@@ -62,7 +62,9 @@
 </business-challenge-component>
 
 {% stylesheet %}
-  .business-challenge { display: block; container-type: inline-size; font-family: var(--challenge-font, var(--font-heading--family)); color: var(--color-foreground); }
+  /* The rotating square orbit extends beyond its circular artwork at diagonal angles.
+     Bound its horizontal overflow here without creating a scroll container for the sticky figure. */
+  .business-challenge { overflow-x: clip; display: block; container-type: inline-size; font-family: var(--challenge-font, var(--font-heading--family)); color: var(--color-foreground); }
   .business-challenge__layout { inline-size: min(var(--narrow-page-width), calc(100% - var(--page-margin) * 2)); max-inline-size: var(--narrow-page-width); padding-inline: 0; display: grid; grid-template-columns: minmax(0, 484px) minmax(0, 1fr); grid-template-areas: 'figure intro' 'figure list'; grid-template-rows: auto auto; gap: 60px 90px; margin-inline: auto; align-items: start; }
   .business-challenge__intro { grid-area: intro; min-inline-size: 0; max-inline-size: 732px; }
   .business-challenge__eyebrow { margin: 0 0 16px; font-size: 18px; font-weight: 500; line-height: 1.4; overflow-wrap: anywhere; }

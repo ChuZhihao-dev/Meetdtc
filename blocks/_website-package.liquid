@@ -68,6 +68,7 @@
   {% if s.audience != blank %}<p class="website-package__audience">{{ s.audience | escape }}</p>{% endif %}
   {% if features != blank %}<ul class="website-package__features" role="list">{{ features }}</ul>{% endif %}
   <div class="website-package__action">
+    {% if s.button_note != blank %}<p class="website-package__button-note">{{ s.button_note | escape | newline_to_br }}</p>{% endif %}
     {% if s.mode == 'quote' %}
       {% if quote_link != blank and s.quote_label != blank %}<a class="button website-package__button" href="{{ quote_link | escape }}">{{ s.quote_label | escape }}<span class="visually-hidden"> — {{ title | escape }}</span></a>{% endif %}
     {% elsif package_ready and package_product.available %}
@@ -128,6 +129,7 @@
   .website-package__features li > :first-child { flex-shrink: 0; }
   .website-package__features li > :last-child { min-inline-size: 0; }
   .website-package__action { margin-block-start: auto; }
+  .website-package .website-package__button-note { margin-block: 0 12px; color: var(--packages-muted); font-size: 12px; line-height: 1.5; }
   website-package-checkout { display: block; }
   .website-package__purchase-form,
   .website-package__purchase-fallback { display: grid; gap: 12px; }
@@ -146,9 +148,21 @@
   }
   @media screen and (max-width: 989px) { .website-packages.reveal-ready .website-package[data-reveal] { transition-delay: 0ms; } }
   @media screen and (max-width: 749px) {
-    .website-package { min-block-size: 0; padding: 24px; }
-    .website-package__features { min-block-size: 0; }
+    .website-package { gap: 10px; min-block-size: 0; padding: 16px; font-size: 13px; line-height: 1.6; }
+    .website-package__approach { min-block-size: 0; padding: 8px 12px; }
+    .website-package__heading { font-size: 24px; line-height: 1.25; }
+    .website-package__pricing { min-block-size: 0; margin-block: 4px; }
+    .website-package__pricing > [ref='priceContainer'] { gap: 4px; }
+    .website-package__pricing .price,
+    .website-package__variable-price,
+    .website-package__quote-price,
+    .website-package__unconfigured { font-size: 24px; line-height: 1.3; }
+    .website-package__audience { min-block-size: 0; }
+    .website-package__features { gap: 8px; min-block-size: 0; font-size: 14px; line-height: 1.6; }
     .website-package__action { margin-block-start: 12px; }
+    .website-package__variant-label { font-size: 14px; }
+    .website-package__variant { font-size: 16px; }
+    .website-package .website-package__button { min-block-size: 44px; padding: 10px 12px; line-height: 1.4; }
   }
   @media (prefers-reduced-motion: reduce) {
     .website-package,
@@ -235,6 +249,11 @@
       "id": "highlight",
       "label": "t:website_packages.highlight",
       "default": false
+    },
+    {
+      "type": "text",
+      "id": "button_note",
+      "label": "t:website_packages.button_note"
     },
     {
       "type": "text",

@@ -1,0 +1,35 @@
+{% doc %}
+  One statistic inside the Product hero counter group.
+  @example Add a Statistic block inside the hero's Stats counter.
+{% enddoc %}
+{% render 'stats-counter-item', block: block %}
+{% schema %}
+{
+  "name": "t:stats_counter.stat",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "value",
+      "label": "t:stats_counter.value",
+      "info": "t:stats_counter.value_info",
+      "default": "10"
+    },
+    {
+      "type": "text",
+      "id": "suffix",
+      "label": "t:stats_counter.suffix"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:stats_counter.description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:stats_counter.stat"
+    }
+  ]
+}
+{% endschema %}

@@ -11,7 +11,10 @@
   "sections": {
     "breadcrumbs": {
       "type": "breadcrumbs",
-      "settings": {"padding-block-start": 16, "padding-block-end": 16}
+      "settings": {
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
     },
     "main": {
       "type": "main-page",
@@ -34,8 +37,9 @@
             "wrap": "pretty",
             "text_color": "",
             "gradient_text": false,
-            "gradient_color_from": "#5B34C6",
-            "gradient_color_to": "#2D6BFF",
+            "gradient_color_from": "#5b34c6",
+            "gradient_color_to": "#2d6bff",
+            "gradient_color_mid": "#8b45f0",
             "gradient_angle": 100,
             "gradient_start_position": 0,
             "gradient_end_position": 100,
@@ -72,8 +76,29 @@
     },
     "product_hero_dBiWNK": {
       "type": "product-hero",
+      "blocks": {
+        "certifications": {
+          "type": "_product-hero-certifications",
+          "static": true,
+          "settings": {},
+          "blocks": {}
+        },
+        "stats": {
+          "type": "_product-hero-stats",
+          "static": true,
+          "settings": {
+            "font": "montserrat_n4",
+            "text_color": "#000000",
+            "accent_color": "#772cc8",
+            "enable_animation": true
+          },
+          "blocks": {}
+        }
+      },
       "name": "t:product_hero.name",
       "settings": {
+        "show_certifications": true,
+        "certification_color": "#102653",
         "eyebrow": "",
         "heading": "Choose the Right Build\nfor Your Business",
         "heading_tag": "h1",
@@ -81,8 +106,9 @@
         "service_labels": "Shopify\nWordPress\nCustom development",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
-        "heading_from": "#5B34C6",
-        "heading_to": "#2D6BFF",
+        "heading_from": "#5b34c6",
+        "heading_to": "#2d6bff",
+        "heading_mid": "#8b45f0",
         "description_color": "#6b6a6a",
         "service_labels_color": "#3e4c81",
         "section_height": "small",
@@ -113,7 +139,7 @@
             "enable_purchase": true,
             "approach": "01 / THEME LAUNCH",
             "heading": "Basic",
-            "subtitle": "Shopify Theme Launch",
+            "subtitle": "",
             "platforms": "Shopify only",
             "audience": "For a straightforward online store launch.",
             "features": "Official Shopify theme implementation\n8 core e-commerce pages\n30 product uploads · 1 blog article upload\nHomepage SEO setup\nUp to 3 machine-translated languages\nApprox. 2-week delivery*\n2 months of post-launch support",
@@ -133,7 +159,7 @@
             "enable_purchase": true,
             "approach": "02 / ENHANCED BUILD",
             "heading": "Advanced",
-            "subtitle": "Enhanced Website Build",
+            "subtitle": "",
             "platforms": "Shopify / WordPress",
             "audience": "For businesses needing more pages and tailored page builds.",
             "features": "8 core e-commerce pages + up to 6 custom-built pages\nUp to 3 operational pages\n50 product uploads · 10 blog article uploads\nEnhanced on-page SEO & sitemap planning\nProduct recommendations · Up to 10 standard GA4 events\nUp to 3 machine-translated languages\nApprox. 4-week delivery*\n3 months of post-launch support",
@@ -153,7 +179,7 @@
             "enable_purchase": false,
             "approach": "03 / CUSTOM BUILD",
             "heading": "Custom",
-            "subtitle": "Custom Design & Development",
+            "subtitle": "",
             "platforms": "Shopify / WordPress / Custom code",
             "audience": "For tailored design, functionality and integrations.",
             "features": "Project-specific design and development\nPage scope and content quantities assessed for your project\nFeatures and integrations assessed against your requirements\nSEO and tracking scope confirmed for your project\nDelivery timeline confirmed after assessment\n3 months of post-launch support",
@@ -460,8 +486,9 @@
         "line_height": "1.3",
         "wrap": "balance",
         "gradient_text": true,
-        "gradient_color_from": "#5B34C6",
-        "gradient_color_to": "#2D6BFF",
+        "gradient_color_from": "#5b34c6",
+        "gradient_color_to": "#2d6bff",
+        "gradient_color_mid": "#8b45f0",
         "gradient_angle": 100,
         "gradient_start_position": 0,
         "gradient_end_position": 100,
@@ -469,6 +496,7 @@
         "background_gradient_to": "rgba(0,0,0,0)",
         "background_gradient_angle": 104,
         "row_background": "#e5e6ff",
+        "row_background_opacity": 100,
         "row_radius": 16,
         "row_gap": 8,
         "question_color": "#3f4eff",
@@ -477,7 +505,8 @@
         "heading_gap": 52,
         "list_max_width": 1140,
         "padding-block-start": 40,
-        "padding-block-end": 40
+        "padding-block-end": 40,
+        "row_radius_mobile": 12
       }
     }
   },

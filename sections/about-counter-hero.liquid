@@ -1,0 +1,244 @@
+{% comment %}
+  About hero combines introductory copy, editable statistics and a video in one surface.
+  Reuses counter rendering and the native Video block, with independent section settings.
+  @example Add About counter hero and configure its statistics and static Video block.
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+%}
+{% render 'text-block-styles' %}
+{% capture statistics %}{% content_for 'blocks' %}{% endcapture %}
+{% assign statistics = statistics | strip %}
+<div class="section-background about-counter-hero__background" style="--about-hero-bg-from: {{ s.background_from }}; --about-hero-bg-to: {{ s.background_to }};"></div>
+<section class="section section--page-width spacing-style about-counter-hero" data-breadcrumb-surface
+  style="{% render 'spacing-style', settings: s %} --about-hero-description-color: {{ s.description_color }};">
+  <div class="about-counter-hero__inner">
+    <div class="about-counter-hero__intro">
+      {% if s.eyebrow != blank %}<p class="about-counter-hero__eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
+      {% if s.heading != blank %}
+        <{{ s.heading_tag }} class="about-counter-hero__heading text-block text-block--gradient"
+          style="--gradient-from: {{ s.heading_from }}; --gradient-mid: {{ s.heading_mid }}; --gradient-to: {{ s.heading_to }}; --gradient-angle: 100deg; --gradient-start: 0%; --gradient-end: 100%;">{{ s.heading | escape | newline_to_br }}</{{ s.heading_tag }}>
+      {% endif %}
+      {% if s.description != blank %}<p class="about-counter-hero__description">{{ s.description | escape | newline_to_br }}</p>{% endif %}
+    </div>
+    {% if s.show_video %}
+      <div class="about-counter-hero__video">
+        {% content_for 'block', type: 'video', id: 'video_8VydCB' %}
+      </div>
+    {% endif %}
+    {% if statistics != blank %}
+      <div class="about-counter-hero__stats">{% render 'stats-counter', settings: s, items: statistics %}</div>
+    {% endif %}
+  </div>
+</section>
+{% stylesheet %}
+  .about-counter-hero__background { background: linear-gradient(92.19deg, var(--about-hero-bg-from) 1.07%, var(--about-hero-bg-to) 98.93%); }
+  .about-counter-hero { padding-block: calc(var(--padding-block-start, 48px) + var(--section-top-offset, 0px)) var(--padding-block-end, 48px); font-family: var(--font-heading--family); }
+  .about-counter-hero__inner { display: grid; grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr); grid-template-areas: "intro video" "stats video"; gap: 40px 56px; align-items: start; inline-size: 100%; min-inline-size: 0; }
+  .about-counter-hero__inner:not(:has(.about-counter-hero__video)) { grid-template-columns: minmax(0, 1fr); grid-template-areas: "intro" "stats"; }
+  .about-counter-hero__intro { grid-area: intro; display: grid; gap: 20px; min-inline-size: 0; }
+  .about-counter-hero__eyebrow { margin: 0; font-size: 20px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+  .about-counter-hero__heading { margin: 0; font-family: inherit; font-size: 40px; font-weight: 600; line-height: 1.2; overflow-wrap: anywhere; }
+  .about-counter-hero__description { max-inline-size: 34ch; margin: 0; color: var(--about-hero-description-color); font-size: 18px; font-weight: 500; line-height: 1.5; overflow-wrap: anywhere; }
+  .about-counter-hero__stats { grid-area: stats; min-inline-size: 0; }
+  .about-counter-hero .stats-counter__items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); inline-size: 100%; max-inline-size: none; gap: 32px; }
+  .about-counter-hero .stats-counter__item { width: auto; text-align: start; }
+  .about-counter-hero .stats-counter__amount { justify-content: flex-start; font-size: 48px; }
+  .about-counter-hero .stats-counter__description { margin-inline: 0; }
+  .about-counter-hero__video { grid-area: video; align-self: center; inline-size: 100%; min-inline-size: 0; }
+  .about-counter-hero__video > deferred-media { display: block; }
+  @media screen and (max-width: 989px) {
+    .about-counter-hero__inner { grid-template-columns: minmax(0, 1fr); grid-template-areas: "intro" "video" "stats"; gap: 32px; }
+    .about-counter-hero__description { max-inline-size: 48ch; }
+    .about-counter-hero .stats-counter__items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media screen and (max-width: 749px) {
+    .about-counter-hero { padding-block: calc(min(var(--padding-block-start, 32px), 32px) + var(--section-top-offset, 0px)) min(var(--padding-block-end, 32px), 32px); }
+    .about-counter-hero__inner { gap: 28px; }
+    .about-counter-hero__intro { gap: 12px; }
+    .about-counter-hero__eyebrow { font-size: 12px; }
+    .about-counter-hero__heading { font-size: 24px; line-height: 1.2; letter-spacing: normal; }
+    .about-counter-hero .stats-counter__amount { font-size: 24px; }
+    .about-counter-hero__description { font-size: 13px; line-height: 1.6; }
+    .about-counter-hero .stats-counter__items { gap: 24px 16px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:about_counter_hero.name",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:settings.eyebrow"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:settings.heading",
+      "default": "Meet Experience"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "t:product_hero.heading_tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:settings.description",
+      "default": "AI & MarTech Consulting, Implementation and Operations"
+    },
+    {
+      "type": "color",
+      "id": "background_from",
+      "label": "t:product_hero.background_from",
+      "default": "#F7E9F5"
+    },
+    {
+      "type": "color",
+      "id": "background_to",
+      "label": "t:product_hero.background_to",
+      "default": "#C7E2F4"
+    },
+    {
+      "type": "color",
+      "id": "heading_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#5B34C6"
+    },
+    {
+      "type": "color",
+      "id": "heading_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#2D6BFF"
+    },
+    {
+      "type": "color",
+      "id": "heading_mid",
+      "label": "t:settings.gradient_color_mid",
+      "default": "#8B45F0"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "t:product_hero.description_color",
+      "default": "#6B6A6A"
+    },
+    {
+      "type": "font_picker",
+      "id": "font",
+      "label": "t:stats_counter.font",
+      "default": "montserrat_n4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:stats_counter.text_color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "t:stats_counter.accent_color",
+      "default": "#772CC8"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "t:stats_counter.enable_animation",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_video",
+      "label": "t:about_counter_hero.show_video",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_hero-stat"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:about_counter_hero.name",
+      "category": "t:categories.banners",
+      "blocks": [
+        {
+          "type": "_hero-stat",
+          "settings": {
+            "value": "10",
+            "suffix": "+",
+            "description": "Years of technical service experience"
+          }
+        },
+        {
+          "type": "_hero-stat",
+          "settings": {
+            "value": "1,000",
+            "suffix": "+",
+            "description": "Clients served"
+          }
+        },
+        {
+          "type": "_hero-stat",
+          "settings": {
+            "value": "50",
+            "suffix": "+",
+            "description": "Countries and regions covered"
+          }
+        },
+        {
+          "type": "_hero-stat",
+          "settings": {
+            "value": "3",
+            "suffix": "",
+            "description": "Industries served\nE-commerce \u00b7 Apps \u00b7 Gaming"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

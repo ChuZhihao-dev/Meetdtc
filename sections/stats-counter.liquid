@@ -1,50 +1,15 @@
 {% comment %}
-  Stats counter: editable statistics with one-shot counting from zero on viewport entry.
-  Final values render in Liquid; animation is decorative and never announced live.
-  @example Add Stats counter and edit each Statistic's number, suffix and description.
+  Editable statistics with counting animation. Shared renderer also supports Product hero.
+  @example Add Stats counter and configure the statistic blocks.
 {% endcomment %}
-{% assign s = section.settings %}
-{% render 'custom-section-fonts', font: s.font %}
-{% if s.enable_animation %}<script src="{{ 'stats-counter.js' | asset_url }}" type="module" fetchpriority="low"></script>{% endif %}
-<div class="section-background" style="background: {{ s.background | default: 'transparent' }};"></div>
-<stats-counter-component class="section section--full-width spacing-style stats-counter"
-  style="{% render 'spacing-style', settings: s %} --stats-counter-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }}; --stats-counter-text: {{ s.text_color }}; --stats-counter-accent: {{ s.accent_color }};"
-  {% if s.enable_animation %}data-animate{% endif %}>
-  <ul class="stats-counter__items" role="list">
-    {% for block in section.blocks %}
-      {% if block.settings.value != blank or block.settings.description != blank or request.design_mode %}
-        <li class="stats-counter__item" {{ block.shopify_attributes }}>
-          {% if block.settings.value != blank %}
-            <div class="stats-counter__amount" dir="ltr">
-              <span class="visually-hidden">{{ block.settings.value | escape }}{{ block.settings.suffix | escape }}</span>
-              <span class="stats-counter__value" data-final="{{ block.settings.value | escape }}" aria-hidden="true"><span ref="values[]" data-value="{{ block.settings.value | escape }}">{{ block.settings.value | escape }}</span></span>{% if block.settings.suffix != blank %}<span class="stats-counter__suffix" aria-hidden="true">{{ block.settings.suffix | escape }}</span>{% endif %}
-            </div>
-          {% endif %}
-          {% if block.settings.description != blank %}<p class="stats-counter__description">{{ block.settings.description | escape | newline_to_br }}</p>{% endif %}
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-</stats-counter-component>
+<div class="section-background" style="background: {{ section.settings.background | default: 'transparent' }};"></div>
+<div class="section section--full-width spacing-style stats-counter-section" style="{% render 'spacing-style', settings: section.settings %}">
+  {% render 'stats-counter', settings: section.settings, blocks: section.blocks %}
+</div>
 {% stylesheet %}
-  .stats-counter { color: var(--stats-counter-text); font-family: var(--stats-counter-font, var(--font-heading--family)); }
-  .stats-counter__items { inline-size: min(var(--narrow-page-width), calc(100% - var(--page-margin) * 2)); max-inline-size: var(--narrow-page-width); padding-inline: 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px 32px; margin: 0 auto; padding-block: 0; list-style: none; }
-  .stats-counter__item { flex: 0 0 auto; width: max-content; max-width: 100%; min-width: 0; text-align: center; }
-  .stats-counter__amount { display: flex; align-items: baseline; justify-content: center; flex-wrap: nowrap; white-space: nowrap; min-width: 0; font-size: 56px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: normal; }
-  /* Reserve final-value width so counting does not move the suffix or adjacent groups. */
-  .stats-counter__value { display: inline-grid; flex-shrink: 0; }
-  .stats-counter__value::before { content: attr(data-final); visibility: hidden; grid-area: 1 / 1; }
-  .stats-counter__value > span { grid-area: 1 / 1; text-align: end; }
-  .stats-counter__suffix { color: var(--stats-counter-accent); font-size: 0.69149em; }
-  .stats-counter__description { max-width: 238px; margin: 14px auto 0; font-size: 13px; font-weight: 400; line-height: 1.41; overflow-wrap: anywhere; }
+  .stats-counter-section > .stats-counter { grid-column: 1 / -1; }
   @media screen and (max-width: 749px) {
-    .stats-counter__items { column-gap: 20px; }
-    .stats-counter { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
-    .stats-counter .stats-counter__items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
-    .stats-counter .stats-counter__item { width: auto; }
-    .stats-counter .stats-counter__amount { font-size: 24px; line-height: 1.2; }
-    .stats-counter .stats-counter__suffix { font-size: 16px; }
-    .stats-counter .stats-counter__description { margin-block-start: 8px; font-size: 13px; line-height: 1.5; }
+    .stats-counter-section { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
   }
 {% endstylesheet %}
 

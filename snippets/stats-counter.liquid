@@ -1,0 +1,22 @@
+{% doc %}
+  Renders editable statistics with shared styling and optional counting animation.
+  @param {object} settings - Counter font, colors and animation settings.
+  @param {string} [items] - Pre-rendered statistic theme blocks.
+  @param {object} [blocks] - Ordered statistic blocks with value, suffix and description.
+  @example {% render 'stats-counter', settings: section.settings, blocks: section.blocks %}
+{% enddoc %}
+{% assign s = settings %}
+{% render 'stats-counter-styles' %}
+{% render 'custom-section-fonts', font: s.font %}
+{% if s.enable_animation %}<script src="{{ 'stats-counter.js' | asset_url }}" type="module" fetchpriority="low"></script>{% endif %}
+<stats-counter-component class="stats-counter"
+  style="--stats-counter-font: {{ s.font.family | escape }}, {{ s.font.fallback_families }}; --stats-counter-text: {{ s.text_color }}; --stats-counter-accent: {{ s.accent_color }};"
+  {% if s.enable_animation %}data-animate{% endif %}>
+  <ul class="stats-counter__items" role="list">
+    {% if items != blank %}{{ items }}{% else %}
+    {% for block in blocks %}
+      {% render 'stats-counter-item', block: block %}
+    {% endfor %}
+    {% endif %}
+  </ul>
+</stats-counter-component>

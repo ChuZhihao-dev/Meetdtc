@@ -1,6 +1,9 @@
 
 
-{% assign block_settings = block.settings %}
+{% liquid
+  assign block_settings = block.settings
+  assign video_cover = block_settings.cover_image | default: block_settings.video.preview_image
+%}
 
 {% capture video_style %}
   {%  render 'spacing-style', settings: block_settings %}
@@ -15,7 +18,7 @@
     video_class: 'spacing-style size-style border-style',
     video_loop: block_settings.video_loop,
     video_style: video_style,
-    video_preview_image: block_settings.video.preview_image,
+    video_preview_image: video_cover,
     additional_attributes: block.shopify_attributes
   %}
 {% else %}
@@ -89,7 +92,7 @@
       "type": "image_picker",
       "id": "cover_image",
       "label": "t:settings.cover_image",
-      "visible_if": "{{ block.settings.source == 'url' and block.settings.video_autoplay == false }}"
+      "visible_if": "{{ block.settings.video_autoplay == false }}"
     },
     {
       "type": "text",

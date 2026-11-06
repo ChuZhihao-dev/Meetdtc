@@ -405,6 +405,17 @@
           "block_order": [
             "product_hero_certification_G46gJn"
           ]
+        },
+        "stats": {
+          "type": "_product-hero-stats",
+          "static": true,
+          "settings": {
+            "font": "montserrat_n4",
+            "text_color": "#000000",
+            "accent_color": "#772cc8",
+            "enable_animation": true
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -414,10 +425,10 @@
       "settings": {
         "show_certifications": true,
         "certification_color": "#102653",
-        "eyebrow": "Generative Engine Optimization",
-        "heading": "Help Your Brand Become\nPart of the AI Answer",
+        "eyebrow": "AI SEO",
+        "heading": "AI SEO Services to Help Your Brand\nBecome Part of the Answer",
         "heading_tag": "h1",
-        "description": "ME help businesses improve how their brands appear in AI-generated answers. Through customer \nquestion research, clear brand information, useful content, and relevant third-party coverage, \nwe build a measurable program around brand mentions, recommendations, and citations.",
+        "description": "We helps businesses in Singapore and other target markets improve their visibility in AI-generated answers. \nOur AI SEO services combine customer question research, useful content, clear brand information \nand GEO approaches, with ongoing monitoring of brand mentions, recommendations and citations.",
         "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
@@ -753,7 +764,7 @@
         "gradient_start_position": 0,
         "gradient_end_position": 100,
         "background_gradient_from": "{{ settings.color_palette.background }}",
-        "background_gradient_to": "#EFE6F3",
+        "background_gradient_to": "#efe6f3",
         "background_gradient_angle": 160,
         "thickness": 0.5,
         "divider_color": "#707070",
@@ -869,13 +880,13 @@
       "settings": {
         "eyebrow": "OUR APPROACH",
         "heading": "Start with Customer Questions. Improve the Information Behind the Answers.",
-        "body_primary": "<p>We research the questions customers ask when discovering products, comparing brands, and evaluating suppliers. We then examine AI responses, competitor mentions, and cited sources to identify gaps in your brand information and content coverage.<br/></p>",
+        "body_primary": "<p>Our AI SEO approach starts with the questions customers ask when discovering products, comparing brands, and evaluating suppliers. We examine AI responses, competitor mentions, and cited sources to identify gaps in your brand information and content coverage.<br/><br/></p>",
         "body_secondary": "<p>Each priority connects a customer question to a specific content or information improvement and a monitoring measure. You receive a clear execution plan and evidence of observed changes, helping you assess progress without relying on isolated screenshots.<br/><br/></p>",
         "image": "shopify://shop_images/geo_our-approach.png",
         "image_alt": "",
         "font": "montserrat_n5",
         "text_color": "#000000",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "background": "",
         "padding-block-start": 80,
         "padding-block-end": 80,
@@ -955,11 +966,11 @@
         "layout": "standard",
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
-        "description": "<p>Our GEO service connects question research, brand information, content, external sources, and ongoing answer monitoring.</p>",
+        "description": "<p>Our AI SEO services combine GEO approaches with customer question research, brand information, useful content, external-source opportunities and ongoing answer monitoring.</p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "card_heading_color": "#241c52",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "background": "",
         "card_background": "#ffffff",
         "card_opacity": 58,
@@ -1031,7 +1042,7 @@
         "heading": "From AI Visibility Baseline to Focused Improvement",
         "description": "<p>We define the monitoring scope, execution priorities, and review method before optimization begins.</p>",
         "background": "linear-gradient(135.439deg, rgba(211, 216, 246, 1) 2.204%, rgba(253, 243, 255, 1) 97.796%)",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "text_color": "#000000",
         "accent_color": "#9621c4",
         "step_gap": 60,
@@ -1092,7 +1103,7 @@
         "link": "https://meetdtc-40icat5f.myshopify.com/blogs/our-work/how-a-portable-power-brand-achieved-60-brand-mention-rate-across-chatgpt-and-gemini-with-geo",
         "font": "montserrat_n5",
         "text_color": "#000000",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "background": "",
         "panel_background": "linear-gradient(105.9376deg, rgba(19, 98, 250, 0.05) 3.724%, rgba(109, 40, 217, 0.05) 96.276%)",
         "accent_color": "#6d28d9",
@@ -1111,8 +1122,8 @@
         "faq_row_XdLKBG": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q1. What is GEO? What is GEO?",
-            "answer": "<p>GEO is work aimed at improving a brand’s presence in AI-generated answers. Our program focuses on three outcomes: mentions, recommendations, and citations.</p>",
+            "question": "Q1.  What is AI SEO, and how does it relate to GEO?",
+            "answer": "<p>AI SEO can refer to using AI tools for SEO work or improving visibility in AI-powered search. Our AI SEO service focuses on the latter, using generative engine optimization (GEO) approaches to improve how your brand is understood and represented in AI-generated answers. We monitor brand mentions, recommendations, citations and information accuracy.</p>",
             "open_by_default": true
           },
           "blocks": {}
@@ -1120,8 +1131,8 @@
         "faq_row_ckALeW": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q2. How is GEO different from SEO?",
-            "answer": "<p>SEO focuses on visibility in search results. GEO examines how a brand appears in AI answers; the two services share work on accessible pages, clear information, and useful content.</p>",
+            "question": "Q2.  How does AI SEO work alongside traditional SEO?",
+            "answer": "<p>Traditional SEO helps people discover your website in search results. Our AI SEO service focuses on how your brand appears in AI-generated answers. Both can share content research, website improvements and accurate brand information, while their results are measured separately.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -1183,8 +1194,8 @@
         "faq_row_H88kCk": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q9. Can you support different countries and languages?",
-            "answer": "<p>Yes, within the agreed scope. Each market receives its own prompt set and content priorities, and results are reported separately where the monitoring setup supports it.</p>",
+            "question": "Q9.  Do you provide AI SEO services for Singapore and other markets?",
+            "answer": "<p>Yes, within the agreed scope. We define the audience, languages, product availability, and customer questions for each target market. Singapore-focused work reflects the relevant local offer and service conditions. Other markets receive their own content and monitoring priorities, with separate reporting where the setup supports it.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -1201,8 +1212,8 @@
         "faq_row_WTzBV7": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q11. Can GEO performance be connected to leads or sales?",
-            "answer": "<p>We can review identifiable AI referral visits and tracked conversions where data is available. Answer visibility and website conversions are reported separately because not every AI interaction produces a visit.</p>",
+            "question": "Q11.  Can AI SEO help generate leads and sales?",
+            "answer": "<p>AI SEO aims to improve your brand’s visibility during customer research and consideration. We track identifiable AI referral visits, inquiries and sales where data is available, while reporting brand mentions and citations separately.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -1212,6 +1223,15 @@
           "settings": {
             "question": "Q12. What information do you need from us?",
             "answer": "<p>We need your website, brand names, priority products, target markets, and competitors. Product specifications and supporting credentials help us check information accuracy.</p>",
+            "open_by_default": false
+          },
+          "blocks": {}
+        },
+        "faq_row_kYd7VW": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q13. How long does AI SEO take to show progress?",
+            "answer": "<p>We establish a baseline before execution and review progress at agreed intervals. Timing depends on the starting position, available evidence, implementation speed, competition, and channel changes. We confirm delivery milestones without promising a date for AI inclusion.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -1229,7 +1249,8 @@
         "faq_row_H88kCk",
         "faq_row_ABzErp",
         "faq_row_WTzBV7",
-        "faq_row_YVKwqV"
+        "faq_row_YVKwqV",
+        "faq_row_kYd7VW"
       ],
       "name": "t:names.faq_section",
       "settings": {

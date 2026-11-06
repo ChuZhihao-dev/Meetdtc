@@ -1,0 +1,24 @@
+{% doc %}
+  Shared presentation for standalone and hero statistics.
+  @example {% render 'stats-counter-styles' %}
+{% enddoc %}
+{% stylesheet %}
+  .stats-counter { display: block; color: var(--stats-counter-text); font-family: var(--stats-counter-font, var(--font-heading--family)); }
+  .stats-counter__items { inline-size: min(var(--narrow-page-width), calc(100% - var(--page-margin) * 2)); max-inline-size: var(--narrow-page-width); padding-inline: 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px 32px; margin: 0 auto; padding-block: 0; list-style: none; }
+  .stats-counter__item { flex: 0 0 auto; width: max-content; max-width: 100%; min-width: 0; text-align: center; }
+  .stats-counter__amount { display: flex; align-items: baseline; justify-content: center; flex-wrap: nowrap; white-space: nowrap; min-width: 0; font-size: 56px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: normal; }
+  /* Reserve final-value width so counting does not move the suffix or adjacent groups. */
+  .stats-counter__value { display: inline-grid; flex-shrink: 0; }
+  .stats-counter__value::before { content: attr(data-final); visibility: hidden; grid-area: 1 / 1; }
+  .stats-counter__value > span { grid-area: 1 / 1; text-align: end; }
+  .stats-counter__suffix { color: var(--stats-counter-accent); font-size: 0.69149em; }
+  .stats-counter__description { max-width: 238px; margin: 14px auto 0; font-size: 13px; font-weight: 400; line-height: 1.41; overflow-wrap: anywhere; }
+  @media screen and (max-width: 749px) {
+    .stats-counter__items { column-gap: 20px; }
+    .stats-counter .stats-counter__items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
+    .stats-counter .stats-counter__item { width: auto; }
+    .stats-counter .stats-counter__amount { font-size: 24px; line-height: 1.2; }
+    .stats-counter .stats-counter__suffix { font-size: 16px; }
+    .stats-counter .stats-counter__description { margin-block-start: 8px; font-size: 13px; line-height: 1.5; }
+  }
+{% endstylesheet %}
