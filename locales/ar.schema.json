@@ -106,6 +106,8 @@
     "placeholder_color": "Image placeholder text"
   },
   "blog_filter": {
+    "category_order": "Category order",
+    "category_order_info": "Enter exact article tag names, one per line, in the desired order (case-sensitive). Unlisted tags appear afterward. Blank, duplicate and unknown entries are ignored. Leave blank for the default order. All Categories stays first.",
     "category_name": "Blog category",
     "categories_name": "Blog categories",
     "label": "Display label",

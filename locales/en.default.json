@@ -79,6 +79,8 @@
     "image_preview": "IMAGE / PREVIEW"
   },
   "blog_filter": {
+    "scroll_left": "Scroll categories left",
+    "scroll_right": "Scroll categories right",
     "categories": "Blog categories",
     "all_categories": "All Categories",
     "loading": "Loading articles…",

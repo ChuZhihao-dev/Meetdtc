@@ -113,6 +113,8 @@
     "placeholder_color": "Image placeholder text"
   },
   "blog_filter": {
+    "category_order": "分类排序",
+    "category_order_info": "每行填写一个文章标签，按行顺序展示；名称须与原标签完全一致（区分大小写）。未填写的标签追加到末尾，空行、重复及不存在的标签会被忽略。留空使用默认顺序，All Categories 始终置顶。",
     "category_name": "Blog category",
     "categories_name": "Blog categories",
     "label": "显示名称",

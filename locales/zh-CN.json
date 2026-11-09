@@ -62,6 +62,8 @@
     "image_preview": "图片 / 预览"
   },
   "blog_filter": {
+    "scroll_left": "向左滚动分类",
+    "scroll_right": "向右滚动分类",
     "categories": "博客分类",
     "all_categories": "全部分类",
     "loading": "正在加载文章…",

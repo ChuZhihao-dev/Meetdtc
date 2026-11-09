@@ -79,6 +79,7 @@ export default class BlogPostsList extends Component {
     this.#categoryResize?.disconnect();
     for (const rail of this.querySelectorAll('.blog-categories__desktop')) {
       this.#categoryResize?.observe(rail);
+      if (rail.parentElement?.matches('.blog-categories__rail')) this.#categoryResize?.observe(rail.parentElement);
       for (const child of rail.children) this.#categoryResize?.observe(child);
     }
     this.#updateCategoryEdges();
@@ -88,14 +89,46 @@ export default class BlogPostsList extends Component {
   #updateCategoryEdges = () => {
     for (const rail of this.querySelectorAll('.blog-categories__desktop')) {
       if (!(rail instanceof HTMLElement)) continue;
+      const wrapper = rail.closest('.blog-categories__rail');
+      if (wrapper instanceof HTMLElement) {
+        const scrollable = rail.clientWidth > 0 && rail.scrollWidth > wrapper.clientWidth + 1;
+        wrapper.toggleAttribute('data-scrollable', scrollable);
+        for (const button of wrapper.querySelectorAll('[data-category-scroll]')) {
+          if (button instanceof HTMLButtonElement) button.hidden = !scrollable;
+        }
+      }
       const bounds = rail.getBoundingClientRect();
       const first = rail.firstElementChild?.getBoundingClientRect();
       const last = rail.lastElementChild?.getBoundingClientRect();
       const overflowing = rail.clientWidth > 0 && rail.scrollWidth > rail.clientWidth + 1;
-      rail.style.setProperty('--blog-fade-left', overflowing && first && last && Math.min(first.left, last.left) < bounds.left - 1 ? '32px' : '0px');
-      rail.style.setProperty('--blog-fade-right', overflowing && first && last && Math.max(first.right, last.right) > bounds.right + 1 ? '32px' : '0px');
+      const hasLeft = Boolean(overflowing && first && last && Math.min(first.left, last.left) < bounds.left - 1);
+      const hasRight = Boolean(overflowing && first && last && Math.max(first.right, last.right) > bounds.right + 1);
+      rail.style.setProperty('--blog-fade-left', hasLeft ? '52px' : '0px');
+      rail.style.setProperty('--blog-fade-right', hasRight ? '52px' : '0px');
+      // Keep keyboard focus in the category list when its focused arrow disappears.
+      const focusedArrow = document.activeElement;
+      if (focusedArrow instanceof HTMLButtonElement && wrapper?.contains(focusedArrow) &&
+        ((focusedArrow.dataset.categoryScroll === 'left' && !hasLeft) ||
+          (focusedArrow.dataset.categoryScroll === 'right' && !hasRight))) {
+        rail.setAttribute('tabindex', '-1');
+        rail.focus({ preventScroll: true });
+      }
+      wrapper?.querySelector('[data-category-scroll="left"]')?.setAttribute('aria-disabled', String(!hasLeft));
+      wrapper?.querySelector('[data-category-scroll="right"]')?.setAttribute('aria-disabled', String(!hasRight));
     }
   };
+
+  /** Scroll the category rail in the arrow's physical direction, including in RTL. @param {MouseEvent} event */
+  scrollCategories(event) {
+    const button = event.target instanceof Element ? event.target.closest('[data-category-scroll]') : null;
+    if (!(button instanceof HTMLButtonElement) || button.getAttribute('aria-disabled') === 'true') return;
+    const rail = button.closest('.blog-categories__rail')?.querySelector('.blog-categories__desktop');
+    if (!(rail instanceof HTMLElement)) return;
+    rail.scrollBy({
+      left: Math.max(rail.clientWidth * 0.75, 160) * (button.dataset.categoryScroll === 'left' ? -1 : 1),
+      behavior: this.#motion.matches ? 'instant' : 'smooth',
+    });
+  }
 
   /** Intercept only unmodified native category/pagination links. @param {MouseEvent} event */
   navigate(event) {

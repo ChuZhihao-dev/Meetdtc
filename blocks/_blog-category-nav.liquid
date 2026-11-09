@@ -2,12 +2,30 @@
   Renders All Categories and the supplied blog's complete article-tag navigation.
   Reads closest.blog from the parent section, falling back to the current blog.
   Uses all_tags so pagination and filtering never narrow the available categories.
+  Optional category_order lists exact tag names, one per line, before remaining tags.
   Links navigate directly to Shopify's native blog tag routes.
   @example Used as the static-blog-categories block on the main blog section.
 {% enddoc %}
 {% render 'category-sticky-styles' %}
 {% liquid
   assign navigation_blog = closest.blog | default: blog
+  assign preferred_tags = block.settings.category_order | newline_to_br | strip_newlines | split: '<br />'
+  assign ordered_tags = '' | split: ','
+  for preferred_tag in preferred_tags
+    assign normalized_preferred_tag = preferred_tag | strip
+    if normalized_preferred_tag == blank
+      continue
+    endif
+    for actual_tag in navigation_blog.all_tags
+      assign normalized_tag = actual_tag | strip
+      if normalized_tag == normalized_preferred_tag
+        # Match without surrounding whitespace, but retain the original tag for links and active state.
+        assign matched_tag = navigation_blog.all_tags | slice: forloop.index0, 1
+        assign ordered_tags = ordered_tags | concat: matched_tag
+      endif
+    endfor
+  endfor
+  assign ordered_tags = ordered_tags | concat: navigation_blog.all_tags | uniq
   assign active_tags = null
   if navigation_blog.handle == blog.handle
     assign active_tags = current_tags
@@ -16,15 +34,23 @@
 <nav class="blog-categories" on:click="blog-posts-list/navigate" aria-label="{{ 'blog_filter.categories' | t }}" {{ block.shopify_attributes }}>
   {% capture category_links %}
   <a href="{{ navigation_blog.url | escape }}" {% if active_tags == blank %}aria-current="page"{% endif %}>{{ 'blog_filter.all_categories' | t }}</a>
-  {% for tag in navigation_blog.all_tags %}
-    {% if tag != blank %}
+  {% for tag in ordered_tags %}
+    {% if tag != blank and navigation_blog.all_tags contains tag %}
       <span class="blog-categories__item">
         <a href="{{ navigation_blog.url | escape }}/tagged/{{ tag | handleize }}" {% if active_tags contains tag %}aria-current="page"{% endif %}>{{ tag | escape }}</a>
       </span>
     {% endif %}
   {% endfor %}
   {% endcapture %}
-  <div class="blog-categories__desktop">{{ category_links }}</div>
+  <div class="blog-categories__rail">
+    <button class="blog-categories__scroll blog-categories__scroll--left" type="button" data-category-scroll="left" on:click="blog-posts-list/scrollCategories" aria-label="{{ 'blog_filter.scroll_left' | t | escape }}" aria-controls="BlogCategories-{{ block.id }}" hidden>
+      {{ 'icon-caret.svg' | inline_asset_content }}
+    </button>
+    <div class="blog-categories__desktop" id="BlogCategories-{{ block.id }}">{{ category_links }}</div>
+    <button class="blog-categories__scroll blog-categories__scroll--right" type="button" data-category-scroll="right" on:click="blog-posts-list/scrollCategories" aria-label="{{ 'blog_filter.scroll_right' | t | escape }}" aria-controls="BlogCategories-{{ block.id }}" hidden>
+      {{ 'icon-caret.svg' | inline_asset_content }}
+    </button>
+  </div>
   <details class="blog-categories__picker" data-category-picker on:keydown="blog-posts-list/closeFilter">
     <summary class="blog-categories__toggle">
       <span class="blog-categories__label">{{ 'blog_filter.categories' | t }}</span>
@@ -69,6 +95,31 @@
     .blog-categories__desktop a { transition: none; }
   }
   .blog-categories__picker { display: none; }
+  .blog-categories__rail { position: relative; min-inline-size: 0; }
+  .blog-categories__scroll {
+    position: absolute;
+    inset-block-start: 2px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 44px;
+    block-size: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-foreground);
+    cursor: pointer;
+  }
+  .blog-categories__scroll[hidden] { display: none; }
+  .blog-categories__scroll[aria-disabled='true'] { visibility: hidden; }
+  .blog-categories__rail:has(.blog-categories__desktop:focus-within) .blog-categories__scroll { visibility: hidden; }
+  .blog-categories__scroll:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+  .blog-categories__scroll--left { left: 0; }
+  .blog-categories__scroll--right { right: 0; }
+  .blog-categories__scroll--left svg { transform: rotate(90deg); }
+  .blog-categories__scroll--right svg { transform: rotate(-90deg); }
   @media screen and (min-width: 990px) {
     .blog-categories {
       padding: 8px;
@@ -79,8 +130,8 @@
     .blog-categories__desktop {
       gap: 4px;
       padding: 2px;
-      scroll-padding-inline: 8px;
-      mask-image: linear-gradient(to right, transparent, #000 var(--blog-fade-left, 0px), #000 calc(100% - var(--blog-fade-right, 0px)), transparent);
+      scroll-padding-inline: 48px;
+      mask-image: linear-gradient(to right, transparent, transparent calc(var(--blog-fade-left, 0px) * 0.7), #000 var(--blog-fade-left, 0px), #000 calc(100% - var(--blog-fade-right, 0px)), transparent calc(100% - var(--blog-fade-right, 0px) * 0.7), transparent);
     }
     .blog-categories__desktop:focus-within { mask-image: none; }
     .blog-categories__desktop a {
@@ -96,6 +147,7 @@
   }
   @media screen and (max-width: 989px) {
     .blog-categories { display: block; position: sticky; inset-block-start: var(--category-sticky-top, 8px); align-self: start; background: var(--color-input-background, var(--color-background)); border-radius: 12px; z-index: 2; }
+    .blog-categories__rail { display: none; }
     .blog-categories__desktop { display: none; }
     .blog-categories__picker { display: block; }
     .blog-categories__toggle { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 12px 16px; border: 1px solid color-mix(in srgb, var(--color-input-text) 12%, transparent); border-radius: 12px; background: var(--color-input-background, var(--color-background)); font-size: 14px; line-height: 1.5; cursor: pointer; }
@@ -113,6 +165,14 @@
 {% schema %}
 {
   "name": "t:blog_filter.categories_name",
-  "tag": null
+  "tag": null,
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "category_order",
+      "label": "t:blog_filter.category_order",
+      "info": "t:blog_filter.category_order_info"
+    }
+  ]
 }
 {% endschema %}
