@@ -8,6 +8,39 @@
  * ------------------------------------------------------------
  */
 {
+  "logo_scroller": {
+    "logo_scale": "Logo visual size",
+    "presentation": "Track style",
+    "ribbons": "Angled ribbons",
+    "straight": "Straight tracks",
+    "angle": "Ribbon angle",
+    "monochrome": "Monochrome logos; reveal color on hover",
+    "stacked": "Title above description",
+    "hover_gradient": "Show gradient on hover",
+    "name": "Logo scroller",
+    "logo": "Logo",
+    "heading": "Heading",
+    "description": "Description",
+    "layout": "Heading layout",
+    "split": "Two columns",
+    "center": "Centered",
+    "animate": "Enable scrolling",
+    "speed": "Loop duration",
+    "delay": "Animation delay",
+    "width": "Logo card width",
+    "height": "Logo card height",
+    "gap": "Logo gap",
+    "radius": "Corner radius",
+    "card_background": "Logo card background",
+    "gradient": "Hover gradient",
+    "image": "Logo image",
+    "alt": "Brand name / alternative text",
+    "link": "Logo link",
+    "background": "Background color",
+    "text": "Text color",
+    "top": "Top padding",
+    "bottom": "Bottom padding"
+  },
   "global_breadcrumbs": {
     "name": "Breadcrumb navigation"
   },

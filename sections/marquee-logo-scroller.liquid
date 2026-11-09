@@ -1,0 +1,469 @@
+{% comment %}
+  Partner showcase: page-width editorial header above full-width counter-moving ribbons.
+  Each merchant block appears in one lane; nonfocusable duplicates complete the seamless loops.
+  Keyboard focus, disabled motion and reduced motion restore an unrotated, complete list.
+  @example Add Logo scroller, upload partner marks and choose Ribbons or Straight tracks.
+{% endcomment %}
+{% liquid
+  assign lane_count = 1
+  if section.blocks.size >= 4
+    assign lane_count = 2
+  endif
+  assign last_lane = lane_count | minus: 1
+  # Repeat each lane's pattern to fill wide screens without distributing extra space.
+  assign smallest_lane = section.blocks.size | divided_by: lane_count
+  assign pattern_repeats = 1
+  if smallest_lane > 0 and smallest_lane < 24 and section.settings.animate and section.blocks.size >= 4
+    assign pattern_repeats = 24.0 | divided_by: smallest_lane | ceil
+  endif
+  assign motion_enabled = section.settings.animate
+  if section.blocks.size < 4
+    assign motion_enabled = false
+  endif
+  render 'contrast-override', background_color: section.settings.background, text_color: section.settings.text, section_id: section.id
+%}
+<div class="section-background color-custom-{{ section.id }}"></div>
+<div class="section section--full-width logo-scroller color-custom-{{ section.id }}"
+  data-animated="{{ motion_enabled }}"
+  data-layout="{{ section.settings.layout }}"
+  data-presentation="{{ section.settings.presentation }}"
+  data-monochrome="{{ section.settings.monochrome }}"
+  data-hover-gradient="{{ section.settings.hover_gradient }}"
+  style="--ls-duration: {{ section.settings.speed }}s; --ls-delay: {{ section.settings.delay }}s; --ls-width: {{ section.settings.width }}px; --ls-height: {{ section.settings.height }}px; --ls-gap: {{ section.settings.gap }}px; --ls-radius: {{ section.settings.radius }}px; --ls-angle: {{ section.settings.angle | default: 3 }}deg; --ls-tilt-space: {{ section.settings.angle | default: 3 }}vw; --ls-top: {{ section.settings.top }}px; --ls-bottom: {{ section.settings.bottom }}px;{% if section.settings.card_background != blank %} --ls-card: {{ section.settings.card_background }};{% endif %}"
+>
+  {% if section.settings.heading != blank or section.settings.description != blank %}
+    <div class="logo-scroller__header">
+      {% if section.settings.heading != blank %}<h2>{{ section.settings.heading | escape | newline_to_br }}</h2>{% endif %}
+      {% if section.settings.description != blank %}<p>{{ section.settings.description | escape | newline_to_br }}</p>{% endif %}
+    </div>
+  {% endif %}
+  {% if section.blocks.size > 0 %}
+    <div class="logo-scroller__stage">
+      <div class="logo-scroller__ribbons">
+        {% for lane in (0..last_lane) %}
+          <div class="logo-scroller__lane{% if lane == 1 %} logo-scroller__lane--return{% endif %}">
+            <div class="logo-scroller__track">
+              {% for copy in (1..3) %}
+                <div class="logo-scroller__group"{% if copy > 1 %} aria-hidden="true"{% endif %}>
+                  {% for pattern in (1..pattern_repeats) %}
+                  {% for block in section.blocks %}
+                    {% liquid
+                      assign block_lane = forloop.index0 | modulo: lane_count
+                      assign logo_alt = block.settings.alt | default: block.settings.image.alt
+                      if logo_alt == blank
+                        assign logo_alt = 'logo_scroller.placeholder' | t
+                      endif
+                    %}
+                    {% if block_lane == lane %}
+                      <div class="logo-scroller__card" style="--ls-logo-scale: {{ block.settings.logo_scale | default: 100 | divided_by: 100.0 }}; --ls-gradient: {{ block.settings.gradient | default: 'transparent' }};"{% if copy == 1 and pattern == 1 %} {{ block.shopify_attributes }}{% endif %}{% if pattern > 1 %} data-logo-repeat aria-hidden="true"{% endif %}>
+                        {% if block.settings.link != blank %}<a href="{{ block.settings.link | escape }}" class="logo-scroller__link" aria-label="{{ logo_alt | escape }}"{% if copy > 1 or pattern > 1 %} tabindex="-1"{% endif %}>{% endif %}
+                          <span class="logo-scroller__mark">
+                            {% if block.settings.image != blank %}
+                              {{ block.settings.image | image_url: width: 600 | image_tag: widths: '160, 240, 320, 480, 600', sizes: '240px', loading: 'lazy', alt: logo_alt, class: 'logo-scroller__image' }}
+                            {% else %}
+                              <span class="logo-scroller__placeholder">{{ logo_alt | escape }}</span>
+                            {% endif %}
+                          </span>
+                        {% if block.settings.link != blank %}</a>{% endif %}
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                  {% endfor %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% elsif request.design_mode %}
+    <p class="logo-scroller__empty">{{ 'logo_scroller.empty' | t }}</p>
+  {% endif %}
+</div>
+{% stylesheet %}
+  .logo-scroller {
+    --ls-tilt: calc(-1 * var(--ls-angle));
+    --ls-lane-tone: rgb(255 255 255 / 0.28);
+    --ls-item-gap: var(--ls-gap);
+    padding-block: var(--ls-top) var(--ls-bottom);
+    color: var(--color-foreground);
+    overflow: clip;
+  }
+  .logo-scroller__header {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    align-items: end;
+    gap: 32px;
+    margin-block-end: 24px;
+  }
+  .logo-scroller__header h2 {
+    inline-size: fit-content;
+    max-inline-size: 100%;
+    margin: 0;
+    background: var(--heading-gradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: var(--font-heading--family);
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: normal;
+    overflow-wrap: anywhere;
+  }
+  .logo-scroller__header p { max-inline-size: 46ch; margin: 0; font-size: 16px; line-height: 1.6; text-wrap: pretty; overflow-wrap: anywhere; }
+  .logo-scroller[data-layout='stacked'] .logo-scroller__header { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .logo-scroller[data-layout='center'] .logo-scroller__header { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 16px; text-align: center; }
+  .logo-scroller__stage {
+    grid-column: 1 / -1;
+    min-inline-size: 0;
+    overflow: hidden;
+    padding-block: calc(12px + var(--ls-tilt-space));
+  }
+  .logo-scroller__ribbons { display: grid; gap: 20px; inline-size: 112%; margin-inline: -6%; transform: rotate(var(--ls-tilt)); }
+  .logo-scroller__lane { min-inline-size: 0; background: var(--ls-lane-tone); }
+  .logo-scroller__track { display: flex; inline-size: 100%; direction: ltr; }
+  .logo-scroller__group {
+    display: flex;
+    flex: 0 0 auto;
+    inline-size: max-content;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--ls-item-gap);
+    padding-inline-end: var(--ls-item-gap);
+    padding-block: 10px;
+  }
+  .logo-scroller__card {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    flex: 0 0 min(var(--ls-width), calc(100vw - var(--page-margin) * 2));
+    inline-size: var(--ls-width);
+    min-inline-size: 0;
+    max-inline-size: calc(100vw - var(--page-margin) * 2);
+    block-size: var(--ls-height);
+    border-radius: var(--ls-radius);
+    background: var(--ls-card, rgb(255 255 255 / 0.18));
+  }
+  .logo-scroller__card::before { content: ''; position: absolute; z-index: -1; inset: 0; border-radius: inherit; background: var(--ls-gradient); opacity: 0; transition: opacity var(--hover-transition-duration) var(--hover-transition-timing); }
+  .logo-scroller[data-hover-gradient='true'] .logo-scroller__card:is(:hover, :focus-within)::before { opacity: 1; }
+  .logo-scroller__link { display: grid; place-items: center; inline-size: 100%; block-size: 100%; border-radius: inherit; color: inherit; text-decoration: none; }
+  .logo-scroller__link:focus-visible { outline: 2px solid var(--color-foreground); outline-offset: -4px; }
+  .logo-scroller__mark { display: grid; place-items: center; inline-size: 100%; block-size: 100%; min-inline-size: 0; padding: 12px; transition: transform 400ms var(--hover-transition-timing), opacity 400ms var(--hover-transition-timing); }
+  .logo-scroller__image { inline-size: auto; block-size: auto; max-inline-size: 100%; max-block-size: min(44px, calc(var(--ls-height) * 0.52)); object-fit: contain; transform: scale(var(--ls-logo-scale, 1)); }
+  .logo-scroller[data-monochrome='true'] .logo-scroller__image { filter: grayscale(1); }
+  .logo-scroller__placeholder { max-inline-size: 100%; padding-inline: 0; font-family: var(--font-heading--family); font-size: 24px; font-weight: 600; line-height: 1.2; text-align: center; overflow-wrap: anywhere; }
+  .logo-scroller[data-animated='true'] .logo-scroller__group { animation: logo-scroller-motion var(--ls-duration) linear var(--ls-delay) infinite; }
+  .logo-scroller[data-animated='true'] .logo-scroller__lane--return .logo-scroller__group { animation-direction: reverse; animation-duration: calc(var(--ls-duration) * 1.15); }
+  .logo-scroller__stage:hover .logo-scroller__group { animation-play-state: paused; }
+  .logo-scroller[data-presentation='straight'] { --ls-tilt: 0deg; }
+  .logo-scroller[data-presentation='straight'] .logo-scroller__ribbons { inline-size: 100%; margin-inline: 0; }
+  .logo-scroller[data-presentation='straight'] .logo-scroller__stage { padding-block: 16px; }
+  .logo-scroller[data-animated='false'] .logo-scroller__stage { padding-block: 12px; }
+  /* Restore every original logo in view for keyboard navigation and static configurations. */
+  .logo-scroller__stage:focus-within .logo-scroller__ribbons,
+  .logo-scroller[data-animated='false'] .logo-scroller__ribbons { inline-size: 100%; margin-inline: 0; transform: none; }
+  .logo-scroller__stage:focus-within .logo-scroller__group,
+  .logo-scroller[data-animated='false'] .logo-scroller__group { animation: none; flex-basis: 100%; flex-wrap: wrap; padding-inline: var(--page-margin); }
+  .logo-scroller__stage:focus-within [data-logo-repeat],
+  .logo-scroller[data-animated='false'] [data-logo-repeat],
+  .logo-scroller__stage:focus-within .logo-scroller__group[aria-hidden],
+  .logo-scroller[data-animated='false'] .logo-scroller__group[aria-hidden] { display: none; }
+  .logo-scroller__empty { grid-column: 2; margin: 0; padding-block: 32px; }
+  @keyframes logo-scroller-motion { to { transform: translateX(-100%); } }
+  @media (hover: hover) and (pointer: fine) {
+    .logo-scroller__card:hover .logo-scroller__mark { transform: translateY(-3px) rotate(calc(-1 * var(--ls-tilt))); }
+    .logo-scroller[data-monochrome='true'] .logo-scroller__card:hover .logo-scroller__image { filter: none; }
+  }
+  @media (max-width: 749px) {
+    .logo-scroller { --ls-item-gap: calc(var(--ls-gap) * 0.75); padding-block: min(var(--ls-top), 32px) min(var(--ls-bottom), 32px); }
+    .logo-scroller__header { grid-template-columns: minmax(0, 1fr); gap: 16px; margin-block-end: 16px; }
+    .logo-scroller__header h2 { font-size: 24px; }
+    .logo-scroller__header p { font-size: 13px; }
+    .logo-scroller__stage { padding-block: 24px; }
+    .logo-scroller__ribbons { gap: 12px; }
+    .logo-scroller__card {
+      flex-basis: min(calc(var(--ls-width) * 0.75), calc(100vw - var(--page-margin) * 2));
+      inline-size: calc(var(--ls-width) * 0.75);
+      block-size: max(44px, calc(var(--ls-height) * 0.7));
+    }
+    .logo-scroller__group { padding-block: 8px; }
+    .logo-scroller__mark { padding: 8px; }
+    .logo-scroller__image { max-block-size: min(28px, calc(var(--ls-height) * 0.35)); }
+    .logo-scroller__placeholder { font-size: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-scroller .logo-scroller__ribbons { inline-size: 100%; margin-inline: 0; transform: none; }
+    .logo-scroller .logo-scroller__group { animation: none; flex-wrap: wrap; flex-basis: 100%; padding-inline: var(--page-margin); }
+    .logo-scroller .logo-scroller__group[aria-hidden], .logo-scroller [data-logo-repeat] { display: none; }
+    .logo-scroller .logo-scroller__mark, .logo-scroller__card::before { transition: none; transform: none; }
+  }
+  @media (forced-colors: active) {
+    .logo-scroller__header h2 { background: none; color: CanvasText; -webkit-text-fill-color: currentColor; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:logo_scroller.name",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "max_blocks": 24,
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:logo_scroller.heading",
+      "default": "Trusted by businesses worldwide"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:logo_scroller.description",
+      "default": "Meet the brands we work with."
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:logo_scroller.layout",
+      "options": [
+        {
+          "value": "split",
+          "label": "t:logo_scroller.split"
+        },
+        {
+          "value": "center",
+          "label": "t:logo_scroller.center"
+        },
+        {
+          "value": "stacked",
+          "label": "t:logo_scroller.stacked"
+        }
+      ],
+      "default": "stacked"
+    },
+    {
+      "type": "checkbox",
+      "id": "animate",
+      "label": "t:logo_scroller.animate",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "t:logo_scroller.speed",
+      "min": 5,
+      "max": 100,
+      "step": 5,
+      "unit": "s",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "label": "t:logo_scroller.delay",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "unit": "s",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "width",
+      "label": "t:logo_scroller.width",
+      "min": 100,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "t:logo_scroller.height",
+      "min": 60,
+      "max": 180,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "t:logo_scroller.gap",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "radius",
+      "label": "t:logo_scroller.radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "t:logo_scroller.background"
+    },
+    {
+      "type": "color",
+      "id": "text",
+      "label": "t:logo_scroller.text"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "t:logo_scroller.card_background"
+    },
+    {
+      "type": "range",
+      "id": "top",
+      "label": "t:logo_scroller.top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "bottom",
+      "label": "t:logo_scroller.bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "hover_gradient",
+      "label": "t:logo_scroller.hover_gradient",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "presentation",
+      "label": "t:logo_scroller.presentation",
+      "options": [
+        {
+          "value": "ribbons",
+          "label": "t:logo_scroller.ribbons"
+        },
+        {
+          "value": "straight",
+          "label": "t:logo_scroller.straight"
+        }
+      ],
+      "default": "ribbons"
+    },
+    {
+      "type": "range",
+      "id": "angle",
+      "label": "t:logo_scroller.angle",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "unit": "deg",
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "monochrome",
+      "label": "t:logo_scroller.monochrome",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "t:logo_scroller.logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:logo_scroller.image"
+        },
+        {
+          "type": "range",
+          "id": "logo_scale",
+          "label": "t:logo_scroller.logo_scale",
+          "min": 60,
+          "max": 120,
+          "step": 5,
+          "unit": "%",
+          "default": 100
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "t:logo_scroller.alt"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:logo_scroller.link"
+        },
+        {
+          "type": "color_background",
+          "id": "gradient",
+          "label": "t:logo_scroller.gradient",
+          "default": "linear-gradient(135deg, #668CFF 0%, #0049FF 50%, #003199 100%)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:logo_scroller.name",
+      "category": "t:categories.decorative",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ],
+      "settings": {
+        "heading": "In good company.",
+        "description": "The brands we build alongside.",
+        "layout": "stacked",
+        "presentation": "ribbons",
+        "speed": 60
+      }
+    }
+  ]
+}
+{% endschema %}

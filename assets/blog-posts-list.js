@@ -13,6 +13,8 @@ export default class BlogPostsList extends Component {
   #controller;
   /** @type {IntersectionObserver | undefined} */
   #observer;
+  /** @type {ResizeObserver | undefined} */
+  #categoryResize;
   /** @type {Set<Animation>} */
   #animations = new Set();
   #request = 0;
@@ -30,6 +32,9 @@ export default class BlogPostsList extends Component {
     const { signal } = this.#controller;
     this.#motion.addEventListener('change', this.#reveal, { signal });
     window.addEventListener('popstate', this.#handlePopState, { signal });
+    this.addEventListener('scroll', this.#updateCategoryEdges, { capture: true, passive: true, signal });
+    this.#categoryResize = new ResizeObserver(this.#updateCategoryEdges);
+    this.#observeCategoryEdges();
     const section = this.closest('.shopify-section');
     if (section) this.#cachePage(this.#activeUrl, section.outerHTML);
     this.#updateCategories();
@@ -46,11 +51,13 @@ export default class BlogPostsList extends Component {
   updatedCallback() {
     super.updatedCallback();
     this.#updateCategories();
+    this.#observeCategoryEdges();
   }
 
   disconnectedCallback() {
     this.#request++;
     this.#controller?.abort();
+    this.#categoryResize?.disconnect();
     sectionRenderer.abortRender(this.sectionId);
     this.#clearMotion();
     this.#pages.clear();
@@ -67,6 +74,28 @@ export default class BlogPostsList extends Component {
   get paginationSelector() { return '.pagination'; }
   get cardSelector() { return '.blog-post-item'; }
   get introSelector() { return '.blog-list__intro-content > .shopify-block'; }
+
+  #observeCategoryEdges() {
+    this.#categoryResize?.disconnect();
+    for (const rail of this.querySelectorAll('.blog-categories__desktop')) {
+      this.#categoryResize?.observe(rail);
+      for (const child of rail.children) this.#categoryResize?.observe(child);
+    }
+    this.#updateCategoryEdges();
+  }
+
+  // Compare physical edges so the fade also follows RTL scrolling without scrollLeft assumptions.
+  #updateCategoryEdges = () => {
+    for (const rail of this.querySelectorAll('.blog-categories__desktop')) {
+      if (!(rail instanceof HTMLElement)) continue;
+      const bounds = rail.getBoundingClientRect();
+      const first = rail.firstElementChild?.getBoundingClientRect();
+      const last = rail.lastElementChild?.getBoundingClientRect();
+      const overflowing = rail.clientWidth > 0 && rail.scrollWidth > rail.clientWidth + 1;
+      rail.style.setProperty('--blog-fade-left', overflowing && first && last && Math.min(first.left, last.left) < bounds.left - 1 ? '32px' : '0px');
+      rail.style.setProperty('--blog-fade-right', overflowing && first && last && Math.max(first.right, last.right) > bounds.right + 1 ? '32px' : '0px');
+    }
+  };
 
   /** Intercept only unmodified native category/pagination links. @param {MouseEvent} event */
   navigate(event) {

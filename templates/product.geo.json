@@ -386,6 +386,28 @@
           },
           "blocks": {}
         },
+        "product_hero_button_CaqLKU": {
+          "type": "_product-hero-button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "See Pricing →",
+            "link": "shopify://pages/ai-seo-packages",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "custom_button_background": "#6b39d4",
+            "custom_button_text": "#ffffff",
+            "custom_button_border": "#ffffff",
+            "link_text_color": "",
+            "button_gradient": false,
+            "button_gradient_from": "#6b39d4",
+            "button_gradient_to": "#6b39d4",
+            "button_gradient_angle": 90,
+            "button_gradient_start_position": 0,
+            "button_gradient_end_position": 100,
+            "button_icon_size": 16
+          },
+          "blocks": {}
+        },
         "certifications": {
           "type": "_product-hero-certifications",
           "static": true,
@@ -419,7 +441,8 @@
         }
       },
       "block_order": [
-        "button_JayDDj"
+        "button_JayDDj",
+        "product_hero_button_CaqLKU"
       ],
       "name": "t:product_hero.name",
       "settings": {

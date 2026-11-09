@@ -514,6 +514,7 @@
         "brand_row_ByPFP4",
         "brand_row_fFak6K"
       ],
+      "disabled": true,
       "name": "t:names.partner_brands",
       "settings": {
         "heading": "<p>Trusted by Leading Brands&nbsp;<br/>Across Global Markets</p>",
@@ -541,6 +542,299 @@
         "row_gap": 40,
         "padding-block-start": 40,
         "padding-block-end": 40
+      }
+    },
+    "marquee_logo_scroller_AxCAan": {
+      "type": "marquee-logo-scroller",
+      "blocks": {
+        "logo_pU8Fzb": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/beatbot.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_BPhwkB": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/rokid.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_KgtwY8": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/shangri-la.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_34eMym": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/nongfu-spring.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_4kbnRg": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/molly-tea.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_8ehchU": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/dreame.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_46bTeX": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/firefly.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_wdafNG": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/roborock.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_xPLDJp": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/winona.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_beMQYe": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/onwave.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_YTLGyb": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/segway.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_PXd8jE": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/tiktok.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_cw8Fa7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/tencent.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_e4TBkH": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/haier.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_gFwQKr": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/midea.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_xjdEVG": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/creality.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_jQwNET": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/ireader.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_kRVL6H": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/game-bear.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_zBURi4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/urban-revivo.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_pe9wTq": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/beneunder.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_MhXPCE": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/tapo.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_7kW8dg": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/iflytek.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_MfPc8Q": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/ottocast.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        },
+        "logo_3PzLmm": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/ulanzi.png",
+            "logo_scale": 100,
+            "alt": "",
+            "link": "",
+            "gradient": "linear-gradient(135deg, rgba(102, 140, 255, 1), rgba(0, 73, 255, 1) 50%, rgba(0, 49, 153, 1) 100%)"
+          }
+        }
+      },
+      "block_order": [
+        "logo_pU8Fzb",
+        "logo_BPhwkB",
+        "logo_KgtwY8",
+        "logo_34eMym",
+        "logo_4kbnRg",
+        "logo_8ehchU",
+        "logo_46bTeX",
+        "logo_wdafNG",
+        "logo_xPLDJp",
+        "logo_beMQYe",
+        "logo_YTLGyb",
+        "logo_PXd8jE",
+        "logo_cw8Fa7",
+        "logo_e4TBkH",
+        "logo_gFwQKr",
+        "logo_xjdEVG",
+        "logo_jQwNET",
+        "logo_kRVL6H",
+        "logo_zBURi4",
+        "logo_pe9wTq",
+        "logo_MhXPCE",
+        "logo_7kW8dg",
+        "logo_MfPc8Q",
+        "logo_3PzLmm"
+      ],
+      "name": "t:logo_scroller.name",
+      "settings": {
+        "heading": "Trusted by Leading Brands\n Across Global Markets",
+        "description": "",
+        "layout": "split",
+        "animate": true,
+        "speed": 80,
+        "delay": 0,
+        "width": 170,
+        "height": 90,
+        "gap": 40,
+        "radius": 8,
+        "background": "",
+        "text": "",
+        "card_background": "{{ settings.color_palette.background }}",
+        "top": 40,
+        "bottom": 40,
+        "hover_gradient": false,
+        "presentation": "ribbons",
+        "angle": 2,
+        "monochrome": false
       }
     },
     "services_globe": {
@@ -685,6 +979,7 @@
           "type": "_value-prop",
           "settings": {
             "icon": "team",
+            "image": "shopify://shop_images/Integrated_Expertise_1a5f2c46-0d51-465b-a63d-cd779bcdb5ba.svg",
             "circle_color": "#4183ff",
             "title": "Integrated Expertise",
             "description": "<p>From website development, SEO and AI SEO to CRO, email marketing and affiliate marketing, we bring connected digital services together under one partner.</p>"
@@ -695,6 +990,7 @@
           "type": "_value-prop",
           "settings": {
             "icon": "global",
+            "image": "shopify://shop_images/Global_Marketing.svg",
             "circle_color": "#7a4dff",
             "title": "Global Marketing Experience",
             "description": "<p>Backed by Meetsocial Group's global marketing experience and partner network, we support businesses across Singapore, Southeast Asia and international markets.</p>"
@@ -705,6 +1001,7 @@
           "type": "_value-prop",
           "settings": {
             "icon": "layers",
+            "image": "shopify://shop_images/AI_MarTech.svg",
             "circle_color": "#53bebe",
             "title": "AI & MarTech Capabilities",
             "description": "<p>We combine AI, MarTech and data-driven solutions to improve digital operations, customer engagement and marketing performance.</p>"
@@ -714,7 +1011,8 @@
         "value_prop_fdHeR4": {
           "type": "_value-prop",
           "settings": {
-            "icon": "bars",
+            "icon": "layers",
+            "image": "shopify://shop_images/Cost_Effective.svg",
             "circle_color": "#9621c4",
             "title": "Cost-Effective Solutions",
             "description": "<p>Flexible service packages, transparent scopes and practical solutions tailored to different business needs and budgets.</p>"
@@ -989,6 +1287,7 @@
     "section_6mqxB3",
     "page_background_QPhed3",
     "partner_brands_PtTzrK",
+    "marquee_logo_scroller_AxCAan",
     "services_globe",
     "blog_grid_dWECMy",
     "cta_banner_8UDPGz",

@@ -8,6 +8,7 @@
  * ------------------------------------------------------------
  */
 {
+  "logo_scroller": {"empty": "Add logo blocks to build your partner showcase.", "pause": "Pause scrolling", "placeholder": "Brand logo"},
   "brand_footer": {
     "social_media": "Social media"
   },
