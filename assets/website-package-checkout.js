@@ -1,36 +1,39 @@
 import { Component } from '@theme/component';
 
 /**
- * Native product forms redirect to checkout without the cart drawer.
+ * Checkout permalinks contain only the selected package, without adding to the existing cart.
  * @typedef {object} PackageCheckoutRefs
  * @property {HTMLSelectElement | undefined} variant - Optional platform selector.
- * @property {HTMLInputElement} quantity - Quantity matching the selected variant's minimum.
+ * @property {HTMLAnchorElement} checkout - Checkout link for the selected variant.
  * @extends Component<PackageCheckoutRefs>
  */
 class WebsitePackageCheckout extends Component {
-  requiredRefs = ['quantity'];
+  requiredRefs = ['checkout'];
 
   connectedCallback() {
     super.connectedCallback();
-    this.#syncQuantity();
+    this.#syncCheckout();
   }
 
   updatedCallback() {
     super.updatedCallback();
-    this.#syncQuantity();
+    this.#syncCheckout();
   }
 
   /** @param {Event} event - Native platform selection change. */
   selectVariant(event) {
     if (!(event.target instanceof HTMLSelectElement) || event.target !== this.refs.variant) return;
-    this.#syncQuantity();
+    this.#syncCheckout();
   }
 
-  #syncQuantity() {
-    const { variant, quantity } = this.refs;
-    if (!(variant instanceof HTMLSelectElement) || !(quantity instanceof HTMLInputElement)) return;
-    const minimum = Number(variant.selectedOptions[0]?.dataset.quantity);
-    if (Number.isInteger(minimum) && minimum > 0) quantity.value = String(minimum);
+  #syncCheckout() {
+    const { variant, checkout } = this.refs;
+    if (!(variant instanceof HTMLSelectElement) || !(checkout instanceof HTMLAnchorElement)) return;
+    const selected = variant.selectedOptions[0];
+    if (!selected || selected.disabled || !/^\d+$/.test(selected.value)) return;
+    const minimum = Number(selected.dataset.quantity);
+    if (!Number.isInteger(minimum) || minimum < 1 || !checkout.dataset.cartUrl) return;
+    checkout.href = `${checkout.dataset.cartUrl}/${selected.value}:${minimum}`;
   }
 }
 

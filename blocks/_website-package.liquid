@@ -17,7 +17,6 @@
     assign variant = package_product.first_available_variant
   endunless
   assign purchase_form_id = 'PackageCheckout-' | append: section.id | append: '-' | append: block.id
-  assign checkout_path = routes.root_url | append: '/checkout' | replace: '//', '/'
   assign feature_lines = s.features | escape | newline_to_br | split: '<br />'
   assign purchase_label = s.purchase_label
   if purchase_label == blank
@@ -73,7 +72,7 @@
       {% if quote_link != blank and s.quote_label != blank %}<a class="button website-package__button" href="{{ quote_link | escape }}">{{ s.quote_label | escape }}<span class="visually-hidden"> — {{ title | escape }}</span></a>{% endif %}
     {% elsif package_ready and package_product.available %}
       <website-package-checkout>
-        {% form 'product', package_product, id: purchase_form_id, class: 'website-package__purchase-form', return_to: checkout_path %}
+        <div id="{{ purchase_form_id }}" class="website-package__purchase-form">
           {% if package_product.variants.size > 1 %}
             <label class="website-package__variant-label" for="{{ purchase_form_id }}-variant">{{ package_product.options | join: ' / ' | escape }}</label>
             <select class="website-package__variant" id="{{ purchase_form_id }}-variant" name="id" ref="variant" on:change="/selectVariant">
@@ -83,12 +82,9 @@
                 </option>
               {% endfor %}
             </select>
-          {% else %}
-            <input type="hidden" name="id" value="{{ variant.id }}">
           {% endif %}
-          <input type="hidden" name="quantity" value="{{ variant.quantity_rule.min | default: 1 }}" ref="quantity">
-          <button class="button website-package__button" type="submit" name="add">{{ purchase_label | escape }}<span class="visually-hidden"> — {{ title | escape }}</span></button>
-        {% endform %}
+          <a class="button website-package__button" href="{{ routes.cart_url }}/{{ variant.id }}:{{ variant.quantity_rule.min | default: 1 }}" ref="checkout" data-cart-url="{{ routes.cart_url }}">{{ purchase_label | escape }}<span class="visually-hidden"> — {{ title | escape }}</span></a>
+        </div>
         {% if package_product.variants.size > 1 %}
           <noscript>
             <style>#{{ purchase_form_id }} { display: none; }</style>
