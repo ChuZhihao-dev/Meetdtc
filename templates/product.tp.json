@@ -1151,7 +1151,7 @@
         "faq_row_XdLKBG": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q1. How is Trustpilot different?",
+            "question": "Q1.  What is Trustpilot, and how is it different from other review platforms?",
             "answer": "<p>It's the most-cited review platform in AI search — 58% in ChatGPT, 52% in Perplexity. More coverage, more trust.</p>",
             "open_by_default": true
           },
@@ -1160,7 +1160,7 @@
         "faq_row_ckALeW": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q2. What are Verified Reviews?",
+            "question": "Q2. What are Verified Trustpilot Reviews?",
             "answer": "<p>Reviews collected through Trustpilot's official channels, where the buyer is confirmed. They're the only type Google counts for Seller Rating.<br/><br/></p>",
             "open_by_default": false
           },
@@ -1187,7 +1187,7 @@
         "faq_row_idcK38": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q5. We have negative reviews. Can we delete them?",
+            "question": "Q5. We have negative customer reviews. Can we delete them?",
             "answer": "<p>Only if they break Trustpilot’s guidelines, such as fake, non-customer, or promotional reviews, and Trustpilot makes that call. For genuine ones, we fix root issues, reply professionally, and bring in fresh reviews.</p>",
             "open_by_default": false
           },
@@ -1235,7 +1235,7 @@
       "settings": {
         "eyebrow": "FAQ",
         "heading": "<p>About Working With ME</p>",
-        "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
+        "description": "<p>How we work, what we cover, and how MF helps your brand build trust through Trustpilot reviews.<br/></p>",
         "font": "var(--font-heading--family)",
         "font_size": "2.5rem",
         "weight": "600",

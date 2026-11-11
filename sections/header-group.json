@@ -14,6 +14,50 @@
     "header_section": {
       "type": "header",
       "blocks": {
+        "header_transparent_page_MgUABm": {
+          "type": "_header-transparent-page",
+          "name": "t:header_transparent_page.name",
+          "settings": {
+            "page": "website-build-packages",
+            "enabled": true,
+            "inverse_logo": false,
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "header_transparent_page_h9XKeK": {
+          "type": "_header-transparent-page",
+          "name": "t:header_transparent_page.name",
+          "settings": {
+            "page": "ai-seo-packages",
+            "enabled": true,
+            "inverse_logo": false,
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "header_transparent_page_JPgQG9": {
+          "type": "_header-transparent-page",
+          "name": "t:header_transparent_page.name",
+          "settings": {
+            "page": "audit",
+            "enabled": true,
+            "inverse_logo": false,
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "header_transparent_page_DXFcdh": {
+          "type": "_header-transparent-page",
+          "name": "t:header_transparent_page.name",
+          "settings": {
+            "page": "contact",
+            "enabled": true,
+            "inverse_logo": false,
+            "text_color": ""
+          },
+          "blocks": {}
+        },
         "header-logo": {
           "type": "_header-logo",
           "static": true,
@@ -129,18 +173,14 @@
           "block_order": [
             "audit-button"
           ]
-        },
-        "transparent_page_diagnostic": {
-          "type": "_header-transparent-page",
-          "settings": {
-            "page": "about-us",
-            "enabled": true,
-            "inverse_logo": true,
-            "text_color": "#123456"
-          },
-          "blocks": {}
         }
       },
+      "block_order": [
+        "header_transparent_page_MgUABm",
+        "header_transparent_page_h9XKeK",
+        "header_transparent_page_JPgQG9",
+        "header_transparent_page_DXFcdh"
+      ],
       "settings": {
         "logo_position": "left",
         "menu_position": "center",
@@ -175,19 +215,16 @@
         "bubble_style": "default",
         "bubble_background_color": "",
         "bubble_text_color": "",
-        "enable_transparent_header_home": false,
+        "enable_transparent_header_home": true,
         "home_inverse_logo": false,
         "text_color_transparent_home": "",
-        "enable_transparent_header_product": false,
+        "enable_transparent_header_product": true,
         "product_inverse_logo": false,
         "text_color_transparent_product": "",
-        "enable_transparent_header_collection": false,
+        "enable_transparent_header_collection": true,
         "collection_inverse_logo": false,
         "text_color_transparent_collection": ""
-      },
-      "block_order": [
-        "transparent_page_diagnostic"
-      ]
+      }
     }
   },
   "order": [

@@ -9,24 +9,6 @@
  */
 {
   "sections": {
-    "breadcrumbs": {
-      "type": "breadcrumbs",
-      "settings": {
-        "padding-block-start": 16,
-        "padding-block-end": 16
-      }
-    },
-    "page_background_phTEcT": {
-      "type": "page-background",
-      "name": "t:names.page_background",
-      "settings": {
-        "background_type": "gradient",
-        "background_color": "#ffffff",
-        "gradient_color_from": "#d8e0f8",
-        "gradient_color_to": "#f7f1ed",
-        "gradient_angle": 160
-      }
-    },
     "main": {
       "type": "main-page",
       "blocks": {
@@ -96,7 +78,7 @@
             "source": "uploaded",
             "video": "shopify://files/videos/8c638dc57fce170765aaffc09f1fa6c4.mov",
             "video_url": "",
-            "video_autoplay": false,
+            "video_autoplay": true,
             "video_loop": true,
             "cover_image": "shopify://shop_images/Meet_Experience.png",
             "alt": "",
@@ -483,7 +465,7 @@
         "heading": "How We Work",
         "description": "<p>Understand the business. Put the plan into practice. Keep improving.</p>",
         "font": "montserrat_n4",
-        "background": "linear-gradient(126.153deg, rgba(227, 230, 244, 1) 12.189%, rgba(231, 232, 242, 1) 87.811%)",
+        "background": "linear-gradient(126.153deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1) 87.811%)",
         "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "text_color": "#000000",
         "card_background": "#ffffff",
@@ -661,8 +643,6 @@
     }
   },
   "order": [
-    "breadcrumbs",
-    "page_background_phTEcT",
     "main",
     "about_fullscreen_video",
     "about_counter_hero",
