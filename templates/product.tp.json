@@ -405,6 +405,17 @@
           "block_order": [
             "product_hero_certification_4EQig3"
           ]
+        },
+        "stats": {
+          "type": "_product-hero-stats",
+          "static": true,
+          "settings": {
+            "font": "montserrat_n4",
+            "text_color": "#000000",
+            "accent_color": "#772cc8",
+            "enable_animation": true
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -415,9 +426,9 @@
         "show_certifications": true,
         "certification_color": "#102653",
         "eyebrow": "Reputation Management",
-        "heading": "Achieve accumulation of brand trust assets and improvement of conversion",
+        "heading": "Build Brand Trust with Trustpilot Reviews and Customer Feedback",
         "heading_tag": "h1",
-        "description": "ME help enterprises address insufficient trust from overseas buyers, \ndifficulty in publicly showcasing genuine reviews, and lack of credible content materials for AI search, \nand ultimately boost website conversion rates, enhance AI Visibility, and drive growth in cross-border orders.",
+        "description": "We help enterprises address insufficient trust from overseas buyers, difficulty in \npublicly showcasing genuine customer reviews, and lack of credible content materials\n for AI search, and ultimately boost website conversion rates, enhance AI Visibility, \nand drive growth in cross-border orders.",
         "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
@@ -753,7 +764,7 @@
         "gradient_start_position": 0,
         "gradient_end_position": 100,
         "background_gradient_from": "{{ settings.color_palette.background }}",
-        "background_gradient_to": "#EFE6F3",
+        "background_gradient_to": "#efe6f3",
         "background_gradient_angle": 160,
         "thickness": 0.5,
         "divider_color": "#707070",
@@ -771,7 +782,7 @@
           "type": "_business-challenge-item",
           "settings": {
             "title": "1.  Customers hesitate to trust your brand",
-            "description": "<p>We help you build credibility through authentic reviews, TrustScore, and website widgets.</p>",
+            "description": "<p>We help you build credibility through authentic business reviews, TrustScore, and website widgets.</p>",
             "link": "",
             "marker": "1"
           },
@@ -781,7 +792,7 @@
           "type": "_business-challenge-item",
           "settings": {
             "title": "2. Your brand struggles to stand out in search results",
-            "description": "<p>We show you how to use review content to support your SEO strategy.<br/></p>",
+            "description": "<p>We show you how to use online review content to support your SEO strategy.</p>",
             "link": "",
             "marker": "2"
           },
@@ -858,13 +869,13 @@
       "settings": {
         "eyebrow": "OUR APPROACH",
         "heading": "Build trust and strengthen your brand on Trustpilot",
-        "body_primary": "<p>Our approach combines review collection, profile optimization, feedback analytics, reputation management, and search visibility into one Trustpilot strategy — focused on building trust and boost your online presence.<br/><br/></p>",
-        "body_secondary": "<p>You will receive clear guidance on Trustpilot policies and review management best practices to help you prevent policy violations, mishandled negative reviews, and missed customer insights.<br/><br/></p>",
+        "body_primary": "<p>Our approach combines Trustpilot review collection, profile optimization, feedback analytics, reputation management, and search visibility into one Trustpilot strategy — focused on building trust and boost your online presence.</p>",
+        "body_secondary": "<p>You will receive clear guidance on Trustpilot policies and real review management best practices to help you prevent policy violations, mishandled negative reviews, and missed customer insights.</p>",
         "image": "shopify://shop_images/wom_our-approach.png",
         "image_alt": "",
         "font": "montserrat_n5",
         "text_color": "#000000",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "background": "",
         "padding-block-start": 80,
         "padding-block-end": 80,
@@ -974,11 +985,11 @@
         "layout": "standard",
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
-        "description": "<p>Earn trust, grow reviews, maximize impact — guided every step.</p>",
+        "description": "<p>Earn trust, grow customer reviews, maximize impact — guided every step.</p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "card_heading_color": "#241c52",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "background": "",
         "card_background": "#ffffff",
         "card_opacity": 58,
@@ -1000,7 +1011,7 @@
           "type": "step",
           "settings": {
             "heading": "Map Your Landscape",
-            "description": "<p>We audit your review presence and define the roadmap together.</p>",
+            "description": "<p>We audit your current online reviews, TrustScore, and brand reputation to define the roadmap together.</p>",
             "deliverable": ""
           }
         },
@@ -1017,7 +1028,7 @@
           "type": "step",
           "settings": {
             "heading": "Launch Your Profile",
-            "description": "<p>&nbsp;We walk you through profile setup, platform integration, and automatic invitation settings.</p>",
+            "description": "<p>We walk you through Trustpilot business profile setup, platform integration, and automatic invitation settings.</p>",
             "deliverable": ""
           }
         },
@@ -1033,7 +1044,7 @@
           "type": "step",
           "settings": {
             "heading": "Read the Data",
-            "description": "<p>We analyze your review metrics and surface what matters.</p>",
+            "description": "<p>We analyze your review metrics, customer ratings and surface what matters.</p>",
             "deliverable": ""
           }
         },
@@ -1041,7 +1052,7 @@
           "type": "step",
           "settings": {
             "heading": "Track and Improve",
-            "description": "<p>We review performance monthly and adjust strategy with you.</p>",
+            "description": "<p>We review your Trustpilot performance monthly and adjust strategy with you.</p>",
             "deliverable": ""
           }
         }
@@ -1058,9 +1069,9 @@
       "settings": {
         "eyebrow": "DELIVERY PROCESS",
         "heading": "Driving Review Growth Through a Structured Five-Step Approach",
-        "description": "<p>We guide the strategy, analyze the data, and keep optimizing, while you run the day-to-day with clear outputs and priorities at every stage.</p>",
+        "description": "<p>We guide your Trustpilot review strategy, analyze customer feedback, and continuously optimize your online reputation, while your team handles day-to-day operations with clear priorities and actionable guidance at every stage.</p>",
         "background": "linear-gradient(135.439deg, rgba(211, 216, 246, 1) 2.204%, rgba(253, 243, 255, 1) 97.796%)",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "text_color": "#000000",
         "accent_color": "#9621c4",
         "step_gap": 60,

@@ -416,6 +416,17 @@
             "product_hero_certification_8kH9yq",
             "product_hero_certification_xWdTmJ"
           ]
+        },
+        "stats": {
+          "type": "_product-hero-stats",
+          "static": true,
+          "settings": {
+            "font": "montserrat_n4",
+            "text_color": "#000000",
+            "accent_color": "#772cc8",
+            "enable_animation": true
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -426,9 +437,9 @@
         "show_certifications": true,
         "certification_color": "#102653",
         "eyebrow": "CLOUD & ENTERPRISE AI",
-        "heading": "Cloud and AI Architectures Built for Production and Growth",
+        "heading": "Cloud and AI Architectures Built\n for Production and Growth",
         "heading_tag": "h1",
-        "description": "Me design Google Cloud infrastructure and enterprise AI workflows around your business needs. \nFrom model integration and capacity planning to deployment and cost governance, \nwe help teams move toward scalable operations with clearer performance and spending visibility.",
+        "description": "We provide cloud consulting services and architect end-to-end Google Cloud infrastructure \nand GenAI pipelines for enterprise AI solutions that eliminate cross-border latency and \nquota bottlenecks — turning multi-region workloads into reliable, high-margin global revenue.",
         "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
@@ -764,7 +775,7 @@
         "gradient_start_position": 0,
         "gradient_end_position": 100,
         "background_gradient_from": "{{ settings.color_palette.background }}",
-        "background_gradient_to": "#EFE6F3",
+        "background_gradient_to": "#efe6f3",
         "background_gradient_angle": 160,
         "thickness": 0.5,
         "divider_color": "#707070",
@@ -822,7 +833,7 @@
           "type": "_business-challenge-item",
           "settings": {
             "title": "5. Engineers spend more time fixing cloud configs than shipping products",
-            "description": "<p>We provide turnkey enterprise architecture and 24/7 technical escort so your team focuses purely on core business.</p>",
+            "description": "<p>We provide turnkey enterprise architecture, cloud infrastructure management, and 24/7 technical escort so your team focuses purely on core business.</p>",
             "link": "",
             "marker": "3"
           },
@@ -870,12 +881,12 @@
         "eyebrow": "OUR APPROACH",
         "heading": "Architect, validate and optimize with one senior team",
         "body_primary": "<p>We lead technical discovery, benchmark testing, architecture design, and production rollout with the exact same cloud and AI architects — so nothing gets lost between pre-sales promises and production reality. Every quota tier, network topology, and model routing strategy is benchmarked and verified against your real workloads before any contract is signed.</p>",
-        "body_secondary": "<p>That means you deploy with guaranteed quota baselines and predictable cloud unit costs, not vague estimates. You never suffer launch-day 429 throttles, hidden egress traps, or runaway inference bills — and you retain full infrastructure code (IaC), monitoring dashboards, and root architecture control at the end.</p>",
+        "body_secondary": "<p>That means our cloud consulting services help you deploy with guaranteed quota baselines and predictable cloud unit costs, not vague estimates. You never suffer launch-day 429 throttles, hidden egress traps, or runaway inference bills — and you retain full infrastructure code (IaC), monitoring dashboards, and root architecture control at the end.</p>",
         "image": "shopify://shop_images/AI-Cloud-approach.png",
         "image_alt": "",
         "font": "montserrat_n5",
         "text_color": "#000000",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "background": "",
         "padding-block-start": 80,
         "padding-block-end": 80,
@@ -900,7 +911,7 @@
           "type": "card",
           "settings": {
             "heading": "Enterprise GenAI & Workflow Engineerin",
-            "description": "<p>We design multi-model routing pipelines, prompt engineering benchmarks, and prompt-caching layers across Vertex AI (Gemini 3/4, Veo). You receive production-ready inference endpoints integrated directly into your business stack with 60%+ cost reduction.</p>",
+            "description": "<p>We design enterprise AI solutions with multi-model routing pipelines, prompt engineering benchmarks, and prompt-caching layers across Vertex AI (Gemini 3/4, Veo). You receive production-ready inference endpoints integrated directly into your business stack with 60%+ cost reduction.</p>",
             "link": "",
             "link_label": "Learn more"
           }
@@ -954,12 +965,12 @@
       "settings": {
         "layout": "standard",
         "eyebrow": "SERVICE SCOPE",
-        "heading": "What Is Included",
+        "heading": "What Is Included in Our Cloud Consulting Services",
         "description": "<p>Every engagement spans all six dimensions. What scales between a fast-launch PoC and an enterprise production platform is depth and throughput, never engineering rigor.</p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "card_heading_color": "#241c52",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "background": "",
         "card_background": "#ffffff",
         "card_opacity": 58,

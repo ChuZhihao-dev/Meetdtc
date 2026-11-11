@@ -405,6 +405,17 @@
           "block_order": [
             "product_hero_certification_QAHmkE"
           ]
+        },
+        "stats": {
+          "type": "_product-hero-stats",
+          "static": true,
+          "settings": {
+            "font": "montserrat_n4",
+            "text_color": "#000000",
+            "accent_color": "#772cc8",
+            "enable_animation": true
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -415,7 +426,7 @@
         "show_certifications": true,
         "certification_color": "#102653",
         "eyebrow": "WhatsApp Marketing",
-        "heading": "Turn WhatsApp Conversations into Customers and Revenue",
+        "heading": "Turn WhatsApp Conversations \ninto Customers and Revenue",
         "heading_tag": "h1",
         "description": "Me help businesses unlock the full potential of the WhatsApp Business Platform — Meta's enterprise-grade \nmessaging API — turning every customer conversation into qualified sales, faster support, \nand measurable revenue growth.",
         "service_labels": "",
@@ -753,7 +764,7 @@
         "gradient_start_position": 0,
         "gradient_end_position": 100,
         "background_gradient_from": "{{ settings.color_palette.background }}",
-        "background_gradient_to": "#EFE6F3",
+        "background_gradient_to": "#efe6f3",
         "background_gradient_angle": 160,
         "thickness": 0.5,
         "divider_color": "#707070",
@@ -771,7 +782,7 @@
           "type": "_business-challenge-item",
           "settings": {
             "title": "1.   Customers Message You, But No One Replies Fast Enough",
-            "description": "<p>We set up instant automated replies via the Cloud API so no enquiry is left waiting.</p>",
+            "description": "<p>We set up instant automated replies via the Cloud API with WhatsApp automation, so no enquiry is left waiting.</p>",
             "link": "",
             "marker": "1"
           },

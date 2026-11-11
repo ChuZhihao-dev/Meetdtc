@@ -85,6 +85,39 @@
         "padding-block-end": 80
       }
     },
+    "about_fullscreen_video": {
+      "type": "about-fullscreen-video",
+      "blocks": {
+        "video_8VydCB": {
+          "type": "video",
+          "name": "t:names.video",
+          "static": true,
+          "settings": {
+            "source": "uploaded",
+            "video": "shopify://files/videos/8c638dc57fce170765aaffc09f1fa6c4.mov",
+            "video_url": "",
+            "video_autoplay": false,
+            "video_loop": true,
+            "cover_image": "shopify://shop_images/Meet_Experience.png",
+            "alt": "",
+            "custom_width": 100,
+            "custom_width_mobile": 100,
+            "aspect_ratio": "16/9",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "settings": {}
+    },
     "about_counter_hero": {
       "type": "about-counter-hero",
       "blocks": {
@@ -123,33 +156,6 @@
             "description": "Industries served\nE-commerce · Apps · Gaming"
           },
           "blocks": {}
-        },
-        "video_8VydCB": {
-          "type": "video",
-          "name": "t:names.video",
-          "static": true,
-          "settings": {
-            "source": "uploaded",
-            "video": "shopify://files/videos/8c638dc57fce170765aaffc09f1fa6c4.mov",
-            "video_url": "",
-            "video_autoplay": false,
-            "video_loop": true,
-            "cover_image": "shopify://shop_images/Meet_Experience.png",
-            "alt": "",
-            "custom_width": 100,
-            "custom_width_mobile": 100,
-            "aspect_ratio": "16/9",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 24,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
         }
       },
       "block_order": [
@@ -173,7 +179,6 @@
         "text_color": "#000000",
         "accent_color": "#772cc8",
         "enable_animation": true,
-        "show_video": true,
         "padding-block-start": 48,
         "padding-block-end": 48
       }
@@ -659,6 +664,7 @@
     "breadcrumbs",
     "page_background_phTEcT",
     "main",
+    "about_fullscreen_video",
     "about_counter_hero",
     "product_hero_9Lty7G",
     "stats_counter_4jcwP3",

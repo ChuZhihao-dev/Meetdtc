@@ -1,0 +1,50 @@
+{% comment %}
+  Full-width, viewport-height video using the theme's native Video block.
+  The static block retains its identity when extracted from About counter hero.
+  @example Add Fullscreen video and select footage and a cover in its Video block.
+{% endcomment %}
+<div class="section section--full-width about-fullscreen-video" data-breadcrumb-surface>
+  <div class="about-fullscreen-video__media">
+    {% content_for 'block', type: 'video', id: 'video_8VydCB' %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .about-fullscreen-video__media {
+    block-size: 100svh;
+    min-inline-size: 0;
+  }
+
+  .about-fullscreen-video__media > :is(deferred-media, .video-placeholder-wrapper) {
+    display: block;
+    block-size: 100%;
+    aspect-ratio: auto;
+    margin-inline: auto;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:about_counter_hero.video_name",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "presets": [
+    {
+      "name": "t:about_counter_hero.video_name",
+      "category": "t:categories.banners",
+      "blocks": {
+        "video_8VydCB": {
+          "type": "video",
+          "static": true,
+          "settings": {
+            "custom_width": 100,
+            "custom_width_mobile": 100,
+            "border_radius": 0
+          }
+        }
+      }
+    }
+  ]
+}
+{% endschema %}

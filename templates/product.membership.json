@@ -405,6 +405,17 @@
           "block_order": [
             "product_hero_certification_hLEQn8"
           ]
+        },
+        "stats": {
+          "type": "_product-hero-stats",
+          "static": true,
+          "settings": {
+            "font": "montserrat_n4",
+            "text_color": "#000000",
+            "accent_color": "#772cc8",
+            "enable_animation": true
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -417,7 +428,7 @@
         "eyebrow": "Membership & Loyalty",
         "heading": "Turn one-time buyers into a loyal, repeat-purchase customer base.",
         "heading_tag": "h1",
-        "description": "ME help DTC brands build a full-fidelity loyalty engine — from platform selection and system \nsetup to strategy design and operations coaching — that lifts member participation, \nrepeat purchase rate and member GMV share, creating a second growth engine beyond paid traffic.",
+        "description": "We help DTC brands build a full-fidelity loyalty engine — from platform selection \nand system setup to strategy design and operations coaching — that lifts \nmember participation, repeat purchase rate and member GMV share,\nbuilding brand loyalty and creating a second growth engine beyond paid traffic.",
         "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
@@ -753,7 +764,7 @@
         "gradient_start_position": 0,
         "gradient_end_position": 100,
         "background_gradient_from": "{{ settings.color_palette.background }}",
-        "background_gradient_to": "#EFE6F3",
+        "background_gradient_to": "#efe6f3",
         "background_gradient_angle": 160,
         "thickness": 0.5,
         "divider_color": "#707070",
@@ -771,7 +782,7 @@
           "type": "_business-challenge-item",
           "settings": {
             "title": "1.  You can't tell your brand apart from competitors",
-            "description": "<p>We build a differentiated tier and rewards system that's hard to copy.</p>",
+            "description": "<p>We build a differentiated tier and rewards system that strengthens brand loyalty and is hard to copy.</p>",
             "link": "",
             "marker": "1"
           },
@@ -791,7 +802,7 @@
           "type": "_business-challenge-item",
           "settings": {
             "title": "3.  Members register but never engage",
-            "description": "<p>We run activation campaigns that turn sign-ups into active members.</p>",
+            "description": "<p>&nbsp;We run customer loyalty campaigns that turn sign-ups into active members.</p>",
             "link": "",
             "marker": "3"
           },
@@ -858,13 +869,13 @@
       "settings": {
         "eyebrow": "OUR APPROACH",
         "heading": "One loyalty solution — from strategy to operations.",
-        "body_primary": "<p>Our approach is an end-to-end cycle: diagnosis, platform selection, system setup, page design and membership operations covering acquisition, activation, conversion, retention and referral — focused on end-to-end accountability and neutral, objective platform selection.<br/><br/></p>",
-        "body_secondary": "<p>This guarantees a loyalty engine built for results and run by a four-team guard (strategy + operations + tech + data), avoiding the common trap of buying software nobody knows how to operate.<br/><br/></p>",
+        "body_primary": "<p>Our approach is an end-to-end cycle for customer loyalty programs: diagnosis, platform selection, system setup, page design and membership operations covering acquisition, activation, conversion, retention and referral — focused on end-to-end accountability and neutral, objective platform selection.<br/><br/></p>",
+        "body_secondary": "<p>This delivers a loyalty program built for results and run by a four-team guard (strategy + operations + tech + data), avoiding the common trap of buying software nobody knows how to operate.</p>",
         "image": "shopify://shop_images/membership_our-approach.png",
         "image_alt": "",
         "font": "montserrat_n5",
         "text_color": "#000000",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "background": "",
         "padding-block-start": 80,
         "padding-block-end": 80,
@@ -925,7 +936,7 @@
           "type": "card",
           "settings": {
             "heading": "Points & Rewards Engine",
-            "description": "<p>We build earning rules and a multi-reward wallet; you get a flexible engine that rewards every key action.<br/></p>",
+            "description": "<p>We build earning rules and a multi-reward wallet; you get a flexible engine that powers loyalty and rewards programs and rewards every key action.</p>",
             "link": "",
             "link_label": "Learn more"
           }
@@ -943,7 +954,7 @@
           "type": "card",
           "settings": {
             "heading": "Operations Coaching",
-            "description": "<p>We run acquisition, activation, retention and referral campaigns with you; you get 1–12 months of hands-on coaching.</p>",
+            "description": "<p>We run customer loyalty campaigns covering acquisition, activation, retention and referral campaigns with you; you get 1–12 months of hands-on coaching.</p>",
             "link": "",
             "link_label": "Learn more"
           }
@@ -978,7 +989,7 @@
         "font": "montserrat_n4",
         "text_color": "#000000",
         "card_heading_color": "#241c52",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "background": "",
         "card_background": "#ffffff",
         "card_opacity": 58,
@@ -1130,7 +1141,25 @@
         "faq_row_XdLKBG": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q1. Do we need an existing membership tool to start?",
+            "question": "Q1. What is a loyalty program, and how does it help build brand loyalty?",
+            "answer": "<p>A loyalty program rewards customers for repeat purchases and engagement through points, membership tiers, exclusive benefits and other incentives. ME helps DTC brands design and manage loyalty and rewards programs that encourage repeat purchases and long-term customer relationships.<br/></p>",
+            "open_by_default": true
+          },
+          "blocks": {}
+        },
+        "faq_row_UFJbxH": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q2.  How to Choose a Loyalty Program for DTC Brands?",
+            "answer": "<p>Start by evaluating your customer retention goals, membership tiers, points and rewards, platform compatibility, and operational needs. ME helps DTC brands select the right loyalty platform and build a tailored program, from strategy design and system setup to ongoing operations coaching.</p>",
+            "open_by_default": true
+          },
+          "blocks": {}
+        },
+        "faq_row_zMfx6G": {
+          "type": "_faq-row",
+          "settings": {
+            "question": "Q3. Do we need an existing membership tool to start a loyalty program?",
             "answer": "<p>No. We start with a free diagnosis and recommend the right platform objectively — many clients start from zero and go live within a week.<br/><br/></p>",
             "open_by_default": true
           },
@@ -1139,7 +1168,7 @@
         "faq_row_ckALeW": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q2. How long does it take to launch?",
+            "question": "Q4.  How long does it take to launch a loyalty program?",
             "answer": "<p>New setups go live within 1 week; migration or customization within 1 month; a full program lands in about 6 weeks.<br/><br/></p>",
             "open_by_default": false
           },
@@ -1148,7 +1177,7 @@
         "faq_row_8DWdMn": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q3. What results can we expect?",
+            "question": "Q5. What results can we expect from customer loyalty programs?",
             "answer": "<p>In one brand with 400K+ users, members grew from 10K to 30K, EDM drove 25% of GMV, and ROI doubled.<br/><br/></p>",
             "open_by_default": false
           },
@@ -1157,7 +1186,7 @@
         "faq_row_6Vcq7e": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q4. Is this only for big brands?",
+            "question": "Q6. Is this only for big brands?",
             "answer": "<p>No. The membership product starts at $0–999/month billed by order volume, scaling from mid-size DTC to enterprise.<br/><br/></p>",
             "open_by_default": false
           },
@@ -1166,7 +1195,7 @@
         "faq_row_idcK38": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q5. Do you just configure software?",
+            "question": "Q7. Do you just configure loyalty program software?",
             "answer": "<p>&nbsp;No. We deliver strategy, setup and operations coaching with a four-team guard — strategy, operations, tech and data.</p>",
             "open_by_default": false
           },
@@ -1175,7 +1204,7 @@
         "faq_row_mtDEQH": {
           "type": "_faq-row",
           "settings": {
-            "question": "Q6. Which categories does this work for?",
+            "question": "Q8. Which categories does this work for?",
             "answer": "<p>3C, home, apparel, beauty and more. For high-AOV categories like 3C and home, loyalty ROI can reach 5–6×.</p>",
             "open_by_default": false
           },
@@ -1184,6 +1213,8 @@
       },
       "block_order": [
         "faq_row_XdLKBG",
+        "faq_row_UFJbxH",
+        "faq_row_zMfx6G",
         "faq_row_ckALeW",
         "faq_row_8DWdMn",
         "faq_row_6Vcq7e",
@@ -1194,7 +1225,7 @@
       "settings": {
         "eyebrow": "FAQ",
         "heading": "<p>About Working With ME</p>",
-        "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
+        "description": "<p>Learn how ME helps DTC brands build customer loyalty programs, from platform selection to launch and ongoing support.</p>",
         "font": "var(--font-heading--family)",
         "font_size": "2.5rem",
         "weight": "600",

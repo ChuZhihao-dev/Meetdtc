@@ -1,8 +1,9 @@
 {% comment %}
-  Header contract: one transparency setting applies to every storefront template.
+  Header contract: transparency is configured by template type or an explicitly selected ordinary page.
   Sticky and expanded navigation states retain their existing background behavior.
-  @example Configure the global transparent header, logo and text color in the header editor.
+  @example Configure page-specific transparency, inverse logo and text color in the header editor.
 {% endcomment %}
+{% capture header_page_rules %}{% content_for 'blocks' %}{% endcapture %}
 {% liquid
   assign order = 'logo,menu,localization,search,drawer_search,actions'
 
@@ -21,9 +22,28 @@
     render 'slideshow-styles'
   endif
 
-  if section.settings.enable_transparent_header
+  if section.settings.enable_transparent_header_home and template.name == 'index'
     assign transparent = 'always'
-    assign transparent_text_color_setting = section.settings.text_color_transparent
+    assign transparent_text_color_setting = section.settings.text_color_transparent_home
+  elsif section.settings.enable_transparent_header_product and template.name == 'product'
+    assign transparent = 'always'
+    assign transparent_text_color_setting = section.settings.text_color_transparent_product
+  elsif section.settings.enable_transparent_header_collection and template.name == 'collection'
+    assign transparent = 'always'
+    assign transparent_text_color_setting = section.settings.text_color_transparent_collection
+  endif
+
+  # Theme block settings are private to their renderer. Read the first matching
+  # block's captured marker rather than attempting to read section.blocks settings.
+  assign page_rule_parts = header_page_rules | split: 'data-header-page-rule="'
+  assign transparent_page_inverse_logo = false
+  if page_rule_parts.size > 1
+    assign page_rule = page_rule_parts[1] | split: '"' | first | split: '|'
+    assign transparent = 'always'
+    assign transparent_text_color_setting = page_rule[0]
+    if page_rule[1] == 'true'
+      assign transparent_page_inverse_logo = true
+    endif
   endif
 
   if section.settings.enable_sticky_header == 'always'
@@ -78,7 +98,7 @@
   endif
 
   capture logo
-    content_for 'block', type: '_header-logo', id: 'header-logo'
+    content_for 'block', type: '_header-logo', id: 'header-logo', page_inverse_logo: transparent_page_inverse_logo
   endcapture
 
   capture menu
@@ -390,7 +410,7 @@
     --color-background-bottom-row: rgba({{ section.settings.background_color_bottom.rgba | default: settings.page_background_color.rgba }});
     {% if transparent and text_color_transparent != blank %}
       --color-transparent-text: {{ text_color_transparent }};
-      --color-transparent-text-rgb: {{ text_color_transparent.rgb }};
+      --color-transparent-text-rgb: {{ text_color_transparent | color_extract: 'red' }}, {{ text_color_transparent | color_extract: 'green' }}, {{ text_color_transparent | color_extract: 'blue' }};
       --color-transparent-text-contrast: {{ transparent_text_contrast }};
     {% endif %}
     {% if cart_bubble_color_override %}
@@ -405,6 +425,7 @@
     {% endif %}
   "
 >
+  {{ header_page_rules }}
   <div class="header__underlay header__underlay-closed"></div>
   <div
     class="header__underlay header__underlay-open"
@@ -1931,29 +1952,82 @@
     },
     {
       "type": "header",
-      "content": "t:content.transparent_header"
+      "content": "t:content.home_page"
     },
     {
       "type": "checkbox",
-      "id": "enable_transparent_header",
+      "id": "enable_transparent_header_home",
       "label": "t:settings.transparent_background",
       "default": false
     },
     {
       "type": "checkbox",
-      "id": "transparent_inverse_logo",
+      "id": "home_inverse_logo",
       "label": "t:settings.inverse_logo",
       "default": false,
-      "visible_if": "{{ section.settings.enable_transparent_header }}"
+      "visible_if": "{{ section.settings.enable_transparent_header_home }}"
     },
     {
       "type": "color",
-      "id": "text_color_transparent",
+      "id": "text_color_transparent_home",
       "label": "t:settings.text_color_transparent",
       "placeholder": "t:settings.default",
-      "visible_if": "{{ section.settings.enable_transparent_header }}"
+      "visible_if": "{{ section.settings.enable_transparent_header_home }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.product_page"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent_header_product",
+      "label": "t:settings.transparent_background",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "product_inverse_logo",
+      "label": "t:settings.inverse_logo",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_transparent_header_product }}"
+    },
+    {
+      "type": "color",
+      "id": "text_color_transparent_product",
+      "label": "t:settings.text_color_transparent",
+      "placeholder": "t:settings.default",
+      "visible_if": "{{ section.settings.enable_transparent_header_product }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.collection_page"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent_header_collection",
+      "label": "t:settings.transparent_background",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "collection_inverse_logo",
+      "label": "t:settings.inverse_logo",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_transparent_header_collection }}"
+    },
+    {
+      "type": "color",
+      "id": "text_color_transparent_collection",
+      "label": "t:settings.text_color_transparent",
+      "placeholder": "t:settings.default",
+      "visible_if": "{{ section.settings.enable_transparent_header_collection }}"
     }
   ],
-  "presets": []
+  "presets": [],
+  "blocks": [
+    {
+      "type": "_header-transparent-page"
+    }
+  ]
 }
 {% endschema %}

@@ -8,6 +8,13 @@
  * ------------------------------------------------------------
  */
 {
+  "header_transparent_page": {
+    "name": "Transparent header page",
+    "page": "Page",
+    "page_info": "Only this page uses a transparent header. Add another block for each additional page. If a page is selected more than once, the first enabled block applies.",
+    "enabled": "Enable transparent header for this page"
+  },
+
   "global_breadcrumbs": {
     "name": "Trilha de navegação"
   },

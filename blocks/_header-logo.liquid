@@ -1,10 +1,21 @@
-
-
+{% doc %}
+  Renders the header logo with its transparent-state variant.
+  @param {boolean} [page_inverse_logo] - Whether the matched ordinary page uses the inverse logo.
+  @example {% content_for 'block', type: '_header-logo', id: 'header-logo', page_inverse_logo: true %}
+{% enddoc %}
 {% liquid
   assign block_settings = block.settings
   assign use_inverse_logo = false
 
-  if section.settings.enable_transparent_header and section.settings.transparent_inverse_logo
+  if section.settings.enable_transparent_header_home and template.name == 'index' and section.settings.home_inverse_logo == true
+    assign use_inverse_logo = true
+  elsif section.settings.enable_transparent_header_product and template.name == 'product' and section.settings.product_inverse_logo == true
+    assign use_inverse_logo = true
+  elsif section.settings.enable_transparent_header_collection and template.name == 'collection' and section.settings.collection_inverse_logo == true
+    assign use_inverse_logo = true
+  endif
+
+  if request.page_type == 'page' and page_inverse_logo
     assign use_inverse_logo = true
   endif
 

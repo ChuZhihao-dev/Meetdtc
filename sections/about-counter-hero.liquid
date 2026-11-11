@@ -1,7 +1,7 @@
 {% comment %}
-  About hero combines introductory copy, editable statistics and a video in one surface.
-  Reuses counter rendering and the native Video block, with independent section settings.
-  @example Add About counter hero and configure its statistics and static Video block.
+  About statistics pairs introductory copy with editable animated statistic blocks.
+  Video is composed independently through the Fullscreen video section.
+  @example Add About animated stats and configure its copy and statistics.
 {% endcomment %}
 {% liquid
   assign s = section.settings
@@ -21,11 +21,6 @@
       {% endif %}
       {% if s.description != blank %}<p class="about-counter-hero__description">{{ s.description | escape | newline_to_br }}</p>{% endif %}
     </div>
-    {% if s.show_video %}
-      <div class="about-counter-hero__video">
-        {% content_for 'block', type: 'video', id: 'video_8VydCB' %}
-      </div>
-    {% endif %}
     {% if statistics != blank %}
       <div class="about-counter-hero__stats">{% render 'stats-counter', settings: s, items: statistics %}</div>
     {% endif %}
@@ -34,21 +29,18 @@
 {% stylesheet %}
   .about-counter-hero__background { background: linear-gradient(92.19deg, var(--about-hero-bg-from) 1.07%, var(--about-hero-bg-to) 98.93%); }
   .about-counter-hero { padding-block: calc(var(--padding-block-start, 48px) + var(--section-top-offset, 0px)) var(--padding-block-end, 48px); font-family: var(--font-heading--family); }
-  .about-counter-hero__inner { display: grid; grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr); grid-template-areas: "intro video" "stats video"; gap: 40px 56px; align-items: start; inline-size: 100%; min-inline-size: 0; }
-  .about-counter-hero__inner:not(:has(.about-counter-hero__video)) { grid-template-columns: minmax(0, 1fr); grid-template-areas: "intro" "stats"; }
+  .about-counter-hero__inner { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "intro" "stats"; gap: 40px; align-items: start; inline-size: 100%; min-inline-size: 0; }
   .about-counter-hero__intro { grid-area: intro; display: grid; gap: 20px; min-inline-size: 0; }
   .about-counter-hero__eyebrow { margin: 0; font-size: 20px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
   .about-counter-hero__heading { margin: 0; font-family: inherit; font-size: 40px; font-weight: 600; line-height: 1.2; overflow-wrap: anywhere; }
-  .about-counter-hero__description { max-inline-size: 34ch; margin: 0; color: var(--about-hero-description-color); font-size: 18px; font-weight: 500; line-height: 1.5; overflow-wrap: anywhere; }
+  .about-counter-hero__description { max-inline-size: 48ch; margin: 0; color: var(--about-hero-description-color); font-size: 18px; font-weight: 500; line-height: 1.5; overflow-wrap: anywhere; }
   .about-counter-hero__stats { grid-area: stats; min-inline-size: 0; }
-  .about-counter-hero .stats-counter__items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); inline-size: 100%; max-inline-size: none; gap: 32px; }
+  .about-counter-hero .stats-counter__items { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); inline-size: 100%; max-inline-size: none; gap: 32px; }
   .about-counter-hero .stats-counter__item { width: auto; text-align: start; }
   .about-counter-hero .stats-counter__amount { justify-content: flex-start; font-size: 48px; }
   .about-counter-hero .stats-counter__description { margin-inline: 0; }
-  .about-counter-hero__video { grid-area: video; align-self: center; inline-size: 100%; min-inline-size: 0; }
-  .about-counter-hero__video > deferred-media { display: block; }
   @media screen and (max-width: 989px) {
-    .about-counter-hero__inner { grid-template-columns: minmax(0, 1fr); grid-template-areas: "intro" "video" "stats"; gap: 32px; }
+    .about-counter-hero__inner { grid-template-columns: minmax(0, 1fr); grid-template-areas: "intro" "stats"; gap: 32px; }
     .about-counter-hero__description { max-inline-size: 48ch; }
     .about-counter-hero .stats-counter__items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
@@ -166,12 +158,6 @@
       "type": "checkbox",
       "id": "enable_animation",
       "label": "t:stats_counter.enable_animation",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_video",
-      "label": "t:about_counter_hero.show_video",
       "default": true
     },
     {

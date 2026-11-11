@@ -402,9 +402,16 @@
     "padding_mobile_bottom": "Mobile bottom padding",
     "enable_reveal": "Enable entrance animation"
   },
+  "header_transparent_page": {
+    "name": "Transparent header page",
+    "page": "Page",
+    "page_info": "Only this page uses a transparent header. Add another block for each additional page. If a page is selected more than once, the first enabled block applies.",
+    "enabled": "Enable transparent header for this page"
+  },
   "about_counter_hero": {
-    "name": "About counter hero",
-    "show_video": "Show video"
+    "name": "About animated stats",
+    "show_video": "Show video",
+    "video_name": "Fullscreen video"
   },
   "product_hero": {
     "certification": "Brand certification",
@@ -472,7 +479,7 @@
     "text": "Text"
   },
   "content": {
-    "transparent_header": "Site-wide transparent header",
+    "transparent_header": "Transparent header",
     "about_page": "About page",
     "contact_page": "Contact page",
     "services_globe": "Services",

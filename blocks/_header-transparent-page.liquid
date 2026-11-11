@@ -1,0 +1,53 @@
+{% doc %}
+  Configures transparent header opt-in for one selected ordinary page.
+  Resolves its own private settings and emits a marker for the header capture.
+  The hidden marker allows Theme Editor selection without adding storefront content.
+  @example Add Transparent header page inside Header and select the About Us page.
+{% enddoc %}
+<span hidden
+  {% if request.page_type == 'page' and page != blank and block.settings.enabled and block.settings.page != blank and block.settings.page.id == page.id %}
+    data-header-page-rule="{{ block.settings.text_color | default: settings.page_text_color | color_to_rgb | escape }}|{{ block.settings.inverse_logo }}"
+  {% endif %}
+  {{ block.shopify_attributes }}
+></span>
+
+{% schema %}
+{
+  "name": "t:header_transparent_page.name",
+  "tag": null,
+  "settings": [
+    {
+      "type": "page",
+      "id": "page",
+      "label": "t:header_transparent_page.page",
+      "info": "t:header_transparent_page.page_info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "t:header_transparent_page.enabled",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "inverse_logo",
+      "label": "t:settings.inverse_logo",
+      "default": false,
+      "visible_if": "{{ block.settings.enabled }}"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:settings.text_color_transparent",
+      "placeholder": "t:settings.default",
+      "visible_if": "{{ block.settings.enabled }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:header_transparent_page.name",
+      "category": "t:categories.header"
+    }
+  ]
+}
+{% endschema %}
