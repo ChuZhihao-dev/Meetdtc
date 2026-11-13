@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "page_background_phTEcT": {
+      "type": "page-background",
+      "name": "t:names.page_background",
+      "settings": {
+        "background_type": "gradient",
+        "background_color": "#ffffff",
+        "gradient_color_from": "#d8e0f8",
+        "gradient_color_to": "#f7f1ed",
+        "gradient_angle": 160
+      }
+    },
     "main": {
       "type": "main-page",
       "blocks": {
@@ -376,7 +387,7 @@
       "settings": {
         "eyebrow": "",
         "heading": "Who We Are",
-        "body": "<p>Meet Experience (ME) is a digital marketing and technology solutions agency under <a href=\"https://www.meetsocial.com/\" title=\"https://www.meetsocial.com/\"><strong>Meetsocial Group</strong></a>. We help businesses establish and grow their digital presence through website development, search engine optimization (SEO), AI SEO and integrated digital marketing solutions.</p><p>Headquartered in Shanghai, China, ME serves businesses across Singapore, Southeast Asia and global markets. Combining global marketing experience, AI and MarTech capabilities, we connect digital strategy, technical implementation and ongoing operations to support businesses at every stage of digital growth.</p><p>Our services cover the complete digital growth journey — from building websites and improving search visibility to customer engagement, marketing automation, data analytics and cloud solutions.</p>",
+        "body": "<p>Meet Experience (ME) is a digital marketing and technology agency based in Shanghai and part of <a href=\"https://www.meetsocial.com/\" target=\"_blank\" title=\"https://www.meetsocial.com/\">Meetsocial Group</a>, a global marketing technology group founded in Shanghai in 2013. We draw on the group’s experience helping Chinese businesses connect with international customers.</p><p>ME works with businesses in Singapore, Hong Kong, Taiwan and beyond, supporting local growth and international expansion. Our core services include website design and development, SEO and AI SEO, affiliate marketing, and email marketing.</p><p>We connect strategy, technical implementation and ongoing optimization to help businesses build their online presence, attract new customers and strengthen customer relationships. Each engagement is shaped around the client’s goals, target markets and stage of growth.</p>",
         "footer": "Office location：Shanghai | Singapore  | Hong Kong",
         "font": "montserrat_n4",
         "background": "",
@@ -465,7 +476,7 @@
         "heading": "How We Work",
         "description": "<p>Understand the business. Put the plan into practice. Keep improving.</p>",
         "font": "montserrat_n4",
-        "background": "linear-gradient(126.153deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1) 87.811%)",
+        "background": "linear-gradient(126.153deg, rgba(227, 230, 244, 1) 12.189%, rgba(231, 232, 242, 1) 87.811%)",
         "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "text_color": "#000000",
         "card_background": "#ffffff",
@@ -643,6 +654,7 @@
     }
   },
   "order": [
+    "page_background_phTEcT",
     "main",
     "about_fullscreen_video",
     "about_counter_hero",

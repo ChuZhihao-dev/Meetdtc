@@ -22,8 +22,8 @@
       "settings": {
         "background_type": "gradient",
         "background_color": "#ffffff",
-        "gradient_color_from": "#f8eff8",
-        "gradient_color_to": "#cbd5fd",
+        "gradient_color_from": "#F0EDFF",
+        "gradient_color_to": "#F0EDFF",
         "gradient_angle": 180
       }
     },

@@ -90,7 +90,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Meet Experience (ME) is a digital marketing agency helping DTC brands expand globally through website development, SEO, AI SEO and e-commerce solutions, supported by AI and MarTech consulting, implementation and ongoing operations</p>",
+                "text": "<p>Meet Experience (ME) is a digital marketing and technology agency helping businesses grow through website development, SEO and AI SEO, affiliate marketing, and email marketing. We combine strategy, implementation and ongoing optimization to support local growth and international expansion.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -993,7 +993,7 @@
             "image": "shopify://shop_images/Global_Marketing.svg",
             "circle_color": "#7a4dff",
             "title": "Global Marketing Experience",
-            "description": "<p>Backed by Meetsocial Group's global marketing experience and partner network, we support businesses across Singapore, Southeast Asia and international markets.</p>"
+            "description": "<p>Backed by Meetsocial Group’s international marketing experience and partner network, we help businesses strengthen their local presence and expand into new markets.</p>"
           },
           "blocks": {}
         },
@@ -1226,7 +1226,7 @@
           "type": "_faq-row",
           "settings": {
             "question": "Q4. Which markets and platforms does ME work across?",
-            "answer": "<p>We help businesses expand into global markets, with a focus on clients based in Singapore, Hong Kong, Taiwan and mainland China. With offices in Singapore, Shanghai and Shenzhen, ME provides support in English and Chinese, connecting the commerce, marketing and analytics platforms that fit each client’s growth needs.<br/><br/></p>",
+            "answer": "<p>Based in Shanghai and part of Meetsocial Group, ME supports businesses in Singapore, Hong Kong, Taiwan and beyond, helping them grow locally and expand internationally. We provide support in English and Chinese, working with the website, e-commerce, marketing and analytics platforms that fit each client’s goals and target markets.</p>",
             "open_by_default": false
           },
           "blocks": {}
