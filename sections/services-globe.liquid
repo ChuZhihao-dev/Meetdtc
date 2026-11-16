@@ -1,5 +1,6 @@
 {% comment %}
-  Services globe. Editable service overview with a decorative COBE globe.
+  Services globe. Static service labels surround a viewport-gated 3D globe,
+  with a merchant-managed introduction and the design image as a static fallback.
   @example
   <!-- Add Services globe between Partner brands and the solutions grid. -->
 {% endcomment %}
@@ -7,7 +8,11 @@
 {% liquid
   assign s = section.settings
   assign color_id = 'services-' | append: section.id
-  assign service_keys = 'web_commerce,customer_growth,ai_technology,partner_marketing,data_intelligence' | split: ','
+  assign service_keys = 'ai_technology,partner_marketing,customer_growth,data_intelligence,web_commerce' | split: ','
+  assign globe_color = s.globe_color | default: '#8B45F0'
+  assign globe_red = globe_color | color_extract: 'red' | divided_by: 255.0
+  assign globe_green = globe_color | color_extract: 'green' | divided_by: 255.0
+  assign globe_blue = globe_color | color_extract: 'blue' | divided_by: 255.0
 %}
 {% render 'contrast-override', background_color: s.background_gradient_from, text_color: s.text_color, section_id: color_id, preset: 'content' %}
 {% render 'text-block-styles' %}
@@ -16,29 +21,20 @@
 <script src="{{ 'services-globe.js' | asset_url }}" type="module" fetchpriority="low"></script>
 
 <div
-  class="services-globe color-custom-{{ color_id }}"
+  class="services-globe spacing-style color-custom-{{ color_id }}"
   style="
+    {% render 'spacing-style', settings: s %}
     --services-bg-from: {{ s.background_gradient_from }};
     --services-bg-to: {{ s.background_gradient_to }};
     --services-font: {{ s.font }};
     --services-heading-size: {{ s.font_size }};
     --services-link-color: {{ s.link_color }};
+    --services-button-from: {{ s.button_gradient_from | default: '#7C21C2' }};
+    --services-button-to: {{ s.button_gradient_to | default: '#5D70EB' }};
     --services-globe-filter: url('#services-globe-tint-{{ section.id }}');
-    --gradient-from: {{ s.gradient_color_from }};
-    --gradient-mid: {{ s.gradient_color_mid | default: '#8B45F0' }};
-    --gradient-to: {{ s.gradient_color_to }};
-    --gradient-angle: 100deg;
-    --gradient-start: 0%;
-    --gradient-end: 100%;
   "
 >
-  {% liquid
-    assign globe_color = s.gradient_color_from | default: '#5B34C6'
-    assign globe_red = globe_color | color_extract: 'red' | divided_by: 255.0
-    assign globe_green = globe_color | color_extract: 'green' | divided_by: 255.0
-    assign globe_blue = globe_color | color_extract: 'blue' | divided_by: 255.0
-  %}
-  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute;">
+  <svg width="0" height="0" aria-hidden="true" focusable="false" class="services-globe__filter">
     <defs>
       <filter id="services-globe-tint-{{ section.id }}" color-interpolation-filters="sRGB">
         <feColorMatrix type="saturate" values="0" />
@@ -50,137 +46,270 @@
       </filter>
     </defs>
   </svg>
-  <div class="section section--page-width">
   <div class="services-globe__layout">
-    <scroll-reveal-component data-reveal-scope>
-    <div class="services-globe__intro">
+    <scroll-reveal-component class="services-globe__intro" data-reveal-scope>
       <div class="services-globe__title" data-reveal>
         {% if s.eyebrow != blank %}<p class="services-globe__eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
         {% if s.heading != blank %}
           <h2 class="services-globe__heading text-block{% if s.gradient_text %} text-block--gradient{% endif %}">{{ s.heading | escape | newline_to_br }}</h2>
         {% endif %}
       </div>
-      <div class="services-globe__copy" data-reveal>
-        {% if s.description != blank %}<div class="services-globe__description">{{ s.description }}</div>{% endif %}
-      </div>
-      <ul class="services-globe__services" role="list">
-        {% for key in service_keys limit: 5 %}
-          {% if s[key] != blank %}<li class="services-globe__service services-globe__service--{{ key }}">{{ s[key] | escape }}</li>{% endif %}
-        {% endfor %}
-      </ul>
+      {% if s.description != blank %}
+        <div class="services-globe__description" data-reveal>{{ s.description }}</div>
+      {% endif %}
       {% if s.link_label != blank and s.link != blank %}
         <div data-reveal>
-          <a class="services-globe__link" href="{{ s.link | escape }}">{{ s.link_label | escape }}</a>
+          <a class="button services-globe__link" href="{{ s.link | escape }}">
+            <span>{{ s.link_label | escape }}</span>
+            <img src="{{ 'services-globe-link-arrow.svg' | asset_url }}" width="24" height="24" alt="" loading="lazy" aria-hidden="true">
+          </a>
         </div>
       {% endif %}
-    </div>
     </scroll-reveal-component>
-    <div class="services-globe__visual">
-      <div class="services-globe__art" aria-hidden="true">
-        <services-globe-component class="services-globe__renderer" data-rotate="{{ s.auto_rotate }}">
-          <img ref="fallback" class="services-globe__fallback" src="{{ 'services-globe-fallback.webp' | asset_url }}" width="1148" height="1148" alt="" decoding="async" loading="lazy">
-          <div ref="host" class="services-globe__canvas-host"><canvas ref="canvas" class="services-globe__canvas" width="1148" height="1148"></canvas></div>
-        </services-globe-component>
-      </div>
 
-    </div>
-  </div>
+    <services-globe-stage class="services-globe__visual">
+      <div ref="scene" class="services-globe__scene">
+        <div class="services-globe__ai-bot" aria-hidden="true">
+          <img src="{{ 'services-globe-ai-bot.svg' | asset_url }}" width="138" height="138" alt="" loading="lazy">
+        </div>
+        <div class="services-globe__disc" aria-hidden="true">
+          <img src="{{ 'services-globe-design-disc.svg' | asset_url }}" width="741" height="721" alt="" loading="lazy">
+        </div>
+        <div class="services-globe__orbit" aria-hidden="true">
+          <img src="{{ 'services-globe-design-orbit.svg' | asset_url }}" width="893" height="896" alt="" loading="lazy">
+        </div>
+        <div class="services-globe__halo" aria-hidden="true">
+          <img src="{{ 'services-globe-design-halo.svg' | asset_url }}" width="891" height="894" alt="" loading="lazy">
+        </div>
+        <div class="services-globe__art" aria-hidden="true">
+          {% if s.auto_rotate %}
+            <services-globe-component class="services-globe__renderer" data-rotate="true">
+              <img ref="fallback" class="services-globe__fallback" src="{{ 'services-globe-design.png' | asset_url }}" width="1024" height="1024" alt="" decoding="async" loading="lazy">
+              <div ref="host" class="services-globe__canvas-host"><canvas ref="canvas" class="services-globe__canvas" width="768" height="768"></canvas></div>
+            </services-globe-component>
+          {% else %}
+            <img class="services-globe__fallback" src="{{ 'services-globe-design.png' | asset_url }}" width="1024" height="1024" alt="" decoding="async" loading="lazy">
+          {% endif %}
+        </div>
+        <div class="services-globe__light" aria-hidden="true">
+          <img src="{{ 'services-globe-design-light.svg' | asset_url }}" width="891" height="891" alt="" loading="lazy">
+        </div>
+        <ul class="services-globe__services" role="list">
+          {% assign active_service_key = '' %}
+          {% for key in service_keys %}
+            {% if s[key] != blank %}
+              {% if active_service_key == blank %}{% assign active_service_key = key %}{% endif %}
+              <li class="services-globe__service services-globe__service--{{ key }}">
+                <span class="services-globe__service-label{% if key == active_service_key %} services-globe__service-label--featured{% endif %}">{{ s[key] | escape }}</span>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </services-globe-stage>
   </div>
 </div>
 
 {% stylesheet %}
   .services-globe {
+    display: block;
     overflow: clip;
     background-image: linear-gradient(123.856deg, var(--services-bg-from) 27.224%, var(--services-bg-to) 99.351%);
     font-family: var(--services-font, var(--font-heading--family));
     color: var(--color-foreground);
   }
+
+  .services-globe__filter { position: absolute; }
+
   .services-globe__layout {
+    position: relative;
+    overflow: clip;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    grid-template-columns: 82fr 520fr 838fr;
     align-items: center;
-    gap: clamp(32px, 5vw, 80px);
     container-type: inline-size;
     inline-size: 100%;
+    max-inline-size: 1440px;
     min-inline-size: 0;
-    padding-block: 64px;
+    min-block-size: clamp(620px, 50.69445vw, 730px);
+    margin-inline: auto;
+    isolation: isolate;
   }
-  .services-globe__layout > scroll-reveal-component { min-inline-size: 0; }
-  .services-globe__intro { display: grid; gap: 24px; }
-  .services-globe__title, .services-globe__copy { min-inline-size: 0; }
-  .services-globe__eyebrow { margin: 0 0 12px; font-size: 14px; font-weight: 500; line-height: 1.583; }
+
+  .services-globe .services-globe__intro {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-column: 2;
+    gap: 26px;
+    min-inline-size: 0;
+    padding-block: 60px;
+  }
+
+  .services-globe__title { display: grid; gap: 10px; min-inline-size: 0; }
+  .services-globe__eyebrow { margin: 0; font-size: 18px; font-weight: 500; line-height: normal; }
   .services-globe__heading {
     margin: 0;
     font-family: inherit;
     font-size: var(--services-heading-size);
     font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    line-height: normal;
+    letter-spacing: normal;
     overflow-wrap: anywhere;
     text-wrap: pretty;
     color: var(--color-foreground);
   }
-  .services-globe__copy { max-inline-size: 50ch; }
-  .services-globe__description { font-size: 16px; font-weight: 400; line-height: 1.7; overflow-wrap: anywhere; }
-  .services-globe__description > :first-child { margin-block-start: 0; }
-  .services-globe__description > :last-child { margin-block-end: 0; }
-  .services-globe__link { display: inline-block; margin-block-start: 0; font-size: 18px; font-weight: 500; line-height: 1.5; color: var(--services-link-color); text-decoration: none; text-underline-offset: 5px; }
-  .services-globe__link:is(:hover, :focus-visible) { text-decoration: underline; }
-  .services-globe__link:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
-  .services-globe__visual { position: relative; min-inline-size: 0; block-size: clamp(380px, 42cqw, 580px); }
-  .services-globe__art { position: absolute; inset: 0; pointer-events: none; }
-  .services-globe__renderer { display: block; position: absolute; inset-block-start: 0; inset-inline-start: -8%; inline-size: 135%; aspect-ratio: 1; }
-  .services-globe__fallback { display: block; inline-size: 100%; block-size: auto; filter: var(--services-globe-filter); mix-blend-mode: multiply; }
-  /* Both the static fallback and live globe share the same reserved square. */
-  .services-globe__canvas-host { position: absolute; inset-block-start: 0; inset-inline: 0; inline-size: 100%; aspect-ratio: 1; mix-blend-mode: multiply; }
-  .services-globe__canvas { display: block; inline-size: 100%; block-size: 100%; opacity: 0; filter: var(--services-globe-filter); }
-  .services-globe__renderer[data-ready] .services-globe__fallback { visibility: hidden; }
-  .services-globe__renderer[data-ready] .services-globe__canvas { opacity: 1; }
-  .services-globe__services {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px 24px;
-    margin: 4px 0 0;
-    padding: 0;
-    list-style: none;
-  }
-  .services-globe__service {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    min-inline-size: 0;
+
+  .services-globe__description {
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-60));
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.5;
     overflow-wrap: anywhere;
   }
-  .services-globe__service::before {
-    content: '';
-    flex: 0 0 6px;
-    inline-size: 6px;
-    block-size: 6px;
-    border-radius: 50%;
-    background: var(--services-link-color);
-    align-self: center;
+  .services-globe__description > :first-child { margin-block-start: 0; }
+  .services-globe__description > :last-child { margin-block-end: 0; }
+
+  .services-globe .services-globe__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    max-inline-size: 100%;
+    min-block-size: 44px;
+    padding: 10px 26px;
+    border-radius: 47px;
+    background-image: linear-gradient(98.071deg, var(--services-button-from) 0.416%, var(--services-button-to) 99.584%);
+    color: var(--color-primary-button-text);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-transform: none;
+    overflow-wrap: anywhere;
+    transition: opacity var(--animation-speed) var(--animation-easing);
   }
-  @media screen and (max-width: 749px) {
-    .services-globe__layout { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 40px 0; }
-    .services-globe__intro { gap: 24px; }
-    .services-globe__heading { font-size: 1.75rem; }
-    .services-globe__link { min-block-size: 0; font-size: 16px; }
-    .services-globe__services { gap: 12px 16px; }
-    .services-globe__visual { block-size: 85cqw; }
-    .services-globe__renderer { inset-inline-start: -5%; inline-size: 110%; }
+  .services-globe__link img { display: block; flex: none; inline-size: 24px; block-size: 24px; max-inline-size: none; }
+  .services-globe__link:hover { opacity: 0.85; }
+  .services-globe__link:focus-visible { outline: 2px solid var(--services-link-color); outline-offset: 5px; }
+  .services-globe__link:dir(rtl) img { transform: scaleX(-1); }
+
+  .services-globe__visual { --services-label-tap-height: max(44px, calc(44px / var(--services-scene-scale, 1))); display: block; position: absolute; inset: 0; min-inline-size: 0; pointer-events: none; }
+  .services-globe__scene {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    inline-size: 1440px;
+    block-size: 730px;
+    transform: translate(-50%, -50%) scale(var(--services-scene-scale, 1));
   }
-  /* Shared mobile scale for every instance of this component. */
+  .services-globe__visual:dir(rtl) { transform: scaleX(-1); }
+  .services-globe__visual:dir(rtl) .services-globe__service { scale: -1 1; }
+  .services-globe__ai-bot, .services-globe__disc, .services-globe__orbit,
+  .services-globe__halo, .services-globe__art, .services-globe__light { position: absolute; }
+  /* SVGs retain their exported dimensions; the scene scales all layers together. */
+  .services-globe__scene img { display: block; inline-size: inherit; block-size: inherit; max-inline-size: none; }
+  .services-globe__ai-bot { left: 622px; top: 252px; inline-size: 138px; block-size: 138px; }
+  .services-globe__disc { left: 914px; top: 0; inline-size: 741px; block-size: 721px; }
+  .services-globe__orbit { left: 837px; top: -83px; inline-size: 893px; block-size: 896px; }
+  .services-globe__halo { left: 838px; top: -82px; inline-size: 891px; block-size: 894px; }
+  .services-globe__art { left: 900px; top: -20px; inline-size: 768px; block-size: 768px; }
+  .services-globe__light { left: 838px; top: -79px; inline-size: 891px; block-size: 891px; }
+  .services-globe__renderer { display: block; position: relative; inline-size: 100%; aspect-ratio: 1; }
+  .services-globe__scene .services-globe__fallback { inline-size: 100%; block-size: auto; opacity: 0.7; }
+  .services-globe__canvas-host { position: absolute; inset: 0; inline-size: 100%; aspect-ratio: 1; }
+  .services-globe__canvas { display: block; inline-size: 100%; block-size: 100%; opacity: 0; filter: var(--services-globe-filter); }
+  .services-globe__renderer[data-ready] .services-globe__fallback { visibility: hidden; }
+  .services-globe__renderer[data-ready] .services-globe__canvas { opacity: 0.7; }
+
+  .services-globe__services { margin: 0; padding: 0; list-style: none; }
+  .services-globe__service {
+    position: absolute;
+    z-index: 3;
+    inline-size: max-content;
+    max-inline-size: 330px;
+    font-size: 14px;
+  }
+  .services-globe__service-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-inline-size: 100%;
+    min-block-size: var(--services-label-tap-height);
+    padding: 10px 22px;
+    border: 1px solid transparent;
+    border-radius: 40px;
+    /* An opaque base stops the orbit showing through the translucent tint. */
+    background-color: var(--services-bg-from);
+    background-image: linear-gradient(rgb(162 178 204 / 0.08), rgb(162 178 204 / 0.08));
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-70));
+    font-family: inherit;
+    font-size: max(1em, calc(12px / var(--services-scene-scale, 1)));
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+  .services-globe__service-label--featured {
+    background-image: linear-gradient(154.765deg, rgb(148 184 255 / 0.4) 27.224%, rgb(225 223 255 / 0.4) 99.351%);
+    color: var(--color-foreground);
+  }
+  .services-globe__service--ai_technology { left: 690px; top: 368px; transform: translateY(-50%); font-size: 18px; }
+  .services-globe__service--partner_marketing { left: 757px; top: 157px; }
+  .services-globe__service--customer_growth { left: 762px; top: 540px; }
+  .services-globe__service--data_intelligence { left: 890px; top: 42px; font-size: 10px; }
+  .services-globe__service--web_commerce { left: 895px; top: 654px; font-size: 10px; }
+
+  @media screen and (width > 1440px) {
+    .services-globe__visual {
+      --services-label-tap-height: max(44px, calc(44px / (var(--services-scene-scale, 1) * 0.72)));
+    }
+    .services-globe__scene {
+      left: calc(50% - 24px);
+      transform: translate(-50%, -50%) scale(calc(var(--services-scene-scale, 1) * 0.72));
+    }
+    .services-globe__service-label {
+      font-size: max(1em, calc(12px / (var(--services-scene-scale, 1) * 0.72)));
+    }
+  }
+
+  @media screen and (min-width: 1200px) and (max-width: 1439px) {
+    .services-globe__visual { --services-scene-scale: 0.9; }
+  }
+
+  @media screen and (min-width: 990px) and (max-width: 1199px) {
+    .services-globe__visual { --services-scene-scale: 0.83; }
+    .services-globe__heading { font-size: min(var(--services-heading-size), 44px); }
+    .services-globe__eyebrow { font-size: 16px; }
+  }
+
+  @media screen and (max-width: 989px) {
+    .services-globe__layout { display: block; min-block-size: 0; }
+    .services-globe .services-globe__intro { gap: 24px; padding: 48px var(--page-margin) 24px; max-inline-size: 600px; }
+    .services-globe__heading { font-size: min(var(--services-heading-size), 40px); }
+    .services-globe__eyebrow { font-size: 14px; }
+    .services-globe__visual { --services-scene-scale: 0.6; position: relative; inset: auto; inline-size: 100%; aspect-ratio: 840 / 730; }
+    .services-globe__scene { left: calc(50% - 300px * var(--services-scene-scale, 0.6)); }
+    .services-globe__service { font-size: 26px; max-inline-size: 400px; }
+    .services-globe__service--ai_technology { font-size: 30px; }
+    .services-globe__service--data_intelligence, .services-globe__service--web_commerce { font-size: 24px; }
+    .services-globe__service--data_intelligence { top: min(42px, calc(137px - var(--services-label-tap-height))); }
+    .services-globe__service--customer_growth { top: min(506px, calc(694px - var(--services-label-tap-height) * 2)); }
+    .services-globe__service--web_commerce { top: min(622px, calc(718px - var(--services-label-tap-height))); }
+  }
+
   @media screen and (max-width: 749px) {
-    .services-globe .services-globe__layout { padding-block-start: 32px; gap: 24px; }
-    .services-globe .services-globe__intro { gap: 16px; }
-    .services-globe .services-globe__eyebrow { font-size: 12px; margin-block-end: 8px; }
-    .services-globe .services-globe__heading { font-size: 24px; line-height: 1.25; }
-    .services-globe .services-globe__description { font-size: 13px; line-height: 1.6; }
-    .services-globe .services-globe__services { gap: 10px 16px; }
-    .services-globe :is(.services-globe__service, .services-globe__link) { font-size: 14px; }
+    .services-globe__visual { --services-scene-scale: 0.46; }
+    .services-globe .services-globe__intro { padding-block-start: 40px; gap: 22px; }
+    .services-globe__title { gap: 10px; }
+    .services-globe__eyebrow { font-size: 12px; }
+    .services-globe__heading { font-size: min(var(--services-heading-size), 32px); line-height: 1.2; }
+    .services-globe__description { font-size: 14px; line-height: 1.6; }
+    .services-globe .services-globe__link { font-size: 14px; padding-inline: 22px; }
+  }
+
+  @media screen and (max-width: 360px) {
+    .services-globe__visual { --services-scene-scale: 0.38; }
   }
 {% endstylesheet %}
 
@@ -287,27 +416,6 @@
     },
     {
       "type": "color",
-      "id": "gradient_color_from",
-      "label": "t:settings.gradient_color_from",
-      "default": "#5B34C6",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_to",
-      "label": "t:settings.gradient_color_to",
-      "default": "#2D6BFF",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_mid",
-      "label": "t:settings.gradient_color_mid",
-      "default": "#8B45F0",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
       "id": "background_gradient_from",
       "label": "t:settings.gradient_color_from",
       "default": "#94B8FF"
@@ -333,6 +441,24 @@
     {
       "type": "header",
       "content": "t:content.services_globe"
+    },
+    {
+      "type": "color",
+      "id": "globe_color",
+      "label": "t:settings.color",
+      "default": "#8B45F0"
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#7C21C2"
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#5D70EB"
     },
     {
       "type": "text",
@@ -369,6 +495,30 @@
       "id": "auto_rotate",
       "label": "t:settings.services_auto_rotate",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 64
     }
   ],
   "presets": [

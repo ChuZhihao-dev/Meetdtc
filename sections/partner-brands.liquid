@@ -1,21 +1,14 @@
 {% comment %}
-  Partner brand showcase.
-  Renders an optional gradient heading, a divider, and a wrapping row of
-  merchant-managed logo blocks centered on a full-bleed gradient background.
+  Partner brand showcase. Full-width logo rows surround an overlaid heading
+  while moving; static, reduced-motion and keyboard modes keep content in flow.
   @example
-  <!-- Add the "Partner brands" section, then drop a logo image into each logo block -->
+  <!-- Add Partner brands, then configure logo rows and their motion directions. -->
 {% endcomment %}
 
 {% liquid
   assign section_settings = section.settings
   assign heading_text = section_settings.heading
 %}
-{% if heading_text != blank %}
-  {% render 'scroll-reveal-styles' %}
-  <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
-{% endif %}
-
-
 
 <div
   class="section-background partner-brands__background"
@@ -27,59 +20,46 @@
 ></div>
 
 <partner-brands-component
-  class="section section--page-width partner-brands spacing-style"
+  class="section section--full-width partner-brands spacing-style"
   style="{% render 'spacing-style', settings: section_settings %}
     --brand-logo-gap: {{ section_settings.logo_gap }}px;
     --brand-logo-row-gap: {{ section_settings.row_gap }}px;
+    --brand-bg-from: {{ section_settings.background_gradient_from }};
+    --brand-bg-to: {{ section_settings.background_gradient_to }};
+    --brand-bg-angle: {{ section_settings.background_gradient_angle }}deg;
   "
   {{ section.shopify_attributes }}
 >
-  {% if heading_text != blank %}
-    {% render 'text-block-styles' %}
-    <scroll-reveal-component data-reveal-scope>
-    <div
-      class="
-        partner-brands__heading
-        text-block
-        text-block--full-width
-        custom-typography
-        custom-font-size
-        {% if section_settings.gradient_text %}text-block--gradient{% endif %}
-      "
-      data-reveal
-      style="
-        {% render 'typography-style', settings: section_settings, type: 'body', preset: 'custom' %}
-        --text-align: {{ section_settings.alignment }};
-        {% if section_settings.gradient_text %}
-          --gradient-from: {{ section_settings.gradient_color_from }};
-    --gradient-mid: {{ section_settings.gradient_color_mid | default: '#8B45F0' }};
-          --gradient-to: {{ section_settings.gradient_color_to }};
-          --gradient-angle: {{ section_settings.gradient_angle }}deg;
-          --gradient-start: {{ section_settings.gradient_start_position }}%;
-          --gradient-end: {{ section_settings.gradient_end_position }}%;
-        {% endif %}
-      "
-    >
-      {{ heading_text }}
-    </div>
-    </scroll-reveal-component>
-  {% endif %}
+  <div class="partner-brands__stage">
+    {% if heading_text != blank %}
+      {% render 'text-block-styles' %}
+      <div class="partner-brands__heading-panel">
+        <div
+          class="partner-brands__heading text-block text-block--full-width custom-typography custom-font-size{% if section_settings.two_tone_heading %} partner-brands__heading--two-tone{% elsif section_settings.gradient_text %} text-block--gradient{% endif %}"
+          role="heading"
+          aria-level="2"
+          style="
+            {% render 'typography-style', settings: section_settings, type: 'body', preset: 'custom' %}
+            --text-align: {{ section_settings.alignment }};
+            --brand-heading-color: {{ section_settings.heading_color | default: '#111111' }};
+            --brand-heading-accent: {{ section_settings.heading_accent_color | default: '#5B34C6' }};
+          "
+        >
+          {{ heading_text }}
+        </div>
+      </div>
+    {% endif %}
 
-  {% if section_settings.thickness > 0 %}
- 
-  {% endif %}
-
-  {%- capture logos -%}
-    {% content_for 'blocks' %}
-  {%- endcapture -%}
-
-  {% if logos != blank %}
-    <div class="partner-brands__logos">{{ logos }}</div>
-  {% endif %}
+    {%- capture logos -%}
+      {% content_for 'blocks' %}
+    {%- endcapture -%}
+    {% if logos != blank %}
+      <div class="partner-brands__logos">{{ logos }}</div>
+    {% endif %}
+  </div>
 </partner-brands-component>
 
 {% stylesheet %}
-  .partner-brands__logos { min-width: 0; }
   .partner-brands__background {
     background-image: linear-gradient(
       var(--brand-bg-angle, 105deg),
@@ -88,47 +68,147 @@
     );
   }
 
+  .partner-brands__stage {
+    display: grid;
+    align-items: center;
+    gap: 32px;
+    min-inline-size: 0;
+    position: relative;
+    isolation: isolate;
+  }
+
+  .partner-brands__heading-panel {
+    position: relative;
+    z-index: 2;
+    inline-size: min(44rem, var(--full-page-grid-central-column-width));
+    min-inline-size: 0;
+    margin-inline: auto;
+    pointer-events: none;
+  }
+
   .partner-brands__heading {
     color: var(--color-foreground);
-    margin-block-end: 32px;
     text-align: var(--text-align, center);
+    overflow-wrap: anywhere;
   }
 
-  /* Full-bleed divider: `force-full-width` spans the section's outer grid columns. */
-  .partner-brands__divider {
-    width: var(--brand-divider-width, 100%);
-    max-width: 100%;
-    justify-self: center;
-    border-block-start: var(--brand-divider-thickness, 0.5px) solid var(--brand-divider-color, #707070);
-    margin-block-end: 40px;
+  .partner-brands__heading--two-tone {
+    color: var(--brand-heading-color, var(--color-foreground));
   }
 
-  /* Each row is a `_brand-row` block stacked vertically; the row owns its own
-     horizontal layout, so rows can hold different numbers of logos. */
+  .partner-brands__heading--two-tone strong {
+    color: var(--brand-heading-accent, var(--color-foreground));
+    font-weight: inherit;
+  }
+
+  .partner-brands__heading a {
+    pointer-events: auto;
+  }
+
   .partner-brands__logos {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: var(--brand-logo-row-gap, 16px);
+    gap: var(--brand-logo-row-gap, 40px);
+    min-inline-size: 0;
+    inline-size: 100%;
+    padding-inline: var(--page-margin);
+  }
+
+  .partner-brands .brand-row__items {
+    min-block-size: 64px;
+  }
+
+  .partner-brands .brand-logo__image,
+  .partner-brands .brand-logo__placeholder {
+    max-inline-size: min(180px, calc(100vw - var(--page-margin) * 2));
+    max-block-size: 64px;
+    object-fit: contain;
+  }
+
+  /* Only moving rows are masked; keyboard and no-script lists stay fully visible. */
+  .partner-brands__stage:has(.brand-row--scrolling) .partner-brands__logos {
+    padding-inline: 0;
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .partner-brands__stage:has(.brand-row--scrolling):has(.partner-brands__heading-panel) {
+    min-block-size: 300px;
+    gap: 0;
+  }
+
+  .partner-brands__stage:has(.brand-row--scrolling) > .partner-brands__heading-panel,
+  .partner-brands__stage:has(.brand-row--scrolling) > .partner-brands__logos {
+    grid-area: 1 / 1;
+  }
+
+  /* Size the soft backdrop to the text, keeping the adjacent logo rows clear. */
+  .partner-brands__stage:has(.brand-row--scrolling) > .partner-brands__heading-panel::before {
+    content: '';
+    position: absolute;
+    inset-block: -12px;
+    left: 50%;
+    inline-size: calc(100% + 128px);
+    max-inline-size: 100vw;
+    z-index: -1;
+    transform: translateX(-50%);
+    background-image: linear-gradient(
+      var(--brand-bg-angle, 105deg),
+      var(--brand-bg-from, #aac5ff) 2.81%,
+      var(--brand-bg-to, #cbd5fd) 97.19%
+    );
+    mask-image:
+      linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
+      linear-gradient(to bottom, transparent, #000 12px, #000 calc(100% - 12px), transparent);
+    mask-composite: intersect;
+    pointer-events: none;
   }
 
   @media screen and (max-width: 749px) {
-    .partner-brands__divider {
-      margin-block-end: 24px;
+    .partner-brands {
+      padding-block: min(var(--padding-block-start), 40px) min(var(--padding-block-end), 40px);
     }
-  }
-  @media screen and (max-width: 749px) {
-    .partner-brands .brand-row { --brand-logo-gap: 24px; }
-  }
-  /* Shared mobile scale for every instance of this component. */
-  @media screen and (max-width: 749px) {
-    .partner-brands { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
 
-    .partner-brands .partner-brands__heading.custom-font-size { font-size: 24px; line-height: 1.25; margin-block-end: 24px; }
-    .partner-brands .partner-brands__heading > * { font-size: inherit; line-height: inherit; }
-    .partner-brands .partner-brands__logos { gap: min(var(--brand-logo-row-gap), 24px); }
-    .partner-brands .brand-row { --brand-logo-gap: 16px; }
+    .partner-brands__stage {
+      gap: 24px;
+    }
+
+    .partner-brands .partner-brands__heading.custom-font-size {
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .partner-brands .partner-brands__heading > * {
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    .partner-brands__logos {
+      gap: min(var(--brand-logo-row-gap), 32px);
+    }
+
+    .partner-brands .brand-row {
+      --brand-logo-gap: 32px;
+    }
+
+    .partner-brands .brand-row__items {
+      min-block-size: 48px;
+    }
+
+    .partner-brands .brand-logo__image,
+    .partner-brands .brand-logo__placeholder {
+      max-inline-size: min(132px, calc(100vw - var(--page-margin) * 2));
+      max-block-size: 48px;
+    }
+
+    .partner-brands__stage:has(.brand-row--scrolling):has(.partner-brands__heading-panel) {
+      min-block-size: 260px;
+    }
+
+    .partner-brands__stage:has(.brand-row--scrolling) > .partner-brands__heading-panel::before {
+      mask-image:
+        linear-gradient(to right, transparent, #000 6%, #000 94%, transparent),
+        linear-gradient(to bottom, transparent, #000 12px, #000 calc(100% - 12px), transparent);
+    }
   }
 {% endstylesheet %}
 
@@ -340,63 +420,30 @@
     },
     {
       "type": "checkbox",
+      "id": "two_tone_heading",
+      "label": "t:partner_brands.two_tone_heading",
+      "info": "t:partner_brands.two_tone_heading_info",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:partner_brands.heading_color",
+      "default": "#111111",
+      "visible_if": "{{ section.settings.two_tone_heading }}"
+    },
+    {
+      "type": "color",
+      "id": "heading_accent_color",
+      "label": "t:partner_brands.heading_accent_color",
+      "default": "#5B34C6",
+      "visible_if": "{{ section.settings.two_tone_heading }}"
+    },
+    {
+      "type": "checkbox",
       "id": "gradient_text",
       "label": "t:settings.gradient_text",
       "default": true
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_from",
-      "label": "t:settings.gradient_color_from",
-      "default": "#5B34C6",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_to",
-      "label": "t:settings.gradient_color_to",
-      "default": "#2D6BFF",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_mid",
-      "label": "t:settings.gradient_color_mid",
-      "default": "#8B45F0",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_angle",
-      "label": "t:settings.gradient_angle",
-      "min": 0,
-      "max": 360,
-      "step": 5,
-      "unit": "deg",
-      "default": 100,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_start_position",
-      "label": "t:settings.gradient_start_position",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 0,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_end_position",
-      "label": "t:settings.gradient_end_position",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 100,
-      "visible_if": "{{ section.settings.gradient_text }}"
     },
     {
       "type": "header",
@@ -518,11 +565,6 @@
         "letter_spacing": "normal",
         "alignment": "center",
         "gradient_text": true,
-        "gradient_color_from": "#0C23B8",
-        "gradient_color_to": "#7C21C2",
-        "gradient_angle": 90,
-        "gradient_start_position": 27,
-        "gradient_end_position": 72,
         "background_gradient_from": "#AAC5FF",
         "background_gradient_to": "#CBD5FD",
         "background_gradient_angle": 105,

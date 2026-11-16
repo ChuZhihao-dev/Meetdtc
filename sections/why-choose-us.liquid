@@ -1,8 +1,7 @@
 {% comment %}
   Why choose us.
   Renders an optional eyebrow, a gradient headline, and supporting copy above a
-  row of merchant-managed value-proposition blocks, all on a full-bleed gradient
-  background.
+  horizontally scrollable row of merchant-managed value-proposition cards.
   @example
   <!-- Add the "Why choose us" section, then edit each feature block -->
 {% endcomment %}
@@ -28,6 +27,8 @@
 <div
   class="section section--page-width why-choose-us spacing-style"
   style="{% render 'spacing-style', settings: section_settings %}
+    --page-content-width: {{ section_settings.content_width | default: 1276 }}px;
+    --page-width: calc(var(--page-content-width) + var(--page-margin) * 2);
     --wcu-heading-gap: {{ section_settings.heading_gap }}px;
     --wcu-column-gap: {{ section_settings.column_gap }}px;
     --wcu-row-gap: {{ section_settings.row_gap }}px;
@@ -38,12 +39,13 @@
     <scroll-reveal-component data-reveal-scope>
     <div class="why-choose-us__intro">
       {% if section_settings.eyebrow != blank %}
-        <p class="why-choose-us__eyebrow" data-reveal>{{ section_settings.eyebrow }}</p>
+        <p class="why-choose-us__eyebrow" data-reveal>{{ section_settings.eyebrow | escape }}</p>
       {% endif %}
 
       {% if heading_text != blank %}
         {% render 'text-block-styles' %}
         <div
+          id="why-choose-us-heading-{{ section.id }}"
           class="
             why-choose-us__heading
             text-block
@@ -55,15 +57,8 @@
           data-reveal
           style="
             {% render 'typography-style', settings: section_settings, type: 'heading', preset: 'custom' %}
+            {% if section_settings.line_height == blank %}--line-height: normal;{% endif %}
             --text-align: {{ section_settings.alignment }};
-            {% if section_settings.gradient_text %}
-              --gradient-from: {{ section_settings.gradient_color_from }};
-    --gradient-mid: {{ section_settings.gradient_color_mid | default: '#8B45F0' }};
-              --gradient-to: {{ section_settings.gradient_color_to }};
-              --gradient-angle: {{ section_settings.gradient_angle }}deg;
-              --gradient-start: {{ section_settings.gradient_start_position }}%;
-              --gradient-end: {{ section_settings.gradient_end_position }}%;
-            {% endif %}
           "
         >
           {{ heading_text }}
@@ -82,24 +77,30 @@
   {%- endcapture -%}
 
   {% if value_props != blank %}
-    <div class="why-choose-us__grid">{{ value_props }}</div>
+    <script src="{{ 'why-choose-us.js' | asset_url }}" type="module" fetchpriority="low"></script>
+    <why-choose-us-component
+      class="why-choose-us__grid"
+      tabindex="0"
+      {% if heading_text != blank %}
+        role="region"
+        aria-labelledby="why-choose-us-heading-{{ section.id }}"
+      {% endif %}
+    >{{ value_props }}</why-choose-us-component>
   {% endif %}
 </div>
 
 {% stylesheet %}
   .why-choose-us__background {
-    background-image: linear-gradient(
-      var(--wcu-bg-angle, 180deg),
-      var(--wcu-bg-from, #aac5ff) 0%,
-      var(--wcu-bg-to, #c9d5fd) 100%
-    );
+    background-image: linear-gradient(var(--wcu-bg-angle, 180deg), var(--wcu-bg-from, #fff), var(--wcu-bg-to, #fff));
   }
 
   .why-choose-us__intro {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    width: 100%;
+    align-items: flex-start;
+    gap: 10px;
+    min-inline-size: 0;
+    inline-size: 100%;
   }
 
   .why-choose-us__eyebrow {
@@ -107,8 +108,12 @@
     font-family: var(--font-heading--family);
     font-size: 18px;
     font-weight: 500;
-    line-height: 1.5;
+    line-height: normal;
     color: var(--color-foreground);
+  }
+
+  .why-choose-us__heading.text-block {
+    max-inline-size: min(1100px, 100%);
   }
 
   .why-choose-us__heading {
@@ -116,72 +121,78 @@
   }
 
   .why-choose-us__description {
-    font-family: Montserrat;
+    max-inline-size: 952px;
+    margin-block-start: 16px;
+    font-family: var(--font-body--family);
     font-size: 20px;
     font-weight: 500;
-    line-height: 1.2;
+    line-height: 1.5;
     color: var(--color-foreground);
-    text-wrap: pretty;
+    overflow-wrap: anywhere;
   }
 
-  .why-choose-us__description > :first-child {
-    margin-block-start: 0;
-  }
+  .why-choose-us__description > :first-child { margin-block-start: 0; }
+  .why-choose-us__description > :last-child { margin-block-end: 0; }
 
-  .why-choose-us__description > :last-child {
-    margin-block-end: 0;
-  }
-
-  .why-choose-us__grid {
+  .why-choose-us > .why-choose-us__grid {
+    grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--wcu-row-gap, 40px) var(--wcu-column-gap, 28px);
-    width: 100%;
-    margin-block-start: var(--wcu-heading-gap, 64px);
+    grid-auto-flow: column;
+    grid-auto-columns: calc((min(var(--page-content-width), 100%) - var(--wcu-column-gap, 20px) * 2) / 3);
+    align-items: stretch;
+    gap: var(--wcu-column-gap, 20px);
+    min-inline-size: 0;
+    margin-block-start: calc(var(--wcu-heading-gap, 88px) - 16px);
+    padding-block: 16px;
+    padding-inline: var(--util-page-margin-offset);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline proximity;
+    scroll-padding-inline: var(--util-page-margin-offset);
+    scrollbar-width: none;
+    margin-block-end: -16px;
   }
 
-  @media screen and (min-width: 750px) {
-    .why-choose-us__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+  .why-choose-us__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .why-choose-us__grid:focus-visible {
+    outline: var(--focus-outline-width) solid var(--color-foreground);
+    outline-offset: calc(-1 * var(--focus-outline-width));
+  }
+
+  @media (any-pointer: fine) {
+    .why-choose-us__grid:defined {
+      cursor: grab;
     }
   }
 
-  @media screen and (min-width: 990px) {
-    .why-choose-us__grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+  .why-choose-us > .why-choose-us__grid.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+    user-select: none;
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .why-choose-us > .why-choose-us__grid {
+      grid-auto-columns: calc((100% - var(--wcu-column-gap, 20px)) / 2);
     }
   }
 
-  @media screen and (max-width: 749px) {
-
-    .why-choose-us__grid {
-      --wcu-row-gap: 32px;
-    }
-  }
-
-  @media screen and (max-width: 749px) {
-    .why-choose-us__heading.custom-font-size { font-size: 1.75rem; line-height: 1.25; }
-    .why-choose-us__heading > * { font-size: inherit; line-height: inherit; }
-    .why-choose-us__description { font-size: 16px; line-height: 1.5; }
-    .why-choose-us__description br { display: none; }
-    .why-choose-us__intro { gap: 16px; }
-    .why-choose-us__grid { margin-block-start: 32px; gap: 24px; }
-    .why-choose-us .value-prop__badge { width: 48px; height: 48px; margin-block-end: 16px; }
-    .why-choose-us :is(.value-prop__icon, .value-prop__icon svg, .value-prop__image) { max-width: 24px; max-height: 24px; }
-    .why-choose-us .value-prop__title { min-height: 0; margin-block-end: 8px; }
-  }
-  /* Shared mobile scale for every instance of this component. */
   @media screen and (max-width: 749px) {
     .why-choose-us { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
-
-    .why-choose-us .why-choose-us__eyebrow { font-size: 12px; }
-    .why-choose-us .why-choose-us__heading.custom-font-size { font-size: 24px; line-height: 1.25; }
-    .why-choose-us .why-choose-us__description { font-size: 13px; line-height: 1.6; }
-    .why-choose-us .why-choose-us__intro { gap: 12px; }
-    .why-choose-us .why-choose-us__grid { margin-block-start: 24px; }
-    .why-choose-us .value-prop__badge { margin-block-end: 12px; }
-    .why-choose-us .value-prop__title { font-size: 14px; }
-    .why-choose-us .value-prop__description { font-size: 13px; line-height: 1.6; }
+    .why-choose-us__eyebrow { font-size: 12px; }
+    .why-choose-us__heading.custom-font-size,
+    .why-choose-us__heading.custom-font-size > * { font-size: 24px; line-height: 1.25; }
+    .why-choose-us__description { margin-block-start: 2px; font-size: 13px; line-height: 1.6; }
+    .why-choose-us__description br { display: none; }
+    .why-choose-us > .why-choose-us__grid {
+      grid-auto-columns: min(85%, 360px);
+      gap: 16px;
+      margin-block-start: 8px;
+    }
   }
 {% endstylesheet %}
 
@@ -190,7 +201,10 @@
   "max_blocks": 12,
   "name": "t:names.why_choose_us",
   "disabled_on": {
-    "groups": ["header", "footer"]
+    "groups": [
+      "header",
+      "footer"
+    ]
   },
   "blocks": [
     {
@@ -198,6 +212,16 @@
     }
   ],
   "settings": [
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "t:settings.content_width",
+      "min": 1040,
+      "max": 1440,
+      "step": 4,
+      "unit": "px",
+      "default": 1276
+    },
     {
       "type": "text",
       "id": "eyebrow",
@@ -208,7 +232,7 @@
       "type": "richtext",
       "id": "heading",
       "label": "t:settings.heading",
-      "default": "<p>One Partner. Connected Solutions. Measurable Growth</p>"
+      "default": "<p>One Partner. Connected Solutions.<br>Measurable Growth.</p>"
     },
     {
       "type": "richtext",
@@ -338,7 +362,7 @@
           "label": "1.5"
         }
       ],
-      "default": "1.2"
+      "default": ""
     },
     {
       "type": "select",
@@ -397,60 +421,6 @@
       "default": true
     },
     {
-      "type": "color",
-      "id": "gradient_color_from",
-      "label": "t:settings.gradient_color_from",
-      "default": "#5B34C6",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_to",
-      "label": "t:settings.gradient_color_to",
-      "default": "#2D6BFF",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_mid",
-      "label": "t:settings.gradient_color_mid",
-      "default": "#8B45F0",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_angle",
-      "label": "t:settings.gradient_angle",
-      "min": 0,
-      "max": 360,
-      "step": 5,
-      "unit": "deg",
-      "default": 100,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_start_position",
-      "label": "t:settings.gradient_start_position",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 0,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_end_position",
-      "label": "t:settings.gradient_end_position",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 100,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
       "type": "header",
       "content": "t:content.background"
     },
@@ -458,13 +428,13 @@
       "type": "color",
       "id": "background_gradient_from",
       "label": "t:settings.gradient_color_from",
-      "default": "#AAC5FF"
+      "default": "#FFFFFF"
     },
     {
       "type": "color",
       "id": "background_gradient_to",
       "label": "t:settings.gradient_color_to",
-      "default": "#C9D5FD"
+      "default": "#FFFFFF"
     },
     {
       "type": "range",
@@ -488,7 +458,7 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "default": 64
+      "default": 88
     },
     {
       "type": "range",
@@ -498,7 +468,7 @@
       "max": 120,
       "step": 2,
       "unit": "px",
-      "default": 28
+      "default": 20
     },
     {
       "type": "range",
@@ -522,7 +492,7 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "default": 92
+      "default": 88
     },
     {
       "type": "range",
@@ -532,7 +502,7 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "default": 92
+      "default": 88
     }
   ],
   "presets": [
@@ -541,29 +511,25 @@
       "category": "t:categories.storytelling",
       "settings": {
         "eyebrow": "WHY CHOOSE US",
-        "heading": "<p>One Partner. Connected Solutions. Measurable Growth</p>",
+        "heading": "<p>One Partner. Connected Solutions.<br>Measurable Growth.</p>",
         "description": "<p>We connect strategy, technology, data and execution to help brands build stronger digital foundations, acquire customers and scale across global markets</p>",
         "font": "var(--font-heading--family)",
         "font_size": "3.625rem",
         "weight": "600",
-        "line_height": "1.2",
+        "line_height": "",
         "letter_spacing": "normal",
         "alignment": "left",
         "wrap": "balance",
         "gradient_text": true,
-        "gradient_color_from": "#0B22B8",
-        "gradient_color_to": "#9621C4",
-        "gradient_angle": 110,
-        "gradient_start_position": 11,
-        "gradient_end_position": 89,
-        "background_gradient_from": "#AAC5FF",
-        "background_gradient_to": "#C9D5FD",
+        "background_gradient_from": "#FFFFFF",
+        "background_gradient_to": "#FFFFFF",
         "background_gradient_angle": 180,
-        "heading_gap": 64,
-        "column_gap": 28,
+        "heading_gap": 88,
+        "column_gap": 20,
         "row_gap": 40,
-        "padding-block-start": 92,
-        "padding-block-end": 92
+        "padding-block-start": 88,
+        "padding-block-end": 88,
+        "content_width": 1276
       },
       "blocks": {
         "team": {
@@ -603,7 +569,12 @@
           }
         }
       },
-      "block_order": ["team", "global", "layers", "bars"]
+      "block_order": [
+        "team",
+        "global",
+        "layers",
+        "bars"
+      ]
     }
   ]
 }

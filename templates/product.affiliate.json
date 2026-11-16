@@ -450,7 +450,7 @@
         "eyebrow": "Affiliate Marketing",
         "heading": "Turn the Right Partnerships \ninto Your Next Growth Channel",
         "heading_tag": "h1",
-        "description": "We helps brands build and grow affiliate programs through targeted partner recruitment, \nhands-on management, and performance optimization. Our affiliate marketing approach connects \nyou with publishers, creators, and partners who reach your customers in your target markets.",
+        "description": "As an affiliate marketing agency, we helps brands build and grow affiliate programs \nthrough targeted partner recruitment, hands-on management, and performance \noptimization. Connect with partners who reach your customers, turn recommendations\n into sales, and build lasting value from every partnership.",
         "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
@@ -843,8 +843,8 @@
         "business_challenge_item_m3pzPp": {
           "type": "_business-challenge-item",
           "settings": {
-            "title": "5.  Managing the program takes too much time.",
-            "description": "<p>We manage recruitment, communications, and campaign coordination so your team can focus on the wider business.</p>",
+            "title": "5.  Affiliate program management takes too much time.",
+            "description": "<p>We manage recruitment, communications, and campaign coordination through hands-on affiliate program management, so your team can focus on the wider business.</p>",
             "link": "",
             "marker": "3"
           },
@@ -854,7 +854,7 @@
           "type": "_business-challenge-item",
           "settings": {
             "title": "6.  You can’t tell what’s working.",
-            "description": "<p>We translate program data into clear reporting and practical priorities for improvement.</p>",
+            "description": "<p>We translate program data into clear reporting and practical priorities for &nbsp;affiliate program performance optimization.</p>",
             "link": "",
             "marker": "3"
           },
@@ -903,7 +903,7 @@
         "eyebrow": "OUR APPROACH",
         "heading": "Build Around Your Customers. Grow Through the Right Partners.",
         "body_primary": "<p>We start with your products, customers, target markets, and commercial goals. From there, we shape your affiliate marketing strategy, recruit relevant partners, and give them the offers, content, and support they need to promote your brand.</p>",
-        "body_secondary": "<p>As the program develops, we assess partner activity, sales quality, and costs together. This helps you make informed decisions about where to invest, which relationships to develop, and how to grow without relying too heavily on a small group of partners.</p>",
+        "body_secondary": "<p>As the program develops, we assess partner activity, sales quality, and costs together. This helps you make informed decisions about where to invest, which affiliate relationships to develop, and how to grow without relying too heavily on a small group of partners. Our affiliate program management approach helps keep these activities aligned with your business goals.</p>",
         "image": "shopify://shop_images/affiliate-marketing_our-approach.png",
         "image_alt": "",
         "font": "montserrat_n5",
@@ -923,7 +923,7 @@
         "card_ETxkQz": {
           "type": "card",
           "settings": {
-            "heading": "Program Audit & Growth Strategy",
+            "heading": "Affiliate Program Audit & Growth Strategy",
             "description": "<p>We assess your existing program or launch readiness, customer journey, and commercial goals. You receive a prioritized roadmap with opportunities, recommended actions, and measures of success.</p>",
             "link": "",
             "link_label": "Learn more"
@@ -933,7 +933,7 @@
           "type": "card",
           "settings": {
             "heading": "Platform Selection & Program Setup",
-            "description": "<p>We evaluate affiliate marketing network and platform requirements against your target markets, partner needs, and technical setup. We support program configuration, application criteria, and partner terms. You receive a setup plan and launch checklist tailored to your business.</p>",
+            "description": "<p>We evaluate affiliate marketing platforms requirements and support affiliate program configuration, application criteria, and partner terms. You receive a setup plan and launch checklist tailored to your business.</p>",
             "link": "",
             "link_label": "Learn more"
           }
@@ -942,7 +942,7 @@
           "type": "card",
           "settings": {
             "heading": "Tracking & Measurement Coordination",
-            "description": "<p>We work with your platform and technical teams to define how affiliate marketing sales and conversions will be tracked, then validate key conversion events. You receive a measurement plan and documented validation findings.</p>",
+            "description": "<p>We work with your affiliate tracking platform and technical teams to define tracking requirements and validate key conversion events. You receive a measurement plan and documented validation findings.</p>",
             "link": "",
             "link_label": "Learn more"
           }
@@ -951,7 +951,7 @@
           "type": "card",
           "settings": {
             "heading": "Partner Research & Recruitment",
-            "description": "<p>We identify relevant publishers, creators, and other affiliate partners, then manage outreach and applications. You receive a qualified prospect pipeline and recruitment updates.</p>",
+            "description": "<p>We identify relevant publishers, creators, and other affiliate partners across suitable affiliate networks, then manage outreach and applications. You receive a qualified prospect pipeline and recruitment updates.</p>",
             "link": "",
             "link_label": "Learn more"
           }
@@ -1018,7 +1018,7 @@
         "layout": "standard",
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
-        "description": "<p>End-to-end affiliate marketing support, from program strategy and setup to partner development and ongoing optimization.</p>",
+        "description": "<p>End-to-end affiliate marketing program support, from strategy and setup to partner development and ongoing optimization.</p>",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "card_heading_color": "#241c52",
@@ -1052,7 +1052,7 @@
           "type": "step",
           "settings": {
             "heading": "Build the Plan",
-            "description": "<p>We define your partner strategy, commission approach, measurement framework, and launch priorities.</p>",
+            "description": "<p>We define your affiliate marketing strategy, partner strategy, commission approach, measurement framework, and launch priorities.</p>",
             "deliverable": ""
           }
         },
@@ -1060,7 +1060,7 @@
           "type": "step",
           "settings": {
             "heading": "Set Up & Validate",
-            "description": "<p>We coordinate program setup, prepare partner materials, and check tracking before launch.</p>",
+            "description": "<p>We coordinate affiliate program setup, prepare partner materials, and check tracking before launch.</p>",
             "deliverable": ""
           }
         },
@@ -1091,10 +1091,10 @@
       "name": "Delivery process",
       "settings": {
         "eyebrow": "DELIVERY PROCESS",
-        "heading": "A Clear Path from Program Planning to Ongoing Growth",
-        "description": "<p>Each stage defines what needs to happen, what your team needs to provide, and how progress will be assessed.</p>",
+        "heading": "A Clear Path from Affiliate Program Planning to Ongoing Growth",
+        "description": "<p>Each stage defines what needs to happen, what your team needs to provide, and how progress will be assessed through our affiliate program management process.</p>",
         "background": "linear-gradient(135.439deg, rgba(211, 216, 246, 1) 2.204%, rgba(253, 243, 255, 1) 97.796%)",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "text_color": "#000000",
         "accent_color": "#9621c4",
         "step_gap": 60,

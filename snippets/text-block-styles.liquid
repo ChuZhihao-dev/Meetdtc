@@ -4,6 +4,7 @@
   This owns base `.text-block` sizing, text-wrap, heading/paragraph spacing,
   edge-margin resets, and helper classes like `.text-block--align-*`,
   `.text-block--background`, `.text-block--gradient`, and `.custom-color`.
+  Gradient text uses the global `--heading-gradient` token. Callout owns its light variant.
   `snippets/text.liquid` keeps only its text-snippet-specific flex and child
   layout rules.
 
@@ -46,24 +47,21 @@
      global link colors, and the descendant rule keeps rich-text runs transparent so
      the gradient stays visible through strong, em, and link children. */
   .text-block.text-block--gradient {
-    background-image: linear-gradient(
-      var(--gradient-angle, 100deg),
-      var(--gradient-from, #5B34C6) var(--gradient-start, 0%),
-      var(--gradient-mid, #8B45F0) 55%,
-      var(--gradient-to, #2D6BFF) var(--gradient-end, 100%)
-    );
+    background-image: var(--heading-gradient);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
   }
 
-  /* Callout owns its light gradient independently of the shared brand headings. */
-  .text-block.text-block--gradient:where(:not(.cta-banner__heading)):is(h1, h2, h3, h4, h5, h6),
-  .text-block.text-block--gradient:where(:not(.cta-banner__heading)):has(:is(h1, h2, h3, h4, h5, h6)) {
+  /* Rich-text headings can contain paragraphs, so size their gradient the same
+     way as native headings. Callout and the solutions grid own their widths. */
+  .text-block.text-block--gradient:where(:not(.cta-banner__heading, .product-solutions-grid__heading)) {
     inline-size: fit-content;
+  }
+
+  :where(.text-block.text-block--gradient) {
     max-inline-size: 100%;
-    background-image: var(--heading-gradient);
   }
 
   /* Shrink the paint area while retaining the merchant's heading alignment. */

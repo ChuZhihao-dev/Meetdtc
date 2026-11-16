@@ -1,10 +1,10 @@
 {% comment %}
   Insights.
   Renders an eyebrow, a gradient headline, and supporting copy above a list of
-  blog article cards with a mobile bleed carousel, plus an optional "view all" link on a
-  full-bleed gradient background.
+  independent horizontal article cards and a header action. Mobile retains the
+  native scroll-snap carousel. Content comes from the selected Shopify blog.
   @example
-  <!-- Add the "Insights" section, then edit each question block -->
+  <!-- Add Insights, select a blog, and configure the article count and header link. -->
 {% endcomment %}
 
 <script
@@ -26,6 +26,7 @@
   assign container_alpha = section_settings.container_opacity | divided_by: 100.0
 %}
 
+{% capture image_sizes %}(min-width: 990px) {{ section_settings.media_width }}px, (min-width: 750px) 30vw, 85vw{% endcapture %}
 
 
 <div
@@ -46,6 +47,9 @@
     --insights-media-width: {{ section_settings.media_width }}px;
     --insights-card-radius: {{ section_settings.card_radius }}px;
     --insights-link-color: {{ section_settings.link_color }};
+    --page-content-width: {{ section_settings.content_width | default: 1276 }}px;
+    --page-width: calc(var(--page-content-width) + var(--page-margin) * 2);
+    --insights-button-background: {{ section_settings.button_background | default: 'linear-gradient(-82.679deg, #5D70EB 0.416%, #7C21C2 99.584%)' }};
     {% if section_settings.container_background != blank %}
       --insights-container-background: {{ section_settings.container_background | color_modify: 'alpha', container_alpha }};
     {% endif %}
@@ -56,45 +60,49 @@
   data-reveal-scope
   {{ section.shopify_attributes }}
 >
-  {% if section_settings.eyebrow != blank or heading_text != blank or section_settings.description != blank %}
-    <div class="insights__intro" data-reveal>
-      {% if section_settings.eyebrow != blank %}
-        <p class="insights__eyebrow">{{ section_settings.eyebrow }}</p>
-      {% endif %}
+  <div class="insights__header" data-reveal>
+    {% if section_settings.eyebrow != blank or heading_text != blank or section_settings.description != blank %}
+      <div class="insights__intro">
+        {% if section_settings.eyebrow != blank or heading_text != blank %}
+        <div class="insights__title">
+        {% if section_settings.eyebrow != blank %}
+          <p class="insights__eyebrow">{{ section_settings.eyebrow | escape }}</p>
+        {% endif %}
 
-      {% if heading_text != blank %}
-        {% render 'text-block-styles' %}
-        <div
-          class="
-            insights__heading
-            text-block
-            text-block--full-width
-            custom-typography
-            custom-font-size
-            {% if section_settings.gradient_text %}text-block--gradient{% endif %}
-          "
-          style="
-            {% render 'typography-style', settings: section_settings, type: 'heading', preset: 'custom' %}
-            --text-align: {{ section_settings.alignment }};
-            {% if section_settings.gradient_text %}
-              --gradient-from: {{ section_settings.gradient_color_from }};
-    --gradient-mid: {{ section_settings.gradient_color_mid | default: '#8B45F0' }};
-              --gradient-to: {{ section_settings.gradient_color_to }};
-              --gradient-angle: {{ section_settings.gradient_angle }}deg;
-              --gradient-start: {{ section_settings.gradient_start_position }}%;
-              --gradient-end: {{ section_settings.gradient_end_position }}%;
-            {% endif %}
-          "
-        >
-          {{ heading_text }}
+        {% if heading_text != blank %}
+          {% render 'text-block-styles' %}
+          <div
+            class="
+              insights__heading
+              text-block
+              text-block--full-width
+              custom-typography
+              custom-font-size
+              {% if section_settings.gradient_text %}text-block--gradient{% endif %}
+            "
+            style="
+              {% render 'typography-style', settings: section_settings, type: 'heading', preset: 'custom' %}
+              --text-align: {{ section_settings.alignment }};
+            "
+          >
+            {{ heading_text }}
+          </div>
+        {% endif %}
+
         </div>
-      {% endif %}
-
-      {% if section_settings.description != blank %}
-        <div class="insights__description">{{ section_settings.description }}</div>
-      {% endif %}
-    </div>
-  {% endif %}
+        {% endif %}
+        {% if section_settings.description != blank %}
+          <div class="insights__description">{{ section_settings.description }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if section_settings.view_all_link != blank and section_settings.view_all_label != blank %}
+      <a class="insights__view-all" href="{{ section_settings.view_all_link | escape }}">
+        <span>{{ section_settings.view_all_label | remove: '→' | strip | escape }}</span>
+        <img src="{{ 'insights-arrow.svg' | asset_url }}" width="24" height="24" alt="" aria-hidden="true" loading="lazy">
+      </a>
+    {% endif %}
+  </div>
 
   {%- liquid
     assign blog = section_settings.blog
@@ -117,12 +125,12 @@
               {%- if article.image != blank -%}
                 {{
                   article.image
-                  | image_url: width: 800
+                  | image_url: width: 1200
                   | image_tag:
-                    widths: '260, 400, 600, 800',
-                    sizes: '(min-width: 750px) 260px, 85vw',
+                    widths: '260, 400, 600, 800, 1200',
+                    sizes: image_sizes,
                     loading: image_loading,
-          decoding: 'async',
+                    decoding: 'async',
                     class: 'insight-row__image',
                     alt: image_alt
                 }}
@@ -131,14 +139,16 @@
 
             <div class="insight-row__body">
               <div class="insight-row__header">
-                <p class="insight-row__title">{{ article.title }}</p>
-                <span class="insight-row__read" aria-hidden="true">{{ section_settings.link_label }}</span>
+                <p class="insight-row__title">{{ article.title | escape }}</p>
               </div>
 
               {%- if article_description != blank -%}
                 <div class="insight-row__answer">{{ article_description }}</div>
               {%- endif -%}
             </div>
+            {% if section_settings.link_label != blank %}
+              <span class="insight-row__read" aria-hidden="true">{{ section_settings.link_label | escape }}</span>
+            {% endif %}
           </a>
         </div>
       {%- endfor -%}
@@ -160,11 +170,6 @@
     </div>
   {% endif %}
 
-  {% if section_settings.view_all_link != blank and section_settings.view_all_label != blank %}
-    <a class="insights__view-all" href="{{ section_settings.view_all_link }}">
-      {{- section_settings.view_all_label -}}
-    </a>
-  {% endif %}
 </scroll-reveal-component>
 
 {% stylesheet %}
@@ -199,7 +204,7 @@
 
   .insights__description {
     font-family: Montserrat;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 1;
     color: var(--color-foreground);
@@ -493,6 +498,174 @@
     }
     .insights .insights__list .insight-row:hover { transform: none; translate: none; }
   }
+
+  .insights__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 32px;
+    min-inline-size: 0;
+  }
+
+  .insights__header > .insights__intro {
+    gap: 26px;
+    min-inline-size: 0;
+    max-inline-size: 628px;
+  }
+
+  .insights__title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-inline-size: 0;
+  }
+
+  .insights__description {
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-60));
+  }
+
+  .insights__header > .insights__view-all {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+    gap: 6px;
+    max-inline-size: 100%;
+    min-block-size: 44px;
+    margin-block: 0;
+    padding: 10px 26px;
+    border-radius: 47px;
+    background: var(--insights-button-background);
+    text-align: center;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .insights__view-all img {
+    flex: none;
+    inline-size: 24px;
+    block-size: 24px;
+  }
+
+  .insights__view-all span {
+    min-inline-size: 0;
+  }
+
+  .insights__view-all:dir(rtl) img {
+    transform: scaleX(-1);
+  }
+
+  .insights__view-all::after,
+  .insight-row__read::after {
+    content: none;
+  }
+
+  .insights > .insights__list {
+    padding-block: 0;
+  }
+
+  .insights .insight-row {
+    box-shadow: 0 0 16px rgb(60 69 232 / 0.1);
+  }
+
+  .insights .insight-reveal:first-child .insight-row {
+    box-shadow: 0 0 16px rgb(60 69 232 / 0.2);
+  }
+
+  .insight-row__title {
+    font-weight: 600;
+  }
+
+  .insight-row__answer {
+    font-weight: 400;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-80));
+  }
+
+  .insight-row__read {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (hover: hover) {
+    .insights .insight-row:hover {
+      box-shadow: 0 0 16px rgb(60 69 232 / 0.2);
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .insights > .insights__list {
+      padding-inline: 0;
+    }
+
+    .insights .insight-row {
+      display: grid;
+      grid-template-columns: minmax(0, var(--insights-media-width)) minmax(0, 1fr) auto;
+      align-items: center;
+      gap: clamp(24px, 4.5vw, 64px);
+      min-block-size: 220px;
+      padding: 20px 24px;
+    }
+
+    .insights .insight-row__media {
+      inline-size: 100%;
+      aspect-ratio: 386 / 180;
+    }
+
+    .insights .insight-row__body {
+      gap: 26px;
+      max-inline-size: 610px;
+    }
+
+    .insights .insight-row__header {
+      padding-inline-end: 0;
+    }
+
+    .insights .insight-row__answer {
+      margin-block-start: 0;
+    }
+
+    .insights .insight-row__read {
+      position: static;
+      align-self: start;
+    }
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .insights .insight-row {
+      grid-template-columns: minmax(0, 30%) minmax(0, 1fr);
+      gap: 20px 24px;
+    }
+
+    .insights .insight-row__media {
+      grid-row: 1 / span 2;
+    }
+
+    .insights .insight-row__read {
+      grid-column: 2;
+      justify-self: end;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .insights__header {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    .insights__header > .insights__intro {
+      gap: 16px;
+    }
+
+    .insights__header > .insights__view-all {
+      justify-self: start;
+    }
+
+    .insights > .insights__list {
+      padding-block: 16px;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -505,6 +678,16 @@
     ]
   },
   "settings": [
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "t:settings.content_width",
+      "min": 1040,
+      "max": 1440,
+      "step": 4,
+      "unit": "px",
+      "default": 1276
+    },
     {
       "type": "text",
       "id": "eyebrow",
@@ -732,60 +915,6 @@
       "default": true
     },
     {
-      "type": "color",
-      "id": "gradient_color_from",
-      "label": "t:settings.gradient_color_from",
-      "default": "#5B34C6",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_to",
-      "label": "t:settings.gradient_color_to",
-      "default": "#2D6BFF",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_mid",
-      "label": "t:settings.gradient_color_mid",
-      "default": "#8B45F0",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_angle",
-      "label": "t:settings.gradient_angle",
-      "min": 0,
-      "max": 360,
-      "step": 5,
-      "unit": "deg",
-      "default": 100,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_start_position",
-      "label": "t:settings.gradient_start_position",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 0,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_end_position",
-      "label": "t:settings.gradient_end_position",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 100,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
       "type": "header",
       "content": "t:content.background"
     },
@@ -903,6 +1032,12 @@
       "label": "t:settings.link"
     },
     {
+      "type": "color_background",
+      "id": "button_background",
+      "label": "t:settings.background_color",
+      "default": "linear-gradient(-82.679deg, #5D70EB 0.416%, #7C21C2 99.584%)"
+    },
+    {
       "type": "color",
       "id": "link_color",
       "label": "t:settings.color",
@@ -959,11 +1094,6 @@
         "alignment": "left",
         "wrap": "balance",
         "gradient_text": true,
-        "gradient_color_from": "#0B22B8",
-        "gradient_color_to": "#9621C4",
-        "gradient_angle": 110,
-        "gradient_start_position": 11,
-        "gradient_end_position": 89,
         "background_gradient_from": "#AAC5FF",
         "background_gradient_to": "#C9D5FD",
         "background_gradient_angle": 180,

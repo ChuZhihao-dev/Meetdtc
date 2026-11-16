@@ -40,7 +40,7 @@
     itemscope
     itemtype="https://schema.org/FAQPage"
   {% endif %}
-  class="section section--page-width faq spacing-style"
+  class="section section--page-width faq{% if section_settings.layout_style == 'cards' %} faq--cards{% endif %} spacing-style"
   style="{% render 'spacing-style', settings: section_settings %}
     --faq-mobile-radius: {{ section_settings.row_radius_mobile }}px;
     --faq-heading-gap: {{ section_settings.heading_gap }}px;
@@ -57,41 +57,41 @@
     --faq-heading-line-height: {{ section_settings.line_height | default: '1.3' }};
     --faq-heading-letter-spacing: -1.31px;
     --text-wrap: {{ section_settings.wrap | default: 'balance' }};
+    {% if section_settings.layout_style == 'cards' %}
+      --faq-row-shadow: 0 0 8px {{ section_settings.icon_color | color_modify: 'alpha', 0.1 }};
+      --faq-row-shadow-open: 0 0 8px {{ section_settings.icon_color | color_modify: 'alpha', 0.2 }};
+    {% endif %}
   "
   data-reveal-scope
   {{ section.shopify_attributes }}
 >
   {% if section_settings.eyebrow != blank or heading_text != blank or section_settings.description != blank %}
     <div class="faq__intro" data-reveal>
-      {% if section_settings.eyebrow != blank %}
-        <p class="faq__eyebrow">{{ section_settings.eyebrow | escape }}</p>
-      {% endif %}
+      {% if section_settings.eyebrow != blank or heading_text != blank %}
+        <div class="faq__title">
+          {% if section_settings.eyebrow != blank %}
+            <p class="faq__eyebrow">{{ section_settings.eyebrow | escape }}</p>
+          {% endif %}
 
-      {% if heading_text != blank %}
-        {% render 'text-block-styles' %}
-        <div
-          class="
-            faq__heading
-            text-block
-            text-block--full-width
-            {% if section_settings.gradient_text %}text-block--gradient{% endif %}
-          "
-          style="
-            --text-align: center;
-            {% if section_settings.gradient_text %}
-              --gradient-from: {{ section_settings.gradient_color_from }};
-    --gradient-mid: {{ section_settings.gradient_color_mid | default: '#8B45F0' }};
-              --gradient-to: {{ section_settings.gradient_color_to }};
-              --gradient-angle: {{ section_settings.gradient_angle }}deg;
-              --gradient-start: {{ section_settings.gradient_start_position }}%;
-              --gradient-end: {{ section_settings.gradient_end_position }}%;
-            {% endif %}
-          "
-        >
-          {{ heading_text }}
+          {% if heading_text != blank %}
+            {% render 'text-block-styles' %}
+            <div
+              class="
+                faq__heading
+                text-block
+                text-block--full-width
+                {% if section_settings.gradient_text %}text-block--gradient{% endif %}
+              "
+              style="
+                --text-align: center;
+              "
+            >
+              {{ heading_text }}
+            </div>
+          {% endif %}
+
         </div>
       {% endif %}
-
       {% if section_settings.description != blank %}
         <div class="faq__description">{{ section_settings.description }}</div>
       {% endif %}
@@ -142,7 +142,7 @@
 
   .faq__description {
     font-family: Montserrat;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 1;
     color: #000000;
@@ -165,6 +165,51 @@
     max-width: var(--faq-list-max-width, 780px);
     margin-inline: auto;
     margin-block-start: var(--faq-heading-gap, 32px);
+  }
+
+  .faq__title {
+    display: contents;
+  }
+
+  .faq--cards {
+    --faq-answer-padding-block: 20px 0;
+    --faq-answer-padding-block-mobile: 12px 0;
+  }
+
+  .faq--cards .faq__intro {
+    max-inline-size: 628px;
+    margin-inline: auto;
+    gap: 26px;
+  }
+
+  .faq--cards .faq__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+  }
+
+  .faq--cards .faq__description {
+    line-height: 1.5;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-60));
+  }
+
+  .faq--cards .faq__description p {
+    text-wrap: pretty;
+  }
+
+  .faq--cards .faq-row__summary {
+    line-height: 1.5;
+  }
+
+  .faq--cards .faq-row__answer {
+    line-height: 1.5;
+  }
+
+  .faq--cards .faq__list {
+    gap: var(--faq-row-gap, 20px);
   }
 
   @media screen and (max-width: 749px) {
@@ -202,6 +247,16 @@
     .faq .faq-row__summary { font-size: 14px; }
     .faq .faq-row__answer { font-size: 13px; line-height: 1.6; }
   }
+
+  @media screen and (max-width: 749px) {
+    .faq.faq--cards .faq__intro {
+      gap: 16px;
+    }
+
+    .faq.faq--cards .faq__list {
+      gap: min(var(--faq-row-gap, 20px), 16px);
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -220,6 +275,16 @@
     }
   ],
   "settings": [
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "t:settings.layout_style",
+      "options": [
+        { "value": "standard", "label": "t:options.standard" },
+        { "value": "cards", "label": "t:content.cards_layout" }
+      ],
+      "default": "standard"
+    },
     {
       "type": "text",
       "id": "eyebrow",
@@ -381,60 +446,6 @@
       "default": true
     },
     {
-      "type": "color",
-      "id": "gradient_color_from",
-      "label": "t:settings.gradient_color_from",
-      "default": "#5B34C6",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_to",
-      "label": "t:settings.gradient_color_to",
-      "default": "#2D6BFF",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_mid",
-      "label": "t:settings.gradient_color_mid",
-      "default": "#8B45F0",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_angle",
-      "label": "t:settings.gradient_angle",
-      "min": 0,
-      "max": 360,
-      "step": 4,
-      "unit": "deg",
-      "default": 100,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_start_position",
-      "label": "t:settings.gradient_start_position",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 0,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_end_position",
-      "label": "t:settings.gradient_end_position",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 100,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
       "type": "header",
       "content": "t:content.background"
     },
@@ -587,11 +598,6 @@
         "line_height": "1.3",
         "wrap": "balance",
         "gradient_text": true,
-        "gradient_color_from": "#0B22B8",
-        "gradient_color_to": "#9621C4",
-        "gradient_angle": 92,
-        "gradient_start_position": 0,
-        "gradient_end_position": 15,
         "background_gradient_from": "#AAC5FF",
         "background_gradient_to": "#CBD5FD",
         "background_gradient_angle": 104,

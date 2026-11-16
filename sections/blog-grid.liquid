@@ -2,7 +2,7 @@
   Product solutions grid.
   Renders a configurable translucent panel with a gradient headline and service
   cards from a selected collection. Decorative icons follow product handles.
-  Each card links to its product; the optional footer links to the collection.
+  Each card links to its product; the footer appears only with an explicit link.
   @example
   <!-- Add "Product solutions grid", then select a product collection -->
 {% endcomment %}
@@ -20,16 +20,25 @@
   assign heading_text = section_settings.heading
   assign product_collection = section_settings.collection
   assign product_limit = section_settings.product_limit
-  assign view_all_href = section_settings.view_all_link | default: product_collection.url
+  assign view_all_href = section_settings.view_all_link
 %}
 
-
+{% style %}
+  #shopify-section-{{ section.id }} {
+    --solutions-section-radius: {{ section_settings.section_radius | default: 48 }}px;
+    --solutions-bg-from: {{ section_settings.background_from }};
+    --solutions-bg-to: {{ section_settings.background_to }};
+    isolation: isolate;
+  }
+{% endstyle %}
 
 <div class="section-background product-solutions-grid__background"></div>
 
 <scroll-reveal-component
   class="section section--page-width product-solutions-grid spacing-style"
   style="{% render 'spacing-style', settings: section_settings %}
+    --page-content-width: {{ section_settings.content_width | default: 1276 }}px;
+    --page-width: calc(var(--page-content-width) + var(--page-margin) * 2);
     --solutions-panel-background: {{ section_settings.panel_background }};
     --solutions-panel-border: {{ section_settings.panel_border }};
     --solutions-panel-radius: {{ section_settings.panel_radius }}px;
@@ -44,6 +53,7 @@
     --solutions-gap: {{ section_settings.gap }}px;
     --solutions-heading-gap: {{ section_settings.heading_gap }}px;
     --product-solution-card-background: {{ section_settings.card_background }};
+    --product-solution-card-hover-background: {{ section_settings.card_background | color_modify: 'alpha', 1 }};
     --product-solution-card-border: {{ section_settings.card_border }};
     --product-solution-card-radius: {{ section_settings.card_radius }}px;
     --product-solution-card-padding-block-start: {{ section_settings.card_padding_block_start }}px;
@@ -53,7 +63,10 @@
     --solutions-heading-font-family: {{ section_settings.font }};
     --solutions-heading-font-size: {{ section_settings.font_size }};
     --solutions-heading-font-weight: {{ section_settings.weight }};
-    --solutions-heading-line-height: {{ section_settings.line_height | default: '1' }};
+    --solutions-heading-line-height: {{ section_settings.line_height | default: 'normal' }};
+    --solutions-button-from: {{ section_settings.button_gradient_from | default: '#7C21C2' }};
+    --solutions-button-to: {{ section_settings.button_gradient_to | default: '#5D70EB' }};
+    --solutions-button-text: {{ section_settings.button_text_color | default: '#FFFFFF' }};
     --text-wrap: {{ section_settings.wrap | default: 'balance' }};
   "
   data-reveal-scope
@@ -69,16 +82,6 @@
         text-block
         text-block--full-width
         {% if section_settings.gradient_text %}text-block--gradient{% endif %}
-      "
-      style="
-        {% if section_settings.gradient_text %}
-          --gradient-from: {{ section_settings.gradient_color_from }};
-    --gradient-mid: {{ section_settings.gradient_color_mid | default: '#8B45F0' }};
-          --gradient-to: {{ section_settings.gradient_color_to }};
-          --gradient-angle: 100deg;
-          --gradient-start: 0%;
-          --gradient-end: 100%;
-        {% endif %}
       "
       data-reveal
     >
@@ -123,7 +126,8 @@
   {% if view_all_href != blank and section_settings.view_all_label != blank %}
     <div class="product-solutions-grid__footer">
       <a class="product-solutions-grid__view-all" href="{{ view_all_href | escape }}">
-        {{- section_settings.view_all_label | escape -}}
+        <span>{{ section_settings.view_all_label | escape }}</span>
+        <img src="{{ 'product-solutions-arrow.svg' | asset_url }}" width="24" height="24" alt="" loading="lazy" aria-hidden="true">
       </a>
     </div>
   {% endif %}
@@ -134,7 +138,8 @@
   .product-solutions-grid__panel {
     min-inline-size: 0;
     padding: var(--solutions-panel-padding, 52px);
-    border: 1px solid var(--solutions-panel-border, rgb(255 255 255 / 0.8));
+    outline: 1px solid var(--solutions-panel-border, rgb(255 255 255 / 0.8));
+    outline-offset: -1px;
     border-radius: var(--solutions-panel-radius, 28px);
     background: var(--solutions-panel-background, rgb(255 255 255 / 0.4));
   }
@@ -150,6 +155,8 @@
   }
 
   .product-solutions-grid__background {
+    border-start-start-radius: var(--solutions-section-radius, 48px);
+    border-start-end-radius: var(--solutions-section-radius, 48px);
     background-image: radial-gradient(
       54.79% 79.25% at 48.72% 36.96%,
       var(--solutions-bg-from, #c5d9ff) 14.56%,
@@ -157,13 +164,16 @@
     );
   }
 
+  .product-solutions-grid__heading.text-block {
+    /* Beat shared text sizing so the gradient spans the design's heading column. */
+    max-inline-size: min(707px, 100%);
+  }
+
   .product-solutions-grid__heading {
-    /* Keep merchant-authored line breaks within the panel's content column. */
-    max-width: 100%;
     font-family: var(--solutions-heading-font-family, var(--font-heading--family));
     font-size: var(--solutions-heading-font-size, 3.625rem);
     font-weight: var(--solutions-heading-font-weight, 600);
-    line-height: var(--solutions-heading-line-height, 1);
+    line-height: var(--solutions-heading-line-height, normal);
     letter-spacing: 0;
     color: var(--color-foreground);
   }
@@ -171,6 +181,7 @@
   .product-solutions-grid__grid {
     display: grid;
     grid-template-columns: repeat(var(--solutions-columns, 3), minmax(0, 1fr));
+    grid-auto-rows: 1fr;
     gap: var(--solutions-gap, 32px);
     width: 100%;
     margin-block-start: var(--solutions-heading-gap, 40px);
@@ -179,6 +190,7 @@
   .product-solution-card {
     position: relative;
     min-inline-size: 0;
+    min-block-size: 248px;
     overflow-wrap: anywhere;
     display: flex;
     flex-direction: column;
@@ -189,9 +201,10 @@
     background-color: var(--product-solution-card-background, rgb(255 255 255 / 0.58));
     border: 1px solid var(--product-solution-card-border, rgb(255 255 255 / 1));
     border-radius: var(--product-solution-card-radius, 13px);
+    box-shadow: 0 0 16px rgb(0 0 0 / 0.1);
     transition:
-      transform 0.3s var(--ease-out-cubic),
-      box-shadow 0.3s var(--ease-out-cubic);
+      background-color var(--animation-speed) var(--animation-easing),
+      box-shadow var(--animation-speed) var(--animation-easing);
   }
 
   .product-solution-card__title {
@@ -199,19 +212,19 @@
     font-family: var(--font-heading--family);
     font-size: 20px;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: normal;
     color: var(--solutions-card-text, var(--color-foreground));
     text-wrap: pretty;
   }
 
   .product-solution-card__excerpt {
-    margin-block-start: 12px;
-    font-family: var(--font-heading--family);
+    margin-block-start: 20px;
+    font-family: var(--font-body--family);
     font-size: 16px;
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.5;
     color: var(--solutions-card-muted, var(--color-foreground));
-    text-wrap: pretty;
+    text-wrap: wrap;
   }
 
   .product-solution-card__more {
@@ -221,10 +234,11 @@
     padding-block-start: 20px;
     font-family: var(--font-heading--family);
     font-size: 16px;
-    font-weight: 600;
-    line-height: 1.5;
+    font-weight: 500;
+    line-height: normal;
     color: var(--solutions-card-accent, var(--color-foreground));
-    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   .product-solution-card:focus-visible {
@@ -232,73 +246,58 @@
     outline-offset: var(--focus-outline-offset);
   }
 
-  .product-solution-card:focus-visible .product-solution-card__more::after { transform: scaleX(1); }
-
-  /* Read More underline: drawn with a pseudo-element, left-to-right on hover. */
-  .product-solution-card__more::after {
-    content: "";
-    position: absolute;
-    inset-inline: 0;
-    bottom: -2px;
-    height: 1px;
-    background-color: currentcolor;
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform 0.4s var(--ease-out-cubic);
-  }
-
   .product-solutions-grid__footer {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-block-start: 40px;
+    margin-block-start: 20px;
   }
 
   .product-solutions-grid__view-all {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 18px 41px;
+    gap: 6px;
+    max-inline-size: 100%;
+    min-block-size: 44px;
+    padding: 10px 26px;
     font-family: var(--font-heading--family);
-    font-size: 21px;
-    font-weight: 600;
-    line-height: 1;
-    color: var(--solutions-card-text, var(--color-foreground));
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--solutions-button-text, #fff);
     text-align: center;
     text-decoration: none;
-    background-color: rgb(255 255 255 / 0.58);
-    border: 1px solid rgb(255 255 255 / 1);
-    border-radius: 12px;
-    transition: transform 0.3s var(--ease-out-cubic);
+    background-image: linear-gradient(97.525deg, var(--solutions-button-from, #7c21c2) 0.416%, var(--solutions-button-to, #5d70eb) 99.584%);
+    border-radius: 47px;
+    overflow-wrap: anywhere;
+    transition: opacity var(--animation-speed) var(--animation-easing);
+  }
+
+  .product-solutions-grid__view-all img { flex: none; inline-size: 24px; block-size: 24px; }
+  .product-solutions-grid__view-all:dir(rtl) img { transform: scaleX(-1); }
+  .product-solutions-grid__view-all:focus-visible {
+    outline: var(--focus-outline-width) solid var(--solutions-card-accent, var(--color-foreground));
+    outline-offset: var(--focus-outline-offset);
   }
 
   @media (hover: hover) {
     .product-solution-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px 0 rgb(11 34 184 / 0.15);
-    }
-
-    .product-solution-card:hover .product-solution-card__more::after,
-    .product-solution-card__more:hover::after {
-      transform: scaleX(1);
+      background-color: var(--product-solution-card-hover-background);
+      box-shadow: 0 0 8px rgb(0 0 0 / 0.1);
     }
 
     .product-solutions-grid__view-all:hover {
-      transform: translateY(-4px);
+      opacity: 0.85;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .product-solution-card,
-    .product-solutions-grid__view-all,
-    .product-solution-card__more::after {
+    .product-solutions-grid__view-all {
       transition: none;
     }
 
-    .product-solution-card:hover,
-    .product-solutions-grid__view-all:hover {
-      transform: none;
-    }
   }
 
   @media screen and (min-width: 750px) and (max-width: 989px) {
@@ -308,50 +307,23 @@
 
   @media screen and (max-width: 749px) {
     .product-solutions-grid__panel { padding: min(var(--solutions-panel-padding, 52px), 16px); border-radius: min(var(--solutions-panel-radius, 28px), 20px); }
+    .product-solutions-grid { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
+    .product-solutions-grid__heading { font-size: min(var(--solutions-heading-font-size, 3.625rem), 24px); line-height: 1.25; }
+    .product-solutions-grid__eyebrow { font-size: 12px; margin-block-end: 12px; }
     .product-solutions-grid__grid {
       grid-template-columns: minmax(0, 1fr);
-      gap: 20px;
+      grid-auto-rows: auto;
+      gap: 16px;
       margin-block-start: 24px;
     }
-
+    .product-solution-card { min-block-size: 0; padding: 16px; border-radius: var(--solutions-mobile-radius, 12px); }
+    .product-solution-card__title { font-size: 14px; line-height: 1.4; }
+    .product-solution-card__excerpt { font-size: 13px; line-height: 1.6; margin-block-start: 12px; }
+    .product-solution-card__more { padding-block-start: 12px; font-size: 14px; }
     .product-solutions-grid__view-all {
-      width: 100%;
-      padding: 16px 24px;
-
-    }
-  }
-
-  @media screen and (max-width: 749px) {
-    .product-solutions-grid__heading { font-size: 1.75rem; line-height: 1.2; }
-    .product-solution-card { min-width: 0; }
-    .product-solution-card__title { font-size: 16px; line-height: 1.3; overflow-wrap: anywhere; }
-    .product-solution-card__excerpt { margin-block-start: 16px; }
-    .product-solution-card__more { padding-block-start: 16px; line-height: 1.4; }
-  }
-  @media screen and (max-width: 749px) {
-    .product-solutions-grid__grid { gap: 16px; }
-    .product-solution-card { padding: 20px; border-radius: var(--solutions-mobile-radius, 12px); }
-    .product-solutions-grid__view-all { min-height: 48px; padding: 12px 24px; font-size: 16px; line-height: 1.5; border-radius: var(--solutions-mobile-radius, 12px); }
-  }
-  /* Shared mobile scale for every instance of this component. */
-  @media screen and (max-width: 749px) {
-    .product-solutions-grid { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
-
-    .product-solutions-grid .product-solutions-grid__eyebrow { font-size: 12px; margin-block-end: 12px; }
-    .product-solutions-grid .product-solutions-grid__heading { font-size: 24px; line-height: 1.25; }
-    .product-solutions-grid .product-solution-card { padding: 16px; }
-    .product-solutions-grid .product-solution-card__title { font-size: 14px; line-height: 1.4; }
-    .product-solutions-grid .product-solution-card__excerpt { font-size: 13px; line-height: 1.6; margin-block-start: 12px; }
-    .product-solutions-grid .product-solution-card__more { padding-block-start: 12px; font-size: 14px; }
-    .product-solutions-grid .product-solutions-grid__view-all { font-size: 14px; }
-  }
-  @media screen and (max-width: 749px) {
-    .product-solutions-grid .product-solutions-grid__view-all {
       min-block-size: 44px;
-      min-height: 44px;
-      padding: 10px 12px;
+      padding: 10px 26px;
       font-size: 14px;
-      line-height: 1.4;
     }
   }
 {% endstylesheet %}
@@ -366,6 +338,16 @@
     ]
   },
   "settings": [
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "t:settings.content_width",
+      "min": 1040,
+      "max": 1440,
+      "step": 4,
+      "unit": "px",
+      "default": 1276
+    },
     {
       "type": "collection",
       "id": "collection",
@@ -414,6 +396,7 @@
       "type": "color",
       "id": "card_description_color",
       "label": "t:settings.description",
+      "alpha": true,
       "default": "#5E5A8A"
     },
     {
@@ -587,29 +570,18 @@
       "default": true
     },
     {
-      "type": "color",
-      "id": "gradient_color_from",
-      "label": "t:settings.gradient_color_from",
-      "default": "#5B34C6",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_to",
-      "label": "t:settings.gradient_color_to",
-      "default": "#2D6BFF",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_mid",
-      "label": "t:settings.gradient_color_mid",
-      "default": "#8B45F0",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
       "type": "header",
       "content": "t:content.background"
+    },
+    {
+      "type": "range",
+      "id": "section_radius",
+      "label": "t:settings.corner_radius",
+      "min": 0,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "default": 48
     },
     {
       "type": "color",
@@ -760,6 +732,24 @@
       "label": "t:settings.link"
     },
     {
+      "type": "color",
+      "id": "button_gradient_from",
+      "label": "t:settings.gradient_color_from",
+      "default": "#7C21C2"
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_to",
+      "label": "t:settings.gradient_color_to",
+      "default": "#5D70EB"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:settings.text_color",
+      "default": "#FFFFFF"
+    },
+    {
       "type": "range",
       "id": "card_radius_mobile",
       "label": "t:settings.mobile_corner_radius",
@@ -775,32 +765,41 @@
       "name": "t:names.product_solutions_grid",
       "category": "t:categories.products",
       "settings": {
+        "content_width": 1276,
         "product_limit": 6,
-        "heading": "<p>Solutions Built for Measurable Growth</p>",
-        "read_more_label": "Read More",
+        "heading": "<p>Solutions Built for<br>Measurable Growth</p>",
+        "read_more_label": "Read More →",
+        "eyebrow": "",
+        "show_icons": false,
+        "card_text_color": "#000000",
+        "card_description_color": "#00000099",
+        "card_link_color": "#000000",
+        "panel_background": "#FFFFFF00",
+        "panel_border": "#FFFFFF00",
+        "panel_padding": 0,
+        "panel_radius": 0,
         "font": "var(--font-heading--family)",
         "font_size": "3.625rem",
         "weight": "600",
-        "line_height": "1",
+        "line_height": "",
         "wrap": "balance",
         "gradient_text": true,
-        "gradient_color_from": "#0B22B8",
-        "gradient_color_to": "#9621C4",
         "background_from": "#C5D9FF",
-        "background_to": "#A9C4FF",
+        "background_to": "#C5D9FF",
+        "section_radius": 40,
         "columns": 3,
         "gap": 20,
-        "card_background": "#FFFFFFC7",
+        "card_background": "#FFFFFFB3",
         "card_border": "#FFFFFFFF",
-        "card_radius": 18,
-        "padding-block-start": 64,
-        "padding-block-end": 64,
+        "card_radius": 20,
+        "padding-block-start": 88,
+        "padding-block-end": 88,
         "heading_gap": 40,
-        "card_padding_block_start": 26,
-        "card_padding_block_end": 22,
+        "card_padding_block_start": 24,
+        "card_padding_block_end": 24,
         "card_padding_inline_start": 24,
         "card_padding_inline_end": 24,
-        "view_all_label": "VIEW ALL SERVICES"
+        "view_all_label": "View All Services"
       }
     }
   ]

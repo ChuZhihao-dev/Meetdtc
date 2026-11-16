@@ -1,6 +1,7 @@
 {% doc %}
   Renders a merchant-authored question and answer with native disclosure behavior.
   The containing FAQ section owns the FAQPage microdata scope.
+  Uses the containing section's layout_style setting for the card icon variant.
   @example {% content_for 'block', type: '_faq-row', id: 'question' %}
 {% enddoc %}
 
@@ -30,7 +31,12 @@
   >
     <summary class="faq-row__summary">
       <span class="faq-row__toggle svg-wrapper icon-plus" aria-hidden="true">
-        {{- 'icon-plus.svg' | inline_asset_content -}}
+        {% if section.settings.layout_style == 'cards' %}
+          <span class="faq-row__symbol faq-row__symbol--plus" style="--faq-symbol: url('{{ 'faq-plus.svg' | asset_url }}');"></span>
+          <span class="faq-row__symbol faq-row__symbol--minus" style="--faq-symbol: url('{{ 'faq-minus.svg' | asset_url }}');"></span>
+        {% else %}
+          {{- 'icon-plus.svg' | inline_asset_content -}}
+        {% endif %}
       </span>
       <span class="faq-row__question" itemprop="name">{{ block_settings.question | escape }}</span>
     </summary>
@@ -54,6 +60,12 @@
     padding: 30px 20px;
     background-color: var(--faq-row-background, #e5e6ff);
     border-radius: var(--faq-row-radius, 16px);
+    box-shadow: var(--faq-row-shadow, none);
+    transition: box-shadow var(--animation-speed-slow) var(--animation-easing);
+  }
+
+  .faq-row[open] {
+    box-shadow: var(--faq-row-shadow-open, var(--faq-row-shadow, none));
   }
 
   .faq-row__summary {
@@ -93,6 +105,34 @@
     height: 14px;
   }
 
+  .faq-row__symbol {
+    grid-area: 1 / 1;
+    inline-size: 16px;
+    block-size: 16px;
+    background-color: currentColor;
+    mask: var(--faq-symbol) center / 16px 16px no-repeat;
+    opacity: 1;
+    transform: rotate(0deg);
+    transition:
+      opacity var(--animation-speed) var(--animation-easing),
+      transform var(--animation-speed) var(--animation-easing);
+  }
+
+  .faq-row__symbol--minus {
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+
+  .faq-row[open] .faq-row__symbol--plus {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+
+  .faq-row[open] .faq-row__symbol--minus {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+
   .faq-row__question {
     min-width: 0;
     color: var(--faq-question-color, #3f4eff);
@@ -100,7 +140,7 @@
   }
 
   .faq-row__answer {
-    padding-block: 16px;
+    padding-block: var(--faq-answer-padding-block, 16px);
     padding-inline-start: calc(32px + 16px);
     font-family: Montserrat;
     font-size: 16px;
@@ -139,14 +179,19 @@
     }
 
     .faq-row__answer {
-      padding-block: 12px 24px;
+      padding-block: var(--faq-answer-padding-block-mobile, 12px 24px);
       padding-inline-start: calc(28px + 12px);
 
     }
   }
-  .faq-row::details-content, .faq-row .details-content { transition: opacity var(--animation-speed-slow) var(--animation-easing); }
+  /* The shared accordion owns height, padding and content-visibility transitions. */
   @media (prefers-reduced-motion: reduce) {
-    .faq-row::details-content, .faq-row .details-content { transition: none; }
+    .faq-row,
+    .faq-row.faq-row::details-content,
+    .faq-row .details-content,
+    .faq-row__symbol {
+      transition: none;
+    }
   }
 {% endstylesheet %}
 

@@ -198,6 +198,10 @@
     "icon": "Icon"
   },
   "partner_brands": {
+    "two_tone_heading": "Two-color heading",
+    "two_tone_heading_info": "Use bold in the heading editor to apply the accent color. This takes priority over gradient text.",
+    "heading_color": "Heading color",
+    "heading_accent_color": "Bold text color",
     "font_size_58": "58px",
     "motion": "Logo movement",
     "static": "Static",

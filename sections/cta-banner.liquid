@@ -26,11 +26,17 @@
 ></div>
 
 <div
-  class="section section--page-width cta-banner spacing-style"
+  class="section section--page-width cta-banner{% if section_settings.layout_style == 'glow' %} cta-banner--glow{% endif %} spacing-style"
   style="{% render 'spacing-style', settings: section_settings %}
     --cta-mobile-radius: {{ section_settings.panel_radius_mobile }}px;"
   {{ section.shopify_attributes }}
 >
+  {% if section_settings.layout_style == 'glow' %}
+    <div class="cta-banner__glow" aria-hidden="true">
+      <img src="{{ 'callout-glow-back.svg' | asset_url }}" width="1097" height="414" alt="" loading="lazy">
+      <img src="{{ 'callout-glow-front.svg' | asset_url }}" width="1097" height="414" alt="" loading="lazy">
+    </div>
+  {% endif %}
   <scroll-reveal-component data-reveal-scope>
   <div
     class="cta-banner__panel spacing-style"
@@ -64,16 +70,9 @@
         data-reveal
         style="
           {% render 'typography-style', settings: section_settings, type: 'heading', preset: 'custom' %}
-          {% if section_settings.gradient_text %}
-            --gradient-from: {{ section_settings.gradient_color_from }};
-            --gradient-to: {{ section_settings.gradient_color_to }};
-            --gradient-angle: {{ section_settings.gradient_angle }}deg;
-            --gradient-start: {{ section_settings.gradient_start_position }}%;
-            --gradient-end: {{ section_settings.gradient_end_position }}%;
-          {% endif %}
         "
       >
-        {{ heading_text }}
+        {% if section_settings.layout_style == 'glow' %}{{ heading_text | escape | replace: ' to Focus', ' to<br>Focus' }}{% else %}{{ heading_text | escape }}{% endif %}
       </div>
     {% endif %}
 
@@ -83,12 +82,18 @@
       {% endif %}
 
       {% if section_settings.link != blank and section_settings.link_label != blank %}
-        <a class="cta-banner__button" href="{{ section_settings.link }}">
-          {{- section_settings.link_label -}}
+        {% if section_settings.layout_style == 'glow' %}<div class="cta-banner__button-shell"><div class="cta-banner__button-ring">{% endif %}
+        <a class="cta-banner__button" href="{{ section_settings.link | escape }}">
+          {{- section_settings.link_label | escape -}}
           <span class="cta-banner__button-icon" aria-hidden="true">
-            {{- 'icon-arrow.svg' | inline_asset_content -}}
+            {% if section_settings.layout_style == 'glow' %}
+              <img src="{{ 'callout-arrow.svg' | asset_url }}" width="56" height="56" alt="" loading="lazy">
+            {% else %}
+              {{- 'icon-arrow.svg' | inline_asset_content -}}
+            {% endif %}
           </span>
         </a>
+        {% if section_settings.layout_style == 'glow' %}</div></div>{% endif %}
       {% endif %}
     </div>
   </div>
@@ -99,9 +104,9 @@
   /* Callout keeps its light two-color gradient against the colored panel. */
   .cta-banner__heading.text-block.text-block--gradient {
     background-image: linear-gradient(
-      var(--gradient-angle, 96deg),
-      var(--gradient-from, #FFFFFF) var(--gradient-start, 12%),
-      var(--gradient-to, #F8E5FF) var(--gradient-end, 88%)
+      96deg,
+      #FFFFFF 12%,
+      #F8E5FF 88%
     );
   }
   .cta-banner__background {
@@ -259,6 +264,182 @@
       line-height: 1.4;
     }
   }
+
+  .cta-banner--glow {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+  }
+
+  .cta-banner--glow .cta-banner__panel {
+    position: relative;
+    aspect-ratio: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    text-align: center;
+  }
+
+  .cta-banner--glow .cta-banner__heading.text-block {
+    flex: none;
+    inline-size: min(844px, 100%);
+    max-inline-size: 100%;
+    text-align: center;
+  }
+
+  .cta-banner--glow .cta-banner__heading.text-block--gradient {
+    background-image: var(--heading-gradient);
+  }
+
+  .cta-banner--glow .cta-banner__heading > * {
+    text-align: center;
+  }
+
+  .cta-banner--glow .cta-banner__aside {
+    align-items: center;
+    inline-size: 100%;
+    max-inline-size: 628px;
+    gap: 80px;
+  }
+
+  .cta-banner--glow .cta-banner__button {
+    justify-content: space-between;
+    gap: 20px;
+    inline-size: 376px;
+    max-inline-size: calc(100% - 36px);
+    min-block-size: 70px;
+    padding: 6px 6px 6px 26px;
+    border: 1px solid rgb(124 40 243 / 0.2);
+    border-radius: 50px;
+    outline: 10px solid rgb(255 255 255 / 0.4);
+    box-shadow: 0 0 0 18px rgb(255 255 255 / 0.1), 0 0 8px rgb(0 0 0 / 0.1);
+  }
+
+  .cta-banner--glow .cta-banner__button:focus-visible {
+    outline: var(--focus-outline-width) solid var(--cta-button-color);
+    outline-offset: 14px;
+  }
+
+  .cta-banner--glow .cta-banner__button-icon {
+    flex: none;
+  }
+
+  .cta-banner__button-icon img {
+    display: block;
+    inline-size: 56px;
+    block-size: 56px;
+  }
+
+  .cta-banner__glow {
+    position: absolute;
+    z-index: -1;
+    inset-inline-start: 50%;
+    inset-block-end: -4px;
+    inline-size: 1097px;
+    block-size: 414px;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .cta-banner__glow:dir(rtl) {
+    transform: translateX(50%);
+  }
+
+  .cta-banner__glow img {
+    position: absolute;
+    inset: 0;
+    inline-size: 1097px;
+    block-size: 414px;
+    max-inline-size: none;
+  }
+
+  @media (hover: hover) {
+    .cta-banner--glow .cta-banner__button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 18px rgb(255 255 255 / 0.1), 0 0 12px rgb(0 0 0 / 0.15);
+    }
+    .cta-banner--glow .cta-banner__button:hover .cta-banner__button-icon {
+      transform: none;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .cta-banner.cta-banner--glow .cta-banner__panel {
+      padding: 0;
+      gap: 20px;
+    }
+    .cta-banner.cta-banner--glow .cta-banner__aside {
+      gap: 48px;
+    }
+    .cta-banner.cta-banner--glow .cta-banner__button {
+      min-block-size: 70px;
+      padding: 6px 6px 6px 20px;
+      border-radius: 50px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-banner--glow .cta-banner__button:hover {
+      transform: none;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .cta-banner.cta-banner--glow {
+      min-block-size: 578px;
+      padding-block: 88px 72px;
+    }
+    .cta-banner--glow .cta-banner__panel { gap: 26px; }
+    .cta-banner--glow .cta-banner__heading.text-block {
+      min-block-size: 142px;
+      line-height: normal;
+    }
+    .cta-banner--glow .cta-banner__aside {
+      gap: 84px;
+    }
+    .cta-banner--glow .cta-banner__description {
+      min-block-size: 60px;
+      line-height: 1.5;
+    }
+  }
+  .cta-banner--glow .cta-banner__heading > * { line-height: inherit; }
+  .cta-banner__button-shell {
+    inline-size: 412px;
+    max-inline-size: 100%;
+    padding: 8px;
+    border-radius: 50px;
+    background: rgb(255 255 255 / 0.1);
+  }
+  .cta-banner__button-ring {
+    padding: 10px;
+    border-radius: inherit;
+    background: rgb(255 255 255 / 0.4);
+  }
+  .cta-banner--glow .cta-banner__button {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    outline: none;
+    font-weight: 500;
+    box-shadow: 0 0 8px rgb(0 0 0 / 0.1);
+  }
+  .cta-banner--glow .cta-banner__button:focus-visible {
+    outline: var(--focus-outline-width) solid var(--cta-button-color);
+    outline-offset: 4px;
+  }
+  .cta-banner--glow .cta-banner__glow {
+    inset-inline-start: calc(50% + 5.5px);
+    inset-block-end: 0;
+  }
+  .cta-banner__glow img:first-child { transform: translateY(-6px); }
+  @media (hover: hover) {
+    .cta-banner--glow .cta-banner__button:hover {
+      transform: none;
+      box-shadow: 0 0 12px rgb(0 0 0 / 0.15);
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -271,6 +452,16 @@
     ]
   },
   "settings": [
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "t:settings.layout_style",
+      "options": [
+        { "value": "standard", "label": "t:options.standard" },
+        { "value": "glow", "label": "t:options.center" }
+      ],
+      "default": "standard"
+    },
     {
       "type": "text",
       "id": "heading",
@@ -462,53 +653,6 @@
     },
     {
       "type": "color",
-      "id": "gradient_color_from",
-      "label": "t:settings.gradient_color_from",
-      "default": "#FFFFFF",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_to",
-      "label": "t:settings.gradient_color_to",
-      "default": "#F8E5FF",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_angle",
-      "label": "t:settings.gradient_angle",
-      "min": 0,
-      "max": 360,
-      "step": 4,
-      "unit": "deg",
-      "default": 96,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_start_position",
-      "label": "t:settings.gradient_start_position",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 12,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_end_position",
-      "label": "t:settings.gradient_end_position",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 88,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
       "id": "description_color",
       "label": "t:settings.color",
       "default": "#FFFFFF"
@@ -687,11 +831,6 @@
         "letter_spacing": "normal",
         "wrap": "balance",
         "gradient_text": true,
-        "gradient_color_from": "#FFFFFF",
-        "gradient_color_to": "#F8E5FF",
-        "gradient_angle": 96,
-        "gradient_start_position": 12,
-        "gradient_end_position": 88,
         "description_color": "#FFFFFF",
         "background_gradient_from": "#AAC5FF",
         "background_gradient_to": "#CBD5FD",

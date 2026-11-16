@@ -1,3 +1,7 @@
+{% doc %}
+  Renders an editable value card with an exported icon or merchant-selected image.
+  @example Add a value proposition block to the Why choose us section.
+{% enddoc %}
 {% liquid
   assign block_settings = block.settings
   assign image_loading = 'lazy'
@@ -5,11 +9,12 @@
     assign image_loading = 'eager'
   endif
   assign icon = block_settings.icon
+  assign mask_prefix = 'stroke0_' | append: block.id | append: '_'
 %}
 
 <div class="value-prop" {{ block.shopify_attributes }}>
   <div
-    class="value-prop__badge"
+    class="value-prop__badge{% if block_settings.image != blank %} value-prop__badge--custom{% endif %}"
     style="--value-prop-ring: {{ block_settings.circle_color | default: '#4183ff' }};"
   >
     <span
@@ -25,26 +30,29 @@
             sizes: '40px',
             class: 'value-prop__image',
             loading: image_loading,
-          decoding: 'async',
+            decoding: 'async',
             alt: ''
         }}
       {%- else -%}
+        {%- capture icon_markup -%}
         {%- case icon -%}
           {%- when 'team' -%}
-            {{ 'icon-why-team.svg' | inline_asset_content }}
+            {{ 'why-choose-us-team.svg' | inline_asset_content }}
           {%- when 'global' -%}
-            {{ 'icon-why-global.svg' | inline_asset_content }}
+            {{ 'why-choose-us-global.svg' | inline_asset_content }}
           {%- when 'layers' -%}
-            {{ 'icon-why-layers.svg' | inline_asset_content }}
+            {{ 'why-choose-us-layers.svg' | inline_asset_content }}
           {%- when 'bars' -%}
-            {{ 'icon-why-bars.svg' | inline_asset_content }}
+            {{ 'why-choose-us-bars.svg' | inline_asset_content }}
         {%- endcase -%}
+        {%- endcapture -%}
+        {{ icon_markup | replace: 'stroke0_', mask_prefix }}
       {%- endif -%}
     </span>
   </div>
 
   {%- if block_settings.title != blank -%}
-    <p class="value-prop__title">{{ block_settings.title }}</p>
+    <p class="value-prop__title">{{ block_settings.title | escape }}</p>
   {%- endif -%}
 
   {%- if block_settings.description != blank -%}
@@ -56,67 +64,58 @@
   .value-prop {
     display: flex;
     flex-direction: column;
-    min-width: 0;
+    gap: 20px;
+    min-inline-size: 0;
+    min-block-size: 310px;
+    padding: 24px;
+    background-color: rgb(19 98 250 / 0.112);
+    border-radius: 20px;
+    box-shadow: 0 0 16px rgb(60 69 232 / 0.1);
+    scroll-snap-align: start;
   }
 
   .value-prop__badge {
     display: grid;
     place-items: center;
     flex-shrink: 0;
-    width: 98px;
-    height: 98px;
-    margin-block-end: 18px;
-    background-color: #ffffff;
-    border: 1px solid var(--value-prop-ring, #4183ff);
-    border-radius: 50%;
+    inline-size: 97.246px;
+    block-size: 98px;
   }
 
-  .value-prop__icon {
-    display: grid;
-    place-items: center;
-    max-width: 40px;
-    max-height: 40px;
-  }
-
-  .value-prop__icon svg,
-  .value-prop__image {
-    width: auto;
-    height: auto;
-    max-width: 40px;
-    max-height: 40px;
-  }
-
-  .value-prop__icon--bars {
-    transform: rotate(90deg);
-  }
+  .value-prop__icon { display: grid; place-items: center; inline-size: 100%; block-size: 100%; }
+  .value-prop__icon svg { inline-size: 100%; block-size: 100%; }
+  .value-prop__icon ellipse[stroke] { stroke: var(--value-prop-ring); }
+  .value-prop__badge--custom { background-color: #fff; border: 1px solid var(--value-prop-ring); border-radius: 50%; }
+  .value-prop__image { inline-size: 40px; block-size: 40px; object-fit: contain; }
 
   .value-prop__title {
-    min-height: 2.8em;
-    margin: 0 0 6px;
+    margin: 0;
     font-family: var(--font-heading--family);
-    font-size: 1.25rem;
-    font-weight: 700;
-    line-height: 1.4;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
     color: var(--color-foreground);
     overflow-wrap: anywhere;
-    text-wrap: pretty;
   }
 
   .value-prop__description {
-    font-family:Montserrat;
-    font-size: 0.75rem;
-    font-weight: 500;
-    line-height: 2;
+    font-family: var(--font-body--family);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
     color: var(--color-foreground);
-    text-wrap: pretty;
+    overflow-wrap: anywhere;
   }
 
-  .value-prop__description > :first-child {
-    margin-block-start: 0;
-  }
+  .value-prop__description > :first-child { margin-block-start: 0; }
+  .value-prop__description > :last-child { margin-block-end: 0; }
 
-  .value-prop__description > :last-child {
-    margin-block-end: 0;
+  @media screen and (max-width: 749px) {
+    .value-prop { min-block-size: 0; gap: 12px; padding: 20px; }
+    .value-prop__badge { inline-size: 56px; block-size: 56px; }
+    .value-prop__image { inline-size: 24px; block-size: 24px; }
+    .value-prop__title { font-size: 14px; line-height: 1.4; }
+    .value-prop__description { font-size: 13px; line-height: 1.6; }
   }
 {% endstylesheet %}
 

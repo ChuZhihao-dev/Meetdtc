@@ -1123,7 +1123,7 @@
           "type": "_faq-row",
           "settings": {
             "question": "Q1. Can you add Google Cloud or Vertex AI to our existing AWS or Alibaba Cloud environment?",
-            "answer": "<p>Yes. We can assess an integration alongside your existing environment without requiring a complete migration. Connectivity, data access, and rollout plans depend on your architecture. We plan testing and rollback procedures to manage production risk.</p>",
+            "answer": "<p>Yes. We can assess an integration alongside your existing environment without requiring a complete migration. Connectivity, data access, and rollout plans depend on your cloud architecture. We plan testing and rollback procedures to manage production risk.</p>",
             "open_by_default": true
           },
           "blocks": {}
@@ -1132,7 +1132,7 @@
           "type": "_faq-row",
           "settings": {
             "question": "Q2 How do you address 429 errors and production capacity constraints?",
-            "answer": "<p>We identify whether errors relate to quotas, shared capacity, or application traffic patterns. Depending on the workload, options may include capacity planning, request pacing, retries with backoff, suitable endpoint selection, or reserved throughput. Availability and terms depend on the selected service. No architecture can promise that every future 429 error will be eliminated.</p>",
+            "answer": "<p>We identify whether errors relate to quotas, shared capacity, or application traffic patterns. Depending on the workload, options may include capacity planning, request pacing, retries with backoff, suitable endpoint selection, or reserved throughput. We also assess your cloud architecture to identify potential capacity bottlenecks. Availability and terms depend on the selected service. No architecture can promise that every future 429 error will be eliminated.</p>",
             "open_by_default": false
           },
           "blocks": {}
@@ -1141,7 +1141,7 @@
           "type": "_faq-row",
           "settings": {
             "question": "Q3. How are projects priced?",
-            "answer": "<p>Scope, milestones, deliverables, and commercial terms are agreed before delivery. Cloud consumption and third-party charges are identified separately where applicable. Changes follow an agreed scope-change process. Any provider credits depend on eligibility and approval.</p>",
+            "answer": "<p>Scope, milestones, deliverables, and commercial terms are agreed before delivery. Our cloud computing services and consulting fees are defined according to the agreed project scope. &nbsp;Cloud consumption and third-party charges are identified separately where applicable. Changes follow an agreed scope-change process. Any provider credits depend on eligibility and approval.</p>",
             "open_by_default": false
           },
           "blocks": {}

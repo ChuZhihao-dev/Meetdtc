@@ -66,7 +66,7 @@ class PartnerBrands extends Component {
   #build = () => {
     if (this.#selected || this.#focused) return;
     this.#resetRows();
-    for (const row of this.refs.rows ?? []) {
+    for (const [rowIndex, row] of (this.refs.rows ?? []).entries()) {
       const direction = row.dataset.motion;
       if (!['left', 'right'].includes(direction)) continue;
       const group = row.querySelector('.brand-row__items');
@@ -93,7 +93,11 @@ class PartnerBrands extends Component {
       }
       const frames = [{ transform: 'translateX(0)' }, { transform: `translateX(-${distance}px)` }];
       if (direction === 'right') frames.reverse();
-      this.#animations.push(track.animate(frames, { duration: distance / 30 * 1000, iterations: Infinity, easing: 'linear' }));
+      const duration = distance / 30 * 1000;
+      const animation = track.animate(frames, { duration, iterations: Infinity, easing: 'linear' });
+      // Offset adjacent rows so repeated brand groups do not line up vertically.
+      animation.currentTime = duration * (rowIndex % 3) / 3;
+      this.#animations.push(animation);
     }
     this.#sync();
   };

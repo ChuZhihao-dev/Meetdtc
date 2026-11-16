@@ -74,16 +74,6 @@
             text-block--full-width
             {% if section_settings.gradient_text %}text-block--gradient{% endif %}
           "
-          style="
-            {% if section_settings.gradient_text %}
-              --gradient-from: {{ section_settings.gradient_color_from }};
-    --gradient-mid: {{ section_settings.gradient_color_mid | default: '#8B45F0' }};
-              --gradient-to: {{ section_settings.gradient_color_to }};
-              --gradient-angle: {{ section_settings.gradient_angle }}deg;
-              --gradient-start: {{ section_settings.gradient_start_position }}%;
-              --gradient-end: {{ section_settings.gradient_end_position }}%;
-            {% endif %}
-          "
         >
           {{ heading_text }}
         </div>
@@ -481,60 +471,6 @@
       "default": true
     },
     {
-      "type": "color",
-      "id": "gradient_color_from",
-      "label": "t:settings.gradient_color_from",
-      "default": "#5B34C6",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_to",
-      "label": "t:settings.gradient_color_to",
-      "default": "#2D6BFF",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_mid",
-      "label": "t:settings.gradient_color_mid",
-      "default": "#8B45F0",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_angle",
-      "label": "t:settings.gradient_angle",
-      "min": 0,
-      "max": 360,
-      "step": 4,
-      "unit": "deg",
-      "default": 100,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_start_position",
-      "label": "t:settings.gradient_start_position",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 0,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "range",
-      "id": "gradient_end_position",
-      "label": "t:settings.gradient_end_position",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 100,
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
       "type": "header",
       "content": "t:content.background"
     },
@@ -735,11 +671,6 @@
         "line_height": "1",
         "wrap": "balance",
         "gradient_text": true,
-        "gradient_color_from": "#0B22B8",
-        "gradient_color_to": "#9621C4",
-        "gradient_angle": 92,
-        "gradient_start_position": 11,
-        "gradient_end_position": 89,
         "background_gradient_from": "#AAC5FF",
         "background_gradient_to": "#CBD5FD",
         "background_gradient_angle": 104,

@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="97.2457" height="98" viewBox="0 0 97.2457 98" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 1597884462">
+<g id="Ellipse 11635">
+<ellipse cx="48.6228" cy="49" rx="48.6228" ry="49" fill="white"/>
+<mask id="stroke0_0_4" fill="white">
+<path d="M97.2457 49C97.2457 76.062 75.4765 98 48.6228 98C21.7692 98 0 76.062 0 49C0 21.938 21.7692 0 48.6228 0C75.4765 0 97.2457 21.938 97.2457 49Z"/>
+</mask>
+<ellipse cx="48.6228" cy="49" rx="48.6228" ry="49" stroke-width="2" stroke="#9621C4" mask="url(#stroke0_0_4)"/>
+</g>
+<path id="Icon" d="M36.6982 64L36.6982 33M45.0316 64L45.0316 41.1954M53.3649 64L53.3649 33M61.6982 64L61.6982 47.431" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke="#9621C4"/>
+</g>
+</svg>

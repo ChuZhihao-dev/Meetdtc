@@ -3,6 +3,8 @@
   @example Add "AIDEA model" in the theme editor and customize the model copy.
 {% endcomment %}
 
+{% render 'text-block-styles' %}
+
 {% unless section.settings.enable_animation == false %}
   <script src="{{ 'aidea-model.js' | asset_url }}" type="module" fetchpriority="low"></script>
   {% render 'scroll-reveal-styles' %}
@@ -13,7 +15,7 @@
   <div class="aidea-model__content">
     <scroll-reveal-component class="aidea-model__intro" {% unless section.settings.enable_animation == false %}data-reveal-scope{% endunless %}>
       {% if section.settings.heading != blank %}
-        <h2 class="aidea-model__heading" data-reveal>{{ section.settings.heading | escape }}</h2>
+        <h2 class="aidea-model__heading text-block text-block--gradient" data-reveal>{{ section.settings.heading | escape }}</h2>
       {% endif %}
       {% if section.settings.description != blank %}
         <p class="aidea-model__description" data-reveal>{{ section.settings.description | escape | newline_to_br }}</p>
@@ -84,10 +86,6 @@
     font-weight: 600;
     line-height: 1.2;
     overflow-wrap: anywhere;
-    color: #0b22b8;
-    inline-size: fit-content; max-inline-size: 100%; background: var(--heading-gradient);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
   .aidea-model__description {
     margin-block: 16px 0;
