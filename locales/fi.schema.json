@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "result_card": {
+    "article_info": "Käyttää artikkelin kuvaa ja linkkiä. Jätä tunniste tai kuvaus tyhjäksi käyttääksesi artikkelin otsikkoa tai katkelmaa. Alla oleva kuva on varakuva; tulokset syötetään käsin."
+  },
   "header_transparent_page": {
     "name": "Transparent header page",
     "page": "Page",

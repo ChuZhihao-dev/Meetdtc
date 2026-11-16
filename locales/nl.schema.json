@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "result_card": {
+    "article_info": "Gebruikt de afbeelding en link van het artikel. Laat het label of de beschrijving leeg om de titel of samenvatting te gebruiken. De afbeelding hieronder is een alternatief; resultaten worden handmatig ingevuld."
+  },
   "header_transparent_page": {
     "name": "Transparent header page",
     "page": "Page",

@@ -353,6 +353,9 @@
     "card_heading": "Card heading",
     "card_description": "Card description"
   },
+  "result_card": {
+    "article_info": "Uses the article's image and link. Leave label or description blank to use its title or excerpt. The image below is a fallback; metrics are entered manually."
+  },
   "client_story": {
     "name": "Featured Client Story",
     "metric_name": "Client result",

@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "result_card": {
+    "article_info": "Použije se obrázek a odkaz článku. Nechte štítek nebo popis prázdný pro použití názvu nebo úryvku článku. Obrázek níže je náhradní; výsledky se zadávají ručně."
+  },
   "header_transparent_page": {
     "name": "Transparent header page",
     "page": "Page",

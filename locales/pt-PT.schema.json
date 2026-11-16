@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "result_card": {
+    "article_info": "Usa a imagem e a ligação do artigo. Deixe a etiqueta ou a descrição em branco para usar o título ou excerto. A imagem abaixo é uma alternativa; os resultados são introduzidos manualmente."
+  },
   "header_transparent_page": {
     "name": "Transparent header page",
     "page": "Page",

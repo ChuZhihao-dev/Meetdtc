@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "result_card": {
+    "article_info": "Bruker artikkelens bilde og lenke. La etikett eller beskrivelse stå tom for å bruke artikkelens tittel eller utdrag. Bildet nedenfor er en reserve; resultater angis manuelt."
+  },
   "header_transparent_page": {
     "name": "Transparent header page",
     "page": "Page",

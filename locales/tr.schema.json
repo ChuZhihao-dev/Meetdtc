@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "result_card": {
+    "article_info": "Makalenin görselini ve bağlantısını kullanır. Başlık veya özeti kullanmak için etiketi ya da açıklamayı boş bırakın. Aşağıdaki görsel yedektir; sonuç verileri elle girilir."
+  },
   "header_transparent_page": {
     "name": "Transparent header page",
     "page": "Page",

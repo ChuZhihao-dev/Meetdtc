@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "result_card": {
+    "article_info": "Używa obrazu i linku artykułu. Pozostaw etykietę lub opis puste, aby użyć tytułu lub fragmentu artykułu. Obraz poniżej jest zastępczy; wyniki wprowadza się ręcznie."
+  },
   "header_transparent_page": {
     "name": "Transparent header page",
     "page": "Page",

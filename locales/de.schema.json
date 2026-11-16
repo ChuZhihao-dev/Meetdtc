@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "result_card": {
+    "article_info": "Verwendet Bild und Link des Artikels. Leere Beschriftungen oder Beschreibungen verwenden Titel oder Auszug des Artikels. Das Bild unten dient als Ersatz; Kennzahlen werden manuell eingegeben."
+  },
   "header_transparent_page": {
     "name": "Transparent header page",
     "page": "Page",

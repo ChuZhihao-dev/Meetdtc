@@ -1,7 +1,7 @@
 {% comment %}
   Our work.
   Renders a left-aligned label, a gradient headline, and supporting copy above a
-  responsive grid of merchant-managed result cards with a mobile bleed carousel.
+  single row of merchant-managed result cards with native horizontal scrolling.
   @example
   <!-- Add the "Our work" section, then edit each result card block -->
 {% endcomment %}
@@ -149,11 +149,28 @@
 
   .our-work__track {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    grid-auto-flow: column;
+    grid-auto-columns: max(min(100%, 320px), calc((100% - var(--work-card-gap, 40px) * 2) / 3));
     gap: var(--work-card-gap, 40px);
     width: 100%;
     min-width: 0;
-    margin-block-start: var(--work-heading-gap, 40px);
+    margin-block-start: max(0px, calc(var(--work-heading-gap, 40px) - 8px));
+    padding-block: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+  }
+
+  .our-work__track:has(> .result-card:only-child) {
+    grid-auto-columns: 100%;
+  }
+
+  @media screen and (min-width: 750px) {
+    .our-work__track:has(> .result-card:nth-child(2):last-child) {
+      grid-auto-columns: max(min(100%, 320px), calc((100% - var(--work-card-gap, 40px)) / 2));
+    }
   }
 
   .our-work__track:focus-visible {
@@ -165,6 +182,7 @@
     width: 100%;
     min-width: 0;
     height: auto;
+    scroll-snap-align: start;
     padding-block: calc(var(--work-card-padding-block-start, 46px) * 0.65) calc(var(--work-card-padding-block-end, 46px) * 0.65);
     padding-inline: calc(var(--work-card-padding-inline-start, 37px) * 0.65) calc(var(--work-card-padding-inline-end, 37px) * 0.65);
   }
@@ -206,13 +224,12 @@
     overflow-wrap: anywhere;
   }
 
-  /* Separate hover translation from the scroll reveal's transform. */
+  /* Keep a little room above the cards for a shadow-free hover lift. */
   .our-work .our-work__track > .result-card {
+    box-shadow: none;
     transition:
       opacity var(--text-reveal-duration, 0.6s) var(--ease-out-cubic),
-      transform var(--text-reveal-duration, 0.6s) var(--ease-out-cubic),
-      translate var(--animation-speed-slow) var(--ease-out-cubic),
-      box-shadow var(--animation-speed-slow) var(--ease-out-cubic);
+      translate var(--animation-speed-slow) var(--ease-out-cubic);
   }
 
   .our-work .result-card[data-state='in'] { transition-delay: 0s; }
@@ -223,8 +240,7 @@
 
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .our-work .result-card:hover {
-      translate: 0 -6px;
-      box-shadow: 0 16px 32px color-mix(in srgb, var(--work-metric-color, var(--color-foreground)) 14%, transparent);
+      translate: 0 -4px;
     }
 
     .our-work .result-card:hover .result-card__image { transform: scale(1.035); }
@@ -244,8 +260,9 @@
       grid-auto-flow: column;
       grid-auto-columns: 85%;
       gap: 16px;
-      margin-block-start: 24px;
+      margin-block-start: 16px;
       padding-inline: var(--page-margin);
+      padding-block-start: 8px;
       padding-block-end: 8px;
       overflow-x: auto;
       overflow-y: hidden;
@@ -257,10 +274,6 @@
 
     .our-work__track::-webkit-scrollbar {
       display: none;
-    }
-
-    .our-work__track > .result-card {
-      scroll-snap-align: start;
     }
 
     .our-work__track > .result-card:only-child {
@@ -295,14 +308,9 @@
     .our-work .result-card__description { font-size: 13px; line-height: 1.6; margin-block-start: 12px; }
     .our-work .result-card__metric-label { font-size: 10px; }
   }
-  @media screen and (max-width: 749px) {
-    /* Vertical reveal/hover motion creates a second scroll axis inside the carousel. */
-    .our-work .our-work__track > .result-card[data-reveal] {
-      transform: none;
-      translate: none;
-      transition-property: opacity;
-    }
-    .our-work .our-work__track .result-card:hover { transform: none; translate: none; }
+  /* Entrance motion stays vertical-free; track padding accommodates the hover lift. */
+  .our-work .our-work__track > .result-card[data-reveal] {
+    transform: none;
   }
 {% endstylesheet %}
 

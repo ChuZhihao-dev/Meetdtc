@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "result_card": {
+    "article_info": "Använder artikelns bild och länk. Lämna etikett eller beskrivning tom för att använda artikelns titel eller utdrag. Bilden nedan är en reserv; resultat anges manuellt."
+  },
   "header_transparent_page": {
     "name": "Transparent header page",
     "page": "Page",

@@ -1,11 +1,24 @@
 {% doc %}
-  Renders a result card with optional merchant-selected destination and link label.
-  @example Add a result card to Our work and configure its link in the theme editor.
+  Renders a merchant-selected article as a result card with editable case copy and metrics.
+  Without an article, existing manual media and links remain available.
+  @example Add a result card to Our work, select an article, and enter its case metrics.
 {% enddoc %}
 {% liquid
   assign block_settings = block.settings
-  assign image_alt = block_settings.image.alt | default: block_settings.tag | default: ''
+  assign selected_article = block_settings.article
+  assign card_image = block_settings.image
+  assign card_url = block_settings.link
+  assign card_tag = block_settings.tag
+  assign article_summary = ''
+  if selected_article != blank
+    assign card_image = selected_article.image | default: card_image
+    assign card_url = selected_article.url
+    assign card_tag = card_tag | default: selected_article.title
+    assign article_summary = selected_article.excerpt_or_content | strip_html | strip | truncatewords: 42
+  endif
+  assign image_alt = card_image.alt | default: selected_article.title | default: card_tag | default: ''
   assign default_link_label = 'growth_potential.read_more' | t
+  assign link_label = block_settings.link_label | default: selected_article.title | default: card_tag | default: image_alt | default: default_link_label
   assign image_loading = 'lazy'
   if section.index <= 2
     assign image_loading = 'eager'
@@ -13,17 +26,19 @@
 %}
 
 <article class="result-card" data-reveal {{ block.shopify_attributes }}>
-  {% if block_settings.link != blank %}
-    <a class="result-card__link" href="{{ block_settings.link | escape }}">
-      <span class="visually-hidden">{{ block_settings.link_label | default: block_settings.tag | default: image_alt | default: default_link_label | escape }}</span>
+  {% if card_url != blank %}
+    <a class="result-card__link" href="{{ card_url | escape }}">
+      <span class="visually-hidden">{{ link_label | escape }}</span>
     </a>
   {% endif %}
   <div class="result-card__media">
-    {%- if block_settings.image != blank -%}
+    {%- if card_image != blank -%}
       {{
-        block_settings.image
+        card_image
         | image_url: width: 846
         | image_tag:
+          width: card_image.width,
+          height: card_image.height,
           widths: '423, 600, 846',
           sizes: '(min-width: 750px) 423px, 85vw',
           loading: image_loading,
@@ -35,24 +50,32 @@
   </div>
 
   <div class="result-card__body">
-    {%- if block_settings.tag != blank -%}
-      <span class="result-card__tag">{{ block_settings.tag }}</span>
+    {%- if card_tag != blank -%}
+      <span class="result-card__tag">{{ card_tag | escape }}</span>
     {%- endif -%}
 
     {%- if block_settings.description != blank -%}
       <div class="result-card__description">{{ block_settings.description }}</div>
+    {%- elsif article_summary != blank -%}
+      <div class="result-card__description"><p>{{ article_summary | escape }}</p></div>
     {%- endif -%}
 
-    <div class="result-card__metrics">
-      <div class="result-card__metric">
-        <span class="result-card__metric-value">{{ block_settings.metric_1_value }}</span>
-        <span class="result-card__metric-label">{{ block_settings.metric_1_label }}</span>
+    {% if block_settings.metric_1_value != blank or block_settings.metric_1_label != blank or block_settings.metric_2_value != blank or block_settings.metric_2_label != blank %}
+      <div class="result-card__metrics">
+        {% if block_settings.metric_1_value != blank or block_settings.metric_1_label != blank %}
+          <div class="result-card__metric">
+            {% if block_settings.metric_1_value != blank %}<span class="result-card__metric-value">{{ block_settings.metric_1_value | escape }}</span>{% endif %}
+            {% if block_settings.metric_1_label != blank %}<span class="result-card__metric-label">{{ block_settings.metric_1_label | escape }}</span>{% endif %}
+          </div>
+        {% endif %}
+        {% if block_settings.metric_2_value != blank or block_settings.metric_2_label != blank %}
+          <div class="result-card__metric">
+            {% if block_settings.metric_2_value != blank %}<span class="result-card__metric-value">{{ block_settings.metric_2_value | escape }}</span>{% endif %}
+            {% if block_settings.metric_2_label != blank %}<span class="result-card__metric-label">{{ block_settings.metric_2_label | escape }}</span>{% endif %}
+          </div>
+        {% endif %}
       </div>
-      <div class="result-card__metric">
-        <span class="result-card__metric-value">{{ block_settings.metric_2_value }}</span>
-        <span class="result-card__metric-label">{{ block_settings.metric_2_label }}</span>
-      </div>
-    </div>
+    {% endif %}
   </div>
 </article>
 
@@ -99,6 +122,8 @@
 
   .result-card__tag {
     align-self: flex-start;
+    max-inline-size: 100%;
+    overflow-wrap: anywhere;
     margin-block-start: 26px;
     padding: 6.5px 25px;
     font-family: var(--font-heading--family);
@@ -178,9 +203,16 @@
   "tag": null,
   "settings": [
     {
+      "type": "article",
+      "id": "article",
+      "label": "t:names.blog_post",
+      "info": "t:result_card.article_info"
+    },
+    {
       "type": "url",
       "id": "link",
-      "label": "t:settings.link"
+      "label": "t:settings.link",
+      "visible_if": "{{ block.settings.article == blank }}"
     },
     {
       "type": "text",
@@ -195,8 +227,7 @@
     {
       "type": "text",
       "id": "tag",
-      "label": "t:settings.label",
-      "default": "Client logo"
+      "label": "t:settings.label"
     },
     {
       "type": "richtext",
@@ -210,14 +241,12 @@
     {
       "type": "text",
       "id": "metric_1_value",
-      "label": "t:settings.text",
-      "default": "00%"
+      "label": "t:settings.text"
     },
     {
       "type": "text",
       "id": "metric_1_label",
-      "label": "t:settings.label",
-      "default": "Metric to be filled"
+      "label": "t:settings.label"
     },
     {
       "type": "header",
@@ -226,27 +255,18 @@
     {
       "type": "text",
       "id": "metric_2_value",
-      "label": "t:settings.text",
-      "default": "0.0x"
+      "label": "t:settings.text"
     },
     {
       "type": "text",
       "id": "metric_2_label",
-      "label": "t:settings.label",
-      "default": "Metric to be filled"
+      "label": "t:settings.label"
     }
   ],
   "presets": [
     {
       "name": "t:names.result_card",
-      "category": "t:categories.layout",
-      "settings": {
-        "tag": "Client logo",
-        "metric_1_value": "00%",
-        "metric_1_label": "Metric to be filled",
-        "metric_2_value": "0.0x",
-        "metric_2_label": "Metric to be filled"
-      }
+      "category": "t:categories.layout"
     }
   ]
 }
