@@ -7,7 +7,9 @@ command -v python3 >/dev/null
 # Resolve the live ID once, so all steps target the same theme.
 live_theme_id="$(shopify theme list --store "$store" --json | python3 -c '
 import json, sys
-themes = [t for t in json.load(sys.stdin) if t.get("role") == "live"]
+response = json.load(sys.stdin)
+items = response.get("themes", []) if isinstance(response, dict) else response
+themes = [t for t in items if t.get("role") == "live"]
 if len(themes) != 1 or not str(themes[0]["id"]).isdigit():
     sys.exit("无法唯一确认已发布主题，已停止。")
 print(themes[0]["id"])

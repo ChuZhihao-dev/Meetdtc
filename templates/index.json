@@ -865,6 +865,7 @@
         "wrap": "balance",
         "gradient_text": true,
         "section_radius": 40,
+        "section_radius_mobile": 20,
         "background_from": "#c5d9ff",
         "background_to": "#c5d9ff",
         "columns": 3,

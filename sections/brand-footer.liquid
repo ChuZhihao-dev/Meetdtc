@@ -465,6 +465,51 @@
     .brand-footer__bottom {
       margin-block-start: 56px;
     }
+    /* Platform strip 平板 + 移动端：单行水平滚动 */
+    .brand-footer__platforms {
+      /* 突破 __inner 的 page-margin 限制，实现全宽 */
+      margin-inline: calc(-1 * var(--page-margin));
+    }
+    .brand-footer__platforms .brand-footer__heading {
+      /* 还原标题缩进 */
+      padding-inline: var(--page-margin);
+    }
+    .brand-footer__platform-strip {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      min-block-size: 0;
+      gap: 0;
+      padding-block: 14px;
+      padding-inline: var(--page-margin);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .brand-footer__platform-strip::-webkit-scrollbar {
+      display: none;
+    }
+    .brand-footer__platform-strip--surface {
+      padding-inline: calc(var(--page-margin) + 20px);
+    }
+    .brand-footer__platform {
+      flex: 0 0 auto;
+      inline-size: auto;
+      max-inline-size: none;
+      padding-inline: 20px;
+      scroll-snap-align: start;
+    }
+    .brand-footer__platform a {
+      min-block-size: 44px;
+    }
+    .brand-footer__platform img {
+      inline-size: min(var(--brand-footer-platform-width, 110px), 128px);
+      max-block-size: 48px;
+      object-fit: contain;
+    }
   }
   @media screen and (max-width: 749px) {
     .brand-footer__links{
@@ -486,14 +531,6 @@
     }
     .brand-footer__platforms {
       margin-block-start: 40px;
-    }
-    .brand-footer__platform-strip {
-      justify-content: center;
-      gap: 24px;
-      padding-block: 16px;
-    }
-    .brand-footer__platform {
-      max-width: calc(50% - 12px);
     }
     .brand-footer__bottom {
       flex-direction: column;
@@ -560,27 +597,51 @@
     .brand-footer :is(.brand-footer__platforms, .brand-footer__bottom) {
       margin-block-start: 24px;
     }
+    /* Platform strip 移动端：单行水平滚动 */
+    .brand-footer .brand-footer__platforms {
+      /* 突破 __inner 的 page-margin 限制，实现全屏宽度 */
+      margin-inline: calc(-1 * var(--page-margin));
+    }
+    .brand-footer .brand-footer__platforms .brand-footer__heading {
+      /* 还原标题缩进 */
+      padding-inline: var(--page-margin);
+    }
     .brand-footer .brand-footer__platform-strip {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
       min-block-size: 0;
-      gap: 20px 16px;
-      padding-block: 16px;
+      gap: 0;
+      padding-block: 12px;
+      padding-inline: var(--page-margin);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      /* 隐藏滚动条，保留滚动功能 */
+      scrollbar-width: none;
+    }
+    .brand-footer .brand-footer__platform-strip::-webkit-scrollbar {
+      display: none;
     }
     .brand-footer .brand-footer__platform-strip--surface {
-      padding-inline: 16px;
+      /* surface 模式下内边距由 page-margin 和额外内边距共同控制 */
+      padding-inline: calc(var(--page-margin) + 16px);
     }
     .brand-footer .brand-footer__platform {
-      justify-self: center;
-      inline-size: 100%;
-      max-inline-size: 100%;
+      flex: 0 0 auto;
+      inline-size: auto;
+      max-inline-size: none;
+      /* 每个 logo 之间的间距 */
+      padding-inline: 16px;
+      scroll-snap-align: start;
     }
     .brand-footer .brand-footer__platform a {
       min-block-size: 44px;
     }
     .brand-footer .brand-footer__platform img {
-      inline-size: min(calc(var(--brand-footer-platform-width, 128px) * 0.85), 128px);
-      max-block-size: 48px;
+      inline-size: min(var(--brand-footer-platform-width, 100px), 96px);
+      max-block-size: 40px;
       object-fit: contain;
     }
     .brand-footer .brand-footer__bottom {

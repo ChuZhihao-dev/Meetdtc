@@ -26,6 +26,7 @@
 {% style %}
   #shopify-section-{{ section.id }} {
     --solutions-section-radius: {{ section_settings.section_radius | default: 48 }}px;
+    --solutions-section-radius-mobile: {{ section_settings.section_radius_mobile | default: 20 }}px;
     --solutions-bg-from: {{ section_settings.background_from }};
     --solutions-bg-to: {{ section_settings.background_to }};
     isolation: isolate;
@@ -306,6 +307,10 @@
   }
 
   @media screen and (max-width: 749px) {
+    .product-solutions-grid__background {
+      border-start-start-radius: var(--solutions-section-radius-mobile, 20px);
+      border-start-end-radius: var(--solutions-section-radius-mobile, 20px);
+    }
     .product-solutions-grid__panel { padding: min(var(--solutions-panel-padding, 52px), 16px); border-radius: min(var(--solutions-panel-radius, 28px), 20px); }
     .product-solutions-grid { padding-block: min(var(--padding-block-start), 32px) min(var(--padding-block-end), 32px); }
     .product-solutions-grid__heading { font-size: min(var(--solutions-heading-font-size, 3.625rem), 24px); line-height: 1.25; }
@@ -584,6 +589,16 @@
       "default": 48
     },
     {
+      "type": "range",
+      "id": "section_radius_mobile",
+      "label": "t:settings.mobile_corner_radius",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
       "type": "color",
       "id": "background_from",
       "label": "t:settings.gradient_color_from",
@@ -787,6 +802,7 @@
         "background_from": "#C5D9FF",
         "background_to": "#C5D9FF",
         "section_radius": 40,
+        "section_radius_mobile": 20,
         "columns": 3,
         "gap": 20,
         "card_background": "#FFFFFFB3",
