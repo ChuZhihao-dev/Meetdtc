@@ -37,11 +37,6 @@
             "wrap": "pretty",
             "text_color": "",
             "gradient_text": true,
-            "gradient_color_from": "#5B34C6",
-            "gradient_color_to": "#2D6BFF",
-            "gradient_angle": 100,
-            "gradient_start_position": 0,
-            "gradient_end_position": 100,
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -69,11 +64,6 @@
             "wrap": "pretty",
             "text_color": "#000000",
             "gradient_text": false,
-            "gradient_color_from": "#5B34C6",
-            "gradient_color_to": "#2D6BFF",
-            "gradient_angle": 100,
-            "gradient_start_position": 0,
-            "gradient_end_position": 100,
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -87,7 +77,9 @@
         "static-blog-categories": {
           "type": "_blog-category-nav",
           "static": true,
-          "settings": {},
+          "settings": {
+            "category_order": ""
+          },
           "blocks": {}
         },
         "static-blog-post-card": {
@@ -206,7 +198,7 @@
         "blog": "our-work",
         "heading": "Our Work",
         "description": "<p>See how we help businesses grow through MarTech, technology and marketing.</p>",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "intro_background": "linear-gradient(168deg, rgba(217, 224, 249, 1), rgba(248, 241, 237, 1) 100%)",
         "list_background": "linear-gradient(180deg, rgba(230, 236, 255, 1), rgba(219, 225, 248, 1) 100%)",
         "filter_background": "linear-gradient(162deg, rgba(218, 226, 255, 1) 1%, rgba(193, 205, 249, 1) 99%)",

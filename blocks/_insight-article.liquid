@@ -1,0 +1,70 @@
+{% doc %}
+  Renders one selected blog article inside Insights; the section owns card styles.
+  @example Add an article card block to Insights and select a published article.
+{% enddoc %}
+{% liquid
+  assign article = block.settings.article
+  assign section_settings = section.settings
+  assign image_loading = 'lazy'
+  if section.index <= 2
+    assign image_loading = 'eager'
+  endif
+  assign image_alt = article.image.alt | default: article.title
+  assign article_description = article.excerpt_or_content | strip_html | strip | truncatewords: 30
+%}
+{% capture image_sizes %}(min-width: 990px) {{ section_settings.media_width }}px, (min-width: 750px) 30vw, 85vw{% endcapture %}
+{% if article != blank %}
+        <div class="insight-reveal" data-reveal {{ block.shopify_attributes }}>
+          <a class="insight-row" href="{{ article.url | escape }}" aria-label="{{ article.title | escape }}">
+            <div class="insight-row__media">
+              {%- if article.image != blank -%}
+                {{
+                  article.image
+                  | image_url: width: 1200
+                  | image_tag:
+                    width: article.image.width,
+                    height: article.image.height,
+                    widths: '260, 400, 600, 800, 1200',
+                    sizes: image_sizes,
+                    loading: image_loading,
+                    decoding: 'async',
+                    class: 'insight-row__image',
+                    alt: image_alt
+                }}
+              {%- endif -%}
+            </div>
+
+            <div class="insight-row__body">
+              <div class="insight-row__header">
+                <p class="insight-row__title">{{ article.title | escape }}</p>
+              </div>
+
+              {%- if article_description != blank -%}
+                <div class="insight-row__answer">{{ article_description | escape }}</div>
+              {%- endif -%}
+            </div>
+            {% if section_settings.link_label != blank %}
+              <span class="insight-row__read" aria-hidden="true">{{ section_settings.link_label | escape }}</span>
+            {% endif %}
+          </a>
+        </div>
+{% elsif request.design_mode %}
+  <div class="insight-reveal" data-reveal {{ block.shopify_attributes }}>
+    <div class="insight-row">
+      <div class="insight-row__media"></div>
+      <div class="insight-row__body">
+        <div class="insight-row__header"><p class="insight-row__title">{{ 'content.select_article' | t }}</p></div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% schema %}
+{
+  "name": "t:names.blog_post",
+  "tag": null,
+  "settings": [
+    { "type": "article", "id": "article", "label": "t:names.blog_post" }
+  ],
+  "presets": [{ "name": "t:names.blog_post", "category": "t:categories.storytelling" }]
+}
+{% endschema %}

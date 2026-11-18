@@ -84,7 +84,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Meet Experience (ME) is a digital marketing and technology agency helping businesses grow through website development, SEO and AI SEO, affiliate marketing, and email marketing. We combine strategy, implementation and ongoing optimization to support local growth and international expansion.</p>",
+                "text": "<p>Meet Experience (ME) is a digital marketing and technology agency helping businesses grow through website development, SEO and AI SEO (GEO), affiliate marketing, and email marketing. We combine strategy, implementation and ongoing optimization to support local growth and international expansion.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -157,7 +157,7 @@
         "layout_style": "standard",
         "video_play_once": true,
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/Rectangle_18284.webp",
+        "image_1": "shopify://shop_images/Rectangle_18284_bb40665f-9d0b-4569-b4b0-df0b28e4f5e3.webp",
         "video_1": "shopify://files/videos/9e0eb4a604fb7093.webm",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
@@ -494,8 +494,9 @@
       "name": "t:names.partner_brands",
       "settings": {
         "heading": "<p>Trusted by <strong>Leading Brands&nbsp;</strong></p>",
+        "heading_position": "overlay",
         "font": "var(--font-heading--family)",
-        "font_size": "2rem",
+        "font_size": "2.5rem",
         "weight": "600",
         "line_height": "1.4",
         "letter_spacing": "normal",
@@ -814,7 +815,7 @@
     "services_globe": {
       "type": "services-globe",
       "settings": {
-        "eyebrow": "SERVICES",
+        "eyebrow": "CAPABILITIES",
         "heading": "Build Smarter,\nScale Globally",
         "description": "<p>From strategy and technology to data and execution, we help global brands connect every stage of the customer journey through integrated Martech solutions that drive measurable growth.</p>",
         "link_label": "Explore Our Works",
@@ -1108,23 +1109,49 @@
         "heading_gap": 40,
         "padding-block-start": 80,
         "padding-block-end": 80,
-        "card_padding_block_start": 46,
-        "card_padding_block_end": 46,
-        "card_padding_inline_start": 37,
-        "card_padding_inline_end": 37,
+        "card_padding_block_start": 24,
+        "card_padding_block_end": 24,
+        "card_padding_inline_start": 24,
+        "card_padding_inline_end": 24,
         "card_radius_mobile": 16
       }
     },
     "insights_a3A3Dn": {
       "type": "insights",
+      "blocks": {
+        "insight_article_1": {
+          "type": "_insight-article",
+          "settings": {
+            "article": "blog/web-design-cost-singapore"
+          },
+          "blocks": {}
+        },
+        "insight_article_2": {
+          "type": "_insight-article",
+          "settings": {
+            "article": "blog/ai-customer-loyalty-programs"
+          },
+          "blocks": {}
+        },
+        "insight_article_3": {
+          "type": "_insight-article",
+          "settings": {
+            "article": "blog/ai-business-process-automation-guide"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "insight_article_1",
+        "insight_article_2",
+        "insight_article_3"
+      ],
       "name": "t:names.insights",
       "settings": {
         "content_width": 1276,
-        "eyebrow": "Blogs",
+        "eyebrow": "Blog",
         "heading": "<p>Ideas for Your Next Stage of Growth</p>",
         "description": "<p>Explore practical guides and perspectives on the technology, channels and customer experiences behind global growth.</p>",
-        "blog": "blog",
-        "post_limit": 3,
         "link_label": "Read →",
         "font": "var(--font-heading--family)",
         "font_size": "3rem",
@@ -1170,7 +1197,7 @@
           "type": "_faq-row",
           "settings": {
             "question": "Q2. What MarTech solutions does ME provide?",
-            "answer": "<p>Our MarTech service areas include Web Development, SEO, GEO, Conversion Rate Optimisation, Email Marketing, Affiliate Marketing, WhatsApp Marketing, Trustpilot & Reviews, Loyalty & Membership, and AI & Cloud. Services can be engaged individually or combined into one connected growth programme.<br/><br/></p>",
+            "answer": "<p>Our MarTech service areas include Web Design and Development, SEO, AI SEO (GEO), Conversion Rate Optimisation, Email Marketing, Affiliate Marketing, WhatsApp Marketing, Trustpilot & Reviews, Loyalty & Membership, and AI & Cloud. Services can be engaged individually or combined into one connected growth programme.<br/><br/></p>",
             "open_by_default": false
           },
           "blocks": {}

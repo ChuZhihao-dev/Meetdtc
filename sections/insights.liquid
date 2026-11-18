@@ -2,9 +2,9 @@
   Insights.
   Renders an eyebrow, a gradient headline, and supporting copy above a list of
   independent horizontal article cards and a header action. Mobile retains the
-  native scroll-snap carousel. Content comes from the selected Shopify blog.
+  native scroll-snap carousel. Each block selects an individual Shopify blog article.
   @example
-  <!-- Add Insights, select a blog, and configure the article count and header link. -->
+  <!-- Add Insights, select an article in each card block, and configure the header link. -->
 {% endcomment %}
 
 <script
@@ -19,14 +19,10 @@
   assign section_settings = section.settings
   assign heading_text = section_settings.heading
   assign card_alpha = section_settings.card_opacity | divided_by: 100.0
-  assign image_loading = 'lazy'
-  if section.index <= 2
-    assign image_loading = 'eager'
-  endif
   assign container_alpha = section_settings.container_opacity | divided_by: 100.0
 %}
 
-{% capture image_sizes %}(min-width: 990px) {{ section_settings.media_width }}px, (min-width: 750px) 30vw, 85vw{% endcapture %}
+
 
 
 <div
@@ -104,70 +100,11 @@
     {% endif %}
   </div>
 
-  {%- liquid
-    assign blog = section_settings.blog
-    assign post_limit = section_settings.post_limit
-  -%}
-
-  {% if blog != blank and blog.articles_count > 0 %}
-    <div class="insights__list" tabindex="0"{% if heading_text != blank %} role="region" aria-label="{{ heading_text | strip_html | escape }}"{% endif %}>
-      {%- for article in blog.articles limit: post_limit -%}
-        {%- liquid
-          assign image_alt = article.image.alt | default: article.title
-          assign article_description = article.excerpt | default: article.content
-          if article_description != blank
-            assign article_description = article_description | strip_html | truncatewords: 30
-          endif
-        -%}
-        <div class="insight-reveal" data-reveal>
-          <a class="insight-row" href="{{ article.url }}" aria-label="{{ article.title | escape }}">
-            <div class="insight-row__media">
-              {%- if article.image != blank -%}
-                {{
-                  article.image
-                  | image_url: width: 1200
-                  | image_tag:
-                    widths: '260, 400, 600, 800, 1200',
-                    sizes: image_sizes,
-                    loading: image_loading,
-                    decoding: 'async',
-                    class: 'insight-row__image',
-                    alt: image_alt
-                }}
-              {%- endif -%}
-            </div>
-
-            <div class="insight-row__body">
-              <div class="insight-row__header">
-                <p class="insight-row__title">{{ article.title | escape }}</p>
-              </div>
-
-              {%- if article_description != blank -%}
-                <div class="insight-row__answer">{{ article_description }}</div>
-              {%- endif -%}
-            </div>
-            {% if section_settings.link_label != blank %}
-              <span class="insight-row__read" aria-hidden="true">{{ section_settings.link_label | escape }}</span>
-            {% endif %}
-          </a>
-        </div>
-      {%- endfor -%}
-    </div>
-  {% elsif request.design_mode %}
-    <div class="insights__list" tabindex="0"{% if heading_text != blank %} role="region" aria-label="{{ heading_text | strip_html | escape }}"{% endif %}>
-      {%- for i in (1..post_limit) -%}
-        <div class="insight-reveal" data-reveal>
-          <div class="insight-row">
-            <div class="insight-row__media"></div>
-            <div class="insight-row__body">
-              <div class="insight-row__header">
-                <p class="insight-row__title">{{ 'content.select_article' | t }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      {%- endfor -%}
-    </div>
+  {% capture article_cards %}
+    {% content_for 'blocks' %}
+  {% endcapture %}
+  {% if article_cards != blank %}
+    <div class="insights__list" tabindex="0"{% if heading_text != blank %} role="region" aria-label="{{ heading_text | strip_html | escape }}"{% endif %}>{{ article_cards }}</div>
   {% endif %}
 
 </scroll-reveal-component>
@@ -671,6 +608,8 @@
 {% schema %}
 {
   "name": "t:names.insights",
+  "max_blocks": 12,
+  "blocks": [{ "type": "_insight-article" }],
   "disabled_on": {
     "groups": [
       "header",
@@ -705,24 +644,6 @@
       "id": "description",
       "label": "t:settings.description",
       "default": "<p>The three things almost every client asks before they start.</p>"
-    },
-    {
-      "type": "header",
-      "content": "t:settings.blog"
-    },
-    {
-      "type": "blog",
-      "id": "blog",
-      "label": "t:settings.blog"
-    },
-    {
-      "type": "range",
-      "id": "post_limit",
-      "label": "t:settings.post_count",
-      "min": 1,
-      "max": 12,
-      "step": 1,
-      "default": 3
     },
     {
       "type": "text",
@@ -1082,6 +1003,12 @@
     {
       "name": "t:names.insights",
       "category": "t:categories.storytelling",
+      "blocks": {
+        "article_1": { "type": "_insight-article" },
+        "article_2": { "type": "_insight-article" },
+        "article_3": { "type": "_insight-article" }
+      },
+      "block_order": ["article_1", "article_2", "article_3"],
       "settings": {
         "eyebrow": "INSIGHTS",
         "heading": "<p>Real Questions. Plain Answers.</p>",
@@ -1103,7 +1030,6 @@
         "container_opacity": 60,
         "card_background": "#FFFFFF",
         "card_opacity": 80,
-        "post_limit": 3,
         "link_label": "Read",
         "heading_gap": 40,
         "list_gap": 16,

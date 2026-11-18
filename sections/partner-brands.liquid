@@ -1,8 +1,8 @@
 {% comment %}
-  Partner brand showcase. Full-width logo rows surround an overlaid heading
-  while moving; static, reduced-motion and keyboard modes keep content in flow.
+  Partner brand showcase with a heading above or overlaid on full-width logo rows.
+  Static, reduced-motion and keyboard modes keep content in flow.
   @example
-  <!-- Add Partner brands, then configure logo rows and their motion directions. -->
+  <!-- Add Partner brands, choose the heading position and configure logo row motion. -->
 {% endcomment %}
 
 {% liquid
@@ -21,6 +21,7 @@
 
 <partner-brands-component
   class="section section--full-width partner-brands spacing-style"
+  data-heading-position="{{ section_settings.heading_position | default: 'overlay' }}"
   style="{% render 'spacing-style', settings: section_settings %}
     --brand-logo-gap: {{ section_settings.logo_gap }}px;
     --brand-logo-row-gap: {{ section_settings.row_gap }}px;
@@ -92,6 +93,10 @@
     overflow-wrap: anywhere;
   }
 
+  .partner-brands[data-heading-position='top'] .partner-brands__heading-panel {
+    inline-size: var(--full-page-grid-central-column-width);
+  }
+
   .partner-brands__heading--two-tone {
     color: var(--brand-heading-color, var(--color-foreground));
   }
@@ -131,18 +136,18 @@
     mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
   }
 
-  .partner-brands__stage:has(.brand-row--scrolling):has(.partner-brands__heading-panel) {
+  .partner-brands:not([data-heading-position='top']) .partner-brands__stage:has(.brand-row--scrolling):has(.partner-brands__heading-panel) {
     min-block-size: 300px;
     gap: 0;
   }
 
-  .partner-brands__stage:has(.brand-row--scrolling) > .partner-brands__heading-panel,
-  .partner-brands__stage:has(.brand-row--scrolling) > .partner-brands__logos {
+  .partner-brands:not([data-heading-position='top']) .partner-brands__stage:has(.brand-row--scrolling) > .partner-brands__heading-panel,
+  .partner-brands:not([data-heading-position='top']) .partner-brands__stage:has(.brand-row--scrolling) > .partner-brands__logos {
     grid-area: 1 / 1;
   }
 
   /* Size the soft backdrop to the text, keeping the adjacent logo rows clear. */
-  .partner-brands__stage:has(.brand-row--scrolling) > .partner-brands__heading-panel::before {
+  .partner-brands:not([data-heading-position='top']) .partner-brands__stage:has(.brand-row--scrolling) > .partner-brands__heading-panel::before {
     content: '';
     position: absolute;
     inset-block: -12px;
@@ -200,11 +205,11 @@
       max-block-size: 48px;
     }
 
-    .partner-brands__stage:has(.brand-row--scrolling):has(.partner-brands__heading-panel) {
+    .partner-brands:not([data-heading-position='top']) .partner-brands__stage:has(.brand-row--scrolling):has(.partner-brands__heading-panel) {
       min-block-size: 260px;
     }
 
-    .partner-brands__stage:has(.brand-row--scrolling) > .partner-brands__heading-panel::before {
+    .partner-brands:not([data-heading-position='top']) .partner-brands__stage:has(.brand-row--scrolling) > .partner-brands__heading-panel::before {
       mask-image:
         linear-gradient(to right, transparent, #000 6%, #000 94%, transparent),
         linear-gradient(to bottom, transparent, #000 12px, #000 calc(100% - 12px), transparent);
@@ -227,6 +232,22 @@
       "id": "heading",
       "label": "t:settings.text",
       "default": "<p>Trusted by Leading Brands Across Global Markets</p>"
+    },
+    {
+      "type": "select",
+      "id": "heading_position",
+      "label": "t:settings.position",
+      "options": [
+        {
+          "value": "overlay",
+          "label": "t:settings.overlay"
+        },
+        {
+          "value": "top",
+          "label": "t:options.top"
+        }
+      ],
+      "default": "overlay"
     },
     {
       "type": "header",
