@@ -4,7 +4,33 @@
 {% enddoc %}
 {% if block.settings.value != blank or block.settings.label != blank %}
   <div class="client-story-metric" {{ block.shopify_attributes }}>
-    {% if block.settings.value != blank %}<p class="client-story-metric__value">{{ block.settings.value | escape }}</p>{% endif %}
+    {% if block.settings.value != blank %}
+      <p class="client-story-metric__value">
+        {% if section.settings.layout == 'case_band' %}
+          {% liquid
+            assign value = block.settings.value | strip
+            assign number = value
+            assign prefix = value | slice: 0
+            assign suffix = value | slice: -1
+            if prefix == '+'
+              assign number = number | remove_first: '+'
+            else
+              assign prefix = ''
+            endif
+            if suffix == '%'
+              assign length = number.size | minus: 1
+              assign number = number | slice: 0, length
+            else
+              assign suffix = ''
+            endif
+          %}
+          <span class="visually-hidden">{{ value | escape }}</span>
+          <span class="client-story-metric__counter" dir="ltr" data-final="{{ value | escape }}" aria-hidden="true"><span>{{ prefix }}<span ref="values[]" data-value="{{ number | escape }}">{{ number | escape }}</span>{{ suffix }}</span></span>
+        {% else %}
+          {{ block.settings.value | escape }}
+        {% endif %}
+      </p>
+    {% endif %}
     {% if block.settings.label != blank %}<p class="client-story-metric__label">{{ block.settings.label | escape }}</p>{% endif %}
   </div>
 {% endif %}
@@ -12,6 +38,9 @@
   .client-story-metric { min-inline-size: 0; text-align: var(--client-story-metric-align, center); }
   .client-story-metric__value { margin: 0; font-size: 24px; font-weight: 600; line-height: 1.4; background: var(--client-story-gradient); background-clip: text; -webkit-text-fill-color: transparent; overflow-wrap: anywhere; }
   .client-story-metric__label { margin: 0; margin-block-start: 10px; font-size: 16px; font-weight: 500; line-height: 1.2; overflow-wrap: anywhere; }
+  .client-story-metric__counter { display: inline-grid; max-inline-size: 100%; font-variant-numeric: tabular-nums; }
+  .client-story-metric__counter::before { content: attr(data-final); visibility: hidden; grid-area: 1 / 1; }
+  .client-story-metric__counter > span { grid-area: 1 / 1; }
   @media screen and (max-width: 749px) {
     .client-story-metric__value { font-size: 24px; line-height: 1.25; }
     .client-story-metric__label { margin-block-start: 6px; font-size: 13px; line-height: 1.6; }

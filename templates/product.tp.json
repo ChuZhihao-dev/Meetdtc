@@ -420,27 +420,29 @@
         "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
+        "text_color": "{{ settings.color_palette.foreground }}",
+        "accent_color": "#5932d4",
+        "desktop_button_colors": "showcase",
         "heading_from": "#5b34c6",
         "heading_to": "#2d6bff",
         "heading_mid": "#8b45f0",
         "description_color": "#6b6a6a",
         "service_labels_color": "#3e4c81",
-        "section_height": "large",
-        "content_position": "center",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "horizontal_alignment": "center",
+        "padding-block-start": 60,
+        "padding-block-end": 80
       }
     },
-    "partner_brands_ATXLJV": {
+    "partner_brands_tFaC7D": {
       "type": "partner-brands",
       "blocks": {
-        "brand_row_ppw6U3": {
+        "brand_row_NABAct": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "left"
           },
           "blocks": {
-            "brand_logo_tHN8DC": {
+            "brand_logo_7aKGfL": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/beatbot.png",
@@ -450,7 +452,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_UGJDwV": {
+            "brand_logo_kacyGp": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/rokid.png",
@@ -460,7 +462,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_m8PJnQ": {
+            "brand_logo_FPtTVR": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/shangri-la.png",
@@ -470,7 +472,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_U6gzGL": {
+            "brand_logo_JYyhpE": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/nongfu-spring.png",
@@ -480,7 +482,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_mwTfTb": {
+            "brand_logo_wfUPDR": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/molly-tea.png",
@@ -490,7 +492,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_HRRPmX": {
+            "brand_logo_jKEmHM": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/dreame.png",
@@ -500,7 +502,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_NYRnC3": {
+            "brand_logo_FEHmxi": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/firefly.png",
@@ -510,7 +512,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_NrqQGw": {
+            "brand_logo_mpnEF9": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/roborock.png",
@@ -522,23 +524,23 @@
             }
           },
           "block_order": [
-            "brand_logo_tHN8DC",
-            "brand_logo_UGJDwV",
-            "brand_logo_m8PJnQ",
-            "brand_logo_U6gzGL",
-            "brand_logo_mwTfTb",
-            "brand_logo_HRRPmX",
-            "brand_logo_NYRnC3",
-            "brand_logo_NrqQGw"
+            "brand_logo_7aKGfL",
+            "brand_logo_kacyGp",
+            "brand_logo_FPtTVR",
+            "brand_logo_JYyhpE",
+            "brand_logo_wfUPDR",
+            "brand_logo_jKEmHM",
+            "brand_logo_FEHmxi",
+            "brand_logo_mpnEF9"
           ]
         },
-        "brand_row_yzyzDA": {
+        "brand_row_4nDNUW": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "right"
           },
           "blocks": {
-            "brand_logo_UPVwwX": {
+            "brand_logo_dJyLHC": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/winona.png",
@@ -548,7 +550,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_Gieprb": {
+            "brand_logo_pKf4Bp": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/onwave.png",
@@ -558,7 +560,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_VQncfe": {
+            "brand_logo_wKLyYT": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/segway.png",
@@ -568,7 +570,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_t98GxN": {
+            "brand_logo_3rbaxG": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tiktok.png",
@@ -578,7 +580,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_cXjGda": {
+            "brand_logo_EFTzY3": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tencent.png",
@@ -588,7 +590,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_kzNrU6": {
+            "brand_logo_gjYBm8": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/haier.png",
@@ -598,7 +600,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_qd7t8y": {
+            "brand_logo_yeiFKk": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/midea.png",
@@ -608,7 +610,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_NJDyBy": {
+            "brand_logo_YtfHUn": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/creality.png",
@@ -620,23 +622,23 @@
             }
           },
           "block_order": [
-            "brand_logo_UPVwwX",
-            "brand_logo_Gieprb",
-            "brand_logo_VQncfe",
-            "brand_logo_t98GxN",
-            "brand_logo_cXjGda",
-            "brand_logo_kzNrU6",
-            "brand_logo_qd7t8y",
-            "brand_logo_NJDyBy"
+            "brand_logo_dJyLHC",
+            "brand_logo_pKf4Bp",
+            "brand_logo_wKLyYT",
+            "brand_logo_3rbaxG",
+            "brand_logo_EFTzY3",
+            "brand_logo_gjYBm8",
+            "brand_logo_yeiFKk",
+            "brand_logo_YtfHUn"
           ]
         },
-        "brand_row_8xynkJ": {
+        "brand_row_QKhUEh": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "left"
           },
           "blocks": {
-            "brand_logo_efJE9W": {
+            "brand_logo_8fYk66": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ireader.png",
@@ -646,7 +648,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_tibqW7": {
+            "brand_logo_ER8i7P": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/game-bear.png",
@@ -656,7 +658,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_WPmeAy": {
+            "brand_logo_WVH3zW": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/urban-revivo.png",
@@ -666,7 +668,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_AYwkpr": {
+            "brand_logo_JGwWQd": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/beneunder.png",
@@ -676,7 +678,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_p8fJrA": {
+            "brand_logo_KwPTaj": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tapo.png",
@@ -686,7 +688,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_3KR9Cn": {
+            "brand_logo_dh66mt": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/iflytek.png",
@@ -696,7 +698,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_XPejYF": {
+            "brand_logo_y9EwH8": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ottocast.png",
@@ -706,7 +708,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_YVeeig": {
+            "brand_logo_VjU8tM": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ulanzi.png",
@@ -718,39 +720,39 @@
             }
           },
           "block_order": [
-            "brand_logo_efJE9W",
-            "brand_logo_tibqW7",
-            "brand_logo_WPmeAy",
-            "brand_logo_AYwkpr",
-            "brand_logo_p8fJrA",
-            "brand_logo_3KR9Cn",
-            "brand_logo_XPejYF",
-            "brand_logo_YVeeig"
+            "brand_logo_8fYk66",
+            "brand_logo_ER8i7P",
+            "brand_logo_WVH3zW",
+            "brand_logo_JGwWQd",
+            "brand_logo_KwPTaj",
+            "brand_logo_dh66mt",
+            "brand_logo_y9EwH8",
+            "brand_logo_VjU8tM"
           ]
         }
       },
       "block_order": [
-        "brand_row_ppw6U3",
-        "brand_row_yzyzDA",
-        "brand_row_8xynkJ"
+        "brand_row_NABAct",
+        "brand_row_4nDNUW",
+        "brand_row_QKhUEh"
       ],
       "name": "t:names.partner_brands",
       "settings": {
-        "heading": "<p>Trusted by Leading Brands Across Global Markets</p>",
+        "heading": "<p>Trusted by <strong>Leading Brands</strong></p>",
         "heading_position": "overlay",
         "font": "var(--font-heading--family)",
-        "font_size": "1.5rem",
+        "font_size": "2.5rem",
         "weight": "600",
         "line_height": "1.4",
         "letter_spacing": "normal",
         "alignment": "center",
         "wrap": "pretty",
-        "two_tone_heading": false,
+        "two_tone_heading": true,
         "heading_color": "#111111",
         "heading_accent_color": "#5b34c6",
         "gradient_text": true,
         "background_gradient_from": "{{ settings.color_palette.background }}",
-        "background_gradient_to": "#efe6f3",
+        "background_gradient_to": "{{ settings.color_palette.background }}",
         "background_gradient_angle": 160,
         "thickness": 0.5,
         "divider_color": "#707070",
@@ -876,8 +878,11 @@
         "card_ETxkQz": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Account Setup & Profile Optimization",
             "description": "<p>We guide your profile setup; you get a polished, trust-ready page.<br/><br/></p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -885,8 +890,11 @@
         "card_wKwRVy": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Invitation Strategy & Automation",
             "description": "<p>We recommend the right invitation path; you get a compliant, automated invitation system up and running.<br/><br/></p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -894,8 +902,11 @@
         "card_jTHQUi": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Review Response Management",
             "description": "<p>We build reply standards with you; you get a trained team and a consistent process.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -903,8 +914,11 @@
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Data Analytics &  Report",
             "description": "<p>We interpret your dashboard data; you get regular insights and clear next steps.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -912,8 +926,11 @@
         "card_xg8a6q": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Trust Display & TrustBox",
             "description": "<p>We recommend widget placement; you get TrustBox live on key pages.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -921,8 +938,11 @@
         "card_nMqphe": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "AI Search Visibility",
             "description": "<p>We measure AI citations; you get a diagnostic tied to your review strategy.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -930,8 +950,11 @@
         "card_fYwQHW": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Milestone Strategy Review",
             "description": "<p>We review performance together; you get a regular health check with clear priorities for what’s next.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -939,8 +962,11 @@
         "card_QDddRW": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Free 1-on-1 Coaching",
             "description": "<p>Your coach is available for check-ins; you get hands-on guidance at no cost.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -948,8 +974,11 @@
         "card_jeyUjU": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Paid Analytics or Managed Ops",
             "description": "<p>&nbsp;We offer paid projects or managed operations; you get a tailored solution.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -972,6 +1001,14 @@
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
         "description": "<p>Earn trust, grow customer reviews, maximize impact — guided every step.</p>",
+        "tab_1_label": "Shopify",
+        "tab_1_heading": "",
+        "tab_1_description": "",
+        "tab_1_note": "",
+        "tab_2_label": "WordPress",
+        "tab_2_heading": "",
+        "tab_2_description": "",
+        "tab_2_note": "",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "card_heading_color": "#241c52",
@@ -1109,6 +1146,7 @@
       ],
       "name": "t:client_story.name",
       "settings": {
+        "layout": "card",
         "eyebrow": "FEATURED CLIENT STORY",
         "heading": "E-Mobility Brand Achieved a 4.2 TrustScore with Trustpilot",
         "description": "<p>A North American e-mobility brand faced low ratings and inefficient review management. ME automated invitations and improved response workflows, lifting its TrustScore from 3.2 to 4.2 and reducing 1–2-star reviews from 37% to 5%.<br/><br/></p>",
@@ -1252,7 +1290,7 @@
     "page_background_n8zJR6",
     "main",
     "product_hero_jiNakp",
-    "partner_brands_ATXLJV",
+    "partner_brands_tFaC7D",
     "business_challenge_iR7zkb",
     "our_approach_dJQKw8",
     "service_scope_VaDYAw",

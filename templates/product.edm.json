@@ -431,27 +431,29 @@
         "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
+        "text_color": "{{ settings.color_palette.foreground }}",
+        "accent_color": "#5932d4",
+        "desktop_button_colors": "showcase",
         "heading_from": "#5b34c6",
         "heading_to": "#2d6bff",
         "heading_mid": "#8b45f0",
         "description_color": "#6b6a6a",
         "service_labels_color": "#3e4c81",
-        "section_height": "large",
-        "content_position": "center",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "horizontal_alignment": "center",
+        "padding-block-start": 60,
+        "padding-block-end": 80
       }
     },
-    "partner_brands_aTCFjU": {
+    "partner_brands_DxerX4": {
       "type": "partner-brands",
       "blocks": {
-        "brand_row_Wyx4ND": {
+        "brand_row_gj3PjM": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "left"
           },
           "blocks": {
-            "brand_logo_RmKjcd": {
+            "brand_logo_ccFY4D": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/beatbot.png",
@@ -461,7 +463,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_mqap88": {
+            "brand_logo_xJGeRm": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/rokid.png",
@@ -471,7 +473,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_JYdfpW": {
+            "brand_logo_iDyBWK": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/shangri-la.png",
@@ -481,7 +483,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_DcXUYd": {
+            "brand_logo_RKJ4Ei": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/nongfu-spring.png",
@@ -491,7 +493,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_z8wmnJ": {
+            "brand_logo_Lpfgqn": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/molly-tea.png",
@@ -501,7 +503,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_4N6zYg": {
+            "brand_logo_BHXJDi": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/dreame.png",
@@ -511,7 +513,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_zPy4xf": {
+            "brand_logo_DKDipg": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/firefly.png",
@@ -521,7 +523,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_4U4N9n": {
+            "brand_logo_jXmY3M": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/roborock.png",
@@ -533,23 +535,23 @@
             }
           },
           "block_order": [
-            "brand_logo_RmKjcd",
-            "brand_logo_mqap88",
-            "brand_logo_JYdfpW",
-            "brand_logo_DcXUYd",
-            "brand_logo_z8wmnJ",
-            "brand_logo_4N6zYg",
-            "brand_logo_zPy4xf",
-            "brand_logo_4U4N9n"
+            "brand_logo_ccFY4D",
+            "brand_logo_xJGeRm",
+            "brand_logo_iDyBWK",
+            "brand_logo_RKJ4Ei",
+            "brand_logo_Lpfgqn",
+            "brand_logo_BHXJDi",
+            "brand_logo_DKDipg",
+            "brand_logo_jXmY3M"
           ]
         },
-        "brand_row_dqeynt": {
+        "brand_row_CJ4qrD": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "right"
           },
           "blocks": {
-            "brand_logo_Y3pgWM": {
+            "brand_logo_X9ptkQ": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/winona.png",
@@ -559,7 +561,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_Rb3PgW": {
+            "brand_logo_4gAyGa": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/onwave.png",
@@ -569,7 +571,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_4887Nx": {
+            "brand_logo_GQmK4d": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/segway.png",
@@ -579,7 +581,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_kU8zp9": {
+            "brand_logo_YFUBqx": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tiktok.png",
@@ -589,7 +591,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_4TjBkW": {
+            "brand_logo_UTe8Mm": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tencent.png",
@@ -599,7 +601,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_tG9ymW": {
+            "brand_logo_3QVhbg": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/haier.png",
@@ -609,7 +611,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_6HgqG7": {
+            "brand_logo_bwKrmP": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/midea.png",
@@ -619,7 +621,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_8fwm7M": {
+            "brand_logo_LGRUpa": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/creality.png",
@@ -631,23 +633,23 @@
             }
           },
           "block_order": [
-            "brand_logo_Y3pgWM",
-            "brand_logo_Rb3PgW",
-            "brand_logo_4887Nx",
-            "brand_logo_kU8zp9",
-            "brand_logo_4TjBkW",
-            "brand_logo_tG9ymW",
-            "brand_logo_6HgqG7",
-            "brand_logo_8fwm7M"
+            "brand_logo_X9ptkQ",
+            "brand_logo_4gAyGa",
+            "brand_logo_GQmK4d",
+            "brand_logo_YFUBqx",
+            "brand_logo_UTe8Mm",
+            "brand_logo_3QVhbg",
+            "brand_logo_bwKrmP",
+            "brand_logo_LGRUpa"
           ]
         },
-        "brand_row_mzpKUw": {
+        "brand_row_4ceQbE": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "left"
           },
           "blocks": {
-            "brand_logo_zR4m47": {
+            "brand_logo_E6MtBw": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ireader.png",
@@ -657,7 +659,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_RhfBAB": {
+            "brand_logo_rkqN7m": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/game-bear.png",
@@ -667,7 +669,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_XRKTBc": {
+            "brand_logo_gedKrg": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/urban-revivo.png",
@@ -677,7 +679,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_pJmVny": {
+            "brand_logo_KtpQRg": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/beneunder.png",
@@ -687,7 +689,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_DMEpic": {
+            "brand_logo_zG8Air": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tapo.png",
@@ -697,7 +699,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_yn8rfR": {
+            "brand_logo_RfGgMQ": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/iflytek.png",
@@ -707,7 +709,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_9rrGEL": {
+            "brand_logo_wHjFdg": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ottocast.png",
@@ -717,7 +719,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_zXiFNY": {
+            "brand_logo_zyRGHk": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ulanzi.png",
@@ -729,39 +731,39 @@
             }
           },
           "block_order": [
-            "brand_logo_zR4m47",
-            "brand_logo_RhfBAB",
-            "brand_logo_XRKTBc",
-            "brand_logo_pJmVny",
-            "brand_logo_DMEpic",
-            "brand_logo_yn8rfR",
-            "brand_logo_9rrGEL",
-            "brand_logo_zXiFNY"
+            "brand_logo_E6MtBw",
+            "brand_logo_rkqN7m",
+            "brand_logo_gedKrg",
+            "brand_logo_KtpQRg",
+            "brand_logo_zG8Air",
+            "brand_logo_RfGgMQ",
+            "brand_logo_wHjFdg",
+            "brand_logo_zyRGHk"
           ]
         }
       },
       "block_order": [
-        "brand_row_Wyx4ND",
-        "brand_row_dqeynt",
-        "brand_row_mzpKUw"
+        "brand_row_gj3PjM",
+        "brand_row_CJ4qrD",
+        "brand_row_4ceQbE"
       ],
       "name": "t:names.partner_brands",
       "settings": {
-        "heading": "<p>Trusted by Leading Brands Across Global Markets</p>",
+        "heading": "<p>Trusted by <strong>Leading Brands</strong></p>",
         "heading_position": "overlay",
         "font": "var(--font-heading--family)",
-        "font_size": "1.5rem",
+        "font_size": "2.5rem",
         "weight": "600",
         "line_height": "1.4",
         "letter_spacing": "normal",
         "alignment": "center",
         "wrap": "pretty",
-        "two_tone_heading": false,
+        "two_tone_heading": true,
         "heading_color": "#111111",
         "heading_accent_color": "#5b34c6",
         "gradient_text": true,
         "background_gradient_from": "{{ settings.color_palette.background }}",
-        "background_gradient_to": "#efe6f3",
+        "background_gradient_to": "{{ settings.color_palette.background }}",
         "background_gradient_angle": 160,
         "thickness": 0.5,
         "divider_color": "#707070",
@@ -887,8 +889,11 @@
         "card_ETxkQz": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "EDM Diagnosis",
             "description": "<p>We assess your collection, flows, campaigns and segmentation; you get a prioritized growth roadmap.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -896,8 +901,11 @@
         "card_wKwRVy": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Platform Selection & System Setup",
             "description": "<p>We choose and configure the right platform; you get a live email system with brand assets and tracking in place.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -905,8 +913,11 @@
         "card_jTHQUi": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Data & Tag System",
             "description": "<p>We structure profile fields, tags and consent status; you get clean, segmentable subscriber data.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -914,8 +925,11 @@
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Collection & Pop-up Optimization",
             "description": "<p>We design sign-up pop-ups, forms and teaser bars; you get higher subscription rates and a growing owned audience.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -923,8 +937,11 @@
         "card_xg8a6q": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Lifecycle Flow Building",
             "description": "<p>We build welcome, abandoned-cart, browse-abandonment, post-purchase and win-back journeys; you get automated emails that convert around the clock.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -932,8 +949,11 @@
         "card_nMqphe": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Campaign Planning & Execution",
             "description": "<p>We plan the marketing calendar, write copy and design emails; you get on-time, on-brand campaigns with A/B testing built in.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -941,8 +961,11 @@
         "card_JAzWDX": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Audience Segmentation",
             "description": "<p>We layer users by RFM, activity and purchase behavior; you get precise messages for every audience.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -950,8 +973,11 @@
         "card_erfekD": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "A/B Testing & Optimization",
             "description": "<p>We test subject lines, content, timing and layouts; you get proven winners and continuous improvement.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -959,8 +985,11 @@
         "card_86xVqA": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Reporting & Deliverability",
             "description": "<p>We configure SPF/DKIM/DMARC and track open, click, conversion and revenue; you get 95%+ inbox placement and monthly reports.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -983,6 +1012,14 @@
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
         "description": "<p>one complete email system, from strategy and setup to content, delivery and analysis.</p>",
+        "tab_1_label": "Shopify",
+        "tab_1_heading": "",
+        "tab_1_description": "",
+        "tab_1_note": "",
+        "tab_2_label": "WordPress",
+        "tab_2_heading": "",
+        "tab_2_description": "",
+        "tab_2_note": "",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "card_heading_color": "#241c52",
@@ -1094,6 +1131,7 @@
       ],
       "name": "t:client_story.name",
       "settings": {
+        "layout": "card",
         "eyebrow": "FEATURED CLIENT STORY",
         "heading": "Furniture Brand Achieved 2× Email GMV Share with Lifecycle Marketing",
         "description": "<p>A furniture brand faced long buying cycles and low email revenue. ME built lifecycle flows and personalised nurturing, growing email GMV by 40%+ and doubling its GMV share to over 22% in three months.<br/></p>",
@@ -1257,7 +1295,7 @@
     "page_background_n8zJR6",
     "main",
     "product_hero_jiNakp",
-    "partner_brands_aTCFjU",
+    "partner_brands_DxerX4",
     "business_challenge_iR7zkb",
     "our_approach_dJQKw8",
     "service_scope_VaDYAw",

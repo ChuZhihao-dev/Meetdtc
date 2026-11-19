@@ -1,7 +1,7 @@
 {% comment %}
   Service scope: editable introduction and a responsive list of service modules.
   Empty background shows the page background; card transparency is independent.
-  The included layout adds centered copy and optional merchant-uploaded icons.
+  In carousel layout, each card belongs to one of two section-configured tabs.
   @example Add "Service scope" and edit, add or reorder its service cards.
 {% endcomment %}
 {% liquid
@@ -11,12 +11,10 @@
     assign included_layout = true
   endif
   assign card_alpha = s.card_opacity | divided_by: 100.0
-  assign card_count = 0
-  for block in section.blocks limit: 50
-    if block.settings.heading != blank or block.settings.description != blank or request.design_mode
-      assign card_count = card_count | plus: 1
-    endif
-  endfor
+  assign carousel_layout = false
+  if s.layout == 'carousel'
+    assign carousel_layout = true
+  endif
 %}
 {% render 'custom-section-fonts', font: s.font %}
 {% if s.enable_reveal %}
@@ -39,7 +37,10 @@
     --service-scope-mobile-top: {{ s.padding_mobile_top }}px;
     --service-scope-mobile-bottom: {{ s.padding_mobile_bottom }}px;"
   {% if s.enable_reveal %}data-reveal-scope{% endif %}
-  {% if s.enable_reveal and included_layout %}data-reveal-timeline="desktop" data-reveal-margin="0px 0px -15% 0px"{% endif %}
+  {% if s.enable_reveal %}
+    {% if included_layout %}data-reveal-timeline="desktop" data-reveal-margin="0px 0px -15% 0px"
+    {% elsif carousel_layout %}data-reveal-margin="0px 0px -5% 0px"{% endif %}
+  {% endif %}
 >
   <div class="service-scope__inner">
     {% if s.eyebrow != blank or s.heading != blank or s.description != blank %}
@@ -49,23 +50,53 @@
         {% if s.description != blank %}<div class="service-scope__description" {% if s.enable_reveal and included_layout %}data-reveal{% endif %}>{{ s.description }}</div>{% endif %}
       </div>
     {% endif %}
-    {% if card_count > 0 %}
-      <ul class="service-scope__grid" role="list">
-        {% for block in section.blocks limit: 50 %}
-          {% if block.settings.heading != blank or block.settings.description != blank or request.design_mode %}
-            <li class="service-scope__card" {% if s.enable_reveal %}data-reveal{% endif %} {{ block.shopify_attributes }}>
-              {% if block.settings.icon != blank %}
-                <img class="service-scope__card-icon" src="{{ block.settings.icon | image_url: width: 64 }}" width="32" height="32" alt="" loading="lazy">
-              {% endif %}
-              {% if block.settings.heading != blank %}<h3 class="service-scope__card-heading">{{ block.settings.heading | escape }}</h3>{% endif %}
-              {% if block.settings.description != blank %}<div class="service-scope__card-description">{{ block.settings.description }}</div>{% endif %}
-              {% if block.settings.link != blank and block.settings.link_label != blank %}
-                <a class="service-scope__card-link" href="{{ block.settings.link | escape }}">{{ block.settings.link_label | escape }}{% if block.settings.heading != blank %}<span class="visually-hidden"> — {{ block.settings.heading | escape }}</span>{% endif %}</a>
-              {% endif %}
-            </li>
-          {% endif %}
+    {% if carousel_layout %}
+      {% assign tab_buttons = '' %}
+      {% capture tab_panels %}
+        {% for number in (1..2) %}
+          {% liquid
+            assign tab_id = 'tab_' | append: number
+            assign label_key = tab_id | append: '_label'
+            assign heading_key = tab_id | append: '_heading'
+            assign description_key = tab_id | append: '_description'
+            assign note_key = tab_id | append: '_note'
+            assign label = s[label_key] | default: s[heading_key]
+            if label == blank
+              if number == 1
+                assign label = 'Shopify'
+              else
+                assign label = 'WordPress'
+              endif
+            endif
+          %}
+          {% capture cards %}{% render 'service-scope-cards', section: section, tab_id: tab_id, heading: label %}{% endcapture %}
+          {% assign cards = cards | strip %}
+          {% if cards == blank %}{% continue %}{% endif %}
+          {% capture button %}
+            <button type="button" role="tab" ref="tabs[]" id="scope-tab-{{ section.id }}-{{ tab_id }}"
+              aria-controls="scope-panel-{{ section.id }}-{{ tab_id }}" on:click="/selectTab" on:keydown="/navigateTabs">
+              {{ label | escape }}
+            </button>
+          {% endcapture %}
+          {% assign tab_buttons = tab_buttons | append: button %}
+          <div class="service-scope__panel" ref="panels[]" id="scope-panel-{{ section.id }}-{{ tab_id }}"
+            aria-labelledby="scope-title-{{ section.id }}-{{ tab_id }}">
+            <h3 class="service-scope__panel-title" id="scope-title-{{ section.id }}-{{ tab_id }}" {% if s.enable_reveal %}data-reveal{% endif %}>{{ s[heading_key] | default: label | escape }}</h3>
+            {% if s[description_key] != blank %}<div class="service-scope__panel-copy" {% if s.enable_reveal %}data-reveal{% endif %}>{{ s[description_key] }}</div>{% endif %}
+            {{ cards }}
+            {% if s[note_key] != blank %}<div class="service-scope__note" {% if s.enable_reveal %}data-reveal{% endif %}>{{ s[note_key] }}</div>{% endif %}
+          </div>
         {% endfor %}
-      </ul>
+      {% endcapture %}
+      {% if tab_buttons != blank %}
+        <service-scope-tabs>
+          <div class="service-scope__tabs" ref="tablist" role="tablist" aria-label="{{ s.heading | default: s.eyebrow | default: section.id | escape }}" {% if s.enable_reveal %}data-reveal{% endif %} hidden>{{ tab_buttons }}</div>
+          {{ tab_panels }}
+        </service-scope-tabs>
+        <script type="module" src="{{ 'service-scope-tabs.js' | asset_url }}" fetchpriority="low"></script>
+      {% endif %}
+    {% else %}
+      {% render 'service-scope-cards', section: section %}
     {% endif %}
   </div>
 </scroll-reveal-component>
@@ -103,7 +134,7 @@
     line-height: 1.2;
     letter-spacing: normal;
     color: inherit;
-    inline-size: fit-content; max-inline-size: 100%; background: var(--heading-gradient);
+    inline-size: fit-content; max-inline-size: 100%; background: var(--service-scope-gradient);
     background-clip: text;
     -webkit-text-fill-color: transparent;
     overflow-wrap: anywhere;
@@ -173,6 +204,7 @@
   .service-scope__card-icon { display: block; inline-size: 32px; block-size: 32px; margin-block-end: 14px; object-fit: contain; }
   .service-scope__card-link { display: inline-flex; align-items: center; min-block-size: 44px; margin-block-start: 10px; color: inherit; font-size: 14px; font-weight: 600; text-underline-offset: 0.2em; }
   .service-scope__description a,
+  .service-scope__note a,
   .service-scope__card-description a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
   .service-scope a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
   .service-scope.reveal-ready [data-reveal] { transition-delay: min(calc(var(--reveal-index, 0) * 90ms), 540ms); }
@@ -245,6 +277,115 @@
     .service-scope .service-scope__card-heading + .service-scope__card-description { margin-block-start: 12px; }
     .service-scope--included .service-scope__card-heading + .service-scope__card-description { margin-block-start: 0; }
   }
+  service-scope-tabs { display: block; margin-block-start: var(--service-scope-row-gap); }
+  .service-scope__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-lg);
+    border-block-end: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  }
+  .service-scope__tabs[hidden], .service-scope__panel[hidden] { display: none; }
+  .service-scope__tabs button {
+    position: relative;
+    padding: var(--padding-xs) var(--padding-sm);
+    min-block-size: var(--minimum-touch-target);
+    border: 0;
+    border-block-end: 3px solid transparent;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    overflow-wrap: anywhere;
+  }
+  .service-scope__tabs button::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: -3px;
+    block-size: 3px;
+    background: currentColor;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: transform var(--animation-speed-slow) var(--ease-out-cubic), opacity var(--animation-speed-slow) var(--ease-out-cubic);
+  }
+  .service-scope__tabs button[aria-selected='true']::after { opacity: 1; transform: scaleX(1); }
+  .service-scope__panel[role='tabpanel']:not([hidden]) {
+    animation: service-scope-panel-enter calc(var(--animation-speed-slow) * 1.5) var(--ease-out-cubic);
+  }
+  @keyframes service-scope-panel-enter {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .service-scope__tabs button::after { transition: none; }
+    .service-scope__panel[role='tabpanel']:not([hidden]) { animation: none; }
+  }
+  .service-scope__tabs button:focus-visible, .service-scope__panel:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+  .service-scope__panel { margin-block-start: var(--gap-lg); }
+  .service-scope__panel-title { margin: 0; font-family: inherit; color: inherit; font-size: clamp(1.125rem, 2vw, 1.5rem); overflow-wrap: anywhere; }
+  .service-scope__panel-copy { max-inline-size: 78ch; line-height: 1.5; overflow-wrap: anywhere; }
+  .service-scope__panel-copy > :first-child { margin-block-start: var(--gap-xs); }
+  .service-scope__panel-copy > :last-child { margin-block-end: 0; }
+  .service-scope__carousel {
+    --slideshow-gap: var(--service-scope-column-gap);
+    margin-block-start: var(--service-scope-row-gap);
+  }
+  .service-scope__carousel > slideshow-container { background: transparent; }
+  /* Cards start 24px lower during reveal. Keep vertical gestures scrolling the page. */
+  .service-scope__carousel slideshow-slides { overflow-y: hidden; }
+  /* Each panel has its own entrance sequence, independent of the preceding tab's cards. */
+  .service-scope.reveal-ready .service-scope__panel [data-reveal] { transition-delay: 0s; }
+  .service-scope.reveal-ready .service-scope__panel-copy[data-reveal] { transition-delay: 75ms; }
+  @container (min-width: 561px) {
+    .service-scope.reveal-ready .service-scope__carousel .service-scope__card[data-reveal]:nth-child(2) { transition-delay: 75ms; }
+  }
+  @container (min-width: 901px) {
+    .service-scope.reveal-ready .service-scope__carousel .service-scope__card[data-reveal]:nth-child(3) { transition-delay: 150ms; }
+  }
+  .service-scope__carousel .service-scope__card {
+    --service-scope-per-page: 3;
+    --slide-width: calc((100% - (var(--service-scope-per-page) - 1) * var(--slideshow-gap)) / var(--service-scope-per-page));
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    scroll-snap-align: start;
+    content-visibility: visible;
+    translate: none;
+    box-shadow: none;
+  }
+  .service-scope__carousel .service-scope__card-heading { min-block-size: 0; }
+  .service-scope__carousel .service-scope__card-heading + .service-scope__card-description { margin-block-start: 0; line-height: 1.5; }
+  .service-scope__tag { margin: 0; font-size: var(--font-size--sm); font-weight: 600; }
+  .service-scope__deliverable {
+    margin-block-start: auto;
+    padding-block-start: var(--padding-sm);
+    border-block-start: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+    font-size: var(--font-size--sm);
+    line-height: 1.5;
+  }
+  .service-scope__deliverable > :first-child, .service-scope__note > :first-child { margin-block-start: 0; }
+  .service-scope__deliverable > :last-child, .service-scope__note > :last-child { margin-block-end: 0; }
+  .service-scope__note { margin-block-start: var(--gap-md); font-size: var(--font-size--sm); line-height: 1.5; overflow-wrap: anywhere; }
+  service-scope-pager { display: block; }
+  .service-scope__pagination {
+    display: grid;
+    grid-template-columns: var(--minimum-touch-target) 6rem var(--minimum-touch-target);
+    align-items: center;
+    justify-content: end;
+    margin-block-start: var(--gap-sm);
+  }
+  .service-scope__pagination[hidden] { display: none; }
+  .service-scope__pagination output { text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .service-scope__pagination button { inline-size: var(--minimum-touch-target); block-size: var(--minimum-touch-target); padding: var(--padding-xs); }
+  .service-scope__pagination button[aria-disabled='true'] { opacity: 0.45; cursor: default; }
+  .service-scope__carousel:not(:defined) slideshow-slides { flex-wrap: wrap; overflow: visible; }
+  @container (max-width: 900px) {
+    .service-scope__carousel .service-scope__card { --service-scope-per-page: 2; }
+  }
+  @container (max-width: 560px) {
+    .service-scope__carousel .service-scope__card { --service-scope-per-page: 1; }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -270,6 +411,10 @@
         {
           "value": "included",
           "label": "t:service_scope.layout_included"
+        },
+        {
+          "value": "carousel",
+          "label": "t:options.carousel"
         }
       ],
       "default": "standard"
@@ -291,6 +436,66 @@
       "id": "description",
       "label": "t:service_scope.description",
       "default": "<p>A monular scope tailored to each service, growth priarity and operating need. Add or<br/> romove modulas as the progremme grows.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:service_scope.tab_1",
+      "visible_if": "{{ section.settings.layout == 'carousel' }}"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_label",
+      "label": "t:settings.label",
+      "default": "Shopify",
+      "visible_if": "{{ section.settings.layout == 'carousel' }}"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_heading",
+      "label": "t:service_scope.heading",
+      "visible_if": "{{ section.settings.layout == 'carousel' }}"
+    },
+    {
+      "type": "richtext",
+      "id": "tab_1_description",
+      "label": "t:service_scope.description",
+      "visible_if": "{{ section.settings.layout == 'carousel' }}"
+    },
+    {
+      "type": "richtext",
+      "id": "tab_1_note",
+      "label": "t:website_packages.note",
+      "visible_if": "{{ section.settings.layout == 'carousel' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:service_scope.tab_2",
+      "visible_if": "{{ section.settings.layout == 'carousel' }}"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_label",
+      "label": "t:settings.label",
+      "default": "WordPress",
+      "visible_if": "{{ section.settings.layout == 'carousel' }}"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_heading",
+      "label": "t:service_scope.heading",
+      "visible_if": "{{ section.settings.layout == 'carousel' }}"
+    },
+    {
+      "type": "richtext",
+      "id": "tab_2_description",
+      "label": "t:service_scope.description",
+      "visible_if": "{{ section.settings.layout == 'carousel' }}"
+    },
+    {
+      "type": "richtext",
+      "id": "tab_2_note",
+      "label": "t:website_packages.note",
+      "visible_if": "{{ section.settings.layout == 'carousel' }}"
     },
     {
       "type": "font_picker",
@@ -428,6 +633,29 @@
       "name": "t:service_scope.card_name",
       "settings": [
         {
+          "type": "select",
+          "id": "tab",
+          "label": "t:service_scope.card_tab",
+          "options": [
+            {
+              "value": "tab_1",
+              "label": "t:service_scope.tab_1"
+            },
+            {
+              "value": "tab_2",
+              "label": "t:service_scope.tab_2"
+            }
+          ],
+          "default": "tab_1",
+          "visible_if": "{{ section.settings.layout == 'carousel' }}"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "t:service_scope.eyebrow",
+          "visible_if": "{{ section.settings.layout == 'carousel' }}"
+        },
+        {
           "type": "image_picker",
           "id": "icon",
           "label": "t:service_scope.card_icon",
@@ -444,6 +672,12 @@
           "id": "description",
           "label": "t:service_scope.card_description",
           "default": "<p>Channel priorities, the lifecycle opportunity map and a rolling roadmap you can plan budget against.</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "deliverable",
+          "label": "t:delivery_process.core_deliverable",
+          "visible_if": "{{ section.settings.layout == 'carousel' }}"
         },
         {
           "type": "url",

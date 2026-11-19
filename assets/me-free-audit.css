@@ -825,6 +825,27 @@
   flex-shrink: 0
 }
 
+.section-me-free-audit .audit-page .close-button {
+  position: relative;
+  inset: auto;
+}
+
+.section-me-free-audit .audit-page .close-button-icon::before,
+.section-me-free-audit .audit-page .close-button-icon::after {
+  content: '';
+  position: absolute;
+  inset-block-start: calc(50% - 1px);
+  inset-inline-start: calc(50% - 8px);
+  width: 16px;
+  height: 2px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+.section-me-free-audit .audit-page .close-button-icon::after {
+  transform: rotate(-45deg);
+}
+
 .review-drawer h2 {
   font-size: 29px;
   margin-bottom: 12px
@@ -3129,25 +3150,6 @@
     margin-block-end: 8px;
   }
 
-  .section-me-free-audit .audit-page .close-button {
-    position: relative;
-  }
-
-  .section-me-free-audit .audit-page .close-button-icon::before,
-  .section-me-free-audit .audit-page .close-button-icon::after {
-    content: '';
-    position: absolute;
-    inset-block-start: calc(50% - 1px);
-    inset-inline-start: calc(50% - 8px);
-    width: 16px;
-    height: 2px;
-    background: currentColor;
-    transform: rotate(45deg);
-  }
-
-  .section-me-free-audit .audit-page .close-button-icon::after {
-    transform: rotate(-45deg);
-  }
 }
 
 

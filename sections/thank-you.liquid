@@ -1,0 +1,131 @@
+{% comment %}
+  Enquiry confirmation with a compact reading measure and editable text/button blocks.
+  @example Used by page.thank-you; configure its content in the theme editor.
+{% endcomment %}
+{% if section.settings.background_color != blank %}
+  {% render 'contrast-override', background_color: section.settings.background_color, section_id: section.id %}
+{% endif %}
+<div class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"></div>
+<div class="section page-width-content thank-you spacing-style{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="{% render 'spacing-style', settings: section.settings %}">
+  <div class="thank-you__content">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+{% stylesheet %}
+  .thank-you__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    inline-size: min(100%, 560px);
+    min-inline-size: 0;
+    margin-inline: auto;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  .thank-you .text-block h1 {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading--family);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: var(--font-heading--weight);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .thank-you .text-block.rte {
+    font-family: var(--font-body--family);
+    font-size: 16px;
+    font-weight: var(--font-body--weight);
+    line-height: 1.75;
+    letter-spacing: normal;
+  }
+
+  .thank-you .text-block.rte p {
+    font-size: inherit;
+    line-height: inherit;
+    text-wrap: pretty;
+  }
+
+  .thank-you .text-block.rte strong {
+    font-size: 18px;
+    font-weight: var(--font-heading--weight);
+    line-height: 1.5;
+  }
+
+  .thank-you .text-block.rte p + p {
+    margin-block-start: 12px;
+  }
+
+  .thank-you .text-block.rte + .text-block.rte {
+    max-inline-size: 480px;
+    color: var(--color-foreground-muted);
+    font-size: 14px;
+  }
+
+  .thank-you .button {
+    min-block-size: 48px;
+    max-inline-size: 100%;
+    margin-block-start: 4px;
+    padding-inline: 28px;
+    white-space: normal;
+  }
+
+  @media screen and (max-width: 749px) {
+    .thank-you {
+      padding-block-start: min(var(--padding-block-start), 64px);
+      padding-block-end: min(var(--padding-block-end), 64px);
+    }
+
+    .thank-you__content {
+      gap: 20px;
+    }
+
+    .thank-you .text-block.rte {
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .thank-you .text-block.rte + .text-block.rte {
+      font-size: 14px;
+    }
+  }
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "t:names.page",
+  "class": "section-wrapper",
+  "blocks": [{ "type": "text" }, { "type": "button" }],
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:settings.background_color",
+      "placeholder": "t:settings.default"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    }
+  ]
+}
+{% endschema %}

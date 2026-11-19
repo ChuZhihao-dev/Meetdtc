@@ -37,12 +37,6 @@
             "wrap": "pretty",
             "text_color": "",
             "gradient_text": false,
-            "gradient_color_from": "#5b34c6",
-            "gradient_color_to": "#2d6bff",
-            "gradient_color_mid": "#8b45f0",
-            "gradient_angle": 100,
-            "gradient_start_position": 0,
-            "gradient_end_position": 100,
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -104,21 +98,24 @@
         "heading_tag": "h1",
         "description": "",
         "service_labels": "Shopify\nWordPress\nCustom development",
-        "background_from": "#f7e9f5",
-        "background_to": "#c7e2f4",
+        "background_from": "{{ settings.color_palette.background }}",
+        "background_to": "{{ settings.color_palette.background }}",
+        "text_color": "{{ settings.color_palette.foreground }}",
+        "accent_color": "#5932d4",
+        "desktop_button_colors": "showcase",
         "heading_from": "#5b34c6",
         "heading_to": "#2d6bff",
         "heading_mid": "#8b45f0",
         "description_color": "#6b6a6a",
         "service_labels_color": "#3e4c81",
-        "section_height": "small",
-        "content_position": "center",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "horizontal_alignment": "center",
+        "padding-block-start": 40,
+        "padding-block-end": 20
       }
     },
     "page_background_WJkREX": {
       "type": "page-background",
+      "disabled": true,
       "name": "t:names.page_background",
       "settings": {
         "background_type": "gradient",
@@ -134,7 +131,7 @@
         "basic": {
           "type": "_website-package",
           "settings": {
-            "mode": "product",
+            "mode": "quote",
             "product": "basic-shopify-theme-launch",
             "enable_purchase": true,
             "approach": "01 / THEME LAUNCH",
@@ -145,17 +142,17 @@
             "features": "Official Shopify theme implementation\n8 core e-commerce pages\n30 product uploads · 1 blog article upload\nHomepage SEO setup\nUp to 3 machine-translated languages\nApprox. 2-week delivery*\n2 months of post-launch support",
             "highlight": false,
             "button_note": "",
-            "purchase_label": "Purchase Now →",
+            "purchase_label": "Let`s Talk",
             "quote_price": "Request a Quote",
-            "quote_label": "Discuss Your Project →",
-            "quote_link": ""
+            "quote_label": "Let‘s Talk →",
+            "quote_link": "shopify://pages/contact"
           },
           "blocks": {}
         },
         "advanced": {
           "type": "_website-package",
           "settings": {
-            "mode": "product",
+            "mode": "quote",
             "product": "advanced-enhanced-website-build",
             "enable_purchase": true,
             "approach": "02 / ENHANCED BUILD",
@@ -168,8 +165,8 @@
             "button_note": "",
             "purchase_label": "Purchase Now →",
             "quote_price": "Request a Quote",
-            "quote_label": "Discuss Your Project →",
-            "quote_link": ""
+            "quote_label": "Let‘s Talk →",
+            "quote_link": "shopify://pages/contact"
           },
           "blocks": {}
         },
@@ -203,7 +200,7 @@
       "settings": {
         "eyebrow": "",
         "heading": "",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "heading_color": "#241c52",
         "text_color": "#5e5a8a",
         "muted_color": "#777394",
@@ -227,9 +224,12 @@
         "responsive": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "icon": "shopify://shop_images/Frame.svg",
             "heading": "Responsive Pages & Blog",
             "description": "<p>Desktop and mobile layouts, plus blog page setup.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -237,9 +237,12 @@
         "store": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "icon": "shopify://shop_images/Frame_4bb3c3d8-6451-4bf2-9b95-7f5ad251b7fb.svg",
             "heading": "Store Setup & Core Functions",
             "description": "<p>Brand, payment, checkout, shipping and market settings, with accounts, search, product management and order tracking.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -247,9 +250,12 @@
         "analytics": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "icon": "shopify://shop_images/Frame_aba9fa92-a0d8-4861-b967-51cdfc12e810.svg",
             "heading": "Analytics & Search Foundations",
             "description": "<p>GA4, Search Console, Meta Pixel and heatmaps, plus XML sitemap and robots.txt configuration.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -257,9 +263,12 @@
         "marketing": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "icon": "shopify://shop_images/Frame_0bbef38c-9689-4666-8a74-821b72b43d57.svg",
             "heading": "Marketing & Engagement",
             "description": "<p>Subscriber discounts, announcement promotions, live chat, social links and review modules.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -267,9 +276,12 @@
         "handover": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "icon": "shopify://shop_images/Frame__2.svg",
             "heading": "Handover & Learning Resources",
             "description": "<p>Shopify operating guides, connection tutorials and page samples, plus store operations courses, advertising courses and industry reports.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -277,9 +289,12 @@
         "advertising": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "icon": "shopify://shop_images/Frame__3.svg",
             "heading": "Advertising Preparation & Assistance",
             "description": "<p>Pre-advertising website checks, advertising account-opening guidance and priority review assistance.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -299,6 +314,14 @@
         "eyebrow": "",
         "heading": "Included in Every Project",
         "description": "<p>The shared foundations of your website build.</p>",
+        "tab_1_label": "",
+        "tab_1_heading": "",
+        "tab_1_description": "",
+        "tab_1_note": "",
+        "tab_2_label": "",
+        "tab_2_heading": "",
+        "tab_2_description": "",
+        "tab_2_note": "",
         "font": "montserrat_n4",
         "text_color": "#5e5a8a",
         "card_heading_color": "#241c52",
@@ -306,7 +329,7 @@
         "background": "",
         "card_background": "#ffffff",
         "card_opacity": 100,
-        "card_border": "#ffffff",
+        "card_border": "#CCCBE4",
         "card_radius": 18,
         "column_gap": 20,
         "row_gap": 20,
@@ -374,7 +397,7 @@
         "heading": "From Your Brief\nto a Website\nReady to Launch",
         "description": "<p>A clear build process, from confirming your requirements to implementation and handover.</p>",
         "background": "",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
         "text_color": "#000000",
         "accent_color": "#9621c4",
         "step_gap": 60,
@@ -480,21 +503,16 @@
       ],
       "name": "t:names.faq_section",
       "settings": {
+        "layout_style": "cards",
         "eyebrow": "FAQ",
         "heading": "<p>About Your Website Build</p>",
         "description": "<p>Package scope, delivery and the details to know before you begin.</p>",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "2.5rem",
         "weight": "600",
         "line_height": "1.3",
         "wrap": "balance",
         "gradient_text": true,
-        "gradient_color_from": "#5b34c6",
-        "gradient_color_to": "#2d6bff",
-        "gradient_color_mid": "#8b45f0",
-        "gradient_angle": 100,
-        "gradient_start_position": 0,
-        "gradient_end_position": 100,
         "background_gradient_from": "rgba(0,0,0,0)",
         "background_gradient_to": "rgba(0,0,0,0)",
         "background_gradient_angle": 104,
@@ -502,7 +520,7 @@
         "row_background_opacity": 60,
         "row_radius": 16,
         "row_gap": 8,
-        "question_color": "#8B45F0",
+        "question_color": "#8b45f0",
         "answer_color": "#595959",
         "icon_color": "#3f4eff",
         "heading_gap": 52,

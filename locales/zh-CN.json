@@ -16,6 +16,7 @@
     "label": "面包屑导航"
   },
   "website_packages": {
+    "sold_out_cta": "Let’s talk",
     "selected_package": "所选套餐：",
     "from": "起价",
     "pricing_unavailable": "价格即将公布",

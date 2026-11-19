@@ -1,0 +1,405 @@
+{% comment %}
+  Showcase hero: service copy, reusable actions, partner identity and website imagery.
+  Two uploaded images overlap; one image or the optional reference illustration displays uncropped.
+  @example Add Showcase hero in the editor; replace the illustration with website screenshots.
+{% endcomment %}
+{% liquid
+  assign s = section.settings
+  assign has_media = false
+  if s.image != blank or s.secondary_image != blank or s.show_demo
+    assign has_media = true
+  endif
+  assign image_loading = 'lazy'
+  assign image_priority = 'auto'
+  if section.index != blank and section.index <= 2
+    assign image_loading = 'eager'
+    assign image_priority = 'high'
+  endif
+%}
+{% render 'measure-header-heights', only_when_first_section: true %}
+{% render 'contrast-override', background_color: s.background_from, text_color: s.text_color, section_id: section.id %}
+{% if s.animate %}
+  {% render 'scroll-reveal-styles' %}
+  <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
+{% endif %}
+<div class="section-background showcase-hero__background" style="--showcase-from: {{ s.background_from }}; --showcase-to: {{ s.background_to }};"></div>
+<div class="section section--page-width spacing-style showcase-hero-section{% if s.section_height == 'full-screen' %} showcase-hero-section--full-screen{% endif %} color-custom-{{ section.id }}" style="{% render 'spacing-style', settings: s %}">
+<scroll-reveal-component class="showcase-hero{% if s.layout_style == 'center' %} showcase-hero--center{% endif %}{% unless has_media %} showcase-hero--text-only{% endunless %}"
+  {% if s.animate %}data-reveal-scope data-reveal-timeline{% endif %}
+  style="--showcase-accent: {{ s.accent_color }}; --text-reveal-duration: {{ s.duration }}ms; --showcase-delay: {{ s.delay }}ms;">
+  <div class="showcase-hero__copy">
+    {% if s.eyebrow != blank %}<p class="showcase-hero__eyebrow" data-reveal>{{ s.eyebrow | escape }}</p>{% endif %}
+    {% if s.heading != blank %}
+      <{{ s.heading_tag }} class="showcase-hero__heading" data-reveal>
+        {% assign heading_lines = s.heading | newline_to_br | split: '<br />' %}
+        {% for line in heading_lines %}
+          <span{% unless forloop.first %} class="showcase-hero__heading-accent"{% endunless %}>{{ line | strip | escape }}</span>
+        {% endfor %}
+      </{{ s.heading_tag }}>
+    {% endif %}
+    {% if s.description != blank %}<p class="showcase-hero__description" data-reveal>{{ s.description | escape | newline_to_br }}</p>{% endif %}
+    {% capture actions %}{% content_for 'blocks' %}{% endcapture %}
+    {% assign actions = actions | strip %}
+    {% if actions != blank %}<div class="showcase-hero__actions" data-reveal>{{ actions }}</div>{% endif %}
+    {% if s.partner_logo != blank or s.partner_text != blank %}
+      <div class="showcase-hero__partner" data-reveal>
+        {% if s.partner_logo != blank %}
+          {{ s.partner_logo | image_url: width: 318 | image_tag: widths: '106, 212, 318', sizes: '106px', loading: image_loading, class: 'showcase-hero__partner-logo', alt: s.partner_logo.alt }}
+        {% endif %}
+        {% if s.partner_text != blank %}<p>{{ s.partner_text | escape }}</p>{% endif %}
+      </div>
+    {% endif %}
+  </div>
+  {% if has_media %}
+    <figure class="showcase-hero__media" data-reveal>
+      <div class="showcase-hero__stage{% if s.image == blank and s.secondary_image == blank %} showcase-hero__stage--demo{% endif %}{% if s.image != blank and s.secondary_image != blank %} showcase-hero__stage--overlap{% endif %}">
+        {% assign image_keys = 'image,secondary_image' | split: ',' %}
+        {% assign candidate_widths = '360,540,720,960,1080,1280,1440,1800,2160' | split: ',' %}
+        {% for key in image_keys %}
+          {% liquid
+            assign media_image = s[key]
+            if media_image == blank
+              continue
+            endif
+            assign max_width = media_image.width | at_most: 2560
+            assign sizes = '(max-width: 860px) min(100vw, 580px), 52vw'
+            assign image_class = 'showcase-hero__image showcase-hero__image--primary'
+            assign loading = image_loading
+            assign priority = image_priority
+            if key == 'secondary_image'
+              assign image_class = 'showcase-hero__image showcase-hero__image--secondary'
+              if s.image != blank
+                assign sizes = '(max-width: 860px) min(75vw, 435px), 39vw'
+                assign loading = 'lazy'
+                assign priority = 'auto'
+              endif
+            elsif s.secondary_image != blank
+              assign sizes = '(max-width: 860px) min(89vw, 517px), 47vw'
+            endif
+            if s.layout_style == 'center'
+              assign sizes = '(max-width: 860px) min(100vw, 580px), 760px'
+              if s.image != blank and s.secondary_image != blank
+                if key == 'secondary_image'
+                  assign sizes = '(max-width: 860px) min(75vw, 435px), 570px'
+                else
+                  assign sizes = '(max-width: 860px) min(89vw, 517px), 676px'
+                endif
+              endif
+            endif
+            assign widths = ''
+            for candidate in candidate_widths
+              assign width = candidate | plus: 0
+              if width >= max_width
+                break
+              endif
+              assign widths = widths | append: width | append: ','
+            endfor
+            assign widths = widths | append: max_width
+          %}
+          {{ media_image | image_url: width: max_width | image_tag: widths: widths, sizes: sizes, loading: loading, fetchpriority: priority, class: image_class, alt: media_image.alt }}
+        {% endfor %}
+        {% if s.image == blank and s.secondary_image == blank and s.show_demo %}
+          <img src="{{ 'showcase-hero-demo.png' | asset_url }}" width="1346" height="1086" alt="" class="showcase-hero__demo" loading="{{ image_loading }}" fetchpriority="{{ image_priority }}">
+        {% endif %}
+      </div>
+    </figure>
+  {% endif %}
+</scroll-reveal-component>
+</div>
+{% stylesheet %}
+  .showcase-hero__background { background: linear-gradient(92.19deg, var(--showcase-from) 1.07%, var(--showcase-to) 98.93%); }
+  .showcase-hero.showcase-hero { display: grid; grid-template-columns: minmax(0, .96fr) minmax(0, 1.04fr); align-items: center; gap: clamp(28px, 4.4vw, 68px); background: transparent; }
+  .showcase-hero.showcase-hero--text-only { grid-template-columns: minmax(0, 1fr); }
+  .showcase-hero.showcase-hero--center { grid-template-columns: minmax(0, 1fr); text-align: center; }
+  .showcase-hero--center .showcase-hero__copy { inline-size: min(100%, 840px); margin-inline: auto; }
+  .showcase-hero--center .showcase-hero__description { max-inline-size: none; margin-inline: auto; }
+  .showcase-hero--center .showcase-hero__actions,
+  .showcase-hero--center .showcase-hero__partner { justify-content: center; }
+  .showcase-hero--center .showcase-hero__media { inline-size: min(100%, 760px); margin-inline: auto; }
+  .showcase-hero__copy { min-inline-size: 0; font-family: var(--font-body--family); overflow-wrap: anywhere; }
+  .showcase-hero__eyebrow { margin: 0 0 16px; font-size: 14px; font-weight: var(--font-heading--weight); line-height: 1.5; }
+  .showcase-hero__heading { margin: 0; font-family: var(--font-heading--family); font-size: clamp(40px, 3.6vw, 52px); font-weight: var(--font-heading--weight); line-height: 1.12; letter-spacing: -.035em; text-wrap: balance; color: inherit; }
+  .showcase-hero__heading > span { display: block; }
+  .showcase-hero__heading-accent, .showcase-hero__eyebrow { color: var(--showcase-accent); }
+  .showcase-hero__description { max-inline-size: 46ch; margin: 24px 0 0; font-size: 17px; line-height: 1.7; }
+  .showcase-hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-block-start: 28px; }
+  .showcase-hero__actions .product-hero-button--link { text-decoration: none; }
+  .showcase-hero__actions .product-hero-button--link:hover { text-decoration: underline; }
+  .showcase-hero__actions .product-hero-button { min-block-size: 48px; padding: 12px 20px; border-radius: 8px; font-size: 15px; }
+  .showcase-hero__partner { display: flex; align-items: center; gap: 16px; margin-block-start: 28px; }
+  .showcase-hero__partner-logo { inline-size: 106px; block-size: auto; max-block-size: 64px; object-fit: contain; flex-shrink: 0; }
+  .showcase-hero__partner p { margin: 0; max-inline-size: 28ch; font-size: 13px; line-height: 1.6; }
+  .showcase-hero__media { min-inline-size: 0; margin: 0; }
+  .showcase-hero-section { overflow: clip; }
+  .showcase-hero-section--full-screen { min-block-size: calc(100svh - var(--showcase-header-offset, 0px)); }
+  #header-group:has(> .header-section > #header-component) ~ * .shopify-section:first-child .showcase-hero-section--full-screen { --showcase-header-offset: var(--header-group-height, 0px); }
+  .showcase-hero__stage { position: relative; }
+  .showcase-hero__stage--demo { aspect-ratio: 1.27; }
+  .showcase-hero__image { display: block; inline-size: 100%; block-size: auto; border-radius: 12px; }
+  .showcase-hero__stage--overlap {
+    aspect-ratio: 1.27;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    /* The stage plane must let the pointer reach the image behind it. */
+    pointer-events: none;
+  }
+  .showcase-hero__stage--overlap .showcase-hero__image {
+    position: absolute;
+    /* Lay out at the enlarged size so the straightened screenshot renders at 1:1 CSS scale. */
+    inline-size: 89%;
+    block-size: auto;
+    object-fit: contain;
+    pointer-events: auto;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-white);
+    box-shadow: 0 3px 8px rgb(var(--color-foreground-rgb) / 0.12), 0 12px 28px rgb(var(--color-foreground-rgb) / 0.16);
+  }
+  .showcase-hero__stage--overlap .showcase-hero__image--primary { inset-block-start: 0; inset-inline-end: -3%; transform: translateZ(-16px) rotateZ(-3deg) scale(.94); }
+  .showcase-hero__stage--overlap .showcase-hero__image--secondary { inset-block-end: 1%; inset-inline-start: -2.5%; inline-size: 75%; transform: translateZ(-6px) rotateZ(3deg) scale(.94); }
+  @media (hover: hover) and (pointer: fine) {
+    .showcase-hero__stage--overlap .showcase-hero__image:hover {
+      transform: none;
+    }
+  }
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .showcase-hero__stage--overlap .showcase-hero__image {
+      transition: transform calc(2 * var(--animation-speed-slow)) var(--animation-easing);
+    }
+  }
+  .showcase-hero__demo { position: absolute; display: block; inset-block-start: -6.35%; inset-inline-start: -5%; inline-size: 110%; max-inline-size: none; block-size: auto; }
+  .showcase-hero.reveal-ready [data-reveal] { transition-delay: calc(var(--showcase-delay, 0ms) + min(calc(var(--reveal-index, 0) * 90ms), 540ms)); }
+  @media screen and (max-width: 860px) {
+    .showcase-hero.showcase-hero { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+    .showcase-hero__media,
+    .showcase-hero--center .showcase-hero__media { inline-size: min(100%, 580px); margin-inline: auto; }
+  }
+  @media screen and (max-width: 749px) {
+    .showcase-hero-section { padding-block-start: calc(min(var(--padding-block-start), 40px) + var(--section-top-offset, 0px)); padding-block-end: min(var(--padding-block-end), 32px); }
+    .showcase-hero.showcase-hero { gap: 24px; }
+    .showcase-hero__eyebrow { margin-block-end: 12px; font-size: 13px; }
+    .showcase-hero__heading { font-size: clamp(32px, 9vw, 40px); letter-spacing: -.025em; }
+    .showcase-hero__description { margin-block-start: 18px; font-size: 14px; line-height: 1.7; }
+    .showcase-hero__description br { display: none; }
+    .showcase-hero__actions { margin-block-start: 22px; gap: 10px; }
+    .showcase-hero__actions .product-hero-button { flex: 0 1 auto; inline-size: auto; min-block-size: 44px; padding: 10px 16px; font-size: 14px; }
+    .showcase-hero__partner { margin-block-start: 22px; }
+    .showcase-hero__partner p { font-size: 13px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .showcase-hero.reveal-ready [data-reveal] { transition: none; transition-delay: 0ms; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:showcase_hero.name",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "max_blocks": 2,
+  "blocks": [
+    {
+      "type": "_product-hero-button"
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "t:settings.layout_style",
+      "options": [
+        { "value": "standard", "label": "t:options.standard" },
+        { "value": "center", "label": "t:options.center" }
+      ],
+      "default": "standard"
+    },
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": "t:settings.height",
+      "options": [
+        {
+          "value": "auto",
+          "label": "t:options.auto"
+        },
+        {
+          "value": "full-screen",
+          "label": "t:options.full_screen"
+        }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:settings.eyebrow",
+      "default": "Website design & development"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:settings.heading",
+      "default": "D2C Stores &\nBrand Websites"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "t:product_hero.heading_tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:settings.description",
+      "default": "We design and build online stores that help customers discover and buy your products, and official brand websites that tell your story, showcase your range and generate enquiries."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:settings.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "secondary_image",
+      "label": "t:showcase_hero.secondary_image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_demo",
+      "label": "t:showcase_hero.demo_image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "partner_logo",
+      "label": "t:showcase_hero.partner_logo"
+    },
+    {
+      "type": "text",
+      "id": "partner_text",
+      "label": "t:showcase_hero.partner_text"
+    },
+    {
+      "type": "color",
+      "id": "background_from",
+      "label": "t:product_hero.background_from",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "background_to",
+      "label": "t:product_hero.background_to",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "t:showcase_hero.heading_accent",
+      "default": "#5932D4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:settings.text_color",
+      "default": "{{ settings.color_palette.foreground }}"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "checkbox",
+      "id": "animate",
+      "label": "t:showcase_hero.animation",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "duration",
+      "label": "t:showcase_hero.duration",
+      "min": 200,
+      "max": 1200,
+      "step": 50,
+      "unit": "ms",
+      "default": 600,
+      "visible_if": "{{ section.settings.animate }}"
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "label": "t:showcase_hero.delay",
+      "min": 0,
+      "max": 500,
+      "step": 50,
+      "unit": "ms",
+      "default": 0,
+      "visible_if": "{{ section.settings.animate }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:showcase_hero.name",
+      "category": "t:categories.banners",
+      "blocks": [
+        {
+          "type": "_product-hero-button",
+          "settings": {
+            "label": "Discuss your build ↗",
+            "link": "shopify://pages/contact",
+            "style_class": "button-custom",
+            "custom_button_text": "#FFFFFF",
+            "custom_button_background": "#5932D4",
+            "custom_button_border": "#5932D4",
+            "button_gradient": false,
+            "button_gradient_from": "#6366f1",
+            "button_gradient_to": "#772cc7"
+          }
+        },
+        {
+          "type": "_product-hero-button",
+          "settings": {
+            "label": "View packages",
+            "link": "shopify://pages/website-build-packages",
+            "style_class": "button-custom",
+            "custom_button_text": "#5932D4",
+            "custom_button_background": "#FFFFFF",
+            "custom_button_border": "#5932D4",
+            "button_gradient": false,
+            "link_text_color": "#000000"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

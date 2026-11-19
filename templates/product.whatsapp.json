@@ -350,97 +350,66 @@
         "padding-block-end": 0
       }
     },
-    "product_hero_jiNakp": {
-      "type": "product-hero",
+    "showcase_hero_7ecgew": {
+      "type": "showcase-hero",
       "blocks": {
-        "button_JayDDj": {
+        "product_hero_button_L7VhwA": {
           "type": "_product-hero-button",
           "settings": {
             "label": "Book a Free Growth Consultation →",
             "link": "#growth-diagnosis",
             "open_in_new_tab": false,
             "style_class": "button-custom",
-            "custom_button_background": "#ffffff",
+            "custom_button_background": "#5932d4",
             "custom_button_text": "#ffffff",
-            "custom_button_border": "rgba(0,0,0,0)",
+            "custom_button_border": "#5932d4",
             "link_text_color": "",
-            "button_gradient": true,
-            "button_gradient_from": "#7a25c4",
-            "button_gradient_to": "#5e6eeb",
+            "button_gradient": false,
+            "button_gradient_from": "#6366f1",
+            "button_gradient_to": "#772cc7",
             "button_gradient_angle": 90,
             "button_gradient_start_position": 0,
             "button_gradient_end_position": 100,
             "button_icon_size": 16
           },
           "blocks": {}
-        },
-        "certifications": {
-          "type": "_product-hero-certifications",
-          "static": true,
-          "settings": {},
-          "blocks": {
-            "product_hero_certification_QAHmkE": {
-              "type": "_product-hero-certification",
-              "name": "t:product_hero.certification",
-              "settings": {
-                "image": "shopify://shop_images/shopify_platinum_partner_transparent_8f3a_1.png",
-                "title": "",
-                "description": ""
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_hero_certification_QAHmkE"
-          ]
-        },
-        "stats": {
-          "type": "_product-hero-stats",
-          "static": true,
-          "settings": {
-            "font": "montserrat_n4",
-            "text_color": "#000000",
-            "accent_color": "#772cc8",
-            "enable_animation": true
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "button_JayDDj"
+        "product_hero_button_L7VhwA"
       ],
-      "name": "t:product_hero.name",
+      "name": "t:showcase_hero.name",
       "settings": {
-        "show_certifications": true,
-        "certification_color": "#102653",
+        "layout_style": "center",
+        "section_height": "auto",
         "eyebrow": "WhatsApp Marketing",
         "heading": "Turn WhatsApp Conversations \ninto Customers and Revenue",
         "heading_tag": "h1",
-        "description": "Me help businesses unlock the full potential of the WhatsApp Business Platform — Meta's enterprise-grade \nmessaging API — turning every customer conversation into qualified sales, faster support, \nand measurable revenue growth.",
-        "service_labels": "",
+        "description": "ME bring strategy, design, development and systems integration together to build Shopify, WordPress and custom websites that make buying easier, generate qualified enquiries and support your next stage of growth.",
+        "show_demo": false,
+        "partner_logo": "shopify://shop_images/shopify_platinum_partner.svg",
+        "partner_text": "Shopify Platinum Partner · Shopify’s highest partner tier",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
-        "heading_from": "#5b34c6",
-        "heading_to": "#2d6bff",
-        "heading_mid": "#8b45f0",
-        "description_color": "#6b6a6a",
-        "service_labels_color": "#3e4c81",
-        "section_height": "large",
-        "content_position": "center",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "accent_color": "#5932d4",
+        "text_color": "{{ settings.color_palette.foreground }}",
+        "padding-block-start": 60,
+        "padding-block-end": 80,
+        "animate": true,
+        "duration": 600,
+        "delay": 0
       }
     },
-    "partner_brands_W84AUx": {
+    "partner_brands_6zBh7f": {
       "type": "partner-brands",
       "blocks": {
-        "brand_row_i8Q9W4": {
+        "brand_row_zDimLj": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "left"
           },
           "blocks": {
-            "brand_logo_BaGnwh": {
+            "brand_logo_fKVBCd": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/beatbot.png",
@@ -450,7 +419,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_iqBjTr": {
+            "brand_logo_D9aUxX": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/rokid.png",
@@ -460,7 +429,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_rRMNFW": {
+            "brand_logo_P83x3e": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/shangri-la.png",
@@ -470,7 +439,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_WeCUfC": {
+            "brand_logo_yiTnNC": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/nongfu-spring.png",
@@ -480,7 +449,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_NRLA43": {
+            "brand_logo_EYqxyF": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/molly-tea.png",
@@ -490,7 +459,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_zrQVXW": {
+            "brand_logo_3XMHNB": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/dreame.png",
@@ -500,7 +469,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_Y8tAUm": {
+            "brand_logo_CkFC6R": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/firefly.png",
@@ -510,7 +479,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_eFEHLk": {
+            "brand_logo_gpGpKC": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/roborock.png",
@@ -522,23 +491,23 @@
             }
           },
           "block_order": [
-            "brand_logo_BaGnwh",
-            "brand_logo_iqBjTr",
-            "brand_logo_rRMNFW",
-            "brand_logo_WeCUfC",
-            "brand_logo_NRLA43",
-            "brand_logo_zrQVXW",
-            "brand_logo_Y8tAUm",
-            "brand_logo_eFEHLk"
+            "brand_logo_fKVBCd",
+            "brand_logo_D9aUxX",
+            "brand_logo_P83x3e",
+            "brand_logo_yiTnNC",
+            "brand_logo_EYqxyF",
+            "brand_logo_3XMHNB",
+            "brand_logo_CkFC6R",
+            "brand_logo_gpGpKC"
           ]
         },
-        "brand_row_zk7HNP": {
+        "brand_row_fBqadV": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "right"
           },
           "blocks": {
-            "brand_logo_w6Njq6": {
+            "brand_logo_KTj9yK": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/winona.png",
@@ -548,7 +517,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_N8YnKJ": {
+            "brand_logo_hHqx7N": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/onwave.png",
@@ -558,7 +527,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_mRYCwn": {
+            "brand_logo_q9NTHe": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/segway.png",
@@ -568,7 +537,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_8xJmMf": {
+            "brand_logo_YKdJUP": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tiktok.png",
@@ -578,7 +547,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_JNFYmA": {
+            "brand_logo_E9BQ4M": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tencent.png",
@@ -588,7 +557,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_fRQFxq": {
+            "brand_logo_tnbdmi": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/haier.png",
@@ -598,7 +567,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_RGJxHc": {
+            "brand_logo_eaxzVR": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/midea.png",
@@ -608,7 +577,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_nb99Br": {
+            "brand_logo_DFYPpy": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/creality.png",
@@ -620,23 +589,23 @@
             }
           },
           "block_order": [
-            "brand_logo_w6Njq6",
-            "brand_logo_N8YnKJ",
-            "brand_logo_mRYCwn",
-            "brand_logo_8xJmMf",
-            "brand_logo_JNFYmA",
-            "brand_logo_fRQFxq",
-            "brand_logo_RGJxHc",
-            "brand_logo_nb99Br"
+            "brand_logo_KTj9yK",
+            "brand_logo_hHqx7N",
+            "brand_logo_q9NTHe",
+            "brand_logo_YKdJUP",
+            "brand_logo_E9BQ4M",
+            "brand_logo_tnbdmi",
+            "brand_logo_eaxzVR",
+            "brand_logo_DFYPpy"
           ]
         },
-        "brand_row_dVjrAH": {
+        "brand_row_Gj9CXq": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "left"
           },
           "blocks": {
-            "brand_logo_ehkMxz": {
+            "brand_logo_dqRrBD": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ireader.png",
@@ -646,7 +615,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_4VxEyh": {
+            "brand_logo_K68tiw": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/game-bear.png",
@@ -656,7 +625,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_j9ixdB": {
+            "brand_logo_MJhHB4": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/urban-revivo.png",
@@ -666,7 +635,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_8hcRLk": {
+            "brand_logo_zhW4DF": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/beneunder.png",
@@ -676,7 +645,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_z4NC6T": {
+            "brand_logo_34QGJw": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tapo.png",
@@ -686,7 +655,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_7qyyPc": {
+            "brand_logo_tqrPiD": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/iflytek.png",
@@ -696,7 +665,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_3cEKrp": {
+            "brand_logo_bgaBjM": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ottocast.png",
@@ -706,7 +675,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_7gA8Bq": {
+            "brand_logo_jGmQyJ": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ulanzi.png",
@@ -718,39 +687,39 @@
             }
           },
           "block_order": [
-            "brand_logo_ehkMxz",
-            "brand_logo_4VxEyh",
-            "brand_logo_j9ixdB",
-            "brand_logo_8hcRLk",
-            "brand_logo_z4NC6T",
-            "brand_logo_7qyyPc",
-            "brand_logo_3cEKrp",
-            "brand_logo_7gA8Bq"
+            "brand_logo_dqRrBD",
+            "brand_logo_K68tiw",
+            "brand_logo_MJhHB4",
+            "brand_logo_zhW4DF",
+            "brand_logo_34QGJw",
+            "brand_logo_tqrPiD",
+            "brand_logo_bgaBjM",
+            "brand_logo_jGmQyJ"
           ]
         }
       },
       "block_order": [
-        "brand_row_i8Q9W4",
-        "brand_row_zk7HNP",
-        "brand_row_dVjrAH"
+        "brand_row_zDimLj",
+        "brand_row_fBqadV",
+        "brand_row_Gj9CXq"
       ],
       "name": "t:names.partner_brands",
       "settings": {
-        "heading": "<p>Trusted by Leading Brands Across Global Markets</p>",
+        "heading": "<p>Trusted by <strong>Leading Brands</strong></p>",
         "heading_position": "overlay",
         "font": "var(--font-heading--family)",
-        "font_size": "1.5rem",
+        "font_size": "2.5rem",
         "weight": "600",
         "line_height": "1.4",
         "letter_spacing": "normal",
         "alignment": "center",
         "wrap": "pretty",
-        "two_tone_heading": false,
+        "two_tone_heading": true,
         "heading_color": "#111111",
         "heading_accent_color": "#5b34c6",
         "gradient_text": true,
         "background_gradient_from": "{{ settings.color_palette.background }}",
-        "background_gradient_to": "#efe6f3",
+        "background_gradient_to": "{{ settings.color_palette.background }}",
         "background_gradient_angle": 160,
         "thickness": 0.5,
         "divider_color": "#707070",
@@ -887,8 +856,11 @@
         "card_ETxkQz": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Cloud API Setup & Compliance",
             "description": "<p>We provision your WhatsApp Business Platform account, verify your phone number, and handle template approvals end-to-end. You get a compliant, ready-to-send number on Meta's Cloud API with the templates you need pre-approved.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -896,8 +868,11 @@
         "card_wKwRVy": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Chat Flow & Automation",
             "description": "<p>We design automated greetings, FAQs, order updates, and escalation paths using interactive message templates. You get a working chatbot that responds 24/7.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -905,8 +880,11 @@
         "card_jTHQUi": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "CRM & Store Integration",
             "description": "<p>We connect WhatsApp with your CRM, ERP, or ecommerce platform via webhooks and the Business Management API. You get live sync of conversations, orders, and customer data.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -914,8 +892,11 @@
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "WhatsApp Marketing Messages API",
             "description": "<p>We plan, create, and submit approved templates, then run targeted broadcast campaigns through Meta's Marketing Messages API. You get higher engagement with built-in auto-optimization and detailed performance reports.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -923,8 +904,11 @@
         "card_xg8a6q": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Customer Service Enablement",
             "description": "<p>We build reply standards and train your team on the platform. You get playbooks, SOPs, and a consistent support process.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -932,8 +916,11 @@
         "card_nMqphe": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Analytics & Conversation Reporting",
             "description": "<p>We set up conversation tracking and conversion reporting via webhook events. You get regular insights tied to your revenue goals.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -941,8 +928,11 @@
         "card_C7f6z4": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "AI-Powered Replies & Voice Calling",
             "description": "<p>We configure AI-assisted answers for high-volume questions and enable WhatsApp API voice calls directly in chat. You get faster resolution and richer customer interactions.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -950,8 +940,11 @@
         "card_Vc9BCV": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Team Coaching & Health Checks",
             "description": "<p>We review performance with you regularly and run monthly health checks against agreed goals. You get clear priorities, a defined improvement roadmap, and an accountable long-term partner.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -973,6 +966,14 @@
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
         "description": "<p>From Cloud API setup to automation to analytics, guided every step.</p>",
+        "tab_1_label": "Shopify",
+        "tab_1_heading": "",
+        "tab_1_description": "",
+        "tab_1_note": "",
+        "tab_2_label": "WordPress",
+        "tab_2_heading": "",
+        "tab_2_description": "",
+        "tab_2_note": "",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "card_heading_color": "#241c52",
@@ -1101,6 +1102,7 @@
       ],
       "name": "t:client_story.name",
       "settings": {
+        "layout": "card",
         "eyebrow": "FEATURED CLIENT STORY",
         "heading": "An Apparel Brand Achieved 308× Campaign ROI with WhatsApp Marketing",
         "description": "<p>Facing the closure of its Messenger acquisition channel, the brand needed to migrate an existing customer base to WhatsApp. ME integrated Shopify data with Meetbot, segmented audiences and automated customer messaging, achieving peak campaign ROI of 308× within two months.</p>",
@@ -1263,8 +1265,8 @@
     "breadcrumbs",
     "page_background_n8zJR6",
     "main",
-    "product_hero_jiNakp",
-    "partner_brands_W84AUx",
+    "showcase_hero_7ecgew",
+    "partner_brands_6zBh7f",
     "business_challenge_iR7zkb",
     "our_approach_dJQKw8",
     "service_scope_VaDYAw",

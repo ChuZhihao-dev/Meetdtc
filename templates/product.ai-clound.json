@@ -431,27 +431,29 @@
         "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
+        "text_color": "{{ settings.color_palette.foreground }}",
+        "accent_color": "#5932d4",
+        "desktop_button_colors": "showcase",
         "heading_from": "#5b34c6",
         "heading_to": "#2d6bff",
         "heading_mid": "#8b45f0",
         "description_color": "#6b6a6a",
         "service_labels_color": "#3e4c81",
-        "section_height": "large",
-        "content_position": "center",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "horizontal_alignment": "center",
+        "padding-block-start": 60,
+        "padding-block-end": 80
       }
     },
-    "partner_brands_CpVqf9": {
+    "partner_brands_xpxkhM": {
       "type": "partner-brands",
       "blocks": {
-        "brand_row_jexG7G": {
+        "brand_row_pEniwi": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "left"
           },
           "blocks": {
-            "brand_logo_Hm3dUG": {
+            "brand_logo_kLQMgX": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/beatbot.png",
@@ -461,7 +463,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_AyNx6E": {
+            "brand_logo_R3y3Tn": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/rokid.png",
@@ -471,7 +473,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_EyfWtx": {
+            "brand_logo_qE8Wm7": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/shangri-la.png",
@@ -481,7 +483,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_PEjnxk": {
+            "brand_logo_TykDrp": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/nongfu-spring.png",
@@ -491,7 +493,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_cEnHte": {
+            "brand_logo_fXDpjG": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/molly-tea.png",
@@ -501,7 +503,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_N8yMzN": {
+            "brand_logo_hdaX9n": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/dreame.png",
@@ -511,7 +513,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_hGBMqF": {
+            "brand_logo_bDE7R7": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/firefly.png",
@@ -521,7 +523,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_QW4FVX": {
+            "brand_logo_r9jLy4": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/roborock.png",
@@ -533,23 +535,23 @@
             }
           },
           "block_order": [
-            "brand_logo_Hm3dUG",
-            "brand_logo_AyNx6E",
-            "brand_logo_EyfWtx",
-            "brand_logo_PEjnxk",
-            "brand_logo_cEnHte",
-            "brand_logo_N8yMzN",
-            "brand_logo_hGBMqF",
-            "brand_logo_QW4FVX"
+            "brand_logo_kLQMgX",
+            "brand_logo_R3y3Tn",
+            "brand_logo_qE8Wm7",
+            "brand_logo_TykDrp",
+            "brand_logo_fXDpjG",
+            "brand_logo_hdaX9n",
+            "brand_logo_bDE7R7",
+            "brand_logo_r9jLy4"
           ]
         },
-        "brand_row_fdaDXH": {
+        "brand_row_cmqmXV": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "right"
           },
           "blocks": {
-            "brand_logo_nkV9bU": {
+            "brand_logo_tGmeA6": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/winona.png",
@@ -559,7 +561,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_UBPpbn": {
+            "brand_logo_PzQAtb": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/onwave.png",
@@ -569,7 +571,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_6g3qBW": {
+            "brand_logo_9WXWg6": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/segway.png",
@@ -579,7 +581,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_bkgfMn": {
+            "brand_logo_tdpfbF": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tiktok.png",
@@ -589,7 +591,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_Peimwi": {
+            "brand_logo_7L78W9": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tencent.png",
@@ -599,7 +601,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_XqYC8U": {
+            "brand_logo_WYcQHj": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/haier.png",
@@ -609,7 +611,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_mDRaMj": {
+            "brand_logo_Ld9pVH": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/midea.png",
@@ -619,7 +621,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_zM8CYG": {
+            "brand_logo_mBUWHR": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/creality.png",
@@ -631,23 +633,23 @@
             }
           },
           "block_order": [
-            "brand_logo_nkV9bU",
-            "brand_logo_UBPpbn",
-            "brand_logo_6g3qBW",
-            "brand_logo_bkgfMn",
-            "brand_logo_Peimwi",
-            "brand_logo_XqYC8U",
-            "brand_logo_mDRaMj",
-            "brand_logo_zM8CYG"
+            "brand_logo_tGmeA6",
+            "brand_logo_PzQAtb",
+            "brand_logo_9WXWg6",
+            "brand_logo_tdpfbF",
+            "brand_logo_7L78W9",
+            "brand_logo_WYcQHj",
+            "brand_logo_Ld9pVH",
+            "brand_logo_mBUWHR"
           ]
         },
-        "brand_row_zpVHNm": {
+        "brand_row_mBLrQp": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "left"
           },
           "blocks": {
-            "brand_logo_JxFRXB": {
+            "brand_logo_AJfqxm": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ireader.png",
@@ -657,7 +659,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_dKNpHK": {
+            "brand_logo_7Fd6Mn": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/game-bear.png",
@@ -667,7 +669,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_nqKVDa": {
+            "brand_logo_cfRTaj": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/urban-revivo.png",
@@ -677,7 +679,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_9HqbWk": {
+            "brand_logo_wPx3XN": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/beneunder.png",
@@ -687,7 +689,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_4pNHtV": {
+            "brand_logo_CMc8p7": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tapo.png",
@@ -697,7 +699,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_FHtG8V": {
+            "brand_logo_nYCWfP": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/iflytek.png",
@@ -707,7 +709,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_8VMC9G": {
+            "brand_logo_mGDYwC": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ottocast.png",
@@ -717,7 +719,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_ANm7dH": {
+            "brand_logo_bdnFbq": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ulanzi.png",
@@ -729,39 +731,39 @@
             }
           },
           "block_order": [
-            "brand_logo_JxFRXB",
-            "brand_logo_dKNpHK",
-            "brand_logo_nqKVDa",
-            "brand_logo_9HqbWk",
-            "brand_logo_4pNHtV",
-            "brand_logo_FHtG8V",
-            "brand_logo_8VMC9G",
-            "brand_logo_ANm7dH"
+            "brand_logo_AJfqxm",
+            "brand_logo_7Fd6Mn",
+            "brand_logo_cfRTaj",
+            "brand_logo_wPx3XN",
+            "brand_logo_CMc8p7",
+            "brand_logo_nYCWfP",
+            "brand_logo_mGDYwC",
+            "brand_logo_bdnFbq"
           ]
         }
       },
       "block_order": [
-        "brand_row_jexG7G",
-        "brand_row_fdaDXH",
-        "brand_row_zpVHNm"
+        "brand_row_pEniwi",
+        "brand_row_cmqmXV",
+        "brand_row_mBLrQp"
       ],
       "name": "t:names.partner_brands",
       "settings": {
-        "heading": "<p>Trusted by Leading Brands Across Global Markets</p>",
+        "heading": "<p>Trusted by <strong>Leading Brands</strong></p>",
         "heading_position": "overlay",
         "font": "var(--font-heading--family)",
-        "font_size": "1.5rem",
+        "font_size": "2.5rem",
         "weight": "600",
         "line_height": "1.4",
         "letter_spacing": "normal",
         "alignment": "center",
         "wrap": "pretty",
-        "two_tone_heading": false,
+        "two_tone_heading": true,
         "heading_color": "#111111",
         "heading_accent_color": "#5b34c6",
         "gradient_text": true,
         "background_gradient_from": "{{ settings.color_palette.background }}",
-        "background_gradient_to": "#efe6f3",
+        "background_gradient_to": "{{ settings.color_palette.background }}",
         "background_gradient_angle": 160,
         "thickness": 0.5,
         "divider_color": "#707070",
@@ -887,8 +889,11 @@
         "card_ETxkQz": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Discovery & Cloud Architecture Blueprint",
             "description": "<p>We audit your existing cross-border workloads, traffic peaks, and model dependencies. You receive a battle-tested GCP architecture topology, quota requirement matrix, and a deterministic unit-cost forecast before line one of code is written.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -896,8 +901,11 @@
         "card_wKwRVy": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Enterprise GenAI & Workflow Engineerin",
             "description": "<p>We design enterprise AI solutions with multi-model routing pipelines, prompt engineering benchmarks, and prompt-caching layers across Vertex AI (Gemini 3/4, Veo). You receive production-ready inference endpoints integrated directly into your business stack with 60%+ cost reduction.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -905,8 +913,11 @@
         "card_jTHQUi": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Global Backbone Networking & Low-Latency Edge",
             "description": "<p>We configure Google Cloud Premium Tier private backbone network, Cloudflare Zero-Trust tunnels, and multi-region Cloud CDN edge caching. You receive sub-second cross-border response latency and enterprise DDoS resilience across US, Europe, and APAC.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -914,8 +925,11 @@
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Production Infrastructure as Code (IaC) & Deployment",
             "description": "<p>We codify and automate all serverless Cloud Run, GKE microservices, VPC peering, and Cloud SQL setups using Terraform. You receive 100% transparent, version-controlled repository code that your in-house engineers can replicate and audit at any time.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -923,8 +937,11 @@
         "card_xg8a6q": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "FinOps Cost Governance & Live Billing Telemetry",
             "description": "<p>We connect granular BigQuery billing exports, SKU attribution tagging, and CUD commitment discount plans. You receive real-time cost telemetry dashboards and budget anomaly kill-switches that eliminate unexpected billing spikes from day one.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -932,8 +949,11 @@
         "card_nMqphe": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Enterprise Security, Compliance & Knowledge Handover",
             "description": "<p>We implement Google Cloud IAM least-privilege policies, secret management, and SOC2/GDPR compliance hardening. You receive root administrative ownership, full architecture documentation, and dedicated engineer-to-engineer onboarding sessions.<br/><br/></p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -953,6 +973,14 @@
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included in Our Cloud Consulting Services",
         "description": "<p>Every engagement spans all six dimensions. What scales between a fast-launch PoC and an enterprise production platform is depth and throughput, never engineering rigor.</p>",
+        "tab_1_label": "Shopify",
+        "tab_1_heading": "",
+        "tab_1_description": "",
+        "tab_1_note": "",
+        "tab_2_label": "WordPress",
+        "tab_2_heading": "",
+        "tab_2_description": "",
+        "tab_2_note": "",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "card_heading_color": "#241c52",
@@ -1080,6 +1108,7 @@
       ],
       "name": "t:client_story.name",
       "settings": {
+        "layout": "card",
         "eyebrow": "FEATURED CLIENT STORY",
         "heading": "Meetsocial Reduced Multimodal Inference Costs by 70% with Vertex AI",
         "description": "<p>Meetsocial needed a more efficient way to process multilingual marketing videos. For this internal group project, ME engineered a Gemini multimodal pipeline on Vertex AI with caching and cross-region routing. Production launch took two weeks. Reported results included 70% lower inference costs and 83.3% video tagging accuracy.</p>",
@@ -1223,7 +1252,7 @@
     "page_background_n8zJR6",
     "main",
     "product_hero_jiNakp",
-    "partner_brands_CpVqf9",
+    "partner_brands_xpxkhM",
     "business_challenge_iR7zkb",
     "our_approach_dJQKw8",
     "service_scope_VaDYAw",

@@ -16,6 +16,7 @@
     "label": "נתיב ניווט"
   },
   "website_packages": {
+    "sold_out_cta": "Let’s talk",
     "selected_package": "Selected package:",
     "pricing_unavailable": "Pricing coming soon",
     "select_product": "Select a service product, then enable pricing and purchase when it is ready.",

@@ -18,6 +18,7 @@
     },
     "page_background_n8zJR6": {
       "type": "page-background",
+      "disabled": true,
       "name": "t:names.page_background",
       "settings": {
         "background_type": "gradient",
@@ -350,23 +351,23 @@
         "padding-block-end": 0
       }
     },
-    "product_hero_jiNakp": {
-      "type": "product-hero",
+    "showcase_hero_qc89yp": {
+      "type": "showcase-hero",
       "blocks": {
-        "button_JayDDj": {
+        "product_hero_button_Umh3cK": {
           "type": "_product-hero-button",
           "settings": {
-            "label": "Book a Free Growth Consultation →",
+            "label": "Discuss your build ↗",
             "link": "#growth-diagnosis",
             "open_in_new_tab": false,
             "style_class": "button-custom",
-            "custom_button_background": "#ffffff",
+            "custom_button_background": "#5932d4",
             "custom_button_text": "#ffffff",
-            "custom_button_border": "rgba(0,0,0,0)",
+            "custom_button_border": "#5932d4",
             "link_text_color": "",
-            "button_gradient": true,
-            "button_gradient_from": "#7a25c4",
-            "button_gradient_to": "#5e6eeb",
+            "button_gradient": false,
+            "button_gradient_from": "#6366f1",
+            "button_gradient_to": "#772cc7",
             "button_gradient_angle": 90,
             "button_gradient_start_position": 0,
             "button_gradient_end_position": 100,
@@ -374,83 +375,54 @@
           },
           "blocks": {}
         },
-        "button_yVLWje": {
+        "product_hero_button_T6B7Gc": {
           "type": "_product-hero-button",
           "settings": {
-            "label": "See Pricing →",
+            "label": "View packages",
             "link": "shopify://pages/website-build-packages",
             "open_in_new_tab": false,
             "style_class": "button-custom",
             "custom_button_background": "#ffffff",
-            "custom_button_text": "#000000",
-            "custom_button_border": "rgba(0,0,0,0)",
-            "link_text_color": "",
+            "custom_button_text": "#5932d4",
+            "custom_button_border": "#5932d4",
+            "link_text_color": "#000000",
             "button_gradient": false,
-            "button_gradient_from": "#7a25c4",
-            "button_gradient_to": "#5e6eeb",
+            "button_gradient_from": "#6b39d4",
+            "button_gradient_to": "#6b39d4",
             "button_gradient_angle": 90,
             "button_gradient_start_position": 0,
             "button_gradient_end_position": 100,
             "button_icon_size": 16
-          },
-          "blocks": {}
-        },
-        "certifications": {
-          "type": "_product-hero-certifications",
-          "static": true,
-          "settings": {},
-          "blocks": {
-            "product_hero_certification_dMyJEk": {
-              "type": "_product-hero-certification",
-              "name": "t:product_hero.certification",
-              "settings": {
-                "image": "shopify://shop_images/shopify_platinum_partner.svg",
-                "title": "",
-                "description": ""
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_hero_certification_dMyJEk"
-          ]
-        },
-        "stats": {
-          "type": "_product-hero-stats",
-          "static": true,
-          "settings": {
-            "font": "montserrat_n4",
-            "text_color": "#000000",
-            "accent_color": "#772cc8",
-            "enable_animation": true
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "button_JayDDj",
-        "button_yVLWje"
+        "product_hero_button_Umh3cK",
+        "product_hero_button_T6B7Gc"
       ],
-      "name": "t:product_hero.name",
+      "name": "t:showcase_hero.name",
       "settings": {
-        "show_certifications": true,
-        "certification_color": "#102653",
+        "layout_style": "standard",
+        "section_height": "auto",
         "eyebrow": "Website Design & Development",
-        "heading": "Turn Your Website Into\n a Foundation for Global Growth",
+        "heading": "D2C Stores &\nBrand Websites",
         "heading_tag": "h1",
-        "description": "ME bring strategy, design, development and systems integration together to build Shopify, \nWordPress and custom websites that make buying easier, \ngenerate qualified enquiries and support your next stage of growth.",
-        "service_labels": "",
+        "description": "ME bring strategy, design, development and systems integration together to build Shopify, WordPress and custom websites that make buying easier, generate qualified enquiries and support your next stage of growth.",
+        "image": "shopify://shop_images/HOUSEINCOOK_Serving_Set_Product_Page.png",
+        "secondary_image": "shopify://shop_images/Rokid_AR_Glasses_Website_Mockup.png",
+        "show_demo": true,
+        "partner_logo": "shopify://shop_images/shopify_platinum_partner.svg",
+        "partner_text": "Shopify Platinum Partner · Shopify’s highest partner tier",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
-        "heading_from": "#5b34c6",
-        "heading_to": "#2d6bff",
-        "heading_mid": "#8b45f0",
-        "description_color": "#6b6a6a",
-        "service_labels_color": "#3e4c81",
-        "section_height": "large",
-        "content_position": "center",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "accent_color": "#5932d4",
+        "text_color": "{{ settings.color_palette.foreground }}",
+        "padding-block-start": 60,
+        "padding-block-end": 80,
+        "animate": true,
+        "duration": 600,
+        "delay": 0
       }
     },
     "partner_brands_z4GbiM": {
@@ -557,7 +529,7 @@
         "brand_row_rA8JGy": {
           "type": "_brand-row",
           "settings": {
-            "logo_motion": "right"
+            "logo_motion": "left"
           },
           "blocks": {
             "brand_logo_deetHM": {
@@ -758,21 +730,21 @@
       ],
       "name": "t:names.partner_brands",
       "settings": {
-        "heading": "<p>Trusted by Leading Brands Across Global Markets</p>",
+        "heading": "<p>Trusted by <strong>Leading Brands</strong></p>",
         "heading_position": "overlay",
         "font": "var(--font-heading--family)",
-        "font_size": "1.5rem",
+        "font_size": "2.5rem",
         "weight": "600",
         "line_height": "1.4",
         "letter_spacing": "normal",
         "alignment": "center",
         "wrap": "pretty",
-        "two_tone_heading": false,
+        "two_tone_heading": true,
         "heading_color": "#111111",
         "heading_accent_color": "#5b34c6",
         "gradient_text": true,
         "background_gradient_from": "{{ settings.color_palette.background }}",
-        "background_gradient_to": "#efe6f3",
+        "background_gradient_to": "{{ settings.color_palette.background }}",
         "background_gradient_angle": 160,
         "thickness": 0.5,
         "divider_color": "#707070",
@@ -868,9 +840,9 @@
         "gradient_color_to": "#2d6bff",
         "gradient_color_mid": "#8b45f0",
         "background_color": "rgba(0,0,0,0)",
-        "text_color": "#000000",
-        "accent_color": "#7222c1",
-        "description_color": "#6b6b6b",
+        "text_color": "#5b34c6",
+        "accent_color": "#5b34c6",
+        "description_color": "{{ settings.color_palette.color1 }}",
         "caption_color": "#686868",
         "center_text_color": "#ffffff",
         "divider_color": "#000000",
@@ -894,7 +866,7 @@
         "image_alt": "",
         "font": "montserrat_n5",
         "text_color": "#000000",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "heading_gradient": "#5B34C6",
         "background": "",
         "padding-block-start": 60,
         "padding-block-end": 60,
@@ -906,11 +878,26 @@
     "service_scope_VaDYAw": {
       "type": "service-scope",
       "blocks": {
+        "store_setup": {
+          "type": "card",
+          "settings": {
+            "tab": "tab_1",
+            "tag": "Launch",
+            "heading": "New store setup",
+            "description": "<p>Set up your theme, products, collections, domain, payments and shipping. Test a purchase and walk your team through managing the store.</p>",
+            "deliverable": "<p><strong>Example deliverable</strong><br/>A configured store, tested purchase flow and an admin handover guide.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
         "card_ETxkQz": {
           "type": "card",
           "settings": {
-            "heading": "Business Discovery & Website Planning",
-            "description": "<p>We review your brand, products, competitors and customer needs to plan your website structure and customer journeys. You receive a project brief, sitemap and wireframes for agreed pages.<br/><br/><br/></p>",
+            "tab": "tab_1",
+            "tag": "Redesign",
+            "heading": "Storefront & theme customization",
+            "description": "<p>Rework product pages, collections, navigation or the cart. Give your team theme sections they can reuse for new products and campaigns.</p>",
+            "deliverable": "<p><strong>Example deliverable</strong><br/>Responsive product templates with editable comparison and feature sections.</p>",
             "link": "",
             "link_label": "Learn more"
           }
@@ -918,8 +905,11 @@
         "card_wKwRVy": {
           "type": "card",
           "settings": {
-            "heading": "UI & Responsive Design",
-            "description": "<p>We design agreed pages around your brand and customer journeys. You receive approved desktop and mobile designs ready for development.<br/><br/></p>",
+            "tab": "tab_1",
+            "tag": "Expand",
+            "heading": "Internationalization & Shopify Markets",
+            "description": "<p>Configure each market’s language, currency, pricing and domain. Review local content, shipping and payment options before launch.</p>",
+            "deliverable": "<p><strong>Example deliverable</strong><br/>Launch settings and a test checklist for each agreed market.</p>",
             "link": "",
             "link_label": "Learn more"
           }
@@ -927,8 +917,35 @@
         "card_jTHQUi": {
           "type": "card",
           "settings": {
-            "heading": "Website Development",
-            "description": "<p>We implement the approved designs through theme customization or custom development. You receive a working website with the agreed pages and features.<br/><br/></p>",
+            "tab": "tab_1",
+            "tag": "Migrate",
+            "heading": "Platform migration",
+            "description": "<p>Plan the move for products, customers, orders and content. Review app replacements, map redirects and verify migrated data before switching over.</p>",
+            "deliverable": "<p><strong>Example deliverable</strong><br/>A migration plan, redirect map and data validation checklist.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "checkout_accounts": {
+          "type": "card",
+          "settings": {
+            "tab": "tab_1",
+            "tag": "Extend",
+            "heading": "Checkout & customer account customization",
+            "description": "<p>Add supported components to checkout, thank-you and order status pages. Extend customer accounts with features like self-service order tools.</p>",
+            "deliverable": "<p><strong>Example deliverable</strong><br/>Order information or status-page components tested on your Shopify plan.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "shopify_functions": {
+          "type": "card",
+          "settings": {
+            "tab": "tab_1",
+            "tag": "Customize rules",
+            "heading": "Shopify Functions",
+            "description": "<p>Define discount eligibility, validate carts or customize delivery and payment options. For example, apply a volume discount to eligible customers and products.</p>",
+            "deliverable": "<p><strong>Example deliverable</strong><br/>A documented rule tested against qualifying and non-qualifying carts.</p>",
             "link": "",
             "link_label": "Learn more"
           }
@@ -936,8 +953,23 @@
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
-            "heading": "Business Systems & API Integration",
-            "description": "<p>We implement agreed connections with your business systems. You receive working integrations and documentation of the configured data flows.<br/><br/></p>",
+            "tab": "tab_2",
+            "tag": "Launch",
+            "heading": "Business & lead generation websites",
+            "description": "<p>Help prospects find the right service and enquire through industry pages, case studies, campaign landing pages and forms.</p>",
+            "deliverable": "<p><strong>Example deliverable</strong><br/>A business website with service templates and a tested enquiry journey.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "theme_blocks": {
+          "type": "card",
+          "settings": {
+            "tab": "tab_2",
+            "tag": "Design",
+            "heading": "Theme & block development",
+            "description": "<p>Adapt an existing theme or build custom templates. Give editors reusable blocks for features, case studies and calls to action.</p>",
+            "deliverable": "<p><strong>Example deliverable</strong><br/>A reusable block library for building pages in the WordPress editor.</p>",
             "link": "",
             "link_label": "Learn more"
           }
@@ -945,8 +977,11 @@
         "card_xg8a6q": {
           "type": "card",
           "settings": {
-            "heading": "Performance, Quality & Acceptance",
-            "description": "<p>We check agreed functionality, responsive behavior, browser compatibility and performance. You receive a test report and an acceptance-ready website.<br/><br/></p>",
+            "tab": "tab_2",
+            "tag": "Publish",
+            "heading": "Content & multilingual websites",
+            "description": "<p>Organize articles, resources and case studies with reusable content types. Set up language switching, translated URLs and an editorial review workflow as needed.</p>",
+            "deliverable": "<p><strong>Example deliverable</strong><br/>Organized content templates and an editorial handover guide.</p>",
             "link": "",
             "link_label": "Learn more"
           }
@@ -954,32 +989,73 @@
         "card_nMqphe": {
           "type": "card",
           "settings": {
-            "heading": "Launch & Handover",
-            "description": "<p>We deploy your website and explain how to manage it. You receive agreed access, operating guides and project files, including source code for custom builds.<br/><br/></p>",
+            "tab": "tab_2",
+            "tag": "Sell",
+            "heading": "WooCommerce setup & customization",
+            "description": "<p>Connect content and commerce with a catalogue, product variants, checkout, payments, shipping and order emails.</p>",
+            "deliverable": "<p><strong>Example deliverable</strong><br/>A configured store and a test order covering payment and shipping.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "website_migration": {
+          "type": "card",
+          "settings": {
+            "tab": "tab_2",
+            "tag": "Migrate",
+            "heading": "Website redesign & migration",
+            "description": "<p>Audit existing content, URLs and plugins. Rebuild agreed pages, transfer content, map redirects and test pages, forms and analytics before launch.</p>",
+            "deliverable": "<p><strong>Example deliverable</strong><br/>A staging review, redirect map and launch checklist.</p>",
+            "link": "",
+            "link_label": "Learn more"
+          }
+        },
+        "form_integrations": {
+          "type": "card",
+          "settings": {
+            "tab": "tab_2",
+            "tag": "Integrate",
+            "heading": "Forms, plugins & system integrations",
+            "description": "<p>Connect enquiry forms to a CRM or email platform, configure analytics events and assess plugin or API options for business workflows.</p>",
+            "deliverable": "<p><strong>Example deliverable</strong><br/>A tested form-to-CRM flow with field mappings and setup notes.</p>",
             "link": "",
             "link_label": "Learn more"
           }
         }
       },
       "block_order": [
+        "store_setup",
         "card_ETxkQz",
         "card_wKwRVy",
         "card_jTHQUi",
+        "checkout_accounts",
+        "shopify_functions",
         "card_HJg9Ee",
+        "theme_blocks",
         "card_xg8a6q",
-        "card_nMqphe"
+        "card_nMqphe",
+        "website_migration",
+        "form_integrations"
       ],
-      "name": "t:service_scope.name",
+      "name": "Service scope",
       "settings": {
-        "layout": "standard",
+        "layout": "carousel",
         "eyebrow": "SERVICE SCOPE",
-        "heading": "What Is Included",
-        "description": "<p>Six connected workstreams cover planning, design, development and launch, with deliverables tailored to your agreed project scope.</p>",
+        "heading": "What We Build with Shopify & WordPress",
+        "description": "",
+        "tab_1_label": "Shopify",
+        "tab_1_heading": "D2C ecommerce design & development",
+        "tab_1_description": "<p>Launch a store, improve the way shoppers browse and buy, or enter a new market. Explore what we can build with Shopify and Shopify Plus.</p>",
+        "tab_1_note": "<p>Checkout UI extensions on the information, shipping and payment steps require Shopify Plus. Shopify Functions eligibility depends on the API and app distribution. Custom apps containing Functions require Shopify Plus. <a href=\"https://shopify.dev/docs/api/checkout-ui-extensions/latest\">Checkout requirements</a> · <a href=\"https://shopify.dev/docs/apps/build/functions\">Functions requirements</a></p>",
+        "tab_2_label": "WordPress",
+        "tab_2_heading": "Brand website design & development",
+        "tab_2_description": "<p>Showcase your brand and products on a site your team can update. We use WordPress for content and enquiries, with WooCommerce when you also need to sell online.</p>",
+        "tab_2_note": "",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "card_heading_color": "#241c52",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
-        "background": "",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
+        "background": "rgba(230, 236, 255, 0.6\n)",
         "card_background": "#ffffff",
         "card_opacity": 58,
         "card_border": "#ffffff",
@@ -1053,6 +1129,7 @@
         "step_Qb6M37",
         "step_VLQaFK"
       ],
+      "disabled": true,
       "name": "Delivery process",
       "settings": {
         "eyebrow": "DELIVERY PROCESS",
@@ -1083,9 +1160,9 @@
         "letter_spacing": "normal",
         "wrap": "balance",
         "gradient_text": true,
-        "description_color": "#ffffff",
-        "background_gradient_from": "rgba(0,0,0,0)",
-        "background_gradient_to": "rgba(0,0,0,0)",
+        "description_color": "{{ settings.color_palette.background }}",
+        "background_gradient_from": "{{ settings.color_palette.background }}",
+        "background_gradient_to": "{{ settings.color_palette.background }}",
         "background_gradient_angle": 104,
         "panel_gradient_from": "#6379ef",
         "panel_gradient_to": "#b62cf6",
@@ -1138,6 +1215,7 @@
       ],
       "name": "t:client_story.name",
       "settings": {
+        "layout": "case_band",
         "eyebrow": "FEATURED CLIENT STORY",
         "heading": "Fashion Brand Achieved 28% Higher Cart-to-Checkout Rate with Shopify Plus",
         "description": "<p>An outdated Magento store limited a fashion brand’s experience and growth. ME redesigned its UI/UX and migrated it to Shopify Plus, improving website performance, cart-to-checkout rate and search visibility.<br/></p>",
@@ -1146,15 +1224,15 @@
         "link_label": "View Case Study",
         "link": "https://meetdtc-40icat5f.myshopify.com/blogs/our-work/shopify-development",
         "font": "montserrat_n5",
-        "text_color": "#000000",
-        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
-        "background": "",
-        "panel_background": "linear-gradient(105.9376deg, rgba(19, 98, 250, 0.05) 3.724%, rgba(109, 40, 217, 0.05) 96.276%)",
-        "accent_color": "#6d28d9",
+        "text_color": "#CCCBE4",
+        "heading_gradient": "#ffffff",
+        "background": "#17152D",
+        "panel_background": "",
+        "accent_color": "#CCCBE4",
         "media_background": "#fdfdfd",
         "button_background": "#6d28d9",
         "button_text_color": "#ffffff",
-        "card_radius": 28,
+        "card_radius": 12,
         "padding-block-start": 80,
         "padding-block-end": 80,
         "enable_reveal": true
@@ -1238,7 +1316,7 @@
       ],
       "name": "t:names.faq_section",
       "settings": {
-        "layout_style": "standard",
+        "layout_style": "cards",
         "eyebrow": "FAQ",
         "heading": "<p>About Working With ME</p>",
         "description": "<p>How we work, what we cover, and what happens after you get in touch.</p>",
@@ -1270,7 +1348,7 @@
     "breadcrumbs",
     "page_background_n8zJR6",
     "main",
-    "product_hero_jiNakp",
+    "showcase_hero_qc89yp",
     "partner_brands_z4GbiM",
     "business_challenge_iR7zkb",
     "our_approach_dJQKw8",

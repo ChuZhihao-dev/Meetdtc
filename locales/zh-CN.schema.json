@@ -8,6 +8,18 @@
  * ------------------------------------------------------------
  */
 {
+  "showcase_hero": {
+    "heading_accent": "标题强调色",
+    "caption": "图片说明",
+    "name": "网站展示 Hero",
+    "secondary_image": "第二张网站展示图",
+    "demo_image": "未上传图片时展示参考示意图",
+    "partner_logo": "合作伙伴标识",
+    "partner_text": "合作伙伴说明",
+    "animation": "启用入场动效",
+    "duration": "动效时长",
+    "delay": "动效延迟"
+  },
   "result_card": {
     "article_info": "使用文章封面和链接。标签或描述留空时读取文章标题或摘要。下方图片作为备用，业绩数据需手动填写。"
   },
@@ -160,6 +172,9 @@
     "form_anchor_info": "填写页面中唯一的 ID，例如 growth-diagnosis（无需 #）。空格和大写字母会转为小写连字符格式。同页按钮链接填 #growth-diagnosis；跨页填写含该页脚的页面地址，例如 /pages/contact#growth-diagnosis。留空不添加自定义锚点。"
   },
   "service_scope": {
+    "tab_1": "标签 1",
+    "tab_2": "标签 2",
+    "card_tab": "卡片所属标签",
     "layout": "布局",
     "layout_standard": "服务范围",
     "layout_included": "项目标配",
@@ -246,6 +261,13 @@
     "enable_reveal": "启用入场动画"
   },
   "product_hero": {
+    "desktop_button_colors": "桌面端按钮配色",
+    "button_block_colors": "使用按钮自身配色",
+    "desktop_button_colors_info": "Showcase 使用标题强调色作为主按钮底色和次按钮文字色。仅在 990px 及以上生效，平板和手机保留按钮原配色。",
+    "desktop_colors": "桌面端文字颜色",
+    "compact_colors": "平板与手机文字颜色",
+    "desktop_alignment": "桌面端水平对齐",
+    "heading_color_info": "桌面端首行使用文字颜色，换行后的内容使用标题强调色。",
     "certification": "品牌认证",
     "certifications": "品牌认证",
     "show_certifications": "显示品牌认证",

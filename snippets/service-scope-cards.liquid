@@ -1,0 +1,69 @@
+{% doc %}
+  Renders the service grid, or a carousel filtered by the tab selected on each card.
+  @param {section} section - The service scope section.
+  @param {string} [tab_id] - Tab category to show in the carousel.
+  @param {string} [heading] - Accessible carousel name.
+  @example
+  {% render 'service-scope-cards', section: section %}
+{% enddoc %}
+{% assign card_count = 0 %}
+{% capture cards %}
+  {% for block in section.blocks %}
+    {% assign card_tab = block.settings.tab | default: 'tab_1' %}
+    {% if tab_id and card_tab != tab_id %}{% continue %}{% endif %}
+    {% assign has_detail = false %}
+    {% if tab_id and block.settings.deliverable != blank %}
+      {% assign has_detail = true %}
+    {% endif %}
+    {% if block.settings.heading != blank or block.settings.description != blank or has_detail or request.design_mode %}
+      {% assign card_count = card_count | plus: 1 %}
+      {% capture card_content %}
+        {% if block.settings.icon != blank %}
+          <img class="service-scope__card-icon" src="{{ block.settings.icon | image_url: width: 64 }}" width="32" height="32" alt="" loading="lazy">
+        {% endif %}
+        {% if tab_id and block.settings.tag != blank %}
+          <p class="service-scope__tag">{{ block.settings.tag | escape }}</p>
+        {% endif %}
+        {% if block.settings.heading != blank %}
+          {% if tab_id %}
+            <h4 class="service-scope__card-heading">{{ block.settings.heading | escape }}</h4>
+          {% else %}
+            <h3 class="service-scope__card-heading">{{ block.settings.heading | escape }}</h3>
+          {% endif %}
+        {% endif %}
+        {% if block.settings.description != blank %}<div class="service-scope__card-description">{{ block.settings.description }}</div>{% endif %}
+        {% if has_detail %}
+          <div class="service-scope__deliverable">{{ block.settings.deliverable }}</div>
+        {% endif %}
+        {% if block.settings.link != blank and block.settings.link_label != blank %}
+          <a class="service-scope__card-link" href="{{ block.settings.link | escape }}">{{ block.settings.link_label | escape }}{% if block.settings.heading != blank %}<span class="visually-hidden"> — {{ block.settings.heading | escape }}</span>{% endif %}</a>
+        {% endif %}
+      {% endcapture %}
+      {% if tab_id %}
+        <slideshow-slide class="service-scope__card" ref="slides[]" slide-id="{{ block.id }}" {% if section.settings.enable_reveal %}data-reveal{% endif %} {{ block.shopify_attributes }}>
+          {{ card_content }}
+        </slideshow-slide>
+      {% else %}
+        <li class="service-scope__card" {% if section.settings.enable_reveal %}data-reveal{% endif %} {{ block.shopify_attributes }}>{{ card_content }}</li>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+{% if card_count > 0 %}
+  {% if tab_id %}
+    <service-scope-pager>
+      {% capture carousel_attributes %}role="group" aria-label="{{ heading | default: section.id | escape }}"{% endcapture %}
+      {% render 'slideshow', class: 'service-scope__carousel', slides: cards,
+        slide_count: card_count, slide_position: 'stretch', infinite: false, attributes: carousel_attributes %}
+      {% if card_count > 1 %}
+        <div ref="controls" class="service-scope__pagination" {% if section.settings.enable_reveal %}data-reveal{% endif %} hidden>
+          {% render 'slideshow-arrow', action: 'previous', icon_shape: 'circle' %}
+          <output ref="counter" aria-live="polite" aria-atomic="true"></output>
+          {% render 'slideshow-arrow', action: 'next', icon_shape: 'circle' %}
+        </div>
+      {% endif %}
+    </service-scope-pager>
+  {% else %}
+    <ul class="service-scope__grid" role="list">{{ cards }}</ul>
+  {% endif %}
+{% endif %}

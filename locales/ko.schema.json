@@ -8,6 +8,18 @@
  * ------------------------------------------------------------
  */
 {
+  "showcase_hero": {
+    "heading_accent": "Heading accent colour",
+    "caption": "Image caption",
+    "name": "Showcase hero",
+    "secondary_image": "Second website image",
+    "demo_image": "Show reference illustration when images are empty",
+    "partner_logo": "Partner logo",
+    "partner_text": "Partner description",
+    "animation": "Enable entrance animation",
+    "duration": "Animation duration",
+    "delay": "Animation delay"
+  },
   "result_card": {
     "article_info": "기사의 이미지와 링크를 사용합니다. 라벨이나 설명을 비워 두면 기사의 제목이나 발췌문을 사용합니다. 아래 이미지는 대체 이미지이며 성과 수치는 직접 입력합니다."
   },
@@ -153,6 +165,9 @@
     "form_anchor_info": "Enter a unique ID such as growth-diagnosis (without #). Spaces and uppercase letters are normalized to lowercase hyphenated text. Link to #growth-diagnosis on this page, or /pages/contact#growth-diagnosis from another page that contains this footer. Leave empty to omit the custom anchor."
   },
   "service_scope": {
+    "tab_1": "탭 1",
+    "tab_2": "탭 2",
+    "card_tab": "카드가 속한 탭",
     "layout": "Layout",
     "layout_standard": "Service scope",
     "layout_included": "Project inclusions",
@@ -239,6 +254,13 @@
     "enable_reveal": "Enable entrance animation"
   },
   "product_hero": {
+    "desktop_button_colors": "Desktop button colors",
+    "button_block_colors": "Use button settings",
+    "desktop_button_colors_info": "Showcase uses the heading accent color for the primary background and secondary text. Applies from 990px; tablet and mobile retain each button’s saved colors.",
+    "desktop_colors": "Desktop text colors",
+    "compact_colors": "Tablet and mobile text colors",
+    "desktop_alignment": "Desktop horizontal alignment",
+    "heading_color_info": "On desktop, the first line uses the text color; subsequent lines use the heading accent color.",
     "service_labels": "Service labels",
     "service_labels_info": "One label per line. Reorder the lines to change their order; leave empty to hide.",
     "service_labels_color": "Service label color",

@@ -8,6 +8,18 @@
  * ------------------------------------------------------------
  */
 {
+  "showcase_hero": {
+    "heading_accent": "标题强调色",
+    "caption": "图片说明",
+    "name": "网站展示 Hero",
+    "secondary_image": "第二张网站展示图",
+    "demo_image": "未上传图片时展示参考示意图",
+    "partner_logo": "合作伙伴标识",
+    "partner_text": "合作伙伴说明",
+    "animation": "启用入场动效",
+    "duration": "动效时长",
+    "delay": "动效延迟"
+  },
   "result_card": {
     "article_info": "使用文章封面和連結。標籤或描述留空時讀取文章標題或摘要。下方圖片作為備用，成效數據需手動填寫。"
   },
@@ -153,6 +165,9 @@
     "form_anchor_info": "填寫頁面中唯一的 ID，例如 growth-diagnosis（無需 #）。空格及大寫字母會轉為小寫連字號格式。同頁按鈕連結填 #growth-diagnosis；跨頁填寫含此頁尾的頁面地址，例如 /pages/contact#growth-diagnosis。留空不新增自訂錨點。"
   },
   "service_scope": {
+    "tab_1": "頁籤 1",
+    "tab_2": "頁籤 2",
+    "card_tab": "卡片所屬頁籤",
     "layout": "版面配置",
     "layout_standard": "服務範圍",
     "layout_included": "專案標配",
@@ -239,6 +254,13 @@
     "enable_reveal": "Enable entrance animation"
   },
   "product_hero": {
+    "desktop_button_colors": "Desktop button colors",
+    "button_block_colors": "Use button settings",
+    "desktop_button_colors_info": "Showcase uses the heading accent color for the primary background and secondary text. Applies from 990px; tablet and mobile retain each button’s saved colors.",
+    "desktop_colors": "Desktop text colors",
+    "compact_colors": "Tablet and mobile text colors",
+    "desktop_alignment": "Desktop horizontal alignment",
+    "heading_color_info": "On desktop, the first line uses the text color; subsequent lines use the heading accent color.",
     "certification": "品牌認證",
     "certifications": "品牌认证",
     "show_certifications": "显示品牌认证",

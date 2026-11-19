@@ -105,8 +105,6 @@
         "heading_mid": "#8b45f0",
         "description_color": "#6b6a6a",
         "service_labels_color": "#3e4c81",
-        "section_height": "small",
-        "content_position": "center",
         "padding-block-start": 0,
         "padding-block-end": 0
       }

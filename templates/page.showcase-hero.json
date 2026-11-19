@@ -1,0 +1,61 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "showcase-hero",
+      "blocks": {
+        "button_1": {
+          "type": "_product-hero-button",
+          "settings": {
+            "label": "Discuss your build ↗",
+            "link": "shopify://pages/contact",
+            "style_class": "button-custom",
+            "custom_button_text": "#FFFFFF",
+            "custom_button_background": "#5932D4",
+            "custom_button_border": "#5932D4",
+            "button_gradient": false,
+            "button_gradient_from": "#6366f1",
+            "button_gradient_to": "#772cc7"
+          }
+        },
+        "button_2": {
+          "type": "_product-hero-button",
+          "settings": {
+            "label": "View packages",
+            "link": "shopify://pages/website-build-packages",
+            "style_class": "button-custom",
+            "custom_button_text": "#5932D4",
+            "custom_button_background": "#FFFFFF",
+            "custom_button_border": "#5932D4",
+            "button_gradient": false,
+            "link_text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "button_1",
+        "button_2"
+      ],
+      "settings": {
+        "partner_logo": "shopify://shop_images/shopify_platinum_partner.svg",
+        "partner_text": "Shopify Platinum Partner · Shopify’s highest partner tier",
+        "section_height": "auto",
+        "background_from": "#ffffff",
+        "background_to": "#ffffff",
+        "accent_color": "#5932D4",
+        "heading": "D2C Stores &\nBrand Websites"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

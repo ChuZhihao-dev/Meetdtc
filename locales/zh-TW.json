@@ -16,6 +16,7 @@
     "label": "麵包屑導覽"
   },
   "website_packages": {
+    "sold_out_cta": "Let’s talk",
     "selected_package": "所選方案：",
     "from": "起價",
     "pricing_unavailable": "價格即將公布",

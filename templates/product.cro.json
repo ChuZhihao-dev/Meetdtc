@@ -350,97 +350,66 @@
         "padding-block-end": 0
       }
     },
-    "product_hero_jiNakp": {
-      "type": "product-hero",
+    "showcase_hero_dVwgWJ": {
+      "type": "showcase-hero",
       "blocks": {
-        "button_JayDDj": {
+        "product_hero_button_PWHFcE": {
           "type": "_product-hero-button",
           "settings": {
             "label": "Book a Free Growth Consultation →",
             "link": "#growth-diagnosis",
             "open_in_new_tab": false,
             "style_class": "button-custom",
-            "custom_button_background": "#ffffff",
+            "custom_button_background": "#5932d4",
             "custom_button_text": "#ffffff",
-            "custom_button_border": "rgba(0,0,0,0)",
+            "custom_button_border": "#5932d4",
             "link_text_color": "",
-            "button_gradient": true,
-            "button_gradient_from": "#7a25c4",
-            "button_gradient_to": "#5e6eeb",
+            "button_gradient": false,
+            "button_gradient_from": "#6366f1",
+            "button_gradient_to": "#772cc7",
             "button_gradient_angle": 90,
             "button_gradient_start_position": 0,
             "button_gradient_end_position": 100,
             "button_icon_size": 16
           },
           "blocks": {}
-        },
-        "certifications": {
-          "type": "_product-hero-certifications",
-          "static": true,
-          "settings": {},
-          "blocks": {
-            "product_hero_certification_Rh6YHU": {
-              "type": "_product-hero-certification",
-              "name": "t:product_hero.certification",
-              "settings": {
-                "image": "shopify://shop_images/shopify_platinum_partner.svg",
-                "title": "",
-                "description": ""
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_hero_certification_Rh6YHU"
-          ]
-        },
-        "stats": {
-          "type": "_product-hero-stats",
-          "static": true,
-          "settings": {
-            "font": "montserrat_n4",
-            "text_color": "#000000",
-            "accent_color": "#772cc8",
-            "enable_animation": true
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "button_JayDDj"
+        "product_hero_button_PWHFcE"
       ],
-      "name": "t:product_hero.name",
+      "name": "t:showcase_hero.name",
       "settings": {
-        "show_certifications": true,
-        "certification_color": "#102653",
+        "layout_style": "center",
+        "section_height": "auto",
         "eyebrow": "Conversion Rate Optimization",
         "heading": "Turn more of your existing\n traffic into revenue.",
         "heading_tag": "h1",
-        "description": "ME combine data analysis with user behavior insight to find conversion barriers, \nthen validate every improvement with A/B testing — continuously lifting add-to-cart, \ncheckout and conversion rates across your store.",
-        "service_labels": "",
+        "description": "ME combine data analysis with user behavior insight to find conversion barriers, then validate every improvement with A/B testing — continuously lifting add-to-cart, checkout and conversion rates across your store.",
+        "show_demo": false,
+        "partner_logo": "shopify://shop_images/shopify_platinum_partner.svg",
+        "partner_text": "Shopify Platinum Partner · Shopify’s highest partner tier",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
-        "heading_from": "#5b34c6",
-        "heading_to": "#2d6bff",
-        "heading_mid": "#8b45f0",
-        "description_color": "#6b6a6a",
-        "service_labels_color": "#3e4c81",
-        "section_height": "full-screen",
-        "content_position": "center",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "accent_color": "#5932d4",
+        "text_color": "{{ settings.color_palette.foreground }}",
+        "padding-block-start": 60,
+        "padding-block-end": 80,
+        "animate": true,
+        "duration": 600,
+        "delay": 0
       }
     },
-    "partner_brands_N9LkYN": {
+    "partner_brands_VMpU97": {
       "type": "partner-brands",
       "blocks": {
-        "brand_row_bCajBm": {
+        "brand_row_bQWVhL": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "left"
           },
           "blocks": {
-            "brand_logo_p4CP4W": {
+            "brand_logo_h9pAfx": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/beatbot.png",
@@ -450,7 +419,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_jKHeNf": {
+            "brand_logo_cErKB6": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/rokid.png",
@@ -460,7 +429,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_r9XPBD": {
+            "brand_logo_3iDygj": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/shangri-la.png",
@@ -470,7 +439,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_4LKE4N": {
+            "brand_logo_jiyK7y": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/nongfu-spring.png",
@@ -480,7 +449,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_KkhFxD": {
+            "brand_logo_tyEfDn": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/molly-tea.png",
@@ -490,7 +459,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_hWbaVW": {
+            "brand_logo_NErCjz": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/dreame.png",
@@ -500,7 +469,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_843qeL": {
+            "brand_logo_kHAzBB": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/firefly.png",
@@ -510,7 +479,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_DbUwYd": {
+            "brand_logo_atYY8p": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/roborock.png",
@@ -522,23 +491,23 @@
             }
           },
           "block_order": [
-            "brand_logo_p4CP4W",
-            "brand_logo_jKHeNf",
-            "brand_logo_r9XPBD",
-            "brand_logo_4LKE4N",
-            "brand_logo_KkhFxD",
-            "brand_logo_hWbaVW",
-            "brand_logo_843qeL",
-            "brand_logo_DbUwYd"
+            "brand_logo_h9pAfx",
+            "brand_logo_cErKB6",
+            "brand_logo_3iDygj",
+            "brand_logo_jiyK7y",
+            "brand_logo_tyEfDn",
+            "brand_logo_NErCjz",
+            "brand_logo_kHAzBB",
+            "brand_logo_atYY8p"
           ]
         },
-        "brand_row_faY7EB": {
+        "brand_row_JBdcwG": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "right"
           },
           "blocks": {
-            "brand_logo_9gwLFU": {
+            "brand_logo_fPwbqY": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/winona.png",
@@ -548,7 +517,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_UP6TYB": {
+            "brand_logo_aKbMTi": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/onwave.png",
@@ -558,7 +527,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_RH3BWg": {
+            "brand_logo_hTBEUG": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/segway.png",
@@ -568,7 +537,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_a7r64z": {
+            "brand_logo_C6nyj7": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tiktok.png",
@@ -578,7 +547,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_HpRaXn": {
+            "brand_logo_DEWmkL": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tencent.png",
@@ -588,7 +557,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_PyDM4n": {
+            "brand_logo_jTz9x7": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/haier.png",
@@ -598,7 +567,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_p4Hzc3": {
+            "brand_logo_3m38Kf": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/midea.png",
@@ -608,7 +577,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_MFdxeG": {
+            "brand_logo_tceDnx": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/creality.png",
@@ -620,23 +589,23 @@
             }
           },
           "block_order": [
-            "brand_logo_9gwLFU",
-            "brand_logo_UP6TYB",
-            "brand_logo_RH3BWg",
-            "brand_logo_a7r64z",
-            "brand_logo_HpRaXn",
-            "brand_logo_PyDM4n",
-            "brand_logo_p4Hzc3",
-            "brand_logo_MFdxeG"
+            "brand_logo_fPwbqY",
+            "brand_logo_aKbMTi",
+            "brand_logo_hTBEUG",
+            "brand_logo_C6nyj7",
+            "brand_logo_DEWmkL",
+            "brand_logo_jTz9x7",
+            "brand_logo_3m38Kf",
+            "brand_logo_tceDnx"
           ]
         },
-        "brand_row_98Dfpe": {
+        "brand_row_cVWXA6": {
           "type": "_brand-row",
           "settings": {
             "logo_motion": "left"
           },
           "blocks": {
-            "brand_logo_dCWLrF": {
+            "brand_logo_BX9qFG": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ireader.png",
@@ -646,7 +615,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_Wzr4DQ": {
+            "brand_logo_kk44Af": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/game-bear.png",
@@ -656,7 +625,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_phGLiF": {
+            "brand_logo_XMFnW3": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/urban-revivo.png",
@@ -666,7 +635,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_ryX8UK": {
+            "brand_logo_JHUCHd": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/beneunder.png",
@@ -676,7 +645,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_RX6Jq8": {
+            "brand_logo_nhzxrt": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/tapo.png",
@@ -686,7 +655,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_cHJiiN": {
+            "brand_logo_XLPwjr": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/iflytek.png",
@@ -696,7 +665,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_F3nTiH": {
+            "brand_logo_hXAd8B": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ottocast.png",
@@ -706,7 +675,7 @@
               },
               "blocks": {}
             },
-            "brand_logo_HhMLkL": {
+            "brand_logo_gGAj9D": {
               "type": "_brand-logo",
               "settings": {
                 "image": "shopify://shop_images/ulanzi.png",
@@ -718,39 +687,39 @@
             }
           },
           "block_order": [
-            "brand_logo_dCWLrF",
-            "brand_logo_Wzr4DQ",
-            "brand_logo_phGLiF",
-            "brand_logo_ryX8UK",
-            "brand_logo_RX6Jq8",
-            "brand_logo_cHJiiN",
-            "brand_logo_F3nTiH",
-            "brand_logo_HhMLkL"
+            "brand_logo_BX9qFG",
+            "brand_logo_kk44Af",
+            "brand_logo_XMFnW3",
+            "brand_logo_JHUCHd",
+            "brand_logo_nhzxrt",
+            "brand_logo_XLPwjr",
+            "brand_logo_hXAd8B",
+            "brand_logo_gGAj9D"
           ]
         }
       },
       "block_order": [
-        "brand_row_bCajBm",
-        "brand_row_faY7EB",
-        "brand_row_98Dfpe"
+        "brand_row_bQWVhL",
+        "brand_row_JBdcwG",
+        "brand_row_cVWXA6"
       ],
       "name": "t:names.partner_brands",
       "settings": {
-        "heading": "<p>Trusted by Leading Brands Across Global Markets</p>",
+        "heading": "<p>Trusted by <strong>Leading Brands</strong></p>",
         "heading_position": "overlay",
         "font": "var(--font-heading--family)",
-        "font_size": "1.5rem",
+        "font_size": "2.5rem",
         "weight": "600",
         "line_height": "1.4",
         "letter_spacing": "normal",
         "alignment": "center",
         "wrap": "pretty",
-        "two_tone_heading": false,
+        "two_tone_heading": true,
         "heading_color": "#111111",
         "heading_accent_color": "#5b34c6",
         "gradient_text": true,
         "background_gradient_from": "{{ settings.color_palette.background }}",
-        "background_gradient_to": "#efe6f3",
+        "background_gradient_to": "{{ settings.color_palette.background }}",
         "background_gradient_angle": 160,
         "thickness": 0.5,
         "divider_color": "#707070",
@@ -876,8 +845,11 @@
         "card_ETxkQz": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Conversion Data Diagnosis",
             "description": "<p>We analyze GA4, heatmaps and user paths; you get a prioritized list of conversion barriers.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -885,8 +857,11 @@
         "card_wKwRVy": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "User Research",
             "description": "<p>We study real visitor behavior and feedback; you get clear insight into why users drop off.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -894,8 +869,11 @@
         "card_jTHQUi": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Optimization Hypotheses",
             "description": "<p>We turn insights into testable assumptions; you get a structured optimization roadmap.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -903,8 +881,11 @@
         "card_HJg9Ee": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Page Optimization Design",
             "description": "<p>We design optimized page variants; you get redesigns that reduce decision friction.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -912,8 +893,11 @@
         "card_xg8a6q": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "A/B Test Setup & Execution",
             "description": "<p>We configure traffic split and multivariate experiments; you get statistically reliable results.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -921,8 +905,11 @@
         "card_nMqphe": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Tracking & Fine-grained Data",
             "description": "<p>We set up precise conversion and key-behavior tracking; you get clear data on every variant.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -930,8 +917,11 @@
         "card_arTm9i": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Iteration & Winning Release",
             "description": "<p>We iterate variants until a winner emerges; you get the best-performing version live.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -939,8 +929,11 @@
         "card_mxgcYn": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Price Testing",
             "description": "<p>We test price and margin scenarios; you get validated pricing that lifts revenue per visitor.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -948,8 +941,11 @@
         "card_6hNiPV": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "heading": "Ongoing Optimization Retainer",
             "description": "<p>We run monthly cycles every 2–3 weeks; you get continuous conversion growth.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -972,6 +968,14 @@
         "eyebrow": "SERVICE SCOPE",
         "heading": "What Is Included",
         "description": "<p>From diagnosis to continuous growth, one complete optimization system.<br/><br/></p>",
+        "tab_1_label": "Shopify",
+        "tab_1_heading": "",
+        "tab_1_description": "",
+        "tab_1_note": "",
+        "tab_2_label": "WordPress",
+        "tab_2_heading": "",
+        "tab_2_description": "",
+        "tab_2_note": "",
         "font": "montserrat_n4",
         "text_color": "#000000",
         "card_heading_color": "#241c52",
@@ -1108,6 +1112,7 @@
       ],
       "name": "t:client_story.name",
       "settings": {
+        "layout": "card",
         "eyebrow": "FEATURED CLIENT STORY",
         "heading": "A Laser Equipment Brand Achieved 42% Higher Add-to-Cart Rate with CRO",
         "description": "<p>Customers needed an easier way to compare product packages. ME added a “What’s in the Box?” popup and ran an A/B test. During the test period, the optimized page achieved a 42% higher add-to-cart rate and a 3.25% higher average order value than the control.</p>",
@@ -1230,8 +1235,8 @@
     "breadcrumbs",
     "page_background_n8zJR6",
     "main",
-    "product_hero_jiNakp",
-    "partner_brands_N9LkYN",
+    "showcase_hero_dVwgWJ",
+    "partner_brands_VMpU97",
     "business_challenge_iR7zkb",
     "our_approach_dJQKw8",
     "service_scope_VaDYAw",

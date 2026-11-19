@@ -27,9 +27,9 @@
     --challenge-caption: {{ s.caption_color }};
     --challenge-center-color: {{ s.center_text_color }};
     --challenge-divider: {{ s.divider_color }};
-    --gradient-from: {{ s.gradient_color_from }};
+    --gradient-from: {{ s.gradient_color_from | default: '#5B34C6' }};
     --gradient-mid: {{ s.gradient_color_mid | default: '#8B45F0' }};
-    --gradient-to: {{ s.gradient_color_to }};
+    --gradient-to: {{ s.gradient_color_to | default: '#2D6BFF' }};
     --gradient-angle: 100deg;
     --gradient-start: 0%;
     --gradient-end: 100%;
@@ -62,6 +62,14 @@
 </business-challenge-component>
 
 {% stylesheet %}
+  .business-challenge__heading.text-block.text-block--gradient {
+    background-image: linear-gradient(
+      var(--gradient-angle),
+      var(--gradient-from) var(--gradient-start),
+      var(--gradient-mid),
+      var(--gradient-to) var(--gradient-end)
+    );
+  }
   /* The rotating square orbit extends beyond its circular artwork at diagonal angles.
      Bound its horizontal overflow here without creating a scroll container for the sticky figure. */
   .business-challenge { overflow-x: clip; display: block; container-type: inline-size; font-family: var(--challenge-font, var(--font-heading--family)); color: var(--color-foreground); }

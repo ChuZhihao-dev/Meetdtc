@@ -1,5 +1,5 @@
 {% comment %}
-  Product hero for service pages. Header-free, start-aligned copy with up to two
+  Product hero for service pages. Header-free, configurable desktop-aligned copy with up to two
   editable section-specific buttons and an optional service label list.
   @example Add Product hero, enter service labels one per line, and optionally add buttons.
 {% endcomment %}
@@ -9,17 +9,17 @@
 <script src="{{ 'scroll-reveal.js' | asset_url }}" type="module" fetchpriority="low"></script>
 
 <div class="section-background product-hero__background" style="--product-hero-bg-from:{{ section.settings.background_from }};--product-hero-bg-to:{{ section.settings.background_to }};"></div>
-<scroll-reveal-component class="section section--page-width section--height-{{ section.settings.section_height | default: 'large' }} spacing-style product-hero" data-reveal-scope data-reveal-timeline style="{% render 'spacing-style', settings: section.settings %}--product-hero-certification-color:{{ section.settings.certification_color }};--product-hero-description-color:{{ section.settings.description_color }};--product-hero-content-position:{{ section.settings.content_position | default: 'center' }};">
+<scroll-reveal-component class="section section--page-width spacing-style product-hero{% unless section.settings.desktop_button_colors == 'custom' %} product-hero--showcase-buttons{% endunless %}{% if section.settings.horizontal_alignment == 'center' %} product-hero--center{% endif %}" data-reveal-scope data-reveal-timeline style="{% render 'spacing-style', settings: section.settings %}--product-hero-certification-color:{{ section.settings.certification_color }};--product-hero-description-color:{{ section.settings.description_color }};--product-hero-text-color:{{ section.settings.text_color }};--product-hero-accent-color:{{ section.settings.accent_color }};">
   <div class="product-hero__content">
     {% if section.settings.eyebrow != blank %}
       <p class="product-hero__eyebrow" data-reveal>{{ section.settings.eyebrow | escape }}</p>
     {% endif %}
     {% if section.settings.heading != blank %}
       <{{ section.settings.heading_tag }}
-        class="product-hero__heading text-block text-block--gradient"
+        class="product-hero__heading"
         data-reveal
-        style="--gradient-from:{{ section.settings.heading_from }};--gradient-mid:{{ section.settings.heading_mid | default: '#8B45F0' }};--gradient-to:{{ section.settings.heading_to }};--gradient-angle:100deg;--gradient-start:0%;--gradient-end:100%;"
-      >{{ section.settings.heading | escape | newline_to_br }}</{{ section.settings.heading_tag }}>
+        style="--gradient-from:{{ section.settings.heading_from | default: '#5B34C6' }};--gradient-mid:{{ section.settings.heading_mid | default: '#8B45F0' }};--gradient-to:{{ section.settings.heading_to | default: '#2D6BFF' }};--gradient-angle:100deg;--gradient-start:0%;--gradient-end:100%;"
+      >{% assign heading_lines = section.settings.heading | newline_to_br | split: '<br />' %}{% for line in heading_lines %}<span{% unless forloop.first %} class="product-hero__heading-accent"{% endunless %}>{{ line | strip | escape }}</span>{% unless forloop.last %}<br>{% endunless %}{% endfor %}</{{ section.settings.heading_tag }}>
     {% endif %}
     {% if section.settings.description != blank %}
       <p class="product-hero__description" data-reveal>{{ section.settings.description | escape | newline_to_br }}</p>
@@ -47,11 +47,11 @@
 {% style %}
   #shopify-section-{{ section.id }} .product-hero {
     display: grid;
-    /* The selected height is the outer border box; padding belongs to the inner content. */
-    height: var(--section-min-height);
+    /* Content and merchant padding determine height without an internal scroller. */
+    height: auto;
     min-height: 0;
     padding-block: 0;
-    overflow: auto;
+    overflow: visible;
   }
   #shopify-section-{{ section.id }} .product-hero__background {
     background-image: linear-gradient(92.19deg, var(--product-hero-bg-from) 1.07%, var(--product-hero-bg-to) 98.93%);
@@ -60,8 +60,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: safe var(--product-hero-content-position, center);
-    min-height: 100%;
+    justify-content: flex-start;
+    min-height: 0;
     padding-block: calc(var(--padding-block-start, 0px) + var(--section-top-offset, 0px)) var(--padding-block-end, 0px);
     gap: 20px;
     width: 100%;
@@ -82,7 +82,20 @@
     overflow-wrap: anywhere;
   }
   #shopify-section-{{ section.id }} .product-hero__heading {
+    display: block;
+    inline-size: fit-content;
+    max-inline-size: 100%;
     margin: 0;
+    background-image: linear-gradient(
+      var(--gradient-angle),
+      var(--gradient-from) var(--gradient-start),
+      var(--gradient-mid),
+      var(--gradient-to) var(--gradient-end)
+    );
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-align: inherit;
     font-family: inherit;
     font-size: 40px;
     font-weight: 600;
@@ -91,6 +104,8 @@
     overflow-wrap: anywhere;
     text-wrap: balance;
   }
+  #shopify-section-{{ section.id }} .product-hero__heading > span,
+  #shopify-section-{{ section.id }} .product-hero__heading > br { display: inline; }
   #shopify-section-{{ section.id }} .product-hero__description {
     width: 100%;
     margin: 0;
@@ -166,8 +181,6 @@
     #shopify-section-{{ section.id }} .product-hero__eyebrow { font-size: 12px; }
     #shopify-section-{{ section.id }} .product-hero__actions > .product-hero-button { min-height: 44px; padding: 10px 16px; border-radius: 24px; font-size: 14px; }
   }
-  #shopify-section-{{ section.id }} .product-hero:has(.product-hero__stats) { height: auto; min-height: var(--section-min-height); overflow: visible; }
-  #shopify-section-{{ section.id }} .product-hero:has(.product-hero__stats) .product-hero__content { padding-block: calc(max(var(--padding-block-start, 0px), 48px) + var(--section-top-offset, 0px)) max(var(--padding-block-end, 0px), 48px); }
   #shopify-section-{{ section.id }} .product-hero__stats { width: 100%; min-width: 0; margin-block-start: 28px; }
   #shopify-section-{{ section.id }} .product-hero__stats .stats-counter__items { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); inline-size: 100%; max-inline-size: none; gap: 32px; }
   #shopify-section-{{ section.id }} .product-hero__stats .stats-counter__item { width: auto; text-align: start; }
@@ -177,9 +190,88 @@
     #shopify-section-{{ section.id }} .product-hero__stats .stats-counter__items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media screen and (max-width: 749px) {
-    #shopify-section-{{ section.id }} .product-hero:has(.product-hero__stats) .product-hero__content { padding-block: calc(min(var(--padding-block-start, 32px), 32px) + 24px + var(--section-top-offset, 0px)) 32px; }
     #shopify-section-{{ section.id }} .product-hero__stats { margin-block-start: 16px; }
     #shopify-section-{{ section.id }} .product-hero__stats .stats-counter__items { gap: 24px 16px; }
+  }
+  @media screen and (min-width: 990px) {
+    /* Desktop shares Showcase Hero colors; compact viewports retain saved gradients. */
+    #shopify-section-{{ section.id }} .product-hero__content { color: var(--product-hero-text-color); }
+    #shopify-section-{{ section.id }} .product-hero__heading {
+      background: none;
+      color: inherit;
+      -webkit-text-fill-color: currentColor;
+    }
+    #shopify-section-{{ section.id }} .product-hero__heading > br { display: none; }
+    #shopify-section-{{ section.id }} .product-hero__heading span {
+      display: block;
+      color: inherit;
+      -webkit-text-fill-color: currentColor;
+    }
+    #shopify-section-{{ section.id }} .product-hero__heading .product-hero__heading-accent,
+    #shopify-section-{{ section.id }} .product-hero__eyebrow { color: var(--product-hero-accent-color); }
+    #shopify-section-{{ section.id }} .product-hero__description { color: inherit; }
+    #shopify-section-{{ section.id }} .product-hero__content { font-family: var(--font-body--family); }
+    #shopify-section-{{ section.id }} .product-hero__eyebrow {
+      font-size: 14px;
+      font-weight: var(--font-heading--weight);
+      line-height: 1.5;
+      text-transform: none;
+    }
+    #shopify-section-{{ section.id }} .product-hero__heading {
+      font-family: var(--font-heading--family);
+      font-size: clamp(40px, 3.6vw, 52px);
+      font-weight: var(--font-heading--weight);
+      line-height: 1.12;
+      letter-spacing: -.035em;
+    }
+    #shopify-section-{{ section.id }} .product-hero__description {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+    #shopify-section-{{ section.id }} .product-hero__actions { gap: 12px; }
+    #shopify-section-{{ section.id }} .product-hero__actions > .product-hero-button {
+      min-height: 48px;
+      min-block-size: 48px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+    #shopify-section-{{ section.id }} .product-hero--showcase-buttons .product-hero__actions > .product-hero-button {
+      color: var(--color-white);
+      background-color: var(--product-hero-accent-color);
+      background-image: none;
+      border-color: var(--product-hero-accent-color);
+    }
+    #shopify-section-{{ section.id }} .product-hero--showcase-buttons .product-hero__actions > .product-hero-button ~ .product-hero-button {
+      color: var(--product-hero-accent-color);
+      background-color: var(--color-white);
+    }
+    #shopify-section-{{ section.id }} .product-hero--showcase-buttons .product-hero__actions > .product-hero-button.product-hero-button--link {
+      color: var(--product-hero-accent-color);
+      background: transparent;
+      border: 0;
+    }
+    #shopify-section-{{ section.id }} .product-hero__actions .product-hero-button--link { text-decoration: none; }
+    #shopify-section-{{ section.id }} .product-hero__actions .product-hero-button--link:hover { text-decoration: underline; }
+    #shopify-section-{{ section.id }} .product-hero--center .product-hero__content {
+      align-items: center;
+      text-align: center;
+    }
+    #shopify-section-{{ section.id }} .product-hero--center .product-hero__heading {
+      inline-size: 100%;
+      text-align: center;
+    }
+    #shopify-section-{{ section.id }} .product-hero--center .product-hero__eyebrow,
+    #shopify-section-{{ section.id }} .product-hero--center .product-hero__description { text-align: center; }
+    #shopify-section-{{ section.id }} .product-hero--center .product-hero__actions,
+    #shopify-section-{{ section.id }} .product-hero--center .service-labels,
+    #shopify-section-{{ section.id }} .product-hero--center .product-hero__certifications,
+    #shopify-section-{{ section.id }} .product-hero--center .stats-counter__amount {
+      justify-content: center;
+    }
+    #shopify-section-{{ section.id }} .product-hero--center .stats-counter__item { text-align: center; }
+    #shopify-section-{{ section.id }} .product-hero--center .stats-counter__description { margin-inline: auto; }
   }
 {% endstyle %}
 
@@ -225,6 +317,7 @@
       "type": "textarea",
       "id": "heading",
       "label": "t:settings.heading",
+      "info": "t:product_hero.heading_color_info",
       "default": "Websites Built to Sell.\nNot Just to Look Good"
     },
     {
@@ -272,6 +365,37 @@
       "default": "#C7E2F4"
     },
     {
+      "type": "header",
+      "content": "t:product_hero.desktop_colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:settings.text_color",
+      "default": "{{ settings.color_palette.foreground }}"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "t:showcase_hero.heading_accent",
+      "default": "#5932D4"
+    },
+    {
+      "type": "select",
+      "id": "desktop_button_colors",
+      "label": "t:product_hero.desktop_button_colors",
+      "options": [
+        { "value": "showcase", "label": "t:showcase_hero.name" },
+        { "value": "custom", "label": "t:product_hero.button_block_colors" }
+      ],
+      "default": "showcase",
+      "info": "t:product_hero.desktop_button_colors_info"
+    },
+    {
+      "type": "header",
+      "content": "t:product_hero.compact_colors"
+    },
+    {
       "type": "color",
       "id": "heading_from",
       "label": "t:settings.gradient_color_from",
@@ -304,51 +428,17 @@
     },
     {
       "type": "header",
-      "content": "t:content.size"
+      "content": "t:settings.layout"
     },
     {
       "type": "select",
-      "id": "section_height",
-      "label": "t:settings.height",
+      "id": "horizontal_alignment",
+      "label": "t:product_hero.desktop_alignment",
       "options": [
-        {
-          "value": "small",
-          "label": "t:options.small"
-        },
-        {
-          "value": "medium",
-          "label": "t:options.medium"
-        },
-        {
-          "value": "large",
-          "label": "t:options.large"
-        },
-        {
-          "value": "full-screen",
-          "label": "t:options.full_screen"
-        }
+        { "value": "start", "label": "t:options.start" },
+        { "value": "center", "label": "t:options.center" }
       ],
-      "default": "large"
-    },
-    {
-      "type": "select",
-      "id": "content_position",
-      "label": "t:product_hero.content_position",
-      "options": [
-        {
-          "value": "flex-start",
-          "label": "t:product_hero.position_top"
-        },
-        {
-          "value": "center",
-          "label": "t:product_hero.position_center"
-        },
-        {
-          "value": "flex-end",
-          "label": "t:product_hero.position_bottom"
-        }
-      ],
-      "default": "center"
+      "default": "start"
     },
     {
       "type": "header",
@@ -362,7 +452,7 @@
       "max": 240,
       "step": 4,
       "unit": "px",
-      "default": 84
+      "default": 80
     },
     {
       "type": "range",
@@ -372,7 +462,7 @@
       "max": 240,
       "step": 4,
       "unit": "px",
-      "default": 84
+      "default": 60
     }
   ],
   "presets": [
@@ -389,10 +479,10 @@
           "type": "_product-hero-button",
           "settings": {
             "style_class": "button-custom",
-            "custom_button_background": "#FFFFFF",
+            "custom_button_background": "#5932D4",
             "custom_button_text": "#FFFFFF",
-            "custom_button_border": "#00000000",
-            "button_gradient": true,
+            "custom_button_border": "#5932D4",
+            "button_gradient": false,
             "button_gradient_from": "#7A25C4",
             "button_gradient_to": "#5E6EEB",
             "button_gradient_angle": 90,
@@ -407,8 +497,8 @@
           "settings": {
             "style_class": "button-custom",
             "custom_button_background": "#FFFFFF",
-            "custom_button_text": "#000000",
-            "custom_button_border": "#00000000",
+            "custom_button_text": "#5932D4",
+            "custom_button_border": "#5932D4",
             "button_gradient": false,
             "button_gradient_from": "#7A25C4",
             "button_gradient_to": "#5E6EEB",

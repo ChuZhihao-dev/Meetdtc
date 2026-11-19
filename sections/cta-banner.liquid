@@ -106,7 +106,7 @@
     background-image: linear-gradient(
       96deg,
       #FFFFFF 12%,
-      #F8E5FF 88%
+      #Ffffff 88%
     );
   }
   .cta-banner__background {
@@ -135,6 +135,7 @@
   .cta-banner__heading {
     flex: 1 1 0;
     min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .cta-banner__aside {
@@ -165,6 +166,7 @@
 
   .cta-banner__button {
     display: inline-flex;
+    max-inline-size: 100%;
     gap: 10px;
     align-items: center;
     justify-content: center;
@@ -465,6 +467,12 @@
   }
 
   @media screen and (min-width: 750px) {
+    /* Reserve title space before the description reaches its desktop width. */
+    .cta-banner:not(.cta-banner--glow) .cta-banner__aside {
+      flex-basis: 55%;
+      min-inline-size: 0;
+    }
+
     .cta-banner.cta-banner--glow {
       min-block-size: 578px;
       padding-block: 88px 72px;

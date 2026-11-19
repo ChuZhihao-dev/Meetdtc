@@ -17,7 +17,7 @@
       {% if s.eyebrow != blank %}<p class="about-counter-hero__eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
       {% if s.heading != blank %}
         <{{ s.heading_tag }} class="about-counter-hero__heading text-block text-block--gradient"
-          style="--gradient-from: {{ s.heading_from }}; --gradient-mid: {{ s.heading_mid }}; --gradient-to: {{ s.heading_to }}; --gradient-angle: 100deg; --gradient-start: 0%; --gradient-end: 100%;">{{ s.heading | escape | newline_to_br }}</{{ s.heading_tag }}>
+          style="--gradient-from: {{ s.heading_from | default: '#5B34C6' }}; --gradient-mid: {{ s.heading_mid | default: '#8B45F0' }}; --gradient-to: {{ s.heading_to | default: '#2D6BFF' }}; --gradient-angle: 100deg; --gradient-start: 0%; --gradient-end: 100%;">{{ s.heading | escape | newline_to_br }}</{{ s.heading_tag }}>
       {% endif %}
       {% if s.description != blank %}<p class="about-counter-hero__description">{{ s.description | escape | newline_to_br }}</p>{% endif %}
     </div>
@@ -27,6 +27,14 @@
   </div>
 </section>
 {% stylesheet %}
+  .about-counter-hero__heading.text-block.text-block--gradient {
+    background-image: linear-gradient(
+      var(--gradient-angle),
+      var(--gradient-from) var(--gradient-start),
+      var(--gradient-mid),
+      var(--gradient-to) var(--gradient-end)
+    );
+  }
   .about-counter-hero__background { background: linear-gradient(92.19deg, var(--about-hero-bg-from) 1.07%, var(--about-hero-bg-to) 98.93%); }
   .about-counter-hero { padding-block: calc(var(--padding-block-start, 48px) + var(--section-top-offset, 0px)) var(--padding-block-end, 48px); font-family: var(--font-heading--family); }
   .about-counter-hero__inner { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "intro" "stats"; gap: 40px; align-items: start; inline-size: 100%; min-inline-size: 0; }
