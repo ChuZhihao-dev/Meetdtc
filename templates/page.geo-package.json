@@ -100,11 +100,13 @@
         "service_labels": "",
         "background_from": "#f7e9f5",
         "background_to": "#c7e2f4",
-        "heading_from": "#5b34c6",
-        "heading_to": "#2d6bff",
-        "heading_mid": "#8b45f0",
+        "text_color": "{{ settings.color_palette.foreground }}",
+        "accent_color": "#5932d4",
+        "desktop_button_colors": "showcase",
+        "heading_gradient": "linear-gradient(100deg, #5b34c6 0%, #8b45f0 50%, #2d6bff 100%)",
         "description_color": "#6b6a6a",
         "service_labels_color": "#3e4c81",
+        "horizontal_alignment": "start",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
@@ -197,9 +199,12 @@
         "responsive": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "icon": "shopify://shop_images/eye.svg",
             "heading": "AI Visibility Baseline",
             "description": "<p>Review current brand mentions, recommendations, cited sources and competitor presence across your selected channels.<br/><br/></p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -207,9 +212,12 @@
         "store": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "icon": "shopify://shop_images/message-circle-question-mark.svg",
             "heading": "Customer Question Research",
             "description": "<p>Identify the questions customers ask when discovering, comparing and choosing products or providers.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -217,9 +225,12 @@
         "analytics": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "icon": "shopify://shop_images/badge-check.svg",
             "heading": "Brand & Product Accuracy",
             "description": "<p>Review key brand and product facts, identify information gaps and guide consistent content development.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -227,9 +238,12 @@
         "marketing": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "icon": "shopify://shop_images/file-search.svg",
             "heading": "Website & Content Review",
             "description": "<p>Assess page structure, content clarity, relevant structured data and applicable crawler-access settings.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -237,9 +251,12 @@
         "handover": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "icon": "shopify://shop_images/workflow.svg",
             "heading": "Content & Source Planning",
             "description": "<p>Turn research into priorities for articles, page improvements, FAQs and relevant external publishing.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -247,9 +264,12 @@
         "advertising": {
           "type": "card",
           "settings": {
+            "tab": "tab_1",
+            "tag": "",
             "icon": "shopify://shop_images/chart-no-axes-combined.svg",
             "heading": "Measurement & Refinement",
             "description": "<p>Review observed changes, document completed work and set priorities for the next reporting period.</p>",
+            "deliverable": "",
             "link": "",
             "link_label": "Learn more"
           }
@@ -269,10 +289,18 @@
         "eyebrow": "",
         "heading": "Included in Every  AI SEO  Program",
         "description": "<p>The shared foundations behind your AI SEO program. Monthly delivery quantities follow your selected plan.<br/><br/></p>",
+        "tab_1_label": "Shopify",
+        "tab_1_heading": "",
+        "tab_1_description": "",
+        "tab_1_note": "",
+        "tab_2_label": "WordPress",
+        "tab_2_heading": "",
+        "tab_2_description": "",
+        "tab_2_note": "",
         "font": "montserrat_n4",
         "text_color": "#5e5a8a",
         "card_heading_color": "#241c52",
-        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 95%)",
         "background": "",
         "card_background": "#ffffff",
         "card_opacity": 100,
@@ -344,7 +372,7 @@
         "heading": "From Your Starting Baseline to Ongoing Improvement",
         "description": "<p>A structured program of research, implementation and measurement, built around your brand’s priorities.</p>",
         "background": "",
-        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 95%)",
         "text_color": "#000000",
         "accent_color": "#9621c4",
         "step_gap": 60,
@@ -425,7 +453,7 @@
         "heading": "<p>About Your AI SEO &nbsp;Program<br/></p>",
         "description": "<p>What to know before choosing your plan.<br/></p>",
         "font": "var(--font-heading--family)",
-        "font_size": "3.625rem",
+        "font_size": "2.5rem",
         "weight": "600",
         "line_height": "1.3",
         "wrap": "balance",

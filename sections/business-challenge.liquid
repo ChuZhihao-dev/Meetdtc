@@ -27,12 +27,7 @@
     --challenge-caption: {{ s.caption_color }};
     --challenge-center-color: {{ s.center_text_color }};
     --challenge-divider: {{ s.divider_color }};
-    --gradient-from: {{ s.gradient_color_from | default: '#5B34C6' }};
-    --gradient-mid: {{ s.gradient_color_mid | default: '#8B45F0' }};
-    --gradient-to: {{ s.gradient_color_to | default: '#2D6BFF' }};
-    --gradient-angle: 100deg;
-    --gradient-start: 0%;
-    --gradient-end: 100%;
+    --section-heading-gradient: {{ s.heading_gradient | default: 'var(--heading-gradient)' }};
   "
 >
   <div class="business-challenge__layout">
@@ -63,12 +58,8 @@
 
 {% stylesheet %}
   .business-challenge__heading.text-block.text-block--gradient {
-    background-image: linear-gradient(
-      var(--gradient-angle),
-      var(--gradient-from) var(--gradient-start),
-      var(--gradient-mid),
-      var(--gradient-to) var(--gradient-end)
-    );
+    background: var(--section-heading-gradient);
+    background-clip: text;
   }
   /* The rotating square orbit extends beyond its circular artwork at diagonal angles.
      Bound its horizontal overflow here without creating a scroll container for the sticky figure. */
@@ -78,7 +69,7 @@
   .business-challenge__eyebrow { margin: 0 0 16px; font-size: 18px; font-weight: 500; line-height: 1.4; overflow-wrap: anywhere; }
   .business-challenge__heading { margin: 0; font-family: inherit; font-size: var(--challenge-heading-size); font-weight: 600; line-height: 1.2; letter-spacing: normal; overflow-wrap: anywhere; text-wrap: pretty; color: var(--color-foreground); }
   .business-challenge__figure { grid-area: figure; min-inline-size: 0; inline-size: 100%; max-inline-size: 484px; margin: 82px 0 0; }
-  .business-challenge__caption { max-inline-size: 436px; margin-block-start: 33px; margin-inline: auto; padding-inline: 8px; font-size: 1.1875rem; font-weight: 500; line-height: 1.4737; text-align: center; overflow-wrap: anywhere; color: var(--challenge-caption); }
+  .business-challenge__caption { max-inline-size: 436px; margin-block-start: 32px; margin-inline: auto; padding-inline: 8px; font-size: 18px; font-weight: 500; line-height: 1.4; text-align: center; overflow-wrap: anywhere; color: var(--challenge-caption); }
   .business-challenge__list { grid-area: list; min-inline-size: 0; max-inline-size: 704px; }
   .business-challenge__more { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; min-block-size: 44px; max-inline-size: 100%; margin-block-start: 24px; padding: 10px 24px; border: 1px solid var(--challenge-accent); border-radius: var(--style-border-radius-buttons-primary, 24px); background: transparent; color: var(--challenge-accent); font: inherit; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; cursor: pointer; transition: color calc(var(--animation-speed-slow) * 2) var(--ease-out-cubic); }
   .business-challenge__more[hidden], .business-challenge-item[hidden] { display: none; }
@@ -263,24 +254,10 @@
       "default": true
     },
     {
-      "type": "color",
-      "id": "gradient_color_from",
-      "label": "t:settings.gradient_color_from",
-      "default": "#5B34C6",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_to",
-      "label": "t:settings.gradient_color_to",
-      "default": "#2D6BFF",
-      "visible_if": "{{ section.settings.gradient_text }}"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_mid",
-      "label": "t:settings.gradient_color_mid",
-      "default": "#8B45F0",
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "t:service_scope.heading_gradient",
+      "default": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 50%, #2D6BFF 100%)",
       "visible_if": "{{ section.settings.gradient_text }}"
     },
     {

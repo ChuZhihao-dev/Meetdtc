@@ -16,17 +16,6 @@
         "padding-block-end": 16
       }
     },
-    "page_background_n8zJR6": {
-      "type": "page-background",
-      "name": "t:names.page_background",
-      "settings": {
-        "background_type": "gradient",
-        "background_color": "#ffffff",
-        "gradient_color_from": "#f7eaf3",
-        "gradient_color_to": "#dbe5f3",
-        "gradient_angle": 176
-      }
-    },
     "main": {
       "type": "product-information",
       "blocks": {
@@ -800,9 +789,7 @@
         "font": "var(--font-heading--family)",
         "font_size": "2.5rem",
         "gradient_text": true,
-        "gradient_color_from": "#5b34c6",
-        "gradient_color_to": "#2d6bff",
-        "gradient_color_mid": "#8b45f0",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 95%)",
         "background_color": "rgba(0,0,0,0)",
         "text_color": "#000000",
         "accent_color": "#7222c1",
@@ -830,7 +817,7 @@
         "image_alt": "",
         "font": "montserrat_n5",
         "text_color": "#000000",
-        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 95%)",
         "background": "",
         "padding-block-start": 80,
         "padding-block-end": 80,
@@ -979,8 +966,8 @@
         "font": "montserrat_n4",
         "text_color": "#000000",
         "card_heading_color": "#241c52",
-        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
-        "background": "",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 95%)",
+        "background": "rgba(230, 236, 255, 0.6\n)",
         "card_background": "#ffffff",
         "card_opacity": 58,
         "card_border": "#ffffff",
@@ -1050,8 +1037,8 @@
         "eyebrow": "DELIVERY PROCESS",
         "heading": "Every phase ends with a clear deliverable",
         "description": "<p>Each stage defines what we will do, what you will receive, and where your team’s input is needed.</p>",
-        "background": "linear-gradient(135.439deg, rgba(211, 216, 246, 1) 2.204%, rgba(253, 243, 255, 1) 97.796%)",
-        "heading_gradient": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 55%, #2D6BFF 100%)",
+        "background": "",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 95%)",
         "text_color": "#000000",
         "accent_color": "#9621c4",
         "step_gap": 60,
@@ -1113,7 +1100,7 @@
         "link": "https://meetdtc-40icat5f.myshopify.com/blogs/our-work/beauty-personal-care-membership-loyalty",
         "font": "montserrat_n5",
         "text_color": "#000000",
-        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 95%)",
         "background": "",
         "panel_background": "linear-gradient(105.9376deg, rgba(19, 98, 250, 0.05) 3.724%, rgba(109, 40, 217, 0.05) 96.276%)",
         "accent_color": "#6d28d9",
@@ -1214,7 +1201,7 @@
       ],
       "name": "t:names.faq_section",
       "settings": {
-        "layout_style": "standard",
+        "layout_style": "cards",
         "eyebrow": "FAQ",
         "heading": "<p>About Working With ME</p>",
         "description": "<p>Learn how ME helps DTC brands build customer loyalty programs, from platform selection to launch and ongoing support.</p>",
@@ -1244,7 +1231,6 @@
   },
   "order": [
     "breadcrumbs",
-    "page_background_n8zJR6",
     "main",
     "showcase_hero_YA68DX",
     "partner_brands_Vdm6ar",

@@ -198,7 +198,7 @@
         "blog": "our-work",
         "heading": "Our Work",
         "description": "<p>See how we help businesses grow through MarTech, technology and marketing.</p>",
-        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 95%)",
         "intro_background": "linear-gradient(168deg, rgba(217, 224, 249, 1), rgba(248, 241, 237, 1) 100%)",
         "list_background": "linear-gradient(180deg, rgba(230, 236, 255, 1), rgba(219, 225, 248, 1) 100%)",
         "filter_background": "linear-gradient(162deg, rgba(218, 226, 255, 1) 1%, rgba(193, 205, 249, 1) 99%)",

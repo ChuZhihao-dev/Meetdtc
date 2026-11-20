@@ -154,7 +154,7 @@
         "offices_icon": "shopify://shop_images/Icon_3_173077e5-69b2-4b9b-b096-1ca2e5f45a8a.svg",
         "font": "montserrat_n4",
         "background": "linear-gradient(164.59deg, rgba(216, 224, 248, 1) 0.157%, rgba(247, 241, 237, 1) 99.843%)",
-        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 55%, rgba(45, 107, 255, 1) 100%)",
+        "heading_gradient": "linear-gradient(100deg, rgba(91, 52, 198, 1), rgba(139, 69, 240, 1) 95%)",
         "text_color": "#000000",
         "card_background": "#fbfbfb",
         "accent_color": "#1122b8",

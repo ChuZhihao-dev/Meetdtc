@@ -18,7 +18,7 @@
       <{{ section.settings.heading_tag }}
         class="product-hero__heading"
         data-reveal
-        style="--gradient-from:{{ section.settings.heading_from | default: '#5B34C6' }};--gradient-mid:{{ section.settings.heading_mid | default: '#8B45F0' }};--gradient-to:{{ section.settings.heading_to | default: '#2D6BFF' }};--gradient-angle:100deg;--gradient-start:0%;--gradient-end:100%;"
+        style="--section-heading-gradient: {{ section.settings.heading_gradient | default: 'var(--heading-gradient)' }};"
       >{% assign heading_lines = section.settings.heading | newline_to_br | split: '<br />' %}{% for line in heading_lines %}<span{% unless forloop.first %} class="product-hero__heading-accent"{% endunless %}>{{ line | strip | escape }}</span>{% unless forloop.last %}<br>{% endunless %}{% endfor %}</{{ section.settings.heading_tag }}>
     {% endif %}
     {% if section.settings.description != blank %}
@@ -86,12 +86,7 @@
     inline-size: fit-content;
     max-inline-size: 100%;
     margin: 0;
-    background-image: linear-gradient(
-      var(--gradient-angle),
-      var(--gradient-from) var(--gradient-start),
-      var(--gradient-mid),
-      var(--gradient-to) var(--gradient-end)
-    );
+    background: var(--section-heading-gradient);
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
@@ -396,22 +391,10 @@
       "content": "t:product_hero.compact_colors"
     },
     {
-      "type": "color",
-      "id": "heading_from",
-      "label": "t:settings.gradient_color_from",
-      "default": "#5B34C6"
-    },
-    {
-      "type": "color",
-      "id": "heading_to",
-      "label": "t:settings.gradient_color_to",
-      "default": "#2D6BFF"
-    },
-    {
-      "type": "color",
-      "id": "heading_mid",
-      "label": "t:settings.gradient_color_mid",
-      "default": "#8B45F0"
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "t:service_scope.heading_gradient",
+      "default": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 50%, #2D6BFF 100%)"
     },
     {
       "type": "color",

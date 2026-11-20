@@ -17,7 +17,7 @@
       {% if s.eyebrow != blank %}<p class="about-counter-hero__eyebrow">{{ s.eyebrow | escape }}</p>{% endif %}
       {% if s.heading != blank %}
         <{{ s.heading_tag }} class="about-counter-hero__heading text-block text-block--gradient"
-          style="--gradient-from: {{ s.heading_from | default: '#5B34C6' }}; --gradient-mid: {{ s.heading_mid | default: '#8B45F0' }}; --gradient-to: {{ s.heading_to | default: '#2D6BFF' }}; --gradient-angle: 100deg; --gradient-start: 0%; --gradient-end: 100%;">{{ s.heading | escape | newline_to_br }}</{{ s.heading_tag }}>
+          style="--section-heading-gradient: {{ s.heading_gradient | default: 'var(--heading-gradient)' }};">{{ s.heading | escape | newline_to_br }}</{{ s.heading_tag }}>
       {% endif %}
       {% if s.description != blank %}<p class="about-counter-hero__description">{{ s.description | escape | newline_to_br }}</p>{% endif %}
     </div>
@@ -28,12 +28,8 @@
 </section>
 {% stylesheet %}
   .about-counter-hero__heading.text-block.text-block--gradient {
-    background-image: linear-gradient(
-      var(--gradient-angle),
-      var(--gradient-from) var(--gradient-start),
-      var(--gradient-mid),
-      var(--gradient-to) var(--gradient-end)
-    );
+    background: var(--section-heading-gradient);
+    background-clip: text;
   }
   .about-counter-hero__background { background: linear-gradient(92.19deg, var(--about-hero-bg-from) 1.07%, var(--about-hero-bg-to) 98.93%); }
   .about-counter-hero { padding-block: calc(var(--padding-block-start, 48px) + var(--section-top-offset, 0px)) var(--padding-block-end, 48px); font-family: var(--font-heading--family); }
@@ -121,22 +117,10 @@
       "default": "#C7E2F4"
     },
     {
-      "type": "color",
-      "id": "heading_from",
-      "label": "t:settings.gradient_color_from",
-      "default": "#5B34C6"
-    },
-    {
-      "type": "color",
-      "id": "heading_to",
-      "label": "t:settings.gradient_color_to",
-      "default": "#2D6BFF"
-    },
-    {
-      "type": "color",
-      "id": "heading_mid",
-      "label": "t:settings.gradient_color_mid",
-      "default": "#8B45F0"
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "t:service_scope.heading_gradient",
+      "default": "linear-gradient(100deg, #5B34C6 0%, #8B45F0 50%, #2D6BFF 100%)"
     },
     {
       "type": "color",
